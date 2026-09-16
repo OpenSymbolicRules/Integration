@@ -1,5 +1,5 @@
 #!/usr/bin/env julia
-# CLI entry point for the Mathematica-to-PIRF converter
+# CLI entry point for the Mathematica-to-OSR converter
 # Usage:
 #   julia --project=converter converter/scripts/convert.jl --rules
 #   julia --project=converter converter/scripts/convert.jl --tests
@@ -18,7 +18,7 @@ const VENDOR_RUBI = joinpath(REPO_ROOT, "vendor", "Rubi")
 const VENDOR_TESTS = joinpath(REPO_ROOT, "vendor", "MathematicaSyntaxTestSuite")
 
 function print_usage()
-    println("RubiConverter v$VERSION — Mathematica-to-PIRF converter")
+    println("RubiConverter v$VERSION — Mathematica-to-OSR converter")
     println()
     println("DISCLAIMER: This is a community conversion tool and is not an official")
     println("product of the RUBI project or its author Albert Rich.")

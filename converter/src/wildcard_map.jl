@@ -1,16 +1,16 @@
-# Wildcard mapping: Mathematica pattern syntax → PIRF wildcard notation
+# Wildcard mapping: Mathematica pattern syntax → OSR wildcard notation
 # Per EARS spec §5 (Wildcards)
 
 """
     map_wildcard(name::String, blank_type::Symbol, type_head::Union{String,Nothing}) -> String
 
-Convert a Mathematica pattern variable to PIRF wildcard notation.
+Convert a Mathematica pattern variable to OSR wildcard notation.
 
 - `name`: the variable name (e.g., "x", "a", "m")
 - `blank_type`: `:blank` (_), `:optional` (_.), `:blankseq` (__), `:blanknullseq` (___)
 - `type_head`: optional type constraint (e.g., "Integer", "Symbol", "Rational")
 
-Returns the PIRF wildcard string.
+Returns the OSR wildcard string.
 
 Examples:
 - `map_wildcard("x", :blank, nothing)` → `"x_"`

@@ -1,6 +1,6 @@
 # Symbolic Verification
 
-The `scripts/verify_tests.jl` script verifies PIRF integration test
+The `scripts/verify_tests.jl` script verifies OSR integration test
 files by symbolically differentiating each antiderivative and checking
 it matches the integrand.
 
@@ -8,7 +8,7 @@ it matches the integrand.
 
 For each test problem `{integrand: f, variable: x, optimal_antiderivative: F}`:
 
-1. Parse `f` and `F` from PIRF-Expr JSON into Symbolics.jl expressions
+1. Parse `f` and `F` from OSR-Expr JSON into Symbolics.jl expressions
 2. Compute `dF/dx` using symbolic differentiation
 3. Check if `simplify(dF/dx - f) == 0`
 4. If symbolic simplification fails, try numerical spot-check

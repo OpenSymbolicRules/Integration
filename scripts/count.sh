@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Count rules and tests across all PIRF JSON files
+# Count rules and tests across all OSR JSON files
 set -euo pipefail
 
 REPO_ROOT="$(cd "$(dirname "$0")/.." && pwd)"

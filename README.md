@@ -1,4 +1,4 @@
-# Open Symbolic Rules - Integration (formerly PIRF)
+# Open Symbolic Rules - Integration (formerly OSR)
 
 [![Validate JSON Schemas](https://github.com/OpenSymbolicRules/Integration/actions/workflows/validate-schemas.yml/badge.svg)](https://github.com/OpenSymbolicRules/Integration/actions/workflows/validate-schemas.yml)
 
@@ -13,7 +13,7 @@ Mathematica.
 
 This repository is the **Integration Module** of the [OpenSymbolicRules](https://github.com/OpenSymbolicRules) standard. 
 
-It defines a JSON interchange format (originally named PIRF) so that any CAS — Julia, Python/SymPy, Java/SymJa, Rust,
+It defines a JSON interchange format (originally named OSR) so that any CAS — Julia, Python/SymPy, Java/SymJa, Rust,
 JavaScript — can consume RUBI's integration knowledge with a standard
 JSON parser. No CAS software required.
 
@@ -31,9 +31,9 @@ The format covers:
 ## Repository Structure
 
 ```
-PIRF/
+OSR/
 ├── schemas/                          # JSON Schema definitions (draft-07)
-│   ├── pirf-expr.schema.json         # Shared recursive expression type
+│   ├── osr-expr.schema.json         # Shared recursive expression type
 │   ├── rule-file.schema.json         # Rule file structure
 │   ├── test-file.schema.json         # Test fixture structure
 │   └── meta.schema.json              # Load manifest structure
@@ -48,7 +48,7 @@ PIRF/
 │       └── 1.1-binomial/
 │           └── 1.1.1-linear/
 │               └── 1.1.1.2-(a+b-x)^m-(c+d-x)^n.json
-├── converter/                        # Mathematica-to-PIRF converter (Julia)
+├── converter/                        # Mathematica-to-OSR converter (Julia)
 │   ├── scripts/convert.jl            # CLI entry point
 │   └── src/                          # Tokenizer, parser, transformer, writers
 ├── scripts/
@@ -80,7 +80,7 @@ See [docs/schema-validation.md](docs/schema-validation.md) for details.
 ## Converter
 
 The `converter/` directory contains a Julia tool that converts RUBI's
-Mathematica source files to PIRF JSON format. See
+Mathematica source files to OSR JSON format. See
 [converter/README.md](converter/README.md) for full documentation.
 
 ```bash
@@ -104,7 +104,7 @@ julia --project=converter converter/scripts/convert.jl --manifest
 ## Status
 
 This project is in **v0.1.0-draft**. The full RUBI rule set and test
-suite have been converted to PIRF JSON format, with schema validation
+suite have been converted to OSR JSON format, with schema validation
 enforced by CI.
 
 ## References

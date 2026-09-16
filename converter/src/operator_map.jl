@@ -1,8 +1,8 @@
-# Mathematica → PIRF-Expr operator name mapping
-# Based on EARS spec §4 and pirf-expr.schema.json enums
+# Mathematica → OSR-Expr operator name mapping
+# Based on EARS spec §4 and osr-expr.schema.json enums
 
 const OPERATOR_MAP = Dict{String, String}(
-    # §4.3 Core arithmetic (Mathematica FullForm → PIRF)
+    # §4.3 Core arithmetic (Mathematica FullForm → OSR)
     "Plus"      => "Add",
     "Times"     => "Multiply",
     "Power"     => "Power",
@@ -195,9 +195,9 @@ const OPERATOR_MAP = Dict{String, String}(
 """
     map_operator(mathematica_name::String) -> String
 
-Map a Mathematica operator/function name to its PIRF-Expr equivalent.
+Map a Mathematica operator/function name to its OSR-Expr equivalent.
 Returns the name unchanged if no mapping exists (pass-through for
-unknown operators — the PIRF schema accepts any PascalCase name).
+unknown operators — the OSR schema accepts any PascalCase name).
 """
 function map_operator(name::String)::String
     get(OPERATOR_MAP, name, name)

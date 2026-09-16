@@ -1,15 +1,15 @@
-# Path utilities: map Mathematica source paths to PIRF directory paths
+# Path utilities: map Mathematica source paths to OSR directory paths
 
 """
-    mathematica_path_to_pirf(source_path::String; prefix::String="rules") -> String
+    mathematica_path_to_osr(source_path::String; prefix::String="rules") -> String
 
-Convert a Mathematica rule file path to a PIRF directory path.
+Convert a Mathematica rule file path to a OSR directory path.
 
 Example:
     "1 Algebraic functions/1.1 Binomial products/1.1.1 Linear/1.1.1.1 (a+b x)^m.m"
     → "rules/1-algebraic/1.1-binomial/1.1.1-linear/1.1.1.1-(a+b-x)^m.json"
 """
-function mathematica_path_to_pirf(source_path::String; prefix::String="rules")::String
+function mathematica_path_to_osr(source_path::String; prefix::String="rules")::String
     # Remove the base directory prefix if present
     # e.g., "Rubi/IntegrationRules/" or "MathematicaSyntaxTestSuite/"
     path = source_path
@@ -23,27 +23,27 @@ function mathematica_path_to_pirf(source_path::String; prefix::String="rules")::
 
     # Split into directory components
     parts = split(path, '/')
-    pirf_parts = String[]
+    osr_parts = String[]
 
     for (i, part) in enumerate(parts)
         if i == length(parts)
             # Last part is the filename — convert .m to .json
-            pirf_name = convert_filename(part)
-            push!(pirf_parts, pirf_name)
+            osr_name = convert_filename(part)
+            push!(osr_parts, osr_name)
         else
-            # Directory component — convert to PIRF naming
-            pirf_dir = convert_dirname(part)
-            push!(pirf_parts, pirf_dir)
+            # Directory component — convert to OSR naming
+            osr_dir = convert_dirname(part)
+            push!(osr_parts, osr_dir)
         end
     end
 
-    joinpath(prefix, pirf_parts...)
+    joinpath(prefix, osr_parts...)
 end
 
 """
     convert_dirname(dir::AbstractString) -> String
 
-Convert a Mathematica directory name to PIRF format.
+Convert a Mathematica directory name to OSR format.
 "1 Algebraic functions" → "1-algebraic"
 "1.1 Binomial products" → "1.1-binomial"
 "1.1.1 Linear" → "1.1.1-linear"
@@ -65,7 +65,7 @@ end
 """
     convert_filename(filename::AbstractString) -> String
 
-Convert a Mathematica rule filename to PIRF format.
+Convert a Mathematica rule filename to OSR format.
 "1.1.1.1 (a+b x)^m.m" → "1.1.1.1-(a+b-x)^m.json"
 """
 function convert_filename(filename::AbstractString)::String

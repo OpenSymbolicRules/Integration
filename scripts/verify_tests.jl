@@ -1,5 +1,5 @@
 #!/usr/bin/env julia
-# Proof-of-concept: verify PIRF integration tests by differentiating antiderivatives
+# Proof-of-concept: verify OSR integration tests by differentiating antiderivatives
 # Usage:
 #   julia --project=scripts scripts/verify_tests.jl                    # default: section 1.1.1
 #   julia --project=scripts scripts/verify_tests.jl path/to/test.json  # specific file(s)
@@ -55,10 +55,10 @@ const UNSUPPORTED_OPERATORS = Set([
 ])
 
 # ---------------------------------------------------------------------------
-# Operator dispatch table: PIRF operator name → Symbolics.jl function
+# Operator dispatch table: OSR operator name → Symbolics.jl function
 # ---------------------------------------------------------------------------
 
-const PIRF_OPS = Dict{String, Function}(
+const OSR_OPS = Dict{String, Function}(
     # Core arithmetic (n-ary)
     "Add"      => args -> reduce(+, args),
     "Multiply" => args -> reduce(*, args),
@@ -120,10 +120,10 @@ const PIRF_OPS = Dict{String, Function}(
 )
 
 # ---------------------------------------------------------------------------
-# from_pirf: convert PIRF-Expr JSON → Symbolics.jl Num expression
+# from_osr: convert OSR-Expr JSON → Symbolics.jl Num expression
 # ---------------------------------------------------------------------------
 
-function from_pirf(expr)::Num
+function from_osr(expr)::Num
     # Case 1: Number — use Float64 to avoid integer overflow
     if expr isa Integer
         return Num(Float64(expr))
@@ -147,7 +147,7 @@ function from_pirf(expr)::Num
 
     # Case 3: Array — function application ["Operator", arg1, arg2, ...]
     if expr isa AbstractVector
-        isempty(expr) && error("Empty PIRF expression array")
+        isempty(expr) && error("Empty OSR expression array")
         op = String(expr[1])
 
         if op in UNSUPPORTED_OPERATORS
@@ -155,16 +155,16 @@ function from_pirf(expr)::Num
         end
 
         # Recursively convert arguments
-        args = Num[from_pirf(a) for a in expr[2:end]]
+        args = Num[from_osr(a) for a in expr[2:end]]
 
-        if haskey(PIRF_OPS, op)
-            return PIRF_OPS[op](args)
+        if haskey(OSR_OPS, op)
+            return OSR_OPS[op](args)
         else
             throw(UnsupportedOperatorError(op))
         end
     end
 
-    error("Unexpected PIRF-Expr type: $(typeof(expr))")
+    error("Unexpected OSR-Expr type: $(typeof(expr))")
 end
 
 # ---------------------------------------------------------------------------
@@ -204,8 +204,8 @@ function verify_test(test_entry)::Symbol
     # Parse integrand and antiderivative
     local integrand_sym, antideriv_sym
     try
-        integrand_sym = from_pirf(test_entry[:integrand])
-        antideriv_sym = from_pirf(test_entry[:optimal_antiderivative])
+        integrand_sym = from_osr(test_entry[:integrand])
+        antideriv_sym = from_osr(test_entry[:optimal_antiderivative])
     catch e
         e isa UnsupportedOperatorError && return :skip
         rethrow()
@@ -281,7 +281,7 @@ function main(args)
         files = args
     end
 
-    println("PIRF Integration Test Verifier (proof-of-concept)")
+    println("OSR Integration Test Verifier (proof-of-concept)")
     println("=" ^ 60)
     println()
     flush(stdout)

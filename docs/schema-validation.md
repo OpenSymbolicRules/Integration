@@ -1,6 +1,6 @@
 # JSON Schema Validation
 
-PIRF uses JSON Schema (draft-07) to enforce the structure of all rule
+OSR uses JSON Schema (draft-07) to enforce the structure of all rule
 files, test fixtures, and the load manifest. Four schemas validate the
 project's JSON data files.
 
@@ -8,7 +8,7 @@ project's JSON data files.
 
 | Schema | Validates | Location |
 |--------|-----------|----------|
-| `pirf-expr.schema.json` | Shared expression type (referenced by others) | `schemas/` |
+| `osr-expr.schema.json` | Shared expression type (referenced by others) | `schemas/` |
 | `rule-file.schema.json` | Rule files in `rules/` | `schemas/` |
 | `test-file.schema.json` | Test fixtures in `tests/` | `schemas/` |
 | `meta.schema.json` | `rules/meta.json` manifest | `schemas/` |
@@ -74,7 +74,7 @@ check-jsonschema --schemafile schemas/rule-file.schema.json \
 
 The `--base-uri "file://${PWD}/schemas/"` flag is required because
 `rule-file.schema.json` and `test-file.schema.json` contain `$ref`
-references to `pirf-expr.schema.json`. This flag overrides the `$id`
+references to `osr-expr.schema.json`. This flag overrides the `$id`
 URI (`https://domain.org/schemas/v0.1/...`) to resolve references
 against local files.
 
@@ -91,8 +91,8 @@ specific file and field that failed.
 
 ## Operator and Predicate Enums
 
-The `pirf-expr.schema.json` schema contains enum definitions that
-document every operator and predicate in the PIRF-Expr catalogue.
+The `osr-expr.schema.json` schema contains enum definitions that
+document every operator and predicate in the OSR-Expr catalogue.
 These enums are for documentation and tooling — the `operator-name`
 regex pattern (`^[a-zA-Z$][a-zA-Z0-9$]*$`) is what actually validates
 operator names in expressions. The regex accepts both PascalCase
@@ -101,18 +101,18 @@ standard operators (e.g., `Sin`, `Add`) and lowercase inert forms
 
 | Definition | Count | Spec Reference |
 |------------|-------|----------------|
-| `core-arithmetic-operators` | 9 | PIRF-X-010 |
-| `trig-operators` | 6 | PIRF-X-011 |
-| `hyperbolic-operators` | 6 | PIRF-X-012 |
-| `inverse-trig-operators` | 6 | PIRF-X-013 |
-| `inverse-hyperbolic-operators` | 6 | PIRF-X-014 |
-| `exp-log-operators` | 2 | PIRF-X-015 |
-| `special-function-operators` | 29 | PIRF-X-016 |
-| `constant-symbols` | 7 | PIRF-X-017 |
-| `integration-operators` | 7 | PIRF-X-018 |
-| `utility-function-operators` | 54 | PIRF-X-019 (§4.11) |
-| `structural-utility-operators` | 28 | PIRF-X-020 (§4.12) |
-| `predicate-names` | 77 | PIRF-C-001 to C-030 (§7) |
+| `core-arithmetic-operators` | 9 | OSR-X-010 |
+| `trig-operators` | 6 | OSR-X-011 |
+| `hyperbolic-operators` | 6 | OSR-X-012 |
+| `inverse-trig-operators` | 6 | OSR-X-013 |
+| `inverse-hyperbolic-operators` | 6 | OSR-X-014 |
+| `exp-log-operators` | 2 | OSR-X-015 |
+| `special-function-operators` | 29 | OSR-X-016 |
+| `constant-symbols` | 7 | OSR-X-017 |
+| `integration-operators` | 7 | OSR-X-018 |
+| `utility-function-operators` | 54 | OSR-X-019 (§4.11) |
+| `structural-utility-operators` | 28 | OSR-X-020 (§4.12) |
+| `predicate-names` | 77 | OSR-C-001 to C-030 (§7) |
 
 ## Taxonomy Subsections
 
@@ -125,7 +125,7 @@ full RUBI hierarchy (e.g. Section 1 > 1.1 Binomial products >
 ## Converter Usage
 
 The `converter/` directory contains a Julia tool that converts RUBI's
-Mathematica source files to PIRF JSON format. See `converter/README.md`
+Mathematica source files to OSR JSON format. See `converter/README.md`
 for full documentation.
 
 ### Quick Start

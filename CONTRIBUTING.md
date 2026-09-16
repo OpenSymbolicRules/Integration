@@ -1,6 +1,6 @@
-# Contributing to PIRF
+# Contributing to Open Symbolic Rules
 
-First off, thank you for considering contributing to PIRF! Every
+First off, thank you for considering contributing to Open Symbolic Rules! Every
 contribution helps make symbolic integration rules more accessible
 across programming languages.
 

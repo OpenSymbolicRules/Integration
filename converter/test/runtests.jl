@@ -167,28 +167,28 @@ end
     @test RubiConverter.extract_title("1.1.1.1 (a+b x)^m.m") == "(a+b x)^m"
 end
 
-@testset "Transformer — expression to PIRF-Expr" begin
+@testset "Transformer — expression to OSR-Expr" begin
     @testset "simple addition" begin
         expr = RubiConverter.parse_mathematica("a + b")
-        pirf = RubiConverter.to_pirf(expr)
-        @test pirf == Any["Add", "a", "b"]
+        osr = RubiConverter.to_osr(expr)
+        @test osr == Any["Add", "a", "b"]
     end
 
     @testset "power with pattern" begin
         expr = RubiConverter.parse_mathematica("(a_. + b_.*x_)^m_")
-        pirf = RubiConverter.to_pirf(expr)
-        @test pirf[1] == "Power"
-        @test pirf[2][1] == "Add"
-        @test "a." in pirf[2]      # optional wildcard
-        @test pirf[3] == "m_"      # mandatory wildcard
+        osr = RubiConverter.to_osr(expr)
+        @test osr[1] == "Power"
+        @test osr[2][1] == "Add"
+        @test "a." in osr[2]      # optional wildcard
+        @test osr[3] == "m_"      # mandatory wildcard
     end
 
     @testset "function call" begin
         expr = RubiConverter.parse_mathematica("FreeQ[{a, b}, x]")
-        pirf = RubiConverter.to_pirf(expr)
-        @test pirf[1] == "FreeQ"
-        @test pirf[2] == Any["List", "a", "b"]
-        @test pirf[3] == "x"
+        osr = RubiConverter.to_osr(expr)
+        @test osr[1] == "FreeQ"
+        @test osr[2] == Any["List", "a", "b"]
+        @test osr[3] == "x"
     end
 
     @testset "rule extraction" begin
@@ -202,18 +202,24 @@ end
 
     @testset "test tuple extraction" begin
         expr = RubiConverter.parse_mathematica("{x^3, x, 1, x^4/4}")
-        entry = RubiConverter.test_tuple_to_pirf(expr, 1)
+        entry = RubiConverter.test_tuple_to_osr(expr, 1)
         @test entry["id"] == 1
         @test entry["variable"] == "x"
         @test entry["num_steps"] == 1
-        @test entry["integrand"] == Any["Power", "x", 3]
+        # `test-file.schema.json` names these fields `expression` and
+        # `expected_result`.
+        @test entry["expression"] == Any["Power", "x", 3]
+        # Mathematica normalises `a/b` to `a * b^-1`, so the converter emits a
+        # reciprocal power rather than a `Divide` node.
+        @test entry["expected_result"] ==
+              Any["Multiply", Any["Power", "x", 4], Any["Power", 4, -1]]
     end
 end
 
 @testset "Full pipeline — known rule" begin
     src = "Int[(a_. + b_.*x_)^m_, x_Symbol] := (a + b*x)^(m + 1)/(b*(m + 1)) /; FreeQ[{a, b, m}, x] && NeQ[m, -1]"
     expr = RubiConverter.parse_mathematica(src)
-    rule = RubiConverter.rule_to_pirf(expr, 1)
+    rule = RubiConverter.rule_to_osr(expr, 1)
 
     @test rule["id"] == 1
     @test haskey(rule, "pattern")

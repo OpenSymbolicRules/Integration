@@ -1,4 +1,4 @@
-# Test file writer: convert a test .m file to PIRF JSON
+# Test file writer: convert a test .m file to OSR JSON
 
 using JSON3
 
@@ -13,7 +13,7 @@ end
 """
     convert_test_file(source_path::String; output_dir::String="tests") -> TestConversionResult
 
-Convert a single Mathematica test .m file to a PIRF JSON test file.
+Convert a single Mathematica test .m file to a OSR JSON test file.
 Extracts {integrand, variable, num_steps, antiderivative} tuples.
 """
 function convert_test_file(source_path::String; output_dir::String="tests")::TestConversionResult
@@ -31,7 +31,7 @@ function convert_test_file(source_path::String; output_dir::String="tests")::Tes
         end
     end
 
-    output_path = mathematica_path_to_pirf(rel_path; prefix=output_dir)
+    output_path = mathematica_path_to_osr(rel_path; prefix=output_dir)
 
     warnings = ConversionWarning[]
     tests = Dict{String,Any}[]
@@ -50,7 +50,7 @@ function convert_test_file(source_path::String; output_dir::String="tests")::Tes
         if expr isa MFunction && expr.head == "List" && length(expr.args) >= 4
             test_id += 1
             try
-                test_entry = test_tuple_to_pirf(expr, test_id)
+                test_entry = test_tuple_to_osr(expr, test_id)
                 push!(tests, test_entry)
             catch e
                 push!(warnings, ConversionWarning(
@@ -63,7 +63,7 @@ function convert_test_file(source_path::String; output_dir::String="tests")::Tes
     end
 
     # Build the OSR test file JSON
-    pirf_file = Dict{String,Any}(
+    osr_file = Dict{String,Any}(
         "\$schema" => "open-symbolic-rules/v0.1",
         "section" => section,
         "title" => title,
@@ -73,7 +73,7 @@ function convert_test_file(source_path::String; output_dir::String="tests")::Tes
     # Write output
     mkpath(dirname(output_path))
     open(output_path, "w") do io
-        JSON3.pretty(io, pirf_file; allow_inf=false)
+        JSON3.pretty(io, osr_file; allow_inf=false)
         println(io)  # trailing newline
     end
 
@@ -83,7 +83,7 @@ end
 """
     convert_all_tests(vendor_path::String; output_dir::String="tests") -> Vector{TestConversionResult}
 
-Convert all test .m files from the MathematicaSyntaxTestSuite vendor submodule to PIRF JSON.
+Convert all test .m files from the MathematicaSyntaxTestSuite vendor submodule to OSR JSON.
 """
 function convert_all_tests(vendor_path::String; output_dir::String="tests")::Vector{TestConversionResult}
     # Find all .m files, sorted

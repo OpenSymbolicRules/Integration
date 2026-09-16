@@ -1,4 +1,4 @@
-# RFC: Language-Neutral JSON Format for RUBI Rules and Test Fixtures (PIRF v0.1)
+# RFC: Language-Neutral JSON Format for RUBI Rules and Test Fixtures (OSR v0.1)
 
 **Category:** Ideas / RFC  
 **Labels:** `rubi-5`, `interoperability`, `json`, `specification`, `json-schema`
@@ -7,7 +7,7 @@
 
 ## TL;DR
 
-I'm proposing **PIRF** (Portable Integration Rules Format) — a JSON format with validated JSON Schema to represent **all** of RUBI's ~7,800 integration rules and 72,000+ test problems independently of Mathematica. The v0.1 spec covers the complete operator catalogue (29 special functions including Bessel, ~55 utility functions, 65+ predicates including the `FunctionOf*` family), matches RUBI's actual 9-section taxonomy exactly, and preserves the semantically critical rule loading order.
+I'm proposing **OSR** (Open Symbolic Rules) — a JSON format with validated JSON Schema to represent **all** of RUBI's ~7,800 integration rules and 72,000+ test problems independently of Mathematica. The v0.1 spec covers the complete operator catalogue (29 special functions including Bessel, ~55 utility functions, 65+ predicates including the `FunctionOf*` family), matches RUBI's actual 9-section taxonomy exactly, and preserves the semantically critical rule loading order.
 
 This discussion is a request for feedback before finalizing.
 
@@ -37,7 +37,7 @@ The JSON files become the **single source of truth** that any CAS can consume wi
 
 ## Design Overview
 
-### Expression Language (PIRF-Expr)
+### Expression Language (OSR-Expr)
 
 Mathematical expressions use a simple S-expression-in-JSON encoding:
 
@@ -127,19 +127,19 @@ The format is defined by **4 JSON Schema files** (draft-07), all validated:
 
 | Schema | Purpose |
 |--------|---------|
-| `pirf-expr.schema.json` | Shared recursive expression type + operator/predicate enum catalogues (17 definitions) |
+| `osr-expr.schema.json` | Shared recursive expression type + operator/predicate enum catalogues (17 definitions) |
 | `rule-file.schema.json` | Rule files: `$schema`, `section`, `title`, `rules[]` with `id`, `pattern`, `constraints`, `result` |
 | `meta.schema.json` | Root manifest: `load_order`, `feature_flags`, `taxonomy`, `predicates[]`, `utility_functions[]`, `extensions[]` |
 | `test-file.schema.json` | Test fixtures: `integrand`, `variable`, `optimal_antiderivative`, `num_steps` |
 
 ### meta.json — The Load Manifest
 
-The `meta.json` file is the root of a PIRF rule set. Its most important field is `load_order` — an ordered array that defines exactly which files to load and in what sequence:
+The `meta.json` file is the root of a OSR rule set. Its most important field is `load_order` — an ordered array that defines exactly which files to load and in what sequence:
 
 ```json
 {
   "$schema": "rubi-integration-rules/v0.1",
-  "pirf_version": "0.1.0",
+  "osr_version": "0.1.0",
   "rubi_version": "4.16.1",
   "license": "MIT",
   "rule_count": 7800,
@@ -284,7 +284,7 @@ tests/
 ├── 1-algebraic/
 └── ...
 schemas/
-├── pirf-expr.schema.json
+├── osr-expr.schema.json
 ├── rule-file.schema.json
 ├── meta.schema.json
 └── test-file.schema.json
@@ -306,7 +306,7 @@ JSON remains canonical and git-versioned; CBOR is a derived artifact, never auth
 
 ### Phrasebook Architecture
 
-Each host CAS provides a thin **Phrasebook** adapter that translates between PIRF-Expr and the host's internal representation. This is the **only** CAS-specific code. The rule files, test fixtures, loader logic, and taxonomy remain universal.
+Each host CAS provides a thin **Phrasebook** adapter that translates between OSR-Expr and the host's internal representation. This is the **only** CAS-specific code. The rule files, test fixtures, loader logic, and taxonomy remain universal.
 
 ```
 JSON rules  ──→  Phrasebook  ──→  Host CAS
@@ -364,7 +364,7 @@ The format doesn't *depend* on any of these — it's self-contained — but it's
 The complete EARS specification (**159 requirements** across 13 categories) and **4 JSON Schema files** are available for review:
 
 - **EARS spec:** 27 expression language requirements, 18 file format (including load manifest), 20 binary cache, 7 wildcard/matching, 23 predicates, 5 taxonomy, 14 engine (including inert trig), 18 portability — plus normative Annex A mapping tables
-- **JSON Schema:** `pirf-expr.schema.json` (17 definitions, all operator enums), `rule-file.schema.json`, `meta.schema.json` (15 properties including `load_order`, `feature_flags`), `test-file.schema.json` — all validated with example files
+- **JSON Schema:** `osr-expr.schema.json` (17 definitions, all operator enums), `rule-file.schema.json`, `meta.schema.json` (15 properties including `load_order`, `feature_flags`), `test-file.schema.json` — all validated with example files
 
 Happy to share the full documents or specific sections on request.
 

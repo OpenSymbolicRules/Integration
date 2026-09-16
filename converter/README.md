@@ -1,6 +1,6 @@
 # RubiConverter.jl
 
-A Julia-based converter that transforms RUBI's Mathematica `.m` rule files and test suites into the PIRF (Portable Integration Rules Format) JSON format.
+A Julia-based converter that transforms RUBI's Mathematica `.m` rule files and test suites into the OSR (Portable Integration Rules Format) JSON format.
 
 ## Disclaimer
 
@@ -19,10 +19,10 @@ For the official RUBI project, visit: https://rulebasedintegration.org
 # Initialize submodules
 git submodule update --init
 
-# Convert all RUBI integration rules to PIRF JSON
+# Convert all RUBI integration rules to OSR JSON
 julia --project=converter converter/scripts/convert.jl --rules
 
-# Convert all test problems to PIRF JSON
+# Convert all test problems to OSR JSON
 julia --project=converter converter/scripts/convert.jl --tests
 
 # Update meta.json with load_order, counts, and converter metadata
@@ -40,7 +40,7 @@ julia --project=converter converter/scripts/convert.jl path/to/file.m
 
 ## Validation
 
-All output files are validated against PIRF JSON schemas:
+All output files are validated against OSR JSON schemas:
 
 ```bash
 ./validate.sh
@@ -52,8 +52,8 @@ The converter uses a 4-stage pipeline:
 
 1. **Tokenizer** (`src/tokenizer.jl`) — Lexes Mathematica syntax into tokens
 2. **Parser** (`src/parser.jl`) — Recursive descent parser producing an AST
-3. **Transformer** (`src/transformer.jl`) — Converts AST to PIRF-Expr JSON arrays
-4. **Writers** (`src/rule_writer.jl`, `src/test_writer.jl`) — Produces complete PIRF JSON files
+3. **Transformer** (`src/transformer.jl`) — Converts AST to OSR-Expr JSON arrays
+4. **Writers** (`src/rule_writer.jl`, `src/test_writer.jl`) — Produces complete OSR JSON files
 
 ## Running Tests
 
@@ -63,4 +63,4 @@ julia --project=converter -e 'using Pkg; Pkg.test()'
 
 ## License
 
-This converter tool is part of the PIRF project and is released under the MIT License. The RUBI integration rules themselves are also MIT-licensed by Albert Rich.
+This converter tool is part of the OSR project and is released under the MIT License. The RUBI integration rules themselves are also MIT-licensed by Albert Rich.
