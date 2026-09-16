@@ -1,6 +1,6 @@
-# Portable Integration Rules Format (PIRF)
+# Open Symbolic Rules - Integration (formerly PIRF)
 
-[![Validate JSON Schemas](https://github.com/s-celles/PIRF/actions/workflows/validate-schemas.yml/badge.svg)](https://github.com/s-celles/PIRF/actions/workflows/validate-schemas.yml)
+[![Validate JSON Schemas](https://github.com/OpenSymbolicRules/Integration/actions/workflows/validate-schemas.yml/badge.svg)](https://github.com/OpenSymbolicRules/Integration/actions/workflows/validate-schemas.yml)
 
 > **Note**: This repository has been created with AI assistance.
 
@@ -11,10 +11,13 @@ Mathematica.
 
 ## Overview
 
-PIRF (Portable Integration Rules Format) defines a JSON interchange
-format so that any CAS — Julia, Python/SymPy, Java/SymJa, Rust,
+This repository is the **Integration Module** of the [OpenSymbolicRules](https://github.com/OpenSymbolicRules) standard. 
+
+It defines a JSON interchange format (originally named PIRF) so that any CAS — Julia, Python/SymPy, Java/SymJa, Rust,
 JavaScript — can consume RUBI's integration knowledge with a standard
 JSON parser. No CAS software required.
+
+By mapping local functions to OpenMath Content Dictionaries, this format ensures zero semantic ambiguity.
 
 The format covers:
 

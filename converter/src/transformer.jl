@@ -1,40 +1,40 @@
-# AST → PIRF-Expr transformer
+# AST → OSR-Expr transformer
 # Converts MathematicaExpr tree to JSON-compatible nested arrays/values
 
 """
-    to_pirf(expr::MExpr) -> Any
+    to_osr(expr::MExpr) -> Any
 
-Convert a MathematicaExpr AST node to PIRF-Expr format.
+Convert a MathematicaExpr AST node to OSR-Expr format.
 Returns JSON-compatible values: arrays, strings, numbers.
 
-PIRF-Expr format: ["Operator", arg1, arg2, ...]
+OSR-Expr format: ["Operator", arg1, arg2, ...]
 Atoms: strings for symbols/wildcards, numbers for integers/reals.
 """
-function to_pirf(expr::MSymbol)
+function to_osr(expr::MSymbol)
     name = map_operator(expr.name)
     name
 end
 
-function to_pirf(expr::MInteger)
+function to_osr(expr::MInteger)
     # BigInt values are emitted as Float64 for JSON compatibility
     expr.value isa BigInt ? Float64(expr.value) : expr.value
 end
 
-function to_pirf(expr::MReal)
+function to_osr(expr::MReal)
     expr.value
 end
 
-function to_pirf(expr::MString)
+function to_osr(expr::MString)
     expr.value
 end
 
-function to_pirf(expr::MPattern)
+function to_osr(expr::MPattern)
     map_wildcard(expr.name, expr.blank_type, expr.type_head)
 end
 
-function to_pirf(expr::MFunction)
+function to_osr(expr::MFunction)
     head = map_operator(expr.head)
-    args = [to_pirf(a) for a in expr.args]
+    args = [to_osr(a) for a in expr.args]
 
     # Special handling for Rational[a, b] → emit as fraction
     if head == "Rational" && length(args) == 2
@@ -115,22 +115,22 @@ function split_and_conditions(expr::MExpr)::Vector{MExpr}
 end
 
 """
-    rule_to_pirf(expr::MExpr, id::Int) -> Dict
+    rule_to_osr(expr::MExpr, id::Int) -> Dict
 
-Convert a parsed RUBI rule definition to a PIRF rule entry dict.
+Convert a parsed RUBI rule definition to a OSR rule entry dict.
 """
-function rule_to_pirf(expr::MExpr, id::Int)::Dict{String,Any}
+function rule_to_osr(expr::MExpr, id::Int)::Dict{String,Any}
     parts = extract_rule_parts(expr)
 
     entry = Dict{String,Any}(
         "id" => id,
-        "pattern" => to_pirf(parts.pattern),
+        "pattern" => to_osr(parts.pattern),
     )
 
     # constraints is required by the schema (even if empty)
-    entry["constraints"] = [to_pirf(c) for c in parts.constraints]
+    entry["constraints"] = [to_osr(c) for c in parts.constraints]
 
-    entry["result"] = to_pirf(parts.result)
+    entry["result"] = to_osr(parts.result)
 
     entry
 end
@@ -160,27 +160,27 @@ function resolve_num_steps(expr::MExpr)::Int
 end
 
 """
-    test_tuple_to_pirf(expr::MExpr, id::Int) -> Dict
+    test_tuple_to_osr(expr::MExpr, id::Int) -> Dict
 
 Convert a parsed test tuple {integrand, variable, num_steps, antiderivative}
-to a PIRF test entry dict.
+to a OSR test entry dict.
 """
-function test_tuple_to_pirf(expr::MExpr, id::Int)::Dict{String,Any}
+function test_tuple_to_osr(expr::MExpr, id::Int)::Dict{String,Any}
     if !(expr isa MFunction && expr.head == "List" && length(expr.args) >= 4)
         error("Expected {integrand, variable, num_steps, antiderivative}, got $(typeof(expr))")
     end
 
-    integrand = to_pirf(expr.args[1])
-    variable = to_pirf(expr.args[2])
+    integrand = to_osr(expr.args[1])
+    variable = to_osr(expr.args[2])
     num_steps = resolve_num_steps(expr.args[3])
-    antiderivative = to_pirf(expr.args[4])
+    antiderivative = to_osr(expr.args[4])
 
     entry = Dict{String,Any}(
         "id" => id,
-        "integrand" => integrand,
+        "expression" => integrand,
         "variable" => variable isa AbstractString ? variable : string(variable),
         "num_steps" => num_steps,
-        "optimal_antiderivative" => antiderivative,
+        "expected_result" => antiderivative,
     )
 
     entry

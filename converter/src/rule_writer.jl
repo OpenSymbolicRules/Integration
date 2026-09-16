@@ -71,11 +71,19 @@ function convert_rule_file(source_path::String; output_dir::String="rules")::Rul
         end
     end
 
-    # Build the PIRF rule file JSON
+    # Build the OSR rule file JSON
     pirf_file = Dict{String,Any}(
-        "\$schema" => "rubi-integration-rules/v0.1",
+        "\$schema" => "open-symbolic-rules/v0.1",
         "section" => section,
         "title" => title,
+        "semantics" => Dict(
+            "Int" => "openmath:calculus1.defint",
+            "Sin" => "openmath:transc1.sin",
+            "Cos" => "openmath:transc1.cos",
+            "Tan" => "openmath:transc1.tan",
+            "Log" => "openmath:transc1.log",
+            "Exp" => "openmath:transc1.exp"
+        ),
         "rules" => rules,
     )
 

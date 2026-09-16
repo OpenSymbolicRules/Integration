@@ -62,9 +62,9 @@ function convert_test_file(source_path::String; output_dir::String="tests")::Tes
         end
     end
 
-    # Build the PIRF test file JSON
+    # Build the OSR test file JSON
     pirf_file = Dict{String,Any}(
-        "\$schema" => "rubi-integration-rules/v0.1",
+        "\$schema" => "open-symbolic-rules/v0.1",
         "section" => section,
         "title" => title,
         "tests" => tests,
