@@ -36,18 +36,18 @@ jobs:
         run: python -m pip install check-jsonschema==0.38.0
 
       - name: Validate schemas against meta-schema
-        run: check-jsonschema --check-metaschema schemas/*.schema.json
+        run: check-jsonschema --check-metaschema Specification/schemas/*.schema.json
 
       - name: Validate meta.json
-        run: check-jsonschema --schemafile schemas/meta.schema.json rules/meta.json
+        run: check-jsonschema --schemafile Specification/schemas/meta.schema.json rules/meta.json
 
       - name: Validate rule files
         run: |
           RULE_FILES=$(find rules/ -name '*.json' ! -name 'meta.json')
           if [ -n "$RULE_FILES" ]; then
             check-jsonschema \
-              --schemafile schemas/rule-file.schema.json \
-              --base-uri "file://${PWD}/schemas/" \
+              --schemafile Specification/schemas/rule-file.schema.json \
+              --base-uri "file://${PWD}/Specification/schemas/" \
               $RULE_FILES
           else
             echo "No rule files found to validate"
@@ -58,8 +58,8 @@ jobs:
           TEST_FILES=$(find tests/ -name '*.json')
           if [ -n "$TEST_FILES" ]; then
             check-jsonschema \
-              --schemafile schemas/test-file.schema.json \
-              --base-uri "file://${PWD}/schemas/" \
+              --schemafile Specification/schemas/test-file.schema.json \
+              --base-uri "file://${PWD}/Specification/schemas/" \
               $TEST_FILES
           else
             echo "No test files found to validate"
