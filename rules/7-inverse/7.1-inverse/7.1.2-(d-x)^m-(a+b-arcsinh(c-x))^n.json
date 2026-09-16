@@ -1,37 +1,8 @@
 {
-    "$schema": "open-symbolic-rules/v0.1",
-    "section": "7.1.2",
     "title": "(d x)^m (a+b arcsinh(c x))^n",
+    "section": "7.1.2",
     "rules": [
         {
-            "pattern": [
-                "Multiply",
-                [
-                    "Power",
-                    [
-                        "Add",
-                        "a.",
-                        [
-                            "Multiply",
-                            "b.",
-                            [
-                                "Asinh",
-                                [
-                                    "Multiply",
-                                    "c.",
-                                    "x_"
-                                ]
-                            ]
-                        ]
-                    ],
-                    "n."
-                ],
-                [
-                    "Power",
-                    "x_",
-                    -1
-                ]
-            ],
             "constraints": [
                 [
                     "FreeQ",
@@ -115,20 +86,9 @@
                         ]
                     ]
                 ]
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
-                [
-                    "Power",
-                    [
-                        "Multiply",
-                        "d.",
-                        "x_"
-                    ],
-                    "m."
-                ],
                 [
                     "Power",
                     [
@@ -148,8 +108,15 @@
                         ]
                     ],
                     "n."
+                ],
+                [
+                    "Power",
+                    "x_",
+                    -1
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -318,14 +285,16 @@
                         "x"
                     ]
                 ]
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
                 [
                     "Power",
-                    "x_",
+                    [
+                        "Multiply",
+                        "d.",
+                        "x_"
+                    ],
                     "m."
                 ],
                 [
@@ -346,9 +315,11 @@
                             ]
                         ]
                     ],
-                    "n_"
+                    "n."
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -499,9 +470,7 @@
                         "x"
                     ]
                 ]
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
                 [
@@ -529,7 +498,9 @@
                     ],
                     "n_"
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -775,9 +746,7 @@
                         ]
                     ]
                 ]
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
                 [
@@ -805,7 +774,9 @@
                     ],
                     "n_"
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -1071,9 +1042,7 @@
                         "x"
                     ]
                 ]
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
                 [
@@ -1101,7 +1070,9 @@
                     ],
                     "n_"
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -1227,18 +1198,12 @@
                         ]
                     ]
                 ]
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
                 [
                     "Power",
-                    [
-                        "Multiply",
-                        "d.",
-                        "x_"
-                    ],
+                    "x_",
                     "m."
                 ],
                 [
@@ -1259,9 +1224,11 @@
                             ]
                         ]
                     ],
-                    "n."
+                    "n_"
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -1313,7 +1280,48 @@
                     ]
                 ],
                 "x"
+            ],
+            "pattern": [
+                "Multiply",
+                [
+                    "Power",
+                    [
+                        "Multiply",
+                        "d.",
+                        "x_"
+                    ],
+                    "m."
+                ],
+                [
+                    "Power",
+                    [
+                        "Add",
+                        "a.",
+                        [
+                            "Multiply",
+                            "b.",
+                            [
+                                "Asinh",
+                                [
+                                    "Multiply",
+                                    "c.",
+                                    "x_"
+                                ]
+                            ]
+                        ]
+                    ],
+                    "n."
+                ]
             ]
         }
-    ]
+    ],
+    "semantics": {
+        "Cos": "openmath:transc1.cos",
+        "Int": "openmath:calculus1.defint",
+        "Exp": "openmath:transc1.exp",
+        "Tan": "openmath:transc1.tan",
+        "Sin": "openmath:transc1.sin",
+        "Log": "openmath:transc1.log"
+    },
+    "$schema": "open-symbolic-rules/v0.1"
 }

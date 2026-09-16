@@ -1,22 +1,8 @@
 {
-    "$schema": "open-symbolic-rules/v0.1",
-    "section": "8.7",
     "title": "Zeta function",
+    "section": "8.7",
     "rules": [
         {
-            "pattern": [
-                "Zeta",
-                2,
-                [
-                    "Add",
-                    "a.",
-                    [
-                        "Multiply",
-                        "b.",
-                        "x_"
-                    ]
-                ]
-            ],
             "constraints": [
                 [
                     "FreeQ",
@@ -45,12 +31,10 @@
                     ]
                 ],
                 "x"
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Zeta",
-                "s_",
+                2,
                 [
                     "Add",
                     "a.",
@@ -60,7 +44,9 @@
                         "x_"
                     ]
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -125,38 +111,22 @@
                     ],
                     -1
                 ]
+            ],
+            "pattern": [
+                "Zeta",
+                "s_",
+                [
+                    "Add",
+                    "a.",
+                    [
+                        "Multiply",
+                        "b.",
+                        "x_"
+                    ]
+                ]
             ]
         },
         {
-            "pattern": [
-                "Multiply",
-                [
-                    "Power",
-                    [
-                        "Add",
-                        "c.",
-                        [
-                            "Multiply",
-                            "d.",
-                            "x_"
-                        ]
-                    ],
-                    "m."
-                ],
-                [
-                    "Zeta",
-                    2,
-                    [
-                        "Add",
-                        "a.",
-                        [
-                            "Multiply",
-                            "b.",
-                            "x_"
-                        ]
-                    ]
-                ]
-            ],
             "constraints": [
                 [
                     "FreeQ",
@@ -207,9 +177,7 @@
                     ]
                 ],
                 "x"
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
                 [
@@ -227,7 +195,7 @@
                 ],
                 [
                     "Zeta",
-                    "s_",
+                    2,
                     [
                         "Add",
                         "a.",
@@ -238,7 +206,9 @@
                         ]
                     ]
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -397,9 +367,7 @@
                         "x"
                     ]
                 ]
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
                 [
@@ -428,7 +396,9 @@
                         ]
                     ]
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -566,7 +536,45 @@
                         "x"
                     ]
                 ]
+            ],
+            "pattern": [
+                "Multiply",
+                [
+                    "Power",
+                    [
+                        "Add",
+                        "c.",
+                        [
+                            "Multiply",
+                            "d.",
+                            "x_"
+                        ]
+                    ],
+                    "m."
+                ],
+                [
+                    "Zeta",
+                    "s_",
+                    [
+                        "Add",
+                        "a.",
+                        [
+                            "Multiply",
+                            "b.",
+                            "x_"
+                        ]
+                    ]
+                ]
             ]
         }
-    ]
+    ],
+    "semantics": {
+        "Cos": "openmath:transc1.cos",
+        "Int": "openmath:calculus1.defint",
+        "Exp": "openmath:transc1.exp",
+        "Tan": "openmath:transc1.tan",
+        "Sin": "openmath:transc1.sin",
+        "Log": "openmath:transc1.log"
+    },
+    "$schema": "open-symbolic-rules/v0.1"
 }

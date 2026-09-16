@@ -1,13 +1,8 @@
 {
-    "$schema": "open-symbolic-rules/v0.1",
-    "section": "9.2",
     "title": "Derivative integration rules",
+    "section": "9.2",
     "rules": [
         {
-            "pattern": [
-                "UnknownHead",
-                "x_"
-            ],
             "constraints": [
                 [
                     "FreeQ",
@@ -23,37 +18,13 @@
             "result": [
                 "UnknownHead",
                 "x"
+            ],
+            "pattern": [
+                "UnknownHead",
+                "x_"
             ]
         },
         {
-            "pattern": [
-                "Multiply",
-                [
-                    "Power",
-                    [
-                        "Multiply",
-                        "c.",
-                        [
-                            "Power",
-                            "F_",
-                            [
-                                "Add",
-                                "a.",
-                                [
-                                    "Multiply",
-                                    "b.",
-                                    "x_"
-                                ]
-                            ]
-                        ]
-                    ],
-                    "p."
-                ],
-                [
-                    "UnknownHead",
-                    "x_"
-                ]
-            ],
             "constraints": [
                 [
                     "FreeQ",
@@ -147,9 +118,7 @@
                         "x"
                     ]
                 ]
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
                 [
@@ -177,7 +146,9 @@
                     "UnknownHead",
                     "x_"
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -292,28 +263,37 @@
                         "x"
                     ]
                 ]
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
                 [
-                    "Sin",
+                    "Power",
                     [
-                        "Add",
-                        "a.",
+                        "Multiply",
+                        "c.",
                         [
-                            "Multiply",
-                            "b.",
-                            "x_"
+                            "Power",
+                            "F_",
+                            [
+                                "Add",
+                                "a.",
+                                [
+                                    "Multiply",
+                                    "b.",
+                                    "x_"
+                                ]
+                            ]
                         ]
-                    ]
+                    ],
+                    "p."
                 ],
                 [
                     "UnknownHead",
                     "x_"
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -381,13 +361,11 @@
                         "x"
                     ]
                 ]
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
                 [
-                    "Cos",
+                    "Sin",
                     [
                         "Add",
                         "a.",
@@ -402,7 +380,9 @@
                     "UnknownHead",
                     "x_"
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -469,13 +449,11 @@
                         "x"
                     ]
                 ]
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
                 [
-                    "Sin",
+                    "Cos",
                     [
                         "Add",
                         "a.",
@@ -490,7 +468,9 @@
                     "UnknownHead",
                     "x_"
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -568,13 +548,11 @@
                         "x"
                     ]
                 ]
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
                 [
-                    "Cos",
+                    "Sin",
                     [
                         "Add",
                         "a.",
@@ -589,7 +567,9 @@
                     "UnknownHead",
                     "x_"
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -667,17 +647,28 @@
                         "x"
                     ]
                 ]
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
-                "u_",
+                [
+                    "Cos",
+                    [
+                        "Add",
+                        "a.",
+                        [
+                            "Multiply",
+                            "b.",
+                            "x_"
+                        ]
+                    ]
+                ],
                 [
                     "UnknownHead",
                     "x_"
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -723,40 +714,17 @@
                     "UnknownHead",
                     "x"
                 ]
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
                 "u_",
                 [
-                    "Add",
-                    [
-                        "Multiply",
-                        "a.",
-                        [
-                            "UnknownHead",
-                            "x_"
-                        ],
-                        [
-                            "g_",
-                            "x_"
-                        ]
-                    ],
-                    [
-                        "Multiply",
-                        "a.",
-                        [
-                            "f_",
-                            "x_"
-                        ],
-                        [
-                            "UnknownHead",
-                            "x_"
-                        ]
-                    ]
+                    "UnknownHead",
+                    "x_"
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -828,9 +796,7 @@
                         ]
                     ]
                 ]
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
                 "u_",
@@ -852,7 +818,7 @@
                         "Multiply",
                         "a.",
                         [
-                            "UnknownHead",
+                            "f_",
                             "x_"
                         ],
                         [
@@ -861,7 +827,9 @@
                         ]
                     ]
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -947,9 +915,7 @@
                         ]
                     ]
                 ]
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
                 "u_",
@@ -963,7 +929,7 @@
                             "x_"
                         ],
                         [
-                            "UnknownHead",
+                            "g_",
                             "x_"
                         ]
                     ],
@@ -980,7 +946,9 @@
                         ]
                     ]
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -1080,20 +1048,10 @@
                         ]
                     ]
                 ]
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
                 "u_",
-                [
-                    "Power",
-                    [
-                        "f_",
-                        "x_"
-                    ],
-                    "p."
-                ],
                 [
                     "Add",
                     [
@@ -1104,15 +1062,15 @@
                             "x_"
                         ],
                         [
-                            "g_",
+                            "UnknownHead",
                             "x_"
                         ]
                     ],
                     [
                         "Multiply",
-                        "b.",
+                        "a.",
                         [
-                            "f_",
+                            "UnknownHead",
                             "x_"
                         ],
                         [
@@ -1121,7 +1079,9 @@
                         ]
                     ]
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -1232,16 +1192,14 @@
                         ]
                     ]
                 ]
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
                 "u_",
                 [
                     "Power",
                     [
-                        "UnknownHead",
+                        "f_",
                         "x_"
                     ],
                     "p."
@@ -1264,7 +1222,7 @@
                         "Multiply",
                         "b.",
                         [
-                            "UnknownHead",
+                            "f_",
                             "x_"
                         ],
                         [
@@ -1273,7 +1231,9 @@
                         ]
                     ]
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -1398,19 +1358,17 @@
                         ]
                     ]
                 ]
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
                 "u_",
                 [
                     "Power",
                     [
-                        "g_",
+                        "UnknownHead",
                         "x_"
                     ],
-                    "q."
+                    "p."
                 ],
                 [
                     "Add",
@@ -1439,7 +1397,9 @@
                         ]
                     ]
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -1564,19 +1524,17 @@
                         ]
                     ]
                 ]
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
                 "u_",
                 [
                     "Power",
                     [
-                        "UnknownHead",
+                        "g_",
                         "x_"
                     ],
-                    "p."
+                    "q."
                 ],
                 [
                     "Add",
@@ -1588,7 +1546,7 @@
                             "x_"
                         ],
                         [
-                            "UnknownHead",
+                            "g_",
                             "x_"
                         ]
                     ],
@@ -1605,7 +1563,9 @@
                         ]
                     ]
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -1744,27 +1704,17 @@
                         ]
                     ]
                 ]
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
                 "u_",
                 [
                     "Power",
                     [
-                        "f_",
+                        "UnknownHead",
                         "x_"
                     ],
                     "p."
-                ],
-                [
-                    "Power",
-                    [
-                        "g_",
-                        "x_"
-                    ],
-                    "q."
                 ],
                 [
                     "Add",
@@ -1776,7 +1726,7 @@
                             "x_"
                         ],
                         [
-                            "g_",
+                            "UnknownHead",
                             "x_"
                         ]
                     ],
@@ -1784,7 +1734,7 @@
                         "Multiply",
                         "b.",
                         [
-                            "f_",
+                            "UnknownHead",
                             "x_"
                         ],
                         [
@@ -1793,7 +1743,9 @@
                         ]
                     ]
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -1946,16 +1898,14 @@
                         ]
                     ]
                 ]
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
                 "u_",
                 [
                     "Power",
                     [
-                        "UnknownHead",
+                        "f_",
                         "x_"
                     ],
                     "p."
@@ -1986,7 +1936,7 @@
                         "Multiply",
                         "b.",
                         [
-                            "UnknownHead",
+                            "f_",
                             "x_"
                         ],
                         [
@@ -1995,7 +1945,9 @@
                         ]
                     ]
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -2162,9 +2114,7 @@
                         ]
                     ]
                 ]
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
                 "u_",
@@ -2179,7 +2129,7 @@
                 [
                     "Power",
                     [
-                        "UnknownHead",
+                        "g_",
                         "x_"
                     ],
                     "q."
@@ -2194,7 +2144,7 @@
                             "x_"
                         ],
                         [
-                            "UnknownHead",
+                            "g_",
                             "x_"
                         ]
                     ],
@@ -2211,7 +2161,9 @@
                         ]
                     ]
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -2392,7 +2344,63 @@
                         ]
                     ]
                 ]
+            ],
+            "pattern": [
+                "Multiply",
+                "u_",
+                [
+                    "Power",
+                    [
+                        "UnknownHead",
+                        "x_"
+                    ],
+                    "p."
+                ],
+                [
+                    "Power",
+                    [
+                        "UnknownHead",
+                        "x_"
+                    ],
+                    "q."
+                ],
+                [
+                    "Add",
+                    [
+                        "Multiply",
+                        "a.",
+                        [
+                            "UnknownHead",
+                            "x_"
+                        ],
+                        [
+                            "UnknownHead",
+                            "x_"
+                        ]
+                    ],
+                    [
+                        "Multiply",
+                        "b.",
+                        [
+                            "UnknownHead",
+                            "x_"
+                        ],
+                        [
+                            "UnknownHead",
+                            "x_"
+                        ]
+                    ]
+                ]
             ]
         }
-    ]
+    ],
+    "semantics": {
+        "Cos": "openmath:transc1.cos",
+        "Int": "openmath:calculus1.defint",
+        "Exp": "openmath:transc1.exp",
+        "Tan": "openmath:transc1.tan",
+        "Sin": "openmath:transc1.sin",
+        "Log": "openmath:transc1.log"
+    },
+    "$schema": "open-symbolic-rules/v0.1"
 }

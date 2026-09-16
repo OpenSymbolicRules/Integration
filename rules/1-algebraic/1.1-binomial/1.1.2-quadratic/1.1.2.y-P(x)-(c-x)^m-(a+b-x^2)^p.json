@@ -1,35 +1,8 @@
 {
-    "$schema": "open-symbolic-rules/v0.1",
-    "section": "1.1.2",
     "title": "P(x) (c x)^m (a+b x^2)^p",
+    "section": "1.1.2",
     "rules": [
         {
-            "pattern": [
-                "Multiply",
-                [
-                    "Power",
-                    "x_",
-                    "m."
-                ],
-                "Pq_",
-                [
-                    "Power",
-                    [
-                        "Add",
-                        "a_",
-                        [
-                            "Multiply",
-                            "b.",
-                            [
-                                "Power",
-                                "x_",
-                                2
-                            ]
-                        ]
-                    ],
-                    "p."
-                ]
-            ],
             "constraints": [
                 [
                     "FreeQ",
@@ -140,18 +113,12 @@
                         2
                     ]
                 ]
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
                 [
                     "Power",
-                    [
-                        "Multiply",
-                        "c.",
-                        "x_"
-                    ],
+                    "x_",
                     "m."
                 ],
                 "Pq_",
@@ -172,7 +139,9 @@
                     ],
                     "p."
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -254,9 +223,7 @@
                     ],
                     "x"
                 ]
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
                 [
@@ -286,7 +253,9 @@
                     ],
                     "p."
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -348,7 +317,46 @@
                     "x"
                 ],
                 "x"
+            ],
+            "pattern": [
+                "Multiply",
+                [
+                    "Power",
+                    [
+                        "Multiply",
+                        "c.",
+                        "x_"
+                    ],
+                    "m."
+                ],
+                "Pq_",
+                [
+                    "Power",
+                    [
+                        "Add",
+                        "a_",
+                        [
+                            "Multiply",
+                            "b.",
+                            [
+                                "Power",
+                                "x_",
+                                2
+                            ]
+                        ]
+                    ],
+                    "p."
+                ]
             ]
         }
-    ]
+    ],
+    "semantics": {
+        "Cos": "openmath:transc1.cos",
+        "Int": "openmath:calculus1.defint",
+        "Exp": "openmath:transc1.exp",
+        "Tan": "openmath:transc1.tan",
+        "Sin": "openmath:transc1.sin",
+        "Log": "openmath:transc1.log"
+    },
+    "$schema": "open-symbolic-rules/v0.1"
 }

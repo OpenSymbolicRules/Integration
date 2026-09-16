@@ -1,33 +1,8 @@
 {
-    "$schema": "open-symbolic-rules/v0.1",
-    "section": "7.3.5",
     "title": "u (a+b arctanh(c+d x))^p",
+    "section": "7.3.5",
     "rules": [
         {
-            "pattern": [
-                "Power",
-                [
-                    "Add",
-                    "a.",
-                    [
-                        "Multiply",
-                        "b.",
-                        [
-                            "Atanh",
-                            [
-                                "Add",
-                                "c_",
-                                [
-                                    "Multiply",
-                                    "d.",
-                                    "x_"
-                                ]
-                            ]
-                        ]
-                    ]
-                ],
-                "p."
-            ],
             "constraints": [
                 [
                     "FreeQ",
@@ -88,9 +63,7 @@
                         ]
                     ]
                 ]
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Power",
                 [
@@ -100,7 +73,7 @@
                         "Multiply",
                         "b.",
                         [
-                            "Acoth",
+                            "Atanh",
                             [
                                 "Add",
                                 "c_",
@@ -114,7 +87,9 @@
                     ]
                 ],
                 "p."
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -175,9 +150,7 @@
                         ]
                     ]
                 ]
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Power",
                 [
@@ -187,7 +160,7 @@
                         "Multiply",
                         "b.",
                         [
-                            "Atanh",
+                            "Acoth",
                             [
                                 "Add",
                                 "c_",
@@ -200,8 +173,10 @@
                         ]
                     ]
                 ],
-                "p_"
-            ],
+                "p."
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -252,9 +227,7 @@
                     "p"
                 ],
                 "x"
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Power",
                 [
@@ -264,7 +237,7 @@
                         "Multiply",
                         "b.",
                         [
-                            "Acoth",
+                            "Atanh",
                             [
                                 "Add",
                                 "c_",
@@ -278,7 +251,9 @@
                     ]
                 ],
                 "p_"
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -329,49 +304,33 @@
                     "p"
                 ],
                 "x"
-            ]
-        },
-        {
+            ],
             "pattern": [
-                "Multiply",
+                "Power",
                 [
-                    "Power",
+                    "Add",
+                    "a.",
                     [
-                        "Add",
-                        "e.",
+                        "Multiply",
+                        "b.",
                         [
-                            "Multiply",
-                            "f.",
-                            "x_"
-                        ]
-                    ],
-                    "m."
-                ],
-                [
-                    "Power",
-                    [
-                        "Add",
-                        "a.",
-                        [
-                            "Multiply",
-                            "b.",
+                            "Acoth",
                             [
-                                "Atanh",
+                                "Add",
+                                "c_",
                                 [
-                                    "Add",
-                                    "c_",
-                                    [
-                                        "Multiply",
-                                        "d.",
-                                        "x_"
-                                    ]
+                                    "Multiply",
+                                    "d.",
+                                    "x_"
                                 ]
                             ]
                         ]
-                    ],
-                    "p."
-                ]
-            ],
+                    ]
+                ],
+                "p_"
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -470,9 +429,7 @@
                         ]
                     ]
                 ]
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
                 [
@@ -497,7 +454,7 @@
                             "Multiply",
                             "b.",
                             [
-                                "Acoth",
+                                "Atanh",
                                 [
                                     "Add",
                                     "c_",
@@ -512,7 +469,9 @@
                     ],
                     "p."
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -611,9 +570,7 @@
                         ]
                     ]
                 ]
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
                 [
@@ -627,7 +584,7 @@
                             "x_"
                         ]
                     ],
-                    "m_"
+                    "m."
                 ],
                 [
                     "Power",
@@ -638,7 +595,7 @@
                             "Multiply",
                             "b.",
                             [
-                                "Atanh",
+                                "Acoth",
                                 [
                                     "Add",
                                     "c_",
@@ -653,7 +610,9 @@
                     ],
                     "p."
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -840,9 +799,7 @@
                         "x"
                     ]
                 ]
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
                 [
@@ -867,7 +824,7 @@
                             "Multiply",
                             "b.",
                             [
-                                "Acoth",
+                                "Atanh",
                                 [
                                     "Add",
                                     "c_",
@@ -882,7 +839,9 @@
                     ],
                     "p."
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -1069,9 +1028,7 @@
                         "x"
                     ]
                 ]
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
                 [
@@ -1085,7 +1042,7 @@
                             "x_"
                         ]
                     ],
-                    "m."
+                    "m_"
                 ],
                 [
                     "Power",
@@ -1096,7 +1053,7 @@
                             "Multiply",
                             "b.",
                             [
-                                "Atanh",
+                                "Acoth",
                                 [
                                     "Add",
                                     "c_",
@@ -1111,7 +1068,9 @@
                     ],
                     "p."
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -1217,9 +1176,7 @@
                         ]
                     ]
                 ]
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
                 [
@@ -1244,7 +1201,7 @@
                             "Multiply",
                             "b.",
                             [
-                                "Acoth",
+                                "Atanh",
                                 [
                                     "Add",
                                     "c_",
@@ -1259,7 +1216,9 @@
                     ],
                     "p."
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -1365,9 +1324,7 @@
                         ]
                     ]
                 ]
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
                 [
@@ -1392,7 +1349,7 @@
                             "Multiply",
                             "b.",
                             [
-                                "Atanh",
+                                "Acoth",
                                 [
                                     "Add",
                                     "c_",
@@ -1405,9 +1362,11 @@
                             ]
                         ]
                     ],
-                    "p_"
+                    "p."
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -1477,9 +1436,7 @@
                     ]
                 ],
                 "x"
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
                 [
@@ -1504,7 +1461,7 @@
                             "Multiply",
                             "b.",
                             [
-                                "Acoth",
+                                "Atanh",
                                 [
                                     "Add",
                                     "c_",
@@ -1519,7 +1476,9 @@
                     ],
                     "p_"
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -1589,41 +1548,49 @@
                     ]
                 ],
                 "x"
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
                 [
-                    "Atanh",
+                    "Power",
                     [
                         "Add",
-                        "c_",
+                        "e.",
                         [
                             "Multiply",
-                            "d.",
+                            "f.",
                             "x_"
                         ]
-                    ]
+                    ],
+                    "m."
                 ],
                 [
                     "Power",
                     [
                         "Add",
-                        "e_",
+                        "a.",
                         [
                             "Multiply",
-                            "f.",
+                            "b.",
                             [
-                                "Power",
-                                "x_",
-                                "n."
+                                "Acoth",
+                                [
+                                    "Add",
+                                    "c_",
+                                    [
+                                        "Multiply",
+                                        "d.",
+                                        "x_"
+                                    ]
+                                ]
                             ]
                         ]
                     ],
-                    -1
+                    "p_"
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -1742,13 +1709,11 @@
                         "x"
                     ]
                 ]
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
                 [
-                    "Acoth",
+                    "Atanh",
                     [
                         "Add",
                         "c_",
@@ -1776,7 +1741,9 @@
                     ],
                     -1
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -1922,13 +1889,11 @@
                         "x"
                     ]
                 ]
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
                 [
-                    "Atanh",
+                    "Acoth",
                     [
                         "Add",
                         "c_",
@@ -1950,13 +1915,15 @@
                             [
                                 "Power",
                                 "x_",
-                                "n_"
+                                "n."
                             ]
                         ]
                     ],
                     -1
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -2014,13 +1981,11 @@
                     ]
                 ],
                 "x"
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
                 [
-                    "Acoth",
+                    "Atanh",
                     [
                         "Add",
                         "c_",
@@ -2048,7 +2013,9 @@
                     ],
                     -1
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -2106,58 +2073,41 @@
                     ]
                 ],
                 "x"
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
                 [
-                    "Power",
+                    "Acoth",
                     [
                         "Add",
-                        "A.",
+                        "c_",
                         [
                             "Multiply",
-                            "B.",
+                            "d.",
                             "x_"
-                        ],
-                        [
-                            "Multiply",
-                            "C.",
-                            [
-                                "Power",
-                                "x_",
-                                2
-                            ]
                         ]
-                    ],
-                    "q."
+                    ]
                 ],
                 [
                     "Power",
                     [
                         "Add",
-                        "a.",
+                        "e_",
                         [
                             "Multiply",
-                            "b.",
+                            "f.",
                             [
-                                "Atanh",
-                                [
-                                    "Add",
-                                    "c_",
-                                    [
-                                        "Multiply",
-                                        "d.",
-                                        "x_"
-                                    ]
-                                ]
+                                "Power",
+                                "x_",
+                                "n_"
                             ]
                         ]
                     ],
-                    "p."
+                    -1
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -2310,9 +2260,7 @@
                         ]
                     ]
                 ]
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
                 [
@@ -2346,7 +2294,7 @@
                             "Multiply",
                             "b.",
                             [
-                                "Acoth",
+                                "Atanh",
                                 [
                                     "Add",
                                     "c_",
@@ -2361,7 +2309,9 @@
                     ],
                     "p."
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -2513,24 +2463,9 @@
                         ]
                     ]
                 ]
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
-                [
-                    "Power",
-                    [
-                        "Add",
-                        "e.",
-                        [
-                            "Multiply",
-                            "f.",
-                            "x_"
-                        ]
-                    ],
-                    "m."
-                ],
                 [
                     "Power",
                     [
@@ -2562,7 +2497,7 @@
                             "Multiply",
                             "b.",
                             [
-                                "Atanh",
+                                "Acoth",
                                 [
                                     "Add",
                                     "c_",
@@ -2577,7 +2512,9 @@
                     ],
                     "p."
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -2772,9 +2709,7 @@
                         ]
                     ]
                 ]
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
                 [
@@ -2821,7 +2756,7 @@
                             "Multiply",
                             "b.",
                             [
-                                "Acoth",
+                                "Atanh",
                                 [
                                     "Add",
                                     "c_",
@@ -2836,7 +2771,9 @@
                     ],
                     "p."
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -3031,7 +2968,78 @@
                         ]
                     ]
                 ]
+            ],
+            "pattern": [
+                "Multiply",
+                [
+                    "Power",
+                    [
+                        "Add",
+                        "e.",
+                        [
+                            "Multiply",
+                            "f.",
+                            "x_"
+                        ]
+                    ],
+                    "m."
+                ],
+                [
+                    "Power",
+                    [
+                        "Add",
+                        "A.",
+                        [
+                            "Multiply",
+                            "B.",
+                            "x_"
+                        ],
+                        [
+                            "Multiply",
+                            "C.",
+                            [
+                                "Power",
+                                "x_",
+                                2
+                            ]
+                        ]
+                    ],
+                    "q."
+                ],
+                [
+                    "Power",
+                    [
+                        "Add",
+                        "a.",
+                        [
+                            "Multiply",
+                            "b.",
+                            [
+                                "Acoth",
+                                [
+                                    "Add",
+                                    "c_",
+                                    [
+                                        "Multiply",
+                                        "d.",
+                                        "x_"
+                                    ]
+                                ]
+                            ]
+                        ]
+                    ],
+                    "p."
+                ]
             ]
         }
-    ]
+    ],
+    "semantics": {
+        "Cos": "openmath:transc1.cos",
+        "Int": "openmath:calculus1.defint",
+        "Exp": "openmath:transc1.exp",
+        "Tan": "openmath:transc1.tan",
+        "Sin": "openmath:transc1.sin",
+        "Log": "openmath:transc1.log"
+    },
+    "$schema": "open-symbolic-rules/v0.1"
 }

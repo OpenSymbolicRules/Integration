@@ -1,29 +1,8 @@
 {
-    "$schema": "open-symbolic-rules/v0.1",
-    "section": "7.1.1",
     "title": "(a+b arcsinh(c x))^n",
+    "section": "7.1.1",
     "rules": [
         {
-            "pattern": [
-                "Power",
-                [
-                    "Add",
-                    "a.",
-                    [
-                        "Multiply",
-                        "b.",
-                        [
-                            "Asinh",
-                            [
-                                "Multiply",
-                                "c.",
-                                "x_"
-                            ]
-                        ]
-                    ]
-                ],
-                "n."
-            ],
             "constraints": [
                 [
                     "FreeQ",
@@ -135,9 +114,7 @@
                         "x"
                     ]
                 ]
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Power",
                 [
@@ -156,8 +133,10 @@
                         ]
                     ]
                 ],
-                "n_"
-            ],
+                "n."
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -313,9 +292,7 @@
                         "x"
                     ]
                 ]
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Power",
                 [
@@ -335,7 +312,9 @@
                     ]
                 ],
                 "n_"
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -419,7 +398,36 @@
                         ]
                     ]
                 ]
+            ],
+            "pattern": [
+                "Power",
+                [
+                    "Add",
+                    "a.",
+                    [
+                        "Multiply",
+                        "b.",
+                        [
+                            "Asinh",
+                            [
+                                "Multiply",
+                                "c.",
+                                "x_"
+                            ]
+                        ]
+                    ]
+                ],
+                "n_"
             ]
         }
-    ]
+    ],
+    "semantics": {
+        "Cos": "openmath:transc1.cos",
+        "Int": "openmath:calculus1.defint",
+        "Exp": "openmath:transc1.exp",
+        "Tan": "openmath:transc1.tan",
+        "Sin": "openmath:transc1.sin",
+        "Log": "openmath:transc1.log"
+    },
+    "$schema": "open-symbolic-rules/v0.1"
 }

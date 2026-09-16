@@ -1,9 +1,15 @@
 {
-    "$schema": "open-symbolic-rules/v0.1",
-    "section": "1.1.1.1",
     "title": "(a+b x)^m",
+    "section": "1.1.1.1",
     "rules": [
         {
+            "constraints": [
+            ],
+            "id": 1,
+            "result": [
+                "Log",
+                "x"
+            ],
             "pattern": [
                 "Multiply",
                 1,
@@ -12,21 +18,9 @@
                     "x_",
                     -1
                 ]
-            ],
-            "constraints": [
-            ],
-            "id": 1,
-            "result": [
-                "Log",
-                "x"
             ]
         },
         {
-            "pattern": [
-                "Power",
-                "x_",
-                "m."
-            ],
             "constraints": [
                 [
                     "FreeQ",
@@ -60,26 +54,14 @@
                     ],
                     -1
                 ]
+            ],
+            "pattern": [
+                "Power",
+                "x_",
+                "m."
             ]
         },
         {
-            "pattern": [
-                "Multiply",
-                1,
-                [
-                    "Power",
-                    [
-                        "Add",
-                        "a_",
-                        [
-                            "Multiply",
-                            "b.",
-                            "x_"
-                        ]
-                    ],
-                    -1
-                ]
-            ],
             "constraints": [
                 [
                     "FreeQ",
@@ -115,22 +97,26 @@
                     "b",
                     -1
                 ]
+            ],
+            "pattern": [
+                "Multiply",
+                1,
+                [
+                    "Power",
+                    [
+                        "Add",
+                        "a_",
+                        [
+                            "Multiply",
+                            "b.",
+                            "x_"
+                        ]
+                    ],
+                    -1
+                ]
             ]
         },
         {
-            "pattern": [
-                "Power",
-                [
-                    "Add",
-                    "a.",
-                    [
-                        "Multiply",
-                        "b.",
-                        "x_"
-                    ]
-                ],
-                "m_"
-            ],
             "constraints": [
                 [
                     "FreeQ",
@@ -181,9 +167,7 @@
                     ],
                     -1
                 ]
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Power",
                 [
@@ -192,11 +176,13 @@
                     [
                         "Multiply",
                         "b.",
-                        "u_"
+                        "x_"
                     ]
                 ],
                 "m_"
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -255,7 +241,29 @@
                     "x",
                     "u"
                 ]
+            ],
+            "pattern": [
+                "Power",
+                [
+                    "Add",
+                    "a.",
+                    [
+                        "Multiply",
+                        "b.",
+                        "u_"
+                    ]
+                ],
+                "m_"
             ]
         }
-    ]
+    ],
+    "semantics": {
+        "Cos": "openmath:transc1.cos",
+        "Int": "openmath:calculus1.defint",
+        "Exp": "openmath:transc1.exp",
+        "Tan": "openmath:transc1.tan",
+        "Sin": "openmath:transc1.sin",
+        "Log": "openmath:transc1.log"
+    },
+    "$schema": "open-symbolic-rules/v0.1"
 }

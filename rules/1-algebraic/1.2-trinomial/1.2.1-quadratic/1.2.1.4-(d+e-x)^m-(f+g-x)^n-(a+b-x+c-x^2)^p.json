@@ -1,47 +1,8 @@
 {
-    "$schema": "open-symbolic-rules/v0.1",
-    "section": "1.2.1.4",
     "title": "(d+e x)^m (f+g x)^n (a+b x+c x^2)^p",
+    "section": "1.2.1.4",
     "rules": [
         {
-            "pattern": [
-                "Multiply",
-                [
-                    "Power",
-                    "x_",
-                    "m."
-                ],
-                [
-                    "Power",
-                    [
-                        "Add",
-                        "f_",
-                        [
-                            "Multiply",
-                            "g.",
-                            "x_"
-                        ]
-                    ],
-                    "n."
-                ],
-                [
-                    "Add",
-                    [
-                        "Multiply",
-                        "b.",
-                        "x_"
-                    ],
-                    [
-                        "Multiply",
-                        "c.",
-                        [
-                            "Power",
-                            "x_",
-                            2
-                        ]
-                    ]
-                ]
-            ],
             "constraints": [
                 [
                     "FreeQ",
@@ -140,60 +101,47 @@
                     ],
                     -1
                 ]
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
                 [
                     "Power",
-                    [
-                        "Add",
-                        "d.",
-                        [
-                            "Multiply",
-                            "e.",
-                            "x_"
-                        ]
-                    ],
-                    "m_"
+                    "x_",
+                    "m."
                 ],
                 [
                     "Power",
                     [
                         "Add",
-                        "f.",
+                        "f_",
                         [
                             "Multiply",
                             "g.",
                             "x_"
                         ]
                     ],
-                    "n_"
+                    "n."
                 ],
                 [
-                    "Power",
+                    "Add",
                     [
-                        "Add",
-                        "a.",
-                        [
-                            "Multiply",
-                            "b.",
-                            "x_"
-                        ],
-                        [
-                            "Multiply",
-                            "c.",
-                            [
-                                "Power",
-                                "x_",
-                                2
-                            ]
-                        ]
+                        "Multiply",
+                        "b.",
+                        "x_"
                     ],
-                    "p_"
+                    [
+                        "Multiply",
+                        "c.",
+                        [
+                            "Power",
+                            "x_",
+                            2
+                        ]
+                    ]
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -385,16 +333,14 @@
                     ],
                     "x"
                 ]
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
                 [
                     "Power",
                     [
                         "Add",
-                        "d_",
+                        "d.",
                         [
                             "Multiply",
                             "e.",
@@ -436,9 +382,11 @@
                             ]
                         ]
                     ],
-                    "p."
+                    "p_"
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -601,9 +549,7 @@
                     ]
                 ],
                 "x"
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
                 [
@@ -636,7 +582,12 @@
                     "Power",
                     [
                         "Add",
-                        "a_",
+                        "a.",
+                        [
+                            "Multiply",
+                            "b.",
+                            "x_"
+                        ],
                         [
                             "Multiply",
                             "c.",
@@ -649,7 +600,9 @@
                     ],
                     "p."
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -805,38 +758,9 @@
                     ]
                 ],
                 "x"
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
-                [
-                    "Power",
-                    "x_",
-                    "n."
-                ],
-                [
-                    "Power",
-                    [
-                        "Add",
-                        "a.",
-                        [
-                            "Multiply",
-                            "b.",
-                            "x_"
-                        ],
-                        [
-                            "Multiply",
-                            "c.",
-                            [
-                                "Power",
-                                "x_",
-                                2
-                            ]
-                        ]
-                    ],
-                    "p_"
-                ],
                 [
                     "Power",
                     [
@@ -848,9 +772,41 @@
                             "x_"
                         ]
                     ],
-                    -1
+                    "m_"
+                ],
+                [
+                    "Power",
+                    [
+                        "Add",
+                        "f.",
+                        [
+                            "Multiply",
+                            "g.",
+                            "x_"
+                        ]
+                    ],
+                    "n_"
+                ],
+                [
+                    "Power",
+                    [
+                        "Add",
+                        "a_",
+                        [
+                            "Multiply",
+                            "c.",
+                            [
+                                "Power",
+                                "x_",
+                                2
+                            ]
+                        ]
+                    ],
+                    "p."
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -1034,9 +990,7 @@
                     ]
                 ],
                 "x"
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
                 [
@@ -1048,7 +1002,12 @@
                     "Power",
                     [
                         "Add",
-                        "a_",
+                        "a.",
+                        [
+                            "Multiply",
+                            "b.",
+                            "x_"
+                        ],
                         [
                             "Multiply",
                             "c.",
@@ -1074,7 +1033,9 @@
                     ],
                     -1
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -1226,47 +1187,19 @@
                     ]
                 ],
                 "x"
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
                 [
                     "Power",
-                    [
-                        "Add",
-                        "d_",
-                        [
-                            "Multiply",
-                            "e.",
-                            "x_"
-                        ]
-                    ],
-                    "m_"
+                    "x_",
+                    "n."
                 ],
                 [
                     "Power",
                     [
                         "Add",
-                        "f.",
-                        [
-                            "Multiply",
-                            "g.",
-                            "x_"
-                        ]
-                    ],
-                    "n_"
-                ],
-                [
-                    "Power",
-                    [
-                        "Add",
-                        "a.",
-                        [
-                            "Multiply",
-                            "b.",
-                            "x_"
-                        ],
+                        "a_",
                         [
                             "Multiply",
                             "c.",
@@ -1278,8 +1211,23 @@
                         ]
                     ],
                     "p_"
+                ],
+                [
+                    "Power",
+                    [
+                        "Add",
+                        "d_",
+                        [
+                            "Multiply",
+                            "e.",
+                            "x_"
+                        ]
+                    ],
+                    -1
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -1472,9 +1420,7 @@
                     ]
                 ],
                 "x"
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
                 [
@@ -1507,7 +1453,12 @@
                     "Power",
                     [
                         "Add",
-                        "a_",
+                        "a.",
+                        [
+                            "Multiply",
+                            "b.",
+                            "x_"
+                        ],
                         [
                             "Multiply",
                             "c.",
@@ -1520,7 +1471,9 @@
                     ],
                     "p_"
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -1709,9 +1662,7 @@
                     ],
                     "x"
                 ]
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
                 [
@@ -1731,7 +1682,7 @@
                     "Power",
                     [
                         "Add",
-                        "f_",
+                        "f.",
                         [
                             "Multiply",
                             "g.",
@@ -1757,7 +1708,9 @@
                     ],
                     "p_"
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -1914,16 +1867,27 @@
                     ],
                     "x"
                 ]
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
                 [
                     "Power",
                     [
                         "Add",
-                        "f.",
+                        "d_",
+                        [
+                            "Multiply",
+                            "e.",
+                            "x_"
+                        ]
+                    ],
+                    "m_"
+                ],
+                [
+                    "Power",
+                    [
+                        "Add",
+                        "f_",
                         [
                             "Multiply",
                             "g.",
@@ -1936,12 +1900,7 @@
                     "Power",
                     [
                         "Add",
-                        "a.",
-                        [
-                            "Multiply",
-                            "b.",
-                            "x_"
-                        ],
+                        "a_",
                         [
                             "Multiply",
                             "c.",
@@ -1953,21 +1912,10 @@
                         ]
                     ],
                     "p_"
-                ],
-                [
-                    "Power",
-                    [
-                        "Add",
-                        "d_",
-                        [
-                            "Multiply",
-                            "e.",
-                            "x_"
-                        ]
-                    ],
-                    -1
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -2352,9 +2300,7 @@
                         "x"
                     ]
                 ]
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
                 [
@@ -2374,7 +2320,12 @@
                     "Power",
                     [
                         "Add",
-                        "a_",
+                        "a.",
+                        [
+                            "Multiply",
+                            "b.",
+                            "x_"
+                        ],
                         [
                             "Multiply",
                             "c.",
@@ -2400,7 +2351,9 @@
                     ],
                     -1
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -2651,9 +2604,7 @@
                         "x"
                     ]
                 ]
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
                 [
@@ -2673,12 +2624,7 @@
                     "Power",
                     [
                         "Add",
-                        "a.",
-                        [
-                            "Multiply",
-                            "b.",
-                            "x_"
-                        ],
+                        "a_",
                         [
                             "Multiply",
                             "c.",
@@ -2704,7 +2650,9 @@
                     ],
                     -1
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -3073,9 +3021,7 @@
                         "x"
                     ]
                 ]
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
                 [
@@ -3095,7 +3041,12 @@
                     "Power",
                     [
                         "Add",
-                        "a_",
+                        "a.",
+                        [
+                            "Multiply",
+                            "b.",
+                            "x_"
+                        ],
                         [
                             "Multiply",
                             "c.",
@@ -3121,7 +3072,9 @@
                     ],
                     -1
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -3409,24 +3362,9 @@
                         "x"
                     ]
                 ]
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
-                [
-                    "Power",
-                    [
-                        "Add",
-                        "d_",
-                        [
-                            "Multiply",
-                            "e.",
-                            "x_"
-                        ]
-                    ],
-                    "m_"
-                ],
                 [
                     "Power",
                     [
@@ -3444,12 +3382,7 @@
                     "Power",
                     [
                         "Add",
-                        "a.",
-                        [
-                            "Multiply",
-                            "b.",
-                            "x_"
-                        ],
+                        "a_",
                         [
                             "Multiply",
                             "c.",
@@ -3461,8 +3394,23 @@
                         ]
                     ],
                     "p_"
+                ],
+                [
+                    "Power",
+                    [
+                        "Add",
+                        "d_",
+                        [
+                            "Multiply",
+                            "e.",
+                            "x_"
+                        ]
+                    ],
+                    -1
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -3698,9 +3646,7 @@
                     ],
                     -1
                 ]
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
                 [
@@ -3733,7 +3679,12 @@
                     "Power",
                     [
                         "Add",
-                        "a_",
+                        "a.",
+                        [
+                            "Multiply",
+                            "b.",
+                            "x_"
+                        ],
                         [
                             "Multiply",
                             "c.",
@@ -3746,7 +3697,9 @@
                     ],
                     "p_"
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -3941,9 +3894,7 @@
                     ],
                     -1
                 ]
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
                 [
@@ -3976,12 +3927,7 @@
                     "Power",
                     [
                         "Add",
-                        "a.",
-                        [
-                            "Multiply",
-                            "b.",
-                            "x_"
-                        ],
+                        "a_",
                         [
                             "Multiply",
                             "c.",
@@ -3994,7 +3940,9 @@
                     ],
                     "p_"
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -4224,9 +4172,7 @@
                     ],
                     -1
                 ]
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
                 [
@@ -4259,7 +4205,12 @@
                     "Power",
                     [
                         "Add",
-                        "a_",
+                        "a.",
+                        [
+                            "Multiply",
+                            "b.",
+                            "x_"
+                        ],
                         [
                             "Multiply",
                             "c.",
@@ -4272,7 +4223,9 @@
                     ],
                     "p_"
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -4462,9 +4415,7 @@
                     ],
                     -1
                 ]
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
                 [
@@ -4497,12 +4448,7 @@
                     "Power",
                     [
                         "Add",
-                        "a.",
-                        [
-                            "Multiply",
-                            "b.",
-                            "x_"
-                        ],
+                        "a_",
                         [
                             "Multiply",
                             "c.",
@@ -4515,7 +4461,9 @@
                     ],
                     "p_"
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -4812,9 +4760,7 @@
                         "x"
                     ]
                 ]
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
                 [
@@ -4847,7 +4793,12 @@
                     "Power",
                     [
                         "Add",
-                        "a_",
+                        "a.",
+                        [
+                            "Multiply",
+                            "b.",
+                            "x_"
+                        ],
                         [
                             "Multiply",
                             "c.",
@@ -4860,7 +4811,9 @@
                     ],
                     "p_"
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -5120,9 +5073,7 @@
                         "x"
                     ]
                 ]
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
                 [
@@ -5155,12 +5106,7 @@
                     "Power",
                     [
                         "Add",
-                        "a.",
-                        [
-                            "Multiply",
-                            "b.",
-                            "x_"
-                        ],
+                        "a_",
                         [
                             "Multiply",
                             "c.",
@@ -5173,7 +5119,9 @@
                     ],
                     "p_"
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -5537,9 +5485,7 @@
                         "x"
                     ]
                 ]
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
                 [
@@ -5572,7 +5518,12 @@
                     "Power",
                     [
                         "Add",
-                        "a_",
+                        "a.",
+                        [
+                            "Multiply",
+                            "b.",
+                            "x_"
+                        ],
                         [
                             "Multiply",
                             "c.",
@@ -5585,7 +5536,9 @@
                     ],
                     "p_"
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -5904,9 +5857,7 @@
                         "x"
                     ]
                 ]
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
                 [
@@ -5939,12 +5890,7 @@
                     "Power",
                     [
                         "Add",
-                        "a.",
-                        [
-                            "Multiply",
-                            "b.",
-                            "x_"
-                        ],
+                        "a_",
                         [
                             "Multiply",
                             "c.",
@@ -5957,7 +5903,9 @@
                     ],
                     "p_"
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -6244,9 +6192,7 @@
                         "x"
                     ]
                 ]
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
                 [
@@ -6279,7 +6225,12 @@
                     "Power",
                     [
                         "Add",
-                        "a_",
+                        "a.",
+                        [
+                            "Multiply",
+                            "b.",
+                            "x_"
+                        ],
                         [
                             "Multiply",
                             "c.",
@@ -6292,7 +6243,9 @@
                     ],
                     "p_"
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -6542,9 +6495,7 @@
                         "x"
                     ]
                 ]
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
                 [
@@ -6577,12 +6528,7 @@
                     "Power",
                     [
                         "Add",
-                        "a.",
-                        [
-                            "Multiply",
-                            "b.",
-                            "x_"
-                        ],
+                        "a_",
                         [
                             "Multiply",
                             "c.",
@@ -6595,7 +6541,9 @@
                     ],
                     "p_"
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -6940,9 +6888,7 @@
                         "x"
                     ]
                 ]
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
                 [
@@ -6975,7 +6921,12 @@
                     "Power",
                     [
                         "Add",
-                        "a_",
+                        "a.",
+                        [
+                            "Multiply",
+                            "b.",
+                            "x_"
+                        ],
                         [
                             "Multiply",
                             "c.",
@@ -6988,7 +6939,9 @@
                     ],
                     "p_"
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -7280,9 +7233,7 @@
                         "x"
                     ]
                 ]
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
                 [
@@ -7315,12 +7266,7 @@
                     "Power",
                     [
                         "Add",
-                        "a.",
-                        [
-                            "Multiply",
-                            "b.",
-                            "x_"
-                        ],
+                        "a_",
                         [
                             "Multiply",
                             "c.",
@@ -7333,7 +7279,9 @@
                     ],
                     "p_"
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -7678,9 +7626,7 @@
                         "x"
                     ]
                 ]
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
                 [
@@ -7713,7 +7659,12 @@
                     "Power",
                     [
                         "Add",
-                        "a_",
+                        "a.",
+                        [
+                            "Multiply",
+                            "b.",
+                            "x_"
+                        ],
                         [
                             "Multiply",
                             "c.",
@@ -7726,7 +7677,9 @@
                     ],
                     "p_"
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -8024,9 +7977,7 @@
                         "x"
                     ]
                 ]
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
                 [
@@ -8059,12 +8010,7 @@
                     "Power",
                     [
                         "Add",
-                        "a.",
-                        [
-                            "Multiply",
-                            "b.",
-                            "x_"
-                        ],
+                        "a_",
                         [
                             "Multiply",
                             "c.",
@@ -8077,7 +8023,9 @@
                     ],
                     "p_"
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -8417,9 +8365,7 @@
                         "x"
                     ]
                 ]
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
                 [
@@ -8452,7 +8398,12 @@
                     "Power",
                     [
                         "Add",
-                        "a_",
+                        "a.",
+                        [
+                            "Multiply",
+                            "b.",
+                            "x_"
+                        ],
                         [
                             "Multiply",
                             "c.",
@@ -8465,7 +8416,9 @@
                     ],
                     "p_"
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -8751,13 +8704,11 @@
                         "x"
                     ]
                 ]
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
                 [
-                    "Sqrt",
+                    "Power",
                     [
                         "Add",
                         "d_",
@@ -8766,46 +8717,42 @@
                             "e.",
                             "x_"
                         ]
-                    ]
+                    ],
+                    "m_"
                 ],
                 [
                     "Power",
                     [
-                        "Multiply",
+                        "Add",
+                        "f.",
                         [
-                            "Add",
-                            "f.",
-                            [
-                                "Multiply",
-                                "g.",
-                                "x_"
-                            ]
-                        ],
+                            "Multiply",
+                            "g.",
+                            "x_"
+                        ]
+                    ],
+                    "n_"
+                ],
+                [
+                    "Power",
+                    [
+                        "Add",
+                        "a_",
                         [
-                            "Sqrt",
+                            "Multiply",
+                            "c.",
                             [
-                                "Add",
-                                "a.",
-                                [
-                                    "Multiply",
-                                    "b.",
-                                    "x_"
-                                ],
-                                [
-                                    "Multiply",
-                                    "c.",
-                                    [
-                                        "Power",
-                                        "x_",
-                                        2
-                                    ]
-                                ]
+                                "Power",
+                                "x_",
+                                2
                             ]
                         ]
                     ],
-                    -1
+                    "p_"
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -8997,9 +8944,7 @@
                         ]
                     ]
                 ]
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
                 [
@@ -9031,7 +8976,12 @@
                             "Sqrt",
                             [
                                 "Add",
-                                "a_",
+                                "a.",
+                                [
+                                    "Multiply",
+                                    "b.",
+                                    "x_"
+                                ],
                                 [
                                     "Multiply",
                                     "c.",
@@ -9046,7 +8996,9 @@
                     ],
                     -1
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -9199,13 +9151,11 @@
                         ]
                     ]
                 ]
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
                 [
-                    "Power",
+                    "Sqrt",
                     [
                         "Add",
                         "d_",
@@ -9214,45 +9164,43 @@
                             "e.",
                             "x_"
                         ]
-                    ],
-                    "m_"
+                    ]
                 ],
                 [
                     "Power",
                     [
-                        "Add",
-                        "f.",
+                        "Multiply",
                         [
-                            "Multiply",
-                            "g.",
-                            "x_"
-                        ]
-                    ],
-                    "n_"
-                ],
-                [
-                    "Power",
-                    [
-                        "Add",
-                        "a.",
-                        [
-                            "Multiply",
-                            "b.",
-                            "x_"
+                            "Add",
+                            "f.",
+                            [
+                                "Multiply",
+                                "g.",
+                                "x_"
+                            ]
                         ],
                         [
-                            "Multiply",
-                            "c.",
+                            "Sqrt",
                             [
-                                "Power",
-                                "x_",
-                                2
+                                "Add",
+                                "a_",
+                                [
+                                    "Multiply",
+                                    "c.",
+                                    [
+                                        "Power",
+                                        "x_",
+                                        2
+                                    ]
+                                ]
                             ]
                         ]
                     ],
-                    "p_"
+                    -1
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -9505,9 +9453,7 @@
                     ],
                     -1
                 ]
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
                 [
@@ -9540,7 +9486,12 @@
                     "Power",
                     [
                         "Add",
-                        "a_",
+                        "a.",
+                        [
+                            "Multiply",
+                            "b.",
+                            "x_"
+                        ],
                         [
                             "Multiply",
                             "c.",
@@ -9553,7 +9504,9 @@
                     ],
                     "p_"
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -9761,9 +9714,7 @@
                     ],
                     -1
                 ]
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
                 [
@@ -9796,12 +9747,7 @@
                     "Power",
                     [
                         "Add",
-                        "a.",
-                        [
-                            "Multiply",
-                            "b.",
-                            "x_"
-                        ],
+                        "a_",
                         [
                             "Multiply",
                             "c.",
@@ -9814,7 +9760,9 @@
                     ],
                     "p_"
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -10209,9 +10157,7 @@
                         "x"
                     ]
                 ]
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
                 [
@@ -10244,7 +10190,12 @@
                     "Power",
                     [
                         "Add",
-                        "a_",
+                        "a.",
+                        [
+                            "Multiply",
+                            "b.",
+                            "x_"
+                        ],
                         [
                             "Multiply",
                             "c.",
@@ -10257,7 +10208,9 @@
                     ],
                     "p_"
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -10585,9 +10538,7 @@
                         "x"
                     ]
                 ]
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
                 [
@@ -10620,12 +10571,7 @@
                     "Power",
                     [
                         "Add",
-                        "a.",
-                        [
-                            "Multiply",
-                            "b.",
-                            "x_"
-                        ],
+                        "a_",
                         [
                             "Multiply",
                             "c.",
@@ -10638,7 +10584,9 @@
                     ],
                     "p_"
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -10978,9 +10926,7 @@
                         "x"
                     ]
                 ]
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
                 [
@@ -11013,7 +10959,12 @@
                     "Power",
                     [
                         "Add",
-                        "a_",
+                        "a.",
+                        [
+                            "Multiply",
+                            "b.",
+                            "x_"
+                        ],
                         [
                             "Multiply",
                             "c.",
@@ -11026,7 +10977,9 @@
                     ],
                     "p_"
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -11315,9 +11268,7 @@
                         "x"
                     ]
                 ]
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
                 [
@@ -11350,12 +11301,7 @@
                     "Power",
                     [
                         "Add",
-                        "a.",
-                        [
-                            "Multiply",
-                            "b.",
-                            "x_"
-                        ],
+                        "a_",
                         [
                             "Multiply",
                             "c.",
@@ -11368,7 +11314,9 @@
                     ],
                     "p_"
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -11568,9 +11516,7 @@
                     "x"
                 ],
                 "x"
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
                 [
@@ -11603,7 +11549,12 @@
                     "Power",
                     [
                         "Add",
-                        "a_",
+                        "a.",
+                        [
+                            "Multiply",
+                            "b.",
+                            "x_"
+                        ],
                         [
                             "Multiply",
                             "c.",
@@ -11616,7 +11567,9 @@
                     ],
                     "p_"
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -11802,9 +11755,7 @@
                     "x"
                 ],
                 "x"
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
                 [
@@ -11850,7 +11801,9 @@
                     ],
                     "p_"
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -12018,16 +11971,14 @@
                     "x"
                 ],
                 "x"
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
                 [
                     "Power",
                     [
                         "Add",
-                        "d.",
+                        "d_",
                         [
                             "Multiply",
                             "e.",
@@ -12053,12 +12004,7 @@
                     "Power",
                     [
                         "Add",
-                        "a.",
-                        [
-                            "Multiply",
-                            "b.",
-                            "x_"
-                        ],
+                        "a_",
                         [
                             "Multiply",
                             "c.",
@@ -12071,7 +12017,9 @@
                     ],
                     "p_"
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -12248,9 +12196,7 @@
                     "x"
                 ],
                 "x"
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
                 [
@@ -12283,7 +12229,12 @@
                     "Power",
                     [
                         "Add",
-                        "a_",
+                        "a.",
+                        [
+                            "Multiply",
+                            "b.",
+                            "x_"
+                        ],
                         [
                             "Multiply",
                             "c.",
@@ -12296,7 +12247,9 @@
                     ],
                     "p_"
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -12441,17 +12394,19 @@
                     "x"
                 ],
                 "x"
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
                 [
                     "Power",
                     [
-                        "Multiply",
-                        "e.",
-                        "x_"
+                        "Add",
+                        "d.",
+                        [
+                            "Multiply",
+                            "e.",
+                            "x_"
+                        ]
                     ],
                     "m_"
                 ],
@@ -12472,11 +12427,7 @@
                     "Power",
                     [
                         "Add",
-                        [
-                            "Multiply",
-                            "b.",
-                            "x_"
-                        ],
+                        "a_",
                         [
                             "Multiply",
                             "c.",
@@ -12489,7 +12440,9 @@
                     ],
                     "p_"
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -12625,21 +12578,15 @@
                     ],
                     "x"
                 ]
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
                 [
                     "Power",
                     [
-                        "Add",
-                        "d_",
-                        [
-                            "Multiply",
-                            "e.",
-                            "x_"
-                        ]
+                        "Multiply",
+                        "e.",
+                        "x_"
                     ],
                     "m_"
                 ],
@@ -12660,7 +12607,11 @@
                     "Power",
                     [
                         "Add",
-                        "a_",
+                        [
+                            "Multiply",
+                            "b.",
+                            "x_"
+                        ],
                         [
                             "Multiply",
                             "c.",
@@ -12673,7 +12624,9 @@
                     ],
                     "p_"
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -12830,9 +12783,7 @@
                     ]
                 ],
                 "x"
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
                 [
@@ -12865,12 +12816,7 @@
                     "Power",
                     [
                         "Add",
-                        "a.",
-                        [
-                            "Multiply",
-                            "b.",
-                            "x_"
-                        ],
+                        "a_",
                         [
                             "Multiply",
                             "c.",
@@ -12883,7 +12829,9 @@
                     ],
                     "p_"
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -13137,9 +13085,7 @@
                     ],
                     "x"
                 ]
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
                 [
@@ -13172,7 +13118,12 @@
                     "Power",
                     [
                         "Add",
-                        "a_",
+                        "a.",
+                        [
+                            "Multiply",
+                            "b.",
+                            "x_"
+                        ],
                         [
                             "Multiply",
                             "c.",
@@ -13185,7 +13136,9 @@
                     ],
                     "p_"
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -13407,16 +13360,14 @@
                     ],
                     "x"
                 ]
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
                 [
                     "Power",
                     [
                         "Add",
-                        "d.",
+                        "d_",
                         [
                             "Multiply",
                             "e.",
@@ -13442,12 +13393,7 @@
                     "Power",
                     [
                         "Add",
-                        "a.",
-                        [
-                            "Multiply",
-                            "b.",
-                            "x_"
-                        ],
+                        "a_",
                         [
                             "Multiply",
                             "c.",
@@ -13458,9 +13404,11 @@
                             ]
                         ]
                     ],
-                    "p."
+                    "p_"
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -13638,9 +13586,7 @@
                     "x"
                 ],
                 "x"
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
                 [
@@ -13673,7 +13619,12 @@
                     "Power",
                     [
                         "Add",
-                        "a_",
+                        "a.",
+                        [
+                            "Multiply",
+                            "b.",
+                            "x_"
+                        ],
                         [
                             "Multiply",
                             "c.",
@@ -13686,7 +13637,9 @@
                     ],
                     "p."
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -13832,21 +13785,40 @@
                     "x"
                 ],
                 "x"
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
                 [
                     "Power",
                     [
                         "Add",
-                        "a.",
+                        "d.",
                         [
                             "Multiply",
-                            "b.",
+                            "e.",
                             "x_"
-                        ],
+                        ]
+                    ],
+                    "m_"
+                ],
+                [
+                    "Power",
+                    [
+                        "Add",
+                        "f.",
+                        [
+                            "Multiply",
+                            "g.",
+                            "x_"
+                        ]
+                    ],
+                    "n_"
+                ],
+                [
+                    "Power",
+                    [
+                        "Add",
+                        "a_",
                         [
                             "Multiply",
                             "c.",
@@ -13857,34 +13829,11 @@
                             ]
                         ]
                     ],
-                    "p_"
-                ],
-                [
-                    "Power",
-                    [
-                        "Multiply",
-                        [
-                            "Add",
-                            "d.",
-                            [
-                                "Multiply",
-                                "e.",
-                                "x_"
-                            ]
-                        ],
-                        [
-                            "Add",
-                            "f.",
-                            [
-                                "Multiply",
-                                "g.",
-                                "x_"
-                            ]
-                        ]
-                    ],
-                    -1
+                    "p."
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -14208,16 +14157,19 @@
                         "x"
                     ]
                 ]
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
                 [
                     "Power",
                     [
                         "Add",
-                        "a_",
+                        "a.",
+                        [
+                            "Multiply",
+                            "b.",
+                            "x_"
+                        ],
                         [
                             "Multiply",
                             "c.",
@@ -14255,7 +14207,9 @@
                     ],
                     -1
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -14528,47 +14482,14 @@
                         "x"
                     ]
                 ]
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
                 [
                     "Power",
                     [
                         "Add",
-                        "d_",
-                        [
-                            "Multiply",
-                            "e.",
-                            "x_"
-                        ]
-                    ],
-                    "m_"
-                ],
-                [
-                    "Power",
-                    [
-                        "Add",
-                        "f_",
-                        [
-                            "Multiply",
-                            "g.",
-                            "x_"
-                        ]
-                    ],
-                    "n_"
-                ],
-                [
-                    "Power",
-                    [
-                        "Add",
-                        "a.",
-                        [
-                            "Multiply",
-                            "b.",
-                            "x_"
-                        ],
+                        "a_",
                         [
                             "Multiply",
                             "c.",
@@ -14579,9 +14500,36 @@
                             ]
                         ]
                     ],
-                    "p."
+                    "p_"
+                ],
+                [
+                    "Power",
+                    [
+                        "Multiply",
+                        [
+                            "Add",
+                            "d.",
+                            [
+                                "Multiply",
+                                "e.",
+                                "x_"
+                            ]
+                        ],
+                        [
+                            "Add",
+                            "f.",
+                            [
+                                "Multiply",
+                                "g.",
+                                "x_"
+                            ]
+                        ]
+                    ],
+                    -1
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -14702,9 +14650,7 @@
                     ]
                 ],
                 "x"
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
                 [
@@ -14740,6 +14686,11 @@
                         "a.",
                         [
                             "Multiply",
+                            "b.",
+                            "x_"
+                        ],
+                        [
+                            "Multiply",
                             "c.",
                             [
                                 "Power",
@@ -14750,7 +14701,9 @@
                     ],
                     "p."
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -14865,9 +14818,7 @@
                     ]
                 ],
                 "x"
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
                 [
@@ -14903,11 +14854,6 @@
                         "a.",
                         [
                             "Multiply",
-                            "b.",
-                            "x_"
-                        ],
-                        [
-                            "Multiply",
                             "c.",
                             [
                                 "Power",
@@ -14918,7 +14864,9 @@
                     ],
                     "p."
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -15083,9 +15031,7 @@
                     ],
                     "x"
                 ]
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
                 [
@@ -15121,6 +15067,11 @@
                         "a.",
                         [
                             "Multiply",
+                            "b.",
+                            "x_"
+                        ],
+                        [
+                            "Multiply",
                             "c.",
                             [
                                 "Power",
@@ -15129,9 +15080,11 @@
                             ]
                         ]
                     ],
-                    "p_"
+                    "p."
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -15290,16 +15243,14 @@
                     ],
                     "x"
                 ]
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
                 [
                     "Power",
                     [
                         "Add",
-                        "d.",
+                        "d_",
                         [
                             "Multiply",
                             "e.",
@@ -15312,7 +15263,7 @@
                     "Power",
                     [
                         "Add",
-                        "f.",
+                        "f_",
                         [
                             "Multiply",
                             "g.",
@@ -15328,11 +15279,6 @@
                         "a.",
                         [
                             "Multiply",
-                            "b.",
-                            "x_"
-                        ],
-                        [
-                            "Multiply",
                             "c.",
                             [
                                 "Power",
@@ -15341,9 +15287,11 @@
                             ]
                         ]
                     ],
-                    -1
+                    "p_"
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -15753,9 +15701,7 @@
                         "x"
                     ]
                 ]
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
                 [
@@ -15788,7 +15734,12 @@
                     "Power",
                     [
                         "Add",
-                        "a_",
+                        "a.",
+                        [
+                            "Multiply",
+                            "b.",
+                            "x_"
+                        ],
                         [
                             "Multiply",
                             "c.",
@@ -15801,7 +15752,9 @@
                     ],
                     -1
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -16099,9 +16052,7 @@
                         "x"
                     ]
                 ]
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
                 [
@@ -16134,12 +16085,7 @@
                     "Power",
                     [
                         "Add",
-                        "a.",
-                        [
-                            "Multiply",
-                            "b.",
-                            "x_"
-                        ],
+                        "a_",
                         [
                             "Multiply",
                             "c.",
@@ -16152,7 +16098,9 @@
                     ],
                     -1
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -16432,9 +16380,7 @@
                         "x"
                     ]
                 ]
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
                 [
@@ -16467,7 +16413,12 @@
                     "Power",
                     [
                         "Add",
-                        "a_",
+                        "a.",
+                        [
+                            "Multiply",
+                            "b.",
+                            "x_"
+                        ],
                         [
                             "Multiply",
                             "c.",
@@ -16480,7 +16431,9 @@
                     ],
                     -1
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -16721,9 +16674,7 @@
                         "x"
                     ]
                 ]
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
                 [
@@ -16756,12 +16707,7 @@
                     "Power",
                     [
                         "Add",
-                        "a.",
-                        [
-                            "Multiply",
-                            "b.",
-                            "x_"
-                        ],
+                        "a_",
                         [
                             "Multiply",
                             "c.",
@@ -16774,7 +16720,9 @@
                     ],
                     -1
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -17109,9 +17057,7 @@
                         "x"
                     ]
                 ]
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
                 [
@@ -17144,7 +17090,12 @@
                     "Power",
                     [
                         "Add",
-                        "a_",
+                        "a.",
+                        [
+                            "Multiply",
+                            "b.",
+                            "x_"
+                        ],
                         [
                             "Multiply",
                             "c.",
@@ -17157,7 +17108,9 @@
                     ],
                     -1
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -17439,9 +17392,7 @@
                         "x"
                     ]
                 ]
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
                 [
@@ -17460,41 +17411,36 @@
                 [
                     "Power",
                     [
-                        "Multiply",
+                        "Add",
+                        "f.",
                         [
-                            "Sqrt",
-                            [
-                                "Add",
-                                "f.",
-                                [
-                                    "Multiply",
-                                    "g.",
-                                    "x_"
-                                ]
-                            ]
-                        ],
+                            "Multiply",
+                            "g.",
+                            "x_"
+                        ]
+                    ],
+                    "n_"
+                ],
+                [
+                    "Power",
+                    [
+                        "Add",
+                        "a_",
                         [
-                            "Add",
-                            "a.",
+                            "Multiply",
+                            "c.",
                             [
-                                "Multiply",
-                                "b.",
-                                "x_"
-                            ],
-                            [
-                                "Multiply",
-                                "c.",
-                                [
-                                    "Power",
-                                    "x_",
-                                    2
-                                ]
+                                "Power",
+                                "x_",
+                                2
                             ]
                         ]
                     ],
                     -1
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -17672,9 +17618,7 @@
                     "x"
                 ],
                 "x"
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
                 [
@@ -17711,6 +17655,11 @@
                             "a.",
                             [
                                 "Multiply",
+                                "b.",
+                                "x_"
+                            ],
+                            [
+                                "Multiply",
                                 "c.",
                                 [
                                     "Power",
@@ -17722,7 +17671,9 @@
                     ],
                     -1
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -17868,9 +17819,7 @@
                     "x"
                 ],
                 "x"
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
                 [
@@ -17889,39 +17838,38 @@
                 [
                     "Power",
                     [
-                        "Add",
-                        "f.",
+                        "Multiply",
                         [
-                            "Multiply",
-                            "g.",
-                            "x_"
-                        ]
-                    ],
-                    "n_"
-                ],
-                [
-                    "Power",
-                    [
-                        "Add",
-                        "a.",
-                        [
-                            "Multiply",
-                            "b.",
-                            "x_"
+                            "Sqrt",
+                            [
+                                "Add",
+                                "f.",
+                                [
+                                    "Multiply",
+                                    "g.",
+                                    "x_"
+                                ]
+                            ]
                         ],
                         [
-                            "Multiply",
-                            "c.",
+                            "Add",
+                            "a.",
                             [
-                                "Power",
-                                "x_",
-                                2
+                                "Multiply",
+                                "c.",
+                                [
+                                    "Power",
+                                    "x_",
+                                    2
+                                ]
                             ]
                         ]
                     ],
                     -1
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -18068,9 +18016,7 @@
                     "x"
                 ],
                 "x"
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
                 [
@@ -18103,7 +18049,12 @@
                     "Power",
                     [
                         "Add",
-                        "a_",
+                        "a.",
+                        [
+                            "Multiply",
+                            "b.",
+                            "x_"
+                        ],
                         [
                             "Multiply",
                             "c.",
@@ -18116,7 +18067,9 @@
                     ],
                     -1
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -18231,16 +18184,9 @@
                     "x"
                 ],
                 "x"
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
-                [
-                    "Power",
-                    "x_",
-                    2
-                ],
                 [
                     "Power",
                     [
@@ -18252,18 +18198,26 @@
                             "x_"
                         ]
                     ],
-                    "m."
+                    "m_"
                 ],
                 [
                     "Power",
                     [
                         "Add",
-                        "a.",
+                        "f.",
                         [
                             "Multiply",
-                            "b.",
+                            "g.",
                             "x_"
-                        ],
+                        ]
+                    ],
+                    "n_"
+                ],
+                [
+                    "Power",
+                    [
+                        "Add",
+                        "a_",
                         [
                             "Multiply",
                             "c.",
@@ -18274,9 +18228,11 @@
                             ]
                         ]
                     ],
-                    "p."
+                    -1
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -18428,9 +18384,7 @@
                     ],
                     -1
                 ]
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
                 [
@@ -18458,6 +18412,11 @@
                         "a.",
                         [
                             "Multiply",
+                            "b.",
+                            "x_"
+                        ],
+                        [
+                            "Multiply",
                             "c.",
                             [
                                 "Power",
@@ -18468,7 +18427,9 @@
                     ],
                     "p."
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -18584,19 +18545,13 @@
                     ],
                     -1
                 ]
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
                 [
                     "Power",
-                    [
-                        "Multiply",
-                        "g.",
-                        "x_"
-                    ],
-                    "n_"
+                    "x_",
+                    2
                 ],
                 [
                     "Power",
@@ -18609,18 +18564,13 @@
                             "x_"
                         ]
                     ],
-                    "m_"
+                    "m."
                 ],
                 [
                     "Power",
                     [
                         "Add",
-                        "a_",
-                        [
-                            "Multiply",
-                            "b.",
-                            "x_"
-                        ],
+                        "a.",
                         [
                             "Multiply",
                             "c.",
@@ -18631,9 +18581,11 @@
                             ]
                         ]
                     ],
-                    "p_"
+                    "p."
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -18810,11 +18762,18 @@
                     ],
                     "x"
                 ]
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
+                [
+                    "Power",
+                    [
+                        "Multiply",
+                        "g.",
+                        "x_"
+                    ],
+                    "n_"
+                ],
                 [
                     "Power",
                     [
@@ -18826,25 +18785,13 @@
                             "x_"
                         ]
                     ],
-                    "m."
+                    "m_"
                 ],
                 [
-                    "Sqrt",
+                    "Power",
                     [
                         "Add",
-                        "f.",
-                        [
-                            "Multiply",
-                            "g.",
-                            "x_"
-                        ]
-                    ]
-                ],
-                [
-                    "Sqrt",
-                    [
-                        "Add",
-                        "a.",
+                        "a_",
                         [
                             "Multiply",
                             "b.",
@@ -18859,9 +18806,12 @@
                                 2
                             ]
                         ]
-                    ]
+                    ],
+                    "p_"
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -19158,9 +19108,7 @@
                         "x"
                     ]
                 ]
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
                 [
@@ -19192,7 +19140,12 @@
                     "Sqrt",
                     [
                         "Add",
-                        "a_",
+                        "a.",
+                        [
+                            "Multiply",
+                            "b.",
+                            "x_"
+                        ],
                         [
                             "Multiply",
                             "c.",
@@ -19204,7 +19157,9 @@
                         ]
                     ]
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -19448,9 +19403,7 @@
                         "x"
                     ]
                 ]
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
                 [
@@ -19482,12 +19435,7 @@
                     "Sqrt",
                     [
                         "Add",
-                        "a.",
-                        [
-                            "Multiply",
-                            "b.",
-                            "x_"
-                        ],
+                        "a_",
                         [
                             "Multiply",
                             "c.",
@@ -19499,7 +19447,9 @@
                         ]
                     ]
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -19851,9 +19801,7 @@
                         "x"
                     ]
                 ]
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
                 [
@@ -19885,7 +19833,12 @@
                     "Sqrt",
                     [
                         "Add",
-                        "a_",
+                        "a.",
+                        [
+                            "Multiply",
+                            "b.",
+                            "x_"
+                        ],
                         [
                             "Multiply",
                             "c.",
@@ -19897,7 +19850,9 @@
                         ]
                     ]
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -20186,9 +20141,7 @@
                         "x"
                     ]
                 ]
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
                 [
@@ -20208,12 +20161,19 @@
                     "Sqrt",
                     [
                         "Add",
-                        "a.",
+                        "f.",
                         [
                             "Multiply",
-                            "b.",
+                            "g.",
                             "x_"
-                        ],
+                        ]
+                    ]
+                ],
+                [
+                    "Sqrt",
+                    [
+                        "Add",
+                        "a_",
                         [
                             "Multiply",
                             "c.",
@@ -20224,24 +20184,10 @@
                             ]
                         ]
                     ]
-                ],
-                [
-                    "Power",
-                    [
-                        "Sqrt",
-                        [
-                            "Add",
-                            "f.",
-                            [
-                                "Multiply",
-                                "g.",
-                                "x_"
-                            ]
-                        ]
-                    ],
-                    -1
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -20630,9 +20576,7 @@
                         "x"
                     ]
                 ]
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
                 [
@@ -20652,7 +20596,12 @@
                     "Sqrt",
                     [
                         "Add",
-                        "a_",
+                        "a.",
+                        [
+                            "Multiply",
+                            "b.",
+                            "x_"
+                        ],
                         [
                             "Multiply",
                             "c.",
@@ -20680,7 +20629,9 @@
                     ],
                     -1
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -20987,21 +20938,27 @@
                         "x"
                     ]
                 ]
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
+                [
+                    "Power",
+                    [
+                        "Add",
+                        "d.",
+                        [
+                            "Multiply",
+                            "e.",
+                            "x_"
+                        ]
+                    ],
+                    "m."
+                ],
                 [
                     "Sqrt",
                     [
                         "Add",
-                        "a.",
-                        [
-                            "Multiply",
-                            "b.",
-                            "x_"
-                        ],
+                        "a_",
                         [
                             "Multiply",
                             "c.",
@@ -21016,32 +20973,22 @@
                 [
                     "Power",
                     [
-                        "Multiply",
+                        "Sqrt",
                         [
                             "Add",
-                            "d.",
+                            "f.",
                             [
                                 "Multiply",
-                                "e.",
+                                "g.",
                                 "x_"
-                            ]
-                        ],
-                        [
-                            "Sqrt",
-                            [
-                                "Add",
-                                "f.",
-                                [
-                                    "Multiply",
-                                    "g.",
-                                    "x_"
-                                ]
                             ]
                         ]
                     ],
                     -1
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -21309,16 +21256,19 @@
                         "x"
                     ]
                 ]
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
                 [
                     "Sqrt",
                     [
                         "Add",
-                        "a_",
+                        "a.",
+                        [
+                            "Multiply",
+                            "b.",
+                            "x_"
+                        ],
                         [
                             "Multiply",
                             "c.",
@@ -21358,7 +21308,9 @@
                     ],
                     -1
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -21576,34 +21528,14 @@
                         "x"
                     ]
                 ]
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
-                [
-                    "Power",
-                    [
-                        "Add",
-                        "d.",
-                        [
-                            "Multiply",
-                            "e.",
-                            "x_"
-                        ]
-                    ],
-                    "m."
-                ],
                 [
                     "Sqrt",
                     [
                         "Add",
-                        "a.",
-                        [
-                            "Multiply",
-                            "b.",
-                            "x_"
-                        ],
+                        "a_",
                         [
                             "Multiply",
                             "c.",
@@ -21618,20 +21550,34 @@
                 [
                     "Power",
                     [
-                        "Sqrt",
+                        "Multiply",
                         [
                             "Add",
-                            "f.",
+                            "d.",
                             [
                                 "Multiply",
-                                "g.",
+                                "e.",
                                 "x_"
+                            ]
+                        ],
+                        [
+                            "Sqrt",
+                            [
+                                "Add",
+                                "f.",
+                                [
+                                    "Multiply",
+                                    "g.",
+                                    "x_"
+                                ]
                             ]
                         ]
                     ],
                     -1
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -21976,9 +21922,7 @@
                         "x"
                     ]
                 ]
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
                 [
@@ -21998,7 +21942,12 @@
                     "Sqrt",
                     [
                         "Add",
-                        "a_",
+                        "a.",
+                        [
+                            "Multiply",
+                            "b.",
+                            "x_"
+                        ],
                         [
                             "Multiply",
                             "c.",
@@ -22026,7 +21975,9 @@
                     ],
                     -1
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -22313,9 +22264,7 @@
                         "x"
                     ]
                 ]
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
                 [
@@ -22329,57 +22278,43 @@
                             "x_"
                         ]
                     ],
+                    "m."
+                ],
+                [
+                    "Sqrt",
                     [
-                        "Multiply",
-                        3,
+                        "Add",
+                        "a_",
                         [
-                            "Power",
-                            2,
-                            -1
+                            "Multiply",
+                            "c.",
+                            [
+                                "Power",
+                                "x_",
+                                2
+                            ]
                         ]
                     ]
                 ],
                 [
                     "Power",
                     [
-                        "Multiply",
+                        "Sqrt",
                         [
-                            "Sqrt",
+                            "Add",
+                            "f.",
                             [
-                                "Add",
-                                "f.",
-                                [
-                                    "Multiply",
-                                    "g.",
-                                    "x_"
-                                ]
-                            ]
-                        ],
-                        [
-                            "Sqrt",
-                            [
-                                "Add",
-                                "a.",
-                                [
-                                    "Multiply",
-                                    "b.",
-                                    "x_"
-                                ],
-                                [
-                                    "Multiply",
-                                    "c.",
-                                    [
-                                        "Power",
-                                        "x_",
-                                        2
-                                    ]
-                                ]
+                                "Multiply",
+                                "g.",
+                                "x_"
                             ]
                         ]
                     ],
                     -1
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -22615,9 +22550,7 @@
                         "x"
                     ]
                 ]
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
                 [
@@ -22661,7 +22594,12 @@
                             "Sqrt",
                             [
                                 "Add",
-                                "a_",
+                                "a.",
+                                [
+                                    "Multiply",
+                                    "b.",
+                                    "x_"
+                                ],
                                 [
                                     "Multiply",
                                     "c.",
@@ -22676,7 +22614,9 @@
                     ],
                     -1
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -22875,9 +22815,7 @@
                         "x"
                     ]
                 ]
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
                 [
@@ -22891,7 +22829,15 @@
                             "x_"
                         ]
                     ],
-                    "m_"
+                    [
+                        "Multiply",
+                        3,
+                        [
+                            "Power",
+                            2,
+                            -1
+                        ]
+                    ]
                 ],
                 [
                     "Power",
@@ -22913,12 +22859,7 @@
                             "Sqrt",
                             [
                                 "Add",
-                                "a.",
-                                [
-                                    "Multiply",
-                                    "b.",
-                                    "x_"
-                                ],
+                                "a_",
                                 [
                                     "Multiply",
                                     "c.",
@@ -22933,7 +22874,9 @@
                     ],
                     -1
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -23421,9 +23364,7 @@
                         "x"
                     ]
                 ]
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
                 [
@@ -23459,7 +23400,12 @@
                             "Sqrt",
                             [
                                 "Add",
-                                "a_",
+                                "a.",
+                                [
+                                    "Multiply",
+                                    "b.",
+                                    "x_"
+                                ],
                                 [
                                     "Multiply",
                                     "c.",
@@ -23474,7 +23420,9 @@
                     ],
                     -1
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -23884,28 +23832,26 @@
                         "x"
                     ]
                 ]
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
-                1,
+                [
+                    "Power",
+                    [
+                        "Add",
+                        "d.",
+                        [
+                            "Multiply",
+                            "e.",
+                            "x_"
+                        ]
+                    ],
+                    "m_"
+                ],
                 [
                     "Power",
                     [
                         "Multiply",
-                        [
-                            "Sqrt",
-                            [
-                                "Add",
-                                "d.",
-                                [
-                                    "Multiply",
-                                    "e.",
-                                    "x_"
-                                ]
-                            ]
-                        ],
                         [
                             "Sqrt",
                             [
@@ -23922,12 +23868,7 @@
                             "Sqrt",
                             [
                                 "Add",
-                                "a.",
-                                [
-                                    "Multiply",
-                                    "b.",
-                                    "x_"
-                                ],
+                                "a_",
                                 [
                                     "Multiply",
                                     "c.",
@@ -23942,7 +23883,9 @@
                     ],
                     -1
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -24367,9 +24310,7 @@
                         ]
                     ]
                 ]
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
                 1,
@@ -24405,7 +24346,12 @@
                             "Sqrt",
                             [
                                 "Add",
-                                "a_",
+                                "a.",
+                                [
+                                    "Multiply",
+                                    "b.",
+                                    "x_"
+                                ],
                                 [
                                     "Multiply",
                                     "c.",
@@ -24420,7 +24366,9 @@
                     ],
                     -1
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -24766,9 +24714,7 @@
                         ]
                     ]
                 ]
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
                 1,
@@ -24777,7 +24723,7 @@
                     [
                         "Multiply",
                         [
-                            "Power",
+                            "Sqrt",
                             [
                                 "Add",
                                 "d.",
@@ -24785,15 +24731,6 @@
                                     "Multiply",
                                     "e.",
                                     "x_"
-                                ]
-                            ],
-                            [
-                                "Multiply",
-                                3,
-                                [
-                                    "Power",
-                                    2,
-                                    -1
                                 ]
                             ]
                         ],
@@ -24813,12 +24750,7 @@
                             "Sqrt",
                             [
                                 "Add",
-                                "a.",
-                                [
-                                    "Multiply",
-                                    "b.",
-                                    "x_"
-                                ],
+                                "a_",
                                 [
                                     "Multiply",
                                     "c.",
@@ -24833,7 +24765,9 @@
                     ],
                     -1
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -25095,9 +25029,7 @@
                         "x"
                     ]
                 ]
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
                 1,
@@ -25142,7 +25074,12 @@
                             "Sqrt",
                             [
                                 "Add",
-                                "a_",
+                                "a.",
+                                [
+                                    "Multiply",
+                                    "b.",
+                                    "x_"
+                                ],
                                 [
                                     "Multiply",
                                     "c.",
@@ -25157,7 +25094,9 @@
                     ],
                     -1
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -25382,28 +25321,35 @@
                         "x"
                     ]
                 ]
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
-                [
-                    "Power",
-                    [
-                        "Add",
-                        "d.",
-                        [
-                            "Multiply",
-                            "e.",
-                            "x_"
-                        ]
-                    ],
-                    "m_"
-                ],
+                1,
                 [
                     "Power",
                     [
                         "Multiply",
+                        [
+                            "Power",
+                            [
+                                "Add",
+                                "d.",
+                                [
+                                    "Multiply",
+                                    "e.",
+                                    "x_"
+                                ]
+                            ],
+                            [
+                                "Multiply",
+                                3,
+                                [
+                                    "Power",
+                                    2,
+                                    -1
+                                ]
+                            ]
+                        ],
                         [
                             "Sqrt",
                             [
@@ -25420,12 +25366,7 @@
                             "Sqrt",
                             [
                                 "Add",
-                                "a.",
-                                [
-                                    "Multiply",
-                                    "b.",
-                                    "x_"
-                                ],
+                                "a_",
                                 [
                                     "Multiply",
                                     "c.",
@@ -25440,7 +25381,9 @@
                     ],
                     -1
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -25915,9 +25858,7 @@
                         "x"
                     ]
                 ]
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
                 [
@@ -25953,7 +25894,12 @@
                             "Sqrt",
                             [
                                 "Add",
-                                "a_",
+                                "a.",
+                                [
+                                    "Multiply",
+                                    "b.",
+                                    "x_"
+                                ],
                                 [
                                     "Multiply",
                                     "c.",
@@ -25968,7 +25914,9 @@
                     ],
                     -1
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -26364,9 +26312,7 @@
                         "x"
                     ]
                 ]
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
                 [
@@ -26383,43 +26329,43 @@
                     "m_"
                 ],
                 [
-                    "Sqrt",
-                    [
-                        "Add",
-                        "f.",
-                        [
-                            "Multiply",
-                            "g.",
-                            "x_"
-                        ]
-                    ]
-                ],
-                [
                     "Power",
                     [
-                        "Sqrt",
+                        "Multiply",
                         [
-                            "Add",
-                            "a.",
+                            "Sqrt",
                             [
-                                "Multiply",
-                                "b.",
-                                "x_"
-                            ],
-                            [
-                                "Multiply",
-                                "c.",
+                                "Add",
+                                "f.",
                                 [
-                                    "Power",
-                                    "x_",
-                                    2
+                                    "Multiply",
+                                    "g.",
+                                    "x_"
+                                ]
+                            ]
+                        ],
+                        [
+                            "Sqrt",
+                            [
+                                "Add",
+                                "a_",
+                                [
+                                    "Multiply",
+                                    "c.",
+                                    [
+                                        "Power",
+                                        "x_",
+                                        2
+                                    ]
                                 ]
                             ]
                         ]
                     ],
                     -1
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -26897,9 +26843,7 @@
                         "x"
                     ]
                 ]
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
                 [
@@ -26933,7 +26877,12 @@
                         "Sqrt",
                         [
                             "Add",
-                            "a_",
+                            "a.",
+                            [
+                                "Multiply",
+                                "b.",
+                                "x_"
+                            ],
                             [
                                 "Multiply",
                                 "c.",
@@ -26947,7 +26896,9 @@
                     ],
                     -1
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -27330,11 +27281,22 @@
                         "x"
                     ]
                 ]
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
+                [
+                    "Power",
+                    [
+                        "Add",
+                        "d.",
+                        [
+                            "Multiply",
+                            "e.",
+                            "x_"
+                        ]
+                    ],
+                    "m_"
+                ],
                 [
                     "Sqrt",
                     [
@@ -27350,41 +27312,26 @@
                 [
                     "Power",
                     [
-                        "Multiply",
+                        "Sqrt",
                         [
                             "Add",
-                            "d.",
+                            "a_",
                             [
                                 "Multiply",
-                                "e.",
-                                "x_"
-                            ]
-                        ],
-                        [
-                            "Sqrt",
-                            [
-                                "Add",
-                                "a.",
+                                "c.",
                                 [
-                                    "Multiply",
-                                    "b.",
-                                    "x_"
-                                ],
-                                [
-                                    "Multiply",
-                                    "c.",
-                                    [
-                                        "Power",
-                                        "x_",
-                                        2
-                                    ]
+                                    "Power",
+                                    "x_",
+                                    2
                                 ]
                             ]
                         ]
                     ],
                     -1
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -27609,9 +27556,7 @@
                         "x"
                     ]
                 ]
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
                 [
@@ -27643,7 +27588,12 @@
                             "Sqrt",
                             [
                                 "Add",
-                                "a_",
+                                "a.",
+                                [
+                                    "Multiply",
+                                    "b.",
+                                    "x_"
+                                ],
                                 [
                                     "Multiply",
                                     "c.",
@@ -27658,7 +27608,9 @@
                     ],
                     -1
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -27846,24 +27798,9 @@
                         "x"
                     ]
                 ]
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
-                [
-                    "Power",
-                    [
-                        "Add",
-                        "d.",
-                        [
-                            "Multiply",
-                            "e.",
-                            "x_"
-                        ]
-                    ],
-                    "m_"
-                ],
                 [
                     "Sqrt",
                     [
@@ -27879,29 +27816,38 @@
                 [
                     "Power",
                     [
-                        "Sqrt",
+                        "Multiply",
                         [
                             "Add",
-                            "a.",
+                            "d.",
                             [
                                 "Multiply",
-                                "b.",
+                                "e.",
                                 "x_"
-                            ],
+                            ]
+                        ],
+                        [
+                            "Sqrt",
                             [
-                                "Multiply",
-                                "c.",
+                                "Add",
+                                "a_",
                                 [
-                                    "Power",
-                                    "x_",
-                                    2
+                                    "Multiply",
+                                    "c.",
+                                    [
+                                        "Power",
+                                        "x_",
+                                        2
+                                    ]
                                 ]
                             ]
                         ]
                     ],
                     -1
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -28322,9 +28268,7 @@
                         "x"
                     ]
                 ]
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
                 [
@@ -28358,7 +28302,12 @@
                         "Sqrt",
                         [
                             "Add",
-                            "a_",
+                            "a.",
+                            [
+                                "Multiply",
+                                "b.",
+                                "x_"
+                            ],
                             [
                                 "Multiply",
                                 "c.",
@@ -28372,7 +28321,9 @@
                     ],
                     -1
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -28703,9 +28654,7 @@
                         "x"
                     ]
                 ]
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
                 [
@@ -28722,7 +28671,7 @@
                     "m_"
                 ],
                 [
-                    "Power",
+                    "Sqrt",
                     [
                         "Add",
                         "f.",
@@ -28731,32 +28680,31 @@
                             "g.",
                             "x_"
                         ]
-                    ],
-                    "n_"
+                    ]
                 ],
                 [
                     "Power",
                     [
-                        "Add",
-                        "a.",
+                        "Sqrt",
                         [
-                            "Multiply",
-                            "b.",
-                            "x_"
-                        ],
-                        [
-                            "Multiply",
-                            "c.",
+                            "Add",
+                            "a_",
                             [
-                                "Power",
-                                "x_",
-                                2
+                                "Multiply",
+                                "c.",
+                                [
+                                    "Power",
+                                    "x_",
+                                    2
+                                ]
                             ]
                         ]
                     ],
-                    "p."
+                    -1
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -28949,9 +28897,7 @@
                     "x"
                 ],
                 "x"
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
                 [
@@ -28984,7 +28930,12 @@
                     "Power",
                     [
                         "Add",
-                        "a_",
+                        "a.",
+                        [
+                            "Multiply",
+                            "b.",
+                            "x_"
+                        ],
                         [
                             "Multiply",
                             "c.",
@@ -28997,7 +28948,9 @@
                     ],
                     "p."
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -29144,9 +29097,7 @@
                     "x"
                 ],
                 "x"
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
                 [
@@ -29179,12 +29130,7 @@
                     "Power",
                     [
                         "Add",
-                        "a.",
-                        [
-                            "Multiply",
-                            "b.",
-                            "x_"
-                        ],
+                        "a_",
                         [
                             "Multiply",
                             "c.",
@@ -29197,7 +29143,9 @@
                     ],
                     "p."
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -29601,9 +29549,7 @@
                         "x"
                     ]
                 ]
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
                 [
@@ -29636,7 +29582,12 @@
                     "Power",
                     [
                         "Add",
-                        "a_",
+                        "a.",
+                        [
+                            "Multiply",
+                            "b.",
+                            "x_"
+                        ],
                         [
                             "Multiply",
                             "c.",
@@ -29649,7 +29600,9 @@
                     ],
                     "p."
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -30021,11 +29974,22 @@
                         "x"
                     ]
                 ]
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
+                [
+                    "Power",
+                    [
+                        "Add",
+                        "d.",
+                        [
+                            "Multiply",
+                            "e.",
+                            "x_"
+                        ]
+                    ],
+                    "m_"
+                ],
                 [
                     "Power",
                     [
@@ -30043,12 +30007,7 @@
                     "Power",
                     [
                         "Add",
-                        "a.",
-                        [
-                            "Multiply",
-                            "b.",
-                            "x_"
-                        ],
+                        "a_",
                         [
                             "Multiply",
                             "c.",
@@ -30059,22 +30018,11 @@
                             ]
                         ]
                     ],
-                    "p_"
-                ],
-                [
-                    "Power",
-                    [
-                        "Add",
-                        "d.",
-                        [
-                            "Multiply",
-                            "e.",
-                            "x_"
-                        ]
-                    ],
-                    -1
+                    "p."
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -30426,9 +30374,7 @@
                         "x"
                     ]
                 ]
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
                 [
@@ -30448,7 +30394,12 @@
                     "Power",
                     [
                         "Add",
-                        "a_",
+                        "a.",
+                        [
+                            "Multiply",
+                            "b.",
+                            "x_"
+                        ],
                         [
                             "Multiply",
                             "c.",
@@ -30474,7 +30425,9 @@
                     ],
                     -1
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -30775,9 +30728,7 @@
                         "x"
                     ]
                 ]
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
                 [
@@ -30797,12 +30748,7 @@
                     "Power",
                     [
                         "Add",
-                        "a.",
-                        [
-                            "Multiply",
-                            "b.",
-                            "x_"
-                        ],
+                        "a_",
                         [
                             "Multiply",
                             "c.",
@@ -30828,7 +30774,9 @@
                     ],
                     -1
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -31186,9 +31134,7 @@
                         "x"
                     ]
                 ]
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
                 [
@@ -31208,7 +31154,12 @@
                     "Power",
                     [
                         "Add",
-                        "a_",
+                        "a.",
+                        [
+                            "Multiply",
+                            "b.",
+                            "x_"
+                        ],
                         [
                             "Multiply",
                             "c.",
@@ -31234,7 +31185,9 @@
                     ],
                     -1
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -31534,9 +31487,7 @@
                         "x"
                     ]
                 ]
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
                 [
@@ -31555,41 +31506,36 @@
                 [
                     "Power",
                     [
-                        "Multiply",
+                        "Add",
+                        "a_",
                         [
-                            "Add",
-                            "d.",
+                            "Multiply",
+                            "c.",
                             [
-                                "Multiply",
-                                "e.",
-                                "x_"
+                                "Power",
+                                "x_",
+                                2
                             ]
-                        ],
+                        ]
+                    ],
+                    "p_"
+                ],
+                [
+                    "Power",
+                    [
+                        "Add",
+                        "d.",
                         [
-                            "Sqrt",
-                            [
-                                "Add",
-                                "a.",
-                                [
-                                    "Multiply",
-                                    "b.",
-                                    "x_"
-                                ],
-                                [
-                                    "Multiply",
-                                    "c.",
-                                    [
-                                        "Power",
-                                        "x_",
-                                        2
-                                    ]
-                                ]
-                            ]
+                            "Multiply",
+                            "e.",
+                            "x_"
                         ]
                     ],
                     -1
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -31784,9 +31730,7 @@
                     "x"
                 ],
                 "x"
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
                 [
@@ -31819,7 +31763,12 @@
                             "Sqrt",
                             [
                                 "Add",
-                                "a_",
+                                "a.",
+                                [
+                                    "Multiply",
+                                    "b.",
+                                    "x_"
+                                ],
                                 [
                                     "Multiply",
                                     "c.",
@@ -31834,7 +31783,9 @@
                     ],
                     -1
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -31997,51 +31948,57 @@
                     "x"
                 ],
                 "x"
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
                 [
                     "Power",
                     [
-                        "Multiply",
-                        "g.",
-                        "x_"
-                    ],
-                    "n."
-                ],
-                [
-                    "Power",
-                    [
                         "Add",
-                        "a_",
+                        "f.",
                         [
                             "Multiply",
-                            "c.",
-                            [
-                                "Power",
-                                "x_",
-                                2
-                            ]
+                            "g.",
+                            "x_"
                         ]
                     ],
-                    "p_"
+                    "n_"
                 ],
                 [
                     "Power",
                     [
-                        "Add",
-                        "d_",
+                        "Multiply",
                         [
-                            "Multiply",
-                            "e.",
-                            "x_"
+                            "Add",
+                            "d.",
+                            [
+                                "Multiply",
+                                "e.",
+                                "x_"
+                            ]
+                        ],
+                        [
+                            "Sqrt",
+                            [
+                                "Add",
+                                "a_",
+                                [
+                                    "Multiply",
+                                    "c.",
+                                    [
+                                        "Power",
+                                        "x_",
+                                        2
+                                    ]
+                                ]
+                            ]
                         ]
                     ],
                     -1
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -32264,47 +32221,23 @@
                         "x"
                     ]
                 ]
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
                 [
                     "Power",
                     [
-                        "Add",
-                        "d.",
-                        [
-                            "Multiply",
-                            "e.",
-                            "x_"
-                        ]
+                        "Multiply",
+                        "g.",
+                        "x_"
                     ],
-                    "m_"
+                    "n."
                 ],
                 [
                     "Power",
                     [
                         "Add",
-                        "f.",
-                        [
-                            "Multiply",
-                            "g.",
-                            "x_"
-                        ]
-                    ],
-                    "n_"
-                ],
-                [
-                    "Power",
-                    [
-                        "Add",
-                        "a.",
-                        [
-                            "Multiply",
-                            "b.",
-                            "x_"
-                        ],
+                        "a_",
                         [
                             "Multiply",
                             "c.",
@@ -32315,9 +32248,24 @@
                             ]
                         ]
                     ],
-                    "p."
+                    "p_"
+                ],
+                [
+                    "Power",
+                    [
+                        "Add",
+                        "d_",
+                        [
+                            "Multiply",
+                            "e.",
+                            "x_"
+                        ]
+                    ],
+                    -1
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -32498,9 +32446,7 @@
                     "x"
                 ],
                 "x"
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
                 [
@@ -32533,7 +32479,12 @@
                     "Power",
                     [
                         "Add",
-                        "a_",
+                        "a.",
+                        [
+                            "Multiply",
+                            "b.",
+                            "x_"
+                        ],
                         [
                             "Multiply",
                             "c.",
@@ -32546,7 +32497,9 @@
                     ],
                     "p."
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -32695,25 +32648,14 @@
                     "x"
                 ],
                 "x"
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
                 [
                     "Power",
                     [
-                        "Multiply",
-                        "g.",
-                        "x_"
-                    ],
-                    "n."
-                ],
-                [
-                    "Power",
-                    [
                         "Add",
-                        "d_",
+                        "d.",
                         [
                             "Multiply",
                             "e.",
@@ -32721,6 +32663,19 @@
                         ]
                     ],
                     "m_"
+                ],
+                [
+                    "Power",
+                    [
+                        "Add",
+                        "f.",
+                        [
+                            "Multiply",
+                            "g.",
+                            "x_"
+                        ]
+                    ],
+                    "n_"
                 ],
                 [
                     "Power",
@@ -32737,9 +32692,11 @@
                             ]
                         ]
                     ],
-                    "p_"
+                    "p."
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -32927,16 +32884,23 @@
                     ],
                     "x"
                 ]
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
                 [
                     "Power",
                     [
+                        "Multiply",
+                        "g.",
+                        "x_"
+                    ],
+                    "n."
+                ],
+                [
+                    "Power",
+                    [
                         "Add",
-                        "d.",
+                        "d_",
                         [
                             "Multiply",
                             "e.",
@@ -32949,25 +32913,7 @@
                     "Power",
                     [
                         "Add",
-                        "f.",
-                        [
-                            "Multiply",
-                            "g.",
-                            "x_"
-                        ]
-                    ],
-                    "n_"
-                ],
-                [
-                    "Power",
-                    [
-                        "Add",
-                        "a.",
-                        [
-                            "Multiply",
-                            "b.",
-                            "x_"
-                        ],
+                        "a_",
                         [
                             "Multiply",
                             "c.",
@@ -32980,7 +32926,9 @@
                     ],
                     "p_"
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -33071,9 +33019,7 @@
                     ]
                 ],
                 "x"
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
                 [
@@ -33106,7 +33052,12 @@
                     "Power",
                     [
                         "Add",
-                        "a_",
+                        "a.",
+                        [
+                            "Multiply",
+                            "b.",
+                            "x_"
+                        ],
                         [
                             "Multiply",
                             "c.",
@@ -33119,7 +33070,9 @@
                     ],
                     "p_"
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -33204,9 +33157,7 @@
                     ]
                 ],
                 "x"
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
                 [
@@ -33217,10 +33168,10 @@
                         [
                             "Multiply",
                             "e.",
-                            "u_"
+                            "x_"
                         ]
                     ],
-                    "m."
+                    "m_"
                 ],
                 [
                     "Power",
@@ -33230,10 +33181,10 @@
                         [
                             "Multiply",
                             "g.",
-                            "u_"
+                            "x_"
                         ]
                     ],
-                    "n."
+                    "n_"
                 ],
                 [
                     "Power",
@@ -33242,22 +33193,19 @@
                         "a_",
                         [
                             "Multiply",
-                            "b.",
-                            "u_"
-                        ],
-                        [
-                            "Multiply",
                             "c.",
                             [
                                 "Power",
-                                "u_",
+                                "x_",
                                 2
                             ]
                         ]
                     ],
-                    "p."
+                    "p_"
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -33361,9 +33309,7 @@
                     "x",
                     "u"
                 ]
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
                 [
@@ -33399,6 +33345,11 @@
                         "a_",
                         [
                             "Multiply",
+                            "b.",
+                            "u_"
+                        ],
+                        [
+                            "Multiply",
                             "c.",
                             [
                                 "Power",
@@ -33409,7 +33360,9 @@
                     ],
                     "p."
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -33507,7 +33460,62 @@
                     "x",
                     "u"
                 ]
+            ],
+            "pattern": [
+                "Multiply",
+                [
+                    "Power",
+                    [
+                        "Add",
+                        "d.",
+                        [
+                            "Multiply",
+                            "e.",
+                            "u_"
+                        ]
+                    ],
+                    "m."
+                ],
+                [
+                    "Power",
+                    [
+                        "Add",
+                        "f.",
+                        [
+                            "Multiply",
+                            "g.",
+                            "u_"
+                        ]
+                    ],
+                    "n."
+                ],
+                [
+                    "Power",
+                    [
+                        "Add",
+                        "a_",
+                        [
+                            "Multiply",
+                            "c.",
+                            [
+                                "Power",
+                                "u_",
+                                2
+                            ]
+                        ]
+                    ],
+                    "p."
+                ]
             ]
         }
-    ]
+    ],
+    "semantics": {
+        "Cos": "openmath:transc1.cos",
+        "Int": "openmath:calculus1.defint",
+        "Exp": "openmath:transc1.exp",
+        "Tan": "openmath:transc1.tan",
+        "Sin": "openmath:transc1.sin",
+        "Log": "openmath:transc1.log"
+    },
+    "$schema": "open-symbolic-rules/v0.1"
 }

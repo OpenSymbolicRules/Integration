@@ -1,21 +1,8 @@
 {
-    "$schema": "open-symbolic-rules/v0.1",
-    "section": "8.5",
     "title": "Hyperbolic integral functions",
+    "section": "8.5",
     "rules": [
         {
-            "pattern": [
-                "SinhIntegral",
-                [
-                    "Add",
-                    "a.",
-                    [
-                        "Multiply",
-                        "b.",
-                        "x_"
-                    ]
-                ]
-            ],
             "constraints": [
                 [
                     "FreeQ",
@@ -80,11 +67,9 @@
                         -1
                     ]
                 ]
-            ]
-        },
-        {
+            ],
             "pattern": [
-                "CoshIntegral",
+                "SinhIntegral",
                 [
                     "Add",
                     "a.",
@@ -94,7 +79,9 @@
                         "x_"
                     ]
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -159,25 +146,21 @@
                         -1
                     ]
                 ]
-            ]
-        },
-        {
+            ],
             "pattern": [
-                "Multiply",
+                "CoshIntegral",
                 [
-                    "SinhIntegral",
+                    "Add",
+                    "a.",
                     [
                         "Multiply",
                         "b.",
                         "x_"
                     ]
-                ],
-                [
-                    "Power",
-                    "x_",
-                    -1
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -251,13 +234,11 @@
                         ]
                     ]
                 ]
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
                 [
-                    "CoshIntegral",
+                    "SinhIntegral",
                     [
                         "Multiply",
                         "b.",
@@ -269,7 +250,9 @@
                     "x_",
                     -1
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -372,37 +355,25 @@
                         2
                     ]
                 ]
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
                 [
-                    "Power",
+                    "CoshIntegral",
                     [
-                        "Add",
-                        "c.",
-                        [
-                            "Multiply",
-                            "d.",
-                            "x_"
-                        ]
-                    ],
-                    "m."
+                        "Multiply",
+                        "b.",
+                        "x_"
+                    ]
                 ],
                 [
-                    "SinhIntegral",
-                    [
-                        "Add",
-                        "a.",
-                        [
-                            "Multiply",
-                            "b.",
-                            "x_"
-                        ]
-                    ]
+                    "Power",
+                    "x_",
+                    -1
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -537,9 +508,7 @@
                         "x"
                     ]
                 ]
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
                 [
@@ -556,7 +525,7 @@
                     "m."
                 ],
                 [
-                    "CoshIntegral",
+                    "SinhIntegral",
                     [
                         "Add",
                         "a.",
@@ -567,7 +536,9 @@
                         ]
                     ]
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -702,13 +673,24 @@
                         "x"
                     ]
                 ]
-            ]
-        },
-        {
+            ],
             "pattern": [
-                "Power",
+                "Multiply",
                 [
-                    "SinhIntegral",
+                    "Power",
+                    [
+                        "Add",
+                        "c.",
+                        [
+                            "Multiply",
+                            "d.",
+                            "x_"
+                        ]
+                    ],
+                    "m."
+                ],
+                [
+                    "CoshIntegral",
                     [
                         "Add",
                         "a.",
@@ -718,9 +700,10 @@
                             "x_"
                         ]
                     ]
-                ],
-                2
-            ],
+                ]
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -804,13 +787,11 @@
                         "x"
                     ]
                 ]
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Power",
                 [
-                    "CoshIntegral",
+                    "SinhIntegral",
                     [
                         "Add",
                         "a.",
@@ -822,7 +803,9 @@
                     ]
                 ],
                 2
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -906,29 +889,25 @@
                         "x"
                     ]
                 ]
-            ]
-        },
-        {
+            ],
             "pattern": [
-                "Multiply",
+                "Power",
                 [
-                    "Power",
-                    "x_",
-                    "m."
-                ],
-                [
-                    "Power",
+                    "CoshIntegral",
                     [
-                        "SinhIntegral",
+                        "Add",
+                        "a.",
                         [
                             "Multiply",
                             "b.",
                             "x_"
                         ]
-                    ],
-                    2
-                ]
-            ],
+                    ]
+                ],
+                2
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -1019,9 +998,7 @@
                         "x"
                     ]
                 ]
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
                 [
@@ -1032,7 +1009,7 @@
                 [
                     "Power",
                     [
-                        "CoshIntegral",
+                        "SinhIntegral",
                         [
                             "Multiply",
                             "b.",
@@ -1041,7 +1018,9 @@
                     ],
                     2
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -1132,41 +1111,29 @@
                         "x"
                     ]
                 ]
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
                 [
                     "Power",
-                    [
-                        "Add",
-                        "c.",
-                        [
-                            "Multiply",
-                            "d.",
-                            "x_"
-                        ]
-                    ],
+                    "x_",
                     "m."
                 ],
                 [
                     "Power",
                     [
-                        "SinhIntegral",
+                        "CoshIntegral",
                         [
-                            "Add",
-                            "a_",
-                            [
-                                "Multiply",
-                                "b.",
-                                "x_"
-                            ]
+                            "Multiply",
+                            "b.",
+                            "x_"
                         ]
                     ],
                     2
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -1375,9 +1342,7 @@
                         "x"
                     ]
                 ]
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
                 [
@@ -1396,7 +1361,7 @@
                 [
                     "Power",
                     [
-                        "CoshIntegral",
+                        "SinhIntegral",
                         [
                             "Add",
                             "a_",
@@ -1409,7 +1374,9 @@
                     ],
                     2
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -1618,25 +1585,11 @@
                         "x"
                     ]
                 ]
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
                 [
-                    "Sinh",
-                    [
-                        "Add",
-                        "a.",
-                        [
-                            "Multiply",
-                            "b.",
-                            "x_"
-                        ]
-                    ]
-                ],
-                [
-                    "SinhIntegral",
+                    "Power",
                     [
                         "Add",
                         "c.",
@@ -1645,9 +1598,28 @@
                             "d.",
                             "x_"
                         ]
-                    ]
+                    ],
+                    "m."
+                ],
+                [
+                    "Power",
+                    [
+                        "CoshIntegral",
+                        [
+                            "Add",
+                            "a_",
+                            [
+                                "Multiply",
+                                "b.",
+                                "x_"
+                            ]
+                        ]
+                    ],
+                    2
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -1750,13 +1722,11 @@
                         "x"
                     ]
                 ]
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
                 [
-                    "Cosh",
+                    "Sinh",
                     [
                         "Add",
                         "a.",
@@ -1768,7 +1738,7 @@
                     ]
                 ],
                 [
-                    "CoshIntegral",
+                    "SinhIntegral",
                     [
                         "Add",
                         "c.",
@@ -1779,7 +1749,9 @@
                         ]
                     ]
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -1882,26 +1854,11 @@
                         "x"
                     ]
                 ]
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
                 [
-                    "Power",
-                    [
-                        "Add",
-                        "e.",
-                        [
-                            "Multiply",
-                            "f.",
-                            "x_"
-                        ]
-                    ],
-                    "m."
-                ],
-                [
-                    "Sinh",
+                    "Cosh",
                     [
                         "Add",
                         "a.",
@@ -1913,7 +1870,7 @@
                     ]
                 ],
                 [
-                    "SinhIntegral",
+                    "CoshIntegral",
                     [
                         "Add",
                         "c.",
@@ -1924,7 +1881,9 @@
                         ]
                     ]
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -2123,9 +2082,7 @@
                         "x"
                     ]
                 ]
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
                 [
@@ -2142,7 +2099,7 @@
                     "m."
                 ],
                 [
-                    "Cosh",
+                    "Sinh",
                     [
                         "Add",
                         "a.",
@@ -2154,7 +2111,7 @@
                     ]
                 ],
                 [
-                    "CoshIntegral",
+                    "SinhIntegral",
                     [
                         "Add",
                         "c.",
@@ -2165,7 +2122,9 @@
                         ]
                     ]
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -2364,9 +2323,7 @@
                         "x"
                     ]
                 ]
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
                 [
@@ -2380,10 +2337,10 @@
                             "x_"
                         ]
                     ],
-                    "m_"
+                    "m."
                 ],
                 [
-                    "Sinh",
+                    "Cosh",
                     [
                         "Add",
                         "a.",
@@ -2395,7 +2352,7 @@
                     ]
                 ],
                 [
-                    "SinhIntegral",
+                    "CoshIntegral",
                     [
                         "Add",
                         "c.",
@@ -2406,7 +2363,9 @@
                         ]
                     ]
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -2632,9 +2591,7 @@
                         "x"
                     ]
                 ]
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
                 [
@@ -2648,10 +2605,10 @@
                             "x_"
                         ]
                     ],
-                    "m."
+                    "m_"
                 ],
                 [
-                    "Cosh",
+                    "Sinh",
                     [
                         "Add",
                         "a.",
@@ -2663,7 +2620,7 @@
                     ]
                 ],
                 [
-                    "CoshIntegral",
+                    "SinhIntegral",
                     [
                         "Add",
                         "c.",
@@ -2674,7 +2631,9 @@
                         ]
                     ]
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -2900,11 +2859,22 @@
                         "x"
                     ]
                 ]
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
+                [
+                    "Power",
+                    [
+                        "Add",
+                        "e.",
+                        [
+                            "Multiply",
+                            "f.",
+                            "x_"
+                        ]
+                    ],
+                    "m."
+                ],
                 [
                     "Cosh",
                     [
@@ -2918,7 +2888,7 @@
                     ]
                 ],
                 [
-                    "SinhIntegral",
+                    "CoshIntegral",
                     [
                         "Add",
                         "c.",
@@ -2929,7 +2899,9 @@
                         ]
                     ]
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -3032,13 +3004,11 @@
                         "x"
                     ]
                 ]
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
                 [
-                    "Sinh",
+                    "Cosh",
                     [
                         "Add",
                         "a.",
@@ -3050,7 +3020,7 @@
                     ]
                 ],
                 [
-                    "CoshIntegral",
+                    "SinhIntegral",
                     [
                         "Add",
                         "c.",
@@ -3061,7 +3031,9 @@
                         ]
                     ]
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -3164,26 +3136,11 @@
                         "x"
                     ]
                 ]
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
                 [
-                    "Power",
-                    [
-                        "Add",
-                        "e.",
-                        [
-                            "Multiply",
-                            "f.",
-                            "x_"
-                        ]
-                    ],
-                    "m."
-                ],
-                [
-                    "Cosh",
+                    "Sinh",
                     [
                         "Add",
                         "a.",
@@ -3195,7 +3152,7 @@
                     ]
                 ],
                 [
-                    "SinhIntegral",
+                    "CoshIntegral",
                     [
                         "Add",
                         "c.",
@@ -3206,7 +3163,9 @@
                         ]
                     ]
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -3405,9 +3364,7 @@
                         "x"
                     ]
                 ]
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
                 [
@@ -3424,7 +3381,7 @@
                     "m."
                 ],
                 [
-                    "Sinh",
+                    "Cosh",
                     [
                         "Add",
                         "a.",
@@ -3436,7 +3393,7 @@
                     ]
                 ],
                 [
-                    "CoshIntegral",
+                    "SinhIntegral",
                     [
                         "Add",
                         "c.",
@@ -3447,7 +3404,9 @@
                         ]
                     ]
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -3646,9 +3605,7 @@
                         "x"
                     ]
                 ]
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
                 [
@@ -3665,7 +3622,7 @@
                     "m."
                 ],
                 [
-                    "Cosh",
+                    "Sinh",
                     [
                         "Add",
                         "a.",
@@ -3677,7 +3634,7 @@
                     ]
                 ],
                 [
-                    "SinhIntegral",
+                    "CoshIntegral",
                     [
                         "Add",
                         "c.",
@@ -3688,7 +3645,9 @@
                         ]
                     ]
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -3914,9 +3873,7 @@
                         "x"
                     ]
                 ]
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
                 [
@@ -3930,10 +3887,10 @@
                             "x_"
                         ]
                     ],
-                    "m_"
+                    "m."
                 ],
                 [
-                    "Sinh",
+                    "Cosh",
                     [
                         "Add",
                         "a.",
@@ -3945,7 +3902,7 @@
                     ]
                 ],
                 [
-                    "CoshIntegral",
+                    "SinhIntegral",
                     [
                         "Add",
                         "c.",
@@ -3956,7 +3913,9 @@
                         ]
                     ]
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -4182,36 +4141,49 @@
                         "x"
                     ]
                 ]
-            ]
-        },
-        {
+            ],
             "pattern": [
-                "SinhIntegral",
+                "Multiply",
                 [
-                    "Multiply",
-                    "d.",
+                    "Power",
+                    [
+                        "Add",
+                        "e.",
+                        [
+                            "Multiply",
+                            "f.",
+                            "x_"
+                        ]
+                    ],
+                    "m_"
+                ],
+                [
+                    "Sinh",
                     [
                         "Add",
                         "a.",
                         [
                             "Multiply",
                             "b.",
-                            [
-                                "Log",
-                                [
-                                    "Multiply",
-                                    "c.",
-                                    [
-                                        "Power",
-                                        "x_",
-                                        "n."
-                                    ]
-                                ]
-                            ]
+                            "x_"
+                        ]
+                    ]
+                ],
+                [
+                    "CoshIntegral",
+                    [
+                        "Add",
+                        "c.",
+                        [
+                            "Multiply",
+                            "d.",
+                            "x_"
                         ]
                     ]
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -4329,11 +4301,9 @@
                         "x"
                     ]
                 ]
-            ]
-        },
-        {
+            ],
             "pattern": [
-                "CoshIntegral",
+                "SinhIntegral",
                 [
                     "Multiply",
                     "d.",
@@ -4358,7 +4328,9 @@
                         ]
                     ]
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -4476,44 +4448,36 @@
                         "x"
                     ]
                 ]
-            ]
-        },
-        {
+            ],
             "pattern": [
-                "Multiply",
+                "CoshIntegral",
                 [
-                    "F_",
+                    "Multiply",
+                    "d.",
                     [
-                        "Multiply",
-                        "d.",
+                        "Add",
+                        "a.",
                         [
-                            "Add",
-                            "a.",
+                            "Multiply",
+                            "b.",
                             [
-                                "Multiply",
-                                "b.",
+                                "Log",
                                 [
-                                    "Log",
+                                    "Multiply",
+                                    "c.",
                                     [
-                                        "Multiply",
-                                        "c.",
-                                        [
-                                            "Power",
-                                            "x_",
-                                            "n."
-                                        ]
+                                        "Power",
+                                        "x_",
+                                        "n."
                                     ]
                                 ]
                             ]
                         ]
                     ]
-                ],
-                [
-                    "Power",
-                    "x_",
-                    -1
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -4578,22 +4542,11 @@
                         ]
                     ]
                 ]
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
                 [
-                    "Power",
-                    [
-                        "Multiply",
-                        "e.",
-                        "x_"
-                    ],
-                    "m."
-                ],
-                [
-                    "SinhIntegral",
+                    "F_",
                     [
                         "Multiply",
                         "d.",
@@ -4618,8 +4571,15 @@
                             ]
                         ]
                     ]
+                ],
+                [
+                    "Power",
+                    "x_",
+                    -1
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -4787,9 +4747,7 @@
                         "x"
                     ]
                 ]
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
                 [
@@ -4802,7 +4760,7 @@
                     "m."
                 ],
                 [
-                    "CoshIntegral",
+                    "SinhIntegral",
                     [
                         "Multiply",
                         "d.",
@@ -4828,7 +4786,9 @@
                         ]
                     ]
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -4996,7 +4956,55 @@
                         "x"
                     ]
                 ]
+            ],
+            "pattern": [
+                "Multiply",
+                [
+                    "Power",
+                    [
+                        "Multiply",
+                        "e.",
+                        "x_"
+                    ],
+                    "m."
+                ],
+                [
+                    "CoshIntegral",
+                    [
+                        "Multiply",
+                        "d.",
+                        [
+                            "Add",
+                            "a.",
+                            [
+                                "Multiply",
+                                "b.",
+                                [
+                                    "Log",
+                                    [
+                                        "Multiply",
+                                        "c.",
+                                        [
+                                            "Power",
+                                            "x_",
+                                            "n."
+                                        ]
+                                    ]
+                                ]
+                            ]
+                        ]
+                    ]
+                ]
             ]
         }
-    ]
+    ],
+    "semantics": {
+        "Cos": "openmath:transc1.cos",
+        "Int": "openmath:calculus1.defint",
+        "Exp": "openmath:transc1.exp",
+        "Tan": "openmath:transc1.tan",
+        "Sin": "openmath:transc1.sin",
+        "Log": "openmath:transc1.log"
+    },
+    "$schema": "open-symbolic-rules/v0.1"
 }

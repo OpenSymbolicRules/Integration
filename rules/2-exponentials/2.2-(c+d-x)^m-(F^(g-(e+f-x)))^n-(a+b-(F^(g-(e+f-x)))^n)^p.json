@@ -1,79 +1,8 @@
 {
-    "$schema": "open-symbolic-rules/v0.1",
-    "section": "2.2",
     "title": "(c+d x)^m (F^(g (e+f x)))^n (a+b (F^(g (e+f x)))^n)^p",
+    "section": "2.2",
     "rules": [
         {
-            "pattern": [
-                "Multiply",
-                [
-                    "Power",
-                    [
-                        "Add",
-                        "c.",
-                        [
-                            "Multiply",
-                            "d.",
-                            "x_"
-                        ]
-                    ],
-                    "m."
-                ],
-                [
-                    "Power",
-                    [
-                        "Power",
-                        "F_",
-                        [
-                            "Multiply",
-                            "g.",
-                            [
-                                "Add",
-                                "e.",
-                                [
-                                    "Multiply",
-                                    "f.",
-                                    "x_"
-                                ]
-                            ]
-                        ]
-                    ],
-                    "n."
-                ],
-                [
-                    "Power",
-                    [
-                        "Add",
-                        "a_",
-                        [
-                            "Multiply",
-                            "b.",
-                            [
-                                "Power",
-                                [
-                                    "Power",
-                                    "F_",
-                                    [
-                                        "Multiply",
-                                        "g.",
-                                        [
-                                            "Add",
-                                            "e.",
-                                            [
-                                                "Multiply",
-                                                "f.",
-                                                "x_"
-                                            ]
-                                        ]
-                                    ]
-                                ],
-                                "n."
-                            ]
-                        ]
-                    ],
-                    -1
-                ]
-            ],
             "constraints": [
                 [
                     "FreeQ",
@@ -254,9 +183,7 @@
                         "x"
                     ]
                 ]
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
                 [
@@ -297,7 +224,7 @@
                     "Power",
                     [
                         "Add",
-                        "a.",
+                        "a_",
                         [
                             "Multiply",
                             "b.",
@@ -324,9 +251,11 @@
                             ]
                         ]
                     ],
-                    "p."
+                    -1
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -519,9 +448,7 @@
                         "x"
                     ]
                 ]
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
                 [
@@ -591,7 +518,9 @@
                     ],
                     "p."
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -686,9 +615,7 @@
                     ]
                 ],
                 "x"
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Multiply",
                 [
@@ -707,27 +634,23 @@
                 [
                     "Power",
                     [
-                        "Multiply",
-                        "k.",
+                        "Power",
+                        "F_",
                         [
-                            "Power",
-                            "G_",
+                            "Multiply",
+                            "g.",
                             [
-                                "Multiply",
-                                "j.",
+                                "Add",
+                                "e.",
                                 [
-                                    "Add",
-                                    "h.",
-                                    [
-                                        "Multiply",
-                                        "i.",
-                                        "x_"
-                                    ]
+                                    "Multiply",
+                                    "f.",
+                                    "x_"
                                 ]
                             ]
                         ]
                     ],
-                    "q."
+                    "n."
                 ],
                 [
                     "Power",
@@ -762,7 +685,9 @@
                     ],
                     "p."
                 ]
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -1000,7 +925,90 @@
                     ],
                     "x"
                 ]
+            ],
+            "pattern": [
+                "Multiply",
+                [
+                    "Power",
+                    [
+                        "Add",
+                        "c.",
+                        [
+                            "Multiply",
+                            "d.",
+                            "x_"
+                        ]
+                    ],
+                    "m."
+                ],
+                [
+                    "Power",
+                    [
+                        "Multiply",
+                        "k.",
+                        [
+                            "Power",
+                            "G_",
+                            [
+                                "Multiply",
+                                "j.",
+                                [
+                                    "Add",
+                                    "h.",
+                                    [
+                                        "Multiply",
+                                        "i.",
+                                        "x_"
+                                    ]
+                                ]
+                            ]
+                        ]
+                    ],
+                    "q."
+                ],
+                [
+                    "Power",
+                    [
+                        "Add",
+                        "a.",
+                        [
+                            "Multiply",
+                            "b.",
+                            [
+                                "Power",
+                                [
+                                    "Power",
+                                    "F_",
+                                    [
+                                        "Multiply",
+                                        "g.",
+                                        [
+                                            "Add",
+                                            "e.",
+                                            [
+                                                "Multiply",
+                                                "f.",
+                                                "x_"
+                                            ]
+                                        ]
+                                    ]
+                                ],
+                                "n."
+                            ]
+                        ]
+                    ],
+                    "p."
+                ]
             ]
         }
-    ]
+    ],
+    "semantics": {
+        "Cos": "openmath:transc1.cos",
+        "Int": "openmath:calculus1.defint",
+        "Exp": "openmath:transc1.exp",
+        "Tan": "openmath:transc1.tan",
+        "Sin": "openmath:transc1.sin",
+        "Log": "openmath:transc1.log"
+    },
+    "$schema": "open-symbolic-rules/v0.1"
 }

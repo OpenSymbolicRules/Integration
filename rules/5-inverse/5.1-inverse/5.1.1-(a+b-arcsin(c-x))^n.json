@@ -1,29 +1,8 @@
 {
-    "$schema": "open-symbolic-rules/v0.1",
-    "section": "5.1.1",
     "title": "(a+b arcsin(c x))^n",
+    "section": "5.1.1",
     "rules": [
         {
-            "pattern": [
-                "Power",
-                [
-                    "Add",
-                    "a.",
-                    [
-                        "Multiply",
-                        "b.",
-                        [
-                            "Asin",
-                            [
-                                "Multiply",
-                                "c.",
-                                "x_"
-                            ]
-                        ]
-                    ]
-                ],
-                "n."
-            ],
             "constraints": [
                 [
                     "FreeQ",
@@ -136,9 +115,7 @@
                         "x"
                     ]
                 ]
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Power",
                 [
@@ -148,7 +125,7 @@
                         "Multiply",
                         "b.",
                         [
-                            "Acos",
+                            "Asin",
                             [
                                 "Multiply",
                                 "c.",
@@ -158,7 +135,9 @@
                     ]
                 ],
                 "n."
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -270,9 +249,7 @@
                         "x"
                     ]
                 ]
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Power",
                 [
@@ -282,7 +259,7 @@
                         "Multiply",
                         "b.",
                         [
-                            "Asin",
+                            "Acos",
                             [
                                 "Multiply",
                                 "c.",
@@ -291,8 +268,10 @@
                         ]
                     ]
                 ],
-                "n_"
-            ],
+                "n."
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -449,9 +428,7 @@
                         "x"
                     ]
                 ]
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Power",
                 [
@@ -461,7 +438,7 @@
                         "Multiply",
                         "b.",
                         [
-                            "Acos",
+                            "Asin",
                             [
                                 "Multiply",
                                 "c.",
@@ -471,7 +448,9 @@
                     ]
                 ],
                 "n_"
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -630,9 +609,7 @@
                         "x"
                     ]
                 ]
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Power",
                 [
@@ -642,7 +619,7 @@
                         "Multiply",
                         "b.",
                         [
-                            "Asin",
+                            "Acos",
                             [
                                 "Multiply",
                                 "c.",
@@ -652,7 +629,9 @@
                     ]
                 ],
                 "n_"
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -736,9 +715,7 @@
                         ]
                     ]
                 ]
-            ]
-        },
-        {
+            ],
             "pattern": [
                 "Power",
                 [
@@ -748,7 +725,7 @@
                         "Multiply",
                         "b.",
                         [
-                            "Acos",
+                            "Asin",
                             [
                                 "Multiply",
                                 "c.",
@@ -758,7 +735,9 @@
                     ]
                 ],
                 "n_"
-            ],
+            ]
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -842,7 +821,36 @@
                         ]
                     ]
                 ]
+            ],
+            "pattern": [
+                "Power",
+                [
+                    "Add",
+                    "a.",
+                    [
+                        "Multiply",
+                        "b.",
+                        [
+                            "Acos",
+                            [
+                                "Multiply",
+                                "c.",
+                                "x_"
+                            ]
+                        ]
+                    ]
+                ],
+                "n_"
             ]
         }
-    ]
+    ],
+    "semantics": {
+        "Cos": "openmath:transc1.cos",
+        "Int": "openmath:calculus1.defint",
+        "Exp": "openmath:transc1.exp",
+        "Tan": "openmath:transc1.tan",
+        "Sin": "openmath:transc1.sin",
+        "Log": "openmath:transc1.log"
+    },
+    "$schema": "open-symbolic-rules/v0.1"
 }
