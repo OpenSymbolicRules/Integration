@@ -1,35 +1,21 @@
 {
-    "$schema": "open-symbolic-rules/v0.1",
-    "section": "8.10",
     "title": "Formal derivatives",
+    "section": "8.10",
     "tests": [
         {
-            "num_steps": 1,
-            "expression": [
-                "UnknownHead",
-                "x"
-            ],
-            "id": 1,
             "expected_result": [
                 "UnknownHead",
                 "x"
             ],
-            "variable": "x"
+            "num_steps": 1,
+            "id": 1,
+            "variable": "x",
+            "expression": [
+                "UnknownHead",
+                "x"
+            ]
         },
         {
-            "num_steps": 2,
-            "expression": [
-                "Multiply",
-                [
-                    "UnknownHead",
-                    "x"
-                ],
-                [
-                    "UnknownHead",
-                    "x"
-                ]
-            ],
-            "id": 2,
             "expected_result": [
                 "Multiply",
                 [
@@ -46,10 +32,43 @@
                     -1
                 ]
             ],
-            "variable": "x"
+            "num_steps": 2,
+            "id": 2,
+            "variable": "x",
+            "expression": [
+                "Multiply",
+                [
+                    "UnknownHead",
+                    "x"
+                ],
+                [
+                    "UnknownHead",
+                    "x"
+                ]
+            ]
         },
         {
+            "expected_result": [
+                "Multiply",
+                [
+                    "f",
+                    [
+                        "Sin",
+                        "x"
+                    ]
+                ],
+                [
+                    "g",
+                    [
+                        "Power",
+                        "E",
+                        "x"
+                    ]
+                ]
+            ],
             "num_steps": -1,
+            "id": 3,
+            "variable": "x",
             "expression": [
                 "Add",
                 [
@@ -97,60 +116,163 @@
                         ]
                     ]
                 ]
-            ],
-            "id": 3,
-            "expected_result": [
-                "Multiply",
-                [
-                    "f",
-                    [
-                        "Sin",
-                        "x"
-                    ]
-                ],
-                [
-                    "g",
-                    [
-                        "Power",
-                        "E",
-                        "x"
-                    ]
-                ]
-            ],
-            "variable": "x"
+            ]
         },
         {
-            "num_steps": 3,
-            "expression": [
-                "Multiply",
+            "expected_result": [
+                "Add",
                 [
-                    "Power",
-                    "F",
+                    "Multiply",
                     [
-                        "Add",
-                        "a",
+                        "Power",
+                        "b",
+                        2
+                    ],
+                    [
+                        "Power",
+                        "F",
                         [
-                            "Multiply",
-                            "b",
-                            "x"
+                            "Add",
+                            "a",
+                            [
+                                "Multiply",
+                                "b",
+                                "x"
+                            ]
                         ]
+                    ],
+                    [
+                        "f",
+                        "x"
+                    ],
+                    [
+                        "Power",
+                        [
+                            "Log",
+                            "F"
+                        ],
+                        2
                     ]
                 ],
                 [
-                    "UnknownHead",
-                    "x"
+                    "Multiply",
+                    -1,
+                    [
+                        "Power",
+                        "b",
+                        3
+                    ],
+                    [
+                        "CannotIntegrate",
+                        [
+                            "Multiply",
+                            [
+                                "Power",
+                                "F",
+                                [
+                                    "Add",
+                                    "a",
+                                    [
+                                        "Multiply",
+                                        "b",
+                                        "x"
+                                    ]
+                                ]
+                            ],
+                            [
+                                "f",
+                                "x"
+                            ]
+                        ],
+                        "x"
+                    ],
+                    [
+                        "Power",
+                        [
+                            "Log",
+                            "F"
+                        ],
+                        3
+                    ]
+                ],
+                [
+                    "Multiply",
+                    -1,
+                    "b",
+                    [
+                        "Power",
+                        "F",
+                        [
+                            "Add",
+                            "a",
+                            [
+                                "Multiply",
+                                "b",
+                                "x"
+                            ]
+                        ]
+                    ],
+                    [
+                        "Log",
+                        "F"
+                    ],
+                    [
+                        "UnknownHead",
+                        "x"
+                    ]
+                ],
+                [
+                    "Multiply",
+                    [
+                        "Power",
+                        "F",
+                        [
+                            "Add",
+                            "a",
+                            [
+                                "Multiply",
+                                "b",
+                                "x"
+                            ]
+                        ]
+                    ],
+                    [
+                        "UnknownHead",
+                        "x"
+                    ]
                 ]
             ],
+            "num_steps": 3,
             "id": 4,
+            "variable": "x",
+            "expression": [
+                "Multiply",
+                [
+                    "Power",
+                    "F",
+                    [
+                        "Add",
+                        "a",
+                        [
+                            "Multiply",
+                            "b",
+                            "x"
+                        ]
+                    ]
+                ],
+                [
+                    "UnknownHead",
+                    "x"
+                ]
+            ]
+        },
+        {
             "expected_result": [
                 "Add",
                 [
                     "Multiply",
-                    [
-                        "Power",
-                        "b",
-                        2
-                    ],
+                    -1,
+                    "b",
                     [
                         "Power",
                         "F",
@@ -169,21 +291,16 @@
                         "x"
                     ],
                     [
-                        "Power",
-                        [
-                            "Log",
-                            "F"
-                        ],
-                        2
+                        "Log",
+                        "F"
                     ]
                 ],
                 [
                     "Multiply",
-                    -1,
                     [
                         "Power",
                         "b",
-                        3
+                        2
                     ],
                     [
                         "CannotIntegrate",
@@ -215,33 +332,7 @@
                             "Log",
                             "F"
                         ],
-                        3
-                    ]
-                ],
-                [
-                    "Multiply",
-                    -1,
-                    "b",
-                    [
-                        "Power",
-                        "F",
-                        [
-                            "Add",
-                            "a",
-                            [
-                                "Multiply",
-                                "b",
-                                "x"
-                            ]
-                        ]
-                    ],
-                    [
-                        "Log",
-                        "F"
-                    ],
-                    [
-                        "UnknownHead",
-                        "x"
+                        2
                     ]
                 ],
                 [
@@ -265,37 +356,35 @@
                     ]
                 ]
             ],
-            "variable": "x"
-        },
-        {
             "num_steps": 2,
-            "expression": [
-                "Multiply",
-                [
-                    "Power",
-                    "F",
-                    [
-                        "Add",
-                        "a",
-                        [
-                            "Multiply",
-                            "b",
-                            "x"
-                        ]
-                    ]
-                ],
-                [
-                    "UnknownHead",
-                    "x"
-                ]
-            ],
             "id": 5,
+            "variable": "x",
+            "expression": [
+                "Multiply",
+                [
+                    "Power",
+                    "F",
+                    [
+                        "Add",
+                        "a",
+                        [
+                            "Multiply",
+                            "b",
+                            "x"
+                        ]
+                    ]
+                ],
+                [
+                    "UnknownHead",
+                    "x"
+                ]
+            ]
+        },
+        {
             "expected_result": [
                 "Add",
                 [
                     "Multiply",
-                    -1,
-                    "b",
                     [
                         "Power",
                         "F",
@@ -312,19 +401,12 @@
                     [
                         "f",
                         "x"
-                    ],
-                    [
-                        "Log",
-                        "F"
                     ]
                 ],
                 [
                     "Multiply",
-                    [
-                        "Power",
-                        "b",
-                        2
-                    ],
+                    -1,
+                    "b",
                     [
                         "CannotIntegrate",
                         [
@@ -350,62 +432,38 @@
                         "x"
                     ],
                     [
-                        "Power",
-                        [
-                            "Log",
-                            "F"
-                        ],
-                        2
-                    ]
-                ],
-                [
-                    "Multiply",
-                    [
-                        "Power",
-                        "F",
-                        [
-                            "Add",
-                            "a",
-                            [
-                                "Multiply",
-                                "b",
-                                "x"
-                            ]
-                        ]
-                    ],
-                    [
-                        "UnknownHead",
-                        "x"
+                        "Log",
+                        "F"
                     ]
                 ]
             ],
-            "variable": "x"
-        },
-        {
             "num_steps": 1,
-            "expression": [
-                "Multiply",
-                [
-                    "Power",
-                    "F",
-                    [
-                        "Add",
-                        "a",
-                        [
-                            "Multiply",
-                            "b",
-                            "x"
-                        ]
-                    ]
-                ],
-                [
-                    "UnknownHead",
-                    "x"
-                ]
-            ],
             "id": 6,
+            "variable": "x",
+            "expression": [
+                "Multiply",
+                [
+                    "Power",
+                    "F",
+                    [
+                        "Add",
+                        "a",
+                        [
+                            "Multiply",
+                            "b",
+                            "x"
+                        ]
+                    ]
+                ],
+                [
+                    "UnknownHead",
+                    "x"
+                ]
+            ]
+        },
+        {
             "expected_result": [
-                "Add",
+                "CannotIntegrate",
                 [
                     "Multiply",
                     [
@@ -426,67 +484,75 @@
                         "x"
                     ]
                 ],
-                [
-                    "Multiply",
-                    -1,
-                    "b",
-                    [
-                        "CannotIntegrate",
-                        [
-                            "Multiply",
-                            [
-                                "Power",
-                                "F",
-                                [
-                                    "Add",
-                                    "a",
-                                    [
-                                        "Multiply",
-                                        "b",
-                                        "x"
-                                    ]
-                                ]
-                            ],
-                            [
-                                "f",
-                                "x"
-                            ]
-                        ],
-                        "x"
-                    ],
-                    [
-                        "Log",
-                        "F"
-                    ]
-                ]
+                "x"
             ],
-            "variable": "x"
-        },
-        {
             "num_steps": 0,
-            "expression": [
-                "Multiply",
-                [
-                    "Power",
-                    "F",
-                    [
-                        "Add",
-                        "a",
-                        [
-                            "Multiply",
-                            "b",
-                            "x"
-                        ]
-                    ]
-                ],
-                [
-                    "UnknownHead",
-                    "x"
-                ]
-            ],
             "id": 7,
+            "variable": "x",
+            "expression": [
+                "Multiply",
+                [
+                    "Power",
+                    "F",
+                    [
+                        "Add",
+                        "a",
+                        [
+                            "Multiply",
+                            "b",
+                            "x"
+                        ]
+                    ]
+                ],
+                [
+                    "UnknownHead",
+                    "x"
+                ]
+            ]
+        },
+        {
             "expected_result": [
-                "CannotIntegrate",
+                "Add",
+                [
+                    "Multiply",
+                    -1,
+                    [
+                        "CannotIntegrate",
+                        [
+                            "Multiply",
+                            [
+                                "Power",
+                                "F",
+                                [
+                                    "Add",
+                                    "a",
+                                    [
+                                        "Multiply",
+                                        "b",
+                                        "x"
+                                    ]
+                                ]
+                            ],
+                            [
+                                "f",
+                                "x"
+                            ]
+                        ],
+                        "x"
+                    ],
+                    [
+                        "Power",
+                        [
+                            "Multiply",
+                            "b",
+                            [
+                                "Log",
+                                "F"
+                            ]
+                        ],
+                        -1
+                    ]
+                ],
                 [
                     "Multiply",
                     [
@@ -503,42 +569,52 @@
                         ]
                     ],
                     [
-                        "f",
+                        "UnknownHead",
                         "x"
+                    ],
+                    [
+                        "Power",
+                        [
+                            "Multiply",
+                            "b",
+                            [
+                                "Log",
+                                "F"
+                            ]
+                        ],
+                        -1
                     ]
-                ],
-                "x"
+                ]
             ],
-            "variable": "x"
-        },
-        {
             "num_steps": 1,
-            "expression": [
-                "Multiply",
-                [
-                    "Power",
-                    "F",
-                    [
-                        "Add",
-                        "a",
-                        [
-                            "Multiply",
-                            "b",
-                            "x"
-                        ]
-                    ]
-                ],
-                [
-                    "UnknownHead",
-                    "x"
-                ]
-            ],
             "id": 8,
+            "variable": "x",
+            "expression": [
+                "Multiply",
+                [
+                    "Power",
+                    "F",
+                    [
+                        "Add",
+                        "a",
+                        [
+                            "Multiply",
+                            "b",
+                            "x"
+                        ]
+                    ]
+                ],
+                [
+                    "UnknownHead",
+                    "x"
+                ]
+            ]
+        },
+        {
             "expected_result": [
                 "Add",
                 [
                     "Multiply",
-                    -1,
                     [
                         "CannotIntegrate",
                         [
@@ -567,10 +643,18 @@
                         "Power",
                         [
                             "Multiply",
-                            "b",
                             [
-                                "Log",
-                                "F"
+                                "Power",
+                                "b",
+                                2
+                            ],
+                            [
+                                "Power",
+                                [
+                                    "Log",
+                                    "F"
+                                ],
+                                2
                             ]
                         ],
                         -1
@@ -607,160 +691,52 @@
                         ],
                         -1
                     ]
+                ],
+                [
+                    "Multiply",
+                    -1,
+                    [
+                        "Power",
+                        "F",
+                        [
+                            "Add",
+                            "a",
+                            [
+                                "Multiply",
+                                "b",
+                                "x"
+                            ]
+                        ]
+                    ],
+                    [
+                        "UnknownHead",
+                        "x"
+                    ],
+                    [
+                        "Power",
+                        [
+                            "Multiply",
+                            [
+                                "Power",
+                                "b",
+                                2
+                            ],
+                            [
+                                "Power",
+                                [
+                                    "Log",
+                                    "F"
+                                ],
+                                2
+                            ]
+                        ],
+                        -1
+                    ]
                 ]
             ],
-            "variable": "x"
-        },
-        {
             "num_steps": 2,
-            "expression": [
-                "Multiply",
-                [
-                    "Power",
-                    "F",
-                    [
-                        "Add",
-                        "a",
-                        [
-                            "Multiply",
-                            "b",
-                            "x"
-                        ]
-                    ]
-                ],
-                [
-                    "UnknownHead",
-                    "x"
-                ]
-            ],
             "id": 9,
-            "expected_result": [
-                "Add",
-                [
-                    "Multiply",
-                    [
-                        "CannotIntegrate",
-                        [
-                            "Multiply",
-                            [
-                                "Power",
-                                "F",
-                                [
-                                    "Add",
-                                    "a",
-                                    [
-                                        "Multiply",
-                                        "b",
-                                        "x"
-                                    ]
-                                ]
-                            ],
-                            [
-                                "f",
-                                "x"
-                            ]
-                        ],
-                        "x"
-                    ],
-                    [
-                        "Power",
-                        [
-                            "Multiply",
-                            [
-                                "Power",
-                                "b",
-                                2
-                            ],
-                            [
-                                "Power",
-                                [
-                                    "Log",
-                                    "F"
-                                ],
-                                2
-                            ]
-                        ],
-                        -1
-                    ]
-                ],
-                [
-                    "Multiply",
-                    [
-                        "Power",
-                        "F",
-                        [
-                            "Add",
-                            "a",
-                            [
-                                "Multiply",
-                                "b",
-                                "x"
-                            ]
-                        ]
-                    ],
-                    [
-                        "UnknownHead",
-                        "x"
-                    ],
-                    [
-                        "Power",
-                        [
-                            "Multiply",
-                            "b",
-                            [
-                                "Log",
-                                "F"
-                            ]
-                        ],
-                        -1
-                    ]
-                ],
-                [
-                    "Multiply",
-                    -1,
-                    [
-                        "Power",
-                        "F",
-                        [
-                            "Add",
-                            "a",
-                            [
-                                "Multiply",
-                                "b",
-                                "x"
-                            ]
-                        ]
-                    ],
-                    [
-                        "UnknownHead",
-                        "x"
-                    ],
-                    [
-                        "Power",
-                        [
-                            "Multiply",
-                            [
-                                "Power",
-                                "b",
-                                2
-                            ],
-                            [
-                                "Power",
-                                [
-                                    "Log",
-                                    "F"
-                                ],
-                                2
-                            ]
-                        ],
-                        -1
-                    ]
-                ]
-            ],
-            "variable": "x"
-        },
-        {
-            "num_steps": 3,
+            "variable": "x",
             "expression": [
                 "Multiply",
                 [
@@ -780,8 +756,9 @@
                     "UnknownHead",
                     "x"
                 ]
-            ],
-            "id": 10,
+            ]
+        },
+        {
             "expected_result": [
                 "Add",
                 [
@@ -946,67 +923,31 @@
                     ]
                 ]
             ],
-            "variable": "x"
-        },
-        {
-            "num_steps": 4,
+            "num_steps": 3,
+            "id": 10,
+            "variable": "x",
             "expression": [
-                "Add",
+                "Multiply",
                 [
-                    "Multiply",
+                    "Power",
+                    "F",
                     [
-                        "Power",
-                        "F",
+                        "Add",
+                        "a",
                         [
-                            "Add",
-                            "a",
-                            [
-                                "Multiply",
-                                "b",
-                                "x"
-                            ]
+                            "Multiply",
+                            "b",
+                            "x"
                         ]
-                    ],
-                    [
-                        "UnknownHead",
-                        "x"
                     ]
                 ],
                 [
-                    "Multiply",
-                    [
-                        "Power",
-                        "b",
-                        3
-                    ],
-                    [
-                        "Power",
-                        "F",
-                        [
-                            "Add",
-                            "a",
-                            [
-                                "Multiply",
-                                "b",
-                                "x"
-                            ]
-                        ]
-                    ],
-                    [
-                        "f",
-                        "x"
-                    ],
-                    [
-                        "Power",
-                        [
-                            "Log",
-                            "F"
-                        ],
-                        3
-                    ]
+                    "UnknownHead",
+                    "x"
                 ]
-            ],
-            "id": 11,
+            ]
+        },
+        {
             "expected_result": [
                 "Add",
                 [
@@ -1089,698 +1030,146 @@
                     ]
                 ]
             ],
-            "variable": "x"
-        },
-        {
-            "num_steps": 3,
-            "expression": [
-                "Multiply",
-                [
-                    "Sin",
-                    [
-                        "Add",
-                        "a",
-                        [
-                            "Multiply",
-                            "b",
-                            "x"
-                        ]
-                    ]
-                ],
-                [
-                    "UnknownHead",
-                    "x"
-                ]
-            ],
-            "id": 12,
-            "expected_result": [
-                "Add",
-                [
-                    "Multiply",
-                    [
-                        "Power",
-                        "b",
-                        3
-                    ],
-                    [
-                        "CannotIntegrate",
-                        [
-                            "Multiply",
-                            [
-                                "Cos",
-                                [
-                                    "Add",
-                                    "a",
-                                    [
-                                        "Multiply",
-                                        "b",
-                                        "x"
-                                    ]
-                                ]
-                            ],
-                            [
-                                "f",
-                                "x"
-                            ]
-                        ],
-                        "x"
-                    ]
-                ],
-                [
-                    "Multiply",
-                    -1,
-                    [
-                        "Power",
-                        "b",
-                        2
-                    ],
-                    [
-                        "f",
-                        "x"
-                    ],
-                    [
-                        "Sin",
-                        [
-                            "Add",
-                            "a",
-                            [
-                                "Multiply",
-                                "b",
-                                "x"
-                            ]
-                        ]
-                    ]
-                ],
-                [
-                    "Multiply",
-                    -1,
-                    "b",
-                    [
-                        "Cos",
-                        [
-                            "Add",
-                            "a",
-                            [
-                                "Multiply",
-                                "b",
-                                "x"
-                            ]
-                        ]
-                    ],
-                    [
-                        "UnknownHead",
-                        "x"
-                    ]
-                ],
-                [
-                    "Multiply",
-                    [
-                        "Sin",
-                        [
-                            "Add",
-                            "a",
-                            [
-                                "Multiply",
-                                "b",
-                                "x"
-                            ]
-                        ]
-                    ],
-                    [
-                        "UnknownHead",
-                        "x"
-                    ]
-                ]
-            ],
-            "variable": "x"
-        },
-        {
-            "num_steps": 2,
-            "expression": [
-                "Multiply",
-                [
-                    "Sin",
-                    [
-                        "Add",
-                        "a",
-                        [
-                            "Multiply",
-                            "b",
-                            "x"
-                        ]
-                    ]
-                ],
-                [
-                    "UnknownHead",
-                    "x"
-                ]
-            ],
-            "id": 13,
-            "expected_result": [
-                "Add",
-                [
-                    "Multiply",
-                    -1,
-                    "b",
-                    [
-                        "Cos",
-                        [
-                            "Add",
-                            "a",
-                            [
-                                "Multiply",
-                                "b",
-                                "x"
-                            ]
-                        ]
-                    ],
-                    [
-                        "f",
-                        "x"
-                    ]
-                ],
-                [
-                    "Multiply",
-                    -1,
-                    [
-                        "Power",
-                        "b",
-                        2
-                    ],
-                    [
-                        "CannotIntegrate",
-                        [
-                            "Multiply",
-                            [
-                                "f",
-                                "x"
-                            ],
-                            [
-                                "Sin",
-                                [
-                                    "Add",
-                                    "a",
-                                    [
-                                        "Multiply",
-                                        "b",
-                                        "x"
-                                    ]
-                                ]
-                            ]
-                        ],
-                        "x"
-                    ]
-                ],
-                [
-                    "Multiply",
-                    [
-                        "Sin",
-                        [
-                            "Add",
-                            "a",
-                            [
-                                "Multiply",
-                                "b",
-                                "x"
-                            ]
-                        ]
-                    ],
-                    [
-                        "UnknownHead",
-                        "x"
-                    ]
-                ]
-            ],
-            "variable": "x"
-        },
-        {
-            "num_steps": 1,
-            "expression": [
-                "Multiply",
-                [
-                    "Sin",
-                    [
-                        "Add",
-                        "a",
-                        [
-                            "Multiply",
-                            "b",
-                            "x"
-                        ]
-                    ]
-                ],
-                [
-                    "UnknownHead",
-                    "x"
-                ]
-            ],
-            "id": 14,
-            "expected_result": [
-                "Add",
-                [
-                    "Multiply",
-                    -1,
-                    "b",
-                    [
-                        "CannotIntegrate",
-                        [
-                            "Multiply",
-                            [
-                                "Cos",
-                                [
-                                    "Add",
-                                    "a",
-                                    [
-                                        "Multiply",
-                                        "b",
-                                        "x"
-                                    ]
-                                ]
-                            ],
-                            [
-                                "f",
-                                "x"
-                            ]
-                        ],
-                        "x"
-                    ]
-                ],
-                [
-                    "Multiply",
-                    [
-                        "f",
-                        "x"
-                    ],
-                    [
-                        "Sin",
-                        [
-                            "Add",
-                            "a",
-                            [
-                                "Multiply",
-                                "b",
-                                "x"
-                            ]
-                        ]
-                    ]
-                ]
-            ],
-            "variable": "x"
-        },
-        {
-            "num_steps": 0,
-            "expression": [
-                "Multiply",
-                [
-                    "Sin",
-                    [
-                        "Add",
-                        "a",
-                        [
-                            "Multiply",
-                            "b",
-                            "x"
-                        ]
-                    ]
-                ],
-                [
-                    "UnknownHead",
-                    "x"
-                ]
-            ],
-            "id": 15,
-            "expected_result": [
-                "CannotIntegrate",
-                [
-                    "Multiply",
-                    [
-                        "f",
-                        "x"
-                    ],
-                    [
-                        "Sin",
-                        [
-                            "Add",
-                            "a",
-                            [
-                                "Multiply",
-                                "b",
-                                "x"
-                            ]
-                        ]
-                    ]
-                ],
-                "x"
-            ],
-            "variable": "x"
-        },
-        {
-            "num_steps": 1,
-            "expression": [
-                "Multiply",
-                [
-                    "Sin",
-                    [
-                        "Add",
-                        "a",
-                        [
-                            "Multiply",
-                            "b",
-                            "x"
-                        ]
-                    ]
-                ],
-                [
-                    "UnknownHead",
-                    "x"
-                ]
-            ],
-            "id": 16,
-            "expected_result": [
-                "Add",
-                [
-                    "Multiply",
-                    [
-                        "CannotIntegrate",
-                        [
-                            "Multiply",
-                            [
-                                "Cos",
-                                [
-                                    "Add",
-                                    "a",
-                                    [
-                                        "Multiply",
-                                        "b",
-                                        "x"
-                                    ]
-                                ]
-                            ],
-                            [
-                                "f",
-                                "x"
-                            ]
-                        ],
-                        "x"
-                    ],
-                    [
-                        "Power",
-                        "b",
-                        -1
-                    ]
-                ],
-                [
-                    "Multiply",
-                    -1,
-                    [
-                        "Cos",
-                        [
-                            "Add",
-                            "a",
-                            [
-                                "Multiply",
-                                "b",
-                                "x"
-                            ]
-                        ]
-                    ],
-                    [
-                        "UnknownHead",
-                        "x"
-                    ],
-                    [
-                        "Power",
-                        "b",
-                        -1
-                    ]
-                ]
-            ],
-            "variable": "x"
-        },
-        {
-            "num_steps": 2,
-            "expression": [
-                "Multiply",
-                [
-                    "Sin",
-                    [
-                        "Add",
-                        "a",
-                        [
-                            "Multiply",
-                            "b",
-                            "x"
-                        ]
-                    ]
-                ],
-                [
-                    "UnknownHead",
-                    "x"
-                ]
-            ],
-            "id": 17,
-            "expected_result": [
-                "Add",
-                [
-                    "Multiply",
-                    -1,
-                    [
-                        "CannotIntegrate",
-                        [
-                            "Multiply",
-                            [
-                                "f",
-                                "x"
-                            ],
-                            [
-                                "Sin",
-                                [
-                                    "Add",
-                                    "a",
-                                    [
-                                        "Multiply",
-                                        "b",
-                                        "x"
-                                    ]
-                                ]
-                            ]
-                        ],
-                        "x"
-                    ],
-                    [
-                        "Power",
-                        [
-                            "Power",
-                            "b",
-                            2
-                        ],
-                        -1
-                    ]
-                ],
-                [
-                    "Multiply",
-                    -1,
-                    [
-                        "Cos",
-                        [
-                            "Add",
-                            "a",
-                            [
-                                "Multiply",
-                                "b",
-                                "x"
-                            ]
-                        ]
-                    ],
-                    [
-                        "UnknownHead",
-                        "x"
-                    ],
-                    [
-                        "Power",
-                        "b",
-                        -1
-                    ]
-                ],
-                [
-                    "Multiply",
-                    [
-                        "Sin",
-                        [
-                            "Add",
-                            "a",
-                            [
-                                "Multiply",
-                                "b",
-                                "x"
-                            ]
-                        ]
-                    ],
-                    [
-                        "UnknownHead",
-                        "x"
-                    ],
-                    [
-                        "Power",
-                        [
-                            "Power",
-                            "b",
-                            2
-                        ],
-                        -1
-                    ]
-                ]
-            ],
-            "variable": "x"
-        },
-        {
-            "num_steps": 3,
-            "expression": [
-                "Multiply",
-                [
-                    "Sin",
-                    [
-                        "Add",
-                        "a",
-                        [
-                            "Multiply",
-                            "b",
-                            "x"
-                        ]
-                    ]
-                ],
-                [
-                    "UnknownHead",
-                    "x"
-                ]
-            ],
-            "id": 18,
-            "expected_result": [
-                "Add",
-                [
-                    "Multiply",
-                    -1,
-                    [
-                        "CannotIntegrate",
-                        [
-                            "Multiply",
-                            [
-                                "Cos",
-                                [
-                                    "Add",
-                                    "a",
-                                    [
-                                        "Multiply",
-                                        "b",
-                                        "x"
-                                    ]
-                                ]
-                            ],
-                            [
-                                "f",
-                                "x"
-                            ]
-                        ],
-                        "x"
-                    ],
-                    [
-                        "Power",
-                        [
-                            "Power",
-                            "b",
-                            3
-                        ],
-                        -1
-                    ]
-                ],
-                [
-                    "Multiply",
-                    -1,
-                    [
-                        "Cos",
-                        [
-                            "Add",
-                            "a",
-                            [
-                                "Multiply",
-                                "b",
-                                "x"
-                            ]
-                        ]
-                    ],
-                    [
-                        "UnknownHead",
-                        "x"
-                    ],
-                    [
-                        "Power",
-                        "b",
-                        -1
-                    ]
-                ],
-                [
-                    "Multiply",
-                    [
-                        "Sin",
-                        [
-                            "Add",
-                            "a",
-                            [
-                                "Multiply",
-                                "b",
-                                "x"
-                            ]
-                        ]
-                    ],
-                    [
-                        "UnknownHead",
-                        "x"
-                    ],
-                    [
-                        "Power",
-                        [
-                            "Power",
-                            "b",
-                            2
-                        ],
-                        -1
-                    ]
-                ],
-                [
-                    "Multiply",
-                    [
-                        "Cos",
-                        [
-                            "Add",
-                            "a",
-                            [
-                                "Multiply",
-                                "b",
-                                "x"
-                            ]
-                        ]
-                    ],
-                    [
-                        "UnknownHead",
-                        "x"
-                    ],
-                    [
-                        "Power",
-                        [
-                            "Power",
-                            "b",
-                            3
-                        ],
-                        -1
-                    ]
-                ]
-            ],
-            "variable": "x"
-        },
-        {
             "num_steps": 4,
+            "id": 11,
+            "variable": "x",
             "expression": [
                 "Add",
+                [
+                    "Multiply",
+                    [
+                        "Power",
+                        "F",
+                        [
+                            "Add",
+                            "a",
+                            [
+                                "Multiply",
+                                "b",
+                                "x"
+                            ]
+                        ]
+                    ],
+                    [
+                        "UnknownHead",
+                        "x"
+                    ]
+                ],
+                [
+                    "Multiply",
+                    [
+                        "Power",
+                        "b",
+                        3
+                    ],
+                    [
+                        "Power",
+                        "F",
+                        [
+                            "Add",
+                            "a",
+                            [
+                                "Multiply",
+                                "b",
+                                "x"
+                            ]
+                        ]
+                    ],
+                    [
+                        "f",
+                        "x"
+                    ],
+                    [
+                        "Power",
+                        [
+                            "Log",
+                            "F"
+                        ],
+                        3
+                    ]
+                ]
+            ]
+        },
+        {
+            "expected_result": [
+                "Add",
+                [
+                    "Multiply",
+                    [
+                        "Power",
+                        "b",
+                        3
+                    ],
+                    [
+                        "CannotIntegrate",
+                        [
+                            "Multiply",
+                            [
+                                "Cos",
+                                [
+                                    "Add",
+                                    "a",
+                                    [
+                                        "Multiply",
+                                        "b",
+                                        "x"
+                                    ]
+                                ]
+                            ],
+                            [
+                                "f",
+                                "x"
+                            ]
+                        ],
+                        "x"
+                    ]
+                ],
+                [
+                    "Multiply",
+                    -1,
+                    [
+                        "Power",
+                        "b",
+                        2
+                    ],
+                    [
+                        "f",
+                        "x"
+                    ],
+                    [
+                        "Sin",
+                        [
+                            "Add",
+                            "a",
+                            [
+                                "Multiply",
+                                "b",
+                                "x"
+                            ]
+                        ]
+                    ]
+                ],
+                [
+                    "Multiply",
+                    -1,
+                    "b",
+                    [
+                        "Cos",
+                        [
+                            "Add",
+                            "a",
+                            [
+                                "Multiply",
+                                "b",
+                                "x"
+                            ]
+                        ]
+                    ],
+                    [
+                        "UnknownHead",
+                        "x"
+                    ]
+                ],
                 [
                     "Multiply",
                     [
@@ -1799,15 +1188,38 @@
                         "UnknownHead",
                         "x"
                     ]
+                ]
+            ],
+            "num_steps": 3,
+            "id": 12,
+            "variable": "x",
+            "expression": [
+                "Multiply",
+                [
+                    "Sin",
+                    [
+                        "Add",
+                        "a",
+                        [
+                            "Multiply",
+                            "b",
+                            "x"
+                        ]
+                    ]
                 ],
+                [
+                    "UnknownHead",
+                    "x"
+                ]
+            ]
+        },
+        {
+            "expected_result": [
+                "Add",
                 [
                     "Multiply",
                     -1,
-                    [
-                        "Power",
-                        "b",
-                        3
-                    ],
+                    "b",
                     [
                         "Cos",
                         [
@@ -1824,9 +1236,547 @@
                         "f",
                         "x"
                     ]
+                ],
+                [
+                    "Multiply",
+                    -1,
+                    [
+                        "Power",
+                        "b",
+                        2
+                    ],
+                    [
+                        "CannotIntegrate",
+                        [
+                            "Multiply",
+                            [
+                                "f",
+                                "x"
+                            ],
+                            [
+                                "Sin",
+                                [
+                                    "Add",
+                                    "a",
+                                    [
+                                        "Multiply",
+                                        "b",
+                                        "x"
+                                    ]
+                                ]
+                            ]
+                        ],
+                        "x"
+                    ]
+                ],
+                [
+                    "Multiply",
+                    [
+                        "Sin",
+                        [
+                            "Add",
+                            "a",
+                            [
+                                "Multiply",
+                                "b",
+                                "x"
+                            ]
+                        ]
+                    ],
+                    [
+                        "UnknownHead",
+                        "x"
+                    ]
                 ]
             ],
-            "id": 19,
+            "num_steps": 2,
+            "id": 13,
+            "variable": "x",
+            "expression": [
+                "Multiply",
+                [
+                    "Sin",
+                    [
+                        "Add",
+                        "a",
+                        [
+                            "Multiply",
+                            "b",
+                            "x"
+                        ]
+                    ]
+                ],
+                [
+                    "UnknownHead",
+                    "x"
+                ]
+            ]
+        },
+        {
+            "expected_result": [
+                "Add",
+                [
+                    "Multiply",
+                    -1,
+                    "b",
+                    [
+                        "CannotIntegrate",
+                        [
+                            "Multiply",
+                            [
+                                "Cos",
+                                [
+                                    "Add",
+                                    "a",
+                                    [
+                                        "Multiply",
+                                        "b",
+                                        "x"
+                                    ]
+                                ]
+                            ],
+                            [
+                                "f",
+                                "x"
+                            ]
+                        ],
+                        "x"
+                    ]
+                ],
+                [
+                    "Multiply",
+                    [
+                        "f",
+                        "x"
+                    ],
+                    [
+                        "Sin",
+                        [
+                            "Add",
+                            "a",
+                            [
+                                "Multiply",
+                                "b",
+                                "x"
+                            ]
+                        ]
+                    ]
+                ]
+            ],
+            "num_steps": 1,
+            "id": 14,
+            "variable": "x",
+            "expression": [
+                "Multiply",
+                [
+                    "Sin",
+                    [
+                        "Add",
+                        "a",
+                        [
+                            "Multiply",
+                            "b",
+                            "x"
+                        ]
+                    ]
+                ],
+                [
+                    "UnknownHead",
+                    "x"
+                ]
+            ]
+        },
+        {
+            "expected_result": [
+                "CannotIntegrate",
+                [
+                    "Multiply",
+                    [
+                        "f",
+                        "x"
+                    ],
+                    [
+                        "Sin",
+                        [
+                            "Add",
+                            "a",
+                            [
+                                "Multiply",
+                                "b",
+                                "x"
+                            ]
+                        ]
+                    ]
+                ],
+                "x"
+            ],
+            "num_steps": 0,
+            "id": 15,
+            "variable": "x",
+            "expression": [
+                "Multiply",
+                [
+                    "Sin",
+                    [
+                        "Add",
+                        "a",
+                        [
+                            "Multiply",
+                            "b",
+                            "x"
+                        ]
+                    ]
+                ],
+                [
+                    "UnknownHead",
+                    "x"
+                ]
+            ]
+        },
+        {
+            "expected_result": [
+                "Add",
+                [
+                    "Multiply",
+                    [
+                        "CannotIntegrate",
+                        [
+                            "Multiply",
+                            [
+                                "Cos",
+                                [
+                                    "Add",
+                                    "a",
+                                    [
+                                        "Multiply",
+                                        "b",
+                                        "x"
+                                    ]
+                                ]
+                            ],
+                            [
+                                "f",
+                                "x"
+                            ]
+                        ],
+                        "x"
+                    ],
+                    [
+                        "Power",
+                        "b",
+                        -1
+                    ]
+                ],
+                [
+                    "Multiply",
+                    -1,
+                    [
+                        "Cos",
+                        [
+                            "Add",
+                            "a",
+                            [
+                                "Multiply",
+                                "b",
+                                "x"
+                            ]
+                        ]
+                    ],
+                    [
+                        "UnknownHead",
+                        "x"
+                    ],
+                    [
+                        "Power",
+                        "b",
+                        -1
+                    ]
+                ]
+            ],
+            "num_steps": 1,
+            "id": 16,
+            "variable": "x",
+            "expression": [
+                "Multiply",
+                [
+                    "Sin",
+                    [
+                        "Add",
+                        "a",
+                        [
+                            "Multiply",
+                            "b",
+                            "x"
+                        ]
+                    ]
+                ],
+                [
+                    "UnknownHead",
+                    "x"
+                ]
+            ]
+        },
+        {
+            "expected_result": [
+                "Add",
+                [
+                    "Multiply",
+                    -1,
+                    [
+                        "CannotIntegrate",
+                        [
+                            "Multiply",
+                            [
+                                "f",
+                                "x"
+                            ],
+                            [
+                                "Sin",
+                                [
+                                    "Add",
+                                    "a",
+                                    [
+                                        "Multiply",
+                                        "b",
+                                        "x"
+                                    ]
+                                ]
+                            ]
+                        ],
+                        "x"
+                    ],
+                    [
+                        "Power",
+                        [
+                            "Power",
+                            "b",
+                            2
+                        ],
+                        -1
+                    ]
+                ],
+                [
+                    "Multiply",
+                    -1,
+                    [
+                        "Cos",
+                        [
+                            "Add",
+                            "a",
+                            [
+                                "Multiply",
+                                "b",
+                                "x"
+                            ]
+                        ]
+                    ],
+                    [
+                        "UnknownHead",
+                        "x"
+                    ],
+                    [
+                        "Power",
+                        "b",
+                        -1
+                    ]
+                ],
+                [
+                    "Multiply",
+                    [
+                        "Sin",
+                        [
+                            "Add",
+                            "a",
+                            [
+                                "Multiply",
+                                "b",
+                                "x"
+                            ]
+                        ]
+                    ],
+                    [
+                        "UnknownHead",
+                        "x"
+                    ],
+                    [
+                        "Power",
+                        [
+                            "Power",
+                            "b",
+                            2
+                        ],
+                        -1
+                    ]
+                ]
+            ],
+            "num_steps": 2,
+            "id": 17,
+            "variable": "x",
+            "expression": [
+                "Multiply",
+                [
+                    "Sin",
+                    [
+                        "Add",
+                        "a",
+                        [
+                            "Multiply",
+                            "b",
+                            "x"
+                        ]
+                    ]
+                ],
+                [
+                    "UnknownHead",
+                    "x"
+                ]
+            ]
+        },
+        {
+            "expected_result": [
+                "Add",
+                [
+                    "Multiply",
+                    -1,
+                    [
+                        "CannotIntegrate",
+                        [
+                            "Multiply",
+                            [
+                                "Cos",
+                                [
+                                    "Add",
+                                    "a",
+                                    [
+                                        "Multiply",
+                                        "b",
+                                        "x"
+                                    ]
+                                ]
+                            ],
+                            [
+                                "f",
+                                "x"
+                            ]
+                        ],
+                        "x"
+                    ],
+                    [
+                        "Power",
+                        [
+                            "Power",
+                            "b",
+                            3
+                        ],
+                        -1
+                    ]
+                ],
+                [
+                    "Multiply",
+                    -1,
+                    [
+                        "Cos",
+                        [
+                            "Add",
+                            "a",
+                            [
+                                "Multiply",
+                                "b",
+                                "x"
+                            ]
+                        ]
+                    ],
+                    [
+                        "UnknownHead",
+                        "x"
+                    ],
+                    [
+                        "Power",
+                        "b",
+                        -1
+                    ]
+                ],
+                [
+                    "Multiply",
+                    [
+                        "Sin",
+                        [
+                            "Add",
+                            "a",
+                            [
+                                "Multiply",
+                                "b",
+                                "x"
+                            ]
+                        ]
+                    ],
+                    [
+                        "UnknownHead",
+                        "x"
+                    ],
+                    [
+                        "Power",
+                        [
+                            "Power",
+                            "b",
+                            2
+                        ],
+                        -1
+                    ]
+                ],
+                [
+                    "Multiply",
+                    [
+                        "Cos",
+                        [
+                            "Add",
+                            "a",
+                            [
+                                "Multiply",
+                                "b",
+                                "x"
+                            ]
+                        ]
+                    ],
+                    [
+                        "UnknownHead",
+                        "x"
+                    ],
+                    [
+                        "Power",
+                        [
+                            "Power",
+                            "b",
+                            3
+                        ],
+                        -1
+                    ]
+                ]
+            ],
+            "num_steps": 3,
+            "id": 18,
+            "variable": "x",
+            "expression": [
+                "Multiply",
+                [
+                    "Sin",
+                    [
+                        "Add",
+                        "a",
+                        [
+                            "Multiply",
+                            "b",
+                            "x"
+                        ]
+                    ]
+                ],
+                [
+                    "UnknownHead",
+                    "x"
+                ]
+            ]
+        },
+        {
             "expected_result": [
                 "Add",
                 [
@@ -1895,30 +1845,58 @@
                     ]
                 ]
             ],
-            "variable": "x"
-        },
-        {
-            "num_steps": 3,
+            "num_steps": 4,
+            "id": 19,
+            "variable": "x",
             "expression": [
-                "Multiply",
+                "Add",
                 [
-                    "Cos",
+                    "Multiply",
                     [
-                        "Add",
-                        "a",
+                        "Sin",
                         [
-                            "Multiply",
-                            "b",
-                            "x"
+                            "Add",
+                            "a",
+                            [
+                                "Multiply",
+                                "b",
+                                "x"
+                            ]
                         ]
+                    ],
+                    [
+                        "UnknownHead",
+                        "x"
                     ]
                 ],
                 [
-                    "UnknownHead",
-                    "x"
+                    "Multiply",
+                    -1,
+                    [
+                        "Power",
+                        "b",
+                        3
+                    ],
+                    [
+                        "Cos",
+                        [
+                            "Add",
+                            "a",
+                            [
+                                "Multiply",
+                                "b",
+                                "x"
+                            ]
+                        ]
+                    ],
+                    [
+                        "f",
+                        "x"
+                    ]
                 ]
-            ],
-            "id": 20,
+            ]
+        },
+        {
             "expected_result": [
                 "Add",
                 [
@@ -2018,10 +1996,9 @@
                     ]
                 ]
             ],
-            "variable": "x"
-        },
-        {
-            "num_steps": 2,
+            "num_steps": 3,
+            "id": 20,
+            "variable": "x",
             "expression": [
                 "Multiply",
                 [
@@ -2040,8 +2017,9 @@
                     "UnknownHead",
                     "x"
                 ]
-            ],
-            "id": 21,
+            ]
+        },
+        {
             "expected_result": [
                 "Add",
                 [
@@ -2116,10 +2094,9 @@
                     ]
                 ]
             ],
-            "variable": "x"
-        },
-        {
-            "num_steps": 1,
+            "num_steps": 2,
+            "id": 21,
+            "variable": "x",
             "expression": [
                 "Multiply",
                 [
@@ -2138,8 +2115,9 @@
                     "UnknownHead",
                     "x"
                 ]
-            ],
-            "id": 22,
+            ]
+        },
+        {
             "expected_result": [
                 "Add",
                 [
@@ -2189,10 +2167,9 @@
                     ]
                 ]
             ],
-            "variable": "x"
-        },
-        {
-            "num_steps": 0,
+            "num_steps": 1,
+            "id": 22,
+            "variable": "x",
             "expression": [
                 "Multiply",
                 [
@@ -2211,8 +2188,9 @@
                     "UnknownHead",
                     "x"
                 ]
-            ],
-            "id": 23,
+            ]
+        },
+        {
             "expected_result": [
                 "CannotIntegrate",
                 [
@@ -2236,10 +2214,9 @@
                 ],
                 "x"
             ],
-            "variable": "x"
-        },
-        {
-            "num_steps": 1,
+            "num_steps": 0,
+            "id": 23,
+            "variable": "x",
             "expression": [
                 "Multiply",
                 [
@@ -2258,8 +2235,9 @@
                     "UnknownHead",
                     "x"
                 ]
-            ],
-            "id": 24,
+            ]
+        },
+        {
             "expected_result": [
                 "Add",
                 [
@@ -2319,10 +2297,9 @@
                     ]
                 ]
             ],
-            "variable": "x"
-        },
-        {
-            "num_steps": 2,
+            "num_steps": 1,
+            "id": 24,
+            "variable": "x",
             "expression": [
                 "Multiply",
                 [
@@ -2341,8 +2318,9 @@
                     "UnknownHead",
                     "x"
                 ]
-            ],
-            "id": 25,
+            ]
+        },
+        {
             "expected_result": [
                 "Add",
                 [
@@ -2434,10 +2412,9 @@
                     ]
                 ]
             ],
-            "variable": "x"
-        },
-        {
-            "num_steps": 3,
+            "num_steps": 2,
+            "id": 25,
+            "variable": "x",
             "expression": [
                 "Multiply",
                 [
@@ -2456,8 +2433,9 @@
                     "UnknownHead",
                     "x"
                 ]
-            ],
-            "id": 26,
+            ]
+        },
+        {
             "expected_result": [
                 "Add",
                 [
@@ -2577,61 +2555,30 @@
                     ]
                 ]
             ],
-            "variable": "x"
-        },
-        {
             "num_steps": 3,
+            "id": 26,
+            "variable": "x",
             "expression": [
-                "Add",
+                "Multiply",
                 [
-                    "Multiply",
+                    "Cos",
                     [
-                        "Cos",
+                        "Add",
+                        "a",
                         [
-                            "Add",
-                            "a",
-                            [
-                                "Multiply",
-                                "b",
-                                "x"
-                            ]
+                            "Multiply",
+                            "b",
+                            "x"
                         ]
-                    ],
-                    [
-                        "UnknownHead",
-                        "x"
                     ]
                 ],
                 [
-                    "Multiply",
-                    [
-                        "Cos",
-                        [
-                            "Add",
-                            "a",
-                            [
-                                "Multiply",
-                                "b",
-                                "x"
-                            ]
-                        ]
-                    ],
-                    [
-                        "f",
-                        "x"
-                    ],
-                    [
-                        "Power",
-                        [
-                            "Power",
-                            "b",
-                            2
-                        ],
-                        -1
-                    ]
+                    "UnknownHead",
+                    "x"
                 ]
-            ],
-            "id": 27,
+            ]
+        },
+        {
             "expected_result": [
                 "Add",
                 [
@@ -2687,53 +2634,61 @@
                     ]
                 ]
             ],
-            "variable": "x"
-        },
-        {
-            "num_steps": 2,
+            "num_steps": 3,
+            "id": 27,
+            "variable": "x",
             "expression": [
-                "Multiply",
+                "Add",
                 [
-                    "Cos",
+                    "Multiply",
                     [
-                        "Multiply",
+                        "Cos",
                         [
-                            "UnknownHead",
-                            "x"
-                        ],
-                        [
-                            "UnknownHead",
-                            "x"
-                        ]
-                    ]
-                ],
-                [
-                    "Add",
-                    [
-                        "Multiply",
-                        [
-                            "UnknownHead",
-                            "x"
-                        ],
-                        [
-                            "UnknownHead",
-                            "x"
+                            "Add",
+                            "a",
+                            [
+                                "Multiply",
+                                "b",
+                                "x"
+                            ]
                         ]
                     ],
                     [
-                        "Multiply",
+                        "UnknownHead",
+                        "x"
+                    ]
+                ],
+                [
+                    "Multiply",
+                    [
+                        "Cos",
                         [
-                            "UnknownHead",
-                            "x"
-                        ],
-                        [
-                            "UnknownHead",
-                            "x"
+                            "Add",
+                            "a",
+                            [
+                                "Multiply",
+                                "b",
+                                "x"
+                            ]
                         ]
+                    ],
+                    [
+                        "f",
+                        "x"
+                    ],
+                    [
+                        "Power",
+                        [
+                            "Power",
+                            "b",
+                            2
+                        ],
+                        -1
                     ]
                 ]
-            ],
-            "id": 28,
+            ]
+        },
+        {
             "expected_result": [
                 "Sin",
                 [
@@ -2748,12 +2703,25 @@
                     ]
                 ]
             ],
-            "variable": "x"
-        },
-        {
             "num_steps": 2,
+            "id": 28,
+            "variable": "x",
             "expression": [
                 "Multiply",
+                [
+                    "Cos",
+                    [
+                        "Multiply",
+                        [
+                            "UnknownHead",
+                            "x"
+                        ],
+                        [
+                            "UnknownHead",
+                            "x"
+                        ]
+                    ]
+                ],
                 [
                     "Add",
                     [
@@ -2778,37 +2746,10 @@
                             "x"
                         ]
                     ]
-                ],
-                [
-                    "Power",
-                    [
-                        "Add",
-                        "a",
-                        [
-                            "Multiply",
-                            "b",
-                            [
-                                "Power",
-                                [
-                                    "UnknownHead",
-                                    "x"
-                                ],
-                                2
-                            ],
-                            [
-                                "Power",
-                                [
-                                    "UnknownHead",
-                                    "x"
-                                ],
-                                2
-                            ]
-                        ]
-                    ],
-                    -1
                 ]
-            ],
-            "id": 29,
+            ]
+        },
+        {
             "expected_result": [
                 "Multiply",
                 [
@@ -2853,10 +2794,84 @@
                     -1
                 ]
             ],
-            "variable": "x"
+            "num_steps": 2,
+            "id": 29,
+            "variable": "x",
+            "expression": [
+                "Multiply",
+                [
+                    "Add",
+                    [
+                        "Multiply",
+                        [
+                            "UnknownHead",
+                            "x"
+                        ],
+                        [
+                            "UnknownHead",
+                            "x"
+                        ]
+                    ],
+                    [
+                        "Multiply",
+                        [
+                            "UnknownHead",
+                            "x"
+                        ],
+                        [
+                            "UnknownHead",
+                            "x"
+                        ]
+                    ]
+                ],
+                [
+                    "Power",
+                    [
+                        "Add",
+                        "a",
+                        [
+                            "Multiply",
+                            "b",
+                            [
+                                "Power",
+                                [
+                                    "UnknownHead",
+                                    "x"
+                                ],
+                                2
+                            ],
+                            [
+                                "Power",
+                                [
+                                    "UnknownHead",
+                                    "x"
+                                ],
+                                2
+                            ]
+                        ]
+                    ],
+                    -1
+                ]
+            ]
         },
         {
+            "expected_result": [
+                "F",
+                [
+                    "Multiply",
+                    [
+                        "UnknownHead",
+                        "x"
+                    ],
+                    [
+                        "UnknownHead",
+                        "x"
+                    ]
+                ]
+            ],
             "num_steps": 2,
+            "id": 30,
+            "variable": "x",
             "expression": [
                 "Multiply",
                 [
@@ -2898,15 +2913,20 @@
                         ]
                     ]
                 ]
-            ],
-            "id": 30,
+            ]
+        },
+        {
             "expected_result": [
-                "F",
+                "Sin",
                 [
                     "Multiply",
                     [
-                        "UnknownHead",
-                        "x"
+                        "Power",
+                        [
+                            "UnknownHead",
+                            "x"
+                        ],
+                        2
                     ],
                     [
                         "UnknownHead",
@@ -2914,10 +2934,9 @@
                     ]
                 ]
             ],
-            "variable": "x"
-        },
-        {
             "num_steps": 2,
+            "id": 31,
+            "variable": "x",
             "expression": [
                 "Multiply",
                 [
@@ -2968,30 +2987,60 @@
                         ]
                     ]
                 ]
-            ],
-            "id": 31,
+            ]
+        },
+        {
             "expected_result": [
-                "Sin",
+                "Multiply",
                 [
-                    "Multiply",
+                    "Atan",
                     [
-                        "Power",
+                        "Multiply",
+                        [
+                            "Sqrt",
+                            "b"
+                        ],
+                        [
+                            "Power",
+                            [
+                                "UnknownHead",
+                                "x"
+                            ],
+                            2
+                        ],
                         [
                             "UnknownHead",
                             "x"
                         ],
-                        2
-                    ],
-                    [
-                        "UnknownHead",
-                        "x"
+                        [
+                            "Power",
+                            [
+                                "Sqrt",
+                                "a"
+                            ],
+                            -1
+                        ]
                     ]
+                ],
+                [
+                    "Power",
+                    [
+                        "Multiply",
+                        [
+                            "Sqrt",
+                            "a"
+                        ],
+                        [
+                            "Sqrt",
+                            "b"
+                        ]
+                    ],
+                    -1
                 ]
             ],
-            "variable": "x"
-        },
-        {
             "num_steps": 2,
+            "id": 32,
+            "variable": "x",
             "expression": [
                 "Multiply",
                 [
@@ -3052,60 +3101,30 @@
                     ],
                     -1
                 ]
-            ],
-            "id": 32,
+            ]
+        },
+        {
             "expected_result": [
-                "Multiply",
+                "F",
                 [
-                    "Atan",
+                    "Multiply",
                     [
-                        "Multiply",
-                        [
-                            "Sqrt",
-                            "b"
-                        ],
-                        [
-                            "Power",
-                            [
-                                "UnknownHead",
-                                "x"
-                            ],
-                            2
-                        ],
+                        "Power",
                         [
                             "UnknownHead",
                             "x"
                         ],
-                        [
-                            "Power",
-                            [
-                                "Sqrt",
-                                "a"
-                            ],
-                            -1
-                        ]
-                    ]
-                ],
-                [
-                    "Power",
-                    [
-                        "Multiply",
-                        [
-                            "Sqrt",
-                            "a"
-                        ],
-                        [
-                            "Sqrt",
-                            "b"
-                        ]
+                        2
                     ],
-                    -1
+                    [
+                        "UnknownHead",
+                        "x"
+                    ]
                 ]
             ],
-            "variable": "x"
-        },
-        {
             "num_steps": 2,
+            "id": 33,
+            "variable": "x",
             "expression": [
                 "Multiply",
                 [
@@ -3156,10 +3175,11 @@
                         ]
                     ]
                 ]
-            ],
-            "id": 33,
+            ]
+        },
+        {
             "expected_result": [
-                "F",
+                "Sin",
                 [
                     "Multiply",
                     [
@@ -3171,15 +3191,18 @@
                         2
                     ],
                     [
-                        "UnknownHead",
-                        "x"
+                        "Power",
+                        [
+                            "UnknownHead",
+                            "x"
+                        ],
+                        3
                     ]
                 ]
             ],
-            "variable": "x"
-        },
-        {
             "num_steps": 2,
+            "id": 34,
+            "variable": "x",
             "expression": [
                 "Multiply",
                 [
@@ -3243,34 +3266,64 @@
                         ]
                     ]
                 ]
-            ],
-            "id": 34,
-            "expected_result": [
-                "Sin",
-                [
-                    "Multiply",
-                    [
-                        "Power",
-                        [
-                            "UnknownHead",
-                            "x"
-                        ],
-                        2
-                    ],
-                    [
-                        "Power",
-                        [
-                            "UnknownHead",
-                            "x"
-                        ],
-                        3
-                    ]
-                ]
-            ],
-            "variable": "x"
+            ]
         },
         {
+            "expected_result": [
+                "Multiply",
+                [
+                    "Atan",
+                    [
+                        "Multiply",
+                        [
+                            "Sqrt",
+                            "b"
+                        ],
+                        [
+                            "Power",
+                            [
+                                "UnknownHead",
+                                "x"
+                            ],
+                            2
+                        ],
+                        [
+                            "Power",
+                            [
+                                "UnknownHead",
+                                "x"
+                            ],
+                            3
+                        ],
+                        [
+                            "Power",
+                            [
+                                "Sqrt",
+                                "a"
+                            ],
+                            -1
+                        ]
+                    ]
+                ],
+                [
+                    "Power",
+                    [
+                        "Multiply",
+                        [
+                            "Sqrt",
+                            "a"
+                        ],
+                        [
+                            "Sqrt",
+                            "b"
+                        ]
+                    ],
+                    -1
+                ]
+            ],
             "num_steps": 2,
+            "id": 35,
+            "variable": "x",
             "expression": [
                 "Multiply",
                 [
@@ -3340,64 +3393,34 @@
                     ],
                     -1
                 ]
-            ],
-            "id": 35,
-            "expected_result": [
-                "Multiply",
-                [
-                    "Atan",
-                    [
-                        "Multiply",
-                        [
-                            "Sqrt",
-                            "b"
-                        ],
-                        [
-                            "Power",
-                            [
-                                "UnknownHead",
-                                "x"
-                            ],
-                            2
-                        ],
-                        [
-                            "Power",
-                            [
-                                "UnknownHead",
-                                "x"
-                            ],
-                            3
-                        ],
-                        [
-                            "Power",
-                            [
-                                "Sqrt",
-                                "a"
-                            ],
-                            -1
-                        ]
-                    ]
-                ],
-                [
-                    "Power",
-                    [
-                        "Multiply",
-                        [
-                            "Sqrt",
-                            "a"
-                        ],
-                        [
-                            "Sqrt",
-                            "b"
-                        ]
-                    ],
-                    -1
-                ]
-            ],
-            "variable": "x"
+            ]
         },
         {
+            "expected_result": [
+                "F",
+                [
+                    "Multiply",
+                    [
+                        "Power",
+                        [
+                            "UnknownHead",
+                            "x"
+                        ],
+                        2
+                    ],
+                    [
+                        "Power",
+                        [
+                            "UnknownHead",
+                            "x"
+                        ],
+                        3
+                    ]
+                ]
+            ],
             "num_steps": 2,
+            "id": 36,
+            "variable": "x",
             "expression": [
                 "Multiply",
                 [
@@ -3461,31 +3484,8 @@
                         ]
                     ]
                 ]
-            ],
-            "id": 36,
-            "expected_result": [
-                "F",
-                [
-                    "Multiply",
-                    [
-                        "Power",
-                        [
-                            "UnknownHead",
-                            "x"
-                        ],
-                        2
-                    ],
-                    [
-                        "Power",
-                        [
-                            "UnknownHead",
-                            "x"
-                        ],
-                        3
-                    ]
-                ]
-            ],
-            "variable": "x"
+            ]
         }
-    ]
+    ],
+    "$schema": "open-symbolic-rules/v0.1"
 }

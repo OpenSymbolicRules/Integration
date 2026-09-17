@@ -1,75 +1,8 @@
 {
-    "$schema": "open-symbolic-rules/v0.1",
-    "section": "4.1.2.3",
     "title": "(g sin)^p (a+b sin)^m (c+d sin)^n",
+    "section": "4.1.2.3",
     "tests": [
         {
-            "num_steps": 13,
-            "expression": [
-                "Multiply",
-                [
-                    "Power",
-                    [
-                        "Sin",
-                        [
-                            "Add",
-                            "e",
-                            [
-                                "Multiply",
-                                "f",
-                                "x"
-                            ]
-                        ]
-                    ],
-                    3
-                ],
-                [
-                    "Power",
-                    [
-                        "Add",
-                        "a",
-                        [
-                            "Multiply",
-                            "a",
-                            [
-                                "Sin",
-                                [
-                                    "Add",
-                                    "e",
-                                    [
-                                        "Multiply",
-                                        "f",
-                                        "x"
-                                    ]
-                                ]
-                            ]
-                        ]
-                    ],
-                    2
-                ],
-                [
-                    "Add",
-                    "c",
-                    [
-                        "Multiply",
-                        -1,
-                        "c",
-                        [
-                            "Sin",
-                            [
-                                "Add",
-                                "e",
-                                [
-                                    "Multiply",
-                                    "f",
-                                    "x"
-                                ]
-                            ]
-                        ]
-                    ]
-                ]
-            ],
-            "id": 1,
             "expected_result": [
                 "Add",
                 [
@@ -294,10 +227,9 @@
                     ]
                 ]
             ],
-            "variable": "x"
-        },
-        {
-            "num_steps": 11,
+            "num_steps": 13,
+            "id": 1,
+            "variable": "x",
             "expression": [
                 "Multiply",
                 [
@@ -314,7 +246,7 @@
                             ]
                         ]
                     ],
-                    2
+                    3
                 ],
                 [
                     "Power",
@@ -361,8 +293,9 @@
                         ]
                     ]
                 ]
-            ],
-            "id": 2,
+            ]
+        },
+        {
             "expected_result": [
                 "Add",
                 [
@@ -540,10 +473,9 @@
                     ]
                 ]
             ],
-            "variable": "x"
-        },
-        {
-            "num_steps": 10,
+            "num_steps": 11,
+            "id": 2,
+            "variable": "x",
             "expression": [
                 "Multiply",
                 [
@@ -560,7 +492,7 @@
                             ]
                         ]
                     ],
-                    1
+                    2
                 ],
                 [
                     "Power",
@@ -607,8 +539,9 @@
                         ]
                     ]
                 ]
-            ],
-            "id": 3,
+            ]
+        },
+        {
             "expected_result": [
                 "Add",
                 [
@@ -752,10 +685,174 @@
                     ]
                 ]
             ],
-            "variable": "x"
+            "num_steps": 10,
+            "id": 3,
+            "variable": "x",
+            "expression": [
+                "Multiply",
+                [
+                    "Power",
+                    [
+                        "Sin",
+                        [
+                            "Add",
+                            "e",
+                            [
+                                "Multiply",
+                                "f",
+                                "x"
+                            ]
+                        ]
+                    ],
+                    1
+                ],
+                [
+                    "Power",
+                    [
+                        "Add",
+                        "a",
+                        [
+                            "Multiply",
+                            "a",
+                            [
+                                "Sin",
+                                [
+                                    "Add",
+                                    "e",
+                                    [
+                                        "Multiply",
+                                        "f",
+                                        "x"
+                                    ]
+                                ]
+                            ]
+                        ]
+                    ],
+                    2
+                ],
+                [
+                    "Add",
+                    "c",
+                    [
+                        "Multiply",
+                        -1,
+                        "c",
+                        [
+                            "Sin",
+                            [
+                                "Add",
+                                "e",
+                                [
+                                    "Multiply",
+                                    "f",
+                                    "x"
+                                ]
+                            ]
+                        ]
+                    ]
+                ]
+            ]
         },
         {
+            "expected_result": [
+                "Add",
+                [
+                    "Multiply",
+                    1,
+                    [
+                        "Power",
+                        2,
+                        -1
+                    ],
+                    [
+                        "Power",
+                        "a",
+                        2
+                    ],
+                    "c",
+                    "x"
+                ],
+                [
+                    "Multiply",
+                    -1,
+                    [
+                        "Power",
+                        "a",
+                        2
+                    ],
+                    "c",
+                    [
+                        "Power",
+                        [
+                            "Cos",
+                            [
+                                "Add",
+                                "e",
+                                [
+                                    "Multiply",
+                                    "f",
+                                    "x"
+                                ]
+                            ]
+                        ],
+                        3
+                    ],
+                    [
+                        "Power",
+                        [
+                            "Multiply",
+                            3,
+                            "f"
+                        ],
+                        -1
+                    ]
+                ],
+                [
+                    "Multiply",
+                    [
+                        "Power",
+                        "a",
+                        2
+                    ],
+                    "c",
+                    [
+                        "Cos",
+                        [
+                            "Add",
+                            "e",
+                            [
+                                "Multiply",
+                                "f",
+                                "x"
+                            ]
+                        ]
+                    ],
+                    [
+                        "Sin",
+                        [
+                            "Add",
+                            "e",
+                            [
+                                "Multiply",
+                                "f",
+                                "x"
+                            ]
+                        ]
+                    ],
+                    [
+                        "Power",
+                        [
+                            "Multiply",
+                            2,
+                            "f"
+                        ],
+                        -1
+                    ]
+                ]
+            ],
             "num_steps": 4,
+            "id": 4,
+            "variable": "x",
             "expression": [
                 "Multiply",
                 [
@@ -819,8 +916,9 @@
                         ]
                     ]
                 ]
-            ],
-            "id": 4,
+            ]
+        },
+        {
             "expected_result": [
                 "Add",
                 [
@@ -849,7 +947,7 @@
                     ],
                     "c",
                     [
-                        "Power",
+                        "Atanh",
                         [
                             "Cos",
                             [
@@ -861,16 +959,37 @@
                                     "x"
                                 ]
                             ]
-                        ],
-                        3
+                        ]
                     ],
                     [
                         "Power",
+                        "f",
+                        -1
+                    ]
+                ],
+                [
+                    "Multiply",
+                    [
+                        "Power",
+                        "a",
+                        2
+                    ],
+                    "c",
+                    [
+                        "Cos",
                         [
-                            "Multiply",
-                            3,
-                            "f"
-                        ],
+                            "Add",
+                            "e",
+                            [
+                                "Multiply",
+                                "f",
+                                "x"
+                            ]
+                        ]
+                    ],
+                    [
+                        "Power",
+                        "f",
                         -1
                     ]
                 ],
@@ -917,10 +1036,9 @@
                     ]
                 ]
             ],
-            "variable": "x"
-        },
-        {
             "num_steps": 6,
+            "id": 5,
+            "variable": "x",
             "expression": [
                 "Multiply",
                 [
@@ -984,194 +1102,9 @@
                         ]
                     ]
                 ]
-            ],
-            "id": 5,
-            "expected_result": [
-                "Add",
-                [
-                    "Multiply",
-                    1,
-                    [
-                        "Power",
-                        2,
-                        -1
-                    ],
-                    [
-                        "Power",
-                        "a",
-                        2
-                    ],
-                    "c",
-                    "x"
-                ],
-                [
-                    "Multiply",
-                    -1,
-                    [
-                        "Power",
-                        "a",
-                        2
-                    ],
-                    "c",
-                    [
-                        "Atanh",
-                        [
-                            "Cos",
-                            [
-                                "Add",
-                                "e",
-                                [
-                                    "Multiply",
-                                    "f",
-                                    "x"
-                                ]
-                            ]
-                        ]
-                    ],
-                    [
-                        "Power",
-                        "f",
-                        -1
-                    ]
-                ],
-                [
-                    "Multiply",
-                    [
-                        "Power",
-                        "a",
-                        2
-                    ],
-                    "c",
-                    [
-                        "Cos",
-                        [
-                            "Add",
-                            "e",
-                            [
-                                "Multiply",
-                                "f",
-                                "x"
-                            ]
-                        ]
-                    ],
-                    [
-                        "Power",
-                        "f",
-                        -1
-                    ]
-                ],
-                [
-                    "Multiply",
-                    [
-                        "Power",
-                        "a",
-                        2
-                    ],
-                    "c",
-                    [
-                        "Cos",
-                        [
-                            "Add",
-                            "e",
-                            [
-                                "Multiply",
-                                "f",
-                                "x"
-                            ]
-                        ]
-                    ],
-                    [
-                        "Sin",
-                        [
-                            "Add",
-                            "e",
-                            [
-                                "Multiply",
-                                "f",
-                                "x"
-                            ]
-                        ]
-                    ],
-                    [
-                        "Power",
-                        [
-                            "Multiply",
-                            2,
-                            "f"
-                        ],
-                        -1
-                    ]
-                ]
-            ],
-            "variable": "x"
+            ]
         },
         {
-            "num_steps": 8,
-            "expression": [
-                "Multiply",
-                [
-                    "Power",
-                    [
-                        "Csc",
-                        [
-                            "Add",
-                            "e",
-                            [
-                                "Multiply",
-                                "f",
-                                "x"
-                            ]
-                        ]
-                    ],
-                    2
-                ],
-                [
-                    "Power",
-                    [
-                        "Add",
-                        "a",
-                        [
-                            "Multiply",
-                            "a",
-                            [
-                                "Sin",
-                                [
-                                    "Add",
-                                    "e",
-                                    [
-                                        "Multiply",
-                                        "f",
-                                        "x"
-                                    ]
-                                ]
-                            ]
-                        ]
-                    ],
-                    2
-                ],
-                [
-                    "Add",
-                    "c",
-                    [
-                        "Multiply",
-                        -1,
-                        "c",
-                        [
-                            "Sin",
-                            [
-                                "Add",
-                                "e",
-                                [
-                                    "Multiply",
-                                    "f",
-                                    "x"
-                                ]
-                            ]
-                        ]
-                    ]
-                ]
-            ],
-            "id": 6,
             "expected_result": [
                 "Add",
                 [
@@ -1269,10 +1202,195 @@
                     ]
                 ]
             ],
-            "variable": "x"
+            "num_steps": 8,
+            "id": 6,
+            "variable": "x",
+            "expression": [
+                "Multiply",
+                [
+                    "Power",
+                    [
+                        "Csc",
+                        [
+                            "Add",
+                            "e",
+                            [
+                                "Multiply",
+                                "f",
+                                "x"
+                            ]
+                        ]
+                    ],
+                    2
+                ],
+                [
+                    "Power",
+                    [
+                        "Add",
+                        "a",
+                        [
+                            "Multiply",
+                            "a",
+                            [
+                                "Sin",
+                                [
+                                    "Add",
+                                    "e",
+                                    [
+                                        "Multiply",
+                                        "f",
+                                        "x"
+                                    ]
+                                ]
+                            ]
+                        ]
+                    ],
+                    2
+                ],
+                [
+                    "Add",
+                    "c",
+                    [
+                        "Multiply",
+                        -1,
+                        "c",
+                        [
+                            "Sin",
+                            [
+                                "Add",
+                                "e",
+                                [
+                                    "Multiply",
+                                    "f",
+                                    "x"
+                                ]
+                            ]
+                        ]
+                    ]
+                ]
+            ]
         },
         {
+            "expected_result": [
+                "Add",
+                [
+                    "Multiply",
+                    -1,
+                    [
+                        "Power",
+                        "a",
+                        2
+                    ],
+                    "c",
+                    "x"
+                ],
+                [
+                    "Multiply",
+                    [
+                        "Power",
+                        "a",
+                        2
+                    ],
+                    "c",
+                    [
+                        "Atanh",
+                        [
+                            "Cos",
+                            [
+                                "Add",
+                                "e",
+                                [
+                                    "Multiply",
+                                    "f",
+                                    "x"
+                                ]
+                            ]
+                        ]
+                    ],
+                    [
+                        "Power",
+                        [
+                            "Multiply",
+                            2,
+                            "f"
+                        ],
+                        -1
+                    ]
+                ],
+                [
+                    "Multiply",
+                    -1,
+                    [
+                        "Power",
+                        "a",
+                        2
+                    ],
+                    "c",
+                    [
+                        "Cot",
+                        [
+                            "Add",
+                            "e",
+                            [
+                                "Multiply",
+                                "f",
+                                "x"
+                            ]
+                        ]
+                    ],
+                    [
+                        "Power",
+                        "f",
+                        -1
+                    ]
+                ],
+                [
+                    "Multiply",
+                    -1,
+                    [
+                        "Power",
+                        "a",
+                        2
+                    ],
+                    "c",
+                    [
+                        "Cot",
+                        [
+                            "Add",
+                            "e",
+                            [
+                                "Multiply",
+                                "f",
+                                "x"
+                            ]
+                        ]
+                    ],
+                    [
+                        "Csc",
+                        [
+                            "Add",
+                            "e",
+                            [
+                                "Multiply",
+                                "f",
+                                "x"
+                            ]
+                        ]
+                    ],
+                    [
+                        "Power",
+                        [
+                            "Multiply",
+                            2,
+                            "f"
+                        ],
+                        -1
+                    ]
+                ]
+            ],
             "num_steps": 7,
+            "id": 7,
+            "variable": "x",
             "expression": [
                 "Multiply",
                 [
@@ -1336,194 +1454,9 @@
                         ]
                     ]
                 ]
-            ],
-            "id": 7,
-            "expected_result": [
-                "Add",
-                [
-                    "Multiply",
-                    -1,
-                    [
-                        "Power",
-                        "a",
-                        2
-                    ],
-                    "c",
-                    "x"
-                ],
-                [
-                    "Multiply",
-                    [
-                        "Power",
-                        "a",
-                        2
-                    ],
-                    "c",
-                    [
-                        "Atanh",
-                        [
-                            "Cos",
-                            [
-                                "Add",
-                                "e",
-                                [
-                                    "Multiply",
-                                    "f",
-                                    "x"
-                                ]
-                            ]
-                        ]
-                    ],
-                    [
-                        "Power",
-                        [
-                            "Multiply",
-                            2,
-                            "f"
-                        ],
-                        -1
-                    ]
-                ],
-                [
-                    "Multiply",
-                    -1,
-                    [
-                        "Power",
-                        "a",
-                        2
-                    ],
-                    "c",
-                    [
-                        "Cot",
-                        [
-                            "Add",
-                            "e",
-                            [
-                                "Multiply",
-                                "f",
-                                "x"
-                            ]
-                        ]
-                    ],
-                    [
-                        "Power",
-                        "f",
-                        -1
-                    ]
-                ],
-                [
-                    "Multiply",
-                    -1,
-                    [
-                        "Power",
-                        "a",
-                        2
-                    ],
-                    "c",
-                    [
-                        "Cot",
-                        [
-                            "Add",
-                            "e",
-                            [
-                                "Multiply",
-                                "f",
-                                "x"
-                            ]
-                        ]
-                    ],
-                    [
-                        "Csc",
-                        [
-                            "Add",
-                            "e",
-                            [
-                                "Multiply",
-                                "f",
-                                "x"
-                            ]
-                        ]
-                    ],
-                    [
-                        "Power",
-                        [
-                            "Multiply",
-                            2,
-                            "f"
-                        ],
-                        -1
-                    ]
-                ]
-            ],
-            "variable": "x"
+            ]
         },
         {
-            "num_steps": 6,
-            "expression": [
-                "Multiply",
-                [
-                    "Power",
-                    [
-                        "Csc",
-                        [
-                            "Add",
-                            "e",
-                            [
-                                "Multiply",
-                                "f",
-                                "x"
-                            ]
-                        ]
-                    ],
-                    4
-                ],
-                [
-                    "Power",
-                    [
-                        "Add",
-                        "a",
-                        [
-                            "Multiply",
-                            "a",
-                            [
-                                "Sin",
-                                [
-                                    "Add",
-                                    "e",
-                                    [
-                                        "Multiply",
-                                        "f",
-                                        "x"
-                                    ]
-                                ]
-                            ]
-                        ]
-                    ],
-                    2
-                ],
-                [
-                    "Add",
-                    "c",
-                    [
-                        "Multiply",
-                        -1,
-                        "c",
-                        [
-                            "Sin",
-                            [
-                                "Add",
-                                "e",
-                                [
-                                    "Multiply",
-                                    "f",
-                                    "x"
-                                ]
-                            ]
-                        ]
-                    ]
-                ]
-            ],
-            "id": 8,
             "expected_result": [
                 "Add",
                 [
@@ -1638,10 +1571,9 @@
                     ]
                 ]
             ],
-            "variable": "x"
-        },
-        {
-            "num_steps": 11,
+            "num_steps": 6,
+            "id": 8,
+            "variable": "x",
             "expression": [
                 "Multiply",
                 [
@@ -1658,7 +1590,7 @@
                             ]
                         ]
                     ],
-                    5
+                    4
                 ],
                 [
                     "Power",
@@ -1705,8 +1637,9 @@
                         ]
                     ]
                 ]
-            ],
-            "id": 9,
+            ]
+        },
+        {
             "expected_result": [
                 "Add",
                 [
@@ -1867,10 +1800,9 @@
                     ]
                 ]
             ],
-            "variable": "x"
-        },
-        {
             "num_steps": 11,
+            "id": 9,
+            "variable": "x",
             "expression": [
                 "Multiply",
                 [
@@ -1887,7 +1819,7 @@
                             ]
                         ]
                     ],
-                    6
+                    5
                 ],
                 [
                     "Power",
@@ -1934,8 +1866,9 @@
                         ]
                     ]
                 ]
-            ],
-            "id": 10,
+            ]
+        },
+        {
             "expected_result": [
                 "Add",
                 [
@@ -2131,10 +2064,9 @@
                     ]
                 ]
             ],
-            "variable": "x"
-        },
-        {
-            "num_steps": 13,
+            "num_steps": 11,
+            "id": 10,
+            "variable": "x",
             "expression": [
                 "Multiply",
                 [
@@ -2151,7 +2083,7 @@
                             ]
                         ]
                     ],
-                    7
+                    6
                 ],
                 [
                     "Power",
@@ -2198,8 +2130,9 @@
                         ]
                     ]
                 ]
-            ],
-            "id": 11,
+            ]
+        },
+        {
             "expected_result": [
                 "Add",
                 [
@@ -2441,27 +2374,26 @@
                     ]
                 ]
             ],
-            "variable": "x"
-        },
-        {
-            "num_steps": 5,
+            "num_steps": 13,
+            "id": 11,
+            "variable": "x",
             "expression": [
                 "Multiply",
                 [
                     "Power",
                     [
-                        "Sin",
+                        "Csc",
                         [
                             "Add",
-                            "c",
+                            "e",
                             [
                                 "Multiply",
-                                "d",
+                                "f",
                                 "x"
                             ]
                         ]
                     ],
-                    2
+                    7
                 ],
                 [
                     "Power",
@@ -2475,25 +2407,17 @@
                                 "Sin",
                                 [
                                     "Add",
-                                    "c",
+                                    "e",
                                     [
                                         "Multiply",
-                                        "d",
+                                        "f",
                                         "x"
                                     ]
                                 ]
                             ]
                         ]
                     ],
-                    [
-                        "Multiply",
-                        3,
-                        [
-                            "Power",
-                            2,
-                            -1
-                        ]
-                    ]
+                    2
                 ],
                 [
                     "Add",
@@ -2506,18 +2430,19 @@
                             "Sin",
                             [
                                 "Add",
-                                "c",
+                                "e",
                                 [
                                     "Multiply",
-                                    "d",
+                                    "f",
                                     "x"
                                 ]
                             ]
                         ]
                     ]
                 ]
-            ],
-            "id": 12,
+            ]
+        },
+        {
             "expected_result": [
                 "Add",
                 [
@@ -2765,14 +2690,29 @@
                     ]
                 ]
             ],
-            "variable": "x"
-        },
-        {
             "num_steps": 5,
+            "id": 12,
+            "variable": "x",
             "expression": [
                 "Multiply",
                 [
-                    "Sqrt",
+                    "Power",
+                    [
+                        "Sin",
+                        [
+                            "Add",
+                            "c",
+                            [
+                                "Multiply",
+                                "d",
+                                "x"
+                            ]
+                        ]
+                    ],
+                    2
+                ],
+                [
+                    "Power",
                     [
                         "Add",
                         "a",
@@ -2783,59 +2723,50 @@
                                 "Sin",
                                 [
                                     "Add",
-                                    "e",
+                                    "c",
                                     [
                                         "Multiply",
-                                        "f",
+                                        "d",
                                         "x"
                                     ]
                                 ]
                             ]
                         ]
+                    ],
+                    [
+                        "Multiply",
+                        3,
+                        [
+                            "Power",
+                            2,
+                            -1
+                        ]
                     ]
                 ],
                 [
-                    "Power",
+                    "Add",
+                    "c",
                     [
                         "Multiply",
+                        -1,
+                        "c",
                         [
                             "Sin",
                             [
                                 "Add",
-                                "e",
+                                "c",
                                 [
                                     "Multiply",
-                                    "f",
+                                    "d",
                                     "x"
                                 ]
                             ]
-                        ],
-                        [
-                            "Add",
-                            "c",
-                            [
-                                "Multiply",
-                                -1,
-                                "c",
-                                [
-                                    "Sin",
-                                    [
-                                        "Add",
-                                        "e",
-                                        [
-                                            "Multiply",
-                                            "f",
-                                            "x"
-                                        ]
-                                    ]
-                                ]
-                            ]
                         ]
-                    ],
-                    -1
+                    ]
                 ]
-            ],
-            "id": 13,
+            ]
+        },
+        {
             "expected_result": [
                 "Add",
                 [
@@ -2954,13 +2885,34 @@
                     ]
                 ]
             ],
-            "variable": "x"
-        },
-        {
-            "num_steps": 8,
+            "num_steps": 5,
+            "id": 13,
+            "variable": "x",
             "expression": [
                 "Multiply",
-                1,
+                [
+                    "Sqrt",
+                    [
+                        "Add",
+                        "a",
+                        [
+                            "Multiply",
+                            "a",
+                            [
+                                "Sin",
+                                [
+                                    "Add",
+                                    "e",
+                                    [
+                                        "Multiply",
+                                        "f",
+                                        "x"
+                                    ]
+                                ]
+                            ]
+                        ]
+                    ]
+                ],
                 [
                     "Power",
                     [
@@ -2974,29 +2926,6 @@
                                     "Multiply",
                                     "f",
                                     "x"
-                                ]
-                            ]
-                        ],
-                        [
-                            "Sqrt",
-                            [
-                                "Add",
-                                "a",
-                                [
-                                    "Multiply",
-                                    "a",
-                                    [
-                                        "Sin",
-                                        [
-                                            "Add",
-                                            "e",
-                                            [
-                                                "Multiply",
-                                                "f",
-                                                "x"
-                                            ]
-                                        ]
-                                    ]
                                 ]
                             ]
                         ],
@@ -3024,8 +2953,9 @@
                     ],
                     -1
                 ]
-            ],
-            "id": 14,
+            ]
+        },
+        {
             "expected_result": [
                 "Add",
                 [
@@ -3220,10 +3150,247 @@
                     ]
                 ]
             ],
-            "variable": "x"
+            "num_steps": 8,
+            "id": 14,
+            "variable": "x",
+            "expression": [
+                "Multiply",
+                1,
+                [
+                    "Power",
+                    [
+                        "Multiply",
+                        [
+                            "Sin",
+                            [
+                                "Add",
+                                "e",
+                                [
+                                    "Multiply",
+                                    "f",
+                                    "x"
+                                ]
+                            ]
+                        ],
+                        [
+                            "Sqrt",
+                            [
+                                "Add",
+                                "a",
+                                [
+                                    "Multiply",
+                                    "a",
+                                    [
+                                        "Sin",
+                                        [
+                                            "Add",
+                                            "e",
+                                            [
+                                                "Multiply",
+                                                "f",
+                                                "x"
+                                            ]
+                                        ]
+                                    ]
+                                ]
+                            ]
+                        ],
+                        [
+                            "Add",
+                            "c",
+                            [
+                                "Multiply",
+                                -1,
+                                "c",
+                                [
+                                    "Sin",
+                                    [
+                                        "Add",
+                                        "e",
+                                        [
+                                            "Multiply",
+                                            "f",
+                                            "x"
+                                        ]
+                                    ]
+                                ]
+                            ]
+                        ]
+                    ],
+                    -1
+                ]
+            ]
         },
         {
+            "expected_result": [
+                "Add",
+                [
+                    "Multiply",
+                    2,
+                    [
+                        "Sqrt",
+                        "a"
+                    ],
+                    [
+                        "Sqrt",
+                        "g"
+                    ],
+                    [
+                        "Atan",
+                        [
+                            "Multiply",
+                            [
+                                "Sqrt",
+                                "a"
+                            ],
+                            [
+                                "Sqrt",
+                                "g"
+                            ],
+                            [
+                                "Cos",
+                                [
+                                    "Add",
+                                    "e",
+                                    [
+                                        "Multiply",
+                                        "f",
+                                        "x"
+                                    ]
+                                ]
+                            ],
+                            [
+                                "Power",
+                                [
+                                    "Multiply",
+                                    [
+                                        "Sqrt",
+                                        [
+                                            "Multiply",
+                                            "g",
+                                            [
+                                                "Sin",
+                                                [
+                                                    "Add",
+                                                    "e",
+                                                    [
+                                                        "Multiply",
+                                                        "f",
+                                                        "x"
+                                                    ]
+                                                ]
+                                            ]
+                                        ]
+                                    ],
+                                    [
+                                        "Sqrt",
+                                        [
+                                            "Add",
+                                            "a",
+                                            [
+                                                "Multiply",
+                                                "a",
+                                                [
+                                                    "Sin",
+                                                    [
+                                                        "Add",
+                                                        "e",
+                                                        [
+                                                            "Multiply",
+                                                            "f",
+                                                            "x"
+                                                        ]
+                                                    ]
+                                                ]
+                                            ]
+                                        ]
+                                    ]
+                                ],
+                                -1
+                            ]
+                        ]
+                    ],
+                    [
+                        "Power",
+                        [
+                            "Multiply",
+                            "c",
+                            "f"
+                        ],
+                        -1
+                    ]
+                ],
+                [
+                    "Multiply",
+                    2,
+                    [
+                        "Sec",
+                        [
+                            "Add",
+                            "e",
+                            [
+                                "Multiply",
+                                "f",
+                                "x"
+                            ]
+                        ]
+                    ],
+                    [
+                        "Sqrt",
+                        [
+                            "Multiply",
+                            "g",
+                            [
+                                "Sin",
+                                [
+                                    "Add",
+                                    "e",
+                                    [
+                                        "Multiply",
+                                        "f",
+                                        "x"
+                                    ]
+                                ]
+                            ]
+                        ]
+                    ],
+                    [
+                        "Sqrt",
+                        [
+                            "Add",
+                            "a",
+                            [
+                                "Multiply",
+                                "a",
+                                [
+                                    "Sin",
+                                    [
+                                        "Add",
+                                        "e",
+                                        [
+                                            "Multiply",
+                                            "f",
+                                            "x"
+                                        ]
+                                    ]
+                                ]
+                            ]
+                        ]
+                    ],
+                    [
+                        "Power",
+                        [
+                            "Multiply",
+                            "c",
+                            "f"
+                        ],
+                        -1
+                    ]
+                ]
+            ],
             "num_steps": 6,
+            "id": 15,
+            "variable": "x",
             "expression": [
                 "Multiply",
                 [
@@ -3293,126 +3460,51 @@
                     ],
                     -1
                 ]
-            ],
-            "id": 15,
+            ]
+        },
+        {
             "expected_result": [
-                "Add",
+                "Multiply",
+                2,
                 [
-                    "Multiply",
-                    2,
+                    "Sec",
                     [
-                        "Sqrt",
-                        "a"
-                    ],
-                    [
-                        "Sqrt",
-                        "g"
-                    ],
-                    [
-                        "Atan",
+                        "Add",
+                        "e",
                         [
                             "Multiply",
-                            [
-                                "Sqrt",
-                                "a"
-                            ],
-                            [
-                                "Sqrt",
-                                "g"
-                            ],
-                            [
-                                "Cos",
-                                [
-                                    "Add",
-                                    "e",
-                                    [
-                                        "Multiply",
-                                        "f",
-                                        "x"
-                                    ]
-                                ]
-                            ],
-                            [
-                                "Power",
-                                [
-                                    "Multiply",
-                                    [
-                                        "Sqrt",
-                                        [
-                                            "Multiply",
-                                            "g",
-                                            [
-                                                "Sin",
-                                                [
-                                                    "Add",
-                                                    "e",
-                                                    [
-                                                        "Multiply",
-                                                        "f",
-                                                        "x"
-                                                    ]
-                                                ]
-                                            ]
-                                        ]
-                                    ],
-                                    [
-                                        "Sqrt",
-                                        [
-                                            "Add",
-                                            "a",
-                                            [
-                                                "Multiply",
-                                                "a",
-                                                [
-                                                    "Sin",
-                                                    [
-                                                        "Add",
-                                                        "e",
-                                                        [
-                                                            "Multiply",
-                                                            "f",
-                                                            "x"
-                                                        ]
-                                                    ]
-                                                ]
-                                            ]
-                                        ]
-                                    ]
-                                ],
-                                -1
-                            ]
+                            "f",
+                            "x"
                         ]
-                    ],
-                    [
-                        "Power",
-                        [
-                            "Multiply",
-                            "c",
-                            "f"
-                        ],
-                        -1
                     ]
                 ],
                 [
-                    "Multiply",
-                    2,
+                    "Sqrt",
                     [
-                        "Sec",
+                        "Multiply",
+                        "g",
                         [
-                            "Add",
-                            "e",
+                            "Sin",
                             [
-                                "Multiply",
-                                "f",
-                                "x"
+                                "Add",
+                                "e",
+                                [
+                                    "Multiply",
+                                    "f",
+                                    "x"
+                                ]
                             ]
                         ]
-                    ],
+                    ]
+                ],
+                [
+                    "Sqrt",
                     [
-                        "Sqrt",
+                        "Add",
+                        "a",
                         [
                             "Multiply",
-                            "g",
+                            "a",
                             [
                                 "Sin",
                                 [
@@ -3426,45 +3518,22 @@
                                 ]
                             ]
                         ]
-                    ],
-                    [
-                        "Sqrt",
-                        [
-                            "Add",
-                            "a",
-                            [
-                                "Multiply",
-                                "a",
-                                [
-                                    "Sin",
-                                    [
-                                        "Add",
-                                        "e",
-                                        [
-                                            "Multiply",
-                                            "f",
-                                            "x"
-                                        ]
-                                    ]
-                                ]
-                            ]
-                        ]
-                    ],
-                    [
-                        "Power",
-                        [
-                            "Multiply",
-                            "c",
-                            "f"
-                        ],
-                        -1
                     ]
+                ],
+                [
+                    "Power",
+                    [
+                        "Multiply",
+                        "c",
+                        "f",
+                        "g"
+                    ],
+                    -1
                 ]
             ],
-            "variable": "x"
-        },
-        {
             "num_steps": 3,
+            "id": 16,
+            "variable": "x",
             "expression": [
                 "Multiply",
                 [
@@ -3537,154 +3606,9 @@
                     ],
                     -1
                 ]
-            ],
-            "id": 16,
-            "expected_result": [
-                "Multiply",
-                2,
-                [
-                    "Sec",
-                    [
-                        "Add",
-                        "e",
-                        [
-                            "Multiply",
-                            "f",
-                            "x"
-                        ]
-                    ]
-                ],
-                [
-                    "Sqrt",
-                    [
-                        "Multiply",
-                        "g",
-                        [
-                            "Sin",
-                            [
-                                "Add",
-                                "e",
-                                [
-                                    "Multiply",
-                                    "f",
-                                    "x"
-                                ]
-                            ]
-                        ]
-                    ]
-                ],
-                [
-                    "Sqrt",
-                    [
-                        "Add",
-                        "a",
-                        [
-                            "Multiply",
-                            "a",
-                            [
-                                "Sin",
-                                [
-                                    "Add",
-                                    "e",
-                                    [
-                                        "Multiply",
-                                        "f",
-                                        "x"
-                                    ]
-                                ]
-                            ]
-                        ]
-                    ]
-                ],
-                [
-                    "Power",
-                    [
-                        "Multiply",
-                        "c",
-                        "f",
-                        "g"
-                    ],
-                    -1
-                ]
-            ],
-            "variable": "x"
+            ]
         },
         {
-            "num_steps": 6,
-            "expression": [
-                "Multiply",
-                [
-                    "Sqrt",
-                    [
-                        "Multiply",
-                        "g",
-                        [
-                            "Sin",
-                            [
-                                "Add",
-                                "e",
-                                [
-                                    "Multiply",
-                                    "f",
-                                    "x"
-                                ]
-                            ]
-                        ]
-                    ]
-                ],
-                [
-                    "Power",
-                    [
-                        "Multiply",
-                        [
-                            "Sqrt",
-                            [
-                                "Add",
-                                "a",
-                                [
-                                    "Multiply",
-                                    "a",
-                                    [
-                                        "Sin",
-                                        [
-                                            "Add",
-                                            "e",
-                                            [
-                                                "Multiply",
-                                                "f",
-                                                "x"
-                                            ]
-                                        ]
-                                    ]
-                                ]
-                            ]
-                        ],
-                        [
-                            "Add",
-                            "c",
-                            [
-                                "Multiply",
-                                -1,
-                                "c",
-                                [
-                                    "Sin",
-                                    [
-                                        "Add",
-                                        "e",
-                                        [
-                                            "Multiply",
-                                            "f",
-                                            "x"
-                                        ]
-                                    ]
-                                ]
-                            ]
-                        ]
-                    ],
-                    -1
-                ]
-            ],
-            "id": 17,
             "expected_result": [
                 "Add",
                 [
@@ -3858,36 +3782,34 @@
                     ]
                 ]
             ],
-            "variable": "x"
-        },
-        {
             "num_steps": 6,
+            "id": 17,
+            "variable": "x",
             "expression": [
                 "Multiply",
-                1,
+                [
+                    "Sqrt",
+                    [
+                        "Multiply",
+                        "g",
+                        [
+                            "Sin",
+                            [
+                                "Add",
+                                "e",
+                                [
+                                    "Multiply",
+                                    "f",
+                                    "x"
+                                ]
+                            ]
+                        ]
+                    ]
+                ],
                 [
                     "Power",
                     [
                         "Multiply",
-                        [
-                            "Sqrt",
-                            [
-                                "Multiply",
-                                "g",
-                                [
-                                    "Sin",
-                                    [
-                                        "Add",
-                                        "e",
-                                        [
-                                            "Multiply",
-                                            "f",
-                                            "x"
-                                        ]
-                                    ]
-                                ]
-                            ]
-                        ],
                         [
                             "Sqrt",
                             [
@@ -3935,8 +3857,9 @@
                     ],
                     -1
                 ]
-            ],
-            "id": 18,
+            ]
+        },
+        {
             "expected_result": [
                 "Add",
                 [
@@ -4112,77 +4035,85 @@
                     ]
                 ]
             ],
-            "variable": "x"
-        },
-        {
-            "num_steps": 2,
+            "num_steps": 6,
+            "id": 18,
+            "variable": "x",
             "expression": [
                 "Multiply",
-                [
-                    "Sqrt",
-                    [
-                        "Add",
-                        "a",
-                        [
-                            "Multiply",
-                            "a",
-                            [
-                                "Sin",
-                                [
-                                    "Add",
-                                    "e",
-                                    [
-                                        "Multiply",
-                                        "f",
-                                        "x"
-                                    ]
-                                ]
-                            ]
-                        ]
-                    ]
-                ],
-                [
-                    "Sqrt",
-                    [
-                        "Add",
-                        "c",
-                        [
-                            "Multiply",
-                            -1,
-                            "c",
-                            [
-                                "Sin",
-                                [
-                                    "Add",
-                                    "e",
-                                    [
-                                        "Multiply",
-                                        "f",
-                                        "x"
-                                    ]
-                                ]
-                            ]
-                        ]
-                    ]
-                ],
+                1,
                 [
                     "Power",
                     [
-                        "Sin",
+                        "Multiply",
                         [
-                            "Add",
-                            "e",
+                            "Sqrt",
                             [
                                 "Multiply",
-                                "f",
-                                "x"
+                                "g",
+                                [
+                                    "Sin",
+                                    [
+                                        "Add",
+                                        "e",
+                                        [
+                                            "Multiply",
+                                            "f",
+                                            "x"
+                                        ]
+                                    ]
+                                ]
+                            ]
+                        ],
+                        [
+                            "Sqrt",
+                            [
+                                "Add",
+                                "a",
+                                [
+                                    "Multiply",
+                                    "a",
+                                    [
+                                        "Sin",
+                                        [
+                                            "Add",
+                                            "e",
+                                            [
+                                                "Multiply",
+                                                "f",
+                                                "x"
+                                            ]
+                                        ]
+                                    ]
+                                ]
+                            ]
+                        ],
+                        [
+                            "Add",
+                            "c",
+                            [
+                                "Multiply",
+                                -1,
+                                "c",
+                                [
+                                    "Sin",
+                                    [
+                                        "Add",
+                                        "e",
+                                        [
+                                            "Multiply",
+                                            "f",
+                                            "x"
+                                        ]
+                                    ]
+                                ]
                             ]
                         ]
                     ],
                     -1
                 ]
-            ],
-            "id": 19,
+            ]
+        },
+        {
             "expected_result": [
                 "Multiply",
                 [
@@ -4265,10 +4196,9 @@
                     -1
                 ]
             ],
-            "variable": "x"
-        },
-        {
-            "num_steps": 6,
+            "num_steps": 2,
+            "id": 19,
+            "variable": "x",
             "expression": [
                 "Multiply",
                 [
@@ -4295,50 +4225,48 @@
                     ]
                 ],
                 [
-                    "Power",
+                    "Sqrt",
                     [
-                        "Multiply",
+                        "Add",
+                        "c",
                         [
-                            "Sin",
+                            "Multiply",
+                            -1,
+                            "c",
                             [
-                                "Add",
-                                "e",
+                                "Sin",
                                 [
-                                    "Multiply",
-                                    "f",
-                                    "x"
-                                ]
-                            ]
-                        ],
-                        [
-                            "Sqrt",
-                            [
-                                "Add",
-                                "c",
-                                [
-                                    "Multiply",
-                                    -1,
-                                    "c",
+                                    "Add",
+                                    "e",
                                     [
-                                        "Sin",
-                                        [
-                                            "Add",
-                                            "e",
-                                            [
-                                                "Multiply",
-                                                "f",
-                                                "x"
-                                            ]
-                                        ]
+                                        "Multiply",
+                                        "f",
+                                        "x"
                                     ]
                                 ]
+                            ]
+                        ]
+                    ]
+                ],
+                [
+                    "Power",
+                    [
+                        "Sin",
+                        [
+                            "Add",
+                            "e",
+                            [
+                                "Multiply",
+                                "f",
+                                "x"
                             ]
                         ]
                     ],
                     -1
                 ]
-            ],
-            "id": 20,
+            ]
+        },
+        {
             "expected_result": [
                 "Add",
                 [
@@ -4523,21 +4451,19 @@
                     ]
                 ]
             ],
-            "variable": "x"
-        },
-        {
             "num_steps": 6,
+            "id": 20,
+            "variable": "x",
             "expression": [
                 "Multiply",
                 [
                     "Sqrt",
                     [
                         "Add",
-                        "c",
+                        "a",
                         [
                             "Multiply",
-                            -1,
-                            "c",
+                            "a",
                             [
                                 "Sin",
                                 [
@@ -4573,10 +4499,11 @@
                             "Sqrt",
                             [
                                 "Add",
-                                "a",
+                                "c",
                                 [
                                     "Multiply",
-                                    "a",
+                                    -1,
+                                    "c",
                                     [
                                         "Sin",
                                         [
@@ -4595,8 +4522,9 @@
                     ],
                     -1
                 ]
-            ],
-            "id": 21,
+            ]
+        },
+        {
             "expected_result": [
                 "Add",
                 [
@@ -4777,13 +4705,35 @@
                     ]
                 ]
             ],
-            "variable": "x"
-        },
-        {
-            "num_steps": 3,
+            "num_steps": 6,
+            "id": 21,
+            "variable": "x",
             "expression": [
                 "Multiply",
-                1,
+                [
+                    "Sqrt",
+                    [
+                        "Add",
+                        "c",
+                        [
+                            "Multiply",
+                            -1,
+                            "c",
+                            [
+                                "Sin",
+                                [
+                                    "Add",
+                                    "e",
+                                    [
+                                        "Multiply",
+                                        "f",
+                                        "x"
+                                    ]
+                                ]
+                            ]
+                        ]
+                    ]
+                ],
                 [
                     "Power",
                     [
@@ -4822,36 +4772,13 @@
                                     ]
                                 ]
                             ]
-                        ],
-                        [
-                            "Sqrt",
-                            [
-                                "Add",
-                                "c",
-                                [
-                                    "Multiply",
-                                    -1,
-                                    "c",
-                                    [
-                                        "Sin",
-                                        [
-                                            "Add",
-                                            "e",
-                                            [
-                                                "Multiply",
-                                                "f",
-                                                "x"
-                                            ]
-                                        ]
-                                    ]
-                                ]
-                            ]
                         ]
                     ],
                     -1
                 ]
-            ],
-            "id": 22,
+            ]
+        },
+        {
             "expected_result": [
                 "Multiply",
                 [
@@ -4937,35 +4864,12 @@
                     -1
                 ]
             ],
-            "variable": "x"
-        },
-        {
-            "num_steps": 5,
+            "num_steps": 3,
+            "id": 22,
+            "variable": "x",
             "expression": [
                 "Multiply",
-                [
-                    "Sqrt",
-                    [
-                        "Add",
-                        "a",
-                        [
-                            "Multiply",
-                            "a",
-                            [
-                                "Sin",
-                                [
-                                    "Add",
-                                    "e",
-                                    [
-                                        "Multiply",
-                                        "f",
-                                        "x"
-                                    ]
-                                ]
-                            ]
-                        ]
-                    ]
-                ],
+                1,
                 [
                     "Power",
                     [
@@ -4983,20 +4887,47 @@
                             ]
                         ],
                         [
-                            "Add",
-                            "c",
+                            "Sqrt",
                             [
-                                "Multiply",
-                                "d",
+                                "Add",
+                                "a",
                                 [
-                                    "Sin",
+                                    "Multiply",
+                                    "a",
                                     [
-                                        "Add",
-                                        "e",
+                                        "Sin",
                                         [
-                                            "Multiply",
-                                            "f",
-                                            "x"
+                                            "Add",
+                                            "e",
+                                            [
+                                                "Multiply",
+                                                "f",
+                                                "x"
+                                            ]
+                                        ]
+                                    ]
+                                ]
+                            ]
+                        ],
+                        [
+                            "Sqrt",
+                            [
+                                "Add",
+                                "c",
+                                [
+                                    "Multiply",
+                                    -1,
+                                    "c",
+                                    [
+                                        "Sin",
+                                        [
+                                            "Add",
+                                            "e",
+                                            [
+                                                "Multiply",
+                                                "f",
+                                                "x"
+                                            ]
                                         ]
                                     ]
                                 ]
@@ -5005,8 +4936,9 @@
                     ],
                     -1
                 ]
-            ],
-            "id": 23,
+            ]
+        },
+        {
             "expected_result": [
                 "Add",
                 [
@@ -5170,13 +5102,34 @@
                     ]
                 ]
             ],
-            "variable": "x"
-        },
-        {
-            "num_steps": 8,
+            "num_steps": 5,
+            "id": 23,
+            "variable": "x",
             "expression": [
                 "Multiply",
-                1,
+                [
+                    "Sqrt",
+                    [
+                        "Add",
+                        "a",
+                        [
+                            "Multiply",
+                            "a",
+                            [
+                                "Sin",
+                                [
+                                    "Add",
+                                    "e",
+                                    [
+                                        "Multiply",
+                                        "f",
+                                        "x"
+                                    ]
+                                ]
+                            ]
+                        ]
+                    ]
+                ],
                 [
                     "Power",
                     [
@@ -5190,29 +5143,6 @@
                                     "Multiply",
                                     "f",
                                     "x"
-                                ]
-                            ]
-                        ],
-                        [
-                            "Sqrt",
-                            [
-                                "Add",
-                                "a",
-                                [
-                                    "Multiply",
-                                    "a",
-                                    [
-                                        "Sin",
-                                        [
-                                            "Add",
-                                            "e",
-                                            [
-                                                "Multiply",
-                                                "f",
-                                                "x"
-                                            ]
-                                        ]
-                                    ]
                                 ]
                             ]
                         ],
@@ -5239,8 +5169,9 @@
                     ],
                     -1
                 ]
-            ],
-            "id": 24,
+            ]
+        },
+        {
             "expected_result": [
                 "Add",
                 [
@@ -5507,17 +5438,16 @@
                     ]
                 ]
             ],
-            "variable": "x"
-        },
-        {
-            "num_steps": 5,
+            "num_steps": 8,
+            "id": 24,
+            "variable": "x",
             "expression": [
                 "Multiply",
+                1,
                 [
-                    "Sqrt",
+                    "Power",
                     [
                         "Multiply",
-                        "g",
                         [
                             "Sin",
                             [
@@ -5529,49 +5459,46 @@
                                     "x"
                                 ]
                             ]
-                        ]
-                    ]
-                ],
-                [
-                    "Sqrt",
-                    [
-                        "Add",
-                        "a",
+                        ],
                         [
-                            "Multiply",
-                            "a",
+                            "Sqrt",
                             [
-                                "Sin",
+                                "Add",
+                                "a",
                                 [
-                                    "Add",
-                                    "e",
+                                    "Multiply",
+                                    "a",
                                     [
-                                        "Multiply",
-                                        "f",
-                                        "x"
+                                        "Sin",
+                                        [
+                                            "Add",
+                                            "e",
+                                            [
+                                                "Multiply",
+                                                "f",
+                                                "x"
+                                            ]
+                                        ]
                                     ]
                                 ]
                             ]
-                        ]
-                    ]
-                ],
-                [
-                    "Power",
-                    [
-                        "Add",
-                        "c",
+                        ],
                         [
-                            "Multiply",
-                            "d",
+                            "Add",
+                            "c",
                             [
-                                "Sin",
+                                "Multiply",
+                                "d",
                                 [
-                                    "Add",
-                                    "e",
+                                    "Sin",
                                     [
-                                        "Multiply",
-                                        "f",
-                                        "x"
+                                        "Add",
+                                        "e",
+                                        [
+                                            "Multiply",
+                                            "f",
+                                            "x"
+                                        ]
                                     ]
                                 ]
                             ]
@@ -5579,8 +5506,9 @@
                     ],
                     -1
                 ]
-            ],
-            "id": 25,
+            ]
+        },
+        {
             "expected_result": [
                 "Add",
                 [
@@ -5801,12 +5729,30 @@
                     ]
                 ]
             ],
-            "variable": "x"
-        },
-        {
-            "num_steps": 2,
+            "num_steps": 5,
+            "id": 25,
+            "variable": "x",
             "expression": [
                 "Multiply",
+                [
+                    "Sqrt",
+                    [
+                        "Multiply",
+                        "g",
+                        [
+                            "Sin",
+                            [
+                                "Add",
+                                "e",
+                                [
+                                    "Multiply",
+                                    "f",
+                                    "x"
+                                ]
+                            ]
+                        ]
+                    ]
+                ],
                 [
                     "Sqrt",
                     [
@@ -5833,42 +5779,20 @@
                 [
                     "Power",
                     [
-                        "Multiply",
+                        "Add",
+                        "c",
                         [
-                            "Sqrt",
+                            "Multiply",
+                            "d",
                             [
-                                "Multiply",
-                                "g",
+                                "Sin",
                                 [
-                                    "Sin",
+                                    "Add",
+                                    "e",
                                     [
-                                        "Add",
-                                        "e",
-                                        [
-                                            "Multiply",
-                                            "f",
-                                            "x"
-                                        ]
-                                    ]
-                                ]
-                            ]
-                        ],
-                        [
-                            "Add",
-                            "c",
-                            [
-                                "Multiply",
-                                "d",
-                                [
-                                    "Sin",
-                                    [
-                                        "Add",
-                                        "e",
-                                        [
-                                            "Multiply",
-                                            "f",
-                                            "x"
-                                        ]
+                                        "Multiply",
+                                        "f",
+                                        "x"
                                     ]
                                 ]
                             ]
@@ -5876,8 +5800,9 @@
                     ],
                     -1
                 ]
-            ],
-            "id": 26,
+            ]
+        },
+        {
             "expected_result": [
                 "Multiply",
                 -1,
@@ -5998,26 +5923,29 @@
                     -1
                 ]
             ],
-            "variable": "x"
-        },
-        {
-            "num_steps": 5,
+            "num_steps": 2,
+            "id": 26,
+            "variable": "x",
             "expression": [
                 "Multiply",
                 [
                     "Sqrt",
                     [
-                        "Multiply",
-                        "g",
+                        "Add",
+                        "a",
                         [
-                            "Sin",
+                            "Multiply",
+                            "a",
                             [
-                                "Add",
-                                "e",
+                                "Sin",
                                 [
-                                    "Multiply",
-                                    "f",
-                                    "x"
+                                    "Add",
+                                    "e",
+                                    [
+                                        "Multiply",
+                                        "f",
+                                        "x"
+                                    ]
                                 ]
                             ]
                         ]
@@ -6030,21 +5958,17 @@
                         [
                             "Sqrt",
                             [
-                                "Add",
-                                "a",
+                                "Multiply",
+                                "g",
                                 [
-                                    "Multiply",
-                                    "a",
+                                    "Sin",
                                     [
-                                        "Sin",
+                                        "Add",
+                                        "e",
                                         [
-                                            "Add",
-                                            "e",
-                                            [
-                                                "Multiply",
-                                                "f",
-                                                "x"
-                                            ]
+                                            "Multiply",
+                                            "f",
+                                            "x"
                                         ]
                                     ]
                                 ]
@@ -6073,8 +5997,9 @@
                     ],
                     -1
                 ]
-            ],
-            "id": 27,
+            ]
+        },
+        {
             "expected_result": [
                 "Add",
                 [
@@ -6318,36 +6243,34 @@
                     ]
                 ]
             ],
-            "variable": "x"
-        },
-        {
             "num_steps": 5,
+            "id": 27,
+            "variable": "x",
             "expression": [
                 "Multiply",
-                1,
+                [
+                    "Sqrt",
+                    [
+                        "Multiply",
+                        "g",
+                        [
+                            "Sin",
+                            [
+                                "Add",
+                                "e",
+                                [
+                                    "Multiply",
+                                    "f",
+                                    "x"
+                                ]
+                            ]
+                        ]
+                    ]
+                ],
                 [
                     "Power",
                     [
                         "Multiply",
-                        [
-                            "Sqrt",
-                            [
-                                "Multiply",
-                                "g",
-                                [
-                                    "Sin",
-                                    [
-                                        "Add",
-                                        "e",
-                                        [
-                                            "Multiply",
-                                            "f",
-                                            "x"
-                                        ]
-                                    ]
-                                ]
-                            ]
-                        ],
                         [
                             "Sqrt",
                             [
@@ -6394,8 +6317,9 @@
                     ],
                     -1
                 ]
-            ],
-            "id": 28,
+            ]
+        },
+        {
             "expected_result": [
                 "Add",
                 [
@@ -6640,48 +6564,55 @@
                     ]
                 ]
             ],
-            "variable": "x"
-        },
-        {
-            "num_steps": 9,
+            "num_steps": 5,
+            "id": 28,
+            "variable": "x",
             "expression": [
                 "Multiply",
-                [
-                    "Sqrt",
-                    [
-                        "Add",
-                        "a",
-                        [
-                            "Multiply",
-                            "b",
-                            [
-                                "Sin",
-                                [
-                                    "Add",
-                                    "e",
-                                    [
-                                        "Multiply",
-                                        "f",
-                                        "x"
-                                    ]
-                                ]
-                            ]
-                        ]
-                    ]
-                ],
+                1,
                 [
                     "Power",
                     [
                         "Multiply",
                         [
-                            "Sin",
+                            "Sqrt",
+                            [
+                                "Multiply",
+                                "g",
+                                [
+                                    "Sin",
+                                    [
+                                        "Add",
+                                        "e",
+                                        [
+                                            "Multiply",
+                                            "f",
+                                            "x"
+                                        ]
+                                    ]
+                                ]
+                            ]
+                        ],
+                        [
+                            "Sqrt",
                             [
                                 "Add",
-                                "e",
+                                "a",
                                 [
                                     "Multiply",
-                                    "f",
-                                    "x"
+                                    "a",
+                                    [
+                                        "Sin",
+                                        [
+                                            "Add",
+                                            "e",
+                                            [
+                                                "Multiply",
+                                                "f",
+                                                "x"
+                                            ]
+                                        ]
+                                    ]
                                 ]
                             ]
                         ],
@@ -6690,7 +6621,7 @@
                             "c",
                             [
                                 "Multiply",
-                                "c",
+                                "d",
                                 [
                                     "Sin",
                                     [
@@ -6708,8 +6639,9 @@
                     ],
                     -1
                 ]
-            ],
-            "id": 29,
+            ]
+        },
+        {
             "expected_result": [
                 "Add",
                 [
@@ -7137,13 +7069,34 @@
                     ]
                 ]
             ],
-            "variable": "x"
-        },
-        {
             "num_steps": 9,
+            "id": 29,
+            "variable": "x",
             "expression": [
                 "Multiply",
-                1,
+                [
+                    "Sqrt",
+                    [
+                        "Add",
+                        "a",
+                        [
+                            "Multiply",
+                            "b",
+                            [
+                                "Sin",
+                                [
+                                    "Add",
+                                    "e",
+                                    [
+                                        "Multiply",
+                                        "f",
+                                        "x"
+                                    ]
+                                ]
+                            ]
+                        ]
+                    ]
+                ],
                 [
                     "Power",
                     [
@@ -7157,29 +7110,6 @@
                                     "Multiply",
                                     "f",
                                     "x"
-                                ]
-                            ]
-                        ],
-                        [
-                            "Sqrt",
-                            [
-                                "Add",
-                                "a",
-                                [
-                                    "Multiply",
-                                    "b",
-                                    [
-                                        "Sin",
-                                        [
-                                            "Add",
-                                            "e",
-                                            [
-                                                "Multiply",
-                                                "f",
-                                                "x"
-                                            ]
-                                        ]
-                                    ]
                                 ]
                             ]
                         ],
@@ -7206,8 +7136,9 @@
                     ],
                     -1
                 ]
-            ],
-            "id": 30,
+            ]
+        },
+        {
             "expected_result": [
                 "Add",
                 [
@@ -7643,17 +7574,16 @@
                     ]
                 ]
             ],
-            "variable": "x"
-        },
-        {
-            "num_steps": 3,
+            "num_steps": 9,
+            "id": 30,
+            "variable": "x",
             "expression": [
                 "Multiply",
+                1,
                 [
-                    "Sqrt",
+                    "Power",
                     [
                         "Multiply",
-                        "g",
                         [
                             "Sin",
                             [
@@ -7665,49 +7595,46 @@
                                     "x"
                                 ]
                             ]
-                        ]
-                    ]
-                ],
-                [
-                    "Sqrt",
-                    [
-                        "Add",
-                        "a",
+                        ],
                         [
-                            "Multiply",
-                            "b",
+                            "Sqrt",
                             [
-                                "Sin",
+                                "Add",
+                                "a",
                                 [
-                                    "Add",
-                                    "e",
+                                    "Multiply",
+                                    "b",
                                     [
-                                        "Multiply",
-                                        "f",
-                                        "x"
+                                        "Sin",
+                                        [
+                                            "Add",
+                                            "e",
+                                            [
+                                                "Multiply",
+                                                "f",
+                                                "x"
+                                            ]
+                                        ]
                                     ]
                                 ]
                             ]
-                        ]
-                    ]
-                ],
-                [
-                    "Power",
-                    [
-                        "Add",
-                        "c",
+                        ],
                         [
-                            "Multiply",
+                            "Add",
                             "c",
                             [
-                                "Sin",
+                                "Multiply",
+                                "c",
                                 [
-                                    "Add",
-                                    "e",
+                                    "Sin",
                                     [
-                                        "Multiply",
-                                        "f",
-                                        "x"
+                                        "Add",
+                                        "e",
+                                        [
+                                            "Multiply",
+                                            "f",
+                                            "x"
+                                        ]
                                     ]
                                 ]
                             ]
@@ -7715,8 +7642,9 @@
                     ],
                     -1
                 ]
-            ],
-            "id": 31,
+            ]
+        },
+        {
             "expected_result": [
                 "Add",
                 [
@@ -8190,12 +8118,30 @@
                     ]
                 ]
             ],
-            "variable": "x"
-        },
-        {
-            "num_steps": 1,
+            "num_steps": 3,
+            "id": 31,
+            "variable": "x",
             "expression": [
                 "Multiply",
+                [
+                    "Sqrt",
+                    [
+                        "Multiply",
+                        "g",
+                        [
+                            "Sin",
+                            [
+                                "Add",
+                                "e",
+                                [
+                                    "Multiply",
+                                    "f",
+                                    "x"
+                                ]
+                            ]
+                        ]
+                    ]
+                ],
                 [
                     "Sqrt",
                     [
@@ -8222,42 +8168,20 @@
                 [
                     "Power",
                     [
-                        "Multiply",
+                        "Add",
+                        "c",
                         [
-                            "Sqrt",
-                            [
-                                "Multiply",
-                                "g",
-                                [
-                                    "Sin",
-                                    [
-                                        "Add",
-                                        "e",
-                                        [
-                                            "Multiply",
-                                            "f",
-                                            "x"
-                                        ]
-                                    ]
-                                ]
-                            ]
-                        ],
-                        [
-                            "Add",
+                            "Multiply",
                             "c",
                             [
-                                "Multiply",
-                                "c",
+                                "Sin",
                                 [
-                                    "Sin",
+                                    "Add",
+                                    "e",
                                     [
-                                        "Add",
-                                        "e",
-                                        [
-                                            "Multiply",
-                                            "f",
-                                            "x"
-                                        ]
+                                        "Multiply",
+                                        "f",
+                                        "x"
                                     ]
                                 ]
                             ]
@@ -8265,8 +8189,9 @@
                     ],
                     -1
                 ]
-            ],
-            "id": 32,
+            ]
+        },
+        {
             "expected_result": [
                 "Multiply",
                 -1,
@@ -8477,26 +8402,29 @@
                     -1
                 ]
             ],
-            "variable": "x"
-        },
-        {
-            "num_steps": 3,
+            "num_steps": 1,
+            "id": 32,
+            "variable": "x",
             "expression": [
                 "Multiply",
                 [
                     "Sqrt",
                     [
-                        "Multiply",
-                        "g",
+                        "Add",
+                        "a",
                         [
-                            "Sin",
+                            "Multiply",
+                            "b",
                             [
-                                "Add",
-                                "e",
+                                "Sin",
                                 [
-                                    "Multiply",
-                                    "f",
-                                    "x"
+                                    "Add",
+                                    "e",
+                                    [
+                                        "Multiply",
+                                        "f",
+                                        "x"
+                                    ]
                                 ]
                             ]
                         ]
@@ -8509,21 +8437,17 @@
                         [
                             "Sqrt",
                             [
-                                "Add",
-                                "a",
+                                "Multiply",
+                                "g",
                                 [
-                                    "Multiply",
-                                    "b",
+                                    "Sin",
                                     [
-                                        "Sin",
+                                        "Add",
+                                        "e",
                                         [
-                                            "Add",
-                                            "e",
-                                            [
-                                                "Multiply",
-                                                "f",
-                                                "x"
-                                            ]
+                                            "Multiply",
+                                            "f",
+                                            "x"
                                         ]
                                     ]
                                 ]
@@ -8552,8 +8476,9 @@
                     ],
                     -1
                 ]
-            ],
-            "id": 33,
+            ]
+        },
+        {
             "expected_result": [
                 "Add",
                 [
@@ -8987,36 +8912,34 @@
                     ]
                 ]
             ],
-            "variable": "x"
-        },
-        {
             "num_steps": 3,
+            "id": 33,
+            "variable": "x",
             "expression": [
                 "Multiply",
-                1,
+                [
+                    "Sqrt",
+                    [
+                        "Multiply",
+                        "g",
+                        [
+                            "Sin",
+                            [
+                                "Add",
+                                "e",
+                                [
+                                    "Multiply",
+                                    "f",
+                                    "x"
+                                ]
+                            ]
+                        ]
+                    ]
+                ],
                 [
                     "Power",
                     [
                         "Multiply",
-                        [
-                            "Sqrt",
-                            [
-                                "Multiply",
-                                "g",
-                                [
-                                    "Sin",
-                                    [
-                                        "Add",
-                                        "e",
-                                        [
-                                            "Multiply",
-                                            "f",
-                                            "x"
-                                        ]
-                                    ]
-                                ]
-                            ]
-                        ],
                         [
                             "Sqrt",
                             [
@@ -9063,8 +8986,9 @@
                     ],
                     -1
                 ]
-            ],
-            "id": 34,
+            ]
+        },
+        {
             "expected_result": [
                 "Add",
                 [
@@ -9499,76 +9423,84 @@
                     ]
                 ]
             ],
-            "variable": "x"
-        },
-        {
-            "num_steps": 5,
+            "num_steps": 3,
+            "id": 34,
+            "variable": "x",
             "expression": [
                 "Multiply",
-                [
-                    "Sqrt",
-                    [
-                        "Add",
-                        "a",
-                        [
-                            "Multiply",
-                            "a",
-                            [
-                                "Sin",
-                                [
-                                    "Add",
-                                    "e",
-                                    [
-                                        "Multiply",
-                                        "f",
-                                        "x"
-                                    ]
-                                ]
-                            ]
-                        ]
-                    ]
-                ],
-                [
-                    "Sqrt",
-                    [
-                        "Add",
-                        "c",
-                        [
-                            "Multiply",
-                            "d",
-                            [
-                                "Sin",
-                                [
-                                    "Add",
-                                    "e",
-                                    [
-                                        "Multiply",
-                                        "f",
-                                        "x"
-                                    ]
-                                ]
-                            ]
-                        ]
-                    ]
-                ],
+                1,
                 [
                     "Power",
                     [
-                        "Sin",
+                        "Multiply",
                         [
-                            "Add",
-                            "e",
+                            "Sqrt",
                             [
                                 "Multiply",
-                                "f",
-                                "x"
+                                "g",
+                                [
+                                    "Sin",
+                                    [
+                                        "Add",
+                                        "e",
+                                        [
+                                            "Multiply",
+                                            "f",
+                                            "x"
+                                        ]
+                                    ]
+                                ]
+                            ]
+                        ],
+                        [
+                            "Sqrt",
+                            [
+                                "Add",
+                                "a",
+                                [
+                                    "Multiply",
+                                    "b",
+                                    [
+                                        "Sin",
+                                        [
+                                            "Add",
+                                            "e",
+                                            [
+                                                "Multiply",
+                                                "f",
+                                                "x"
+                                            ]
+                                        ]
+                                    ]
+                                ]
+                            ]
+                        ],
+                        [
+                            "Add",
+                            "c",
+                            [
+                                "Multiply",
+                                "c",
+                                [
+                                    "Sin",
+                                    [
+                                        "Add",
+                                        "e",
+                                        [
+                                            "Multiply",
+                                            "f",
+                                            "x"
+                                        ]
+                                    ]
+                                ]
                             ]
                         ]
                     ],
                     -1
                 ]
-            ],
-            "id": 35,
+            ]
+        },
+        {
             "expected_result": [
                 "Add",
                 [
@@ -9766,10 +9698,9 @@
                     ]
                 ]
             ],
-            "variable": "x"
-        },
-        {
-            "num_steps": 2,
+            "num_steps": 5,
+            "id": 35,
+            "variable": "x",
             "expression": [
                 "Multiply",
                 [
@@ -9796,49 +9727,47 @@
                     ]
                 ],
                 [
-                    "Power",
+                    "Sqrt",
                     [
-                        "Multiply",
+                        "Add",
+                        "c",
                         [
-                            "Sin",
+                            "Multiply",
+                            "d",
                             [
-                                "Add",
-                                "e",
+                                "Sin",
                                 [
-                                    "Multiply",
-                                    "f",
-                                    "x"
-                                ]
-                            ]
-                        ],
-                        [
-                            "Sqrt",
-                            [
-                                "Add",
-                                "c",
-                                [
-                                    "Multiply",
-                                    "d",
+                                    "Add",
+                                    "e",
                                     [
-                                        "Sin",
-                                        [
-                                            "Add",
-                                            "e",
-                                            [
-                                                "Multiply",
-                                                "f",
-                                                "x"
-                                            ]
-                                        ]
+                                        "Multiply",
+                                        "f",
+                                        "x"
                                     ]
                                 ]
+                            ]
+                        ]
+                    ]
+                ],
+                [
+                    "Power",
+                    [
+                        "Sin",
+                        [
+                            "Add",
+                            "e",
+                            [
+                                "Multiply",
+                                "f",
+                                "x"
                             ]
                         ]
                     ],
                     -1
                 ]
-            ],
-            "id": 36,
+            ]
+        },
+        {
             "expected_result": [
                 "Multiply",
                 -1,
@@ -9939,20 +9868,19 @@
                     -1
                 ]
             ],
-            "variable": "x"
-        },
-        {
-            "num_steps": 5,
+            "num_steps": 2,
+            "id": 36,
+            "variable": "x",
             "expression": [
                 "Multiply",
                 [
                     "Sqrt",
                     [
                         "Add",
-                        "c",
+                        "a",
                         [
                             "Multiply",
-                            "d",
+                            "a",
                             [
                                 "Sin",
                                 [
@@ -9988,10 +9916,10 @@
                             "Sqrt",
                             [
                                 "Add",
-                                "a",
+                                "c",
                                 [
                                     "Multiply",
-                                    "a",
+                                    "d",
                                     [
                                         "Sin",
                                         [
@@ -10010,8 +9938,9 @@
                     ],
                     -1
                 ]
-            ],
-            "id": 37,
+            ]
+        },
+        {
             "expected_result": [
                 "Add",
                 [
@@ -10237,13 +10166,34 @@
                     ]
                 ]
             ],
-            "variable": "x"
-        },
-        {
             "num_steps": 5,
+            "id": 37,
+            "variable": "x",
             "expression": [
                 "Multiply",
-                1,
+                [
+                    "Sqrt",
+                    [
+                        "Add",
+                        "c",
+                        [
+                            "Multiply",
+                            "d",
+                            [
+                                "Sin",
+                                [
+                                    "Add",
+                                    "e",
+                                    [
+                                        "Multiply",
+                                        "f",
+                                        "x"
+                                    ]
+                                ]
+                            ]
+                        ]
+                    ]
+                ],
                 [
                     "Power",
                     [
@@ -10282,35 +10232,13 @@
                                     ]
                                 ]
                             ]
-                        ],
-                        [
-                            "Sqrt",
-                            [
-                                "Add",
-                                "c",
-                                [
-                                    "Multiply",
-                                    "d",
-                                    [
-                                        "Sin",
-                                        [
-                                            "Add",
-                                            "e",
-                                            [
-                                                "Multiply",
-                                                "f",
-                                                "x"
-                                            ]
-                                        ]
-                                    ]
-                                ]
-                            ]
                         ]
                     ],
                     -1
                 ]
-            ],
-            "id": 38,
+            ]
+        },
+        {
             "expected_result": [
                 "Add",
                 [
@@ -10536,40 +10464,36 @@
                     ]
                 ]
             ],
-            "variable": "x"
-        },
-        {
-            "num_steps": 8,
+            "num_steps": 5,
+            "id": 38,
+            "variable": "x",
             "expression": [
                 "Multiply",
-                [
-                    "Power",
-                    [
-                        "Sin",
-                        [
-                            "Add",
-                            "e",
-                            [
-                                "Multiply",
-                                "f",
-                                "x"
-                            ]
-                        ]
-                    ],
-                    2
-                ],
+                1,
                 [
                     "Power",
                     [
                         "Multiply",
                         [
-                            "Power",
+                            "Sin",
+                            [
+                                "Add",
+                                "e",
+                                [
+                                    "Multiply",
+                                    "f",
+                                    "x"
+                                ]
+                            ]
+                        ],
+                        [
+                            "Sqrt",
                             [
                                 "Add",
                                 "a",
                                 [
                                     "Multiply",
-                                    "b",
+                                    "a",
                                     [
                                         "Sin",
                                         [
@@ -10583,24 +10507,26 @@
                                         ]
                                     ]
                                 ]
-                            ],
-                            2
+                            ]
                         ],
                         [
-                            "Add",
-                            "c",
+                            "Sqrt",
                             [
-                                "Multiply",
-                                "d",
+                                "Add",
+                                "c",
                                 [
-                                    "Sin",
+                                    "Multiply",
+                                    "d",
                                     [
-                                        "Add",
-                                        "e",
+                                        "Sin",
                                         [
-                                            "Multiply",
-                                            "f",
-                                            "x"
+                                            "Add",
+                                            "e",
+                                            [
+                                                "Multiply",
+                                                "f",
+                                                "x"
+                                            ]
                                         ]
                                     ]
                                 ]
@@ -10609,8 +10535,9 @@
                     ],
                     -1
                 ]
-            ],
-            "id": 39,
+            ]
+        },
+        {
             "expected_result": [
                 "Add",
                 [
@@ -10956,66 +10883,61 @@
                     ]
                 ]
             ],
-            "variable": "x"
-        },
-        {
-            "num_steps": 5,
+            "num_steps": 8,
+            "id": 39,
+            "variable": "x",
             "expression": [
                 "Multiply",
                 [
                     "Power",
                     [
-                        "Add",
-                        "c",
+                        "Sin",
                         [
-                            "Multiply",
-                            "d",
+                            "Add",
+                            "e",
                             [
-                                "Sin",
-                                [
-                                    "Add",
-                                    "e",
-                                    [
-                                        "Multiply",
-                                        "f",
-                                        "x"
-                                    ]
-                                ]
+                                "Multiply",
+                                "f",
+                                "x"
                             ]
                         ]
                     ],
-                    [
-                        "Multiply",
-                        1,
-                        [
-                            "Power",
-                            2,
-                            -1
-                        ]
-                    ]
+                    2
                 ],
                 [
                     "Power",
                     [
                         "Multiply",
                         [
-                            "Sin",
+                            "Power",
                             [
                                 "Add",
-                                "e",
+                                "a",
                                 [
                                     "Multiply",
-                                    "f",
-                                    "x"
+                                    "b",
+                                    [
+                                        "Sin",
+                                        [
+                                            "Add",
+                                            "e",
+                                            [
+                                                "Multiply",
+                                                "f",
+                                                "x"
+                                            ]
+                                        ]
+                                    ]
                                 ]
-                            ]
+                            ],
+                            2
                         ],
                         [
                             "Add",
-                            "a",
+                            "c",
                             [
                                 "Multiply",
-                                "b",
+                                "d",
                                 [
                                     "Sin",
                                     [
@@ -11033,8 +10955,9 @@
                     ],
                     -1
                 ]
-            ],
-            "id": 40,
+            ]
+        },
+        {
             "expected_result": [
                 "Add",
                 [
@@ -11306,13 +11229,43 @@
                     ]
                 ]
             ],
-            "variable": "x"
-        },
-        {
             "num_steps": 5,
+            "id": 40,
+            "variable": "x",
             "expression": [
                 "Multiply",
-                1,
+                [
+                    "Power",
+                    [
+                        "Add",
+                        "c",
+                        [
+                            "Multiply",
+                            "d",
+                            [
+                                "Sin",
+                                [
+                                    "Add",
+                                    "e",
+                                    [
+                                        "Multiply",
+                                        "f",
+                                        "x"
+                                    ]
+                                ]
+                            ]
+                        ]
+                    ],
+                    [
+                        "Multiply",
+                        1,
+                        [
+                            "Power",
+                            2,
+                            -1
+                        ]
+                    ]
+                ],
                 [
                     "Power",
                     [
@@ -11326,38 +11279,6 @@
                                     "Multiply",
                                     "f",
                                     "x"
-                                ]
-                            ]
-                        ],
-                        [
-                            "Power",
-                            [
-                                "Add",
-                                "c",
-                                [
-                                    "Multiply",
-                                    "d",
-                                    [
-                                        "Sin",
-                                        [
-                                            "Add",
-                                            "e",
-                                            [
-                                                "Multiply",
-                                                "f",
-                                                "x"
-                                            ]
-                                        ]
-                                    ]
-                                ]
-                            ],
-                            [
-                                "Multiply",
-                                1,
-                                [
-                                    "Power",
-                                    2,
-                                    -1
                                 ]
                             ]
                         ],
@@ -11384,8 +11305,9 @@
                     ],
                     -1
                 ]
-            ],
-            "id": 41,
+            ]
+        },
+        {
             "expected_result": [
                 "Add",
                 [
@@ -11643,17 +11565,16 @@
                     ]
                 ]
             ],
-            "variable": "x"
-        },
-        {
-            "num_steps": 3,
+            "num_steps": 5,
+            "id": 41,
+            "variable": "x",
             "expression": [
                 "Multiply",
+                1,
                 [
-                    "Sqrt",
+                    "Power",
                     [
                         "Multiply",
-                        "g",
                         [
                             "Sin",
                             [
@@ -11665,49 +11586,55 @@
                                     "x"
                                 ]
                             ]
-                        ]
-                    ]
-                ],
-                [
-                    "Sqrt",
-                    [
-                        "Add",
-                        "a",
+                        ],
                         [
-                            "Multiply",
-                            "b",
+                            "Power",
                             [
-                                "Sin",
+                                "Add",
+                                "c",
                                 [
-                                    "Add",
-                                    "e",
+                                    "Multiply",
+                                    "d",
                                     [
-                                        "Multiply",
-                                        "f",
-                                        "x"
+                                        "Sin",
+                                        [
+                                            "Add",
+                                            "e",
+                                            [
+                                                "Multiply",
+                                                "f",
+                                                "x"
+                                            ]
+                                        ]
                                     ]
                                 ]
-                            ]
-                        ]
-                    ]
-                ],
-                [
-                    "Power",
-                    [
-                        "Add",
-                        "c",
-                        [
-                            "Multiply",
-                            "d",
+                            ],
                             [
-                                "Sin",
+                                "Multiply",
+                                1,
                                 [
-                                    "Add",
-                                    "e",
+                                    "Power",
+                                    2,
+                                    -1
+                                ]
+                            ]
+                        ],
+                        [
+                            "Add",
+                            "a",
+                            [
+                                "Multiply",
+                                "b",
+                                [
+                                    "Sin",
                                     [
-                                        "Multiply",
-                                        "f",
-                                        "x"
+                                        "Add",
+                                        "e",
+                                        [
+                                            "Multiply",
+                                            "f",
+                                            "x"
+                                        ]
                                     ]
                                 ]
                             ]
@@ -11715,8 +11642,9 @@
                     ],
                     -1
                 ]
-            ],
-            "id": 42,
+            ]
+        },
+        {
             "expected_result": [
                 "Add",
                 [
@@ -12147,12 +12075,30 @@
                     ]
                 ]
             ],
-            "variable": "x"
-        },
-        {
             "num_steps": 3,
+            "id": 42,
+            "variable": "x",
             "expression": [
                 "Multiply",
+                [
+                    "Sqrt",
+                    [
+                        "Multiply",
+                        "g",
+                        [
+                            "Sin",
+                            [
+                                "Add",
+                                "e",
+                                [
+                                    "Multiply",
+                                    "f",
+                                    "x"
+                                ]
+                            ]
+                        ]
+                    ]
+                ],
                 [
                     "Sqrt",
                     [
@@ -12179,42 +12125,20 @@
                 [
                     "Power",
                     [
-                        "Multiply",
+                        "Add",
+                        "c",
                         [
-                            "Sqrt",
+                            "Multiply",
+                            "d",
                             [
-                                "Multiply",
-                                "g",
+                                "Sin",
                                 [
-                                    "Sin",
+                                    "Add",
+                                    "e",
                                     [
-                                        "Add",
-                                        "e",
-                                        [
-                                            "Multiply",
-                                            "f",
-                                            "x"
-                                        ]
-                                    ]
-                                ]
-                            ]
-                        ],
-                        [
-                            "Add",
-                            "c",
-                            [
-                                "Multiply",
-                                "d",
-                                [
-                                    "Sin",
-                                    [
-                                        "Add",
-                                        "e",
-                                        [
-                                            "Multiply",
-                                            "f",
-                                            "x"
-                                        ]
+                                        "Multiply",
+                                        "f",
+                                        "x"
                                     ]
                                 ]
                             ]
@@ -12222,8 +12146,9 @@
                     ],
                     -1
                 ]
-            ],
-            "id": 43,
+            ]
+        },
+        {
             "expected_result": [
                 "Add",
                 [
@@ -12642,26 +12567,29 @@
                     ]
                 ]
             ],
-            "variable": "x"
-        },
-        {
-            "num_steps": 1,
+            "num_steps": 3,
+            "id": 43,
+            "variable": "x",
             "expression": [
                 "Multiply",
                 [
                     "Sqrt",
                     [
-                        "Multiply",
-                        "g",
+                        "Add",
+                        "a",
                         [
-                            "Sin",
+                            "Multiply",
+                            "b",
                             [
-                                "Add",
-                                "e",
+                                "Sin",
                                 [
-                                    "Multiply",
-                                    "f",
-                                    "x"
+                                    "Add",
+                                    "e",
+                                    [
+                                        "Multiply",
+                                        "f",
+                                        "x"
+                                    ]
                                 ]
                             ]
                         ]
@@ -12674,21 +12602,17 @@
                         [
                             "Sqrt",
                             [
-                                "Add",
-                                "a",
+                                "Multiply",
+                                "g",
                                 [
-                                    "Multiply",
-                                    "b",
+                                    "Sin",
                                     [
-                                        "Sin",
+                                        "Add",
+                                        "e",
                                         [
-                                            "Add",
-                                            "e",
-                                            [
-                                                "Multiply",
-                                                "f",
-                                                "x"
-                                            ]
+                                            "Multiply",
+                                            "f",
+                                            "x"
                                         ]
                                     ]
                                 ]
@@ -12717,8 +12641,9 @@
                     ],
                     -1
                 ]
-            ],
-            "id": 44,
+            ]
+        },
+        {
             "expected_result": [
                 "Multiply",
                 2,
@@ -12916,36 +12841,34 @@
                     -1
                 ]
             ],
-            "variable": "x"
-        },
-        {
-            "num_steps": 3,
+            "num_steps": 1,
+            "id": 44,
+            "variable": "x",
             "expression": [
                 "Multiply",
-                1,
+                [
+                    "Sqrt",
+                    [
+                        "Multiply",
+                        "g",
+                        [
+                            "Sin",
+                            [
+                                "Add",
+                                "e",
+                                [
+                                    "Multiply",
+                                    "f",
+                                    "x"
+                                ]
+                            ]
+                        ]
+                    ]
+                ],
                 [
                     "Power",
                     [
                         "Multiply",
-                        [
-                            "Sqrt",
-                            [
-                                "Multiply",
-                                "g",
-                                [
-                                    "Sin",
-                                    [
-                                        "Add",
-                                        "e",
-                                        [
-                                            "Multiply",
-                                            "f",
-                                            "x"
-                                        ]
-                                    ]
-                                ]
-                            ]
-                        ],
                         [
                             "Sqrt",
                             [
@@ -12992,8 +12915,9 @@
                     ],
                     -1
                 ]
-            ],
-            "id": 45,
+            ]
+        },
+        {
             "expected_result": [
                 "Add",
                 [
@@ -13401,80 +13325,74 @@
                     ]
                 ]
             ],
-            "variable": "x"
-        },
-        {
             "num_steps": 3,
+            "id": 45,
+            "variable": "x",
             "expression": [
                 "Multiply",
-                [
-                    "Sqrt",
-                    [
-                        "Multiply",
-                        "g",
-                        [
-                            "Sin",
-                            [
-                                "Add",
-                                "e",
-                                [
-                                    "Multiply",
-                                    "f",
-                                    "x"
-                                ]
-                            ]
-                        ]
-                    ]
-                ],
+                1,
                 [
                     "Power",
                     [
-                        "Add",
-                        "c",
+                        "Multiply",
                         [
-                            "Multiply",
-                            "d",
+                            "Sqrt",
                             [
-                                "Sin",
+                                "Multiply",
+                                "g",
                                 [
-                                    "Add",
-                                    "e",
+                                    "Sin",
                                     [
-                                        "Multiply",
-                                        "f",
-                                        "x"
+                                        "Add",
+                                        "e",
+                                        [
+                                            "Multiply",
+                                            "f",
+                                            "x"
+                                        ]
                                     ]
                                 ]
                             ]
-                        ]
-                    ],
-                    [
-                        "Multiply",
-                        1,
+                        ],
                         [
-                            "Power",
-                            2,
-                            -1
-                        ]
-                    ]
-                ],
-                [
-                    "Power",
-                    [
-                        "Add",
-                        "a",
-                        [
-                            "Multiply",
-                            "b",
+                            "Sqrt",
                             [
-                                "Sin",
+                                "Add",
+                                "a",
                                 [
-                                    "Add",
-                                    "e",
+                                    "Multiply",
+                                    "b",
                                     [
-                                        "Multiply",
-                                        "f",
-                                        "x"
+                                        "Sin",
+                                        [
+                                            "Add",
+                                            "e",
+                                            [
+                                                "Multiply",
+                                                "f",
+                                                "x"
+                                            ]
+                                        ]
+                                    ]
+                                ]
+                            ]
+                        ],
+                        [
+                            "Add",
+                            "c",
+                            [
+                                "Multiply",
+                                "d",
+                                [
+                                    "Sin",
+                                    [
+                                        "Add",
+                                        "e",
+                                        [
+                                            "Multiply",
+                                            "f",
+                                            "x"
+                                        ]
                                     ]
                                 ]
                             ]
@@ -13482,8 +13400,9 @@
                     ],
                     -1
                 ]
-            ],
-            "id": 46,
+            ]
+        },
+        {
             "expected_result": [
                 "Add",
                 [
@@ -13913,10 +13832,9 @@
                     ]
                 ]
             ],
-            "variable": "x"
-        },
-        {
-            "num_steps": 1,
+            "num_steps": 3,
+            "id": 46,
+            "variable": "x",
             "expression": [
                 "Multiply",
                 [
@@ -13941,55 +13859,52 @@
                 [
                     "Power",
                     [
-                        "Multiply",
+                        "Add",
+                        "c",
                         [
-                            "Power",
+                            "Multiply",
+                            "d",
                             [
-                                "Add",
-                                "c",
+                                "Sin",
                                 [
-                                    "Multiply",
-                                    "d",
+                                    "Add",
+                                    "e",
                                     [
-                                        "Sin",
-                                        [
-                                            "Add",
-                                            "e",
-                                            [
-                                                "Multiply",
-                                                "f",
-                                                "x"
-                                            ]
-                                        ]
+                                        "Multiply",
+                                        "f",
+                                        "x"
                                     ]
                                 ]
-                            ],
-                            [
-                                "Multiply",
-                                1,
-                                [
-                                    "Power",
-                                    2,
-                                    -1
-                                ]
                             ]
-                        ],
+                        ]
+                    ],
+                    [
+                        "Multiply",
+                        1,
                         [
-                            "Add",
-                            "a",
+                            "Power",
+                            2,
+                            -1
+                        ]
+                    ]
+                ],
+                [
+                    "Power",
+                    [
+                        "Add",
+                        "a",
+                        [
+                            "Multiply",
+                            "b",
                             [
-                                "Multiply",
-                                "b",
+                                "Sin",
                                 [
-                                    "Sin",
+                                    "Add",
+                                    "e",
                                     [
-                                        "Add",
-                                        "e",
-                                        [
-                                            "Multiply",
-                                            "f",
-                                            "x"
-                                        ]
+                                        "Multiply",
+                                        "f",
+                                        "x"
                                     ]
                                 ]
                             ]
@@ -13997,8 +13912,9 @@
                     ],
                     -1
                 ]
-            ],
-            "id": 47,
+            ]
+        },
+        {
             "expected_result": [
                 "Multiply",
                 2,
@@ -14196,53 +14112,25 @@
                     -1
                 ]
             ],
-            "variable": "x"
-        },
-        {
-            "num_steps": 3,
+            "num_steps": 1,
+            "id": 47,
+            "variable": "x",
             "expression": [
                 "Multiply",
                 [
                     "Sqrt",
                     [
-                        "Add",
-                        "a",
+                        "Multiply",
+                        "g",
                         [
-                            "Multiply",
-                            "b",
+                            "Sin",
                             [
-                                "Sin",
+                                "Add",
+                                "e",
                                 [
-                                    "Add",
-                                    "e",
-                                    [
-                                        "Multiply",
-                                        "f",
-                                        "x"
-                                    ]
-                                ]
-                            ]
-                        ]
-                    ]
-                ],
-                [
-                    "Sqrt",
-                    [
-                        "Add",
-                        "c",
-                        [
-                            "Multiply",
-                            "d",
-                            [
-                                "Sin",
-                                [
-                                    "Add",
-                                    "e",
-                                    [
-                                        "Multiply",
-                                        "f",
-                                        "x"
-                                    ]
+                                    "Multiply",
+                                    "f",
+                                    "x"
                                 ]
                             ]
                         ]
@@ -14251,21 +14139,65 @@
                 [
                     "Power",
                     [
-                        "Sin",
+                        "Multiply",
                         [
-                            "Add",
-                            "e",
+                            "Power",
+                            [
+                                "Add",
+                                "c",
+                                [
+                                    "Multiply",
+                                    "d",
+                                    [
+                                        "Sin",
+                                        [
+                                            "Add",
+                                            "e",
+                                            [
+                                                "Multiply",
+                                                "f",
+                                                "x"
+                                            ]
+                                        ]
+                                    ]
+                                ]
+                            ],
                             [
                                 "Multiply",
-                                "f",
-                                "x"
+                                1,
+                                [
+                                    "Power",
+                                    2,
+                                    -1
+                                ]
+                            ]
+                        ],
+                        [
+                            "Add",
+                            "a",
+                            [
+                                "Multiply",
+                                "b",
+                                [
+                                    "Sin",
+                                    [
+                                        "Add",
+                                        "e",
+                                        [
+                                            "Multiply",
+                                            "f",
+                                            "x"
+                                        ]
+                                    ]
+                                ]
                             ]
                         ]
                     ],
                     -1
                 ]
-            ],
-            "id": 48,
+            ]
+        },
+        {
             "expected_result": [
                 "Add",
                 [
@@ -14956,10 +14888,9 @@
                     ]
                 ]
             ],
-            "variable": "x"
-        },
-        {
-            "num_steps": 1,
+            "num_steps": 3,
+            "id": 48,
+            "variable": "x",
             "expression": [
                 "Multiply",
                 [
@@ -14986,49 +14917,47 @@
                     ]
                 ],
                 [
-                    "Power",
+                    "Sqrt",
                     [
-                        "Multiply",
+                        "Add",
+                        "c",
                         [
-                            "Sin",
+                            "Multiply",
+                            "d",
                             [
-                                "Add",
-                                "e",
+                                "Sin",
                                 [
-                                    "Multiply",
-                                    "f",
-                                    "x"
-                                ]
-                            ]
-                        ],
-                        [
-                            "Sqrt",
-                            [
-                                "Add",
-                                "c",
-                                [
-                                    "Multiply",
-                                    "d",
+                                    "Add",
+                                    "e",
                                     [
-                                        "Sin",
-                                        [
-                                            "Add",
-                                            "e",
-                                            [
-                                                "Multiply",
-                                                "f",
-                                                "x"
-                                            ]
-                                        ]
+                                        "Multiply",
+                                        "f",
+                                        "x"
                                     ]
                                 ]
+                            ]
+                        ]
+                    ]
+                ],
+                [
+                    "Power",
+                    [
+                        "Sin",
+                        [
+                            "Add",
+                            "e",
+                            [
+                                "Multiply",
+                                "f",
+                                "x"
                             ]
                         ]
                     ],
                     -1
                 ]
-            ],
-            "id": 49,
+            ]
+        },
+        {
             "expected_result": [
                 "Multiply",
                 -1,
@@ -15374,13 +15303,34 @@
                     -1
                 ]
             ],
-            "variable": "x"
-        },
-        {
-            "num_steps": 3,
+            "num_steps": 1,
+            "id": 49,
+            "variable": "x",
             "expression": [
                 "Multiply",
-                1,
+                [
+                    "Sqrt",
+                    [
+                        "Add",
+                        "a",
+                        [
+                            "Multiply",
+                            "b",
+                            [
+                                "Sin",
+                                [
+                                    "Add",
+                                    "e",
+                                    [
+                                        "Multiply",
+                                        "f",
+                                        "x"
+                                    ]
+                                ]
+                            ]
+                        ]
+                    ]
+                ],
                 [
                     "Power",
                     [
@@ -15394,29 +15344,6 @@
                                     "Multiply",
                                     "f",
                                     "x"
-                                ]
-                            ]
-                        ],
-                        [
-                            "Sqrt",
-                            [
-                                "Add",
-                                "a",
-                                [
-                                    "Multiply",
-                                    "b",
-                                    [
-                                        "Sin",
-                                        [
-                                            "Add",
-                                            "e",
-                                            [
-                                                "Multiply",
-                                                "f",
-                                                "x"
-                                            ]
-                                        ]
-                                    ]
                                 ]
                             ]
                         ],
@@ -15446,8 +15373,9 @@
                     ],
                     -1
                 ]
-            ],
-            "id": 50,
+            ]
+        },
+        {
             "expected_result": [
                 "Add",
                 [
@@ -16135,87 +16063,80 @@
                     ]
                 ]
             ],
-            "variable": "x"
-        },
-        {
-            "num_steps": 4,
+            "num_steps": 3,
+            "id": 50,
+            "variable": "x",
             "expression": [
                 "Multiply",
+                1,
                 [
                     "Power",
                     [
-                        "Add",
-                        "a",
+                        "Multiply",
                         [
-                            "Multiply",
-                            "a",
+                            "Sin",
                             [
-                                "Sin",
+                                "Add",
+                                "e",
                                 [
-                                    "Add",
-                                    "e",
+                                    "Multiply",
+                                    "f",
+                                    "x"
+                                ]
+                            ]
+                        ],
+                        [
+                            "Sqrt",
+                            [
+                                "Add",
+                                "a",
+                                [
+                                    "Multiply",
+                                    "b",
                                     [
-                                        "Multiply",
-                                        "f",
-                                        "x"
+                                        "Sin",
+                                        [
+                                            "Add",
+                                            "e",
+                                            [
+                                                "Multiply",
+                                                "f",
+                                                "x"
+                                            ]
+                                        ]
+                                    ]
+                                ]
+                            ]
+                        ],
+                        [
+                            "Sqrt",
+                            [
+                                "Add",
+                                "c",
+                                [
+                                    "Multiply",
+                                    "d",
+                                    [
+                                        "Sin",
+                                        [
+                                            "Add",
+                                            "e",
+                                            [
+                                                "Multiply",
+                                                "f",
+                                                "x"
+                                            ]
+                                        ]
                                     ]
                                 ]
                             ]
                         ]
                     ],
-                    "m"
-                ],
-                [
-                    "Power",
-                    [
-                        "Add",
-                        "c",
-                        [
-                            "Multiply",
-                            -1,
-                            "c",
-                            [
-                                "Sin",
-                                [
-                                    "Add",
-                                    "e",
-                                    [
-                                        "Multiply",
-                                        "f",
-                                        "x"
-                                    ]
-                                ]
-                            ]
-                        ]
-                    ],
-                    "n"
-                ],
-                [
-                    "Power",
-                    [
-                        "Add",
-                        "A",
-                        [
-                            "Multiply",
-                            "B",
-                            [
-                                "Sin",
-                                [
-                                    "Add",
-                                    "e",
-                                    [
-                                        "Multiply",
-                                        "f",
-                                        "x"
-                                    ]
-                                ]
-                            ]
-                        ]
-                    ],
-                    "p"
+                    -1
                 ]
-            ],
-            "id": 51,
+            ]
+        },
+        {
             "expected_result": [
                 "Multiply",
                 [
@@ -16533,7 +16454,86 @@
                     -1
                 ]
             ],
-            "variable": "x"
+            "num_steps": 4,
+            "id": 51,
+            "variable": "x",
+            "expression": [
+                "Multiply",
+                [
+                    "Power",
+                    [
+                        "Add",
+                        "a",
+                        [
+                            "Multiply",
+                            "a",
+                            [
+                                "Sin",
+                                [
+                                    "Add",
+                                    "e",
+                                    [
+                                        "Multiply",
+                                        "f",
+                                        "x"
+                                    ]
+                                ]
+                            ]
+                        ]
+                    ],
+                    "m"
+                ],
+                [
+                    "Power",
+                    [
+                        "Add",
+                        "c",
+                        [
+                            "Multiply",
+                            -1,
+                            "c",
+                            [
+                                "Sin",
+                                [
+                                    "Add",
+                                    "e",
+                                    [
+                                        "Multiply",
+                                        "f",
+                                        "x"
+                                    ]
+                                ]
+                            ]
+                        ]
+                    ],
+                    "n"
+                ],
+                [
+                    "Power",
+                    [
+                        "Add",
+                        "A",
+                        [
+                            "Multiply",
+                            "B",
+                            [
+                                "Sin",
+                                [
+                                    "Add",
+                                    "e",
+                                    [
+                                        "Multiply",
+                                        "f",
+                                        "x"
+                                    ]
+                                ]
+                            ]
+                        ]
+                    ],
+                    "p"
+                ]
+            ]
         }
-    ]
+    ],
+    "$schema": "open-symbolic-rules/v0.1"
 }

@@ -1,76 +1,8 @@
 {
-    "$schema": "open-symbolic-rules/v0.1",
-    "section": "4.2.2.2",
     "title": "(g sin)^p (a+b cos)^m (c+d cos)^n",
+    "section": "4.2.2.2",
     "tests": [
         {
-            "num_steps": 16,
-            "expression": [
-                "Multiply",
-                [
-                    "Sqrt",
-                    [
-                        "Multiply",
-                        "g",
-                        [
-                            "Sin",
-                            [
-                                "Add",
-                                "e",
-                                [
-                                    "Multiply",
-                                    "f",
-                                    "x"
-                                ]
-                            ]
-                        ]
-                    ]
-                ],
-                [
-                    "Sqrt",
-                    [
-                        "Multiply",
-                        "d",
-                        [
-                            "Cos",
-                            [
-                                "Add",
-                                "e",
-                                [
-                                    "Multiply",
-                                    "f",
-                                    "x"
-                                ]
-                            ]
-                        ]
-                    ]
-                ],
-                [
-                    "Power",
-                    [
-                        "Add",
-                        "a",
-                        [
-                            "Multiply",
-                            "b",
-                            [
-                                "Cos",
-                                [
-                                    "Add",
-                                    "e",
-                                    [
-                                        "Multiply",
-                                        "f",
-                                        "x"
-                                    ]
-                                ]
-                            ]
-                        ]
-                    ],
-                    -1
-                ]
-            ],
-            "id": 1,
             "expected_result": [
                 "Add",
                 [
@@ -802,12 +734,30 @@
                     ]
                 ]
             ],
-            "variable": "x"
-        },
-        {
-            "num_steps": 4,
+            "num_steps": 16,
+            "id": 1,
+            "variable": "x",
             "expression": [
                 "Multiply",
+                [
+                    "Sqrt",
+                    [
+                        "Multiply",
+                        "g",
+                        [
+                            "Sin",
+                            [
+                                "Add",
+                                "e",
+                                [
+                                    "Multiply",
+                                    "f",
+                                    "x"
+                                ]
+                            ]
+                        ]
+                    ]
+                ],
                 [
                     "Sqrt",
                     [
@@ -830,42 +780,20 @@
                 [
                     "Power",
                     [
-                        "Multiply",
+                        "Add",
+                        "a",
                         [
-                            "Sqrt",
+                            "Multiply",
+                            "b",
                             [
-                                "Multiply",
-                                "g",
+                                "Cos",
                                 [
-                                    "Sin",
+                                    "Add",
+                                    "e",
                                     [
-                                        "Add",
-                                        "e",
-                                        [
-                                            "Multiply",
-                                            "f",
-                                            "x"
-                                        ]
-                                    ]
-                                ]
-                            ]
-                        ],
-                        [
-                            "Add",
-                            "a",
-                            [
-                                "Multiply",
-                                "b",
-                                [
-                                    "Cos",
-                                    [
-                                        "Add",
-                                        "e",
-                                        [
-                                            "Multiply",
-                                            "f",
-                                            "x"
-                                        ]
+                                        "Multiply",
+                                        "f",
+                                        "x"
                                     ]
                                 ]
                             ]
@@ -873,8 +801,9 @@
                     ],
                     -1
                 ]
-            ],
-            "id": 2,
+            ]
+        },
+        {
             "expected_result": [
                 "Add",
                 [
@@ -1215,19 +1144,18 @@
                     ]
                 ]
             ],
-            "variable": "x"
-        },
-        {
-            "num_steps": 5,
+            "num_steps": 4,
+            "id": 2,
+            "variable": "x",
             "expression": [
                 "Multiply",
                 [
                     "Sqrt",
                     [
                         "Multiply",
-                        "g",
+                        "d",
                         [
-                            "Sin",
+                            "Cos",
                             [
                                 "Add",
                                 "e",
@@ -1248,9 +1176,9 @@
                             "Sqrt",
                             [
                                 "Multiply",
-                                "d",
+                                "g",
                                 [
-                                    "Cos",
+                                    "Sin",
                                     [
                                         "Add",
                                         "e",
@@ -1286,8 +1214,9 @@
                     ],
                     -1
                 ]
-            ],
-            "id": 3,
+            ]
+        },
+        {
             "expected_result": [
                 "Add",
                 [
@@ -1613,36 +1542,34 @@
                     ]
                 ]
             ],
-            "variable": "x"
-        },
-        {
-            "num_steps": 7,
+            "num_steps": 5,
+            "id": 3,
+            "variable": "x",
             "expression": [
                 "Multiply",
-                1,
+                [
+                    "Sqrt",
+                    [
+                        "Multiply",
+                        "g",
+                        [
+                            "Sin",
+                            [
+                                "Add",
+                                "e",
+                                [
+                                    "Multiply",
+                                    "f",
+                                    "x"
+                                ]
+                            ]
+                        ]
+                    ]
+                ],
                 [
                     "Power",
                     [
                         "Multiply",
-                        [
-                            "Sqrt",
-                            [
-                                "Multiply",
-                                "g",
-                                [
-                                    "Sin",
-                                    [
-                                        "Add",
-                                        "e",
-                                        [
-                                            "Multiply",
-                                            "f",
-                                            "x"
-                                        ]
-                                    ]
-                                ]
-                            ]
-                        ],
                         [
                             "Sqrt",
                             [
@@ -1685,8 +1612,9 @@
                     ],
                     -1
                 ]
-            ],
-            "id": 4,
+            ]
+        },
+        {
             "expected_result": [
                 "Add",
                 [
@@ -2124,7 +2052,79 @@
                     ]
                 ]
             ],
-            "variable": "x"
+            "num_steps": 7,
+            "id": 4,
+            "variable": "x",
+            "expression": [
+                "Multiply",
+                1,
+                [
+                    "Power",
+                    [
+                        "Multiply",
+                        [
+                            "Sqrt",
+                            [
+                                "Multiply",
+                                "g",
+                                [
+                                    "Sin",
+                                    [
+                                        "Add",
+                                        "e",
+                                        [
+                                            "Multiply",
+                                            "f",
+                                            "x"
+                                        ]
+                                    ]
+                                ]
+                            ]
+                        ],
+                        [
+                            "Sqrt",
+                            [
+                                "Multiply",
+                                "d",
+                                [
+                                    "Cos",
+                                    [
+                                        "Add",
+                                        "e",
+                                        [
+                                            "Multiply",
+                                            "f",
+                                            "x"
+                                        ]
+                                    ]
+                                ]
+                            ]
+                        ],
+                        [
+                            "Add",
+                            "a",
+                            [
+                                "Multiply",
+                                "b",
+                                [
+                                    "Cos",
+                                    [
+                                        "Add",
+                                        "e",
+                                        [
+                                            "Multiply",
+                                            "f",
+                                            "x"
+                                        ]
+                                    ]
+                                ]
+                            ]
+                        ]
+                    ],
+                    -1
+                ]
+            ]
         }
-    ]
+    ],
+    "$schema": "open-symbolic-rules/v0.1"
 }

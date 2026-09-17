@@ -5,13 +5,17 @@ on:
     paths:
       - 'converter/**'
       - 'vendor/Rubi/**'
-      - 'schemas/**/*.json'
+      - 'rules/**'
+      - 'tests/**'
+      - 'Specification/**'
       - '.github/workflows/converter-drift.yml'
   pull_request:
     paths:
       - 'converter/**'
       - 'vendor/Rubi/**'
-      - 'schemas/**/*.json'
+      - 'rules/**'
+      - 'tests/**'
+      - 'Specification/**'
       - '.github/workflows/converter-drift.yml'
   workflow_dispatch:
 
@@ -29,7 +33,7 @@ jobs:
       - name: Set up Julia
         uses: julia-actions/setup-julia@v2
         with:
-          version: "1"
+          version: "1.13"
 
       - name: Install converter dependencies
         run: julia --project=converter -e 'using Pkg; Pkg.instantiate()'

@@ -18,6 +18,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Exact duplicate-rule baseline validation in CI. The baseline records all
   359 legacy Rubi duplicate groups and rejects new or altered groups.
 - Machine-readable Rubi provenance for every converted rule.
+- Run the converter drift check for generated rules, tests, and Specification
+  updates, using Julia 1.13.
 - EARS specification (159 requirements) for OSR v0.1.0-draft
 - RFC describing the design rationale and format overview
 

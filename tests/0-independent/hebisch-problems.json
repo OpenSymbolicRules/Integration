@@ -1,50 +1,8 @@
 {
-    "$schema": "open-symbolic-rules/v0.1",
-    "section": "0",
     "title": "Hebisch Problems",
+    "section": "0",
     "tests": [
         {
-            "num_steps": 25,
-            "expression": [
-                "Multiply",
-                [
-                    "Add",
-                    [
-                        "Power",
-                        "x",
-                        6
-                    ],
-                    [
-                        "Multiply",
-                        -1,
-                        [
-                            "Power",
-                            "x",
-                            5
-                        ]
-                    ],
-                    [
-                        "Power",
-                        "x",
-                        4
-                    ],
-                    [
-                        "Multiply",
-                        -1,
-                        [
-                            "Power",
-                            "x",
-                            3
-                        ]
-                    ],
-                    1
-                ],
-                [
-                    "Exp",
-                    "x"
-                ]
-            ],
-            "id": 1,
             "expected_result": [
                 "Add",
                 [
@@ -139,10 +97,73 @@
                     ]
                 ]
             ],
-            "variable": "x"
+            "num_steps": 25,
+            "id": 1,
+            "variable": "x",
+            "expression": [
+                "Multiply",
+                [
+                    "Add",
+                    [
+                        "Power",
+                        "x",
+                        6
+                    ],
+                    [
+                        "Multiply",
+                        -1,
+                        [
+                            "Power",
+                            "x",
+                            5
+                        ]
+                    ],
+                    [
+                        "Power",
+                        "x",
+                        4
+                    ],
+                    [
+                        "Multiply",
+                        -1,
+                        [
+                            "Power",
+                            "x",
+                            3
+                        ]
+                    ],
+                    1
+                ],
+                [
+                    "Exp",
+                    "x"
+                ]
+            ]
         },
         {
+            "expected_result": [
+                "ExpIntegralEi",
+                [
+                    "Multiply",
+                    "x",
+                    [
+                        "Power",
+                        [
+                            "Add",
+                            2,
+                            [
+                                "Power",
+                                "x",
+                                2
+                            ]
+                        ],
+                        -1
+                    ]
+                ]
+            ],
             "num_steps": -5,
+            "id": 2,
+            "variable": "x",
             "expression": [
                 "Multiply",
                 [
@@ -195,32 +216,68 @@
                     ],
                     -1
                 ]
-            ],
-            "id": 2,
+            ]
+        },
+        {
             "expected_result": [
-                "ExpIntegralEi",
+                "Add",
                 [
                     "Multiply",
-                    "x",
                     [
                         "Power",
+                        "E",
                         [
-                            "Add",
-                            2,
+                            "Multiply",
+                            "x",
                             [
                                 "Power",
-                                "x",
-                                2
+                                [
+                                    "Add",
+                                    2,
+                                    [
+                                        "Power",
+                                        "x",
+                                        2
+                                    ]
+                                ],
+                                -1
                             ]
-                        ],
-                        -1
+                        ]
+                    ],
+                    [
+                        "Add",
+                        2,
+                        [
+                            "Power",
+                            "x",
+                            2
+                        ]
+                    ]
+                ],
+                [
+                    "ExpIntegralEi",
+                    [
+                        "Multiply",
+                        "x",
+                        [
+                            "Power",
+                            [
+                                "Add",
+                                2,
+                                [
+                                    "Power",
+                                    "x",
+                                    2
+                                ]
+                            ],
+                            -1
+                        ]
                     ]
                 ]
             ],
-            "variable": "x"
-        },
-        {
             "num_steps": -5,
+            "id": 3,
+            "variable": "x",
             "expression": [
                 "Multiply",
                 [
@@ -296,68 +353,24 @@
                     ],
                     -1
                 ]
-            ],
-            "id": 3,
+            ]
+        },
+        {
             "expected_result": [
-                "Add",
+                "ExpIntegralEi",
                 [
-                    "Multiply",
+                    "Add",
                     [
                         "Power",
                         "E",
-                        [
-                            "Multiply",
-                            "x",
-                            [
-                                "Power",
-                                [
-                                    "Add",
-                                    2,
-                                    [
-                                        "Power",
-                                        "x",
-                                        2
-                                    ]
-                                ],
-                                -1
-                            ]
-                        ]
+                        "x"
                     ],
-                    [
-                        "Add",
-                        2,
-                        [
-                            "Power",
-                            "x",
-                            2
-                        ]
-                    ]
-                ],
-                [
-                    "ExpIntegralEi",
-                    [
-                        "Multiply",
-                        "x",
-                        [
-                            "Power",
-                            [
-                                "Add",
-                                2,
-                                [
-                                    "Power",
-                                    "x",
-                                    2
-                                ]
-                            ],
-                            -1
-                        ]
-                    ]
+                    "x"
                 ]
             ],
-            "variable": "x"
-        },
-        {
             "num_steps": 2,
+            "id": 4,
+            "variable": "x",
             "expression": [
                 "Multiply",
                 [
@@ -391,24 +404,41 @@
                     ],
                     -1
                 ]
-            ],
-            "id": 4,
+            ]
+        },
+        {
             "expected_result": [
-                "ExpIntegralEi",
+                "Multiply",
+                [
+                    "Power",
+                    "E",
+                    [
+                        "Multiply",
+                        1,
+                        [
+                            "Power",
+                            [
+                                "Add",
+                                -1,
+                                [
+                                    "Power",
+                                    "x",
+                                    2
+                                ]
+                            ],
+                            -1
+                        ]
+                    ]
+                ],
                 [
                     "Add",
-                    [
-                        "Power",
-                        "E",
-                        "x"
-                    ],
+                    1,
                     "x"
                 ]
             ],
-            "variable": "x"
-        },
-        {
             "num_steps": -6,
+            "id": 5,
+            "variable": "x",
             "expression": [
                 "Multiply",
                 [
@@ -486,41 +516,36 @@
                     ],
                     -1
                 ]
-            ],
-            "id": 5,
+            ]
+        },
+        {
             "expected_result": [
                 "Multiply",
+                "x",
                 [
                     "Power",
                     "E",
                     [
-                        "Multiply",
+                        "Add",
                         1,
                         [
-                            "Power",
+                            "Multiply",
+                            1,
                             [
-                                "Add",
-                                -1,
+                                "Power",
                                 [
-                                    "Power",
-                                    "x",
-                                    2
-                                ]
-                            ],
-                            -1
+                                    "Log",
+                                    "x"
+                                ],
+                                -1
+                            ]
                         ]
                     ]
-                ],
-                [
-                    "Add",
-                    1,
-                    "x"
                 ]
             ],
-            "variable": "x"
-        },
-        {
             "num_steps": 1,
+            "id": 6,
+            "variable": "x",
             "expression": [
                 "Multiply",
                 [
@@ -570,17 +595,17 @@
                     ],
                     -1
                 ]
-            ],
-            "id": 6,
+            ]
+        },
+        {
             "expected_result": [
                 "Multiply",
-                "x",
                 [
                     "Power",
                     "E",
                     [
                         "Add",
-                        1,
+                        "x",
                         [
                             "Multiply",
                             1,
@@ -594,12 +619,12 @@
                             ]
                         ]
                     ]
-                ]
+                ],
+                "x"
             ],
-            "variable": "x"
-        },
-        {
             "num_steps": -2,
+            "id": 7,
+            "variable": "x",
             "expression": [
                 "Multiply",
                 [
@@ -657,33 +682,8 @@
                     ],
                     -1
                 ]
-            ],
-            "id": 7,
-            "expected_result": [
-                "Multiply",
-                [
-                    "Power",
-                    "E",
-                    [
-                        "Add",
-                        "x",
-                        [
-                            "Multiply",
-                            1,
-                            [
-                                "Power",
-                                [
-                                    "Log",
-                                    "x"
-                                ],
-                                -1
-                            ]
-                        ]
-                    ]
-                ],
-                "x"
-            ],
-            "variable": "x"
+            ]
         }
-    ]
+    ],
+    "$schema": "open-symbolic-rules/v0.1"
 }

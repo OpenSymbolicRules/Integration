@@ -1,51 +1,8 @@
 {
-    "$schema": "open-symbolic-rules/v0.1",
-    "section": "1.2.2.8",
     "title": "P(x) (d+e x)^q (a+b x^2+c x^4)^p",
+    "section": "1.2.2.8",
     "tests": [
         {
-            "num_steps": 7,
-            "expression": [
-                "Multiply",
-                1,
-                [
-                    "Power",
-                    [
-                        "Multiply",
-                        [
-                            "Power",
-                            [
-                                "Add",
-                                "d",
-                                [
-                                    "Multiply",
-                                    "e",
-                                    "x"
-                                ]
-                            ],
-                            1
-                        ],
-                        [
-                            "Sqrt",
-                            [
-                                "Add",
-                                "a",
-                                [
-                                    "Multiply",
-                                    "c",
-                                    [
-                                        "Power",
-                                        "x",
-                                        4
-                                    ]
-                                ]
-                            ]
-                        ]
-                    ],
-                    -1
-                ]
-            ],
-            "id": 1,
             "expected_result": [
                 "Add",
                 [
@@ -748,10 +705,9 @@
                     ]
                 ]
             ],
-            "variable": "x"
-        },
-        {
-            "num_steps": 11,
+            "num_steps": 7,
+            "id": 1,
+            "variable": "x",
             "expression": [
                 "Multiply",
                 1,
@@ -770,7 +726,7 @@
                                     "x"
                                 ]
                             ],
-                            2
+                            1
                         ],
                         [
                             "Sqrt",
@@ -791,8 +747,9 @@
                     ],
                     -1
                 ]
-            ],
-            "id": 2,
+            ]
+        },
+        {
             "expected_result": [
                 "Add",
                 [
@@ -1877,10 +1834,9 @@
                     ]
                 ]
             ],
-            "variable": "x"
-        },
-        {
-            "num_steps": 7,
+            "num_steps": 11,
+            "id": 2,
+            "variable": "x",
             "expression": [
                 "Multiply",
                 1,
@@ -1899,22 +1855,13 @@
                                     "x"
                                 ]
                             ],
-                            1
+                            2
                         ],
                         [
                             "Sqrt",
                             [
                                 "Add",
                                 "a",
-                                [
-                                    "Multiply",
-                                    "b",
-                                    [
-                                        "Power",
-                                        "x",
-                                        2
-                                    ]
-                                ],
                                 [
                                     "Multiply",
                                     "c",
@@ -1929,8 +1876,9 @@
                     ],
                     -1
                 ]
-            ],
-            "id": 3,
+            ]
+        },
+        {
             "expected_result": [
                 "Add",
                 [
@@ -2820,10 +2768,9 @@
                     ]
                 ]
             ],
-            "variable": "x"
-        },
-        {
-            "num_steps": 11,
+            "num_steps": 7,
+            "id": 3,
+            "variable": "x",
             "expression": [
                 "Multiply",
                 1,
@@ -2842,7 +2789,7 @@
                                     "x"
                                 ]
                             ],
-                            2
+                            1
                         ],
                         [
                             "Sqrt",
@@ -2872,8 +2819,9 @@
                     ],
                     -1
                 ]
-            ],
-            "id": 4,
+            ]
+        },
+        {
             "expected_result": [
                 "Add",
                 [
@@ -4320,7 +4268,59 @@
                     ]
                 ]
             ],
-            "variable": "x"
+            "num_steps": 11,
+            "id": 4,
+            "variable": "x",
+            "expression": [
+                "Multiply",
+                1,
+                [
+                    "Power",
+                    [
+                        "Multiply",
+                        [
+                            "Power",
+                            [
+                                "Add",
+                                "d",
+                                [
+                                    "Multiply",
+                                    "e",
+                                    "x"
+                                ]
+                            ],
+                            2
+                        ],
+                        [
+                            "Sqrt",
+                            [
+                                "Add",
+                                "a",
+                                [
+                                    "Multiply",
+                                    "b",
+                                    [
+                                        "Power",
+                                        "x",
+                                        2
+                                    ]
+                                ],
+                                [
+                                    "Multiply",
+                                    "c",
+                                    [
+                                        "Power",
+                                        "x",
+                                        4
+                                    ]
+                                ]
+                            ]
+                        ]
+                    ],
+                    -1
+                ]
+            ]
         }
-    ]
+    ],
+    "$schema": "open-symbolic-rules/v0.1"
 }

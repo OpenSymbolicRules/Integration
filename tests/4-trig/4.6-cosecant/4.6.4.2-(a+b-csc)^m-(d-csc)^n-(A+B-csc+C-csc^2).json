@@ -1,70 +1,8 @@
 {
-    "$schema": "open-symbolic-rules/v0.1",
-    "section": "4.6.4.2",
     "title": "(a+b csc)^m (d csc)^n (A+B csc+C csc^2)",
+    "section": "4.6.4.2",
     "tests": [
         {
-            "num_steps": 7,
-            "expression": [
-                "Multiply",
-                [
-                    "Add",
-                    "a",
-                    [
-                        "Multiply",
-                        "b",
-                        [
-                            "Csc",
-                            "x"
-                        ]
-                    ]
-                ],
-                [
-                    "Add",
-                    "A",
-                    [
-                        "Multiply",
-                        "B",
-                        [
-                            "Csc",
-                            "x"
-                        ]
-                    ],
-                    [
-                        "Multiply",
-                        "C",
-                        [
-                            "Power",
-                            [
-                                "Csc",
-                                "x"
-                            ],
-                            2
-                        ]
-                    ]
-                ],
-                [
-                    "Power",
-                    [
-                        "Power",
-                        [
-                            "Csc",
-                            "x"
-                        ],
-                        [
-                            "Multiply",
-                            1,
-                            [
-                                "Power",
-                                2,
-                                -1
-                            ]
-                        ]
-                    ],
-                    -1
-                ]
-            ],
-            "id": 1,
             "expected_result": [
                 "Add",
                 [
@@ -264,7 +202,69 @@
                     ]
                 ]
             ],
-            "variable": "x"
+            "num_steps": 7,
+            "id": 1,
+            "variable": "x",
+            "expression": [
+                "Multiply",
+                [
+                    "Add",
+                    "a",
+                    [
+                        "Multiply",
+                        "b",
+                        [
+                            "Csc",
+                            "x"
+                        ]
+                    ]
+                ],
+                [
+                    "Add",
+                    "A",
+                    [
+                        "Multiply",
+                        "B",
+                        [
+                            "Csc",
+                            "x"
+                        ]
+                    ],
+                    [
+                        "Multiply",
+                        "C",
+                        [
+                            "Power",
+                            [
+                                "Csc",
+                                "x"
+                            ],
+                            2
+                        ]
+                    ]
+                ],
+                [
+                    "Power",
+                    [
+                        "Power",
+                        [
+                            "Csc",
+                            "x"
+                        ],
+                        [
+                            "Multiply",
+                            1,
+                            [
+                                "Power",
+                                2,
+                                -1
+                            ]
+                        ]
+                    ],
+                    -1
+                ]
+            ]
         }
-    ]
+    ],
+    "$schema": "open-symbolic-rules/v0.1"
 }

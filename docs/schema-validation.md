@@ -45,6 +45,10 @@ python3 scripts/check_duplicate_rules.py rules \
   --baseline scripts/duplicate-rule-baseline.json --write-baseline
 ```
 
+Generated `rules/` and `tests/` are also checked in CI by rerunning the Rubi
+converter with Julia 1.13. A hand-edited generated file is therefore rejected
+as converter drift.
+
 ### Validate Individual Files
 
 ```bash

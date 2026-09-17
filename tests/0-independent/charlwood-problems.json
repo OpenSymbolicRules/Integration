@@ -1,22 +1,8 @@
 {
-    "$schema": "open-symbolic-rules/v0.1",
-    "section": "0",
     "title": "Charlwood Problems",
+    "section": "0",
     "tests": [
         {
-            "num_steps": 8,
-            "expression": [
-                "Multiply",
-                [
-                    "Asin",
-                    "x"
-                ],
-                [
-                    "Log",
-                    "x"
-                ]
-            ],
-            "id": 1,
             "expected_result": [
                 "Add",
                 [
@@ -103,39 +89,22 @@
                     ]
                 ]
             ],
-            "variable": "x"
-        },
-        {
-            "num_steps": 2,
+            "num_steps": 8,
+            "id": 1,
+            "variable": "x",
             "expression": [
                 "Multiply",
-                "x",
                 [
                     "Asin",
                     "x"
                 ],
                 [
-                    "Power",
-                    [
-                        "Sqrt",
-                        [
-                            "Add",
-                            1,
-                            [
-                                "Multiply",
-                                -1,
-                                [
-                                    "Power",
-                                    "x",
-                                    2
-                                ]
-                            ]
-                        ]
-                    ],
-                    -1
+                    "Log",
+                    "x"
                 ]
-            ],
-            "id": 2,
+            ]
+        },
+        {
             "expected_result": [
                 "Add",
                 "x",
@@ -164,33 +133,39 @@
                     ]
                 ]
             ],
-            "variable": "x"
-        },
-        {
-            "num_steps": -3,
+            "num_steps": 2,
+            "id": 2,
+            "variable": "x",
             "expression": [
-                "Asin",
+                "Multiply",
+                "x",
                 [
-                    "Add",
+                    "Asin",
+                    "x"
+                ],
+                [
+                    "Power",
                     [
                         "Sqrt",
                         [
                             "Add",
-                            "x",
-                            1
+                            1,
+                            [
+                                "Multiply",
+                                -1,
+                                [
+                                    "Power",
+                                    "x",
+                                    2
+                                ]
+                            ]
                         ]
                     ],
-                    [
-                        "Multiply",
-                        -1,
-                        [
-                            "Sqrt",
-                            "x"
-                        ]
-                    ]
+                    -1
                 ]
-            ],
-            "id": 3,
+            ]
+        },
+        {
             "expected_result": [
                 "Add",
                 [
@@ -293,34 +268,33 @@
                     ]
                 ]
             ],
-            "variable": "x"
-        },
-        {
-            "num_steps": -32,
+            "num_steps": -3,
+            "id": 3,
+            "variable": "x",
             "expression": [
-                "Log",
+                "Asin",
                 [
                     "Add",
-                    1,
+                    [
+                        "Sqrt",
+                        [
+                            "Add",
+                            "x",
+                            1
+                        ]
+                    ],
                     [
                         "Multiply",
-                        "x",
+                        -1,
                         [
                             "Sqrt",
-                            [
-                                "Add",
-                                1,
-                                [
-                                    "Power",
-                                    "x",
-                                    2
-                                ]
-                            ]
+                            "x"
                         ]
                     ]
                 ]
-            ],
-            "id": 4,
+            ]
+        },
+        {
             "expected_result": [
                 "Add",
                 [
@@ -459,49 +433,34 @@
                     ]
                 ]
             ],
-            "variable": "x"
+            "num_steps": -32,
+            "id": 4,
+            "variable": "x",
+            "expression": [
+                "Log",
+                [
+                    "Add",
+                    1,
+                    [
+                        "Multiply",
+                        "x",
+                        [
+                            "Sqrt",
+                            [
+                                "Add",
+                                1,
+                                [
+                                    "Power",
+                                    "x",
+                                    2
+                                ]
+                            ]
+                        ]
+                    ]
+                ]
+            ]
         },
         {
-            "num_steps": -5,
-            "expression": [
-                "Multiply",
-                [
-                    "Power",
-                    [
-                        "Cos",
-                        "x"
-                    ],
-                    2
-                ],
-                [
-                    "Power",
-                    [
-                        "Sqrt",
-                        [
-                            "Add",
-                            [
-                                "Power",
-                                [
-                                    "Cos",
-                                    "x"
-                                ],
-                                4
-                            ],
-                            [
-                                "Power",
-                                [
-                                    "Cos",
-                                    "x"
-                                ],
-                                2
-                            ],
-                            1
-                        ]
-                    ],
-                    -1
-                ]
-            ],
-            "id": 5,
             "expected_result": [
                 "Add",
                 [
@@ -591,33 +550,49 @@
                     ]
                 ]
             ],
-            "variable": "x"
-        },
-        {
-            "num_steps": 7,
+            "num_steps": -5,
+            "id": 5,
+            "variable": "x",
             "expression": [
                 "Multiply",
                 [
-                    "Tan",
-                    "x"
+                    "Power",
+                    [
+                        "Cos",
+                        "x"
+                    ],
+                    2
                 ],
                 [
-                    "Sqrt",
+                    "Power",
                     [
-                        "Add",
-                        1,
+                        "Sqrt",
                         [
-                            "Power",
+                            "Add",
                             [
-                                "Tan",
-                                "x"
+                                "Power",
+                                [
+                                    "Cos",
+                                    "x"
+                                ],
+                                4
                             ],
-                            4
+                            [
+                                "Power",
+                                [
+                                    "Cos",
+                                    "x"
+                                ],
+                                2
+                            ],
+                            1
                         ]
-                    ]
+                    ],
+                    -1
                 ]
-            ],
-            "id": 6,
+            ]
+        },
+        {
             "expected_result": [
                 "Add",
                 [
@@ -726,10 +701,9 @@
                     ]
                 ]
             ],
-            "variable": "x"
-        },
-        {
-            "num_steps": 4,
+            "num_steps": 7,
+            "id": 6,
+            "variable": "x",
             "expression": [
                 "Multiply",
                 [
@@ -737,26 +711,23 @@
                     "x"
                 ],
                 [
-                    "Power",
+                    "Sqrt",
                     [
-                        "Sqrt",
+                        "Add",
+                        1,
                         [
-                            "Add",
-                            1,
+                            "Power",
                             [
-                                "Power",
-                                [
-                                    "Sec",
-                                    "x"
-                                ],
-                                3
-                            ]
+                                "Tan",
+                                "x"
+                            ],
+                            4
                         ]
-                    ],
-                    -1
+                    ]
                 ]
-            ],
-            "id": 7,
+            ]
+        },
+        {
             "expected_result": [
                 "Multiply",
                 -1,
@@ -785,34 +756,37 @@
                     ]
                 ]
             ],
-            "variable": "x"
-        },
-        {
-            "num_steps": 9,
+            "num_steps": 4,
+            "id": 7,
+            "variable": "x",
             "expression": [
-                "Sqrt",
+                "Multiply",
                 [
-                    "Add",
+                    "Tan",
+                    "x"
+                ],
+                [
+                    "Power",
                     [
-                        "Power",
+                        "Sqrt",
                         [
-                            "Tan",
-                            "x"
-                        ],
-                        2
-                    ],
-                    [
-                        "Multiply",
-                        2,
-                        [
-                            "Tan",
-                            "x"
+                            "Add",
+                            1,
+                            [
+                                "Power",
+                                [
+                                    "Sec",
+                                    "x"
+                                ],
+                                3
+                            ]
                         ]
                     ],
-                    2
+                    -1
                 ]
-            ],
-            "id": 8,
+            ]
+        },
+        {
             "expected_result": [
                 "Add",
                 [
@@ -1034,36 +1008,34 @@
                     ]
                 ]
             ],
-            "variable": "x"
+            "num_steps": 9,
+            "id": 8,
+            "variable": "x",
+            "expression": [
+                "Sqrt",
+                [
+                    "Add",
+                    [
+                        "Power",
+                        [
+                            "Tan",
+                            "x"
+                        ],
+                        2
+                    ],
+                    [
+                        "Multiply",
+                        2,
+                        [
+                            "Tan",
+                            "x"
+                        ]
+                    ],
+                    2
+                ]
+            ]
         },
         {
-            "num_steps": 7,
-            "expression": [
-                "Multiply",
-                [
-                    "Sin",
-                    "x"
-                ],
-                [
-                    "Atan",
-                    [
-                        "Sqrt",
-                        [
-                            "Add",
-                            [
-                                "Sec",
-                                "x"
-                            ],
-                            [
-                                "Multiply",
-                                -1,
-                                1
-                            ]
-                        ]
-                    ]
-                ]
-            ],
-            "id": 9,
             "expected_result": [
                 "Add",
                 [
@@ -1136,47 +1108,36 @@
                     ]
                 ]
             ],
-            "variable": "x"
-        },
-        {
-            "num_steps": 5,
+            "num_steps": 7,
+            "id": 9,
+            "variable": "x",
             "expression": [
                 "Multiply",
                 [
-                    "Power",
-                    "x",
-                    3
+                    "Sin",
+                    "x"
                 ],
                 [
-                    "Power",
-                    "E",
-                    [
-                        "Asin",
-                        "x"
-                    ]
-                ],
-                [
-                    "Power",
+                    "Atan",
                     [
                         "Sqrt",
                         [
                             "Add",
-                            1,
+                            [
+                                "Sec",
+                                "x"
+                            ],
                             [
                                 "Multiply",
                                 -1,
-                                [
-                                    "Power",
-                                    "x",
-                                    2
-                                ]
+                                1
                             ]
                         ]
-                    ],
-                    -1
+                    ]
                 ]
-            ],
-            "id": 10,
+            ]
+        },
+        {
             "expected_result": [
                 "Multiply",
                 1,
@@ -1254,42 +1215,22 @@
                     ]
                 ]
             ],
-            "variable": "x"
-        },
-        {
-            "num_steps": 7,
+            "num_steps": 5,
+            "id": 10,
+            "variable": "x",
             "expression": [
                 "Multiply",
-                "x",
                 [
-                    "Log",
-                    [
-                        "Add",
-                        1,
-                        [
-                            "Power",
-                            "x",
-                            2
-                        ]
-                    ]
+                    "Power",
+                    "x",
+                    3
                 ],
                 [
-                    "Log",
+                    "Power",
+                    "E",
                     [
-                        "Add",
-                        "x",
-                        [
-                            "Sqrt",
-                            [
-                                "Add",
-                                1,
-                                [
-                                    "Power",
-                                    "x",
-                                    2
-                                ]
-                            ]
-                        ]
+                        "Asin",
+                        "x"
                     ]
                 ],
                 [
@@ -1300,16 +1241,21 @@
                             "Add",
                             1,
                             [
-                                "Power",
-                                "x",
-                                2
+                                "Multiply",
+                                -1,
+                                [
+                                    "Power",
+                                    "x",
+                                    2
+                                ]
                             ]
                         ]
                     ],
                     -1
                 ]
-            ],
-            "id": 11,
+            ]
+        },
+        {
             "expected_result": [
                 "Add",
                 [
@@ -1426,23 +1372,34 @@
                     ]
                 ]
             ],
-            "variable": "x"
-        },
-        {
-            "num_steps": -40,
+            "num_steps": 7,
+            "id": 11,
+            "variable": "x",
             "expression": [
-                "Atan",
+                "Multiply",
+                "x",
                 [
-                    "Add",
-                    "x",
+                    "Log",
                     [
-                        "Sqrt",
+                        "Add",
+                        1,
                         [
-                            "Add",
-                            1,
+                            "Power",
+                            "x",
+                            2
+                        ]
+                    ]
+                ],
+                [
+                    "Log",
+                    [
+                        "Add",
+                        "x",
+                        [
+                            "Sqrt",
                             [
-                                "Multiply",
-                                -1,
+                                "Add",
+                                1,
                                 [
                                     "Power",
                                     "x",
@@ -1451,9 +1408,26 @@
                             ]
                         ]
                     ]
+                ],
+                [
+                    "Power",
+                    [
+                        "Sqrt",
+                        [
+                            "Add",
+                            1,
+                            [
+                                "Power",
+                                "x",
+                                2
+                            ]
+                        ]
+                    ],
+                    -1
                 ]
-            ],
-            "id": 12,
+            ]
+        },
+        {
             "expected_result": [
                 "Add",
                 [
@@ -1704,10 +1678,301 @@
                     ]
                 ]
             ],
-            "variable": "x"
+            "num_steps": -40,
+            "id": 12,
+            "variable": "x",
+            "expression": [
+                "Atan",
+                [
+                    "Add",
+                    "x",
+                    [
+                        "Sqrt",
+                        [
+                            "Add",
+                            1,
+                            [
+                                "Multiply",
+                                -1,
+                                [
+                                    "Power",
+                                    "x",
+                                    2
+                                ]
+                            ]
+                        ]
+                    ]
+                ]
+            ]
         },
         {
+            "expected_result": [
+                "Add",
+                [
+                    "Multiply",
+                    -1,
+                    [
+                        "Asin",
+                        "x"
+                    ],
+                    [
+                        "Power",
+                        2,
+                        -1
+                    ]
+                ],
+                [
+                    "Multiply",
+                    1,
+                    [
+                        "Power",
+                        4,
+                        -1
+                    ],
+                    [
+                        "Sqrt",
+                        3
+                    ],
+                    [
+                        "Atan",
+                        [
+                            "Multiply",
+                            [
+                                "Add",
+                                -1,
+                                [
+                                    "Multiply",
+                                    [
+                                        "Sqrt",
+                                        3
+                                    ],
+                                    "x"
+                                ]
+                            ],
+                            [
+                                "Power",
+                                [
+                                    "Sqrt",
+                                    [
+                                        "Add",
+                                        1,
+                                        [
+                                            "Multiply",
+                                            -1,
+                                            [
+                                                "Power",
+                                                "x",
+                                                2
+                                            ]
+                                        ]
+                                    ]
+                                ],
+                                -1
+                            ]
+                        ]
+                    ]
+                ],
+                [
+                    "Multiply",
+                    1,
+                    [
+                        "Power",
+                        4,
+                        -1
+                    ],
+                    [
+                        "Sqrt",
+                        3
+                    ],
+                    [
+                        "Atan",
+                        [
+                            "Multiply",
+                            [
+                                "Add",
+                                1,
+                                [
+                                    "Multiply",
+                                    [
+                                        "Sqrt",
+                                        3
+                                    ],
+                                    "x"
+                                ]
+                            ],
+                            [
+                                "Power",
+                                [
+                                    "Sqrt",
+                                    [
+                                        "Add",
+                                        1,
+                                        [
+                                            "Multiply",
+                                            -1,
+                                            [
+                                                "Power",
+                                                "x",
+                                                2
+                                            ]
+                                        ]
+                                    ]
+                                ],
+                                -1
+                            ]
+                        ]
+                    ]
+                ],
+                [
+                    "Multiply",
+                    -1,
+                    1,
+                    [
+                        "Power",
+                        4,
+                        -1
+                    ],
+                    [
+                        "Sqrt",
+                        3
+                    ],
+                    [
+                        "Atan",
+                        [
+                            "Multiply",
+                            [
+                                "Add",
+                                -1,
+                                [
+                                    "Multiply",
+                                    2,
+                                    [
+                                        "Power",
+                                        "x",
+                                        2
+                                    ]
+                                ]
+                            ],
+                            [
+                                "Power",
+                                [
+                                    "Sqrt",
+                                    3
+                                ],
+                                -1
+                            ]
+                        ]
+                    ]
+                ],
+                [
+                    "Multiply",
+                    -1,
+                    [
+                        "Sqrt",
+                        [
+                            "Add",
+                            1,
+                            [
+                                "Multiply",
+                                -1,
+                                [
+                                    "Power",
+                                    "x",
+                                    2
+                                ]
+                            ]
+                        ]
+                    ],
+                    [
+                        "Atan",
+                        [
+                            "Add",
+                            "x",
+                            [
+                                "Sqrt",
+                                [
+                                    "Add",
+                                    1,
+                                    [
+                                        "Multiply",
+                                        -1,
+                                        [
+                                            "Power",
+                                            "x",
+                                            2
+                                        ]
+                                    ]
+                                ]
+                            ]
+                        ]
+                    ]
+                ],
+                [
+                    "Multiply",
+                    1,
+                    [
+                        "Power",
+                        4,
+                        -1
+                    ],
+                    [
+                        "Atanh",
+                        [
+                            "Multiply",
+                            "x",
+                            [
+                                "Sqrt",
+                                [
+                                    "Add",
+                                    1,
+                                    [
+                                        "Multiply",
+                                        -1,
+                                        [
+                                            "Power",
+                                            "x",
+                                            2
+                                        ]
+                                    ]
+                                ]
+                            ]
+                        ]
+                    ]
+                ],
+                [
+                    "Multiply",
+                    1,
+                    [
+                        "Power",
+                        8,
+                        -1
+                    ],
+                    [
+                        "Log",
+                        [
+                            "Add",
+                            1,
+                            [
+                                "Multiply",
+                                -1,
+                                [
+                                    "Power",
+                                    "x",
+                                    2
+                                ]
+                            ],
+                            [
+                                "Power",
+                                "x",
+                                4
+                            ]
+                        ]
+                    ]
+                ]
+            ],
             "num_steps": -32,
+            "id": 13,
+            "variable": "x",
             "expression": [
                 "Multiply",
                 "x",
@@ -1754,308 +2019,9 @@
                     ],
                     -1
                 ]
-            ],
-            "id": 13,
-            "expected_result": [
-                "Add",
-                [
-                    "Multiply",
-                    -1,
-                    [
-                        "Asin",
-                        "x"
-                    ],
-                    [
-                        "Power",
-                        2,
-                        -1
-                    ]
-                ],
-                [
-                    "Multiply",
-                    1,
-                    [
-                        "Power",
-                        4,
-                        -1
-                    ],
-                    [
-                        "Sqrt",
-                        3
-                    ],
-                    [
-                        "Atan",
-                        [
-                            "Multiply",
-                            [
-                                "Add",
-                                -1,
-                                [
-                                    "Multiply",
-                                    [
-                                        "Sqrt",
-                                        3
-                                    ],
-                                    "x"
-                                ]
-                            ],
-                            [
-                                "Power",
-                                [
-                                    "Sqrt",
-                                    [
-                                        "Add",
-                                        1,
-                                        [
-                                            "Multiply",
-                                            -1,
-                                            [
-                                                "Power",
-                                                "x",
-                                                2
-                                            ]
-                                        ]
-                                    ]
-                                ],
-                                -1
-                            ]
-                        ]
-                    ]
-                ],
-                [
-                    "Multiply",
-                    1,
-                    [
-                        "Power",
-                        4,
-                        -1
-                    ],
-                    [
-                        "Sqrt",
-                        3
-                    ],
-                    [
-                        "Atan",
-                        [
-                            "Multiply",
-                            [
-                                "Add",
-                                1,
-                                [
-                                    "Multiply",
-                                    [
-                                        "Sqrt",
-                                        3
-                                    ],
-                                    "x"
-                                ]
-                            ],
-                            [
-                                "Power",
-                                [
-                                    "Sqrt",
-                                    [
-                                        "Add",
-                                        1,
-                                        [
-                                            "Multiply",
-                                            -1,
-                                            [
-                                                "Power",
-                                                "x",
-                                                2
-                                            ]
-                                        ]
-                                    ]
-                                ],
-                                -1
-                            ]
-                        ]
-                    ]
-                ],
-                [
-                    "Multiply",
-                    -1,
-                    1,
-                    [
-                        "Power",
-                        4,
-                        -1
-                    ],
-                    [
-                        "Sqrt",
-                        3
-                    ],
-                    [
-                        "Atan",
-                        [
-                            "Multiply",
-                            [
-                                "Add",
-                                -1,
-                                [
-                                    "Multiply",
-                                    2,
-                                    [
-                                        "Power",
-                                        "x",
-                                        2
-                                    ]
-                                ]
-                            ],
-                            [
-                                "Power",
-                                [
-                                    "Sqrt",
-                                    3
-                                ],
-                                -1
-                            ]
-                        ]
-                    ]
-                ],
-                [
-                    "Multiply",
-                    -1,
-                    [
-                        "Sqrt",
-                        [
-                            "Add",
-                            1,
-                            [
-                                "Multiply",
-                                -1,
-                                [
-                                    "Power",
-                                    "x",
-                                    2
-                                ]
-                            ]
-                        ]
-                    ],
-                    [
-                        "Atan",
-                        [
-                            "Add",
-                            "x",
-                            [
-                                "Sqrt",
-                                [
-                                    "Add",
-                                    1,
-                                    [
-                                        "Multiply",
-                                        -1,
-                                        [
-                                            "Power",
-                                            "x",
-                                            2
-                                        ]
-                                    ]
-                                ]
-                            ]
-                        ]
-                    ]
-                ],
-                [
-                    "Multiply",
-                    1,
-                    [
-                        "Power",
-                        4,
-                        -1
-                    ],
-                    [
-                        "Atanh",
-                        [
-                            "Multiply",
-                            "x",
-                            [
-                                "Sqrt",
-                                [
-                                    "Add",
-                                    1,
-                                    [
-                                        "Multiply",
-                                        -1,
-                                        [
-                                            "Power",
-                                            "x",
-                                            2
-                                        ]
-                                    ]
-                                ]
-                            ]
-                        ]
-                    ]
-                ],
-                [
-                    "Multiply",
-                    1,
-                    [
-                        "Power",
-                        8,
-                        -1
-                    ],
-                    [
-                        "Log",
-                        [
-                            "Add",
-                            1,
-                            [
-                                "Multiply",
-                                -1,
-                                [
-                                    "Power",
-                                    "x",
-                                    2
-                                ]
-                            ],
-                            [
-                                "Power",
-                                "x",
-                                4
-                            ]
-                        ]
-                    ]
-                ]
-            ],
-            "variable": "x"
+            ]
         },
         {
-            "num_steps": 9,
-            "expression": [
-                "Multiply",
-                [
-                    "Asin",
-                    "x"
-                ],
-                [
-                    "Power",
-                    [
-                        "Add",
-                        1,
-                        [
-                            "Sqrt",
-                            [
-                                "Add",
-                                1,
-                                [
-                                    "Multiply",
-                                    -1,
-                                    [
-                                        "Power",
-                                        "x",
-                                        2
-                                    ]
-                                ]
-                            ]
-                        ]
-                    ],
-                    -1
-                ]
-            ],
-            "id": 14,
             "expected_result": [
                 "Add",
                 [
@@ -2135,62 +2101,42 @@
                     ]
                 ]
             ],
-            "variable": "x"
-        },
-        {
-            "num_steps": 3,
+            "num_steps": 9,
+            "id": 14,
+            "variable": "x",
             "expression": [
                 "Multiply",
                 [
-                    "Log",
+                    "Asin",
+                    "x"
+                ],
+                [
+                    "Power",
                     [
                         "Add",
-                        "x",
+                        1,
                         [
                             "Sqrt",
                             [
                                 "Add",
                                 1,
                                 [
-                                    "Power",
-                                    "x",
-                                    2
+                                    "Multiply",
+                                    -1,
+                                    [
+                                        "Power",
+                                        "x",
+                                        2
+                                    ]
                                 ]
-                            ]
-                        ]
-                    ]
-                ],
-                [
-                    "Power",
-                    [
-                        "Power",
-                        [
-                            "Add",
-                            1,
-                            [
-                                "Multiply",
-                                -1,
-                                [
-                                    "Power",
-                                    "x",
-                                    2
-                                ]
-                            ]
-                        ],
-                        [
-                            "Multiply",
-                            3,
-                            [
-                                "Power",
-                                2,
-                                -1
                             ]
                         ]
                     ],
                     -1
                 ]
-            ],
-            "id": 15,
+            ]
+        },
+        {
             "expected_result": [
                 "Add",
                 [
@@ -2255,15 +2201,29 @@
                     ]
                 ]
             ],
-            "variable": "x"
-        },
-        {
             "num_steps": 3,
+            "id": 15,
+            "variable": "x",
             "expression": [
                 "Multiply",
                 [
-                    "Asin",
-                    "x"
+                    "Log",
+                    [
+                        "Add",
+                        "x",
+                        [
+                            "Sqrt",
+                            [
+                                "Add",
+                                1,
+                                [
+                                    "Power",
+                                    "x",
+                                    2
+                                ]
+                            ]
+                        ]
+                    ]
                 ],
                 [
                     "Power",
@@ -2273,9 +2233,13 @@
                             "Add",
                             1,
                             [
-                                "Power",
-                                "x",
-                                2
+                                "Multiply",
+                                -1,
+                                [
+                                    "Power",
+                                    "x",
+                                    2
+                                ]
                             ]
                         ],
                         [
@@ -2290,8 +2254,9 @@
                     ],
                     -1
                 ]
-            ],
-            "id": 16,
+            ]
+        },
+        {
             "expected_result": [
                 "Add",
                 [
@@ -2336,34 +2301,14 @@
                     ]
                 ]
             ],
-            "variable": "x"
-        },
-        {
             "num_steps": 3,
+            "id": 16,
+            "variable": "x",
             "expression": [
                 "Multiply",
                 [
-                    "Log",
-                    [
-                        "Add",
-                        "x",
-                        [
-                            "Sqrt",
-                            [
-                                "Add",
-                                [
-                                    "Power",
-                                    "x",
-                                    2
-                                ],
-                                [
-                                    "Multiply",
-                                    -1,
-                                    1
-                                ]
-                            ]
-                        ]
-                    ]
+                    "Asin",
+                    "x"
                 ],
                 [
                     "Power",
@@ -2390,8 +2335,9 @@
                     ],
                     -1
                 ]
-            ],
-            "id": 17,
+            ]
+        },
+        {
             "expected_result": [
                 "Add",
                 [
@@ -2452,25 +2398,16 @@
                     ]
                 ]
             ],
-            "variable": "x"
-        },
-        {
-            "num_steps": 4,
+            "num_steps": 3,
+            "id": 17,
+            "variable": "x",
             "expression": [
                 "Multiply",
                 [
                     "Log",
-                    "x"
-                ],
-                [
-                    "Power",
                     [
-                        "Multiply",
-                        [
-                            "Power",
-                            "x",
-                            2
-                        ],
+                        "Add",
+                        "x",
                         [
                             "Sqrt",
                             [
@@ -2487,11 +2424,36 @@
                                 ]
                             ]
                         ]
+                    ]
+                ],
+                [
+                    "Power",
+                    [
+                        "Power",
+                        [
+                            "Add",
+                            1,
+                            [
+                                "Power",
+                                "x",
+                                2
+                            ]
+                        ],
+                        [
+                            "Multiply",
+                            3,
+                            [
+                                "Power",
+                                2,
+                                -1
+                            ]
+                        ]
                     ],
                     -1
                 ]
-            ],
-            "id": 18,
+            ]
+        },
+        {
             "expected_result": [
                 "Add",
                 [
@@ -2566,31 +2528,46 @@
                     ]
                 ]
             ],
-            "variable": "x"
-        },
-        {
             "num_steps": 4,
+            "id": 18,
+            "variable": "x",
             "expression": [
                 "Multiply",
                 [
-                    "Sqrt",
-                    [
-                        "Add",
-                        1,
-                        [
-                            "Power",
-                            "x",
-                            3
-                        ]
-                    ]
+                    "Log",
+                    "x"
                 ],
                 [
                     "Power",
-                    "x",
+                    [
+                        "Multiply",
+                        [
+                            "Power",
+                            "x",
+                            2
+                        ],
+                        [
+                            "Sqrt",
+                            [
+                                "Add",
+                                [
+                                    "Power",
+                                    "x",
+                                    2
+                                ],
+                                [
+                                    "Multiply",
+                                    -1,
+                                    1
+                                ]
+                            ]
+                        ]
+                    ],
                     -1
                 ]
-            ],
-            "id": 19,
+            ]
+        },
+        {
             "expected_result": [
                 "Add",
                 [
@@ -2640,10 +2617,76 @@
                     ]
                 ]
             ],
-            "variable": "x"
+            "num_steps": 4,
+            "id": 19,
+            "variable": "x",
+            "expression": [
+                "Multiply",
+                [
+                    "Sqrt",
+                    [
+                        "Add",
+                        1,
+                        [
+                            "Power",
+                            "x",
+                            3
+                        ]
+                    ]
+                ],
+                [
+                    "Power",
+                    "x",
+                    -1
+                ]
+            ]
         },
         {
+            "expected_result": [
+                "Add",
+                [
+                    "Multiply",
+                    -1,
+                    "x"
+                ],
+                [
+                    "Multiply",
+                    [
+                        "Sqrt",
+                        [
+                            "Add",
+                            -1,
+                            [
+                                "Power",
+                                "x",
+                                2
+                            ]
+                        ]
+                    ],
+                    [
+                        "Log",
+                        [
+                            "Add",
+                            "x",
+                            [
+                                "Sqrt",
+                                [
+                                    "Add",
+                                    -1,
+                                    [
+                                        "Power",
+                                        "x",
+                                        2
+                                    ]
+                                ]
+                            ]
+                        ]
+                    ]
+                ]
+            ],
             "num_steps": 2,
+            "id": 20,
+            "variable": "x",
             "expression": [
                 "Multiply",
                 "x",
@@ -2690,87 +2733,9 @@
                     ],
                     -1
                 ]
-            ],
-            "id": 20,
-            "expected_result": [
-                "Add",
-                [
-                    "Multiply",
-                    -1,
-                    "x"
-                ],
-                [
-                    "Multiply",
-                    [
-                        "Sqrt",
-                        [
-                            "Add",
-                            -1,
-                            [
-                                "Power",
-                                "x",
-                                2
-                            ]
-                        ]
-                    ],
-                    [
-                        "Log",
-                        [
-                            "Add",
-                            "x",
-                            [
-                                "Sqrt",
-                                [
-                                    "Add",
-                                    -1,
-                                    [
-                                        "Power",
-                                        "x",
-                                        2
-                                    ]
-                                ]
-                            ]
-                        ]
-                    ]
-                ]
-            ],
-            "variable": "x"
+            ]
         },
         {
-            "num_steps": 5,
-            "expression": [
-                "Multiply",
-                [
-                    "Power",
-                    "x",
-                    3
-                ],
-                [
-                    "Asin",
-                    "x"
-                ],
-                [
-                    "Power",
-                    [
-                        "Sqrt",
-                        [
-                            "Add",
-                            1,
-                            [
-                                "Multiply",
-                                -1,
-                                [
-                                    "Power",
-                                    "x",
-                                    4
-                                ]
-                            ]
-                        ]
-                    ],
-                    -1
-                ]
-            ],
-            "id": 21,
             "expected_result": [
                 "Add",
                 [
@@ -2838,10 +2803,9 @@
                     ]
                 ]
             ],
-            "variable": "x"
-        },
-        {
-            "num_steps": 7,
+            "num_steps": 5,
+            "id": 21,
+            "variable": "x",
             "expression": [
                 "Multiply",
                 [
@@ -2850,7 +2814,7 @@
                     3
                 ],
                 [
-                    "Asec",
+                    "Asin",
                     "x"
                 ],
                 [
@@ -2859,22 +2823,23 @@
                         "Sqrt",
                         [
                             "Add",
-                            [
-                                "Power",
-                                "x",
-                                4
-                            ],
+                            1,
                             [
                                 "Multiply",
                                 -1,
-                                1
+                                [
+                                    "Power",
+                                    "x",
+                                    4
+                                ]
                             ]
                         ]
                     ],
                     -1
                 ]
-            ],
-            "id": 22,
+            ]
+        },
+        {
             "expected_result": [
                 "Add",
                 [
@@ -3002,35 +2967,19 @@
                     ]
                 ]
             ],
-            "variable": "x"
-        },
-        {
-            "num_steps": 4,
+            "num_steps": 7,
+            "id": 22,
+            "variable": "x",
             "expression": [
                 "Multiply",
-                "x",
                 [
-                    "Atan",
-                    "x"
+                    "Power",
+                    "x",
+                    3
                 ],
                 [
-                    "Log",
-                    [
-                        "Add",
-                        "x",
-                        [
-                            "Sqrt",
-                            [
-                                "Add",
-                                1,
-                                [
-                                    "Power",
-                                    "x",
-                                    2
-                                ]
-                            ]
-                        ]
-                    ]
+                    "Asec",
+                    "x"
                 ],
                 [
                     "Power",
@@ -3038,18 +2987,23 @@
                         "Sqrt",
                         [
                             "Add",
-                            1,
                             [
                                 "Power",
                                 "x",
-                                2
+                                4
+                            ],
+                            [
+                                "Multiply",
+                                -1,
+                                1
                             ]
                         ]
                     ],
                     -1
                 ]
-            ],
-            "id": 23,
+            ]
+        },
+        {
             "expected_result": [
                 "Add",
                 [
@@ -3154,31 +3108,30 @@
                     ]
                 ]
             ],
-            "variable": "x"
-        },
-        {
-            "num_steps": 5,
+            "num_steps": 4,
+            "id": 23,
+            "variable": "x",
             "expression": [
                 "Multiply",
                 "x",
                 [
+                    "Atan",
+                    "x"
+                ],
+                [
                     "Log",
                     [
                         "Add",
-                        1,
+                        "x",
                         [
                             "Sqrt",
                             [
                                 "Add",
                                 1,
                                 [
-                                    "Multiply",
-                                    -1,
-                                    [
-                                        "Power",
-                                        "x",
-                                        2
-                                    ]
+                                    "Power",
+                                    "x",
+                                    2
                                 ]
                             ]
                         ]
@@ -3192,20 +3145,17 @@
                             "Add",
                             1,
                             [
-                                "Multiply",
-                                -1,
-                                [
-                                    "Power",
-                                    "x",
-                                    2
-                                ]
+                                "Power",
+                                "x",
+                                2
                             ]
                         ]
                     ],
                     -1
                 ]
-            ],
-            "id": 24,
+            ]
+        },
+        {
             "expected_result": [
                 "Add",
                 [
@@ -3295,10 +3245,9 @@
                     ]
                 ]
             ],
-            "variable": "x"
-        },
-        {
-            "num_steps": 2,
+            "num_steps": 5,
+            "id": 24,
+            "variable": "x",
             "expression": [
                 "Multiply",
                 "x",
@@ -3306,16 +3255,20 @@
                     "Log",
                     [
                         "Add",
-                        "x",
+                        1,
                         [
                             "Sqrt",
                             [
                                 "Add",
                                 1,
                                 [
-                                    "Power",
-                                    "x",
-                                    2
+                                    "Multiply",
+                                    -1,
+                                    [
+                                        "Power",
+                                        "x",
+                                        2
+                                    ]
                                 ]
                             ]
                         ]
@@ -3329,16 +3282,21 @@
                             "Add",
                             1,
                             [
-                                "Power",
-                                "x",
-                                2
+                                "Multiply",
+                                -1,
+                                [
+                                    "Power",
+                                    "x",
+                                    2
+                                ]
                             ]
                         ]
                     ],
                     -1
                 ]
-            ],
-            "id": 25,
+            ]
+        },
+        {
             "expected_result": [
                 "Add",
                 [
@@ -3381,10 +3339,9 @@
                     ]
                 ]
             ],
-            "variable": "x"
-        },
-        {
-            "num_steps": 18,
+            "num_steps": 2,
+            "id": 25,
+            "variable": "x",
             "expression": [
                 "Multiply",
                 "x",
@@ -3399,13 +3356,9 @@
                                 "Add",
                                 1,
                                 [
-                                    "Multiply",
-                                    -1,
-                                    [
-                                        "Power",
-                                        "x",
-                                        2
-                                    ]
+                                    "Power",
+                                    "x",
+                                    2
                                 ]
                             ]
                         ]
@@ -3419,20 +3372,17 @@
                             "Add",
                             1,
                             [
-                                "Multiply",
-                                -1,
-                                [
-                                    "Power",
-                                    "x",
-                                    2
-                                ]
+                                "Power",
+                                "x",
+                                2
                             ]
                         ]
                     ],
                     -1
                 ]
-            ],
-            "id": 26,
+            ]
+        },
+        {
             "expected_result": [
                 "Add",
                 [
@@ -3555,25 +3505,17 @@
                     ]
                 ]
             ],
-            "variable": "x"
-        },
-        {
-            "num_steps": 3,
+            "num_steps": 18,
+            "id": 26,
+            "variable": "x",
             "expression": [
                 "Multiply",
+                "x",
                 [
                     "Log",
-                    "x"
-                ],
-                [
-                    "Power",
                     [
-                        "Multiply",
-                        [
-                            "Power",
-                            "x",
-                            2
-                        ],
+                        "Add",
+                        "x",
                         [
                             "Sqrt",
                             [
@@ -3590,11 +3532,31 @@
                                 ]
                             ]
                         ]
+                    ]
+                ],
+                [
+                    "Power",
+                    [
+                        "Sqrt",
+                        [
+                            "Add",
+                            1,
+                            [
+                                "Multiply",
+                                -1,
+                                [
+                                    "Power",
+                                    "x",
+                                    2
+                                ]
+                            ]
+                        ]
                     ],
                     -1
                 ]
-            ],
-            "id": 27,
+            ]
+        },
+        {
             "expected_result": [
                 "Add",
                 [
@@ -3660,73 +3622,13 @@
                     ]
                 ]
             ],
-            "variable": "x"
-        },
-        {
-            "num_steps": 2,
-            "expression": [
-                "Multiply",
-                "x",
-                [
-                    "Atan",
-                    "x"
-                ],
-                [
-                    "Power",
-                    [
-                        "Sqrt",
-                        [
-                            "Add",
-                            1,
-                            [
-                                "Power",
-                                "x",
-                                2
-                            ]
-                        ]
-                    ],
-                    -1
-                ]
-            ],
-            "id": 28,
-            "expected_result": [
-                "Add",
-                [
-                    "Multiply",
-                    -1,
-                    [
-                        "Asinh",
-                        "x"
-                    ]
-                ],
-                [
-                    "Multiply",
-                    [
-                        "Sqrt",
-                        [
-                            "Add",
-                            1,
-                            [
-                                "Power",
-                                "x",
-                                2
-                            ]
-                        ]
-                    ],
-                    [
-                        "Atan",
-                        "x"
-                    ]
-                ]
-            ],
-            "variable": "x"
-        },
-        {
-            "num_steps": 7,
+            "num_steps": 3,
+            "id": 27,
+            "variable": "x",
             "expression": [
                 "Multiply",
                 [
-                    "Atan",
+                    "Log",
                     "x"
                 ],
                 [
@@ -3757,8 +3659,68 @@
                     ],
                     -1
                 ]
+            ]
+        },
+        {
+            "expected_result": [
+                "Add",
+                [
+                    "Multiply",
+                    -1,
+                    [
+                        "Asinh",
+                        "x"
+                    ]
+                ],
+                [
+                    "Multiply",
+                    [
+                        "Sqrt",
+                        [
+                            "Add",
+                            1,
+                            [
+                                "Power",
+                                "x",
+                                2
+                            ]
+                        ]
+                    ],
+                    [
+                        "Atan",
+                        "x"
+                    ]
+                ]
             ],
-            "id": 29,
+            "num_steps": 2,
+            "id": 28,
+            "variable": "x",
+            "expression": [
+                "Multiply",
+                "x",
+                [
+                    "Atan",
+                    "x"
+                ],
+                [
+                    "Power",
+                    [
+                        "Sqrt",
+                        [
+                            "Add",
+                            1,
+                            [
+                                "Power",
+                                "x",
+                                2
+                            ]
+                        ]
+                    ],
+                    -1
+                ]
+            ]
+        },
+        {
             "expected_result": [
                 "Add",
                 [
@@ -3851,13 +3813,11 @@
                     ]
                 ]
             ],
-            "variable": "x"
-        },
-        {
-            "num_steps": 5,
+            "num_steps": 7,
+            "id": 29,
+            "variable": "x",
             "expression": [
                 "Multiply",
-                "x",
                 [
                     "Atan",
                     "x"
@@ -3865,25 +3825,34 @@
                 [
                     "Power",
                     [
-                        "Sqrt",
+                        "Multiply",
                         [
-                            "Add",
-                            1,
+                            "Power",
+                            "x",
+                            2
+                        ],
+                        [
+                            "Sqrt",
                             [
-                                "Multiply",
-                                -1,
+                                "Add",
+                                1,
                                 [
-                                    "Power",
-                                    "x",
-                                    2
+                                    "Multiply",
+                                    -1,
+                                    [
+                                        "Power",
+                                        "x",
+                                        2
+                                    ]
                                 ]
                             ]
                         ]
                     ],
                     -1
                 ]
-            ],
-            "id": 30,
+            ]
+        },
+        {
             "expected_result": [
                 "Add",
                 [
@@ -3957,12 +3926,12 @@
                     ]
                 ]
             ],
-            "variable": "x"
-        },
-        {
-            "num_steps": 4,
+            "num_steps": 5,
+            "id": 30,
+            "variable": "x",
             "expression": [
                 "Multiply",
+                "x",
                 [
                     "Atan",
                     "x"
@@ -3970,17 +3939,13 @@
                 [
                     "Power",
                     [
-                        "Multiply",
+                        "Sqrt",
                         [
-                            "Power",
-                            "x",
-                            2
-                        ],
-                        [
-                            "Sqrt",
+                            "Add",
+                            1,
                             [
-                                "Add",
-                                1,
+                                "Multiply",
+                                -1,
                                 [
                                     "Power",
                                     "x",
@@ -3991,8 +3956,9 @@
                     ],
                     -1
                 ]
-            ],
-            "id": 31,
+            ]
+        },
+        {
             "expected_result": [
                 "Add",
                 [
@@ -4040,14 +4006,13 @@
                     ]
                 ]
             ],
-            "variable": "x"
-        },
-        {
-            "num_steps": 2,
+            "num_steps": 4,
+            "id": 31,
+            "variable": "x",
             "expression": [
                 "Multiply",
                 [
-                    "Asin",
+                    "Atan",
                     "x"
                 ],
                 [
@@ -4065,21 +4030,18 @@
                                 "Add",
                                 1,
                                 [
-                                    "Multiply",
-                                    -1,
-                                    [
-                                        "Power",
-                                        "x",
-                                        2
-                                    ]
+                                    "Power",
+                                    "x",
+                                    2
                                 ]
                             ]
                         ]
                     ],
                     -1
                 ]
-            ],
-            "id": 32,
+            ]
+        },
+        {
             "expected_result": [
                 "Add",
                 [
@@ -4116,39 +4078,46 @@
                     "x"
                 ]
             ],
-            "variable": "x"
-        },
-        {
-            "num_steps": 5,
+            "num_steps": 2,
+            "id": 32,
+            "variable": "x",
             "expression": [
                 "Multiply",
-                "x",
                 [
-                    "Log",
+                    "Asin",
                     "x"
                 ],
                 [
                     "Power",
                     [
-                        "Sqrt",
+                        "Multiply",
                         [
-                            "Add",
+                            "Power",
+                            "x",
+                            2
+                        ],
+                        [
+                            "Sqrt",
                             [
-                                "Power",
-                                "x",
-                                2
-                            ],
-                            [
-                                "Multiply",
-                                -1,
-                                1
+                                "Add",
+                                1,
+                                [
+                                    "Multiply",
+                                    -1,
+                                    [
+                                        "Power",
+                                        "x",
+                                        2
+                                    ]
+                                ]
                             ]
                         ]
                     ],
                     -1
                 ]
-            ],
-            "id": 33,
+            ]
+        },
+        {
             "expected_result": [
                 "Add",
                 [
@@ -4202,12 +4171,12 @@
                     ]
                 ]
             ],
-            "variable": "x"
-        },
-        {
-            "num_steps": 3,
+            "num_steps": 5,
+            "id": 33,
+            "variable": "x",
             "expression": [
                 "Multiply",
+                "x",
                 [
                     "Log",
                     "x"
@@ -4215,29 +4184,26 @@
                 [
                     "Power",
                     [
-                        "Multiply",
+                        "Sqrt",
                         [
-                            "Power",
-                            "x",
-                            2
-                        ],
-                        [
-                            "Sqrt",
+                            "Add",
                             [
-                                "Add",
-                                1,
-                                [
-                                    "Power",
-                                    "x",
-                                    2
-                                ]
+                                "Power",
+                                "x",
+                                2
+                            ],
+                            [
+                                "Multiply",
+                                -1,
+                                1
                             ]
                         ]
                     ],
                     -1
                 ]
-            ],
-            "id": 34,
+            ]
+        },
+        {
             "expected_result": [
                 "Add",
                 [
@@ -4291,39 +4257,42 @@
                     ]
                 ]
             ],
-            "variable": "x"
-        },
-        {
-            "num_steps": 2,
+            "num_steps": 3,
+            "id": 34,
+            "variable": "x",
             "expression": [
                 "Multiply",
-                "x",
                 [
-                    "Asec",
+                    "Log",
                     "x"
                 ],
                 [
                     "Power",
                     [
-                        "Sqrt",
+                        "Multiply",
                         [
-                            "Add",
+                            "Power",
+                            "x",
+                            2
+                        ],
+                        [
+                            "Sqrt",
                             [
-                                "Power",
-                                "x",
-                                2
-                            ],
-                            [
-                                "Multiply",
-                                -1,
-                                1
+                                "Add",
+                                1,
+                                [
+                                    "Power",
+                                    "x",
+                                    2
+                                ]
                             ]
                         ]
                     ],
                     -1
                 ]
-            ],
-            "id": 35,
+            ]
+        },
+        {
             "expected_result": [
                 "Add",
                 [
@@ -4367,15 +4336,14 @@
                     ]
                 ]
             ],
-            "variable": "x"
-        },
-        {
-            "num_steps": 5,
+            "num_steps": 2,
+            "id": 35,
+            "variable": "x",
             "expression": [
                 "Multiply",
                 "x",
                 [
-                    "Log",
+                    "Asec",
                     "x"
                 ],
                 [
@@ -4384,18 +4352,23 @@
                         "Sqrt",
                         [
                             "Add",
-                            1,
                             [
                                 "Power",
                                 "x",
                                 2
+                            ],
+                            [
+                                "Multiply",
+                                -1,
+                                1
                             ]
                         ]
                     ],
                     -1
                 ]
-            ],
-            "id": 36,
+            ]
+        },
+        {
             "expected_result": [
                 "Add",
                 [
@@ -4449,34 +4422,35 @@
                     ]
                 ]
             ],
-            "variable": "x"
-        },
-        {
-            "num_steps": 2,
+            "num_steps": 5,
+            "id": 36,
+            "variable": "x",
             "expression": [
                 "Multiply",
+                "x",
                 [
-                    "Sin",
+                    "Log",
                     "x"
                 ],
                 [
                     "Power",
                     [
-                        "Add",
-                        1,
+                        "Sqrt",
                         [
-                            "Power",
+                            "Add",
+                            1,
                             [
-                                "Sin",
-                                "x"
-                            ],
-                            2
+                                "Power",
+                                "x",
+                                2
+                            ]
                         ]
                     ],
                     -1
                 ]
-            ],
-            "id": 37,
+            ]
+        },
+        {
             "expected_result": [
                 "Multiply",
                 -1,
@@ -4507,10 +4481,76 @@
                     -1
                 ]
             ],
-            "variable": "x"
+            "num_steps": 2,
+            "id": 37,
+            "variable": "x",
+            "expression": [
+                "Multiply",
+                [
+                    "Sin",
+                    "x"
+                ],
+                [
+                    "Power",
+                    [
+                        "Add",
+                        1,
+                        [
+                            "Power",
+                            [
+                                "Sin",
+                                "x"
+                            ],
+                            2
+                        ]
+                    ],
+                    -1
+                ]
+            ]
         },
         {
+            "expected_result": [
+                "Multiply",
+                1,
+                [
+                    "Power",
+                    [
+                        "Sqrt",
+                        2
+                    ],
+                    -1
+                ],
+                [
+                    "Atanh",
+                    [
+                        "Multiply",
+                        [
+                            "Sqrt",
+                            2
+                        ],
+                        "x",
+                        [
+                            "Power",
+                            [
+                                "Sqrt",
+                                [
+                                    "Add",
+                                    1,
+                                    [
+                                        "Power",
+                                        "x",
+                                        4
+                                    ]
+                                ]
+                            ],
+                            -1
+                        ]
+                    ]
+                ]
+            ],
             "num_steps": 2,
+            "id": 38,
+            "variable": "x",
             "expression": [
                 "Multiply",
                 [
@@ -4554,21 +4594,13 @@
                     ],
                     -1
                 ]
-            ],
-            "id": 38,
+            ]
+        },
+        {
             "expected_result": [
                 "Multiply",
-                1,
                 [
-                    "Power",
-                    [
-                        "Sqrt",
-                        2
-                    ],
-                    -1
-                ],
-                [
-                    "Atanh",
+                    "Atan",
                     [
                         "Multiply",
                         [
@@ -4593,12 +4625,19 @@
                             -1
                         ]
                     ]
+                ],
+                [
+                    "Power",
+                    [
+                        "Sqrt",
+                        2
+                    ],
+                    -1
                 ]
             ],
-            "variable": "x"
-        },
-        {
             "num_steps": 2,
+            "id": 39,
+            "variable": "x",
             "expression": [
                 "Multiply",
                 [
@@ -4642,73 +4681,9 @@
                     ],
                     -1
                 ]
-            ],
-            "id": 39,
-            "expected_result": [
-                "Multiply",
-                [
-                    "Atan",
-                    [
-                        "Multiply",
-                        [
-                            "Sqrt",
-                            2
-                        ],
-                        "x",
-                        [
-                            "Power",
-                            [
-                                "Sqrt",
-                                [
-                                    "Add",
-                                    1,
-                                    [
-                                        "Power",
-                                        "x",
-                                        4
-                                    ]
-                                ]
-                            ],
-                            -1
-                        ]
-                    ]
-                ],
-                [
-                    "Power",
-                    [
-                        "Sqrt",
-                        2
-                    ],
-                    -1
-                ]
-            ],
-            "variable": "x"
+            ]
         },
         {
-            "num_steps": 4,
-            "expression": [
-                "Multiply",
-                [
-                    "Log",
-                    [
-                        "Sin",
-                        "x"
-                    ]
-                ],
-                [
-                    "Power",
-                    [
-                        "Add",
-                        1,
-                        [
-                            "Sin",
-                            "x"
-                        ]
-                    ],
-                    -1
-                ]
-            ],
-            "id": 40,
             "expected_result": [
                 "Add",
                 [
@@ -4755,10 +4730,9 @@
                     ]
                 ]
             ],
-            "variable": "x"
-        },
-        {
-            "num_steps": 6,
+            "num_steps": 4,
+            "id": 40,
+            "variable": "x",
             "expression": [
                 "Multiply",
                 [
@@ -4769,7 +4743,7 @@
                     ]
                 ],
                 [
-                    "Sqrt",
+                    "Power",
                     [
                         "Add",
                         1,
@@ -4777,10 +4751,12 @@
                             "Sin",
                             "x"
                         ]
-                    ]
+                    ],
+                    -1
                 ]
-            ],
-            "id": 41,
+            ]
+        },
+        {
             "expected_result": [
                 "Add",
                 [
@@ -4868,41 +4844,32 @@
                     ]
                 ]
             ],
-            "variable": "x"
-        },
-        {
-            "num_steps": -5,
+            "num_steps": 6,
+            "id": 41,
+            "variable": "x",
             "expression": [
                 "Multiply",
                 [
-                    "Sec",
-                    "x"
+                    "Log",
+                    [
+                        "Sin",
+                        "x"
+                    ]
                 ],
                 [
-                    "Power",
+                    "Sqrt",
                     [
-                        "Sqrt",
+                        "Add",
+                        1,
                         [
-                            "Add",
-                            [
-                                "Power",
-                                [
-                                    "Sec",
-                                    "x"
-                                ],
-                                4
-                            ],
-                            [
-                                "Multiply",
-                                -1,
-                                1
-                            ]
+                            "Sin",
+                            "x"
                         ]
-                    ],
-                    -1
+                    ]
                 ]
-            ],
-            "id": 42,
+            ]
+        },
+        {
             "expected_result": [
                 "Multiply",
                 -1,
@@ -4956,14 +4923,13 @@
                     -1
                 ]
             ],
-            "variable": "x"
-        },
-        {
-            "num_steps": 4,
+            "num_steps": -5,
+            "id": 42,
+            "variable": "x",
             "expression": [
                 "Multiply",
                 [
-                    "Tan",
+                    "Sec",
                     "x"
                 ],
                 [
@@ -4972,21 +4938,26 @@
                         "Sqrt",
                         [
                             "Add",
-                            1,
                             [
                                 "Power",
                                 [
-                                    "Tan",
+                                    "Sec",
                                     "x"
                                 ],
                                 4
+                            ],
+                            [
+                                "Multiply",
+                                -1,
+                                1
                             ]
                         ]
                     ],
                     -1
                 ]
-            ],
-            "id": 43,
+            ]
+        },
+        {
             "expected_result": [
                 "Multiply",
                 -1,
@@ -5051,14 +5022,13 @@
                     -1
                 ]
             ],
-            "variable": "x"
-        },
-        {
             "num_steps": 4,
+            "id": 43,
+            "variable": "x",
             "expression": [
                 "Multiply",
                 [
-                    "Sin",
+                    "Tan",
                     "x"
                 ],
                 [
@@ -5069,23 +5039,20 @@
                             "Add",
                             1,
                             [
-                                "Multiply",
-                                -1,
+                                "Power",
                                 [
-                                    "Power",
-                                    [
-                                        "Sin",
-                                        "x"
-                                    ],
-                                    6
-                                ]
+                                    "Tan",
+                                    "x"
+                                ],
+                                4
                             ]
                         ]
                     ],
                     -1
                 ]
-            ],
-            "id": 44,
+            ]
+        },
+        {
             "expected_result": [
                 "Multiply",
                 [
@@ -5154,47 +5121,41 @@
                     -1
                 ]
             ],
-            "variable": "x"
-        },
-        {
-            "num_steps": -1,
+            "num_steps": 4,
+            "id": 44,
+            "variable": "x",
             "expression": [
-                "Sqrt",
+                "Multiply",
                 [
-                    "Add",
+                    "Sin",
+                    "x"
+                ],
+                [
+                    "Power",
                     [
                         "Sqrt",
                         [
                             "Add",
+                            1,
                             [
-                                "Sec",
-                                "x"
-                            ],
-                            1
-                        ]
-                    ],
-                    [
-                        "Multiply",
-                        -1,
-                        [
-                            "Sqrt",
-                            [
-                                "Add",
+                                "Multiply",
+                                -1,
                                 [
-                                    "Sec",
-                                    "x"
-                                ],
-                                [
-                                    "Multiply",
-                                    -1,
-                                    1
+                                    "Power",
+                                    [
+                                        "Sin",
+                                        "x"
+                                    ],
+                                    6
                                 ]
                             ]
                         ]
-                    ]
+                    ],
+                    -1
                 ]
-            ],
-            "id": 45,
+            ]
+        },
+        {
             "expected_result": [
                 "Multiply",
                 [
@@ -5665,35 +5626,47 @@
                     ]
                 ]
             ],
-            "variable": "x"
+            "num_steps": -1,
+            "id": 45,
+            "variable": "x",
+            "expression": [
+                "Sqrt",
+                [
+                    "Add",
+                    [
+                        "Sqrt",
+                        [
+                            "Add",
+                            [
+                                "Sec",
+                                "x"
+                            ],
+                            1
+                        ]
+                    ],
+                    [
+                        "Multiply",
+                        -1,
+                        [
+                            "Sqrt",
+                            [
+                                "Add",
+                                [
+                                    "Sec",
+                                    "x"
+                                ],
+                                [
+                                    "Multiply",
+                                    -1,
+                                    1
+                                ]
+                            ]
+                        ]
+                    ]
+                ]
+            ]
         },
         {
-            "num_steps": 13,
-            "expression": [
-                "Multiply",
-                "x",
-                [
-                    "Log",
-                    [
-                        "Add",
-                        [
-                            "Power",
-                            "x",
-                            2
-                        ],
-                        1
-                    ]
-                ],
-                [
-                    "Power",
-                    [
-                        "Atan",
-                        "x"
-                    ],
-                    2
-                ]
-            ],
-            "id": 46,
             "expected_result": [
                 "Add",
                 [
@@ -5853,30 +5826,35 @@
                     ]
                 ]
             ],
-            "variable": "x"
+            "num_steps": 13,
+            "id": 46,
+            "variable": "x",
+            "expression": [
+                "Multiply",
+                "x",
+                [
+                    "Log",
+                    [
+                        "Add",
+                        [
+                            "Power",
+                            "x",
+                            2
+                        ],
+                        1
+                    ]
+                ],
+                [
+                    "Power",
+                    [
+                        "Atan",
+                        "x"
+                    ],
+                    2
+                ]
+            ]
         },
         {
-            "num_steps": 12,
-            "expression": [
-                "Atan",
-                [
-                    "Multiply",
-                    "x",
-                    [
-                        "Sqrt",
-                        [
-                            "Add",
-                            1,
-                            [
-                                "Power",
-                                "x",
-                                2
-                            ]
-                        ]
-                    ]
-                ]
-            ],
-            "id": 47,
             "expected_result": [
                 "Add",
                 [
@@ -6065,33 +6043,30 @@
                     ]
                 ]
             ],
-            "variable": "x"
-        },
-        {
-            "num_steps": 6,
+            "num_steps": 12,
+            "id": 47,
+            "variable": "x",
             "expression": [
                 "Atan",
                 [
-                    "Add",
+                    "Multiply",
+                    "x",
                     [
                         "Sqrt",
                         [
                             "Add",
-                            "x",
-                            1
-                        ]
-                    ],
-                    [
-                        "Multiply",
-                        -1,
-                        [
-                            "Sqrt",
-                            "x"
+                            1,
+                            [
+                                "Power",
+                                "x",
+                                2
+                            ]
                         ]
                     ]
                 ]
-            ],
-            "id": 48,
+            ]
+        },
+        {
             "expected_result": [
                 "Add",
                 [
@@ -6137,38 +6112,33 @@
                     ]
                 ]
             ],
-            "variable": "x"
-        },
-        {
-            "num_steps": 4,
+            "num_steps": 6,
+            "id": 48,
+            "variable": "x",
             "expression": [
-                "Asin",
+                "Atan",
                 [
-                    "Multiply",
-                    "x",
+                    "Add",
                     [
-                        "Power",
+                        "Sqrt",
+                        [
+                            "Add",
+                            "x",
+                            1
+                        ]
+                    ],
+                    [
+                        "Multiply",
+                        -1,
                         [
                             "Sqrt",
-                            [
-                                "Add",
-                                1,
-                                [
-                                    "Multiply",
-                                    -1,
-                                    [
-                                        "Power",
-                                        "x",
-                                        2
-                                    ]
-                                ]
-                            ]
-                        ],
-                        -1
+                            "x"
+                        ]
                     ]
                 ]
-            ],
-            "id": 49,
+            ]
+        },
+        {
             "expected_result": [
                 "Add",
                 [
@@ -6223,34 +6193,38 @@
                     ]
                 ]
             ],
-            "variable": "x"
-        },
-        {
-            "num_steps": 6,
+            "num_steps": 4,
+            "id": 49,
+            "variable": "x",
             "expression": [
-                "Atan",
+                "Asin",
                 [
                     "Multiply",
                     "x",
                     [
-                        "Sqrt",
+                        "Power",
                         [
-                            "Add",
-                            1,
+                            "Sqrt",
                             [
-                                "Multiply",
-                                -1,
+                                "Add",
+                                1,
                                 [
-                                    "Power",
-                                    "x",
-                                    2
+                                    "Multiply",
+                                    -1,
+                                    [
+                                        "Power",
+                                        "x",
+                                        2
+                                    ]
                                 ]
                             ]
-                        ]
+                        ],
+                        -1
                     ]
                 ]
-            ],
-            "id": 50,
+            ]
+        },
+        {
             "expected_result": [
                 "Add",
                 [
@@ -6412,7 +6386,33 @@
                     ]
                 ]
             ],
-            "variable": "x"
+            "num_steps": 6,
+            "id": 50,
+            "variable": "x",
+            "expression": [
+                "Atan",
+                [
+                    "Multiply",
+                    "x",
+                    [
+                        "Sqrt",
+                        [
+                            "Add",
+                            1,
+                            [
+                                "Multiply",
+                                -1,
+                                [
+                                    "Power",
+                                    "x",
+                                    2
+                                ]
+                            ]
+                        ]
+                    ]
+                ]
+            ]
         }
-    ]
+    ],
+    "$schema": "open-symbolic-rules/v0.1"
 }

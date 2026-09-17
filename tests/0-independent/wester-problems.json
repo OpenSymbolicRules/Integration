@@ -1,52 +1,8 @@
 {
-    "$schema": "open-symbolic-rules/v0.1",
-    "section": "0",
     "title": "Wester Problems",
+    "section": "0",
     "tests": [
         {
-            "num_steps": 2,
-            "expression": [
-                "Multiply",
-                [
-                    "Power",
-                    [
-                        "Add",
-                        -5,
-                        [
-                            "Multiply",
-                            3,
-                            "x"
-                        ]
-                    ],
-                    2
-                ],
-                [
-                    "Power",
-                    [
-                        "Power",
-                        [
-                            "Add",
-                            -1,
-                            [
-                                "Multiply",
-                                2,
-                                "x"
-                            ]
-                        ],
-                        [
-                            "Multiply",
-                            7,
-                            [
-                                "Power",
-                                2,
-                                -1
-                            ]
-                        ]
-                    ],
-                    -1
-                ]
-            ],
-            "id": 1,
             "expected_result": [
                 "Add",
                 [
@@ -142,52 +98,52 @@
                     ]
                 ]
             ],
-            "variable": "x"
-        },
-        {
             "num_steps": 2,
+            "id": 1,
+            "variable": "x",
             "expression": [
                 "Multiply",
-                1,
                 [
                     "Power",
                     [
                         "Add",
+                        -5,
                         [
                             "Multiply",
-                            -5,
+                            3,
+                            "x"
+                        ]
+                    ],
+                    2
+                ],
+                [
+                    "Power",
+                    [
+                        "Power",
+                        [
+                            "Add",
+                            -1,
                             [
-                                "Power",
-                                [
-                                    "Power",
-                                    "E",
-                                    [
-                                        "Multiply",
-                                        "m",
-                                        "x"
-                                    ]
-                                ],
-                                -1
+                                "Multiply",
+                                2,
+                                "x"
                             ]
                         ],
                         [
                             "Multiply",
-                            2,
+                            7,
                             [
                                 "Power",
-                                "E",
-                                [
-                                    "Multiply",
-                                    "m",
-                                    "x"
-                                ]
+                                2,
+                                -1
                             ]
                         ]
                     ],
                     -1
                 ]
-            ],
-            "id": 2,
+            ]
+        },
+        {
             "expected_result": [
                 "Multiply",
                 -1,
@@ -231,10 +187,9 @@
                     -1
                 ]
             ],
-            "variable": "x"
-        },
-        {
             "num_steps": 2,
+            "id": 2,
+            "variable": "x",
             "expression": [
                 "Multiply",
                 1,
@@ -242,20 +197,42 @@
                     "Power",
                     [
                         "Add",
-                        "a",
                         [
                             "Multiply",
-                            "b",
+                            -5,
                             [
-                                "Cos",
-                                "x"
+                                "Power",
+                                [
+                                    "Power",
+                                    "E",
+                                    [
+                                        "Multiply",
+                                        "m",
+                                        "x"
+                                    ]
+                                ],
+                                -1
+                            ]
+                        ],
+                        [
+                            "Multiply",
+                            2,
+                            [
+                                "Power",
+                                "E",
+                                [
+                                    "Multiply",
+                                    "m",
+                                    "x"
+                                ]
                             ]
                         ]
                     ],
                     -1
                 ]
-            ],
-            "id": 3,
+            ]
+        },
+        {
             "expected_result": [
                 "Multiply",
                 2,
@@ -329,10 +306,9 @@
                     -1
                 ]
             ],
-            "variable": "x"
-        },
-        {
             "num_steps": 2,
+            "id": 3,
+            "variable": "x",
             "expression": [
                 "Multiply",
                 1,
@@ -340,28 +316,21 @@
                     "Power",
                     [
                         "Add",
-                        3,
+                        "a",
                         [
                             "Multiply",
-                            3,
+                            "b",
                             [
                                 "Cos",
-                                "x"
-                            ]
-                        ],
-                        [
-                            "Multiply",
-                            4,
-                            [
-                                "Sin",
                                 "x"
                             ]
                         ]
                     ],
                     -1
                 ]
-            ],
-            "id": 4,
+            ]
+        },
+        {
             "expected_result": [
                 "Multiply",
                 1,
@@ -394,10 +363,9 @@
                     ]
                 ]
             ],
-            "variable": "x"
-        },
-        {
             "num_steps": 2,
+            "id": 4,
+            "variable": "x",
             "expression": [
                 "Multiply",
                 1,
@@ -405,7 +373,7 @@
                     "Power",
                     [
                         "Add",
-                        4,
+                        3,
                         [
                             "Multiply",
                             3,
@@ -425,8 +393,9 @@
                     ],
                     -1
                 ]
-            ],
-            "id": 5,
+            ]
+        },
+        {
             "expected_result": [
                 "Multiply",
                 -1,
@@ -472,10 +441,66 @@
                     ]
                 ]
             ],
-            "variable": "x"
+            "num_steps": 2,
+            "id": 5,
+            "variable": "x",
+            "expression": [
+                "Multiply",
+                1,
+                [
+                    "Power",
+                    [
+                        "Add",
+                        4,
+                        [
+                            "Multiply",
+                            3,
+                            [
+                                "Cos",
+                                "x"
+                            ]
+                        ],
+                        [
+                            "Multiply",
+                            4,
+                            [
+                                "Sin",
+                                "x"
+                            ]
+                        ]
+                    ],
+                    -1
+                ]
+            ]
         },
         {
+            "expected_result": [
+                "Multiply",
+                -1,
+                [
+                    "Power",
+                    [
+                        "Add",
+                        2,
+                        [
+                            "Tan",
+                            [
+                                "Multiply",
+                                "x",
+                                [
+                                    "Power",
+                                    2,
+                                    -1
+                                ]
+                            ]
+                        ]
+                    ],
+                    -1
+                ]
+            ],
             "num_steps": 1,
+            "id": 6,
+            "variable": "x",
             "expression": [
                 "Multiply",
                 1,
@@ -503,65 +528,9 @@
                     ],
                     -1
                 ]
-            ],
-            "id": 6,
-            "expected_result": [
-                "Multiply",
-                -1,
-                [
-                    "Power",
-                    [
-                        "Add",
-                        2,
-                        [
-                            "Tan",
-                            [
-                                "Multiply",
-                                "x",
-                                [
-                                    "Power",
-                                    2,
-                                    -1
-                                ]
-                            ]
-                        ]
-                    ],
-                    -1
-                ]
-            ],
-            "variable": "x"
+            ]
         },
         {
-            "num_steps": 3,
-            "expression": [
-                "Multiply",
-                1,
-                [
-                    "Power",
-                    [
-                        "Add",
-                        6,
-                        [
-                            "Multiply",
-                            3,
-                            [
-                                "Cos",
-                                "x"
-                            ]
-                        ],
-                        [
-                            "Multiply",
-                            4,
-                            [
-                                "Sin",
-                                "x"
-                            ]
-                        ]
-                    ],
-                    -1
-                ]
-            ],
-            "id": 7,
             "expected_result": [
                 "Add",
                 [
@@ -643,44 +612,39 @@
                     ]
                 ]
             ],
-            "variable": "x"
-        },
-        {
-            "num_steps": 4,
+            "num_steps": 3,
+            "id": 7,
+            "variable": "x",
             "expression": [
                 "Multiply",
                 1,
                 [
                     "Power",
-                    2,
-                    -1
-                ],
-                [
-                    "Log",
                     [
-                        "Power",
+                        "Add",
+                        6,
                         [
-                            "Add",
+                            "Multiply",
+                            3,
                             [
-                                "Multiply",
-                                -1,
-                                [
-                                    "Power",
-                                    "a",
-                                    2
-                                ]
-                            ],
-                            [
-                                "Power",
-                                "x",
-                                2
+                                "Cos",
+                                "x"
                             ]
                         ],
-                        2
-                    ]
+                        [
+                            "Multiply",
+                            4,
+                            [
+                                "Sin",
+                                "x"
+                            ]
+                        ]
+                    ],
+                    -1
                 ]
-            ],
-            "id": 8,
+            ]
+        },
+        {
             "expected_result": [
                 "Add",
                 [
@@ -740,7 +704,43 @@
                     ]
                 ]
             ],
-            "variable": "x"
+            "num_steps": 4,
+            "id": 8,
+            "variable": "x",
+            "expression": [
+                "Multiply",
+                1,
+                [
+                    "Power",
+                    2,
+                    -1
+                ],
+                [
+                    "Log",
+                    [
+                        "Power",
+                        [
+                            "Add",
+                            [
+                                "Multiply",
+                                -1,
+                                [
+                                    "Power",
+                                    "a",
+                                    2
+                                ]
+                            ],
+                            [
+                                "Power",
+                                "x",
+                                2
+                            ]
+                        ],
+                        2
+                    ]
+                ]
+            ]
         }
-    ]
+    ],
+    "$schema": "open-symbolic-rules/v0.1"
 }

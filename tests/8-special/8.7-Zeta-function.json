@@ -1,32 +1,8 @@
 {
-    "$schema": "open-symbolic-rules/v0.1",
-    "section": "8.7",
     "title": "Zeta function",
+    "section": "8.7",
     "tests": [
         {
-            "num_steps": 4,
-            "expression": [
-                "Multiply",
-                [
-                    "Power",
-                    "x",
-                    2
-                ],
-                [
-                    "Zeta",
-                    2,
-                    [
-                        "Add",
-                        "a",
-                        [
-                            "Multiply",
-                            "b",
-                            "x"
-                        ]
-                    ]
-                ]
-            ],
-            "id": 1,
             "expected_result": [
                 "Add",
                 [
@@ -109,16 +85,15 @@
                     ]
                 ]
             ],
-            "variable": "x"
-        },
-        {
-            "num_steps": 3,
+            "num_steps": 4,
+            "id": 1,
+            "variable": "x",
             "expression": [
                 "Multiply",
                 [
                     "Power",
                     "x",
-                    1
+                    2
                 ],
                 [
                     "Zeta",
@@ -133,8 +108,9 @@
                         ]
                     ]
                 ]
-            ],
-            "id": 2,
+            ]
+        },
+        {
             "expected_result": [
                 "Add",
                 [
@@ -185,16 +161,15 @@
                     ]
                 ]
             ],
-            "variable": "x"
-        },
-        {
-            "num_steps": 2,
+            "num_steps": 3,
+            "id": 2,
+            "variable": "x",
             "expression": [
                 "Multiply",
                 [
                     "Power",
                     "x",
-                    0
+                    1
                 ],
                 [
                     "Zeta",
@@ -209,8 +184,9 @@
                         ]
                     ]
                 ]
-            ],
-            "id": 3,
+            ]
+        },
+        {
             "expected_result": [
                 "Multiply",
                 [
@@ -232,12 +208,16 @@
                     -1
                 ]
             ],
-            "variable": "x"
-        },
-        {
-            "num_steps": 1,
+            "num_steps": 2,
+            "id": 3,
+            "variable": "x",
             "expression": [
                 "Multiply",
+                [
+                    "Power",
+                    "x",
+                    0
+                ],
                 [
                     "Zeta",
                     2,
@@ -250,18 +230,10 @@
                             "x"
                         ]
                     ]
-                ],
-                [
-                    "Power",
-                    [
-                        "Power",
-                        "x",
-                        1
-                    ],
-                    -1
                 ]
-            ],
-            "id": 4,
+            ]
+        },
+        {
             "expected_result": [
                 "Unintegrable",
                 [
@@ -287,10 +259,9 @@
                 ],
                 "x"
             ],
-            "variable": "x"
-        },
-        {
-            "num_steps": 2,
+            "num_steps": 1,
+            "id": 4,
+            "variable": "x",
             "expression": [
                 "Multiply",
                 [
@@ -311,12 +282,13 @@
                     [
                         "Power",
                         "x",
-                        2
+                        1
                     ],
                     -1
                 ]
-            ],
-            "id": 5,
+            ]
+        },
+        {
             "expected_result": [
                 "Add",
                 [
@@ -371,10 +343,9 @@
                     ]
                 ]
             ],
-            "variable": "x"
-        },
-        {
-            "num_steps": 3,
+            "num_steps": 2,
+            "id": 5,
+            "variable": "x",
             "expression": [
                 "Multiply",
                 [
@@ -395,12 +366,13 @@
                     [
                         "Power",
                         "x",
-                        3
+                        2
                     ],
                     -1
                 ]
-            ],
-            "id": 6,
+            ]
+        },
+        {
             "expected_result": [
                 "Add",
                 [
@@ -500,10 +472,61 @@
                     ]
                 ]
             ],
-            "variable": "x"
+            "num_steps": 3,
+            "id": 6,
+            "variable": "x",
+            "expression": [
+                "Multiply",
+                [
+                    "Zeta",
+                    2,
+                    [
+                        "Add",
+                        "a",
+                        [
+                            "Multiply",
+                            "b",
+                            "x"
+                        ]
+                    ]
+                ],
+                [
+                    "Power",
+                    [
+                        "Power",
+                        "x",
+                        3
+                    ],
+                    -1
+                ]
+            ]
         },
         {
+            "expected_result": [
+                "Multiply",
+                -1,
+                [
+                    "PolyGamma",
+                    1,
+                    [
+                        "Add",
+                        "a",
+                        [
+                            "Multiply",
+                            "b",
+                            "x"
+                        ]
+                    ]
+                ],
+                [
+                    "Power",
+                    "x",
+                    -1
+                ]
+            ],
             "num_steps": 3,
+            "id": 7,
+            "variable": "x",
             "expression": [
                 "Add",
                 [
@@ -554,56 +577,9 @@
                         -1
                     ]
                 ]
-            ],
-            "id": 7,
-            "expected_result": [
-                "Multiply",
-                -1,
-                [
-                    "PolyGamma",
-                    1,
-                    [
-                        "Add",
-                        "a",
-                        [
-                            "Multiply",
-                            "b",
-                            "x"
-                        ]
-                    ]
-                ],
-                [
-                    "Power",
-                    "x",
-                    -1
-                ]
-            ],
-            "variable": "x"
+            ]
         },
         {
-            "num_steps": 3,
-            "expression": [
-                "Multiply",
-                [
-                    "Power",
-                    "x",
-                    2
-                ],
-                [
-                    "Zeta",
-                    "s",
-                    [
-                        "Add",
-                        "a",
-                        [
-                            "Multiply",
-                            "b",
-                            "x"
-                        ]
-                    ]
-                ]
-            ],
-            "id": 8,
             "expected_result": [
                 "If",
                 [
@@ -925,16 +901,15 @@
                     ]
                 ]
             ],
-            "variable": "x"
-        },
-        {
-            "num_steps": 2,
+            "num_steps": 3,
+            "id": 8,
+            "variable": "x",
             "expression": [
                 "Multiply",
                 [
                     "Power",
                     "x",
-                    1
+                    2
                 ],
                 [
                     "Zeta",
@@ -949,8 +924,9 @@
                         ]
                     ]
                 ]
-            ],
-            "id": 9,
+            ]
+        },
+        {
             "expected_result": [
                 "Add",
                 [
@@ -1043,16 +1019,15 @@
                     ]
                 ]
             ],
-            "variable": "x"
-        },
-        {
-            "num_steps": 1,
+            "num_steps": 2,
+            "id": 9,
+            "variable": "x",
             "expression": [
                 "Multiply",
                 [
                     "Power",
                     "x",
-                    0
+                    1
                 ],
                 [
                     "Zeta",
@@ -1067,8 +1042,9 @@
                         ]
                     ]
                 ]
-            ],
-            "id": 10,
+            ]
+        },
+        {
             "expected_result": [
                 "Multiply",
                 [
@@ -1106,12 +1082,16 @@
                     -1
                 ]
             ],
-            "variable": "x"
-        },
-        {
-            "num_steps": 0,
+            "num_steps": 1,
+            "id": 10,
+            "variable": "x",
             "expression": [
                 "Multiply",
+                [
+                    "Power",
+                    "x",
+                    0
+                ],
                 [
                     "Zeta",
                     "s",
@@ -1124,18 +1104,10 @@
                             "x"
                         ]
                     ]
-                ],
-                [
-                    "Power",
-                    [
-                        "Power",
-                        "x",
-                        1
-                    ],
-                    -1
                 ]
-            ],
-            "id": 11,
+            ]
+        },
+        {
             "expected_result": [
                 "CannotIntegrate",
                 [
@@ -1161,10 +1133,9 @@
                 ],
                 "x"
             ],
-            "variable": "x"
-        },
-        {
-            "num_steps": 1,
+            "num_steps": 0,
+            "id": 11,
+            "variable": "x",
             "expression": [
                 "Multiply",
                 [
@@ -1185,12 +1156,13 @@
                     [
                         "Power",
                         "x",
-                        2
+                        1
                     ],
                     -1
                 ]
-            ],
-            "id": 12,
+            ]
+        },
+        {
             "expected_result": [
                 "Add",
                 [
@@ -1251,10 +1223,9 @@
                     ]
                 ]
             ],
-            "variable": "x"
-        },
-        {
-            "num_steps": 2,
+            "num_steps": 1,
+            "id": 12,
+            "variable": "x",
             "expression": [
                 "Multiply",
                 [
@@ -1275,12 +1246,13 @@
                     [
                         "Power",
                         "x",
-                        3
+                        2
                     ],
                     -1
                 ]
-            ],
-            "id": 13,
+            ]
+        },
+        {
             "expected_result": [
                 "Add",
                 [
@@ -1394,10 +1366,61 @@
                     ]
                 ]
             ],
-            "variable": "x"
+            "num_steps": 2,
+            "id": 13,
+            "variable": "x",
+            "expression": [
+                "Multiply",
+                [
+                    "Zeta",
+                    "s",
+                    [
+                        "Add",
+                        "a",
+                        [
+                            "Multiply",
+                            "b",
+                            "x"
+                        ]
+                    ]
+                ],
+                [
+                    "Power",
+                    [
+                        "Power",
+                        "x",
+                        3
+                    ],
+                    -1
+                ]
+            ]
         },
         {
+            "expected_result": [
+                "Multiply",
+                -1,
+                [
+                    "Zeta",
+                    "s",
+                    [
+                        "Add",
+                        "a",
+                        [
+                            "Multiply",
+                            "b",
+                            "x"
+                        ]
+                    ]
+                ],
+                [
+                    "Power",
+                    "x",
+                    -1
+                ]
+            ],
             "num_steps": 2,
+            "id": 14,
+            "variable": "x",
             "expression": [
                 "Add",
                 [
@@ -1452,31 +1475,8 @@
                         -1
                     ]
                 ]
-            ],
-            "id": 14,
-            "expected_result": [
-                "Multiply",
-                -1,
-                [
-                    "Zeta",
-                    "s",
-                    [
-                        "Add",
-                        "a",
-                        [
-                            "Multiply",
-                            "b",
-                            "x"
-                        ]
-                    ]
-                ],
-                [
-                    "Power",
-                    "x",
-                    -1
-                ]
-            ],
-            "variable": "x"
+            ]
         }
-    ]
+    ],
+    "$schema": "open-symbolic-rules/v0.1"
 }
