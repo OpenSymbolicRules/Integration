@@ -1,581 +1,631 @@
 {
-    "title": "Zeta function",
-    "section": "8.7",
-    "rules": [
-        {
-            "constraints": [
-                [
-                    "FreeQ",
-                    [
-                        "List",
-                        "a",
-                        "b"
-                    ],
-                    "x"
-                ]
-            ],
-            "id": 1,
-            "result": [
-                "Int",
-                [
-                    "PolyGamma",
-                    1,
-                    [
-                        "Add",
-                        "a",
-                        [
-                            "Multiply",
-                            "b",
-                            "x"
-                        ]
-                    ]
-                ],
-                "x"
-            ],
-            "pattern": [
-                "Zeta",
-                2,
-                [
-                    "Add",
-                    "a.",
-                    [
-                        "Multiply",
-                        "b.",
-                        "x_"
-                    ]
-                ]
+  "title": "Zeta function",
+  "section": "8.7",
+  "rules": [
+    {
+      "constraints": [
+        [
+          "FreeQ",
+          [
+            "List",
+            "a",
+            "b"
+          ],
+          "x"
+        ]
+      ],
+      "id": 1,
+      "result": [
+        "Int",
+        [
+          "PolyGamma",
+          1,
+          [
+            "Add",
+            "a",
+            [
+              "Multiply",
+              "b",
+              "x"
             ]
-        },
-        {
-            "constraints": [
-                [
-                    "FreeQ",
-                    [
-                        "List",
-                        "a",
-                        "b",
-                        "s"
-                    ],
-                    "x"
-                ],
-                [
-                    "NeQ",
-                    "s",
-                    1
-                ],
-                [
-                    "NeQ",
-                    "s",
-                    2
-                ]
-            ],
-            "id": 2,
-            "result": [
+          ]
+        ],
+        "x"
+      ],
+      "pattern": [
+        "Zeta",
+        2,
+        [
+          "Add",
+          "a.",
+          [
+            "Multiply",
+            "b.",
+            "x_"
+          ]
+        ]
+      ],
+      "provenance": {
+        "method": "converted",
+        "sources": [
+          {
+            "name": "Rubi",
+            "version": "4.16.1",
+            "locator": "8 Special functions/8.7 Zeta function#1"
+          }
+        ]
+      }
+    },
+    {
+      "constraints": [
+        [
+          "FreeQ",
+          [
+            "List",
+            "a",
+            "b",
+            "s"
+          ],
+          "x"
+        ],
+        [
+          "NeQ",
+          "s",
+          1
+        ],
+        [
+          "NeQ",
+          "s",
+          2
+        ]
+      ],
+      "id": 2,
+      "result": [
+        "Multiply",
+        -1,
+        [
+          "Zeta",
+          [
+            "Add",
+            "s",
+            [
+              "Multiply",
+              -1,
+              1
+            ]
+          ],
+          [
+            "Add",
+            "a",
+            [
+              "Multiply",
+              "b",
+              "x"
+            ]
+          ]
+        ],
+        [
+          "Power",
+          [
+            "Multiply",
+            "b",
+            [
+              "Add",
+              "s",
+              [
                 "Multiply",
                 -1,
-                [
-                    "Zeta",
-                    [
-                        "Add",
-                        "s",
-                        [
-                            "Multiply",
-                            -1,
-                            1
-                        ]
-                    ],
-                    [
-                        "Add",
-                        "a",
-                        [
-                            "Multiply",
-                            "b",
-                            "x"
-                        ]
-                    ]
-                ],
-                [
-                    "Power",
-                    [
-                        "Multiply",
-                        "b",
-                        [
-                            "Add",
-                            "s",
-                            [
-                                "Multiply",
-                                -1,
-                                1
-                            ]
-                        ]
-                    ],
-                    -1
-                ]
-            ],
-            "pattern": [
-                "Zeta",
-                "s_",
-                [
-                    "Add",
-                    "a.",
-                    [
-                        "Multiply",
-                        "b.",
-                        "x_"
-                    ]
-                ]
+                1
+              ]
             ]
-        },
-        {
-            "constraints": [
-                [
-                    "FreeQ",
-                    [
-                        "List",
-                        "a",
-                        "b",
-                        "c",
-                        "d"
-                    ],
-                    "x"
-                ],
-                [
-                    "RationalQ",
-                    "m"
-                ]
-            ],
-            "id": 3,
-            "result": [
-                "Int",
-                [
-                    "Multiply",
-                    [
-                        "Power",
-                        [
-                            "Add",
-                            "c",
-                            [
-                                "Multiply",
-                                "d",
-                                "x"
-                            ]
-                        ],
-                        "m"
-                    ],
-                    [
-                        "PolyGamma",
-                        1,
-                        [
-                            "Add",
-                            "a",
-                            [
-                                "Multiply",
-                                "b",
-                                "x"
-                            ]
-                        ]
-                    ]
-                ],
-                "x"
-            ],
-            "pattern": [
+          ],
+          -1
+        ]
+      ],
+      "pattern": [
+        "Zeta",
+        "s_",
+        [
+          "Add",
+          "a.",
+          [
+            "Multiply",
+            "b.",
+            "x_"
+          ]
+        ]
+      ],
+      "provenance": {
+        "method": "converted",
+        "sources": [
+          {
+            "name": "Rubi",
+            "version": "4.16.1",
+            "locator": "8 Special functions/8.7 Zeta function#2"
+          }
+        ]
+      }
+    },
+    {
+      "constraints": [
+        [
+          "FreeQ",
+          [
+            "List",
+            "a",
+            "b",
+            "c",
+            "d"
+          ],
+          "x"
+        ],
+        [
+          "RationalQ",
+          "m"
+        ]
+      ],
+      "id": 3,
+      "result": [
+        "Int",
+        [
+          "Multiply",
+          [
+            "Power",
+            [
+              "Add",
+              "c",
+              [
                 "Multiply",
-                [
-                    "Power",
-                    [
-                        "Add",
-                        "c.",
-                        [
-                            "Multiply",
-                            "d.",
-                            "x_"
-                        ]
-                    ],
-                    "m."
-                ],
-                [
-                    "Zeta",
-                    2,
-                    [
-                        "Add",
-                        "a.",
-                        [
-                            "Multiply",
-                            "b.",
-                            "x_"
-                        ]
-                    ]
-                ]
-            ]
-        },
-        {
-            "constraints": [
-                [
-                    "FreeQ",
-                    [
-                        "List",
-                        "a",
-                        "b",
-                        "c",
-                        "d",
-                        "s"
-                    ],
-                    "x"
-                ],
-                [
-                    "NeQ",
-                    "s",
-                    1
-                ],
-                [
-                    "NeQ",
-                    "s",
-                    2
-                ],
-                [
-                    "GtQ",
-                    "m",
-                    0
-                ]
+                "d",
+                "x"
+              ]
             ],
-            "id": 4,
-            "result": [
+            "m"
+          ],
+          [
+            "PolyGamma",
+            1,
+            [
+              "Add",
+              "a",
+              [
+                "Multiply",
+                "b",
+                "x"
+              ]
+            ]
+          ]
+        ],
+        "x"
+      ],
+      "pattern": [
+        "Multiply",
+        [
+          "Power",
+          [
+            "Add",
+            "c.",
+            [
+              "Multiply",
+              "d.",
+              "x_"
+            ]
+          ],
+          "m."
+        ],
+        [
+          "Zeta",
+          2,
+          [
+            "Add",
+            "a.",
+            [
+              "Multiply",
+              "b.",
+              "x_"
+            ]
+          ]
+        ]
+      ],
+      "provenance": {
+        "method": "converted",
+        "sources": [
+          {
+            "name": "Rubi",
+            "version": "4.16.1",
+            "locator": "8 Special functions/8.7 Zeta function#3"
+          }
+        ]
+      }
+    },
+    {
+      "constraints": [
+        [
+          "FreeQ",
+          [
+            "List",
+            "a",
+            "b",
+            "c",
+            "d",
+            "s"
+          ],
+          "x"
+        ],
+        [
+          "NeQ",
+          "s",
+          1
+        ],
+        [
+          "NeQ",
+          "s",
+          2
+        ],
+        [
+          "GtQ",
+          "m",
+          0
+        ]
+      ],
+      "id": 4,
+      "result": [
+        "Add",
+        [
+          "Multiply",
+          -1,
+          [
+            "Power",
+            [
+              "Add",
+              "c",
+              [
+                "Multiply",
+                "d",
+                "x"
+              ]
+            ],
+            "m"
+          ],
+          [
+            "Zeta",
+            [
+              "Add",
+              "s",
+              [
+                "Multiply",
+                -1,
+                1
+              ]
+            ],
+            [
+              "Add",
+              "a",
+              [
+                "Multiply",
+                "b",
+                "x"
+              ]
+            ]
+          ],
+          [
+            "Power",
+            [
+              "Multiply",
+              "b",
+              [
                 "Add",
+                "s",
                 [
-                    "Multiply",
-                    -1,
-                    [
-                        "Power",
-                        [
-                            "Add",
-                            "c",
-                            [
-                                "Multiply",
-                                "d",
-                                "x"
-                            ]
-                        ],
-                        "m"
-                    ],
-                    [
-                        "Zeta",
-                        [
-                            "Add",
-                            "s",
-                            [
-                                "Multiply",
-                                -1,
-                                1
-                            ]
-                        ],
-                        [
-                            "Add",
-                            "a",
-                            [
-                                "Multiply",
-                                "b",
-                                "x"
-                            ]
-                        ]
-                    ],
-                    [
-                        "Power",
-                        [
-                            "Multiply",
-                            "b",
-                            [
-                                "Add",
-                                "s",
-                                [
-                                    "Multiply",
-                                    -1,
-                                    1
-                                ]
-                            ]
-                        ],
-                        -1
-                    ]
-                ],
+                  "Multiply",
+                  -1,
+                  1
+                ]
+              ]
+            ],
+            -1
+          ]
+        ],
+        [
+          "Multiply",
+          "d",
+          "m",
+          [
+            "Power",
+            [
+              "Multiply",
+              "b",
+              [
+                "Add",
+                "s",
                 [
+                  "Multiply",
+                  -1,
+                  1
+                ]
+              ]
+            ],
+            -1
+          ],
+          [
+            "Int",
+            [
+              "Multiply",
+              [
+                "Power",
+                [
+                  "Add",
+                  "c",
+                  [
                     "Multiply",
                     "d",
-                    "m",
-                    [
-                        "Power",
-                        [
-                            "Multiply",
-                            "b",
-                            [
-                                "Add",
-                                "s",
-                                [
-                                    "Multiply",
-                                    -1,
-                                    1
-                                ]
-                            ]
-                        ],
-                        -1
-                    ],
-                    [
-                        "Int",
-                        [
-                            "Multiply",
-                            [
-                                "Power",
-                                [
-                                    "Add",
-                                    "c",
-                                    [
-                                        "Multiply",
-                                        "d",
-                                        "x"
-                                    ]
-                                ],
-                                [
-                                    "Add",
-                                    "m",
-                                    [
-                                        "Multiply",
-                                        -1,
-                                        1
-                                    ]
-                                ]
-                            ],
-                            [
-                                "Zeta",
-                                [
-                                    "Add",
-                                    "s",
-                                    [
-                                        "Multiply",
-                                        -1,
-                                        1
-                                    ]
-                                ],
-                                [
-                                    "Add",
-                                    "a",
-                                    [
-                                        "Multiply",
-                                        "b",
-                                        "x"
-                                    ]
-                                ]
-                            ]
-                        ],
-                        "x"
-                    ]
-                ]
-            ],
-            "pattern": [
-                "Multiply",
-                [
-                    "Power",
-                    [
-                        "Add",
-                        "c.",
-                        [
-                            "Multiply",
-                            "d.",
-                            "x_"
-                        ]
-                    ],
-                    "m."
-                ],
-                [
-                    "Zeta",
-                    "s_",
-                    [
-                        "Add",
-                        "a.",
-                        [
-                            "Multiply",
-                            "b.",
-                            "x_"
-                        ]
-                    ]
-                ]
-            ]
-        },
-        {
-            "constraints": [
-                [
-                    "FreeQ",
-                    [
-                        "List",
-                        "a",
-                        "b",
-                        "c",
-                        "d",
-                        "s"
-                    ],
                     "x"
+                  ]
                 ],
                 [
-                    "NeQ",
-                    "s",
-                    1
-                ],
-                [
-                    "NeQ",
-                    "s",
-                    2
-                ],
-                [
-                    "LtQ",
-                    "m",
-                    -1
-                ]
-            ],
-            "id": 5,
-            "result": [
-                "Add",
-                [
+                  "Add",
+                  "m",
+                  [
                     "Multiply",
-                    [
-                        "Power",
-                        [
-                            "Add",
-                            "c",
-                            [
-                                "Multiply",
-                                "d",
-                                "x"
-                            ]
-                        ],
-                        [
-                            "Add",
-                            "m",
-                            1
-                        ]
-                    ],
-                    [
-                        "Zeta",
-                        "s",
-                        [
-                            "Add",
-                            "a",
-                            [
-                                "Multiply",
-                                "b",
-                                "x"
-                            ]
-                        ]
-                    ],
-                    [
-                        "Power",
-                        [
-                            "Multiply",
-                            "d",
-                            [
-                                "Add",
-                                "m",
-                                1
-                            ]
-                        ],
-                        -1
-                    ]
+                    -1,
+                    1
+                  ]
+                ]
+              ],
+              [
+                "Zeta",
+                [
+                  "Add",
+                  "s",
+                  [
+                    "Multiply",
+                    -1,
+                    1
+                  ]
                 ],
                 [
+                  "Add",
+                  "a",
+                  [
                     "Multiply",
                     "b",
-                    "s",
-                    [
-                        "Power",
-                        [
-                            "Multiply",
-                            "d",
-                            [
-                                "Add",
-                                "m",
-                                1
-                            ]
-                        ],
-                        -1
-                    ],
-                    [
-                        "Int",
-                        [
-                            "Multiply",
-                            [
-                                "Power",
-                                [
-                                    "Add",
-                                    "c",
-                                    [
-                                        "Multiply",
-                                        "d",
-                                        "x"
-                                    ]
-                                ],
-                                [
-                                    "Add",
-                                    "m",
-                                    1
-                                ]
-                            ],
-                            [
-                                "Zeta",
-                                [
-                                    "Add",
-                                    "s",
-                                    1
-                                ],
-                                [
-                                    "Add",
-                                    "a",
-                                    [
-                                        "Multiply",
-                                        "b",
-                                        "x"
-                                    ]
-                                ]
-                            ]
-                        ],
-                        "x"
-                    ]
+                    "x"
+                  ]
                 ]
+              ]
             ],
-            "pattern": [
+            "x"
+          ]
+        ]
+      ],
+      "pattern": [
+        "Multiply",
+        [
+          "Power",
+          [
+            "Add",
+            "c.",
+            [
+              "Multiply",
+              "d.",
+              "x_"
+            ]
+          ],
+          "m."
+        ],
+        [
+          "Zeta",
+          "s_",
+          [
+            "Add",
+            "a.",
+            [
+              "Multiply",
+              "b.",
+              "x_"
+            ]
+          ]
+        ]
+      ],
+      "provenance": {
+        "method": "converted",
+        "sources": [
+          {
+            "name": "Rubi",
+            "version": "4.16.1",
+            "locator": "8 Special functions/8.7 Zeta function#4"
+          }
+        ]
+      }
+    },
+    {
+      "constraints": [
+        [
+          "FreeQ",
+          [
+            "List",
+            "a",
+            "b",
+            "c",
+            "d",
+            "s"
+          ],
+          "x"
+        ],
+        [
+          "NeQ",
+          "s",
+          1
+        ],
+        [
+          "NeQ",
+          "s",
+          2
+        ],
+        [
+          "LtQ",
+          "m",
+          -1
+        ]
+      ],
+      "id": 5,
+      "result": [
+        "Add",
+        [
+          "Multiply",
+          [
+            "Power",
+            [
+              "Add",
+              "c",
+              [
                 "Multiply",
+                "d",
+                "x"
+              ]
+            ],
+            [
+              "Add",
+              "m",
+              1
+            ]
+          ],
+          [
+            "Zeta",
+            "s",
+            [
+              "Add",
+              "a",
+              [
+                "Multiply",
+                "b",
+                "x"
+              ]
+            ]
+          ],
+          [
+            "Power",
+            [
+              "Multiply",
+              "d",
+              [
+                "Add",
+                "m",
+                1
+              ]
+            ],
+            -1
+          ]
+        ],
+        [
+          "Multiply",
+          "b",
+          "s",
+          [
+            "Power",
+            [
+              "Multiply",
+              "d",
+              [
+                "Add",
+                "m",
+                1
+              ]
+            ],
+            -1
+          ],
+          [
+            "Int",
+            [
+              "Multiply",
+              [
+                "Power",
                 [
-                    "Power",
-                    [
-                        "Add",
-                        "c.",
-                        [
-                            "Multiply",
-                            "d.",
-                            "x_"
-                        ]
-                    ],
-                    "m."
+                  "Add",
+                  "c",
+                  [
+                    "Multiply",
+                    "d",
+                    "x"
+                  ]
                 ],
                 [
-                    "Zeta",
-                    "s_",
-                    [
-                        "Add",
-                        "a.",
-                        [
-                            "Multiply",
-                            "b.",
-                            "x_"
-                        ]
-                    ]
+                  "Add",
+                  "m",
+                  1
                 ]
+              ],
+              [
+                "Zeta",
+                [
+                  "Add",
+                  "s",
+                  1
+                ],
+                [
+                  "Add",
+                  "a",
+                  [
+                    "Multiply",
+                    "b",
+                    "x"
+                  ]
+                ]
+              ]
+            ],
+            "x"
+          ]
+        ]
+      ],
+      "pattern": [
+        "Multiply",
+        [
+          "Power",
+          [
+            "Add",
+            "c.",
+            [
+              "Multiply",
+              "d.",
+              "x_"
             ]
-        }
-    ],
-    "semantics": {
-        "Cos": "openmath:transc1#cos",
-        "Int": "openmath:calculus1#int",
-        "Exp": "openmath:transc1#exp",
-        "Tan": "openmath:transc1#tan",
-        "Sin": "openmath:transc1#sin",
-        "Log": "openmath:transc1#ln"
-    },
-    "identity": "rubi:8 Special functions/8.7 Zeta function",
-    "$schema": "open-symbolic-rules/v0.1"
+          ],
+          "m."
+        ],
+        [
+          "Zeta",
+          "s_",
+          [
+            "Add",
+            "a.",
+            [
+              "Multiply",
+              "b.",
+              "x_"
+            ]
+          ]
+        ]
+      ],
+      "provenance": {
+        "method": "converted",
+        "sources": [
+          {
+            "name": "Rubi",
+            "version": "4.16.1",
+            "locator": "8 Special functions/8.7 Zeta function#5"
+          }
+        ]
+      }
+    }
+  ],
+  "semantics": {
+    "Cos": "openmath:transc1#cos",
+    "Int": "openmath:calculus1#int",
+    "Exp": "openmath:transc1#exp",
+    "Tan": "openmath:transc1#tan",
+    "Sin": "openmath:transc1#sin",
+    "Log": "openmath:transc1#ln"
+  },
+  "identity": "rubi:8 Special functions/8.7 Zeta function",
+  "$schema": "open-symbolic-rules/v0.1"
 }

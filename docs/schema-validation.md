@@ -31,6 +31,10 @@ This runs six validation steps and reports pass/fail for each. The fifth
 step verifies that each `identity:id` pair is unique across the complete rule
 profile; this cross-file invariant cannot be expressed by JSON Schema alone.
 
+Every rule also carries mandatory machine-readable provenance. Converted Rubi
+rules identify the Rubi source file and source-rule ordinal in
+`provenance.sources`.
+
 The final step verifies the exact duplicate-rule baseline. It fingerprints the
 `pattern`, `constraints`, and `result` of each rule, and rejects a new group or
 a changed member list. Regenerate the reviewed legacy baseline only after a

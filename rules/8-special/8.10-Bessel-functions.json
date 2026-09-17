@@ -1,302 +1,332 @@
 {
-    "title": "Bessel functions",
-    "section": "8.10",
-    "rules": [
-        {
-            "constraints": [
-                [
-                    "FreeQ",
-                    [
-                        "List",
-                        "a",
-                        "b"
-                    ],
-                    "x"
-                ]
-            ],
-            "id": 1,
-            "result": [
+  "title": "Bessel functions",
+  "section": "8.10",
+  "rules": [
+    {
+      "constraints": [
+        [
+          "FreeQ",
+          [
+            "List",
+            "a",
+            "b"
+          ],
+          "x"
+        ]
+      ],
+      "id": 1,
+      "result": [
+        "Multiply",
+        -1,
+        [
+          "BesselJ",
+          0,
+          [
+            "Add",
+            "a",
+            [
+              "Multiply",
+              "b",
+              "x"
+            ]
+          ]
+        ],
+        [
+          "Power",
+          "b",
+          -1
+        ]
+      ],
+      "pattern": [
+        "BesselJ",
+        1,
+        [
+          "Add",
+          "a.",
+          [
+            "Multiply",
+            "b.",
+            "x_"
+          ]
+        ]
+      ],
+      "provenance": {
+        "method": "converted",
+        "sources": [
+          {
+            "name": "Rubi",
+            "version": "4.16.1",
+            "locator": "8 Special functions/8.10 Bessel functions#1"
+          }
+        ]
+      }
+    },
+    {
+      "constraints": [
+        [
+          "FreeQ",
+          [
+            "List",
+            "a",
+            "b"
+          ],
+          "x"
+        ],
+        [
+          "IGtQ",
+          [
+            "Multiply",
+            [
+              "Add",
+              "n",
+              [
                 "Multiply",
                 -1,
-                [
-                    "BesselJ",
-                    0,
-                    [
-                        "Add",
-                        "a",
-                        [
-                            "Multiply",
-                            "b",
-                            "x"
-                        ]
-                    ]
-                ],
-                [
-                    "Power",
-                    "b",
-                    -1
-                ]
+                1
+              ]
             ],
-            "pattern": [
-                "BesselJ",
-                1,
-                [
-                    "Add",
-                    "a.",
-                    [
-                        "Multiply",
-                        "b.",
-                        "x_"
-                    ]
-                ]
+            [
+              "Power",
+              2,
+              -1
             ]
-        },
-        {
-            "constraints": [
-                [
-                    "FreeQ",
-                    [
-                        "List",
-                        "a",
-                        "b"
-                    ],
-                    "x"
-                ],
-                [
-                    "IGtQ",
-                    [
-                        "Multiply",
-                        [
-                            "Add",
-                            "n",
-                            [
-                                "Multiply",
-                                -1,
-                                1
-                            ]
-                        ],
-                        [
-                            "Power",
-                            2,
-                            -1
-                        ]
-                    ],
-                    0
-                ]
-            ],
-            "id": 2,
-            "result": [
-                "Add",
-                [
-                    "Multiply",
-                    -2,
-                    [
-                        "BesselJ",
-                        [
-                            "Add",
-                            "n",
-                            [
-                                "Multiply",
-                                -1,
-                                1
-                            ]
-                        ],
-                        [
-                            "Add",
-                            "a",
-                            [
-                                "Multiply",
-                                "b",
-                                "x"
-                            ]
-                        ]
-                    ],
-                    [
-                        "Power",
-                        "b",
-                        -1
-                    ]
-                ],
-                [
-                    "Int",
-                    [
-                        "BesselJ",
-                        [
-                            "Add",
-                            "n",
-                            [
-                                "Multiply",
-                                -1,
-                                2
-                            ]
-                        ],
-                        [
-                            "Add",
-                            "a",
-                            [
-                                "Multiply",
-                                "b",
-                                "x"
-                            ]
-                        ]
-                    ],
-                    "x"
-                ]
-            ],
-            "pattern": [
-                "BesselJ",
-                "n_",
-                [
-                    "Add",
-                    "a.",
-                    [
-                        "Multiply",
-                        "b.",
-                        "x_"
-                    ]
-                ]
-            ]
-        },
-        {
-            "constraints": [
-                [
-                    "FreeQ",
-                    [
-                        "List",
-                        "a",
-                        "b",
-                        "n"
-                    ],
-                    "x"
-                ]
-            ],
-            "id": 3,
-            "result": [
+          ],
+          0
+        ]
+      ],
+      "id": 2,
+      "result": [
+        "Add",
+        [
+          "Multiply",
+          -2,
+          [
+            "BesselJ",
+            [
+              "Add",
+              "n",
+              [
                 "Multiply",
-                [
-                    "Power",
-                    [
-                        "Add",
-                        "a",
-                        [
-                            "Multiply",
-                            "b",
-                            "x"
-                        ]
-                    ],
-                    [
-                        "Add",
-                        "n",
-                        1
-                    ]
-                ],
-                [
-                    "HypergeometricPFQ",
-                    [
-                        "List",
-                        [
-                            "Multiply",
-                            [
-                                "Add",
-                                "n",
-                                1
-                            ],
-                            [
-                                "Power",
-                                2,
-                                -1
-                            ]
-                        ]
-                    ],
-                    [
-                        "List",
-                        [
-                            "Multiply",
-                            [
-                                "Add",
-                                "n",
-                                3
-                            ],
-                            [
-                                "Power",
-                                2,
-                                -1
-                            ]
-                        ],
-                        [
-                            "Add",
-                            "n",
-                            1
-                        ]
-                    ],
-                    [
-                        "Multiply",
-                        -1,
-                        [
-                            "Power",
-                            4,
-                            -1
-                        ],
-                        [
-                            "Power",
-                            [
-                                "Add",
-                                "a",
-                                [
-                                    "Multiply",
-                                    "b",
-                                    "x"
-                                ]
-                            ],
-                            2
-                        ]
-                    ]
-                ],
-                [
-                    "Power",
-                    [
-                        "Multiply",
-                        [
-                            "Power",
-                            2,
-                            "n"
-                        ],
-                        "b",
-                        [
-                            "Gamma",
-                            [
-                                "Add",
-                                "n",
-                                2
-                            ]
-                        ]
-                    ],
-                    -1
-                ]
+                -1,
+                1
+              ]
             ],
-            "pattern": [
-                "BesselJ",
-                "n_",
-                [
-                    "Add",
-                    "a.",
-                    [
-                        "Multiply",
-                        "b.",
-                        "x_"
-                    ]
-                ]
+            [
+              "Add",
+              "a",
+              [
+                "Multiply",
+                "b",
+                "x"
+              ]
             ]
-        }
-    ],
-    "semantics": {
-        "Cos": "openmath:transc1#cos",
-        "Int": "openmath:calculus1#int",
-        "Exp": "openmath:transc1#exp",
-        "Tan": "openmath:transc1#tan",
-        "Sin": "openmath:transc1#sin",
-        "Log": "openmath:transc1#ln"
+          ],
+          [
+            "Power",
+            "b",
+            -1
+          ]
+        ],
+        [
+          "Int",
+          [
+            "BesselJ",
+            [
+              "Add",
+              "n",
+              [
+                "Multiply",
+                -1,
+                2
+              ]
+            ],
+            [
+              "Add",
+              "a",
+              [
+                "Multiply",
+                "b",
+                "x"
+              ]
+            ]
+          ],
+          "x"
+        ]
+      ],
+      "pattern": [
+        "BesselJ",
+        "n_",
+        [
+          "Add",
+          "a.",
+          [
+            "Multiply",
+            "b.",
+            "x_"
+          ]
+        ]
+      ],
+      "provenance": {
+        "method": "converted",
+        "sources": [
+          {
+            "name": "Rubi",
+            "version": "4.16.1",
+            "locator": "8 Special functions/8.10 Bessel functions#2"
+          }
+        ]
+      }
     },
-    "identity": "rubi:8 Special functions/8.10 Bessel functions",
-    "$schema": "open-symbolic-rules/v0.1"
+    {
+      "constraints": [
+        [
+          "FreeQ",
+          [
+            "List",
+            "a",
+            "b",
+            "n"
+          ],
+          "x"
+        ]
+      ],
+      "id": 3,
+      "result": [
+        "Multiply",
+        [
+          "Power",
+          [
+            "Add",
+            "a",
+            [
+              "Multiply",
+              "b",
+              "x"
+            ]
+          ],
+          [
+            "Add",
+            "n",
+            1
+          ]
+        ],
+        [
+          "HypergeometricPFQ",
+          [
+            "List",
+            [
+              "Multiply",
+              [
+                "Add",
+                "n",
+                1
+              ],
+              [
+                "Power",
+                2,
+                -1
+              ]
+            ]
+          ],
+          [
+            "List",
+            [
+              "Multiply",
+              [
+                "Add",
+                "n",
+                3
+              ],
+              [
+                "Power",
+                2,
+                -1
+              ]
+            ],
+            [
+              "Add",
+              "n",
+              1
+            ]
+          ],
+          [
+            "Multiply",
+            -1,
+            [
+              "Power",
+              4,
+              -1
+            ],
+            [
+              "Power",
+              [
+                "Add",
+                "a",
+                [
+                  "Multiply",
+                  "b",
+                  "x"
+                ]
+              ],
+              2
+            ]
+          ]
+        ],
+        [
+          "Power",
+          [
+            "Multiply",
+            [
+              "Power",
+              2,
+              "n"
+            ],
+            "b",
+            [
+              "Gamma",
+              [
+                "Add",
+                "n",
+                2
+              ]
+            ]
+          ],
+          -1
+        ]
+      ],
+      "pattern": [
+        "BesselJ",
+        "n_",
+        [
+          "Add",
+          "a.",
+          [
+            "Multiply",
+            "b.",
+            "x_"
+          ]
+        ]
+      ],
+      "provenance": {
+        "method": "converted",
+        "sources": [
+          {
+            "name": "Rubi",
+            "version": "4.16.1",
+            "locator": "8 Special functions/8.10 Bessel functions#3"
+          }
+        ]
+      }
+    }
+  ],
+  "semantics": {
+    "Cos": "openmath:transc1#cos",
+    "Int": "openmath:calculus1#int",
+    "Exp": "openmath:transc1#exp",
+    "Tan": "openmath:transc1#tan",
+    "Sin": "openmath:transc1#sin",
+    "Log": "openmath:transc1#ln"
+  },
+  "identity": "rubi:8 Special functions/8.10 Bessel functions",
+  "$schema": "open-symbolic-rules/v0.1"
 }

@@ -239,4 +239,14 @@ end
     @test c1[1] == "FreeQ"
 end
 
+@testset "Rule provenance" begin
+    provenance = RubiConverter.rubi_provenance(
+        "1 Algebraic functions/1.1 Binomial products/example.m", 7
+    )
+    @test provenance["method"] == "converted"
+    @test provenance["sources"][1]["name"] == "Rubi"
+    @test provenance["sources"][1]["locator"] ==
+          "1 Algebraic functions/1.1 Binomial products/example.m#7"
+end
+
 end  # @testset "RubiConverter"

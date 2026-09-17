@@ -37,6 +37,26 @@ struct RuleConversionResult
 end
 
 """
+    rubi_provenance(relative_source_path, rule_id) -> Dict
+
+Return machine-readable provenance for one rule converted from the pinned Rubi
+source file. The source-relative path and original ordinal form a stable
+locator within the source corpus.
+"""
+function rubi_provenance(relative_source_path::AbstractString, rule_id::Integer)::Dict{String,Any}
+    Dict{String,Any}(
+        "method" => "converted",
+        "sources" => Any[
+            Dict{String,Any}(
+                "name" => "Rubi",
+                "version" => "4.16.1",
+                "locator" => string(replace(relative_source_path, '\\' => '/'), "#", rule_id),
+            ),
+        ],
+    )
+end
+
+"""
     convert_rule_file(source_path::String; output_dir::String="rules") -> RuleConversionResult
 
 Convert a single Mathematica .m rule file to a OSR JSON rule file.
@@ -79,6 +99,7 @@ function convert_rule_file(source_path::String; output_dir::String="rules")::Rul
                 rule_id += 1
                 try
                     rule = rule_to_osr(expr, rule_id)
+                    rule["provenance"] = rubi_provenance(rel_path, rule_id)
                     push!(rules, rule)
                 catch e
                     push!(warnings, ConversionWarning(
