@@ -27,6 +27,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - RFC describing the design rationale and format overview
 
 ### Changed
+- Updated the Specification submodule to the latest revision, including
+  semantic-closure validation and refined transform/proof-trace requirements.
 - Parallelized JSON-schema fixture validation in CI in small batches while
   retaining validation of every generated rule and test file.
 
