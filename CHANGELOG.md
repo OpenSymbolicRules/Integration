@@ -15,6 +15,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - A stable `identity` for every generated rule file. Together with its local
   rule `id`, it identifies each of the 6,257 rules across the full profile.
 - Cross-file identity validation in `scripts/validate.sh` and CI.
+- Exact duplicate-rule baseline validation in CI. The baseline records all
+  359 legacy Rubi duplicate groups and rejects new or altered groups.
 - EARS specification (159 requirements) for OSR v0.1.0-draft
 - RFC describing the design rationale and format overview
 

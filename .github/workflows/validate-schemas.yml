@@ -69,3 +69,9 @@ jobs:
 
       - name: Validate globally unique rule identities
         run: python3 scripts/validate_rule_identities.py rules
+
+      - name: Test exact duplicate-rule guard
+        run: python3 scripts/test_check_duplicate_rules.py
+
+      - name: Validate acknowledged exact duplicate rules
+        run: python3 scripts/check_duplicate_rules.py rules --baseline scripts/duplicate-rule-baseline.json

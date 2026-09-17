@@ -27,9 +27,19 @@ pip install check-jsonschema
 scripts/validate.sh
 ```
 
-This runs five validation steps and reports pass/fail for each.  The final
+This runs six validation steps and reports pass/fail for each. The fifth
 step verifies that each `identity:id` pair is unique across the complete rule
 profile; this cross-file invariant cannot be expressed by JSON Schema alone.
+
+The final step verifies the exact duplicate-rule baseline. It fingerprints the
+`pattern`, `constraints`, and `result` of each rule, and rejects a new group or
+a changed member list. Regenerate the reviewed legacy baseline only after a
+conversion update:
+
+```bash
+python3 scripts/check_duplicate_rules.py rules \
+  --baseline scripts/duplicate-rule-baseline.json --write-baseline
+```
 
 ### Validate Individual Files
 
