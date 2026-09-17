@@ -46,14 +46,14 @@ jobs:
       - name: Validate rule files
         run: |
           find rules/ -name '*.json' ! -name 'meta.json' -print0 | \
-            xargs -0 -r -n 500 -P 4 check-jsonschema \
+            xargs -0 -r -n 10 -P 4 check-jsonschema \
               --schemafile Specification/schemas/rule-file.schema.json \
               --base-uri "file://${PWD}/Specification/schemas/"
 
       - name: Validate test files
         run: |
           find tests/ -name '*.json' -print0 | \
-            xargs -0 -r -n 500 -P 4 check-jsonschema \
+            xargs -0 -r -n 10 -P 4 check-jsonschema \
               --schemafile Specification/schemas/test-file.schema.json \
               --base-uri "file://${PWD}/Specification/schemas/"
 
