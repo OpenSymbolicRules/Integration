@@ -1,334 +1,334 @@
 {
-  "title": "P(x) (a+b x^2)^p",
-  "section": "1.1.2.x",
-  "rules": [
-    {
-      "constraints": [
-        [
-          "FreeQ",
-          [
-            "List",
-            "a",
-            "b"
-          ],
-          "x"
-        ],
-        [
-          "PolyQ",
-          "Pq",
-          "x"
-        ],
-        [
-          "IGtQ",
-          "p",
-          -2
-        ]
-      ],
-      "id": 1,
-      "result": [
-        "Int",
-        [
-          "ExpandIntegrand",
-          [
-            "Multiply",
-            "Pq",
-            [
-              "Power",
-              [
-                "Add",
-                "a",
+    "title": "P(x) (a+b x^2)^p",
+    "section": "1.1.2.x",
+    "rules": [
+        {
+            "constraints": [
                 [
-                  "Multiply",
-                  "b",
-                  [
-                    "Power",
-                    "x",
-                    2
-                  ]
-                ]
-              ],
-              "p"
-            ]
-          ],
-          "x"
-        ],
-        "x"
-      ],
-      "pattern": [
-        "Multiply",
-        "Pq_",
-        [
-          "Power",
-          [
-            "Add",
-            "a_",
-            [
-              "Multiply",
-              "b.",
-              [
-                "Power",
-                "x_",
-                2
-              ]
-            ]
-          ],
-          "p."
-        ]
-      ],
-      "provenance": {
-        "method": "converted",
-        "sources": [
-          {
-            "name": "Rubi",
-            "version": "4.16.1",
-            "locator": "1 Algebraic functions/1.1 Binomial products/1.1.2 Quadratic/1.1.2.x P(x) (a+b x^2)^p#1"
-          }
-        ]
-      }
-    },
-    {
-      "constraints": [
-        [
-          "FreeQ",
-          [
-            "List",
-            "a",
-            "b",
-            "p"
-          ],
-          "x"
-        ],
-        [
-          "PolyQ",
-          "Pq",
-          "x"
-        ],
-        [
-          "EqQ",
-          [
-            "Coeff",
-            "Pq",
-            "x",
-            0
-          ],
-          0
-        ],
-        [
-          "Not",
-          [
-            "MatchQ",
-            "Pq",
-            [
-              "Condition",
-              [
-                "Multiply",
-                [
-                  "Power",
-                  "x",
-                  "m."
+                    "FreeQ",
+                    [
+                        "List",
+                        "a",
+                        "b"
+                    ],
+                    "x"
                 ],
-                "u."
-              ],
-              [
-                "IntegerQ",
-                "m"
-              ]
-            ]
-          ]
-        ]
-      ],
-      "id": 2,
-      "result": [
-        "Int",
-        [
-          "Multiply",
-          "x",
-          [
-            "PolynomialQuotient",
-            "Pq",
-            "x",
-            "x"
-          ],
-          [
-            "Power",
-            [
-              "Add",
-              "a",
-              [
-                "Multiply",
-                "b",
                 [
-                  "Power",
-                  "x",
-                  2
+                    "PolyQ",
+                    "Pq",
+                    "x"
+                ],
+                [
+                    "IGtQ",
+                    "p",
+                    -2
                 ]
-              ]
             ],
-            "p"
-          ]
-        ],
-        "x"
-      ],
-      "pattern": [
-        "Multiply",
-        "Pq_",
-        [
-          "Power",
-          [
-            "Add",
-            "a_",
-            [
-              "Multiply",
-              "b.",
-              [
-                "Power",
-                "x_",
-                2
-              ]
-            ]
-          ],
-          "p_"
-        ]
-      ],
-      "provenance": {
-        "method": "converted",
-        "sources": [
-          {
-            "name": "Rubi",
-            "version": "4.16.1",
-            "locator": "1 Algebraic functions/1.1 Binomial products/1.1.2 Quadratic/1.1.2.x P(x) (a+b x^2)^p#2"
-          }
-        ]
-      }
+            "id": 1,
+            "result": [
+                "Int",
+                [
+                    "ExpandIntegrand",
+                    [
+                        "Multiply",
+                        "Pq",
+                        [
+                            "Power",
+                            [
+                                "Add",
+                                "a",
+                                [
+                                    "Multiply",
+                                    "b",
+                                    [
+                                        "Power",
+                                        "x",
+                                        2
+                                    ]
+                                ]
+                            ],
+                            "p"
+                        ]
+                    ],
+                    "x"
+                ],
+                "x"
+            ],
+            "pattern": [
+                "Multiply",
+                "Pq_",
+                [
+                    "Power",
+                    [
+                        "Add",
+                        "a_",
+                        [
+                            "Multiply",
+                            "b.",
+                            [
+                                "Power",
+                                "x_",
+                                2
+                            ]
+                        ]
+                    ],
+                    "p."
+                ]
+            ],
+            "provenance": {
+                "method": "converted",
+                "sources": [
+                    {
+                        "version": "4.16.1",
+                        "name": "Rubi",
+                        "locator": "1 Algebraic functions/1.1 Binomial products/1.1.2 Quadratic/1.1.2.x P(x) (a+b x^2)^p.m#1"
+                    }
+                ]
+            }
+        },
+        {
+            "constraints": [
+                [
+                    "FreeQ",
+                    [
+                        "List",
+                        "a",
+                        "b",
+                        "p"
+                    ],
+                    "x"
+                ],
+                [
+                    "PolyQ",
+                    "Pq",
+                    "x"
+                ],
+                [
+                    "EqQ",
+                    [
+                        "Coeff",
+                        "Pq",
+                        "x",
+                        0
+                    ],
+                    0
+                ],
+                [
+                    "Not",
+                    [
+                        "MatchQ",
+                        "Pq",
+                        [
+                            "Condition",
+                            [
+                                "Multiply",
+                                [
+                                    "Power",
+                                    "x",
+                                    "m."
+                                ],
+                                "u."
+                            ],
+                            [
+                                "IntegerQ",
+                                "m"
+                            ]
+                        ]
+                    ]
+                ]
+            ],
+            "id": 2,
+            "result": [
+                "Int",
+                [
+                    "Multiply",
+                    "x",
+                    [
+                        "PolynomialQuotient",
+                        "Pq",
+                        "x",
+                        "x"
+                    ],
+                    [
+                        "Power",
+                        [
+                            "Add",
+                            "a",
+                            [
+                                "Multiply",
+                                "b",
+                                [
+                                    "Power",
+                                    "x",
+                                    2
+                                ]
+                            ]
+                        ],
+                        "p"
+                    ]
+                ],
+                "x"
+            ],
+            "pattern": [
+                "Multiply",
+                "Pq_",
+                [
+                    "Power",
+                    [
+                        "Add",
+                        "a_",
+                        [
+                            "Multiply",
+                            "b.",
+                            [
+                                "Power",
+                                "x_",
+                                2
+                            ]
+                        ]
+                    ],
+                    "p_"
+                ]
+            ],
+            "provenance": {
+                "method": "converted",
+                "sources": [
+                    {
+                        "version": "4.16.1",
+                        "name": "Rubi",
+                        "locator": "1 Algebraic functions/1.1 Binomial products/1.1.2 Quadratic/1.1.2.x P(x) (a+b x^2)^p.m#2"
+                    }
+                ]
+            }
+        },
+        {
+            "constraints": [
+                [
+                    "FreeQ",
+                    [
+                        "List",
+                        "a",
+                        "b",
+                        "p"
+                    ],
+                    "x"
+                ],
+                [
+                    "PolyQ",
+                    "Px",
+                    "x"
+                ],
+                [
+                    "EqQ",
+                    [
+                        "PolynomialRemainder",
+                        "Px",
+                        [
+                            "Add",
+                            "a",
+                            [
+                                "Multiply",
+                                "b",
+                                [
+                                    "Power",
+                                    "x",
+                                    2
+                                ]
+                            ]
+                        ],
+                        "x"
+                    ],
+                    0
+                ]
+            ],
+            "id": 3,
+            "result": [
+                "Int",
+                [
+                    "Multiply",
+                    [
+                        "PolynomialQuotient",
+                        "Px",
+                        [
+                            "Add",
+                            "a",
+                            [
+                                "Multiply",
+                                "b",
+                                [
+                                    "Power",
+                                    "x",
+                                    2
+                                ]
+                            ]
+                        ],
+                        "x"
+                    ],
+                    [
+                        "Power",
+                        [
+                            "Add",
+                            "a",
+                            [
+                                "Multiply",
+                                "b",
+                                [
+                                    "Power",
+                                    "x",
+                                    2
+                                ]
+                            ]
+                        ],
+                        [
+                            "Add",
+                            "p",
+                            1
+                        ]
+                    ]
+                ],
+                "x"
+            ],
+            "pattern": [
+                "Multiply",
+                "Px_",
+                [
+                    "Power",
+                    [
+                        "Add",
+                        "a_",
+                        [
+                            "Multiply",
+                            "b.",
+                            [
+                                "Power",
+                                "x_",
+                                2
+                            ]
+                        ]
+                    ],
+                    "p."
+                ]
+            ],
+            "provenance": {
+                "method": "converted",
+                "sources": [
+                    {
+                        "version": "4.16.1",
+                        "name": "Rubi",
+                        "locator": "1 Algebraic functions/1.1 Binomial products/1.1.2 Quadratic/1.1.2.x P(x) (a+b x^2)^p.m#3"
+                    }
+                ]
+            }
+        }
+    ],
+    "semantics": {
+        "Cos": "openmath:transc1#cos",
+        "Int": "openmath:calculus1#int",
+        "Exp": "openmath:transc1#exp",
+        "Tan": "openmath:transc1#tan",
+        "Sin": "openmath:transc1#sin",
+        "Log": "openmath:transc1#ln"
     },
-    {
-      "constraints": [
-        [
-          "FreeQ",
-          [
-            "List",
-            "a",
-            "b",
-            "p"
-          ],
-          "x"
-        ],
-        [
-          "PolyQ",
-          "Px",
-          "x"
-        ],
-        [
-          "EqQ",
-          [
-            "PolynomialRemainder",
-            "Px",
-            [
-              "Add",
-              "a",
-              [
-                "Multiply",
-                "b",
-                [
-                  "Power",
-                  "x",
-                  2
-                ]
-              ]
-            ],
-            "x"
-          ],
-          0
-        ]
-      ],
-      "id": 3,
-      "result": [
-        "Int",
-        [
-          "Multiply",
-          [
-            "PolynomialQuotient",
-            "Px",
-            [
-              "Add",
-              "a",
-              [
-                "Multiply",
-                "b",
-                [
-                  "Power",
-                  "x",
-                  2
-                ]
-              ]
-            ],
-            "x"
-          ],
-          [
-            "Power",
-            [
-              "Add",
-              "a",
-              [
-                "Multiply",
-                "b",
-                [
-                  "Power",
-                  "x",
-                  2
-                ]
-              ]
-            ],
-            [
-              "Add",
-              "p",
-              1
-            ]
-          ]
-        ],
-        "x"
-      ],
-      "pattern": [
-        "Multiply",
-        "Px_",
-        [
-          "Power",
-          [
-            "Add",
-            "a_",
-            [
-              "Multiply",
-              "b.",
-              [
-                "Power",
-                "x_",
-                2
-              ]
-            ]
-          ],
-          "p."
-        ]
-      ],
-      "provenance": {
-        "method": "converted",
-        "sources": [
-          {
-            "name": "Rubi",
-            "version": "4.16.1",
-            "locator": "1 Algebraic functions/1.1 Binomial products/1.1.2 Quadratic/1.1.2.x P(x) (a+b x^2)^p#3"
-          }
-        ]
-      }
-    }
-  ],
-  "semantics": {
-    "Cos": "openmath:transc1#cos",
-    "Int": "openmath:calculus1#int",
-    "Exp": "openmath:transc1#exp",
-    "Tan": "openmath:transc1#tan",
-    "Sin": "openmath:transc1#sin",
-    "Log": "openmath:transc1#ln"
-  },
-  "identity": "rubi:1 Algebraic functions/1.1 Binomial products/1.1.2 Quadratic/1.1.2.x P(x) (a+b x^2)^p",
-  "$schema": "open-symbolic-rules/v0.1"
+    "identity": "rubi:1 Algebraic functions/1.1 Binomial products/1.1.2 Quadratic/1.1.2.x P(x) (a+b x^2)^p",
+    "$schema": "open-symbolic-rules/v0.1"
 }

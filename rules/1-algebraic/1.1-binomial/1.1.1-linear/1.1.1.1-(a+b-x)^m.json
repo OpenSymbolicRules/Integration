@@ -1,319 +1,320 @@
 {
-  "title": "(a+b x)^m",
-  "section": "1.1.1.1",
-  "rules": [
-    {
-      "constraints": [],
-      "id": 1,
-      "result": [
-        "Log",
-        "x"
-      ],
-      "pattern": [
-        "Multiply",
-        1,
-        [
-          "Power",
-          "x_",
-          -1
-        ]
-      ],
-      "provenance": {
-        "method": "converted",
-        "sources": [
-          {
-            "name": "Rubi",
-            "version": "4.16.1",
-            "locator": "1 Algebraic functions/1.1 Binomial products/1.1.1 Linear/1.1.1.1 (a+b x)^m#1"
-          }
-        ]
-      }
-    },
-    {
-      "constraints": [
-        [
-          "FreeQ",
-          "m",
-          "x"
-        ],
-        [
-          "NeQ",
-          "m",
-          -1
-        ]
-      ],
-      "id": 2,
-      "result": [
-        "Multiply",
-        [
-          "Power",
-          "x",
-          [
-            "Add",
-            "m",
-            1
-          ]
-        ],
-        [
-          "Power",
-          [
-            "Add",
-            "m",
-            1
-          ],
-          -1
-        ]
-      ],
-      "pattern": [
-        "Power",
-        "x_",
-        "m."
-      ],
-      "provenance": {
-        "method": "converted",
-        "sources": [
-          {
-            "name": "Rubi",
-            "version": "4.16.1",
-            "locator": "1 Algebraic functions/1.1 Binomial products/1.1.1 Linear/1.1.1.1 (a+b x)^m#2"
-          }
-        ]
-      }
-    },
-    {
-      "constraints": [
-        [
-          "FreeQ",
-          [
-            "List",
-            "a",
-            "b"
-          ],
-          "x"
-        ]
-      ],
-      "id": 3,
-      "result": [
-        "Multiply",
-        [
-          "Log",
-          [
-            "RemoveContent",
-            [
-              "Add",
-              "a",
-              [
-                "Multiply",
-                "b",
+    "title": "(a+b x)^m",
+    "section": "1.1.1.1",
+    "rules": [
+        {
+            "constraints": [
+            ],
+            "id": 1,
+            "result": [
+                "Log",
                 "x"
-              ]
             ],
-            "x"
-          ]
-        ],
-        [
-          "Power",
-          "b",
-          -1
-        ]
-      ],
-      "pattern": [
-        "Multiply",
-        1,
-        [
-          "Power",
-          [
-            "Add",
-            "a_",
-            [
-              "Multiply",
-              "b.",
-              "x_"
-            ]
-          ],
-          -1
-        ]
-      ],
-      "provenance": {
-        "method": "converted",
-        "sources": [
-          {
-            "name": "Rubi",
-            "version": "4.16.1",
-            "locator": "1 Algebraic functions/1.1 Binomial products/1.1.1 Linear/1.1.1.1 (a+b x)^m#3"
-          }
-        ]
-      }
-    },
-    {
-      "constraints": [
-        [
-          "FreeQ",
-          [
-            "List",
-            "a",
-            "b",
-            "m"
-          ],
-          "x"
-        ],
-        [
-          "NeQ",
-          "m",
-          -1
-        ]
-      ],
-      "id": 4,
-      "result": [
-        "Multiply",
-        [
-          "Power",
-          [
-            "Add",
-            "a",
-            [
-              "Multiply",
-              "b",
-              "x"
-            ]
-          ],
-          [
-            "Add",
-            "m",
-            1
-          ]
-        ],
-        [
-          "Power",
-          [
-            "Multiply",
-            "b",
-            [
-              "Add",
-              "m",
-              1
-            ]
-          ],
-          -1
-        ]
-      ],
-      "pattern": [
-        "Power",
-        [
-          "Add",
-          "a.",
-          [
-            "Multiply",
-            "b.",
-            "x_"
-          ]
-        ],
-        "m_"
-      ],
-      "provenance": {
-        "method": "converted",
-        "sources": [
-          {
-            "name": "Rubi",
-            "version": "4.16.1",
-            "locator": "1 Algebraic functions/1.1 Binomial products/1.1.1 Linear/1.1.1.1 (a+b x)^m#4"
-          }
-        ]
-      }
-    },
-    {
-      "constraints": [
-        [
-          "FreeQ",
-          [
-            "List",
-            "a",
-            "b",
-            "m"
-          ],
-          "x"
-        ],
-        [
-          "LinearQ",
-          "u",
-          "x"
-        ],
-        [
-          "NeQ",
-          "u",
-          "x"
-        ]
-      ],
-      "id": 5,
-      "result": [
-        "Multiply",
-        1,
-        [
-          "Power",
-          [
-            "Coefficient",
-            "u",
-            "x",
-            1
-          ],
-          -1
-        ],
-        [
-          "Subst",
-          [
-            "Int",
-            [
-              "Power",
-              [
-                "Add",
-                "a",
+            "pattern": [
+                "Multiply",
+                1,
                 [
-                  "Multiply",
-                  "b",
-                  "x"
+                    "Power",
+                    "x_",
+                    -1
                 ]
-              ],
-              "m"
             ],
-            "x"
-          ],
-          "x",
-          "u"
-        ]
-      ],
-      "pattern": [
-        "Power",
-        [
-          "Add",
-          "a.",
-          [
-            "Multiply",
-            "b.",
-            "u_"
-          ]
-        ],
-        "m_"
-      ],
-      "provenance": {
-        "method": "converted",
-        "sources": [
-          {
-            "name": "Rubi",
-            "version": "4.16.1",
-            "locator": "1 Algebraic functions/1.1 Binomial products/1.1.1 Linear/1.1.1.1 (a+b x)^m#5"
-          }
-        ]
-      }
-    }
-  ],
-  "semantics": {
-    "Cos": "openmath:transc1#cos",
-    "Int": "openmath:calculus1#int",
-    "Exp": "openmath:transc1#exp",
-    "Tan": "openmath:transc1#tan",
-    "Sin": "openmath:transc1#sin",
-    "Log": "openmath:transc1#ln"
-  },
-  "identity": "rubi:1 Algebraic functions/1.1 Binomial products/1.1.1 Linear/1.1.1.1 (a+b x)^m",
-  "$schema": "open-symbolic-rules/v0.1"
+            "provenance": {
+                "method": "converted",
+                "sources": [
+                    {
+                        "version": "4.16.1",
+                        "name": "Rubi",
+                        "locator": "1 Algebraic functions/1.1 Binomial products/1.1.1 Linear/1.1.1.1 (a+b x)^m.m#1"
+                    }
+                ]
+            }
+        },
+        {
+            "constraints": [
+                [
+                    "FreeQ",
+                    "m",
+                    "x"
+                ],
+                [
+                    "NeQ",
+                    "m",
+                    -1
+                ]
+            ],
+            "id": 2,
+            "result": [
+                "Multiply",
+                [
+                    "Power",
+                    "x",
+                    [
+                        "Add",
+                        "m",
+                        1
+                    ]
+                ],
+                [
+                    "Power",
+                    [
+                        "Add",
+                        "m",
+                        1
+                    ],
+                    -1
+                ]
+            ],
+            "pattern": [
+                "Power",
+                "x_",
+                "m."
+            ],
+            "provenance": {
+                "method": "converted",
+                "sources": [
+                    {
+                        "version": "4.16.1",
+                        "name": "Rubi",
+                        "locator": "1 Algebraic functions/1.1 Binomial products/1.1.1 Linear/1.1.1.1 (a+b x)^m.m#2"
+                    }
+                ]
+            }
+        },
+        {
+            "constraints": [
+                [
+                    "FreeQ",
+                    [
+                        "List",
+                        "a",
+                        "b"
+                    ],
+                    "x"
+                ]
+            ],
+            "id": 3,
+            "result": [
+                "Multiply",
+                [
+                    "Log",
+                    [
+                        "RemoveContent",
+                        [
+                            "Add",
+                            "a",
+                            [
+                                "Multiply",
+                                "b",
+                                "x"
+                            ]
+                        ],
+                        "x"
+                    ]
+                ],
+                [
+                    "Power",
+                    "b",
+                    -1
+                ]
+            ],
+            "pattern": [
+                "Multiply",
+                1,
+                [
+                    "Power",
+                    [
+                        "Add",
+                        "a_",
+                        [
+                            "Multiply",
+                            "b.",
+                            "x_"
+                        ]
+                    ],
+                    -1
+                ]
+            ],
+            "provenance": {
+                "method": "converted",
+                "sources": [
+                    {
+                        "version": "4.16.1",
+                        "name": "Rubi",
+                        "locator": "1 Algebraic functions/1.1 Binomial products/1.1.1 Linear/1.1.1.1 (a+b x)^m.m#3"
+                    }
+                ]
+            }
+        },
+        {
+            "constraints": [
+                [
+                    "FreeQ",
+                    [
+                        "List",
+                        "a",
+                        "b",
+                        "m"
+                    ],
+                    "x"
+                ],
+                [
+                    "NeQ",
+                    "m",
+                    -1
+                ]
+            ],
+            "id": 4,
+            "result": [
+                "Multiply",
+                [
+                    "Power",
+                    [
+                        "Add",
+                        "a",
+                        [
+                            "Multiply",
+                            "b",
+                            "x"
+                        ]
+                    ],
+                    [
+                        "Add",
+                        "m",
+                        1
+                    ]
+                ],
+                [
+                    "Power",
+                    [
+                        "Multiply",
+                        "b",
+                        [
+                            "Add",
+                            "m",
+                            1
+                        ]
+                    ],
+                    -1
+                ]
+            ],
+            "pattern": [
+                "Power",
+                [
+                    "Add",
+                    "a.",
+                    [
+                        "Multiply",
+                        "b.",
+                        "x_"
+                    ]
+                ],
+                "m_"
+            ],
+            "provenance": {
+                "method": "converted",
+                "sources": [
+                    {
+                        "version": "4.16.1",
+                        "name": "Rubi",
+                        "locator": "1 Algebraic functions/1.1 Binomial products/1.1.1 Linear/1.1.1.1 (a+b x)^m.m#4"
+                    }
+                ]
+            }
+        },
+        {
+            "constraints": [
+                [
+                    "FreeQ",
+                    [
+                        "List",
+                        "a",
+                        "b",
+                        "m"
+                    ],
+                    "x"
+                ],
+                [
+                    "LinearQ",
+                    "u",
+                    "x"
+                ],
+                [
+                    "NeQ",
+                    "u",
+                    "x"
+                ]
+            ],
+            "id": 5,
+            "result": [
+                "Multiply",
+                1,
+                [
+                    "Power",
+                    [
+                        "Coefficient",
+                        "u",
+                        "x",
+                        1
+                    ],
+                    -1
+                ],
+                [
+                    "Subst",
+                    [
+                        "Int",
+                        [
+                            "Power",
+                            [
+                                "Add",
+                                "a",
+                                [
+                                    "Multiply",
+                                    "b",
+                                    "x"
+                                ]
+                            ],
+                            "m"
+                        ],
+                        "x"
+                    ],
+                    "x",
+                    "u"
+                ]
+            ],
+            "pattern": [
+                "Power",
+                [
+                    "Add",
+                    "a.",
+                    [
+                        "Multiply",
+                        "b.",
+                        "u_"
+                    ]
+                ],
+                "m_"
+            ],
+            "provenance": {
+                "method": "converted",
+                "sources": [
+                    {
+                        "version": "4.16.1",
+                        "name": "Rubi",
+                        "locator": "1 Algebraic functions/1.1 Binomial products/1.1.1 Linear/1.1.1.1 (a+b x)^m.m#5"
+                    }
+                ]
+            }
+        }
+    ],
+    "semantics": {
+        "Cos": "openmath:transc1#cos",
+        "Int": "openmath:calculus1#int",
+        "Exp": "openmath:transc1#exp",
+        "Tan": "openmath:transc1#tan",
+        "Sin": "openmath:transc1#sin",
+        "Log": "openmath:transc1#ln"
+    },
+    "identity": "rubi:1 Algebraic functions/1.1 Binomial products/1.1.1 Linear/1.1.1.1 (a+b x)^m",
+    "$schema": "open-symbolic-rules/v0.1"
 }

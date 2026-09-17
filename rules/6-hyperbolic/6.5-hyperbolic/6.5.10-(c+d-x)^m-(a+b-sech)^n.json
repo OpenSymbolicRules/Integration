@@ -1,194 +1,194 @@
 {
-  "title": "(c+d x)^m (a+b sech)^n",
-  "section": "6.5.10",
-  "rules": [
-    {
-      "constraints": [
-        [
-          "FreeQ",
-          [
-            "List",
-            "m",
-            "n"
-          ],
-          "x"
-        ],
-        [
-          "LinearQ",
-          [
-            "List",
-            "u",
-            "v"
-          ],
-          "x"
-        ],
-        [
-          "Not",
-          [
-            "LinearMatchQ",
-            [
-              "List",
-              "u",
-              "v"
+    "title": "(c+d x)^m (a+b sech)^n",
+    "section": "6.5.10",
+    "rules": [
+        {
+            "constraints": [
+                [
+                    "FreeQ",
+                    [
+                        "List",
+                        "m",
+                        "n"
+                    ],
+                    "x"
+                ],
+                [
+                    "LinearQ",
+                    [
+                        "List",
+                        "u",
+                        "v"
+                    ],
+                    "x"
+                ],
+                [
+                    "Not",
+                    [
+                        "LinearMatchQ",
+                        [
+                            "List",
+                            "u",
+                            "v"
+                        ],
+                        "x"
+                    ]
+                ]
             ],
-            "x"
-          ]
-        ]
-      ],
-      "id": 1,
-      "result": [
-        "Int",
-        [
-          "Multiply",
-          [
-            "Power",
-            [
-              "ExpandToSum",
-              "u",
-              "x"
-            ],
-            "m"
-          ],
-          [
-            "Power",
-            [
-              "Sech",
-              [
-                "ExpandToSum",
-                "v",
+            "id": 1,
+            "result": [
+                "Int",
+                [
+                    "Multiply",
+                    [
+                        "Power",
+                        [
+                            "ExpandToSum",
+                            "u",
+                            "x"
+                        ],
+                        "m"
+                    ],
+                    [
+                        "Power",
+                        [
+                            "Sech",
+                            [
+                                "ExpandToSum",
+                                "v",
+                                "x"
+                            ]
+                        ],
+                        "n"
+                    ]
+                ],
                 "x"
-              ]
             ],
-            "n"
-          ]
-        ],
-        "x"
-      ],
-      "pattern": [
-        "Multiply",
-        [
-          "Power",
-          "u_",
-          "m."
-        ],
-        [
-          "Power",
-          [
-            "Sech",
-            "v_"
-          ],
-          "n."
-        ]
-      ],
-      "provenance": {
-        "method": "converted",
-        "sources": [
-          {
-            "name": "Rubi",
-            "version": "4.16.1",
-            "locator": "6 Hyperbolic functions/6.5 Hyperbolic secant/6.5.10 (c+d x)^m (a+b sech)^n#1"
-          }
-        ]
-      }
+            "pattern": [
+                "Multiply",
+                [
+                    "Power",
+                    "u_",
+                    "m."
+                ],
+                [
+                    "Power",
+                    [
+                        "Sech",
+                        "v_"
+                    ],
+                    "n."
+                ]
+            ],
+            "provenance": {
+                "method": "converted",
+                "sources": [
+                    {
+                        "version": "4.16.1",
+                        "name": "Rubi",
+                        "locator": "6 Hyperbolic functions/6.5 Hyperbolic secant/6.5.10 (c+d x)^m (a+b sech)^n.m#1"
+                    }
+                ]
+            }
+        },
+        {
+            "constraints": [
+                [
+                    "FreeQ",
+                    [
+                        "List",
+                        "m",
+                        "n"
+                    ],
+                    "x"
+                ],
+                [
+                    "LinearQ",
+                    [
+                        "List",
+                        "u",
+                        "v"
+                    ],
+                    "x"
+                ],
+                [
+                    "Not",
+                    [
+                        "LinearMatchQ",
+                        [
+                            "List",
+                            "u",
+                            "v"
+                        ],
+                        "x"
+                    ]
+                ]
+            ],
+            "id": 2,
+            "result": [
+                "Int",
+                [
+                    "Multiply",
+                    [
+                        "Power",
+                        [
+                            "ExpandToSum",
+                            "u",
+                            "x"
+                        ],
+                        "m"
+                    ],
+                    [
+                        "Power",
+                        [
+                            "Csch",
+                            [
+                                "ExpandToSum",
+                                "v",
+                                "x"
+                            ]
+                        ],
+                        "n"
+                    ]
+                ],
+                "x"
+            ],
+            "pattern": [
+                "Multiply",
+                [
+                    "Power",
+                    "u_",
+                    "m."
+                ],
+                [
+                    "Power",
+                    [
+                        "Csch",
+                        "v_"
+                    ],
+                    "n."
+                ]
+            ],
+            "provenance": {
+                "method": "converted",
+                "sources": [
+                    {
+                        "version": "4.16.1",
+                        "name": "Rubi",
+                        "locator": "6 Hyperbolic functions/6.5 Hyperbolic secant/6.5.10 (c+d x)^m (a+b sech)^n.m#2"
+                    }
+                ]
+            }
+        }
+    ],
+    "semantics": {
+        "Cos": "openmath:transc1#cos",
+        "Int": "openmath:calculus1#int",
+        "Exp": "openmath:transc1#exp",
+        "Tan": "openmath:transc1#tan",
+        "Sin": "openmath:transc1#sin",
+        "Log": "openmath:transc1#ln"
     },
-    {
-      "constraints": [
-        [
-          "FreeQ",
-          [
-            "List",
-            "m",
-            "n"
-          ],
-          "x"
-        ],
-        [
-          "LinearQ",
-          [
-            "List",
-            "u",
-            "v"
-          ],
-          "x"
-        ],
-        [
-          "Not",
-          [
-            "LinearMatchQ",
-            [
-              "List",
-              "u",
-              "v"
-            ],
-            "x"
-          ]
-        ]
-      ],
-      "id": 2,
-      "result": [
-        "Int",
-        [
-          "Multiply",
-          [
-            "Power",
-            [
-              "ExpandToSum",
-              "u",
-              "x"
-            ],
-            "m"
-          ],
-          [
-            "Power",
-            [
-              "Csch",
-              [
-                "ExpandToSum",
-                "v",
-                "x"
-              ]
-            ],
-            "n"
-          ]
-        ],
-        "x"
-      ],
-      "pattern": [
-        "Multiply",
-        [
-          "Power",
-          "u_",
-          "m."
-        ],
-        [
-          "Power",
-          [
-            "Csch",
-            "v_"
-          ],
-          "n."
-        ]
-      ],
-      "provenance": {
-        "method": "converted",
-        "sources": [
-          {
-            "name": "Rubi",
-            "version": "4.16.1",
-            "locator": "6 Hyperbolic functions/6.5 Hyperbolic secant/6.5.10 (c+d x)^m (a+b sech)^n#2"
-          }
-        ]
-      }
-    }
-  ],
-  "semantics": {
-    "Cos": "openmath:transc1#cos",
-    "Int": "openmath:calculus1#int",
-    "Exp": "openmath:transc1#exp",
-    "Tan": "openmath:transc1#tan",
-    "Sin": "openmath:transc1#sin",
-    "Log": "openmath:transc1#ln"
-  },
-  "identity": "rubi:6 Hyperbolic functions/6.5 Hyperbolic secant/6.5.10 (c+d x)^m (a+b sech)^n",
-  "$schema": "open-symbolic-rules/v0.1"
+    "identity": "rubi:6 Hyperbolic functions/6.5 Hyperbolic secant/6.5.10 (c+d x)^m (a+b sech)^n",
+    "$schema": "open-symbolic-rules/v0.1"
 }

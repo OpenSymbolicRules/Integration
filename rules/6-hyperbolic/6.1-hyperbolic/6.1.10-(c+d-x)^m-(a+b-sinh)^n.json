@@ -1,230 +1,230 @@
 {
-  "title": "(c+d x)^m (a+b sinh)^n",
-  "section": "6.1.10",
-  "rules": [
-    {
-      "constraints": [
-        [
-          "FreeQ",
-          [
-            "List",
-            "a",
-            "b",
-            "m",
-            "n"
-          ],
-          "x"
-        ],
-        [
-          "LinearQ",
-          [
-            "List",
-            "u",
-            "v"
-          ],
-          "x"
-        ],
-        [
-          "Not",
-          [
-            "LinearMatchQ",
-            [
-              "List",
-              "u",
-              "v"
-            ],
-            "x"
-          ]
-        ]
-      ],
-      "id": 1,
-      "result": [
-        "Int",
-        [
-          "Multiply",
-          [
-            "Power",
-            [
-              "ExpandToSum",
-              "u",
-              "x"
-            ],
-            "m"
-          ],
-          [
-            "Power",
-            [
-              "Add",
-              "a",
-              [
-                "Multiply",
-                "b",
+    "title": "(c+d x)^m (a+b sinh)^n",
+    "section": "6.1.10",
+    "rules": [
+        {
+            "constraints": [
                 [
-                  "Sinh",
-                  [
-                    "ExpandToSum",
-                    "v",
+                    "FreeQ",
+                    [
+                        "List",
+                        "a",
+                        "b",
+                        "m",
+                        "n"
+                    ],
                     "x"
-                  ]
+                ],
+                [
+                    "LinearQ",
+                    [
+                        "List",
+                        "u",
+                        "v"
+                    ],
+                    "x"
+                ],
+                [
+                    "Not",
+                    [
+                        "LinearMatchQ",
+                        [
+                            "List",
+                            "u",
+                            "v"
+                        ],
+                        "x"
+                    ]
                 ]
-              ]
             ],
-            "n"
-          ]
-        ],
-        "x"
-      ],
-      "pattern": [
-        "Multiply",
-        [
-          "Power",
-          "u_",
-          "m."
-        ],
-        [
-          "Power",
-          [
-            "Add",
-            "a.",
-            [
-              "Multiply",
-              "b.",
-              [
-                "Sinh",
-                "v_"
-              ]
-            ]
-          ],
-          "n."
-        ]
-      ],
-      "provenance": {
-        "method": "converted",
-        "sources": [
-          {
-            "name": "Rubi",
-            "version": "4.16.1",
-            "locator": "6 Hyperbolic functions/6.1 Hyperbolic sine/6.1.10 (c+d x)^m (a+b sinh)^n#1"
-          }
-        ]
-      }
+            "id": 1,
+            "result": [
+                "Int",
+                [
+                    "Multiply",
+                    [
+                        "Power",
+                        [
+                            "ExpandToSum",
+                            "u",
+                            "x"
+                        ],
+                        "m"
+                    ],
+                    [
+                        "Power",
+                        [
+                            "Add",
+                            "a",
+                            [
+                                "Multiply",
+                                "b",
+                                [
+                                    "Sinh",
+                                    [
+                                        "ExpandToSum",
+                                        "v",
+                                        "x"
+                                    ]
+                                ]
+                            ]
+                        ],
+                        "n"
+                    ]
+                ],
+                "x"
+            ],
+            "pattern": [
+                "Multiply",
+                [
+                    "Power",
+                    "u_",
+                    "m."
+                ],
+                [
+                    "Power",
+                    [
+                        "Add",
+                        "a.",
+                        [
+                            "Multiply",
+                            "b.",
+                            [
+                                "Sinh",
+                                "v_"
+                            ]
+                        ]
+                    ],
+                    "n."
+                ]
+            ],
+            "provenance": {
+                "method": "converted",
+                "sources": [
+                    {
+                        "version": "4.16.1",
+                        "name": "Rubi",
+                        "locator": "6 Hyperbolic functions/6.1 Hyperbolic sine/6.1.10 (c+d x)^m (a+b sinh)^n.m#1"
+                    }
+                ]
+            }
+        },
+        {
+            "constraints": [
+                [
+                    "FreeQ",
+                    [
+                        "List",
+                        "a",
+                        "b",
+                        "m",
+                        "n"
+                    ],
+                    "x"
+                ],
+                [
+                    "LinearQ",
+                    [
+                        "List",
+                        "u",
+                        "v"
+                    ],
+                    "x"
+                ],
+                [
+                    "Not",
+                    [
+                        "LinearMatchQ",
+                        [
+                            "List",
+                            "u",
+                            "v"
+                        ],
+                        "x"
+                    ]
+                ]
+            ],
+            "id": 2,
+            "result": [
+                "Int",
+                [
+                    "Multiply",
+                    [
+                        "Power",
+                        [
+                            "ExpandToSum",
+                            "u",
+                            "x"
+                        ],
+                        "m"
+                    ],
+                    [
+                        "Power",
+                        [
+                            "Add",
+                            "a",
+                            [
+                                "Multiply",
+                                "b",
+                                [
+                                    "Cosh",
+                                    [
+                                        "ExpandToSum",
+                                        "v",
+                                        "x"
+                                    ]
+                                ]
+                            ]
+                        ],
+                        "n"
+                    ]
+                ],
+                "x"
+            ],
+            "pattern": [
+                "Multiply",
+                [
+                    "Power",
+                    "u_",
+                    "m."
+                ],
+                [
+                    "Power",
+                    [
+                        "Add",
+                        "a.",
+                        [
+                            "Multiply",
+                            "b.",
+                            [
+                                "Cosh",
+                                "v_"
+                            ]
+                        ]
+                    ],
+                    "n."
+                ]
+            ],
+            "provenance": {
+                "method": "converted",
+                "sources": [
+                    {
+                        "version": "4.16.1",
+                        "name": "Rubi",
+                        "locator": "6 Hyperbolic functions/6.1 Hyperbolic sine/6.1.10 (c+d x)^m (a+b sinh)^n.m#2"
+                    }
+                ]
+            }
+        }
+    ],
+    "semantics": {
+        "Cos": "openmath:transc1#cos",
+        "Int": "openmath:calculus1#int",
+        "Exp": "openmath:transc1#exp",
+        "Tan": "openmath:transc1#tan",
+        "Sin": "openmath:transc1#sin",
+        "Log": "openmath:transc1#ln"
     },
-    {
-      "constraints": [
-        [
-          "FreeQ",
-          [
-            "List",
-            "a",
-            "b",
-            "m",
-            "n"
-          ],
-          "x"
-        ],
-        [
-          "LinearQ",
-          [
-            "List",
-            "u",
-            "v"
-          ],
-          "x"
-        ],
-        [
-          "Not",
-          [
-            "LinearMatchQ",
-            [
-              "List",
-              "u",
-              "v"
-            ],
-            "x"
-          ]
-        ]
-      ],
-      "id": 2,
-      "result": [
-        "Int",
-        [
-          "Multiply",
-          [
-            "Power",
-            [
-              "ExpandToSum",
-              "u",
-              "x"
-            ],
-            "m"
-          ],
-          [
-            "Power",
-            [
-              "Add",
-              "a",
-              [
-                "Multiply",
-                "b",
-                [
-                  "Cosh",
-                  [
-                    "ExpandToSum",
-                    "v",
-                    "x"
-                  ]
-                ]
-              ]
-            ],
-            "n"
-          ]
-        ],
-        "x"
-      ],
-      "pattern": [
-        "Multiply",
-        [
-          "Power",
-          "u_",
-          "m."
-        ],
-        [
-          "Power",
-          [
-            "Add",
-            "a.",
-            [
-              "Multiply",
-              "b.",
-              [
-                "Cosh",
-                "v_"
-              ]
-            ]
-          ],
-          "n."
-        ]
-      ],
-      "provenance": {
-        "method": "converted",
-        "sources": [
-          {
-            "name": "Rubi",
-            "version": "4.16.1",
-            "locator": "6 Hyperbolic functions/6.1 Hyperbolic sine/6.1.10 (c+d x)^m (a+b sinh)^n#2"
-          }
-        ]
-      }
-    }
-  ],
-  "semantics": {
-    "Cos": "openmath:transc1#cos",
-    "Int": "openmath:calculus1#int",
-    "Exp": "openmath:transc1#exp",
-    "Tan": "openmath:transc1#tan",
-    "Sin": "openmath:transc1#sin",
-    "Log": "openmath:transc1#ln"
-  },
-  "identity": "rubi:6 Hyperbolic functions/6.1 Hyperbolic sine/6.1.10 (c+d x)^m (a+b sinh)^n",
-  "$schema": "open-symbolic-rules/v0.1"
+    "identity": "rubi:6 Hyperbolic functions/6.1 Hyperbolic sine/6.1.10 (c+d x)^m (a+b sinh)^n",
+    "$schema": "open-symbolic-rules/v0.1"
 }

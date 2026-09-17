@@ -1,698 +1,698 @@
 {
-  "title": "(a+b log(c x^n))^p",
-  "section": "3.1.1",
-  "rules": [
-    {
-      "constraints": [
-        [
-          "FreeQ",
-          [
-            "List",
-            "c",
-            "n"
-          ],
-          "x"
-        ]
-      ],
-      "id": 1,
-      "result": [
-        "Add",
-        [
-          "Multiply",
-          "x",
-          [
-            "Log",
-            [
-              "Multiply",
-              "c",
-              [
+    "title": "(a+b log(c x^n))^p",
+    "section": "3.1.1",
+    "rules": [
+        {
+            "constraints": [
+                [
+                    "FreeQ",
+                    [
+                        "List",
+                        "c",
+                        "n"
+                    ],
+                    "x"
+                ]
+            ],
+            "id": 1,
+            "result": [
+                "Add",
+                [
+                    "Multiply",
+                    "x",
+                    [
+                        "Log",
+                        [
+                            "Multiply",
+                            "c",
+                            [
+                                "Power",
+                                "x",
+                                "n"
+                            ]
+                        ]
+                    ]
+                ],
+                [
+                    "Multiply",
+                    -1,
+                    "n",
+                    "x"
+                ]
+            ],
+            "pattern": [
+                "Log",
+                [
+                    "Multiply",
+                    "c.",
+                    [
+                        "Power",
+                        "x_",
+                        "n."
+                    ]
+                ]
+            ],
+            "provenance": {
+                "method": "converted",
+                "sources": [
+                    {
+                        "version": "4.16.1",
+                        "name": "Rubi",
+                        "locator": "3 Logarithms/3.1.1 (a+b log(c x^n))^p.m#1"
+                    }
+                ]
+            }
+        },
+        {
+            "constraints": [
+                [
+                    "FreeQ",
+                    [
+                        "List",
+                        "a",
+                        "b",
+                        "c",
+                        "n"
+                    ],
+                    "x"
+                ],
+                [
+                    "GtQ",
+                    "p",
+                    0
+                ],
+                [
+                    "IntegerQ",
+                    [
+                        "Multiply",
+                        2,
+                        "p"
+                    ]
+                ]
+            ],
+            "id": 2,
+            "result": [
+                "Add",
+                [
+                    "Multiply",
+                    "x",
+                    [
+                        "Power",
+                        [
+                            "Add",
+                            "a",
+                            [
+                                "Multiply",
+                                "b",
+                                [
+                                    "Log",
+                                    [
+                                        "Multiply",
+                                        "c",
+                                        [
+                                            "Power",
+                                            "x",
+                                            "n"
+                                        ]
+                                    ]
+                                ]
+                            ]
+                        ],
+                        "p"
+                    ]
+                ],
+                [
+                    "Multiply",
+                    -1,
+                    "b",
+                    "n",
+                    "p",
+                    [
+                        "Int",
+                        [
+                            "Power",
+                            [
+                                "Add",
+                                "a",
+                                [
+                                    "Multiply",
+                                    "b",
+                                    [
+                                        "Log",
+                                        [
+                                            "Multiply",
+                                            "c",
+                                            [
+                                                "Power",
+                                                "x",
+                                                "n"
+                                            ]
+                                        ]
+                                    ]
+                                ]
+                            ],
+                            [
+                                "Add",
+                                "p",
+                                [
+                                    "Multiply",
+                                    -1,
+                                    1
+                                ]
+                            ]
+                        ],
+                        "x"
+                    ]
+                ]
+            ],
+            "pattern": [
                 "Power",
-                "x",
-                "n"
-              ]
-            ]
-          ]
-        ],
-        [
-          "Multiply",
-          -1,
-          "n",
-          "x"
-        ]
-      ],
-      "pattern": [
-        "Log",
-        [
-          "Multiply",
-          "c.",
-          [
-            "Power",
-            "x_",
-            "n."
-          ]
-        ]
-      ],
-      "provenance": {
-        "method": "converted",
-        "sources": [
-          {
-            "name": "Rubi",
-            "version": "4.16.1",
-            "locator": "3 Logarithms/3.1.1 (a+b log(c x^n))^p#1"
-          }
-        ]
-      }
-    },
-    {
-      "constraints": [
-        [
-          "FreeQ",
-          [
-            "List",
-            "a",
-            "b",
-            "c",
-            "n"
-          ],
-          "x"
-        ],
-        [
-          "GtQ",
-          "p",
-          0
-        ],
-        [
-          "IntegerQ",
-          [
-            "Multiply",
-            2,
-            "p"
-          ]
-        ]
-      ],
-      "id": 2,
-      "result": [
-        "Add",
-        [
-          "Multiply",
-          "x",
-          [
-            "Power",
-            [
-              "Add",
-              "a",
-              [
-                "Multiply",
-                "b",
                 [
-                  "Log",
-                  [
-                    "Multiply",
-                    "c",
+                    "Add",
+                    "a.",
                     [
-                      "Power",
-                      "x",
-                      "n"
+                        "Multiply",
+                        "b.",
+                        [
+                            "Log",
+                            [
+                                "Multiply",
+                                "c.",
+                                [
+                                    "Power",
+                                    "x_",
+                                    "n."
+                                ]
+                            ]
+                        ]
                     ]
-                  ]
-                ]
-              ]
+                ],
+                "p."
             ],
-            "p"
-          ]
-        ],
-        [
-          "Multiply",
-          -1,
-          "b",
-          "n",
-          "p",
-          [
-            "Int",
-            [
-              "Power",
-              [
-                "Add",
-                "a",
+            "provenance": {
+                "method": "converted",
+                "sources": [
+                    {
+                        "version": "4.16.1",
+                        "name": "Rubi",
+                        "locator": "3 Logarithms/3.1.1 (a+b log(c x^n))^p.m#2"
+                    }
+                ]
+            }
+        },
+        {
+            "constraints": [
                 [
-                  "Multiply",
-                  "b",
-                  [
-                    "Log",
+                    "FreeQ",
                     [
-                      "Multiply",
-                      "c",
-                      [
-                        "Power",
-                        "x",
+                        "List",
+                        "a",
+                        "b",
+                        "c",
                         "n"
-                      ]
+                    ],
+                    "x"
+                ],
+                [
+                    "LtQ",
+                    "p",
+                    -1
+                ],
+                [
+                    "IntegerQ",
+                    [
+                        "Multiply",
+                        2,
+                        "p"
                     ]
-                  ]
                 ]
-              ],
-              [
-                "Add",
-                "p",
-                [
-                  "Multiply",
-                  -1,
-                  1
-                ]
-              ]
             ],
-            "x"
-          ]
-        ]
-      ],
-      "pattern": [
-        "Power",
-        [
-          "Add",
-          "a.",
-          [
-            "Multiply",
-            "b.",
-            [
-              "Log",
-              [
-                "Multiply",
-                "c.",
+            "id": 3,
+            "result": [
+                "Add",
                 [
-                  "Power",
-                  "x_",
-                  "n."
-                ]
-              ]
-            ]
-          ]
-        ],
-        "p."
-      ],
-      "provenance": {
-        "method": "converted",
-        "sources": [
-          {
-            "name": "Rubi",
-            "version": "4.16.1",
-            "locator": "3 Logarithms/3.1.1 (a+b log(c x^n))^p#2"
-          }
-        ]
-      }
-    },
-    {
-      "constraints": [
-        [
-          "FreeQ",
-          [
-            "List",
-            "a",
-            "b",
-            "c",
-            "n"
-          ],
-          "x"
-        ],
-        [
-          "LtQ",
-          "p",
-          -1
-        ],
-        [
-          "IntegerQ",
-          [
-            "Multiply",
-            2,
-            "p"
-          ]
-        ]
-      ],
-      "id": 3,
-      "result": [
-        "Add",
-        [
-          "Multiply",
-          "x",
-          [
-            "Power",
-            [
-              "Add",
-              "a",
-              [
-                "Multiply",
-                "b",
-                [
-                  "Log",
-                  [
                     "Multiply",
-                    "c",
+                    "x",
                     [
-                      "Power",
-                      "x",
-                      "n"
-                    ]
-                  ]
-                ]
-              ]
-            ],
-            [
-              "Add",
-              "p",
-              1
-            ]
-          ],
-          [
-            "Power",
-            [
-              "Multiply",
-              "b",
-              "n",
-              [
-                "Add",
-                "p",
-                1
-              ]
-            ],
-            -1
-          ]
-        ],
-        [
-          "Multiply",
-          -1,
-          1,
-          [
-            "Power",
-            [
-              "Multiply",
-              "b",
-              "n",
-              [
-                "Add",
-                "p",
-                1
-              ]
-            ],
-            -1
-          ],
-          [
-            "Int",
-            [
-              "Power",
-              [
-                "Add",
-                "a",
-                [
-                  "Multiply",
-                  "b",
-                  [
-                    "Log",
-                    [
-                      "Multiply",
-                      "c",
-                      [
                         "Power",
-                        "x",
-                        "n"
-                      ]
+                        [
+                            "Add",
+                            "a",
+                            [
+                                "Multiply",
+                                "b",
+                                [
+                                    "Log",
+                                    [
+                                        "Multiply",
+                                        "c",
+                                        [
+                                            "Power",
+                                            "x",
+                                            "n"
+                                        ]
+                                    ]
+                                ]
+                            ]
+                        ],
+                        [
+                            "Add",
+                            "p",
+                            1
+                        ]
+                    ],
+                    [
+                        "Power",
+                        [
+                            "Multiply",
+                            "b",
+                            "n",
+                            [
+                                "Add",
+                                "p",
+                                1
+                            ]
+                        ],
+                        -1
                     ]
-                  ]
-                ]
-              ],
-              [
-                "Add",
-                "p",
-                1
-              ]
-            ],
-            "x"
-          ]
-        ]
-      ],
-      "pattern": [
-        "Power",
-        [
-          "Add",
-          "a.",
-          [
-            "Multiply",
-            "b.",
-            [
-              "Log",
-              [
-                "Multiply",
-                "c.",
+                ],
                 [
-                  "Power",
-                  "x_",
-                  "n."
+                    "Multiply",
+                    -1,
+                    1,
+                    [
+                        "Power",
+                        [
+                            "Multiply",
+                            "b",
+                            "n",
+                            [
+                                "Add",
+                                "p",
+                                1
+                            ]
+                        ],
+                        -1
+                    ],
+                    [
+                        "Int",
+                        [
+                            "Power",
+                            [
+                                "Add",
+                                "a",
+                                [
+                                    "Multiply",
+                                    "b",
+                                    [
+                                        "Log",
+                                        [
+                                            "Multiply",
+                                            "c",
+                                            [
+                                                "Power",
+                                                "x",
+                                                "n"
+                                            ]
+                                        ]
+                                    ]
+                                ]
+                            ],
+                            [
+                                "Add",
+                                "p",
+                                1
+                            ]
+                        ],
+                        "x"
+                    ]
                 ]
-              ]
-            ]
-          ]
-        ],
-        "p_"
-      ],
-      "provenance": {
-        "method": "converted",
-        "sources": [
-          {
-            "name": "Rubi",
-            "version": "4.16.1",
-            "locator": "3 Logarithms/3.1.1 (a+b log(c x^n))^p#3"
-          }
-        ]
-      }
-    },
-    {
-      "constraints": [
-        [
-          "FreeQ",
-          "c",
-          "x"
-        ]
-      ],
-      "id": 4,
-      "result": [
-        "Multiply",
-        [
-          "LogIntegral",
-          [
-            "Multiply",
-            "c",
-            "x"
-          ]
-        ],
-        [
-          "Power",
-          "c",
-          -1
-        ]
-      ],
-      "pattern": [
-        "Multiply",
-        1,
-        [
-          "Power",
-          [
-            "Log",
-            [
-              "Multiply",
-              "c.",
-              "x_"
-            ]
-          ],
-          -1
-        ]
-      ],
-      "provenance": {
-        "method": "converted",
-        "sources": [
-          {
-            "name": "Rubi",
-            "version": "4.16.1",
-            "locator": "3 Logarithms/3.1.1 (a+b log(c x^n))^p#4"
-          }
-        ]
-      }
-    },
-    {
-      "constraints": [
-        [
-          "FreeQ",
-          [
-            "List",
-            "a",
-            "b",
-            "c",
-            "p"
-          ],
-          "x"
-        ],
-        [
-          "IntegerQ",
-          [
-            "Multiply",
-            1,
-            [
-              "Power",
-              "n",
-              -1
-            ]
-          ]
-        ]
-      ],
-      "id": 5,
-      "result": [
-        "Multiply",
-        1,
-        [
-          "Power",
-          [
-            "Multiply",
-            "n",
-            [
-              "Power",
-              "c",
-              [
+            ],
+            "pattern": [
+                "Power",
+                [
+                    "Add",
+                    "a.",
+                    [
+                        "Multiply",
+                        "b.",
+                        [
+                            "Log",
+                            [
+                                "Multiply",
+                                "c.",
+                                [
+                                    "Power",
+                                    "x_",
+                                    "n."
+                                ]
+                            ]
+                        ]
+                    ]
+                ],
+                "p_"
+            ],
+            "provenance": {
+                "method": "converted",
+                "sources": [
+                    {
+                        "version": "4.16.1",
+                        "name": "Rubi",
+                        "locator": "3 Logarithms/3.1.1 (a+b log(c x^n))^p.m#3"
+                    }
+                ]
+            }
+        },
+        {
+            "constraints": [
+                [
+                    "FreeQ",
+                    "c",
+                    "x"
+                ]
+            ],
+            "id": 4,
+            "result": [
+                "Multiply",
+                [
+                    "LogIntegral",
+                    [
+                        "Multiply",
+                        "c",
+                        "x"
+                    ]
+                ],
+                [
+                    "Power",
+                    "c",
+                    -1
+                ]
+            ],
+            "pattern": [
                 "Multiply",
                 1,
                 [
-                  "Power",
-                  "n",
-                  -1
-                ]
-              ]
-            ]
-          ],
-          -1
-        ],
-        [
-          "Subst",
-          [
-            "Int",
-            [
-              "Multiply",
-              [
-                "Power",
-                "E",
-                [
-                  "Multiply",
-                  "x",
-                  [
                     "Power",
-                    "n",
+                    [
+                        "Log",
+                        [
+                            "Multiply",
+                            "c.",
+                            "x_"
+                        ]
+                    ],
                     -1
-                  ]
                 ]
-              ],
-              [
-                "Power",
-                [
-                  "Add",
-                  "a",
-                  [
-                    "Multiply",
-                    "b",
-                    "x"
-                  ]
-                ],
-                "p"
-              ]
             ],
-            "x"
-          ],
-          "x",
-          [
-            "Log",
-            [
-              "Multiply",
-              "c",
-              [
-                "Power",
-                "x",
-                "n"
-              ]
-            ]
-          ]
-        ]
-      ],
-      "pattern": [
-        "Power",
-        [
-          "Add",
-          "a.",
-          [
-            "Multiply",
-            "b.",
-            [
-              "Log",
-              [
-                "Multiply",
-                "c.",
-                [
-                  "Power",
-                  "x_",
-                  "n."
+            "provenance": {
+                "method": "converted",
+                "sources": [
+                    {
+                        "version": "4.16.1",
+                        "name": "Rubi",
+                        "locator": "3 Logarithms/3.1.1 (a+b log(c x^n))^p.m#4"
+                    }
                 ]
-              ]
-            ]
-          ]
-        ],
-        "p_"
-      ],
-      "provenance": {
-        "method": "converted",
-        "sources": [
-          {
-            "name": "Rubi",
-            "version": "4.16.1",
-            "locator": "3 Logarithms/3.1.1 (a+b log(c x^n))^p#5"
-          }
-        ]
-      }
-    },
-    {
-      "constraints": [
-        [
-          "FreeQ",
-          [
-            "List",
-            "a",
-            "b",
-            "c",
-            "n",
-            "p"
-          ],
-          "x"
-        ]
-      ],
-      "id": 6,
-      "result": [
-        "Multiply",
-        "x",
-        [
-          "Power",
-          [
-            "Multiply",
-            "n",
-            [
-              "Power",
-              [
-                "Multiply",
-                "c",
+            }
+        },
+        {
+            "constraints": [
                 [
-                  "Power",
-                  "x",
-                  "n"
+                    "FreeQ",
+                    [
+                        "List",
+                        "a",
+                        "b",
+                        "c",
+                        "p"
+                    ],
+                    "x"
+                ],
+                [
+                    "IntegerQ",
+                    [
+                        "Multiply",
+                        1,
+                        [
+                            "Power",
+                            "n",
+                            -1
+                        ]
+                    ]
                 ]
-              ],
-              [
+            ],
+            "id": 5,
+            "result": [
                 "Multiply",
                 1,
                 [
-                  "Power",
-                  "n",
-                  -1
-                ]
-              ]
-            ]
-          ],
-          -1
-        ],
-        [
-          "Subst",
-          [
-            "Int",
-            [
-              "Multiply",
-              [
-                "Power",
-                "E",
-                [
-                  "Multiply",
-                  "x",
-                  [
                     "Power",
-                    "n",
+                    [
+                        "Multiply",
+                        "n",
+                        [
+                            "Power",
+                            "c",
+                            [
+                                "Multiply",
+                                1,
+                                [
+                                    "Power",
+                                    "n",
+                                    -1
+                                ]
+                            ]
+                        ]
+                    ],
                     -1
-                  ]
-                ]
-              ],
-              [
-                "Power",
-                [
-                  "Add",
-                  "a",
-                  [
-                    "Multiply",
-                    "b",
-                    "x"
-                  ]
                 ],
-                "p"
-              ]
-            ],
-            "x"
-          ],
-          "x",
-          [
-            "Log",
-            [
-              "Multiply",
-              "c",
-              [
-                "Power",
-                "x",
-                "n"
-              ]
-            ]
-          ]
-        ]
-      ],
-      "pattern": [
-        "Power",
-        [
-          "Add",
-          "a.",
-          [
-            "Multiply",
-            "b.",
-            [
-              "Log",
-              [
-                "Multiply",
-                "c.",
                 [
-                  "Power",
-                  "x_",
-                  "n."
+                    "Subst",
+                    [
+                        "Int",
+                        [
+                            "Multiply",
+                            [
+                                "Power",
+                                "E",
+                                [
+                                    "Multiply",
+                                    "x",
+                                    [
+                                        "Power",
+                                        "n",
+                                        -1
+                                    ]
+                                ]
+                            ],
+                            [
+                                "Power",
+                                [
+                                    "Add",
+                                    "a",
+                                    [
+                                        "Multiply",
+                                        "b",
+                                        "x"
+                                    ]
+                                ],
+                                "p"
+                            ]
+                        ],
+                        "x"
+                    ],
+                    "x",
+                    [
+                        "Log",
+                        [
+                            "Multiply",
+                            "c",
+                            [
+                                "Power",
+                                "x",
+                                "n"
+                            ]
+                        ]
+                    ]
                 ]
-              ]
-            ]
-          ]
-        ],
-        "p_"
-      ],
-      "provenance": {
-        "method": "converted",
-        "sources": [
-          {
-            "name": "Rubi",
-            "version": "4.16.1",
-            "locator": "3 Logarithms/3.1.1 (a+b log(c x^n))^p#6"
-          }
-        ]
-      }
-    }
-  ],
-  "semantics": {
-    "Cos": "openmath:transc1#cos",
-    "Int": "openmath:calculus1#int",
-    "Exp": "openmath:transc1#exp",
-    "Tan": "openmath:transc1#tan",
-    "Sin": "openmath:transc1#sin",
-    "Log": "openmath:transc1#ln"
-  },
-  "identity": "rubi:3 Logarithms/3.1.1 (a+b log(c x^n))^p",
-  "$schema": "open-symbolic-rules/v0.1"
+            ],
+            "pattern": [
+                "Power",
+                [
+                    "Add",
+                    "a.",
+                    [
+                        "Multiply",
+                        "b.",
+                        [
+                            "Log",
+                            [
+                                "Multiply",
+                                "c.",
+                                [
+                                    "Power",
+                                    "x_",
+                                    "n."
+                                ]
+                            ]
+                        ]
+                    ]
+                ],
+                "p_"
+            ],
+            "provenance": {
+                "method": "converted",
+                "sources": [
+                    {
+                        "version": "4.16.1",
+                        "name": "Rubi",
+                        "locator": "3 Logarithms/3.1.1 (a+b log(c x^n))^p.m#5"
+                    }
+                ]
+            }
+        },
+        {
+            "constraints": [
+                [
+                    "FreeQ",
+                    [
+                        "List",
+                        "a",
+                        "b",
+                        "c",
+                        "n",
+                        "p"
+                    ],
+                    "x"
+                ]
+            ],
+            "id": 6,
+            "result": [
+                "Multiply",
+                "x",
+                [
+                    "Power",
+                    [
+                        "Multiply",
+                        "n",
+                        [
+                            "Power",
+                            [
+                                "Multiply",
+                                "c",
+                                [
+                                    "Power",
+                                    "x",
+                                    "n"
+                                ]
+                            ],
+                            [
+                                "Multiply",
+                                1,
+                                [
+                                    "Power",
+                                    "n",
+                                    -1
+                                ]
+                            ]
+                        ]
+                    ],
+                    -1
+                ],
+                [
+                    "Subst",
+                    [
+                        "Int",
+                        [
+                            "Multiply",
+                            [
+                                "Power",
+                                "E",
+                                [
+                                    "Multiply",
+                                    "x",
+                                    [
+                                        "Power",
+                                        "n",
+                                        -1
+                                    ]
+                                ]
+                            ],
+                            [
+                                "Power",
+                                [
+                                    "Add",
+                                    "a",
+                                    [
+                                        "Multiply",
+                                        "b",
+                                        "x"
+                                    ]
+                                ],
+                                "p"
+                            ]
+                        ],
+                        "x"
+                    ],
+                    "x",
+                    [
+                        "Log",
+                        [
+                            "Multiply",
+                            "c",
+                            [
+                                "Power",
+                                "x",
+                                "n"
+                            ]
+                        ]
+                    ]
+                ]
+            ],
+            "pattern": [
+                "Power",
+                [
+                    "Add",
+                    "a.",
+                    [
+                        "Multiply",
+                        "b.",
+                        [
+                            "Log",
+                            [
+                                "Multiply",
+                                "c.",
+                                [
+                                    "Power",
+                                    "x_",
+                                    "n."
+                                ]
+                            ]
+                        ]
+                    ]
+                ],
+                "p_"
+            ],
+            "provenance": {
+                "method": "converted",
+                "sources": [
+                    {
+                        "version": "4.16.1",
+                        "name": "Rubi",
+                        "locator": "3 Logarithms/3.1.1 (a+b log(c x^n))^p.m#6"
+                    }
+                ]
+            }
+        }
+    ],
+    "semantics": {
+        "Cos": "openmath:transc1#cos",
+        "Int": "openmath:calculus1#int",
+        "Exp": "openmath:transc1#exp",
+        "Tan": "openmath:transc1#tan",
+        "Sin": "openmath:transc1#sin",
+        "Log": "openmath:transc1#ln"
+    },
+    "identity": "rubi:3 Logarithms/3.1.1 (a+b log(c x^n))^p",
+    "$schema": "open-symbolic-rules/v0.1"
 }

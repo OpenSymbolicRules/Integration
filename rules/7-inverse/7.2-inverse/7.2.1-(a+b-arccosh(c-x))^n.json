@@ -1,482 +1,482 @@
 {
-  "title": "(a+b arccosh(c x))^n",
-  "section": "7.2.1",
-  "rules": [
-    {
-      "constraints": [
-        [
-          "FreeQ",
-          [
-            "List",
-            "a",
-            "b",
-            "c"
-          ],
-          "x"
-        ],
-        [
-          "GtQ",
-          "n",
-          0
-        ]
-      ],
-      "id": 1,
-      "result": [
-        "Add",
-        [
-          "Multiply",
-          "x",
-          [
-            "Power",
-            [
-              "Add",
-              "a",
-              [
-                "Multiply",
-                "b",
+    "title": "(a+b arccosh(c x))^n",
+    "section": "7.2.1",
+    "rules": [
+        {
+            "constraints": [
                 [
-                  "Acosh",
-                  [
-                    "Multiply",
-                    "c",
+                    "FreeQ",
+                    [
+                        "List",
+                        "a",
+                        "b",
+                        "c"
+                    ],
                     "x"
-                  ]
-                ]
-              ]
-            ],
-            "n"
-          ]
-        ],
-        [
-          "Multiply",
-          -1,
-          "b",
-          "c",
-          "n",
-          [
-            "Int",
-            [
-              "Multiply",
-              "x",
-              [
-                "Power",
-                [
-                  "Add",
-                  "a",
-                  [
-                    "Multiply",
-                    "b",
-                    [
-                      "Acosh",
-                      [
-                        "Multiply",
-                        "c",
-                        "x"
-                      ]
-                    ]
-                  ]
                 ],
                 [
-                  "Add",
-                  "n",
-                  [
-                    "Multiply",
-                    -1,
-                    1
-                  ]
+                    "GtQ",
+                    "n",
+                    0
                 ]
-              ],
-              [
-                "Power",
-                [
-                  "Multiply",
-                  [
-                    "Sqrt",
-                    [
-                      "Add",
-                      1,
-                      [
-                        "Multiply",
-                        "c",
-                        "x"
-                      ]
-                    ]
-                  ],
-                  [
-                    "Sqrt",
-                    [
-                      "Add",
-                      -1,
-                      [
-                        "Multiply",
-                        "c",
-                        "x"
-                      ]
-                    ]
-                  ]
-                ],
-                -1
-              ]
             ],
-            "x"
-          ]
-        ]
-      ],
-      "pattern": [
-        "Power",
-        [
-          "Add",
-          "a.",
-          [
-            "Multiply",
-            "b.",
-            [
-              "Acosh",
-              [
-                "Multiply",
-                "c.",
-                "x_"
-              ]
-            ]
-          ]
-        ],
-        "n."
-      ],
-      "provenance": {
-        "method": "converted",
-        "sources": [
-          {
-            "name": "Rubi",
-            "version": "4.16.1",
-            "locator": "7 Inverse hyperbolic functions/7.2 Inverse hyperbolic cosine/7.2.1 (a+b arccosh(c x))^n#1"
-          }
-        ]
-      }
-    },
-    {
-      "constraints": [
-        [
-          "FreeQ",
-          [
-            "List",
-            "a",
-            "b",
-            "c"
-          ],
-          "x"
-        ],
-        [
-          "LtQ",
-          "n",
-          -1
-        ]
-      ],
-      "id": 2,
-      "result": [
-        "Add",
-        [
-          "Multiply",
-          [
-            "Sqrt",
-            [
-              "Add",
-              1,
-              [
-                "Multiply",
-                "c",
-                "x"
-              ]
-            ]
-          ],
-          [
-            "Sqrt",
-            [
-              "Add",
-              -1,
-              [
-                "Multiply",
-                "c",
-                "x"
-              ]
-            ]
-          ],
-          [
-            "Power",
-            [
-              "Add",
-              "a",
-              [
-                "Multiply",
-                "b",
-                [
-                  "Acosh",
-                  [
-                    "Multiply",
-                    "c",
-                    "x"
-                  ]
-                ]
-              ]
-            ],
-            [
-              "Add",
-              "n",
-              1
-            ]
-          ],
-          [
-            "Power",
-            [
-              "Multiply",
-              "b",
-              "c",
-              [
+            "id": 1,
+            "result": [
                 "Add",
-                "n",
-                1
-              ]
-            ],
-            -1
-          ]
-        ],
-        [
-          "Multiply",
-          -1,
-          "c",
-          [
-            "Power",
-            [
-              "Multiply",
-              "b",
-              [
-                "Add",
-                "n",
-                1
-              ]
-            ],
-            -1
-          ],
-          [
-            "Int",
-            [
-              "Multiply",
-              "x",
-              [
-                "Power",
                 [
-                  "Add",
-                  "a",
-                  [
-                    "Multiply",
-                    "b",
-                    [
-                      "Acosh",
-                      [
-                        "Multiply",
-                        "c",
-                        "x"
-                      ]
-                    ]
-                  ]
-                ],
-                [
-                  "Add",
-                  "n",
-                  1
-                ]
-              ],
-              [
-                "Power",
-                [
-                  "Multiply",
-                  [
-                    "Sqrt",
-                    [
-                      "Add",
-                      1,
-                      [
-                        "Multiply",
-                        "c",
-                        "x"
-                      ]
-                    ]
-                  ],
-                  [
-                    "Sqrt",
-                    [
-                      "Add",
-                      -1,
-                      [
-                        "Multiply",
-                        "c",
-                        "x"
-                      ]
-                    ]
-                  ]
-                ],
-                -1
-              ]
-            ],
-            "x"
-          ]
-        ]
-      ],
-      "pattern": [
-        "Power",
-        [
-          "Add",
-          "a.",
-          [
-            "Multiply",
-            "b.",
-            [
-              "Acosh",
-              [
-                "Multiply",
-                "c.",
-                "x_"
-              ]
-            ]
-          ]
-        ],
-        "n_"
-      ],
-      "provenance": {
-        "method": "converted",
-        "sources": [
-          {
-            "name": "Rubi",
-            "version": "4.16.1",
-            "locator": "7 Inverse hyperbolic functions/7.2 Inverse hyperbolic cosine/7.2.1 (a+b arccosh(c x))^n#2"
-          }
-        ]
-      }
-    },
-    {
-      "constraints": [
-        [
-          "FreeQ",
-          [
-            "List",
-            "a",
-            "b",
-            "c",
-            "n"
-          ],
-          "x"
-        ]
-      ],
-      "id": 3,
-      "result": [
-        "Multiply",
-        1,
-        [
-          "Power",
-          [
-            "Multiply",
-            "b",
-            "c"
-          ],
-          -1
-        ],
-        [
-          "Subst",
-          [
-            "Int",
-            [
-              "Multiply",
-              [
-                "Power",
-                "x",
-                "n"
-              ],
-              [
-                "Sinh",
-                [
-                  "Add",
-                  [
-                    "Multiply",
-                    -1,
-                    "a",
-                    [
-                      "Power",
-                      "b",
-                      -1
-                    ]
-                  ],
-                  [
                     "Multiply",
                     "x",
                     [
-                      "Power",
-                      "b",
-                      -1
+                        "Power",
+                        [
+                            "Add",
+                            "a",
+                            [
+                                "Multiply",
+                                "b",
+                                [
+                                    "Acosh",
+                                    [
+                                        "Multiply",
+                                        "c",
+                                        "x"
+                                    ]
+                                ]
+                            ]
+                        ],
+                        "n"
                     ]
-                  ]
-                ]
-              ]
-            ],
-            "x"
-          ],
-          "x",
-          [
-            "Add",
-            "a",
-            [
-              "Multiply",
-              "b",
-              [
-                "Acosh",
+                ],
                 [
-                  "Multiply",
-                  "c",
-                  "x"
+                    "Multiply",
+                    -1,
+                    "b",
+                    "c",
+                    "n",
+                    [
+                        "Int",
+                        [
+                            "Multiply",
+                            "x",
+                            [
+                                "Power",
+                                [
+                                    "Add",
+                                    "a",
+                                    [
+                                        "Multiply",
+                                        "b",
+                                        [
+                                            "Acosh",
+                                            [
+                                                "Multiply",
+                                                "c",
+                                                "x"
+                                            ]
+                                        ]
+                                    ]
+                                ],
+                                [
+                                    "Add",
+                                    "n",
+                                    [
+                                        "Multiply",
+                                        -1,
+                                        1
+                                    ]
+                                ]
+                            ],
+                            [
+                                "Power",
+                                [
+                                    "Multiply",
+                                    [
+                                        "Sqrt",
+                                        [
+                                            "Add",
+                                            1,
+                                            [
+                                                "Multiply",
+                                                "c",
+                                                "x"
+                                            ]
+                                        ]
+                                    ],
+                                    [
+                                        "Sqrt",
+                                        [
+                                            "Add",
+                                            -1,
+                                            [
+                                                "Multiply",
+                                                "c",
+                                                "x"
+                                            ]
+                                        ]
+                                    ]
+                                ],
+                                -1
+                            ]
+                        ],
+                        "x"
+                    ]
                 ]
-              ]
-            ]
-          ]
-        ]
-      ],
-      "pattern": [
-        "Power",
-        [
-          "Add",
-          "a.",
-          [
-            "Multiply",
-            "b.",
-            [
-              "Acosh",
-              [
+            ],
+            "pattern": [
+                "Power",
+                [
+                    "Add",
+                    "a.",
+                    [
+                        "Multiply",
+                        "b.",
+                        [
+                            "Acosh",
+                            [
+                                "Multiply",
+                                "c.",
+                                "x_"
+                            ]
+                        ]
+                    ]
+                ],
+                "n."
+            ],
+            "provenance": {
+                "method": "converted",
+                "sources": [
+                    {
+                        "version": "4.16.1",
+                        "name": "Rubi",
+                        "locator": "7 Inverse hyperbolic functions/7.2 Inverse hyperbolic cosine/7.2.1 (a+b arccosh(c x))^n.m#1"
+                    }
+                ]
+            }
+        },
+        {
+            "constraints": [
+                [
+                    "FreeQ",
+                    [
+                        "List",
+                        "a",
+                        "b",
+                        "c"
+                    ],
+                    "x"
+                ],
+                [
+                    "LtQ",
+                    "n",
+                    -1
+                ]
+            ],
+            "id": 2,
+            "result": [
+                "Add",
+                [
+                    "Multiply",
+                    [
+                        "Sqrt",
+                        [
+                            "Add",
+                            1,
+                            [
+                                "Multiply",
+                                "c",
+                                "x"
+                            ]
+                        ]
+                    ],
+                    [
+                        "Sqrt",
+                        [
+                            "Add",
+                            -1,
+                            [
+                                "Multiply",
+                                "c",
+                                "x"
+                            ]
+                        ]
+                    ],
+                    [
+                        "Power",
+                        [
+                            "Add",
+                            "a",
+                            [
+                                "Multiply",
+                                "b",
+                                [
+                                    "Acosh",
+                                    [
+                                        "Multiply",
+                                        "c",
+                                        "x"
+                                    ]
+                                ]
+                            ]
+                        ],
+                        [
+                            "Add",
+                            "n",
+                            1
+                        ]
+                    ],
+                    [
+                        "Power",
+                        [
+                            "Multiply",
+                            "b",
+                            "c",
+                            [
+                                "Add",
+                                "n",
+                                1
+                            ]
+                        ],
+                        -1
+                    ]
+                ],
+                [
+                    "Multiply",
+                    -1,
+                    "c",
+                    [
+                        "Power",
+                        [
+                            "Multiply",
+                            "b",
+                            [
+                                "Add",
+                                "n",
+                                1
+                            ]
+                        ],
+                        -1
+                    ],
+                    [
+                        "Int",
+                        [
+                            "Multiply",
+                            "x",
+                            [
+                                "Power",
+                                [
+                                    "Add",
+                                    "a",
+                                    [
+                                        "Multiply",
+                                        "b",
+                                        [
+                                            "Acosh",
+                                            [
+                                                "Multiply",
+                                                "c",
+                                                "x"
+                                            ]
+                                        ]
+                                    ]
+                                ],
+                                [
+                                    "Add",
+                                    "n",
+                                    1
+                                ]
+                            ],
+                            [
+                                "Power",
+                                [
+                                    "Multiply",
+                                    [
+                                        "Sqrt",
+                                        [
+                                            "Add",
+                                            1,
+                                            [
+                                                "Multiply",
+                                                "c",
+                                                "x"
+                                            ]
+                                        ]
+                                    ],
+                                    [
+                                        "Sqrt",
+                                        [
+                                            "Add",
+                                            -1,
+                                            [
+                                                "Multiply",
+                                                "c",
+                                                "x"
+                                            ]
+                                        ]
+                                    ]
+                                ],
+                                -1
+                            ]
+                        ],
+                        "x"
+                    ]
+                ]
+            ],
+            "pattern": [
+                "Power",
+                [
+                    "Add",
+                    "a.",
+                    [
+                        "Multiply",
+                        "b.",
+                        [
+                            "Acosh",
+                            [
+                                "Multiply",
+                                "c.",
+                                "x_"
+                            ]
+                        ]
+                    ]
+                ],
+                "n_"
+            ],
+            "provenance": {
+                "method": "converted",
+                "sources": [
+                    {
+                        "version": "4.16.1",
+                        "name": "Rubi",
+                        "locator": "7 Inverse hyperbolic functions/7.2 Inverse hyperbolic cosine/7.2.1 (a+b arccosh(c x))^n.m#2"
+                    }
+                ]
+            }
+        },
+        {
+            "constraints": [
+                [
+                    "FreeQ",
+                    [
+                        "List",
+                        "a",
+                        "b",
+                        "c",
+                        "n"
+                    ],
+                    "x"
+                ]
+            ],
+            "id": 3,
+            "result": [
                 "Multiply",
-                "c.",
-                "x_"
-              ]
-            ]
-          ]
-        ],
-        "n_"
-      ],
-      "provenance": {
-        "method": "converted",
-        "sources": [
-          {
-            "name": "Rubi",
-            "version": "4.16.1",
-            "locator": "7 Inverse hyperbolic functions/7.2 Inverse hyperbolic cosine/7.2.1 (a+b arccosh(c x))^n#3"
-          }
-        ]
-      }
-    }
-  ],
-  "semantics": {
-    "Cos": "openmath:transc1#cos",
-    "Int": "openmath:calculus1#int",
-    "Exp": "openmath:transc1#exp",
-    "Tan": "openmath:transc1#tan",
-    "Sin": "openmath:transc1#sin",
-    "Log": "openmath:transc1#ln"
-  },
-  "identity": "rubi:7 Inverse hyperbolic functions/7.2 Inverse hyperbolic cosine/7.2.1 (a+b arccosh(c x))^n",
-  "$schema": "open-symbolic-rules/v0.1"
+                1,
+                [
+                    "Power",
+                    [
+                        "Multiply",
+                        "b",
+                        "c"
+                    ],
+                    -1
+                ],
+                [
+                    "Subst",
+                    [
+                        "Int",
+                        [
+                            "Multiply",
+                            [
+                                "Power",
+                                "x",
+                                "n"
+                            ],
+                            [
+                                "Sinh",
+                                [
+                                    "Add",
+                                    [
+                                        "Multiply",
+                                        -1,
+                                        "a",
+                                        [
+                                            "Power",
+                                            "b",
+                                            -1
+                                        ]
+                                    ],
+                                    [
+                                        "Multiply",
+                                        "x",
+                                        [
+                                            "Power",
+                                            "b",
+                                            -1
+                                        ]
+                                    ]
+                                ]
+                            ]
+                        ],
+                        "x"
+                    ],
+                    "x",
+                    [
+                        "Add",
+                        "a",
+                        [
+                            "Multiply",
+                            "b",
+                            [
+                                "Acosh",
+                                [
+                                    "Multiply",
+                                    "c",
+                                    "x"
+                                ]
+                            ]
+                        ]
+                    ]
+                ]
+            ],
+            "pattern": [
+                "Power",
+                [
+                    "Add",
+                    "a.",
+                    [
+                        "Multiply",
+                        "b.",
+                        [
+                            "Acosh",
+                            [
+                                "Multiply",
+                                "c.",
+                                "x_"
+                            ]
+                        ]
+                    ]
+                ],
+                "n_"
+            ],
+            "provenance": {
+                "method": "converted",
+                "sources": [
+                    {
+                        "version": "4.16.1",
+                        "name": "Rubi",
+                        "locator": "7 Inverse hyperbolic functions/7.2 Inverse hyperbolic cosine/7.2.1 (a+b arccosh(c x))^n.m#3"
+                    }
+                ]
+            }
+        }
+    ],
+    "semantics": {
+        "Cos": "openmath:transc1#cos",
+        "Int": "openmath:calculus1#int",
+        "Exp": "openmath:transc1#exp",
+        "Tan": "openmath:transc1#tan",
+        "Sin": "openmath:transc1#sin",
+        "Log": "openmath:transc1#ln"
+    },
+    "identity": "rubi:7 Inverse hyperbolic functions/7.2 Inverse hyperbolic cosine/7.2.1 (a+b arccosh(c x))^n",
+    "$schema": "open-symbolic-rules/v0.1"
 }
