@@ -9,6 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Required `domain` and `title` manifest fields for the Integration profile.
+
 - `semantics` block in `rule-file.schema.json` to map local functions to OpenMath Content Dictionaries for unambiguous semantics
 - A stable `identity` for every generated rule file. Together with its local
   rule `id`, it identifies each of the 6,257 rules across the full profile.

@@ -163,3 +163,9 @@ When modifying schemas:
 3. Run `scripts/validate.sh` to verify existing data files still pass.
 4. Commit the schema change alongside any data file changes.
 5. Include a migration note in the PR describing impact on consumers.
+# Stable rule identities
+
+Every generated rule file includes a stable `identity`.  Combined with a
+rule's file-local positive integer `id`, it forms the canonical profile-wide
+identifier `identity:id`.  `section` remains a taxonomy label and is not an
+identifier.
