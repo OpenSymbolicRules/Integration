@@ -24,6 +24,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - RFC describing the design rationale and format overview
 
 ### Changed
+- Parallelized JSON-schema fixture validation in CI while retaining validation
+  of every generated rule and test file.
 
 - Rebranded project to Open Symbolic Rules (OSR) - Integration Module
 - Updated README to reflect OSR architecture and OpenMath semantic bridging
