@@ -12,6 +12,12 @@ is the natural logarithm, so they map to `calculus1#int` and `transc1#ln`
 rather than to `calculus1#defint` and the base-taking `transc1#log`.
 """
 const OPENMATH_SEMANTICS = Dict(
+    "Add" => "openmath:arith1#plus",
+    "Subtract" => "openmath:arith1#minus",
+    "Multiply" => "openmath:arith1#times",
+    "Divide" => "openmath:arith1#divide",
+    "Power" => "openmath:arith1#power",
+    "Sqrt" => "openmath:arith1#root",
     "Int" => "openmath:calculus1#int",
     "Sin" => "openmath:transc1#sin",
     "Cos" => "openmath:transc1#cos",
@@ -19,6 +25,28 @@ const OPENMATH_SEMANTICS = Dict(
     "Log" => "openmath:transc1#ln",
     "Exp" => "openmath:transc1#exp",
 )
+
+function _expression_heads!(heads::Set{String}, expression)
+    expression isa AbstractVector || return heads
+    isempty(expression) && return heads
+    head = first(expression)
+    head isa String || return heads
+    push!(heads, head)
+    operands = head in ("Lambda", "Forall", "Exists") ? expression[3:end] : expression[2:end]
+    for operand in operands
+        _expression_heads!(heads, operand)
+    end
+    return heads
+end
+
+function rule_semantics(rules)
+    heads = Set{String}()
+    for rule in rules
+        _expression_heads!(heads, rule["pattern"])
+        _expression_heads!(heads, rule["result"])
+    end
+    Dict(head => get(OPENMATH_SEMANTICS, head, "openmath:osr#" * head) for head in sort!(collect(heads)))
+end
 
 
 struct ConversionWarning
@@ -118,7 +146,7 @@ function convert_rule_file(source_path::String; output_dir::String="rules")::Rul
         "identity" => identity,
         "section" => section,
         "title" => title,
-        "semantics" => OPENMATH_SEMANTICS,
+        "semantics" => rule_semantics(rules),
         "rules" => rules,
     )
 
