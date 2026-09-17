@@ -164,6 +164,13 @@ end
     @test RubiConverter.convert_filename("1.1.1.1 (a+b x)^m.m") == "1.1.1.1-(a+b-x)^m.json"
 
     @test RubiConverter.extract_section_number("1.1.1.1 (a+b x)^m.m") == "1.1.1.1"
+    # RUBI also uses alphabetic leaf identifiers.  Keeping the complete source
+    # identifier prevents distinct files such as 1.1.2.x and 1.1.2.y from
+    # generating the same OSR `section:id` rule identity.
+    @test RubiConverter.extract_section_number("1.1.2.x P(x) (a+b x^2)^p.m") == "1.1.2.x"
+    @test RubiConverter.extract_section_number("7.1.4a (f x)^m.m") == "7.1.4a"
+    @test RubiConverter.source_identity("1 Algebraic functions/1.1 Binomial products/1.1.2 Quadratic/1.1.2.x P(x) (a+b x^2)^p.m") ==
+          "rubi:1 Algebraic functions/1.1 Binomial products/1.1.2 Quadratic/1.1.2.x P(x) (a+b x^2)^p"
     @test RubiConverter.extract_title("1.1.1.1 (a+b x)^m.m") == "(a+b x)^m"
 end
 

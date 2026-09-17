@@ -10,6 +10,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - `semantics` block in `rule-file.schema.json` to map local functions to OpenMath Content Dictionaries for unambiguous semantics
+- A stable `identity` for every generated rule file. Together with its local
+  rule `id`, it identifies each of the 6,257 rules across the full profile.
+- Cross-file identity validation in `scripts/validate.sh` and CI.
 - EARS specification (159 requirements) for OSR v0.1.0-draft
 - RFC describing the design rationale and format overview
 
@@ -34,5 +37,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 - Emit OpenMath symbols in the `openmath:<cd>#<symbol>` spelling required by `rule-file.schema.json`, so every converted rule file now validates
+- Preserve alphanumeric RUBI section labels such as `1.1.2.x` and `7.1.4a`
+  instead of truncating them during conversion.
 - Map RUBI's `Int` to `openmath:calculus1#int` and its `Log` to `openmath:transc1#ln`: `Int` is an indefinite integral, and `Log` is the natural logarithm rather than OpenMath's base-taking `log`
 - Assert the `expression` and `expected_result` field names that `test-file.schema.json` defines in the converter's test-tuple test

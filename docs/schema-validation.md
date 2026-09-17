@@ -27,7 +27,9 @@ pip install check-jsonschema
 scripts/validate.sh
 ```
 
-This runs all 4 validation steps and reports pass/fail for each.
+This runs five validation steps and reports pass/fail for each.  The final
+step verifies that each `identity:id` pair is unique across the complete rule
+profile; this cross-file invariant cannot be expressed by JSON Schema alone.
 
 ### Validate Individual Files
 

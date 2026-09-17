@@ -94,15 +94,32 @@ Uses the filename's section number (most specific).
 """
 function extract_section_number(source_path::AbstractString)::String
     filename = basename(source_path)
-    # Match numeric section: digit(.digit)* — avoids trailing dots and non-numeric suffixes
-    m = match(r"^(\d+(\.\d+)*)", filename)
+    # Preserve the complete RUBI leaf identifier.  Most sections are purely
+    # numeric, but the source also uses identifiers such as `1.1.2.x` and
+    # `7.1.4a`; truncating either form makes distinct rule files share the
+    # same OSR `section:id` identity.
+    m = match(r"^(\d+(\.[0-9A-Za-z]+)*)", filename)
     if m !== nothing
         return m.captures[1]
     end
     # Fallback: try parent directory for files with no section number in filename
     dir = basename(dirname(source_path))
-    m2 = match(r"^(\d+(\.\d+)*)", dir)
+    m2 = match(r"^(\d+(\.[0-9A-Za-z]+)*)", dir)
     m2 !== nothing ? m2.captures[1] : ""
+end
+
+"""
+    source_identity(relative_source_path) -> String
+
+Return the stable identity of a RUBI source file.  A section classifies a rule
+but is not unique: RUBI has repeated numeric section labels in different
+branches.  The source-relative path is therefore retained as an opaque,
+human-readable identity namespace.
+"""
+function source_identity(relative_source_path::AbstractString)::String
+    path = replace(String(relative_source_path), '\\' => '/')
+    stem = replace(path, r"\.m$" => "")
+    return "rubi:" * stem
 end
 
 """

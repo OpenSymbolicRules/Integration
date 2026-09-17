@@ -57,6 +57,7 @@ function convert_rule_file(source_path::String; output_dir::String="rules")::Rul
     idx2 = findfirst("IntegrationRules" * ('/' |> string), rel_path)
 
     output_path = mathematica_path_to_osr(rel_path; prefix=output_dir)
+    identity = source_identity(rel_path)
 
     warnings = ConversionWarning[]
     rules = Dict{String,Any}[]
@@ -93,6 +94,7 @@ function convert_rule_file(source_path::String; output_dir::String="rules")::Rul
     # Build the OSR rule file JSON
     osr_file = Dict{String,Any}(
         "\$schema" => "open-symbolic-rules/v0.1",
+        "identity" => identity,
         "section" => section,
         "title" => title,
         "semantics" => OPENMATH_SEMANTICS,
