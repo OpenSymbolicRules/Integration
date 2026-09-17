@@ -60,6 +60,9 @@ jobs:
       - name: Validate globally unique rule identities
         run: python3 scripts/validate_rule_identities.py rules
 
+      - name: Validate OpenMath semantic closure
+        run: python3 Specification/scripts/validate_semantic_closure.py rules
+
       - name: Test exact duplicate-rule guard
         run: python3 scripts/test_check_duplicate_rules.py
 

@@ -27,13 +27,22 @@ pip install check-jsonschema
 scripts/validate.sh
 ```
 
-This runs six validation steps and reports pass/fail for each. The fifth
+This runs seven validation steps and reports pass/fail for each. The fifth
 step verifies that each `identity:id` pair is unique across the complete rule
 profile; this cross-file invariant cannot be expressed by JSON Schema alone.
 
 Every rule also carries mandatory machine-readable provenance. Converted Rubi
 rules identify the Rubi source file and source-rule ordinal in
 `provenance.sources`.
+
+The sixth step verifies semantic closure: every operator appearing in a rule
+pattern or result must have a corresponding file-level OpenMath mapping.
+
+The provenance identifies the source of a rule, not the algorithm selected by
+a host CAS. A client that combines this RUBI profile with a procedural
+Risch-family integrator should record the selected backend and its version in
+its proof trace or execution metadata. The JSON rules remain portable and use
+the same OpenMath semantics regardless of that selection.
 
 The final step verifies the exact duplicate-rule baseline. It fingerprints the
 `pattern`, `constraints`, and `result` of each rule, and rejects a new group or

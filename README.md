@@ -11,13 +11,34 @@ Mathematica.
 
 ## Overview
 
-This repository is the **Integration Module** of the [OpenSymbolicRules](https://github.com/OpenSymbolicRules) standard. 
+This repository is the **Integration Module** of the [OpenSymbolicRules](https://github.com/OpenSymbolicRules) specification.
 
 It defines a JSON interchange format (originally named OSR) so that any CAS — Julia, Python/SymPy, Java/SymJa, Rust,
 JavaScript — can consume RUBI's integration knowledge with a standard
 JSON parser. No CAS software required.
 
 By mapping local functions to OpenMath Content Dictionaries, this format ensures zero semantic ambiguity.
+
+## Integration engines
+
+The RUBI profile is a portable, ordered rule base. It is not an
+implementation of the Risch algorithm, and it must not be treated as the only
+integration strategy. A host CAS can combine compatible backends while keeping
+the same OSR/OpenMath representation:
+
+1. Try a procedural Risch-family method for the elementary-function decision
+   problem when the host provides one.
+2. Apply an OSR rule profile, such as RUBI, for its ordered catalogue of
+   transformations and for classes outside the procedural method's scope.
+3. Verify a returned antiderivative by differentiation under the recorded
+   assumptions, and retain the backend and applied rule identities in the
+   proof trace.
+
+For example, the Julia ecosystem's `SymbolicIntegration.jl` exposes
+`integrate(expression, variable, RischMethod())`; `Symbolics.jl` represents
+the integral and can interoperate with that package. This repository remains
+language- and backend-neutral: it specifies the rule data and OpenMath
+semantics, not a preferred algorithm or fallback order.
 
 The format covers:
 
@@ -27,6 +48,8 @@ The format covers:
   expected step count (72,523 tests in 215 files)
 - **Taxonomy**: RUBI's exact 9-section hierarchy
 - **Load manifest**: precise file loading order determining rule priority
+- **Backend-neutral interoperability**: a RUBI profile can complement a
+  procedural Risch-family integrator without changing rule semantics
 
 ## Repository Structure
 

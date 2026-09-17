@@ -9,6 +9,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Documented backend-neutral integration architecture: ordered RUBI profiles
+  complement procedural Risch-family integration, with verification and
+  backend provenance retained by the host.
 - Required `domain` and `title` manifest fields for the Integration profile.
 
 - `semantics` block in `rule-file.schema.json` to map local functions to OpenMath Content Dictionaries for unambiguous semantics
