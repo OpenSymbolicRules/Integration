@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+- `docs/known-issues.md`, recording defects of the conversion with the measurement
+  that found them. The first is that the conversion drops RUBI's
+  `Int[integrand, x_Symbol]` wrapper, losing both the integration variable and
+  the restriction that binds it; measured over section 1.1.1, the rule set
+  reaches a closed form for 903 of 906 test problems and the recorded
+  antiderivative for none of them.
+
 ### Fixed
 - The converter now derives a rule file's `semantics` block from its
   constraints as well as its patterns and results. A constraint applies its
