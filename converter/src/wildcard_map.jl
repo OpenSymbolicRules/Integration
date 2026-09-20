@@ -16,7 +16,7 @@ Examples:
 - `map_wildcard("x", :blank, nothing)` → `"x_"`
 - `map_wildcard("a", :optional, nothing)` → `"a."`
 - `map_wildcard("m", :blank, "Integer")` → `"m_integer"`
-- `map_wildcard("x", :blank, "Symbol")` → `"x_"` (Symbol type is dropped)
+- `map_wildcard("x", :blank, "Symbol")` → `"x_symbol"`
 - `map_wildcard("xs", :blankseq, nothing)` → `"xs__"`
 - `map_wildcard("xs", :blanknullseq, nothing)` → `"xs___"`
 """
@@ -28,10 +28,11 @@ function map_wildcard(name::String, blank_type::Symbol, type_head::Union{String,
     elseif blank_type == :blanknullseq
         return name * "___"
     else  # :blank
-        if type_head === nothing || type_head == "Symbol"
-            return name * "_"
-        else
-            return name * "_" * lowercase(type_head)
-        end
+        type_head === nothing && return name * "_"
+        # `x_Symbol` restricts the operand to a variable. Dropping it makes a
+        # rule unsound rather than incomplete: `Int[x_^m_., x_Symbol]` without
+        # it matches a constant integrand and returns a closed form that is not
+        # its antiderivative.
+        return name * "_" * lowercase(type_head)
     end
 end
