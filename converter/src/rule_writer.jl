@@ -26,15 +26,77 @@ const OPENMATH_SEMANTICS = Dict(
     "Exp" => "openmath:transc1#exp",
 )
 
+"""
+    STRUCTURAL_HEADS
+
+Heads the OSR expression language defines for itself rather than borrowing from
+a mathematical domain: `List` is a collection and `Condition` pairs a pattern
+with the test that admits it.  Neither carries domain meaning, so neither needs
+an OpenMath binding.
+"""
+const STRUCTURAL_HEADS = Set(["List", "Condition"])
+
+"""
+    CONSTRAINT_COMBINATORS
+
+Constraint heads whose operands are themselves constraints rather than
+expressions.
+"""
+const CONSTRAINT_COMBINATORS = Set(["Not", "And", "Or", "If"])
+
+"""
+    WILDCARD_HEAD
+
+Spelling of a pattern variable standing in operator position, as in the RUBI
+rules that match any of the six trigonometric heads at once.  It names a
+binding rather than an operation, so it needs no OpenMath symbol.
+"""
+const WILDCARD_HEAD = r"(_{1,3}$)|(^[a-zA-Z][a-zA-Z0-9]*\.-?[0-9]*$)|(^~)"
+
+is_wildcard_head(head::AbstractString) = occursin(WILDCARD_HEAD, head)
+
 function _expression_heads!(heads::Set{String}, expression)
     expression isa AbstractVector || return heads
     isempty(expression) && return heads
     head = first(expression)
     head isa String || return heads
-    push!(heads, head)
+    if !(head in STRUCTURAL_HEADS) && !is_wildcard_head(head)
+        push!(heads, head)
+    end
+    if head == "Condition"
+        # A guarded pattern: an expression and the test that admits it.
+        length(expression) == 3 || return heads
+        _expression_heads!(heads, expression[2])
+        _constraint_heads!(heads, expression[3])
+        return heads
+    end
     operands = head in ("Lambda", "Forall", "Exists") ? expression[3:end] : expression[2:end]
     for operand in operands
         _expression_heads!(heads, operand)
+    end
+    return heads
+end
+
+"""
+    _constraint_heads!(heads, constraint)
+
+Collect the mathematical operators a constraint applies its predicates to.  The
+predicate name itself is rule-language vocabulary and needs no OpenMath symbol,
+and a combinator nests constraints rather than expressions.
+"""
+function _constraint_heads!(heads::Set{String}, constraint)
+    constraint isa AbstractVector || return heads
+    isempty(constraint) && return heads
+    name = first(constraint)
+    name isa String || return heads
+    if name in CONSTRAINT_COMBINATORS
+        for operand in constraint[2:end]
+            _constraint_heads!(heads, operand)
+        end
+        return heads
+    end
+    for argument in constraint[2:end]
+        _expression_heads!(heads, argument)
     end
     return heads
 end
@@ -44,6 +106,11 @@ function rule_semantics(rules)
     for rule in rules
         _expression_heads!(heads, rule["pattern"])
         _expression_heads!(heads, rule["result"])
+        # A constraint applies its predicates to mathematical expressions, and
+        # those expressions carry domain vocabulary just as a pattern does.
+        for constraint in get(rule, "constraints", ())
+            _constraint_heads!(heads, constraint)
+        end
     end
     Dict(head => get(OPENMATH_SEMANTICS, head, "openmath:osr#" * head) for head in sort!(collect(heads)))
 end

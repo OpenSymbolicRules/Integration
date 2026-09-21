@@ -152,7 +152,9 @@ end
     @test RubiConverter.map_wildcard("x", :blank, nothing) == "x_"
     @test RubiConverter.map_wildcard("a", :optional, nothing) == "a."
     @test RubiConverter.map_wildcard("m", :blank, "Integer") == "m_integer"
-    @test RubiConverter.map_wildcard("x", :blank, "Symbol") == "x_"
+    # `Symbol` is a restriction like any other type head, not noise to drop:
+    # see "A Symbol-typed pattern variable keeps its type" below.
+    @test RubiConverter.map_wildcard("x", :blank, "Symbol") == "x_symbol"
     @test RubiConverter.map_wildcard("xs", :blankseq, nothing) == "xs__"
     @test RubiConverter.map_wildcard("xs", :blanknullseq, nothing) == "xs___"
 end
@@ -237,6 +239,97 @@ end
     # First constraint should be FreeQ[{a, b, m}, x]
     c1 = rule["constraints"][1]
     @test c1[1] == "FreeQ"
+end
+
+@testset "A rule keeps its integration variable" begin
+    src = "Int[(a_. + b_.*x_)^m_, x_Symbol] := (a + b*x)^(m + 1)/(b*(m + 1)) /; FreeQ[{a, b, m}, x] && NeQ[m, -1]"
+    rule = RubiConverter.rule_to_osr(RubiConverter.parse_mathematica(src), 1)
+
+    # RUBI writes an integration rule as Int[integrand, x_Symbol]. Keeping only
+    # the integrand loses the binding of the integration variable, so the
+    # result and the constraints name an `x` nothing bound, and loses the
+    # restriction that made the rule sound: without it the pattern matches an
+    # integrand that is not a function of any variable at all.
+    @test rule["pattern"][1] == "Int"
+    @test length(rule["pattern"]) == 3
+    @test rule["pattern"][3] == "x_symbol"
+
+    # The integrand is what it used to be, now one level down.
+    integrand = rule["pattern"][2]
+    @test integrand[1] == "Power"
+
+    # `x` is now bound by the pattern, so the result and the guard refer to a
+    # binding rather than to a free symbol.
+    @test "Int" in keys(RubiConverter.rule_semantics([rule]))
+end
+
+@testset "A Symbol-typed pattern variable keeps its type" begin
+    @test RubiConverter.map_wildcard("x", :blank, "Symbol") == "x_symbol"
+    @test RubiConverter.map_wildcard("x", :blank, nothing) == "x_"
+    @test RubiConverter.map_wildcard("m", :blank, "Integer") == "m_integer"
+    @test RubiConverter.map_wildcard("a", :optional, nothing) == "a."
+end
+
+@testset "Rule semantics cover constraint expressions" begin
+    # A constraint applies predicates to mathematical expressions, and those
+    # expressions carry domain vocabulary just as a pattern or a result does.
+    # Collecting heads from the pattern and the result alone leaves a utility
+    # such as `Coeff` or `Expon` undeclared, which a loader then rejects.
+    rules = [Dict(
+        "id" => 1,
+        "pattern" => ["Int", ["Power", "x", "m."], "x"],
+        "result" => ["Divide", ["Power", "x", ["Add", "m", 1]], ["Add", "m", 1]],
+        "constraints" => Any[
+            ["NeQ", ["Coeff", ["Multiply", "a", "x"], "x", 1], 0],
+            ["Not", ["IGtQ", ["Expon", "Px", "x"], 1]],
+        ],
+    )]
+    semantics = RubiConverter.rule_semantics(rules)
+
+    # Operators reached through a constraint are declared.
+    @test semantics["Coeff"] == "openmath:osr#Coeff"
+    @test semantics["Expon"] == "openmath:osr#Expon"
+    @test semantics["Multiply"] == "openmath:arith1#times"
+
+    # A predicate name is rule-language vocabulary, not a mathematical
+    # operator, so it gets no OpenMath binding.
+    @test !haskey(semantics, "NeQ")
+    @test !haskey(semantics, "IGtQ")
+    @test !haskey(semantics, "Not")
+
+    # A structural head of the expression language needs none either.
+    with_list = [Dict(
+        "id" => 1,
+        "pattern" => ["Power", "x", "m."],
+        "result" => "m.",
+        "constraints" => Any[["FreeQ", ["List", "a", "b"], "x"]],
+    )]
+    @test !haskey(RubiConverter.rule_semantics(with_list), "List")
+
+    # `Condition` guards a pattern with a test: the pattern is an expression,
+    # the test is a constraint.
+    guarded = [Dict(
+        "id" => 1,
+        "pattern" => ["Power", "x", "m."],
+        "result" => "m.",
+        "constraints" => Any[["MatchQ", "Px",
+            ["Condition", ["Divide", "a", "x"], ["FreeQ", ["Coeff", "a", "x"], "x"]]]],
+    )]
+    guarded_semantics = RubiConverter.rule_semantics(guarded)
+    @test guarded_semantics["Divide"] == "openmath:arith1#divide"
+    @test guarded_semantics["Coeff"] == "openmath:osr#Coeff"
+    @test !haskey(guarded_semantics, "Condition")
+    @test !haskey(guarded_semantics, "MatchQ")
+    @test !haskey(guarded_semantics, "FreeQ")
+
+    # A wildcard in operator position names a binding, not an operation.
+    head_wildcard = [Dict(
+        "id" => 1,
+        "pattern" => ["trig_", ["Add", "e", "x"]],
+        "result" => "x",
+        "constraints" => Any[],
+    )]
+    @test !haskey(RubiConverter.rule_semantics(head_wildcard), "trig_")
 end
 
 @testset "Rule provenance" begin

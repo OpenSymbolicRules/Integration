@@ -8,6 +8,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- `docs/known-issues.md`, recording defects of the conversion with the
+  measurement that found them.
+
+### Fixed
+- The converter now derives a rule file's `semantics` block from its
+  constraints as well as its patterns and results. A constraint applies its
+  predicates to mathematical expressions, so utility heads such as `Coeff`,
+  `Expon`, `Denominator`, `Simplify`, and `PolynomialRemainder` were left
+  undeclared in 37 of the 188 rule files and rejected by a host loader.
+- The converter no longer declares an OpenMath symbol for a structural head of
+  the expression language (`List`) or for a wildcard in operator position
+  (`F_`, `G_`, `H_`); neither denotes a mathematical operation.
+
+  Every one of the 188 rule files now satisfies OpenMath semantic closure, and
+  all 6,257 rules compile in `OpenSymbolicRules.jl`.
+
+### Added
 
 - Documented backend-neutral integration architecture: ordered RUBI profiles
   complement procedural Risch-family integration, with verification and

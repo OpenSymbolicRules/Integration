@@ -122,9 +122,14 @@ Convert a parsed RUBI rule definition to a OSR rule entry dict.
 function rule_to_osr(expr::MExpr, id::Int)::Dict{String,Any}
     parts = extract_rule_parts(expr)
 
+    # RUBI writes an integration rule as `Int[integrand, x_Symbol] := ...`.
+    # The pattern is that whole application, not just the integrand: it is what
+    # binds the integration variable, so that the result and the constraints
+    # refer to a binding rather than to a free symbol, and it is what restricts
+    # the rule to an actual integral of an actual variable.
     entry = Dict{String,Any}(
         "id" => id,
-        "pattern" => to_osr(parts.pattern),
+        "pattern" => Any["Int", to_osr(parts.pattern), to_osr(parts.var)],
     )
 
     # constraints is required by the schema (even if empty)
