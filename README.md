@@ -23,8 +23,8 @@ By mapping local functions to OpenMath Content Dictionaries, this format ensures
 
 `v1/` holds the first RUBI rules stated in the OSR v1 format, generated from
 Lean proofs (`OpenSymbolicRules/Lean`) and published by
-`OpenSymbolicRules/Verification`: of twenty syntactic candidates, five are
-proved and eight are refuted.  See [docs/osr-v1.md](docs/osr-v1.md).
+`OpenSymbolicRules/Verification`: 24 rules, eleven of them with residual
+integrals `int(λx. H)(x)`; twelve are proved and twelve refuted.  See [docs/osr-v1.md](docs/osr-v1.md).
 
 ```bash
 just check        # v0.1 schemas, script tests and v1 files

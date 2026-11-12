@@ -8,6 +8,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- Eleven RUBI rules with residual integrals in `v1/`, from Verification report
+  `4efb181a…`: their results contain `int(λx. H)(x)` (Specification
+  V1-E-002b) and hold for every choice of antiderivatives of the residual
+  integrands; seven are proved and four refuted. The `Specification`
+  submodule advances to `791742d`.
 - The inventory maps `NeQ`, `GtQ`, `LtQ`, `IntegerQ`, `IntegersQ`, `IGtQ` and
   `ILtQ` to the conditions of the fragment and reports the candidates with
   such conditions (twenty in all); `v1/` gains the seven migrated rules with

@@ -6,7 +6,7 @@ generated, never edited by hand:
 
 | File | Content |
 |---|---|
-| `v1/integration.osr.json` | 13 antiderivative rules `int(λx. F) ⟶ λx. G` (`calculus1#int`, lambdas as `OMBIND fns1#lambda`), with verification records over ℝ and ℂ. |
+| `v1/integration.osr.json` | 24 antiderivative rules `int(λx. F) ⟶ λx. G` (`calculus1#int`, lambdas as `OMBIND fns1#lambda`), with verification records over ℝ and ℂ. |
 | `v1/integration.report.json` | Machine-readable audit: metrics per domain and the rules not migrated. |
 | `v1/integration.report.md` | The same audit for humans, with the findings of every rule. |
 
@@ -52,6 +52,25 @@ Of the twenty candidates:
 Conditional rules carry their conditions (`relation1#neq`); engines that
 cannot decide them, such as the Lean reference rewriter and
 OpenSymbolicRules.jl, do not apply them.
+
+## Residual integrals
+
+Most RUBI rules have another `Int` in their result.  In v1 it becomes a
+residual integral `int(λx. H)(x)`, the form of the `calculus1#int` FMP
+(Specification V1-E-002b).  The rule states that the residual integrands are
+defined wherever the integrand is, and that for every choice of
+antiderivatives of them the result is an antiderivative of the integrand.
+Engines that do not continue inside residual integrals do not apply these
+rules (V1-R-005c).
+
+272 recursive rules have registered heads, expressible conditions and a
+result linear in their residual integrals.  Eleven of them, without square
+roots or fractional exponents, are migrated: the addition and half-angle
+splits of `sin`/`cos` (4.1.12 #3, #4, #25, #26, #39, #40) are proved over ℝ
+and ℂ, the reduction of `(a + b log(c xⁿ))ᵖ` (3.1.1 #2) over ℝ, and four
+rules are false as converted (3.5 #1 at `p = 0`, where the residual
+integrand `1/log(d xⁿ)` is undefined; 4.7.8 #45, #46 at `a = 0`; 1.2.1.2 #14
+at `c = 0`).
 
 ## Differences from v0.1
 
