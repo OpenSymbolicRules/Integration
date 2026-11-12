@@ -55,3 +55,22 @@ is the same defect as issue 1 on a smaller scale.
 33 of the 222 rule files carry `"rules": []`. They correspond to RUBI sections
 the converter produced no rules for. The section is declared in `meta.json` and
 in the file, so a loader sees a section that contributes nothing.
+
+## 4. Mathematical constants converted as free names
+
+**What happens.** `E`, `ImaginaryI` and `Pi` are Mathematica constants (the
+base of the natural logarithm, the imaginary unit, π). The converter writes
+them as bare names and gives them no entry in the file's `semantics` block,
+so a host reads them as free variables, like the names of issue 2.
+
+**Measured.** With `scripts/inventory_v1.py` (`rules_by_unbound_atom`) on this
+repository at 6,257 rules: 630 rules use at least one of them, `E` in 437,
+`ImaginaryI` in 275 and `Pi` in 136. The same script counts 739 rules with an
+atom their pattern does not bind; the other 109 are the names of issue 2 and
+RUBI locals.
+
+**Consequence for OSR v1.** The inventory excludes these rules from the
+migration candidates: their OpenMath counterparts (`nums1#e`, `nums1#i`,
+`nums1#pi`) would have to be declared by the converter, and `nums1#e` and
+`nums1#i` added to the registry of OpenSymbolicRules/OpenMath, before such a
+rule can be stated in Lean.

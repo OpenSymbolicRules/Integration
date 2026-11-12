@@ -8,10 +8,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
-- Eleven RUBI rules with residual integrals in `v1/`, from Verification report
-  `4efb181a…`: their results contain `int(λx. H)(x)` (Specification
+- `docs/known-issues.md` §4: `E`, `ImaginaryI` and `Pi` are converted as free
+  names without semantics (630 rules); the inventory now reports atoms a
+  pattern does not bind (`rules_by_unbound_atom`) and excludes their rules.
+- Twenty-two RUBI rules with residual integrals in `v1/`, from Verification
+  reports `4efb181a…` and `aca727e3…`: their results contain `int(λx. H)(x)` (Specification
   V1-E-002b) and hold for every choice of antiderivatives of the residual
-  integrands; seven are proved and four refuted. The `Specification`
+  integrands; eleven are proved and eleven refuted. The `Specification`
   submodule advances to `791742d`.
 - The inventory maps `NeQ`, `GtQ`, `LtQ`, `IntegerQ`, `IntegersQ`, `IGtQ` and
   `ILtQ` to the conditions of the fragment and reports the candidates with

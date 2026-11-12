@@ -49,9 +49,9 @@ class InventoryTests(unittest.TestCase):
     def test_candidate_needs_registered_heads_and_only_freeq(self):
         report = self.run_inventory([
             rule(1, ["Int", ["Power", "x_", -1], "x_symbol"], ["Log", "x"]),
-            rule(2, ["Int", ["Log", "x_"], "x_symbol"], ["Log", "x"],
+            rule(2, ["Int", ["Log", ["Power", "x_", "a_"]], "x_symbol"], ["Log", "x"],
                  [["FreeQ", "a", "x"], ["EqQ", "a", 0]]),
-            rule(3, ["Int", ["Log", "x_"], "x_symbol"], ["Subst", "x", "x", "x"],
+            rule(3, ["Int", ["Log", ["Power", "x_", "a_"]], "x_symbol"], ["Subst", "x", "x", "x"],
                  [["FreeQ", "a", "x"]]),
         ])
         self.assertEqual(report["counts"]["rules"], 3)
@@ -91,7 +91,7 @@ class InventoryTests(unittest.TestCase):
                  [["EqQ", "n", 0]]),
             rule(4, ["Int", ["Power", "x_", "n_"], "x_symbol"], ["Log", "x"],
                  [["NeQ", ["Subst", "n", "n", "n"], 0]]),
-            rule(5, ["Int", ["Power", "x_", "n_"], "x_symbol"], ["Log", "x"],
+            rule(5, ["Int", ["Power", ["Power", "x_", "n_"], "m_"], "x_symbol"], ["Log", "x"],
                  [["IntegersQ", "n", "m"], ["GtQ", "n", "m"]]),
         ])
         self.assertEqual(
@@ -101,6 +101,20 @@ class InventoryTests(unittest.TestCase):
         self.assertEqual(
             report["expressible_condition_candidates_by_predicate"],
             {"FreeQ": 2, "GtQ": 1, "IGtQ": 1, "IntegersQ": 1, "LtQ": 1, "NeQ": 1})
+
+    def test_unbound_atoms_exclude_a_rule(self):
+        report = self.run_inventory([
+            rule(1, ["Int", ["Power", "x_", -1], "x_symbol"], ["Log", "x"]),
+            rule(2, ["Int", ["Power", "x_", "n_"], "x_symbol"], ["Power", "E", "n"],
+                 [["FreeQ", "n", "x"]]),
+            rule(3, ["Int", ["Power", "x_", "n."], "x_symbol"], ["Power", "x", "n"],
+                 [["FreeQ", "n", "x"]]),
+        ])
+        self.assertEqual(report["counts"]["unbound_atoms"], 1)
+        self.assertEqual(report["rules_by_unbound_atom"], {"E": 1})
+        self.assertEqual(
+            [c["legacy_id"] for c in report["registered_heads_and_only_freeq_candidates"]],
+            ["rubi:test:1", "rubi:test:3"])
 
     def test_output_is_deterministic(self):
         rules = [rule(1, ["Int", ["Power", "x_", -1], "x_symbol"], ["Log", "x"])]

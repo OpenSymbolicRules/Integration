@@ -5,7 +5,9 @@ The inventory counts rules by their top-level constraint predicates and by
 the expression heads that the OpenMath registry of OpenSymbolicRules/OpenMath
 does not interpret.  A *candidate* has only FreeQ constraints (or none), an
 outer binary Int in its pattern, no Int in its result, and only registered
-heads once the outer Int is removed.  An *expressible-condition candidate*
+heads once the outer Int is removed, and no atom its pattern does not bind
+(constants converted without semantics, such as `E`, are excluded).  An
+*expressible-condition candidate*
 may also carry the predicates that map to the conditions of the fragment
 (EXPRESSIBLE), with registered heads in their arguments.
 
@@ -52,6 +54,43 @@ def ranked(counter):
     return dict(sorted(counter.items(), key=lambda item: (-item[1], item[0])))
 
 
+def _name(atom: str) -> str:
+    """The variable name of a pattern atom (`a_`, `a.`, `x_symbol` → `a`, `x`)."""
+    return atom.split("_")[0].rstrip(".")
+
+
+def bound_names(pattern) -> set:
+    """Names bound by the wildcards of a pattern."""
+    out = set()
+    if isinstance(pattern, str) and (pattern.endswith(("_", ".")) or "_" in pattern):
+        out.add(_name(pattern))
+    elif isinstance(pattern, list):
+        for child in pattern[1:]:
+            out |= bound_names(child)
+    return out
+
+
+def unbound_atoms(rule) -> set:
+    """Atoms of the result and constraints that the pattern does not bind:
+    constants converted without semantics (`E`, `ImaginaryI`, `Pi`) or local
+    names of the RUBI source."""
+    bound = bound_names(rule.get("pattern"))
+    out = set()
+
+    def walk(term):
+        if isinstance(term, str):
+            if _name(term) not in bound:
+                out.add(term)
+        elif isinstance(term, list):
+            for child in term[1:]:
+                walk(child)
+
+    walk(rule.get("result"))
+    for constraint in rule.get("constraints", []):
+        walk(constraint)
+    return out
+
+
 def expressible(constraint, registered_head) -> bool:
     """A constraint with a fragment counterpart and registered argument heads."""
     if not (isinstance(constraint, list) and constraint and constraint[0] in EXPRESSIBLE):
@@ -66,6 +105,7 @@ def inventory(rules_dir: Path, registry_path: Path) -> dict:
     registered = {s["uri"] for s in registry["symbols"]}
     predicates, unsupported, counts = Counter(), Counter(), Counter()
     candidates, conditional = [], []
+    free_atoms = Counter()
     conditional_predicates = Counter()
     source = hashlib.sha256()
     for path in sorted(rules_dir.rglob("*.json")):
@@ -94,6 +134,10 @@ def inventory(rules_dir: Path, registry_path: Path) -> dict:
             conditions_ok = all(expressible(c, registered_head) for c in constraints)
             if conditions_ok:
                 counts["expressible_conditions"] += 1
+            free = unbound_atoms(rule)
+            if free:
+                counts["unbound_atoms"] += 1
+                free_atoms.update(free)
             pattern = rule.get("pattern")
             if not (isinstance(pattern, list) and len(pattern) == 3 and pattern[0] == "Int"):
                 counts["without_binary_int_wrapper"] += 1
@@ -106,7 +150,7 @@ def inventory(rules_dir: Path, registry_path: Path) -> dict:
             recursive = "Int" in result_heads
             if recursive:
                 counts["recursive_integral_in_result"] += 1
-            if not missing:
+            if not missing and not free:
                 counts["heads_in_current_registry"] += 1
                 entry = {
                     "legacy_id": f"{document.get('identity', path.stem)}:{rule.get('id')}",
@@ -128,6 +172,7 @@ def inventory(rules_dir: Path, registry_path: Path) -> dict:
         "counts": dict(sorted(counts.items())),
         "rules_by_top_level_predicate": ranked(predicates),
         "rules_by_unregistered_expression_head": ranked(unsupported),
+        "rules_by_unbound_atom": ranked(free_atoms),
         "registered_heads_and_only_freeq_candidates": candidates,
         "expressible_condition_candidates_by_predicate": ranked(conditional_predicates),
         "registered_heads_and_expressible_condition_candidates": conditional,

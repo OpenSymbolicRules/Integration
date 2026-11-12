@@ -6,7 +6,7 @@ generated, never edited by hand:
 
 | File | Content |
 |---|---|
-| `v1/integration.osr.json` | 24 antiderivative rules `int(λx. F) ⟶ λx. G` (`calculus1#int`, lambdas as `OMBIND fns1#lambda`), with verification records over ℝ and ℂ. |
+| `v1/integration.osr.json` | 35 antiderivative rules `int(λx. F) ⟶ λx. G` (`calculus1#int`, lambdas as `OMBIND fns1#lambda`), with verification records over ℝ and ℂ. |
 | `v1/integration.report.json` | Machine-readable audit: metrics per domain and the rules not migrated. |
 | `v1/integration.report.md` | The same audit for humans, with the findings of every rule. |
 
@@ -71,6 +71,17 @@ and ℂ, the reduction of `(a + b log(c xⁿ))ᵖ` (3.1.1 #2) over ℝ, and four
 rules are false as converted (3.5 #1 at `p = 0`, where the residual
 integrand `1/log(d xⁿ)` is undefined; 4.7.8 #45, #46 at `a = 0`; 1.2.1.2 #14
 at `c = 0`).
+
+A second batch of eleven, among the rules whose wildcards are all `FreeQ`:
+the partial fractions of `1/((a + b xⁿ)(c + d xⁿ))` (1.1.1.2 #3, 1.1.3.3 #19)
+and two linearity splits (1.1.3.5 #11, 1.2.1.6 #13) are proved over ℝ and ℂ;
+seven rules divide by a coefficient that their conditions allow to vanish
+(4.1.13 #17, #18, 1.2.1.2 #13, 1.2.1.3 #11, #12, 1.1.3.5 #10) or, at
+`p = 0`, leave the residual integrand `xⁿ/0` (3.4 #1), and are refuted.
+
+The inventory excludes rules whose result or conditions use a name the
+pattern does not bind (739 rules, 630 of them with `E`, `ImaginaryI` or
+`Pi`; see [known issues](known-issues.md) §4).
 
 ## Differences from v0.1
 
