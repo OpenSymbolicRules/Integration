@@ -6,7 +6,7 @@ generated, never edited by hand:
 
 | File | Content |
 |---|---|
-| `v1/integration.osr.json` | 35 antiderivative rules `int(λx. F) ⟶ λx. G` (`calculus1#int`, lambdas as `OMBIND fns1#lambda`), with verification records over ℝ and ℂ. |
+| `v1/integration.osr.json` | 47 antiderivative rules `int(λx. F) ⟶ λx. G` (`calculus1#int`, lambdas as `OMBIND fns1#lambda`), with verification records over ℝ and ℂ. |
 | `v1/integration.report.json` | Machine-readable audit: metrics per domain and the rules not migrated. |
 | `v1/integration.report.md` | The same audit for humans, with the findings of every rule. |
 
@@ -78,6 +78,11 @@ and two linearity splits (1.1.3.5 #11, 1.2.1.6 #13) are proved over ℝ and ℂ;
 seven rules divide by a coefficient that their conditions allow to vanish
 (4.1.13 #17, #18, 1.2.1.2 #13, 1.2.1.3 #11, #12, 1.1.3.5 #10) or, at
 `p = 0`, leave the residual integrand `xⁿ/0` (3.4 #1), and are refuted.
+
+A third batch of twelve: three partial fraction decompositions (1.2.1.2 #78,
+#79, 1.1.3.4 #63) and `sin u cos u = sin(2u)/2` (4.7.9 #68) are proved over ℝ
+and ℂ; eight rules are refuted (1.1.3.5 #2, 1.1.1.4 #17, 4.1.13 #3, #4,
+1.1.3.3 #14, 3.5 #3, 1.1.1.3 #8, 3.4 #7).
 
 The inventory excludes rules whose result or conditions use a name the
 pattern does not bind (739 rules, 630 of them with `E`, `ImaginaryI` or
