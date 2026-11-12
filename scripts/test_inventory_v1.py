@@ -81,6 +81,27 @@ class InventoryTests(unittest.TestCase):
         self.assertEqual(report["counts"]["heads_in_current_registry"], 1)
         self.assertEqual(report["registered_heads_and_only_freeq_candidates"], [])
 
+    def test_conditions_expressible_in_the_fragment(self):
+        report = self.run_inventory([
+            rule(1, ["Int", ["Power", "x_", "n_"], "x_symbol"], ["Log", "x"],
+                 [["FreeQ", "n", "x"], ["IGtQ", "n", 0]]),
+            rule(2, ["Int", ["Power", "x_", "n_"], "x_symbol"], ["Log", "x"],
+                 [["FreeQ", "n", "x"], ["NeQ", ["Power", "n", 2], 1], ["LtQ", "n", 0]]),
+            rule(3, ["Int", ["Power", "x_", "n_"], "x_symbol"], ["Log", "x"],
+                 [["EqQ", "n", 0]]),
+            rule(4, ["Int", ["Power", "x_", "n_"], "x_symbol"], ["Log", "x"],
+                 [["NeQ", ["Subst", "n", "n", "n"], 0]]),
+            rule(5, ["Int", ["Power", "x_", "n_"], "x_symbol"], ["Log", "x"],
+                 [["IntegersQ", "n", "m"], ["GtQ", "n", "m"]]),
+        ])
+        self.assertEqual(
+            [c["legacy_id"] for c in report["registered_heads_and_expressible_condition_candidates"]],
+            ["rubi:test:1", "rubi:test:2", "rubi:test:5"])
+        self.assertEqual(report["counts"]["expressible_conditions"], 3)
+        self.assertEqual(
+            report["expressible_condition_candidates_by_predicate"],
+            {"FreeQ": 2, "GtQ": 1, "IGtQ": 1, "IntegersQ": 1, "LtQ": 1, "NeQ": 1})
+
     def test_output_is_deterministic(self):
         rules = [rule(1, ["Int", ["Power", "x_", -1], "x_symbol"], ["Log", "x"])]
         self.assertEqual(self.run_inventory(rules), self.run_inventory(rules))

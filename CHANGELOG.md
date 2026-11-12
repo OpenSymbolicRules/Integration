@@ -8,6 +8,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- The inventory maps `NeQ`, `GtQ`, `LtQ`, `IntegerQ`, `IntegersQ`, `IGtQ` and
+  `ILtQ` to the conditions of the fragment and reports the candidates with
+  such conditions (twenty in all); `v1/` gains the seven migrated rules with
+  `NeQ` conditions, from Verification report `be6f672a…`.
 - OSR v1 files in `v1/` (`integration.osr.json` and its reports), generated
   by `OpenSymbolicRules/Lean` and published by Verification report
   `68dfb6f0…`: of the nine `FreeQ`-only rules with registered heads, two are

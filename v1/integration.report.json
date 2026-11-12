@@ -4,7 +4,7 @@
    "status": "proved",
    "statement":
    "no rule applies to the result of a rule: normalization takes at most one step"},
-  "seeds": 16,
+  "seeds": 30,
   "engine":
   "OSR.Calculus.rewrite (root rewriting; proved sound: OSR.Calculus.apply?_sound)"},
  "ruleset": "integration",
@@ -19,30 +19,46 @@
    "legacy_id": "rubi:2 Exponentials/2.3 Miscellaneous exponentials:1"},
   {"reason":
    "the integrand F^(a + b (c + d x)) is a power with a non-constant exponent; the fragment interprets arith1#power for integer exponents only",
-   "legacy_id": "rubi:2 Exponentials/2.3 Miscellaneous exponentials:8"}],
+   "legacy_id": "rubi:2 Exponentials/2.3 Miscellaneous exponentials:8"},
+  {"reason":
+   "the integrand raises a + b x + c x^2 to the exponent 3/2; the fragment interprets arith1#power for integer exponents only",
+   "legacy_id":
+   "rubi:1 Algebraic functions/1.2 Trinomial products/1.2.1 Quadratic/1.2.1.1 (a+b x+c x^2)^p:6"},
+  {"reason":
+   "the integrand raises a + b x + c x^2 to the exponent 3/2; the fragment interprets arith1#power for integer exponents only",
+   "legacy_id":
+   "rubi:1 Algebraic functions/1.2 Trinomial products/1.2.1 Quadratic/1.2.1.2 (d+e x)^m (a+b x+c x^2)^p:9"},
+  {"reason":
+   "the integrand F^(c (a + b x)) sin(d + e x) is a power with a non-constant exponent; the fragment interprets arith1#power for integer exponents only",
+   "legacy_id":
+   "rubi:4 Trig functions/4.7 Miscellaneous/4.7.7 F^(c (a+b x)) trig(d+e x)^n:1"},
+  {"reason":
+   "the integrand F^(c (a + b x)) cos(d + e x) is a power with a non-constant exponent; the fragment interprets arith1#power for integer exponents only",
+   "legacy_id":
+   "rubi:4 Trig functions/4.7 Miscellaneous/4.7.7 F^(c (a+b x)) trig(d+e x)^n:2"}],
  "metrics":
- {"rules_with_findings": 5,
-  "rules_not_migrated": 3,
-  "rules_migrated": 6,
-  "rules_exported": 6,
+ {"rules_with_findings": 12,
+  "rules_not_migrated": 7,
+  "rules_migrated": 13,
+  "rules_exported": 13,
   "real":
   {"unsupported": 0,
    "unproved": 0,
-   "proved": 2,
-   "counterexample": 4,
-   "certified": 2,
+   "proved": 5,
+   "counterexample": 8,
+   "certified": 5,
    "blocked_by_mapping_assurance": 0},
   "julia_execution":
   "not measured by the exporter; see OpenSymbolicRules.jl test/test_osr_v1.jl",
   "complex":
   {"unsupported": 0,
-   "unproved": 2,
-   "proved": 1,
-   "counterexample": 3,
-   "certified": 1,
+   "unproved": 4,
+   "proved": 2,
+   "counterexample": 7,
+   "certified": 2,
    "blocked_by_mapping_assurance": 0}},
  "build":
  {"source_digest":
-  "sha256:68dfb6f0c7429d706ddff0336d365d31f0d3ad7b7c18f17b70c14264897ee9d5",
+  "sha256:be6f672ab7d9f2daebfe17ee2aaafff9555c496ff45610ca489c66a355428199",
   "mathlib_revision": "56a005855ea17e0b0958f73ec801ae140b0a1679",
   "lean_toolchain": "leanprover/lean4:v4.35.0"}}
