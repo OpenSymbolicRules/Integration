@@ -19,6 +19,19 @@ JSON parser. No CAS software required.
 
 By mapping local functions to OpenMath Content Dictionaries, this format ensures zero semantic ambiguity.
 
+## OSR v1
+
+`v1/` holds the first RUBI rules stated in the OSR v1 format, generated from
+Lean proofs (`OpenSymbolicRules/Lean`) and published by
+`OpenSymbolicRules/Verification`: of nine syntactic candidates, two are
+proved and four are refuted.  See [docs/osr-v1.md](docs/osr-v1.md).
+
+```bash
+just check        # v0.1 schemas, script tests and v1 files
+just v1 <report>  # also compare v1/ with a Verification report directory
+just inventory    # syntactic migration inventory (JSON)
+```
+
 ## Integration engines
 
 The RUBI profile is a portable, ordered rule base. It is not an

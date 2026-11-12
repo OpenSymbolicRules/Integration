@@ -1,0 +1,48 @@
+{"strategy":
+ {"termination":
+  {"theorem": "OSR.Calculus.rewrite_result",
+   "status": "proved",
+   "statement":
+   "no rule applies to the result of a rule: normalization takes at most one step"},
+  "seeds": 16,
+  "engine":
+  "OSR.Calculus.rewrite (root rewriting; proved sound: OSR.Calculus.apply?_sound)"},
+ "ruleset": "integration",
+ "osr_format": "1.0.0-alpha.1",
+ "not_migrated":
+ [{"reason":
+   "the integrand raises a + c x^2 to the exponent 3/2; the fragment interprets arith1#power for integer exponents only",
+   "legacy_id":
+   "rubi:1 Algebraic functions/1.2 Trinomial products/1.2.1 Quadratic/1.2.1.2 (d+e x)^m (a+b x+c x^2)^p:10"},
+  {"reason":
+   "the integrand F^(c (a + b x)) is a power with a non-constant exponent; the fragment interprets arith1#power for integer exponents only",
+   "legacy_id": "rubi:2 Exponentials/2.3 Miscellaneous exponentials:1"},
+  {"reason":
+   "the integrand F^(a + b (c + d x)) is a power with a non-constant exponent; the fragment interprets arith1#power for integer exponents only",
+   "legacy_id": "rubi:2 Exponentials/2.3 Miscellaneous exponentials:8"}],
+ "metrics":
+ {"rules_with_findings": 5,
+  "rules_not_migrated": 3,
+  "rules_migrated": 6,
+  "rules_exported": 6,
+  "real":
+  {"unsupported": 0,
+   "unproved": 0,
+   "proved": 2,
+   "counterexample": 4,
+   "certified": 2,
+   "blocked_by_mapping_assurance": 0},
+  "julia_execution":
+  "not measured by the exporter; see OpenSymbolicRules.jl test/test_osr_v1.jl",
+  "complex":
+  {"unsupported": 0,
+   "unproved": 2,
+   "proved": 1,
+   "counterexample": 3,
+   "certified": 1,
+   "blocked_by_mapping_assurance": 0}},
+ "build":
+ {"source_digest":
+  "sha256:68dfb6f0c7429d706ddff0336d365d31f0d3ad7b7c18f17b70c14264897ee9d5",
+  "mathlib_revision": "56a005855ea17e0b0958f73ec801ae140b0a1679",
+  "lean_toolchain": "leanprover/lean4:v4.35.0"}}

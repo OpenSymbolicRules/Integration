@@ -8,6 +8,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- OSR v1 files in `v1/` (`integration.osr.json` and its reports), generated
+  by `OpenSymbolicRules/Lean` and published by Verification report
+  `68dfb6f0…`: of the nine `FreeQ`-only rules with registered heads, two are
+  proved, four are refuted by Lean counterexamples and three are not
+  migrated.  `scripts/check-v1.sh` and a CI job check them.
+- `scripts/inventory_v1.py`, a deterministic syntactic inventory of the
+  migration candidates, with tests.
+- A `justfile` with the `check`, `validate`, `test`, `v1`, `update-v1` and
+  `inventory` entry points.
+
+### Changed
+- The `Specification` submodule advances to `a1e5dfb`, which adds the v1
+  schemas.
+- `.gitignore` admits `justfile` and `v1/`.
 - `docs/known-issues.md`, recording defects of the conversion with the
   measurement that found them.
 
