@@ -6,7 +6,8 @@
 # 1. the rule set validates against the v1 schema of the Specification
 #    submodule;
 # 2. the rule set and the report come from the same Lean source digest;
-# 3. with a report directory, every file in v1/ is byte-identical to the
+# 3. every rule transcribes its v0.1 rule faithfully (v1_faithfulness.py);
+# 4. with a report directory, every file in v1/ is byte-identical to the
 #    published verification report.
 set -euo pipefail
 
@@ -34,6 +35,8 @@ if digest not in open(f"v1/{name}.report.md").read():
     sys.exit(f"{name}.report.md does not mention the source digest {digest}")
 print(f"v1/: {len(ruleset['rules'])} rules, source digest {a}")
 PY
+
+python3 scripts/v1_faithfulness.py "v1/$name.osr.json"
 
 if [ $# -ge 1 ]; then
   status=0

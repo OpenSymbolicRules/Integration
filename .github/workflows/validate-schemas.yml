@@ -71,8 +71,10 @@ jobs:
       - name: Validate acknowledged exact duplicate rules
         run: python3 scripts/check_duplicate_rules.py rules --baseline scripts/duplicate-rule-baseline.json
 
-      - name: Test the inventory script
-        run: python3 scripts/test_inventory_v1.py
+      - name: Test the inventory and faithfulness scripts
+        run: |
+          python3 scripts/test_inventory_v1.py
+          python3 scripts/test_v1_faithfulness.py
 
   v1:
     name: Check generated OSR v1 files
@@ -84,7 +86,7 @@ jobs:
       - uses: actions/checkout@v7
         with:
           repository: OpenSymbolicRules/Verification
-          ref: 5dcc473f9ab31e90d7dc0dc79b8563dd4566c383
+          ref: 7a62144f2ddb6020518a2935ba7dc05a70cbe2bd
           path: verification
       - uses: actions/setup-python@v7
         with:

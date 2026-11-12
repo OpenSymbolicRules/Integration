@@ -11,6 +11,7 @@ validate:
 test:
 	python3 scripts/test_check_duplicate_rules.py
 	python3 scripts/test_inventory_v1.py
+	python3 scripts/test_v1_faithfulness.py
 
 # Check the generated OSR v1 files; pass a Verification report directory to
 # also compare them byte for byte.

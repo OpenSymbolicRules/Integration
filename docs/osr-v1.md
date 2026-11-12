@@ -6,7 +6,7 @@ generated, never edited by hand:
 
 | File | Content |
 |---|---|
-| `v1/integration.osr.json` | 47 antiderivative rules `int(λx. F) ⟶ λx. G` (`calculus1#int`, lambdas as `OMBIND fns1#lambda`), with verification records over ℝ and ℂ. |
+| `v1/integration.osr.json` | 72 antiderivative rules `int(λx. F) ⟶ λx. G` (`calculus1#int`, lambdas as `OMBIND fns1#lambda`), with verification records over ℝ and ℂ. |
 | `v1/integration.report.json` | Machine-readable audit: metrics per domain and the rules not migrated. |
 | `v1/integration.report.md` | The same audit for humans, with the findings of every rule. |
 
@@ -84,6 +84,14 @@ A third batch of twelve: three partial fraction decompositions (1.2.1.2 #78,
 and ℂ; eight rules are refuted (1.1.3.5 #2, 1.1.1.4 #17, 4.1.13 #3, #4,
 1.1.3.3 #14, 3.5 #3, 1.1.1.3 #8, 3.4 #7).
 
+A fourth batch of 25, transcribed by a tool and checked by
+`scripts/v1_faithfulness.py`: one linearity split (3.3 #44) is proved; 22
+rules are refuted because a coefficient the result divides by may vanish or,
+at `n = 0`, a residual integrand divides by `d + e x`; 3.3 #4 and 3.1.3 #3
+are refuted over ℝ, where `log` is evaluated at a negative point.  Seven
+rules whose integrand is `F^(…)` with an exponent depending on `x` are not
+migrated.
+
 The inventory excludes rules whose result or conditions use a name the
 pattern does not bind (739 rules, 630 of them with `E`, `ImaginaryI` or
 `Pi`; see [known issues](known-issues.md) §4).
@@ -101,6 +109,14 @@ The v0.1 files in `rules/` remain the RUBI corpus.  In v1:
   condition `a ≠ b`, read semantically;
 - a rule applies at the root of an `int` term and keeps the input's bound
   variable; its result is a lambda, so normalization takes one step at most.
+
+## Faithfulness
+
+`scripts/v1_faithfulness.py` converts each v0.1 rule named by a v1
+`legacy_id` with the conventions above and requires the v1 pattern,
+replacement and conditions to be the resulting OpenMath objects, and its
+`independent` variables to be the `FreeQ` ones (more only with an
+`independence:` finding).  `scripts/check-v1.sh` runs it.
 
 ## Updating
 
