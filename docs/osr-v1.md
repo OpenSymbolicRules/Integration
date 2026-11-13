@@ -6,7 +6,7 @@ generated, never edited by hand:
 
 | File | Content |
 |---|---|
-| `v1/integration.osr.json` | 72 antiderivative rules `int(λx. F) ⟶ λx. G` (`calculus1#int`, lambdas as `OMBIND fns1#lambda`), with verification records over ℝ and ℂ. |
+| `v1/integration.osr.json` | 123 antiderivative rules `int(λx. F) ⟶ λx. G` (`calculus1#int`, lambdas as `OMBIND fns1#lambda`), with verification records over ℝ and ℂ. |
 | `v1/integration.report.json` | Machine-readable audit: metrics per domain and the rules not migrated. |
 | `v1/integration.report.md` | The same audit for humans, with the findings of every rule. |
 
@@ -91,6 +91,23 @@ at `n = 0`, a residual integrand divides by `d + e x`; 3.3 #4 and 3.1.3 #3
 are refuted over ℝ, where `log` is evaluated at a negative point.  Seven
 rules whose integrand is `F^(…)` with an exponent depending on `x` are not
 migrated.
+
+A fifth batch widens the scope to exponents that RUBI constrains only by
+numeric predicates (`IntegerQ`, `GtQ`, …), declared independent of `x` with
+an `independence:` finding.  A numerical search proposes counterexamples
+under the fragment's real definedness semantics, and each is proved in
+Lean per domain: 45 more rules are refuted, and the reduction 1.2.1.2 #83
+is proved.
+
+Five further rules are refuted over both ℝ and ℂ: RUBI 4.16.1 rules
+1.2.2.4 #57 and #58, 2.1 #10, and 4.1.12 #45 and #46. Their original
+conditions allow coefficients to vanish in result denominators. The Lean
+4.35.0 proofs (Mathlib `56a005855ea17e0b0958f73ec801ae140b0a1679`)
+use assignments at `x = 1` where the integrand is defined nearby and the
+result is undefined; no missing condition is added silently.
+
+The complete set has 22 proved, 100 refuted and one unproved rule over ℝ;
+over ℂ, 18 are proved (17 certified), 96 refuted and nine unproved.
 
 The inventory excludes rules whose result or conditions use a name the
 pattern does not bind (739 rules, 630 of them with `E`, `ImaginaryI` or

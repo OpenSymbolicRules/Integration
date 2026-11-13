@@ -8,16 +8,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- Five further RUBI 4.16.1 rules refuted over ℝ and ℂ: 1.2.2.4 #57 and #58,
+  2.1 #10, and 4.1.12 #45 and #46. Report `a8eff8f4…` brings the v1 set to 123 rules, with
+  22 proved, 100 refuted and one unproved over ℝ; the original conditions
+  are preserved and checked against the v0.1 corpus.
 - `scripts/v1_faithfulness.py`, with tests: every v1 rule is compared with the
   OpenMath objects its v0.1 rule converts to under the documented conventions;
   `check-v1.sh` and CI run it.
 - `docs/known-issues.md` §4: `E`, `ImaginaryI` and `Pi` are converted as free
   names without semantics (630 rules); the inventory now reports atoms a
   pattern does not bind (`rules_by_unbound_atom`) and excludes their rules.
-- 59 RUBI rules with residual integrals in `v1/`, from Verification reports
-  `4efb181a…`, `aca727e3…`, `a6036490…` and `5c32f229…`: their results contain `int(λx. H)(x)` (Specification
+- 105 RUBI rules with residual integrals in `v1/`, from Verification reports
+  `4efb181a…`, `aca727e3…`, `a6036490…`, `5c32f229…` and `dfde2079…`: their results contain `int(λx. H)(x)` (Specification
   V1-E-002b) and hold for every choice of antiderivatives of the residual
-  integrands; sixteen are proved and 43 refuted. The `Specification`
+  integrands; seventeen are proved and 88 refuted (most refutations proposed by a numerical search and proved in Lean). The `Specification`
   submodule advances to `791742d`.
 - The inventory maps `NeQ`, `GtQ`, `LtQ`, `IntegerQ`, `IntegersQ`, `IGtQ` and
   `ILtQ` to the conditions of the fragment and reports the candidates with
