@@ -8,6 +8,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- Report `9705f0ef…`: the v1 set has 169 rules. Four backlog rules
+  (3.1.5 #15; 4.1.12 #35, #36; 4.7.9 #71) are proved over ℝ and ℂ; 31
+  proved, 137 refuted and one unproved over ℝ. All 169 transcriptions are
+  faithful to v0.1.
 - Report `29465fa3…`: the v1 set has 165 rules. Nine more (1.2.2.1 #5;
   2.3 #23, #26, #35; 3.1.1 #3; 3.1.4 #9, #17; 3.1.5 #16; 3.3 #12) are
   refuted over ℝ and ℂ; 27 proved, 137 refuted and one unproved over ℝ.
