@@ -8,6 +8,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- Report `29465fa3…`: the v1 set has 165 rules. Nine more (1.2.2.1 #5;
+  2.3 #23, #26, #35; 3.1.1 #3; 3.1.4 #9, #17; 3.1.5 #16; 3.3 #12) are
+  refuted over ℝ and ℂ; 27 proved, 137 refuted and one unproved over ℝ.
+  All 165 transcriptions are faithful to v0.1.
 - Report `577cca61…`: the v1 set has 156 rules. Five binomial rules
   (1.1.3.1 #5; 4.1.11 #7, #8, #19, #20) are proved over ℝ and ℂ and 28
   more are refuted in both domains; 27 proved, 128 refuted and one
