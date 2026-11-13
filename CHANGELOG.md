@@ -38,6 +38,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   `inventory` entry points.
 
 ### Changed
+- Refresh the generated OSR v1 files from Lean source digest `dcad68f4…`
+  (the calculus rewriter decides closed conditions; this rule set is
+  unchanged).
 - The `Specification` submodule advances to `a1e5dfb`, which adds the v1
   schemas.
 - `.gitignore` admits `justfile` and `v1/`.
