@@ -8,6 +8,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- Report `d53ec774…`: the v1 set has 174 rules; 4.7.8 #3 and #4 are
+  proved over ℝ and 3.1.4 #16 over ℝ and ℂ (36 proved, 137 refuted and
+  one unproved over ℝ). All 174 transcriptions are faithful to v0.1.
 - Report `0a34c711…`: the v1 set has 171 rules. Two logarithmic rules
   (3.1.3 #8, 3.1.5 #24) are proved over ℝ and unproved over ℂ; 33 proved,
   137 refuted and one unproved over ℝ. All 171 transcriptions are faithful
