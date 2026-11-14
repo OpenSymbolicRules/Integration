@@ -8,6 +8,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- Report `5bddaed2…`: the v1 set has 183 rules; the quartic reduction
+  1.2.2.1 #4 is proved over ℝ and ℂ (41 proved, 141 refuted and one unproved
+  over ℝ). All 183 transcriptions are faithful to v0.1.
 - Report `65358b60…`: the v1 set has 182 rules; 1.2.2.2 #19 is refuted over
   ℝ and 3.1.4 #11 over ℝ and ℂ (40 proved, 141 refuted and one unproved
   over ℝ). All 182 transcriptions are faithful to v0.1.
