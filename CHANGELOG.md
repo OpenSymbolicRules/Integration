@@ -8,6 +8,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- Report `0a089a2f…`: the v1 set has 291 rules; 108 rules with `EqQ`
+  conditions (`relation1#eq`) are refuted over ℝ, 102 also over ℂ (41
+  proved, 249 refuted and one unproved over ℝ). All 291 transcriptions are
+  faithful to v0.1.
 - `scripts/v1_faithfulness.py` maps `EqQ[a, b]` to the OSR v1 condition
   `relation1#eq(a, b)` (Specification V1-R-005).
 - Report `5bddaed2…`: the v1 set has 183 rules; the quartic reduction
