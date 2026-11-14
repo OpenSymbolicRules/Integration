@@ -35,13 +35,13 @@ def lam(body):
 
 
 class FaithfulnessTests(unittest.TestCase):
-    def run_check(self, v1_rule):
+    def run_check(self, v1_rule, constraints=None):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
             (root / "rules").mkdir()
             rule = {"id": 1, "pattern": ["Int", ["Multiply", "a_", "b.", ["Sin", "x_"]], "x_symbol"],
                     "result": ["Add", ["Multiply", "a", "b", "x"], ["Int", ["Sin", "x"], "x"]],
-                    "constraints": [["FreeQ", ["List", "a", "b"], "x"], ["NeQ", "a", 0],
+                    "constraints": constraints or [["FreeQ", ["List", "a", "b"], "x"], ["NeQ", "a", 0],
                                     ["LtQ", "b", 1]]}
             (root / "rules" / "f.json").write_text(json.dumps(
                 {"identity": "rubi:t", "semantics": SEM, "rules": [rule]}))
@@ -64,6 +64,16 @@ class FaithfulnessTests(unittest.TestCase):
                            oma("relation1", "gt", {"kind": "OMI", "integer": 1}, omv("b"))],
             "independent": [{"variable": "b", "of": "x"}, {"variable": "a", "of": "x"}],
         }
+
+    def test_eqq_becomes_relation1_eq(self):
+        rule = self.good()
+        rule["conditions"] = [oma("relation1", "eq", omv("a"), {"kind": "OMI", "integer": 0}),
+                              oma("relation1", "gt", {"kind": "OMI", "integer": 1}, omv("b"))]
+        constraints = [["FreeQ", ["List", "a", "b"], "x"], ["EqQ", "a", 0], ["LtQ", "b", 1]]
+        result = self.run_check(rule, constraints)
+        self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+        rule["conditions"][0] = oma("relation1", "neq", omv("a"), {"kind": "OMI", "integer": 0})
+        self.assertEqual(self.run_check(rule, constraints).returncode, 1)
 
     def test_faithful_rule_passes(self):
         result = self.run_check(self.good())

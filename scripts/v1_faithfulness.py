@@ -11,6 +11,7 @@ v0.1 rule converts to under the documented conventions (docs/osr-v1.md):
 * a wildcard (`a_`, `a.`, `x_symbol`) becomes the variable `a`;
 * `FreeQ[{…}, x]` becomes `independent` (a v1 rule may declare more
   independent variables only with an `independence:` finding); `NeQ[a, b]` → `neq(a, b)`,
+  `EqQ[a, b]` → `eq(a, b)`,
   `GtQ[a, b]` → `gt(a, b)`, `LtQ[a, b]` → `gt(b, a)`, `IntegerQ[a]` and
   `IntegersQ[a, …]` → `in(a, Z)`, `IGtQ[n, k]` → `in(n, Z)`, `gt(n, k)`,
   `ILtQ[n, k]` → `in(n, Z)`, `gt(k, n)`, in constraint order.
@@ -87,6 +88,8 @@ def conditions(constraints, semantics, var):
             independent |= {name(v) for v in vs}
         elif head == "NeQ":
             out.append(rel("neq", c(args[0]), c(args[1])))
+        elif head == "EqQ":
+            out.append(rel("eq", c(args[0]), c(args[1])))
         elif head == "GtQ":
             out.append(rel("gt", c(args[0]), c(args[1])))
         elif head == "LtQ":
