@@ -8,6 +8,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- Report `c6220e09…`: the v1 set has 295 rules; 1.1.1.2 #4 is proved over ℝ
+  and ℂ, 3.2.1 #7 and 4.7.8 #47, #48 are refuted (42 proved, 252 refuted and
+  one unproved over ℝ). All 295 transcriptions are faithful to v0.1.
 - Report `0a089a2f…`: the v1 set has 291 rules; 108 rules with `EqQ`
   conditions (`relation1#eq`) are refuted over ℝ, 102 also over ℂ (41
   proved, 249 refuted and one unproved over ℝ). All 291 transcriptions are
