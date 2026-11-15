@@ -8,6 +8,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- Report `b96dae79…`: the v1 set has 303 rules; seven rewritings into a
+  residual integral (1.1.1.2 #2, 1.1.1.3 #50, 3.1.4 #1, 3.1.5 #2, 3.3 #21,
+  1.1.3.7 #11, #18) are proved over ℝ and ℂ (50 proved, 252 refuted and one
+  unproved over ℝ). All 303 transcriptions are faithful to v0.1.
 - Report `22741da9…`: the v1 set has 296 rules; 1.1.3.2 #68 (by parts) is
   proved over ℝ and ℂ (43 proved, 252 refuted and one unproved over ℝ). All
   296 transcriptions are faithful to v0.1.
