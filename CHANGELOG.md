@@ -8,6 +8,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- Report `1255db02…`: the v1 set has 320 rules; 1.1.3.2 #69 (by parts) is
+  proved over ℝ and ℂ (61 proved, 258 refuted and one unproved over ℝ). All
+  320 transcriptions are faithful to v0.1.
 - Report `65b5cda4…`: the v1 set has 319 rules; 3.3 #15 and 1.2.1.2 #101
   are proved over ℝ and ℂ, 1.2.1.2 #103 is refuted at `m = p = -1` (60
   proved, 258 refuted and one unproved over ℝ). All 319 transcriptions are
