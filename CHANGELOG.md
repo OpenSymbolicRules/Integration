@@ -8,6 +8,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- Report `aba1d4f5…`: the v1 set has 359 rules; 39 more RUBI rules from a wider
+  inventory pass are refuted (38 in both domains). All 359 transcriptions are
+  faithful to v0.1.
 - Reports `4e719fca…`, `e0a3499e…` and `9caf6485…`: thirteen rules with `log`
   refuted over ℂ at the branch cut of the principal logarithm; no statement
   is left unproved in either domain (53 proved and 267 refuted over ℂ).
