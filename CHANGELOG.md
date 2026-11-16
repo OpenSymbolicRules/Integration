@@ -8,6 +8,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- Report `5df371f5…`: the v1 set has 389 rules; four more strengthened
+  variants (1.1.1.2 #1, 1.1.3.2 #3, 1.1.3.1 #3 and 1.1.3.2 #6) are proved and
+  certified over ℝ and ℂ. 381 transcriptions are faithful to v0.1 and 8
+  strengthened.
+- Report `13c7663e…`: the v1 set has 385 rules; four strengthened variants
+  (1.1.1.1 #4, 9.1 #9, 4.1.13 #11 and #12 with a non-degeneracy condition) are
+  proved and certified over ℝ and ℂ. 381 transcriptions are faithful to v0.1
+  and 4 strengthened.
 - `scripts/v1_faithfulness.py` accepts strengthened rules (Specification
   V1-R-005e): conditions appended after the converted v0.1 conditions, declared
   by a `strengthened:` finding, are counted separately.
