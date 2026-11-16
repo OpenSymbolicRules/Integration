@@ -8,6 +8,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- Reports `5b1bc665…` and `86e9259d…`: the v1 set has 401 rules; strengthened
+  variants of 1.1.1.3 #2, 1.2.1.1 #3, 1.2.1.2 #55, 4.1.12 #81 and #82, 1.2.1.4
+  #65 and #66 are proved and certified over ℝ and ℂ. 381 transcriptions are
+  faithful to v0.1 and 20 strengthened.
 - Report `4a53a417…`: the v1 set has 394 rules; strengthened variants of
   1.2.1.2 #4, 1.2.1.3 #1 and 1.2.1.4 #1 are proved and certified over ℝ and ℂ.
   381 transcriptions are faithful to v0.1 and 13 strengthened.
