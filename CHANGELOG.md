@@ -8,6 +8,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- Reports `f8703dd9…`, `6f5b2f4d…` and `e85967a3…`: the v1 set has 373 rules; 12
+  more refuted from random sampling, 1.2.4.1 #1 and 1.2.4.2 #1 proved, and 27
+  half-integer rules reported as not migrated. All 373 transcriptions are
+  faithful to v0.1.
 - Report `aba1d4f5…`: the v1 set has 359 rules; 39 more RUBI rules from a wider
   inventory pass are refuted (38 in both domains). All 359 transcriptions are
   faithful to v0.1.

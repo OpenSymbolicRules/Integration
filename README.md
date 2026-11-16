@@ -23,9 +23,9 @@ By mapping local functions to OpenMath Content Dictionaries, this format ensures
 
 `v1/` holds the first RUBI rules stated in the OSR v1 format, generated from
 Lean proofs (`OpenSymbolicRules/Lean`) and published by
-`OpenSymbolicRules/Verification`: 359 rules, 295 of them with residual
-integrals `int(λx. H)(x)`; 61 are proved and 298 refuted over ℝ, 53 proved,
-305 refuted and one unproved over ℂ. Every v1 rule is
+`OpenSymbolicRules/Verification`: 373 rules, 305 of them with residual
+integrals `int(λx. H)(x)`; 63 are proved and 310 refuted over ℝ, 55 proved,
+317 refuted and one unproved over ℂ; 41 more are reported as not migrated. Every v1 rule is
 checked against its v0.1 rule by `scripts/v1_faithfulness.py`.  See [docs/osr-v1.md](docs/osr-v1.md).
 
 ```bash
