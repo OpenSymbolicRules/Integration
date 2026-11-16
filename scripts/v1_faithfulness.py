@@ -16,6 +16,9 @@ v0.1 rule converts to under the documented conventions (docs/osr-v1.md):
   `IntegersQ[a, …]` → `in(a, Z)`, `IGtQ[n, k]` → `in(n, Z)`, `gt(n, k)`,
   `ILtQ[n, k]` → `in(n, Z)`, `gt(k, n)`, in constraint order.
 
+A *strengthened* v1 rule (a corrected variant) may append conditions after the
+converted ones, only with a `strengthened:` finding; it is counted separately.
+
 Usage: scripts/v1_faithfulness.py [--rules rules] v1/integration.osr.json
 Exit status 1 if a rule differs.
 """
@@ -133,7 +136,7 @@ def main(argv: list[str]) -> int:
         for rule in document.get("rules", []):
             corpus[f"{document.get('identity', path.stem)}:{rule['id']}"] = (
                 rule, document.get("semantics", {}))
-    ok, bad = 0, 0
+    ok, bad, strengthened = 0, 0, 0
     for v1 in json.loads(args.ruleset.read_text())["rules"]:
         legacy = v1.get("legacy_id")
         if legacy is None or legacy not in corpus:
@@ -142,9 +145,14 @@ def main(argv: list[str]) -> int:
             continue
         exp = expected(*corpus[legacy])
         problems = []
-        for key in ("pattern", "replacement", "conditions"):
+        for key in ("pattern", "replacement"):
             if v1[key] != exp[key]:
                 problems.append(f"{key} differs")
+        noted = any(f.startswith("strengthened:") for f in v1.get("findings", []))
+        conds, base = v1["conditions"], exp["conditions"]
+        added = noted and len(conds) > len(base) and conds[:len(base)] == base
+        if conds != base and not added:
+            problems.append("conditions differs")
         declared = {i["variable"] for i in v1.get("independent", [])}
         documented = any(f.startswith("independence:") for f in v1.get("findings", []))
         if not (declared == exp["independent"]
@@ -153,9 +161,11 @@ def main(argv: list[str]) -> int:
         if problems:
             bad += 1
             print(f"{v1['id']} ({legacy}): " + ", ".join(problems))
+        elif added:
+            strengthened += 1
         else:
             ok += 1
-    print(f"{ok} faithful, {bad} different")
+    print(f"{ok} faithful, {strengthened} strengthened, {bad} different")
     return 1 if bad else 0
 
 

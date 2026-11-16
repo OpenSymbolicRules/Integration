@@ -113,5 +113,23 @@ class DocumentedIndependenceTests(FaithfulnessTests):
         self.assertEqual(result.returncode, 0, result.stdout)
 
 
+class StrengthenedConditionsTests(FaithfulnessTests):
+    def test_added_condition_needs_a_finding(self):
+        rule = self.good()
+        rule["conditions"].append(oma("relation1", "neq", omv("b"), {"kind": "OMI", "integer": 0}))
+        self.assertEqual(self.run_check(rule).returncode, 1)
+        rule["findings"] = ["strengthened: the condition b ≠ 0 is added to the v0.1 conditions"]
+        result = self.run_check(rule)
+        self.assertEqual(result.returncode, 0, result.stdout)
+        self.assertIn("1 strengthened", result.stdout)
+
+    def test_strengthened_rule_keeps_the_original_conditions(self):
+        rule = self.good()
+        rule["conditions"] = rule["conditions"][1:] + [
+            oma("relation1", "neq", omv("b"), {"kind": "OMI", "integer": 0})]
+        rule["findings"] = ["strengthened: the condition b ≠ 0 is added to the v0.1 conditions"]
+        self.assertEqual(self.run_check(rule).returncode, 1)
+
+
 if __name__ == "__main__":
     unittest.main()

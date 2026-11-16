@@ -133,7 +133,11 @@ The v0.1 files in `rules/` remain the RUBI corpus.  In v1:
 `legacy_id` with the conventions above and requires the v1 pattern,
 replacement and conditions to be the resulting OpenMath objects, and its
 `independent` variables to be the `FreeQ` ones (more only with an
-`independence:` finding).  `scripts/check-v1.sh` runs it.
+`independence:` finding).  A *strengthened* rule (Specification V1-R-005e, a
+corrected variant with an id ending in `_nondegenerate`) may append
+conditions after the converted ones only with a `strengthened:` finding; the
+script counts such rules separately (`N faithful, M strengthened, K
+different`).  `scripts/check-v1.sh` runs it.
 
 ## Updating
 
