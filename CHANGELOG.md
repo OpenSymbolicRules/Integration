@@ -8,6 +8,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- Report `2f2be88e…`: eight strengthened variants refuted by the pole probe
+  are corrected with one more nonzero exponent and proved (1.1.3.3 #18 over ℝ
+  and ℂ; 3.2.1 #2 and #13, 3.2.3 #2, #4 and #7, 3.3 #7 and 3.5 #23 over ℝ
+  only); 550 rules.
 - Report `76ee6db2…`: strengthened variants of nineteen refuted named rules
   (1.1.1.3 #8, 4.1.13 #3, …) are added, proved over ℝ and ℂ (thirteen) or over
   ℝ only (six); 542 rules.
