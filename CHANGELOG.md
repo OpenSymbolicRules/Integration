@@ -8,6 +8,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- Reports `63a96db2…` to `f4757237…`: the last 19 strengthened variants
+  distributed unproved are proved (118 over ℝ and ℂ, 24 over ℝ only); the
+  variant of 3.3 #22 now also appends `n ≠ 0`, as it was false at `n = 0`.
 - Reports `00a94414…` to `82672d5c…`: six more strengthened variants are
   proved over ℝ only (15 in all); 19 remain distributed unproved with a
   numerical check.
