@@ -8,6 +8,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- Report `76ee6db2…`: strengthened variants of nineteen refuted named rules
+  (1.1.1.3 #8, 4.1.13 #3, …) are added, proved over ℝ and ℂ (thirteen) or over
+  ℝ only (six); 542 rules.
 - Reports `63a96db2…` to `f4757237…`: the last 19 strengthened variants
   distributed unproved are proved (118 over ℝ and ℂ, 24 over ℝ only); the
   variant of 3.3 #22 now also appends `n ≠ 0`, as it was false at `n = 0`.
