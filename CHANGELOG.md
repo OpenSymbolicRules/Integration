@@ -8,6 +8,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- Reports `83ab90fe…` and `be9100af…`: 23 strengthened variants whose
+  candidates had been sampled too rarely (an `EqQ` condition) are sampled
+  again with the equalities solved and proved, 19 over ℝ and ℂ and four over
+  ℝ only; 573 rules.
 - Report `2f2be88e…`: eight strengthened variants refuted by the pole probe
   are corrected with one more nonzero exponent and proved (1.1.3.3 #18 over ℝ
   and ℂ; 3.2.1 #2 and #13, 3.2.3 #2, #4 and #7, 3.3 #7 and 3.5 #23 over ℝ
