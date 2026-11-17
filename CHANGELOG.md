@@ -8,6 +8,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- Reports `90265091…` to `65fee808…`: eleven more strengthened variants are
+  proved (75 in all); 67 remain distributed unproved with a numerical check.
 - Reports `dbf6b787…` to `5af3c5a6…`: nine more strengthened variants are
   proved (64 in all); 78 remain distributed unproved with a numerical check.
 - Reports `0f686088…` to `a818d70c…`: the v1 set has 523 rules; 142 are
