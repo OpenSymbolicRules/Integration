@@ -8,6 +8,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- Report `3bcfa359…`: eight strengthened variants whose candidates had
+  failed the numerical truth check at a single zero are proved with that zero
+  excluded, one over ℝ and ℂ and seven over ℝ only; 581 rules.
 - Reports `83ab90fe…` and `be9100af…`: 23 strengthened variants whose
   candidates had been sampled too rarely (an `EqQ` condition) are sampled
   again with the equalities solved and proved, 19 over ℝ and ℂ and four over
