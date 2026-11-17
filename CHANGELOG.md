@@ -8,6 +8,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- Report `59e5b849…`: six strengthened variants with a tighter exponent bound
+  or more nonzero conditions (1.2.2.4 #59–62, 1.1.1.3 #53 and 3.4 #7) are
+  proved, five over ℝ and ℂ and one over ℝ only; 587 rules.
 - Report `3bcfa359…`: eight strengthened variants whose candidates had
   failed the numerical truth check at a single zero are proved with that zero
   excluded, one over ℝ and ℂ and seven over ℝ only; 581 rules.
