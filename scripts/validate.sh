@@ -20,10 +20,12 @@ echo "  PASS"
 echo "Step 3/7: Validating rule files..."
 RULE_FILES=$(find rules/ -name '*.json' ! -name 'meta.json' 2>/dev/null || true)
 if [ -n "$RULE_FILES" ]; then
-  check-jsonschema \
-    --schemafile Specification/schemas/rule-file.schema.json \
-    --base-uri "file://${PWD}/Specification/schemas/" \
-    $RULE_FILES
+  # The rule files are validated in batches of 8, in parallel (OSR_CHECK_JOBS
+  # processes, default: all cores); xargs fails if any batch fails.
+  find rules/ -name '*.json' ! -name 'meta.json' -print0 |
+    xargs -0 -n 8 -P "${OSR_CHECK_JOBS:-$(nproc)}" check-jsonschema \
+      --schemafile Specification/schemas/rule-file.schema.json \
+      --base-uri "file://${PWD}/Specification/schemas/" > /dev/null
   echo "  PASS"
 else
   echo "  SKIP (no rule files found)"
@@ -33,10 +35,11 @@ fi
 echo "Step 4/7: Validating test files..."
 TEST_FILES=$(find tests/ -name '*.json' 2>/dev/null || true)
 if [ -n "$TEST_FILES" ]; then
-  check-jsonschema \
-    --schemafile Specification/schemas/test-file.schema.json \
-    --base-uri "file://${PWD}/Specification/schemas/" \
-    $TEST_FILES
+  # Validated in parallel, one file per process: their sizes vary widely.
+  find tests/ -name '*.json' -print0 |
+    xargs -0 -n 1 -P "${OSR_CHECK_JOBS:-$(nproc)}" check-jsonschema \
+      --schemafile Specification/schemas/test-file.schema.json \
+      --base-uri "file://${PWD}/Specification/schemas/" > /dev/null
   echo "  PASS"
 else
   echo "  SKIP (no test files found)"

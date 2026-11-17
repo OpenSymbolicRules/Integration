@@ -199,6 +199,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   `inventory` entry points.
 
 ### Changed
+- `scripts/validate.sh` validates the rule and test files with parallel
+  `check-jsonschema` processes (`OSR_CHECK_JOBS`, default: all cores): the
+  validation takes under three minutes instead of about twenty.
 - Refresh the generated OSR v1 files from Lean source digest `dcad68f4…`
   (the calculus rewriter decides closed conditions; this rule set is
   unchanged).
