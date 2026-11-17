@@ -8,6 +8,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- Reports `7ef66d2f…` to `aa90538a…`: six more logarithmic strengthened
+  variants are proved over ℝ only (nine in all); 25 remain distributed
+  unproved with a numerical check.
 - Reports `2b296f3e…` to `ca7e9f18…`: five more strengthened variants are
   proved (108 in all) and three logarithmic ones over ℝ only; 31 remain
   distributed unproved with a numerical check.
