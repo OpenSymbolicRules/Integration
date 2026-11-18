@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+- Report `5ea2f5e8…`: the nine rules migrated in `37faa87a…` declared
+  exponent metavariables independent of x without an `independence:`
+  finding, so `scripts/check-v1.sh` failed on the v1 files distributed with
+  that report; the findings are added and the check passes.
+
 ### Added
 - Report `37faa87a…`: nine RUBI rules not considered before (1.2.1.2 #93–95,
   1.2.3.3 #41, #42, #47 and 1.2.3.4 #92, #93, #100) are migrated and proved
