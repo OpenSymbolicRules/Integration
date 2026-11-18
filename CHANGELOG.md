@@ -14,6 +14,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   that report; the findings are added and the check passes.
 
 ### Added
+- Report `7f700cf4…`: eight more RUBI linear splits (7.3.x and 6.1.12) are
+  migrated and proved over ℝ; 914 rules.
 - Report `bba020e2…`: 7.3.4 #39 and 7.3.1 #59 are migrated and proved over
   ℝ; 906 rules.
 - Report `cf523cae…`: six more RUBI rules (7.3.4 #89, #91, 7.3.1 #109,
