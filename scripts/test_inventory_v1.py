@@ -96,11 +96,11 @@ class InventoryTests(unittest.TestCase):
         ])
         self.assertEqual(
             [c["legacy_id"] for c in report["registered_heads_and_expressible_condition_candidates"]],
-            ["rubi:test:1", "rubi:test:2", "rubi:test:5"])
-        self.assertEqual(report["counts"]["expressible_conditions"], 3)
+            ["rubi:test:1", "rubi:test:2", "rubi:test:3", "rubi:test:5"])
+        self.assertEqual(report["counts"]["expressible_conditions"], 4)
         self.assertEqual(
             report["expressible_condition_candidates_by_predicate"],
-            {"FreeQ": 2, "GtQ": 1, "IGtQ": 1, "IntegersQ": 1, "LtQ": 1, "NeQ": 1})
+            {"EqQ": 1, "FreeQ": 2, "GtQ": 1, "IGtQ": 1, "IntegersQ": 1, "LtQ": 1, "NeQ": 1})
 
     def test_unbound_atoms_exclude_a_rule(self):
         report = self.run_inventory([
@@ -119,6 +119,12 @@ class InventoryTests(unittest.TestCase):
     def test_output_is_deterministic(self):
         rules = [rule(1, ["Int", ["Power", "x_", -1], "x_symbol"], ["Log", "x"])]
         self.assertEqual(self.run_inventory(rules), self.run_inventory(rules))
+
+
+class EqQExpressibleTest(unittest.TestCase):
+    def test_eqq_is_expressible(self):
+        import inventory_v1
+        self.assertTrue(inventory_v1.expressible(["EqQ", "a", 0], lambda h: True))
 
 
 if __name__ == "__main__":

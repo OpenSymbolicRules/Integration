@@ -208,6 +208,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   `inventory` entry points.
 
 ### Changed
+- The converter maps the reciprocal, hyperbolic and inverse functions to
+  their OpenMath `transc1` symbols (`Cot`, `Sec`, `Csc`, `Sinh` … `Csch`,
+  `Asin` … `Acsc`, `Asinh` … `Acsch`) and `Abs` to `arith1#abs`, instead of
+  `osr#<head>`; the 113 rule files that use them are regenerated (only their
+  `semantics` blocks change).
+- `scripts/v1_faithfulness.py` reads `Sqrt[a]` as `root(a, 2)`, and
+  `scripts/inventory_v1.py` counts `EqQ` as an expressible condition.
+- The new unit tests of `scripts/test_inventory_v1.py` and
+  `scripts/test_v1_faithfulness.py` are defined before `unittest.main()`, so
+  they run.
 - `scripts/validate.sh` validates the rule and test files with parallel
   `check-jsonschema` processes (`OSR_CHECK_JOBS`, default: all cores): the
   validation takes under three minutes instead of about twenty.

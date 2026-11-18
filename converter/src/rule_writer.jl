@@ -9,7 +9,10 @@ OpenMath Content Dictionary symbol for every head the converter emits.  The
 `openmath:<cd>#<name>` spelling is the one required by
 `rule-file.schema.json`; RUBI's `Int` is an indefinite integral and its `Log`
 is the natural logarithm, so they map to `calculus1#int` and `transc1#ln`
-rather than to `calculus1#defint` and the base-taking `transc1#log`.
+rather than to `calculus1#defint` and the base-taking `transc1#log`.  The
+reciprocal, hyperbolic and inverse functions map to their `transc1` symbols
+(RUBI spells the inverses `Asin`, `Atanh`, …); any other head is emitted as
+`osr#<head>`.
 """
 const OPENMATH_SEMANTICS = Dict(
     "Add" => "openmath:arith1#plus",
@@ -24,6 +27,28 @@ const OPENMATH_SEMANTICS = Dict(
     "Tan" => "openmath:transc1#tan",
     "Log" => "openmath:transc1#ln",
     "Exp" => "openmath:transc1#exp",
+    "Cot" => "openmath:transc1#cot",
+    "Sec" => "openmath:transc1#sec",
+    "Csc" => "openmath:transc1#csc",
+    "Sinh" => "openmath:transc1#sinh",
+    "Cosh" => "openmath:transc1#cosh",
+    "Tanh" => "openmath:transc1#tanh",
+    "Coth" => "openmath:transc1#coth",
+    "Sech" => "openmath:transc1#sech",
+    "Csch" => "openmath:transc1#csch",
+    "Asin" => "openmath:transc1#arcsin",
+    "Acos" => "openmath:transc1#arccos",
+    "Atan" => "openmath:transc1#arctan",
+    "Acot" => "openmath:transc1#arccot",
+    "Asec" => "openmath:transc1#arcsec",
+    "Acsc" => "openmath:transc1#arccsc",
+    "Asinh" => "openmath:transc1#arcsinh",
+    "Acosh" => "openmath:transc1#arccosh",
+    "Atanh" => "openmath:transc1#arctanh",
+    "Acoth" => "openmath:transc1#arccoth",
+    "Asech" => "openmath:transc1#arcsech",
+    "Acsch" => "openmath:transc1#arccsch",
+    "Abs" => "openmath:arith1#abs",
 )
 
 """

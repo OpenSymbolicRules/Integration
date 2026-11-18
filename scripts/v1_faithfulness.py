@@ -11,7 +11,7 @@ v0.1 rule converts to under the documented conventions (docs/osr-v1.md):
 * a wildcard (`a_`, `a.`, `x_symbol`) becomes the variable `a`;
 * `FreeQ[{…}, x]` becomes `independent` (a v1 rule may declare more
   independent variables only with an `independence:` finding); `NeQ[a, b]` → `neq(a, b)`,
-  `EqQ[a, b]` → `eq(a, b)`,
+  `EqQ[a, b]` → `eq(a, b)`, `Sqrt[a]` → `root(a, 2)`,
   `GtQ[a, b]` → `gt(a, b)`, `LtQ[a, b]` → `gt(b, a)`, `IntegerQ[a]` and
   `IntegersQ[a, …]` → `in(a, Z)`, `IGtQ[n, k]` → `in(n, Z)`, `gt(n, k)`,
   `ILtQ[n, k]` → `in(n, Z)`, `gt(k, n)`, in constraint order.
@@ -63,6 +63,8 @@ def convert(term, semantics: dict, var: str) -> dict:
                 "arguments": [{"kind": "OMV", "name": var}]}
     symbol = oms(semantics[head])
     converted = [convert(a, semantics, var) for a in args]
+    if head == "Sqrt" and len(converted) == 1:
+        converted.append({"kind": "OMI", "integer": 2})
     if (symbol["cd"], symbol["name"]) in BINARY and len(converted) > 2:
         acc = converted[0]
         for nxt in converted[1:]:

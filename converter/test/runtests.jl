@@ -291,6 +291,22 @@ end
     @test semantics["Expon"] == "openmath:osr#Expon"
     @test semantics["Multiply"] == "openmath:arith1#times"
 
+    # Elementary functions get their OpenMath transc1 symbols, inverse
+    # functions included (RUBI writes them Asin, Atanh, …).
+    trig = [Dict(
+        "id" => 1,
+        "pattern" => ["Int", ["Multiply", ["Csc", "x"], ["Sinh", "x"]], "x"],
+        "result" => ["Add", ["Atanh", "x"], ["Asin", "x"], ["Acoth", "x"], ["Abs", "x"]],
+        "constraints" => Any[],
+    )]
+    trig_semantics = RubiConverter.rule_semantics(trig)
+    @test trig_semantics["Csc"] == "openmath:transc1#csc"
+    @test trig_semantics["Sinh"] == "openmath:transc1#sinh"
+    @test trig_semantics["Atanh"] == "openmath:transc1#arctanh"
+    @test trig_semantics["Asin"] == "openmath:transc1#arcsin"
+    @test trig_semantics["Acoth"] == "openmath:transc1#arccoth"
+    @test trig_semantics["Abs"] == "openmath:arith1#abs"
+
     # A predicate name is rule-language vocabulary, not a mathematical
     # operator, so it gets no OpenMath binding.
     @test !haskey(semantics, "NeQ")

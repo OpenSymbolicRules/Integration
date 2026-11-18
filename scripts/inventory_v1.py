@@ -37,7 +37,7 @@ OPENMATH = "http://www.openmath.org/cd/"
 # Mathematica evaluates them on the matched expressions (IntegerQ tests for an
 # integer literal, NeQ for a value not possibly zero), so the conditions are a
 # semantic reading of the predicates, to be reviewed rule by rule.
-EXPRESSIBLE = {"FreeQ", "NeQ", "GtQ", "LtQ", "IntegerQ", "IntegersQ", "IGtQ", "ILtQ"}
+EXPRESSIBLE = {"FreeQ", "NeQ", "EqQ", "GtQ", "LtQ", "IntegerQ", "IntegersQ", "IGtQ", "ILtQ"}
 
 
 def heads(term):

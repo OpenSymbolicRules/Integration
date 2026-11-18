@@ -131,5 +131,13 @@ class StrengthenedConditionsTests(FaithfulnessTests):
         self.assertEqual(self.run_check(rule).returncode, 1)
 
 
+class SqrtConventionTest(unittest.TestCase):
+    def test_sqrt_is_the_square_root(self):
+        import v1_faithfulness as F
+        got = F.convert(["Sqrt", "a"], {"Sqrt": "openmath:arith1#root"}, "x")
+        self.assertEqual(got, {"kind": "OMA", "applicant": {"kind": "OMS", "cd": "arith1", "name": "root"},
+                               "arguments": [{"kind": "OMV", "name": "a"}, {"kind": "OMI", "integer": 2}]})
+
+
 if __name__ == "__main__":
     unittest.main()

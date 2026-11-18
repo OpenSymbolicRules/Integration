@@ -139,6 +139,14 @@ conditions after the converted ones only with a `strengthened:` finding; the
 script counts such rules separately (`N faithful, M strengthened, K
 different`).  `scripts/check-v1.sh` runs it.
 
+The v0.1 heads follow the converter's `OPENMATH_SEMANTICS`
+(`converter/src/rule_writer.jl`): besides `arith1`, `calculus1#int` and
+`transc1#ln`, the reciprocal, hyperbolic and inverse functions map to their
+`transc1` symbols (`Cot` → `cot`, `Sinh` → `sinh`, `Asin` → `arcsin`,
+`Atanh` → `arctanh`, …), `Abs` to `arith1#abs`, and any other head to
+`osr#<head>`.  `Sqrt[a]` (`arith1#root`) is read as the square root
+`root(a, 2)`, and `EqQ` is an expressible condition (`relation1#eq`).
+
 ## Updating
 
 ```bash
