@@ -14,6 +14,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   that report; the findings are added and the check passes.
 
 ### Added
+- Report `b4b80ded…`: 19 more RUBI rules not considered before are migrated
+  and refuted over ℝ; 883 rules.
 - Report `8dc11a68…`: 14 more RUBI rules not considered before (5.3.4,
   7.3.1, 7.3.4 and 6.7.7) are migrated and proved, 4 of them also over ℂ;
   864 rules.
