@@ -14,6 +14,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   that report; the findings are added and the check passes.
 
 ### Added
+- Report `cf523cae…`: six more RUBI rules (7.3.4 #89, #91, 7.3.1 #109,
+  #111, 5.3.4 #89, #91) are migrated and proved over ℝ; 904 rules.
 - Report `d9ebd02b…`: five more RUBI rules (5.3.7 #13, #43, #45, 7.3.4 #13,
   7.3.7 #13) are migrated and proved over ℝ; 898 rules.
 - Report `ff17058b…`: ten more RUBI rules (arctanh and arctan families) are
