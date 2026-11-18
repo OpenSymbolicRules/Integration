@@ -14,6 +14,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   that report; the findings are added and the check passes.
 
 ### Added
+- Report `574f2788…`: 247 RUBI rules not considered before, including
+  reciprocal, hyperbolic, inverse and square-root rules, are migrated and
+  refuted (all over ℝ, 53 over ℂ); 850 rules.
 - Report `37faa87a…`: nine RUBI rules not considered before (1.2.1.2 #93–95,
   1.2.3.3 #41, #42, #47 and 1.2.3.4 #92, #93, #100) are migrated and proved
   over ℝ and ℂ as RUBI states them; 603 rules.
