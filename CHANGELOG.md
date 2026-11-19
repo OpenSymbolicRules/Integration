@@ -14,6 +14,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   that report; the findings are added and the check passes.
 
 ### Added
+- Report `c183135e…`: nine more RUBI rules are migrated and refuted at
+  degenerate coefficients (1.1.1.4, 1.1.1.7, 1.1.3.3, 1.1.3.4, 1.2.2.3, 4.7.9,
+  7.3.4); 1031 rules.
 - Report `a882d460…`: five more RUBI rules are migrated, two proved (1.3.3 #24,
   6.7.9 #76) and three refuted (1.3.3 #36, 1.2.1.5 #17, 1.2.1.6 #26); 1022
   rules.
