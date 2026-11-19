@@ -185,6 +185,15 @@ class AcothConventionTest(unittest.TestCase):
                          F.convert(["Atanh", ["Power", "a", -1]], sem, "x"))
 
 
+class AcotConventionTest(unittest.TestCase):
+    def test_acot_is_arctan_of_the_reciprocal(self):
+        import v1_faithfulness as F
+        sem = {"Acot": "openmath:transc1#arccot", "Atan": "openmath:transc1#arctan",
+               "Power": "openmath:arith1#power"}
+        self.assertEqual(F.convert(["Acot", "a"], sem, "x"),
+                         F.convert(["Atan", ["Power", "a", -1]], sem, "x"))
+
+
 class SqrtConventionTest(unittest.TestCase):
     def test_sqrt_is_the_square_root(self):
         import v1_faithfulness as F

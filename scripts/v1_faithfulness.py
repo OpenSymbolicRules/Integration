@@ -12,7 +12,7 @@ v0.1 rule converts to under the documented conventions (docs/osr-v1.md):
 * `FreeQ[{…}, x]` becomes `independent` (a v1 rule may declare more
   independent variables only with an `independence:` finding); `NeQ[a, b]` → `neq(a, b)` (`And` flattened, `Not[EqQ]` read as `NeQ`
   and `Not[NeQ]` as `EqQ`),
-  `EqQ[a, b]` → `eq(a, b)`, `Sqrt[a]` → `root(a, 2)`, `E^u` → `exp(u)`, `Simp[e]` and `Simp[e, x]` → `e`, `Acoth[u]` → `arctanh(u^-1)`,
+  `EqQ[a, b]` → `eq(a, b)`, `Sqrt[a]` → `root(a, 2)`, `E^u` → `exp(u)`, `Simp[e]` and `Simp[e, x]` → `e`, `Acoth[u]` → `arctanh(u^-1)`, `Acot[u]` → `arctan(u^-1)`,
   the inert `sin`, `cos`, `tan`, `cot`, `sec`, `csc` → `Sin`, …, `Csc`,
   `GtQ[a, b]` → `gt(a, b)`, `LtQ[a, b]` → `gt(b, a)`, `IntegerQ[a]` and
   `IntegersQ[a, …]` → `in(a, Z)`, `IGtQ[n, k]` → `in(n, Z)`, `gt(n, k)`,
@@ -72,6 +72,10 @@ def convert(term, semantics: dict, var: str) -> dict:
     if head == "Simp" and len(args) in (1, 2):
         # Simp[e] and Simp[e, x] only normalise e algebraically; the value is e.
         return convert(args[0], semantics, var)
+    if head == "Acot" and len(args) == 1:
+        # arccot(u) = arctan(1/u) (Mathematica's ArcCot, real and complex); the fragment has no arccot.
+        return convert(["Atan", ["Power", args[0], -1]],
+                       {**semantics, "Atan": "openmath:transc1#arctan", "Power": "openmath:arith1#power"}, var)
     if head == "Acoth" and len(args) == 1:
         # arccoth(u) = arctanh(1/u) (real and principal complex branches); the fragment has no arccoth.
         return convert(["Atanh", ["Power", args[0], -1]],
