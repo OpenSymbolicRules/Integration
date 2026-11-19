@@ -14,7 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   that report; the findings are added and the check passes.
 
 ### Changed
-- `scripts/v1_faithfulness.py` reads `Simp[e, x]` as `e` (RUBI's algebraic
+- `scripts/v1_faithfulness.py` reads `Simp[e]` and `Simp[e, x]` as `e` (RUBI's algebraic
   normaliser does not change the value), flattens `And[…]` conditions and
   reads `Not[EqQ[a, b]]` as `NeQ[a, b]` and `Not[NeQ[a, b]]` as `EqQ[a, b]`.
   This lets more rules be migrated faithfully; the current v1 files are

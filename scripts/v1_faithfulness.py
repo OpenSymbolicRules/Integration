@@ -12,7 +12,7 @@ v0.1 rule converts to under the documented conventions (docs/osr-v1.md):
 * `FreeQ[{…}, x]` becomes `independent` (a v1 rule may declare more
   independent variables only with an `independence:` finding); `NeQ[a, b]` → `neq(a, b)` (`And` flattened, `Not[EqQ]` read as `NeQ`
   and `Not[NeQ]` as `EqQ`),
-  `EqQ[a, b]` → `eq(a, b)`, `Sqrt[a]` → `root(a, 2)`, `E^u` → `exp(u)`, `Simp[e, x]` → `e`,
+  `EqQ[a, b]` → `eq(a, b)`, `Sqrt[a]` → `root(a, 2)`, `E^u` → `exp(u)`, `Simp[e]` and `Simp[e, x]` → `e`,
   `GtQ[a, b]` → `gt(a, b)`, `LtQ[a, b]` → `gt(b, a)`, `IntegerQ[a]` and
   `IntegersQ[a, …]` → `in(a, Z)`, `IGtQ[n, k]` → `in(n, Z)`, `gt(n, k)`,
   `ILtQ[n, k]` → `in(n, Z)`, `gt(k, n)`, in constraint order.
@@ -63,8 +63,8 @@ def convert(term, semantics: dict, var: str) -> dict:
                 "applicant": {"kind": "OMA", "applicant": INT,
                               "arguments": [lam(var, convert(args[0], semantics, var))]},
                 "arguments": [{"kind": "OMV", "name": var}]}
-    if head == "Simp" and len(args) == 2:
-        # Simp[e, x] only normalises e algebraically; its value is e.
+    if head == "Simp" and len(args) in (1, 2):
+        # Simp[e] and Simp[e, x] only normalise e algebraically; the value is e.
         return convert(args[0], semantics, var)
     if head == "Power" and len(args) == 2 and args[0] == "E":
         # E^u is the exponential: exp(u) (the v0.1 corpus writes exponentials so).

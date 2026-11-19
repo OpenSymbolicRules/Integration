@@ -155,6 +155,8 @@ class SimpConventionTest(unittest.TestCase):
         sem = {"Multiply": "openmath:arith1#times"}
         self.assertEqual(F.convert(["Simp", ["Multiply", "c", "x"], "x"], sem, "x"),
                          F.convert(["Multiply", "c", "x"], sem, "x"))
+        self.assertEqual(F.convert(["Simp", ["Multiply", "c", "x"]], sem, "x"),
+                         F.convert(["Multiply", "c", "x"], sem, "x"))
 
 
 class CompoundConditionTest(unittest.TestCase):
