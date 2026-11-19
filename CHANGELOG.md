@@ -14,6 +14,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   that report; the findings are added and the check passes.
 
 ### Added
+- Report `41cc6232…`: six more RUBI rules are migrated, five proved by parts
+  (6.1.12 #27, #28, 4.1.12 #41, #42, 3.3 #9) and one refuted (5.3.5 #7); 1007
+  rules.
 - Report `eea66e08…`: four more RUBI rules are migrated, three refuted (5.3.4
   #144, 6.3.12 #3, #4) and one proved (1.2.2.3 #25); 1001 rules.
 - Report `0caffa06…`: eight more RUBI rules are migrated, five proved (7.3.1
