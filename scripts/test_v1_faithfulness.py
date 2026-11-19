@@ -176,6 +176,15 @@ class InertTrigConventionTest(unittest.TestCase):
             self.assertEqual(F.convert([low, "a"], sem, "x"), F.convert([up, "a"], sem, "x"))
 
 
+class AcothConventionTest(unittest.TestCase):
+    def test_acoth_is_arctanh_of_the_reciprocal(self):
+        import v1_faithfulness as F
+        sem = {"Acoth": "openmath:transc1#arccoth", "Atanh": "openmath:transc1#arctanh",
+               "Power": "openmath:arith1#power"}
+        self.assertEqual(F.convert(["Acoth", "a"], sem, "x"),
+                         F.convert(["Atanh", ["Power", "a", -1]], sem, "x"))
+
+
 class SqrtConventionTest(unittest.TestCase):
     def test_sqrt_is_the_square_root(self):
         import v1_faithfulness as F

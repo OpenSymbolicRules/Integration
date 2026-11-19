@@ -14,6 +14,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   that report; the findings are added and the check passes.
 
 ### Changed
+- `scripts/v1_faithfulness.py` reads `Acoth[u]` as `arctanh(u^-1)` (the same
+  value over ℝ and on the principal complex branch); the fragment has no
+  `transc1#arccoth`. The current v1 files are unaffected.
 - `scripts/v1_faithfulness.py` reads RUBI's inert trig functions `sin`,
   `cos`, `tan`, `cot`, `sec` and `csc` as `Sin`, `Cos`, `Tan`, `Cot`, `Sec`
   and `Csc` (same value). The current v1 files are unaffected.
