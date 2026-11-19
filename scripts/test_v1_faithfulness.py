@@ -168,6 +168,14 @@ class CompoundConditionTest(unittest.TestCase):
         self.assertEqual((got, ind), (want, {"a"}))
 
 
+class InertTrigConventionTest(unittest.TestCase):
+    def test_inert_trig_is_the_trig_function(self):
+        import v1_faithfulness as F
+        sem = {"Sin": "openmath:transc1#sin", "Csc": "openmath:transc1#csc"}
+        for low, up in (("sin", "Sin"), ("csc", "Csc")):
+            self.assertEqual(F.convert([low, "a"], sem, "x"), F.convert([up, "a"], sem, "x"))
+
+
 class SqrtConventionTest(unittest.TestCase):
     def test_sqrt_is_the_square_root(self):
         import v1_faithfulness as F

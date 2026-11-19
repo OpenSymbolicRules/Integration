@@ -13,6 +13,7 @@ v0.1 rule converts to under the documented conventions (docs/osr-v1.md):
   independent variables only with an `independence:` finding); `NeQ[a, b]` → `neq(a, b)` (`And` flattened, `Not[EqQ]` read as `NeQ`
   and `Not[NeQ]` as `EqQ`),
   `EqQ[a, b]` → `eq(a, b)`, `Sqrt[a]` → `root(a, 2)`, `E^u` → `exp(u)`, `Simp[e]` and `Simp[e, x]` → `e`,
+  the inert `sin`, `cos`, `tan`, `cot`, `sec`, `csc` → `Sin`, …, `Csc`,
   `GtQ[a, b]` → `gt(a, b)`, `LtQ[a, b]` → `gt(b, a)`, `IntegerQ[a]` and
   `IntegersQ[a, …]` → `in(a, Z)`, `IGtQ[n, k]` → `in(n, Z)`, `gt(n, k)`,
   `ILtQ[n, k]` → `in(n, Z)`, `gt(k, n)`, in constraint order.
@@ -41,6 +42,9 @@ def oms(uri: str) -> dict:
     return {"kind": "OMS", "cd": cd, "name": name}
 
 
+INERT_TRIG = {"sin": "Sin", "cos": "Cos", "tan": "Tan", "cot": "Cot", "sec": "Sec", "csc": "Csc"}
+
+
 def name(atom: str) -> str:
     return atom.split("_")[0].rstrip(".")
 
@@ -58,6 +62,8 @@ def convert(term, semantics: dict, var: str) -> dict:
     if isinstance(term, str):
         return {"kind": "OMV", "name": name(term)}
     head, args = term[0], term[1:]
+    # RUBI writes inert copies sin, cos, … of the trig functions in some rules; same value.
+    head = INERT_TRIG.get(head, head)
     if head == "Int":
         return {"kind": "OMA",
                 "applicant": {"kind": "OMA", "applicant": INT,
