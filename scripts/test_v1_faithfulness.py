@@ -149,6 +149,23 @@ class ExpConventionTest(unittest.TestCase):
         self.assertEqual(got["applicant"]["name"], "power")
 
 
+class SimpConventionTest(unittest.TestCase):
+    def test_simp_is_its_first_argument(self):
+        import v1_faithfulness as F
+        sem = {"Multiply": "openmath:arith1#times"}
+        self.assertEqual(F.convert(["Simp", ["Multiply", "c", "x"], "x"], sem, "x"),
+                         F.convert(["Multiply", "c", "x"], sem, "x"))
+
+
+class CompoundConditionTest(unittest.TestCase):
+    def test_and_and_negated_equalities_flatten(self):
+        import v1_faithfulness as F
+        got, ind = F.conditions([["And", ["FreeQ", ["List", "a"], "x"], ["Not", ["EqQ", "a", 0]]],
+                                 ["Not", ["NeQ", "b", 1]]], {}, "x")
+        want, _ = F.conditions([["NeQ", "a", 0], ["EqQ", "b", 1]], {}, "x")
+        self.assertEqual((got, ind), (want, {"a"}))
+
+
 class SqrtConventionTest(unittest.TestCase):
     def test_sqrt_is_the_square_root(self):
         import v1_faithfulness as F

@@ -10,8 +10,9 @@ v0.1 rule converts to under the documented conventions (docs/osr-v1.md):
   becomes a left-nested chain; other heads keep their arguments;
 * a wildcard (`a_`, `a.`, `x_symbol`) becomes the variable `a`;
 * `FreeQ[{…}, x]` becomes `independent` (a v1 rule may declare more
-  independent variables only with an `independence:` finding); `NeQ[a, b]` → `neq(a, b)`,
-  `EqQ[a, b]` → `eq(a, b)`, `Sqrt[a]` → `root(a, 2)`, `E^u` → `exp(u)`,
+  independent variables only with an `independence:` finding); `NeQ[a, b]` → `neq(a, b)` (`And` flattened, `Not[EqQ]` read as `NeQ`
+  and `Not[NeQ]` as `EqQ`),
+  `EqQ[a, b]` → `eq(a, b)`, `Sqrt[a]` → `root(a, 2)`, `E^u` → `exp(u)`, `Simp[e, x]` → `e`,
   `GtQ[a, b]` → `gt(a, b)`, `LtQ[a, b]` → `gt(b, a)`, `IntegerQ[a]` and
   `IntegersQ[a, …]` → `in(a, Z)`, `IGtQ[n, k]` → `in(n, Z)`, `gt(n, k)`,
   `ILtQ[n, k]` → `in(n, Z)`, `gt(k, n)`, in constraint order.
@@ -62,6 +63,9 @@ def convert(term, semantics: dict, var: str) -> dict:
                 "applicant": {"kind": "OMA", "applicant": INT,
                               "arguments": [lam(var, convert(args[0], semantics, var))]},
                 "arguments": [{"kind": "OMV", "name": var}]}
+    if head == "Simp" and len(args) == 2:
+        # Simp[e, x] only normalises e algebraically; its value is e.
+        return convert(args[0], semantics, var)
     if head == "Power" and len(args) == 2 and args[0] == "E":
         # E^u is the exponential: exp(u) (the v0.1 corpus writes exponentials so).
         return {"kind": "OMA", "applicant": EXP, "arguments": [convert(args[1], semantics, var)]}
@@ -90,7 +94,21 @@ def in_z(a: dict) -> dict:
 def conditions(constraints, semantics, var):
     out, independent = [], set()
     c = lambda t: convert(t, semantics, var)
+    flat = []
+
+    def push(con):
+        # And[...] is a conjunction; Not[EqQ[a, b]] is NeQ[a, b] and Not[NeQ[a, b]] is EqQ[a, b].
+        if con[0] == "And":
+            for z in con[1:]:
+                push(z)
+        elif con[0] == "Not" and isinstance(con[1], list) and con[1][0] in ("EqQ", "NeQ"):
+            flat.append([{"EqQ": "NeQ", "NeQ": "EqQ"}[con[1][0]]] + con[1][1:])
+        else:
+            flat.append(con)
+
     for con in constraints:
+        push(con)
+    for con in flat:
         head, args = con[0], con[1:]
         if head == "FreeQ":
             vs = args[0][1:] if isinstance(args[0], list) else [args[0]]
