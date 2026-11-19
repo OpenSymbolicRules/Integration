@@ -145,7 +145,8 @@ The v0.1 heads follow the converter's `OPENMATH_SEMANTICS`
 `transc1` symbols (`Cot` → `cot`, `Sinh` → `sinh`, `Asin` → `arcsin`,
 `Atanh` → `arctanh`, …), `Abs` to `arith1#abs`, and any other head to
 `osr#<head>`.  `Sqrt[a]` (`arith1#root`) is read as the square root
-`root(a, 2)`, and `EqQ` is an expressible condition (`relation1#eq`).
+`root(a, 2)`, a power `E^u` of the constant `E` as the exponential
+`exp(u)` (`transc1#exp`), and `EqQ` is an expressible condition (`relation1#eq`).
 
 ## Updating
 

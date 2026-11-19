@@ -13,6 +13,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   finding, so `scripts/check-v1.sh` failed on the v1 files distributed with
   that report; the findings are added and the check passes.
 
+### Changed
+- `scripts/v1_faithfulness.py` reads a power `E^u` of the constant `E` as the
+  exponential `exp(u)` (`transc1#exp`), the way the v0.1 corpus writes
+  exponentials; a bare `E` is unchanged. This lets rules written with `E^u`
+  be migrated faithfully; the current v1 files are unaffected.
+
 ### Added
 - Report `091039ab…`: 279 more RUBI rules are reported as not migrated (320 in
   all: fractional exponents or powers `F^(…)` with a non-constant exponent),

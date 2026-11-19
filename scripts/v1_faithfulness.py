@@ -11,7 +11,7 @@ v0.1 rule converts to under the documented conventions (docs/osr-v1.md):
 * a wildcard (`a_`, `a.`, `x_symbol`) becomes the variable `a`;
 * `FreeQ[{…}, x]` becomes `independent` (a v1 rule may declare more
   independent variables only with an `independence:` finding); `NeQ[a, b]` → `neq(a, b)`,
-  `EqQ[a, b]` → `eq(a, b)`, `Sqrt[a]` → `root(a, 2)`,
+  `EqQ[a, b]` → `eq(a, b)`, `Sqrt[a]` → `root(a, 2)`, `E^u` → `exp(u)`,
   `GtQ[a, b]` → `gt(a, b)`, `LtQ[a, b]` → `gt(b, a)`, `IntegerQ[a]` and
   `IntegersQ[a, …]` → `in(a, Z)`, `IGtQ[n, k]` → `in(n, Z)`, `gt(n, k)`,
   `ILtQ[n, k]` → `in(n, Z)`, `gt(k, n)`, in constraint order.
@@ -30,6 +30,7 @@ from pathlib import Path
 import sys
 
 BINARY = {("arith1", "plus"), ("arith1", "times")}
+EXP = {"kind": "OMS", "cd": "transc1", "name": "exp"}
 LAMBDA = {"kind": "OMS", "cd": "fns1", "name": "lambda"}
 INT = {"kind": "OMS", "cd": "calculus1", "name": "int"}
 
@@ -61,6 +62,9 @@ def convert(term, semantics: dict, var: str) -> dict:
                 "applicant": {"kind": "OMA", "applicant": INT,
                               "arguments": [lam(var, convert(args[0], semantics, var))]},
                 "arguments": [{"kind": "OMV", "name": var}]}
+    if head == "Power" and len(args) == 2 and args[0] == "E":
+        # E^u is the exponential: exp(u) (the v0.1 corpus writes exponentials so).
+        return {"kind": "OMA", "applicant": EXP, "arguments": [convert(args[1], semantics, var)]}
     symbol = oms(semantics[head])
     converted = [convert(a, semantics, var) for a in args]
     if head == "Sqrt" and len(converted) == 1:

@@ -131,6 +131,24 @@ class StrengthenedConditionsTests(FaithfulnessTests):
         self.assertEqual(self.run_check(rule).returncode, 1)
 
 
+class ExpConventionTest(unittest.TestCase):
+    def test_power_of_e_is_the_exponential(self):
+        import v1_faithfulness as F
+        got = F.convert(["Power", "E", ["Multiply", "c", "x"]],
+                        {"Power": "openmath:arith1#power", "Multiply": "openmath:arith1#times"}, "x")
+        self.assertEqual(got, {"kind": "OMA", "applicant": {"kind": "OMS", "cd": "transc1", "name": "exp"},
+                               "arguments": [{"kind": "OMA",
+                                              "applicant": {"kind": "OMS", "cd": "arith1", "name": "times"},
+                                              "arguments": [{"kind": "OMV", "name": "c"},
+                                                            {"kind": "OMV", "name": "x"}]}]})
+
+    def test_bare_e_is_unchanged(self):
+        import v1_faithfulness as F
+        self.assertEqual(F.convert("E", {}, "x"), {"kind": "OMV", "name": "E"})
+        got = F.convert(["Power", "a", "E"], {"Power": "openmath:arith1#power"}, "x")
+        self.assertEqual(got["applicant"]["name"], "power")
+
+
 class SqrtConventionTest(unittest.TestCase):
     def test_sqrt_is_the_square_root(self):
         import v1_faithfulness as F
