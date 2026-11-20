@@ -151,7 +151,9 @@ The v0.1 heads follow the converter's `OPENMATH_SEMANTICS`
 condition (`relation1#eq`); `And[…]` conditions are flattened, `Not[EqQ]`
 reads as `NeQ` and `Not[NeQ]` as `EqQ`, `GeQ` and `Not[LtQ]` as
 `relation1#geq`, `LeQ` and `Not[GtQ]` as `relation1#geq` with the operands
-swapped, and `Or` as a left-nested `logic1#or`.
+swapped, and `Or` as a left-nested `logic1#or`; compound conditions are first put in
+conjunctive normal form (`Or` distributes over `And`, `Not` moves inward), at most 16
+clauses per condition.
 
 ## Updating
 

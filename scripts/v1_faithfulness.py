@@ -16,7 +16,8 @@ v0.1 rule converts to under the documented conventions (docs/osr-v1.md):
   the inert `sin`, `cos`, `tan`, `cot`, `sec`, `csc` → `Sin`, …, `Csc`,
   `GtQ[a, b]` → `gt(a, b)`, `LtQ[a, b]` → `gt(b, a)`, `GeQ[a, b]` and
   `Not[LtQ[a, b]]` → `geq(a, b)`, `LeQ[a, b]` and `Not[GtQ[a, b]]` → `geq(b, a)`,
-  `Or[c, d, …]` → a left-nested `logic1#or`, `IntegerQ[a]` and
+  `Or[c, d, …]` → a left-nested `logic1#or`; compound conditions are put in conjunctive
+  normal form (`cnf`: And flattens, Or distributes, Not moves inward), `IntegerQ[a]` and
   `IntegersQ[a, …]` → `in(a, Z)`, `IGtQ[n, k]` → `in(n, Z)`, `gt(n, k)`,
   `ILtQ[n, k]` → `in(n, Z)`, `gt(k, n)`, in constraint order.
 
@@ -107,64 +108,87 @@ def in_z(a: dict) -> dict:
             "arguments": [a, {"kind": "OMS", "cd": "setname1", "name": "Z"}]}
 
 
-def conditions(constraints, semantics, var):
-    out, independent = [], set()
-    c = lambda t: convert(t, semantics, var)
-    flat = []
+NEGATE = {"EqQ": "NeQ", "NeQ": "EqQ", "LtQ": "GeQ", "GtQ": "LeQ", "GeQ": "LtQ", "LeQ": "GtQ"}
+LITERALS = {"EqQ", "NeQ", "GtQ", "LtQ", "GeQ", "LeQ", "IntegerQ"}
+MAX_CLAUSES = 16
 
-    def push(con):
-        # And[...] is a conjunction; Not[EqQ[a, b]] is NeQ[a, b] and Not[NeQ[a, b]] is EqQ[a, b].
-        if con[0] == "And":
-            for z in con[1:]:
-                push(z)
-        elif con[0] == "Not" and isinstance(con[1], list) and con[1][0] in ("EqQ", "NeQ"):
-            flat.append([{"EqQ": "NeQ", "NeQ": "EqQ"}[con[1][0]]] + con[1][1:])
-        elif con[0] == "Not" and isinstance(con[1], list) and con[1][0] in ("LtQ", "GtQ"):
-            # Not[LtQ[a, b]] is GeQ[a, b] and Not[GtQ[a, b]] is LeQ[a, b] (RUBI orders reals).
-            flat.append([{"LtQ": "GeQ", "GtQ": "LeQ"}[con[1][0]]] + con[1][1:])
-        else:
-            flat.append(con)
 
+def cnf(constraints):
+    """v0.1 constraints -> (clauses, independent): a conjunctive normal form whose literals are
+    EqQ, NeQ, GtQ, LtQ, GeQ, LeQ or one-argument IntegerQ.  And flattens, Or distributes over
+    And, Not moves inward (De Morgan; Not of a comparison is the opposite comparison), IGtQ and
+    ILtQ are IntegerQ and a comparison, IntegersQ is one IntegerQ per argument."""
+    independent = set()
+
+    def norm(c, neg=False, top=True):
+        # -> list of clauses (each a list of literals); top: in the outer conjunction
+        h, a = c[0], c[1:]
+        if h == "FreeQ":
+            if not top or neg:
+                raise ValueError("no v1 counterpart for FreeQ under Or or Not")
+            vs = a[0][1:] if isinstance(a[0], list) else [a[0]]
+            independent.update(name(v) for v in vs)
+            return []
+        if h == "Not":
+            return norm(a[0], not neg, False)
+        if h == "IGtQ":
+            c = ["And", ["IntegerQ", a[0]], ["GtQ", a[0], a[1]]]
+            h, a = c[0], c[1:]
+        elif h == "ILtQ":
+            c = ["And", ["IntegerQ", a[0]], ["LtQ", a[0], a[1]]]
+            h, a = c[0], c[1:]
+        elif h == "IntegersQ":
+            c = ["And"] + [["IntegerQ", z] for z in a]
+            h, a = c[0], c[1:]
+        if (h == "And") != neg and h in ("And", "Or"):
+            return [cl for z in a for cl in norm(z, neg, top and not neg)]  # a conjunction
+        if h in ("And", "Or"):  # a disjunction: distribute
+            acc = [[]]
+            for z in a:
+                acc = [x + y for x in acc for y in norm(z, neg, False)]
+                if len(acc) > MAX_CLAUSES:
+                    raise ValueError("no v1 counterpart: the normal form is too large")
+            return acc
+        if h in LITERALS and not (h == "IntegerQ" and len(a) != 1):
+            if neg:
+                if h == "IntegerQ":
+                    raise ValueError("no v1 counterpart for Not[IntegerQ]")
+                return [[[NEGATE[h]] + list(a)]]
+            return [[[h] + list(a)]]
+        raise ValueError(f"no v1 counterpart for {h}")
+
+    clauses = []
     for con in constraints:
-        push(con)
-    for con in flat:
-        head, args = con[0], con[1:]
-        if head == "FreeQ":
-            vs = args[0][1:] if isinstance(args[0], list) else [args[0]]
+        if con[0] == "FreeQ":
+            vs = con[1][1:] if isinstance(con[1], list) else [con[1]]
             independent |= {name(v) for v in vs}
-        elif head == "NeQ":
-            out.append(rel("neq", c(args[0]), c(args[1])))
-        elif head == "EqQ":
-            out.append(rel("eq", c(args[0]), c(args[1])))
-        elif head == "GtQ":
-            out.append(rel("gt", c(args[0]), c(args[1])))
-        elif head == "LtQ":
-            out.append(rel("gt", c(args[1]), c(args[0])))
-        elif head in ("IntegerQ", "IntegersQ"):
-            out.extend(in_z(c(a)) for a in args)
-        elif head == "GeQ":
-            out.append(rel("geq", c(args[0]), c(args[1])))
-        elif head == "LeQ":
-            out.append(rel("geq", c(args[1]), c(args[0])))
-        elif head == "Or":
-            # Or[c1, c2, ...] is a left-nested chain of logic1#or; each disjunct must be one condition.
-            ds = []
-            for z in args:
-                one, ind = conditions([z], semantics, var)
-                if len(one) != 1 or ind:
-                    raise ValueError("no v1 counterpart for a disjunct of Or")
-                ds += one
-            acc = ds[0]
-            for z in ds[1:]:
-                acc = {"kind": "OMA", "applicant": {"kind": "OMS", "cd": "logic1", "name": "or"},
-                       "arguments": [acc, z]}
-            out.append(acc)
-        elif head == "IGtQ":
-            out += [in_z(c(args[0])), rel("gt", c(args[0]), c(args[1]))]
-        elif head == "ILtQ":
-            out += [in_z(c(args[0])), rel("gt", c(args[1]), c(args[0]))]
-        else:
-            raise ValueError(f"no v1 counterpart for {head}")
+            continue
+        clauses += norm(con)
+    return clauses, independent
+
+
+def conditions(constraints, semantics, var):
+    c = lambda t: convert(t, semantics, var)
+
+    def literal(lit):
+        h, a = lit[0], lit[1:]
+        if h == "NeQ": return rel("neq", c(a[0]), c(a[1]))
+        if h == "EqQ": return rel("eq", c(a[0]), c(a[1]))
+        if h == "GtQ": return rel("gt", c(a[0]), c(a[1]))
+        if h == "LtQ": return rel("gt", c(a[1]), c(a[0]))
+        if h == "GeQ": return rel("geq", c(a[0]), c(a[1]))
+        if h == "LeQ": return rel("geq", c(a[1]), c(a[0]))
+        if h == "IntegerQ": return in_z(c(a[0]))
+        raise ValueError(f"no v1 counterpart for {h}")
+
+    clauses, independent = cnf(constraints)
+    out = []
+    for cl in clauses:
+        acc = literal(cl[0])
+        for lit in cl[1:]:
+            acc = {"kind": "OMA", "applicant": {"kind": "OMS", "cd": "logic1", "name": "or"},
+                   "arguments": [acc, literal(lit)]}
+        out.append(acc)
     return out, independent
 
 

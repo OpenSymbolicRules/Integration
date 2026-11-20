@@ -14,6 +14,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   that report; the findings are added and the check passes.
 
 ### Changed
+- `scripts/v1_faithfulness.py` puts compound v0.1 conditions in conjunctive
+  normal form (`cnf`): `And` flattens, `Or` distributes over `And`, `Not`
+  moves inward (De Morgan; the negation of a comparison is the opposite
+  comparison), so an `Or` whose disjuncts are conjunctions or negations
+  becomes several `logic1#or` conditions. The current v1 files are
+  unaffected.
 - `scripts/v1_faithfulness.py` reads `GeQ[a, b]` and `Not[LtQ[a, b]]` as
   `geq(a, b)`, `LeQ[a, b]` and `Not[GtQ[a, b]]` as `geq(b, a)`
   (`relation1#geq`), and `Or[c, d, …]` as a left-nested `logic1#or`, the

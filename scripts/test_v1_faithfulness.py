@@ -213,6 +213,35 @@ class OrderAndOrConditionTest(unittest.TestCase):
             {"kind": "OMA", "applicant": OR, "arguments": [eq, gt]}, z]}])
 
 
+class ConjunctiveNormalFormTest(unittest.TestCase):
+    def test_or_of_and_distributes(self):
+        import v1_faithfulness as F
+        # Or[And[a, b], c] = (a or c) and (b or c)
+        got, ind = F.cnf([["Or", ["And", ["EqQ", "a", 0], ["GtQ", "b", 0]], ["IntegerQ", "m"]]])
+        self.assertEqual((got, ind), ([[["EqQ", "a", 0], ["IntegerQ", "m"]],
+                                       [["GtQ", "b", 0], ["IntegerQ", "m"]]], set()))
+
+    def test_negations_push_inward(self):
+        import v1_faithfulness as F
+        # Not[Or[a, b]] = Not a and Not b ; Not[And[a, b]] = Not a or Not b
+        got, _ = F.cnf([["Not", ["Or", ["EqQ", "a", 0], ["LtQ", "b", 1]]],
+                        ["Not", ["And", ["GeQ", "c", 0], ["NeQ", "d", 1]]]])
+        self.assertEqual(got, [[["NeQ", "a", 0]], [["GeQ", "b", 1]], [["LtQ", "c", 0], ["EqQ", "d", 1]]])
+
+    def test_compound_literals_and_freeq(self):
+        import v1_faithfulness as F
+        got, ind = F.cnf([["FreeQ", ["List", "a", "b"], "x"], ["IGtQ", "m", 0], ["IntegersQ", "p", "q"]])
+        self.assertEqual((got, ind), ([[["IntegerQ", "m"]], [["GtQ", "m", 0]], [["IntegerQ", "p"]],
+                                       [["IntegerQ", "q"]]], {"a", "b"}))
+
+    def test_or_of_cnf_becomes_nested_or(self):
+        import v1_faithfulness as F
+        got, _ = F.conditions([["Or", ["And", ["EqQ", "a", 0], ["GtQ", "b", 0]], ["IntegerQ", "m"]]], {}, "x")
+        a0, = F.conditions([["Or", ["EqQ", "a", 0], ["IntegerQ", "m"]]], {}, "x")[0]
+        b0, = F.conditions([["Or", ["GtQ", "b", 0], ["IntegerQ", "m"]]], {}, "x")[0]
+        self.assertEqual(got, [a0, b0])
+
+
 class SqrtConventionTest(unittest.TestCase):
     def test_sqrt_is_the_square_root(self):
         import v1_faithfulness as F
