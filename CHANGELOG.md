@@ -14,6 +14,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   that report; the findings are added and the check passes.
 
 ### Changed
+- `scripts/v1_faithfulness.py` reads `Subst[Int[H, x], x, g]` as the residual
+  integral evaluated at `g`, `int(λx. H)(g)` (V1-E-002b). The current v1
+  files are unaffected.
 - `scripts/v1_faithfulness.py` puts compound v0.1 conditions in conjunctive
   normal form (`cnf`): `And` flattens, `Or` distributes over `And`, `Not`
   moves inward (De Morgan; the negation of a comparison is the opposite

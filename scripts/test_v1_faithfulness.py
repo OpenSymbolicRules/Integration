@@ -242,6 +242,16 @@ class ConjunctiveNormalFormTest(unittest.TestCase):
         self.assertEqual(got, [a0, b0])
 
 
+class SubstConventionTest(unittest.TestCase):
+    def test_subst_is_the_residual_integral_at_g(self):
+        import v1_faithfulness as F
+        sem = {"Cos": "openmath:transc1#cos", "Power": "openmath:arith1#power"}
+        got = F.convert(["Subst", ["Int", ["Cos", "x"], "x"], "x", ["Power", "x", 2]], sem, "x")
+        at_x = F.convert(["Int", ["Cos", "x"], "x"], sem, "x")
+        self.assertEqual(got["applicant"], at_x["applicant"])
+        self.assertEqual(got["arguments"], [F.convert(["Power", "x", 2], sem, "x")])
+
+
 class SqrtConventionTest(unittest.TestCase):
     def test_sqrt_is_the_square_root(self):
         import v1_faithfulness as F

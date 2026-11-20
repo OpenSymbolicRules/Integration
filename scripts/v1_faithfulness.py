@@ -12,7 +12,8 @@ v0.1 rule converts to under the documented conventions (docs/osr-v1.md):
 * `FreeQ[{…}, x]` becomes `independent` (a v1 rule may declare more
   independent variables only with an `independence:` finding); `NeQ[a, b]` → `neq(a, b)` (`And` flattened, `Not[EqQ]` read as `NeQ`
   and `Not[NeQ]` as `EqQ`),
-  `EqQ[a, b]` → `eq(a, b)`, `Sqrt[a]` → `root(a, 2)`, `E^u` → `exp(u)`, `Simp[e]` and `Simp[e, x]` → `e`, `Acoth[u]` → `arctanh(u^-1)`, `Acot[u]` → `arctan(u^-1)`,
+  `EqQ[a, b]` → `eq(a, b)`, `Sqrt[a]` → `root(a, 2)`, `E^u` → `exp(u)`, `Simp[e]` and `Simp[e, x]` → `e`, `Acoth[u]` → `arctanh(u^-1)`,
+  `Subst[Int[H, x], x, g]` → `int(λx. H)(g)`, `Acot[u]` → `arctan(u^-1)`,
   the inert `sin`, `cos`, `tan`, `cot`, `sec`, `csc` → `Sin`, …, `Csc`,
   `GtQ[a, b]` → `gt(a, b)`, `LtQ[a, b]` → `gt(b, a)`, `GeQ[a, b]` and
   `Not[LtQ[a, b]]` → `geq(a, b)`, `LeQ[a, b]` and `Not[GtQ[a, b]]` → `geq(b, a)`,
@@ -72,6 +73,14 @@ def convert(term, semantics: dict, var: str) -> dict:
                 "applicant": {"kind": "OMA", "applicant": INT,
                               "arguments": [lam(var, convert(args[0], semantics, var))]},
                 "arguments": [{"kind": "OMV", "name": var}]}
+    if head == "Subst" and len(args) == 3 and isinstance(args[0], list) and args[0][0] == "Int":
+        # Subst[Int[H, x], x, g]: an antiderivative of λx. H evaluated at g (V1-E-002b).
+        if not (isinstance(args[1], str) and name(args[1]) == var and name(args[0][2]) == var):
+            raise ValueError("no v1 counterpart for a Subst in another variable")
+        return {"kind": "OMA",
+                "applicant": {"kind": "OMA", "applicant": INT,
+                              "arguments": [lam(var, convert(args[0][1], semantics, var))]},
+                "arguments": [convert(args[2], semantics, var)]}
     if head == "Simp" and len(args) in (1, 2):
         # Simp[e] and Simp[e, x] only normalise e algebraically; the value is e.
         return convert(args[0], semantics, var)

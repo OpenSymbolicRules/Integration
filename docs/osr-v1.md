@@ -146,7 +146,8 @@ The v0.1 heads follow the converter's `OPENMATH_SEMANTICS`
 `Atanh` → `arctanh`, …), `Abs` to `arith1#abs`, and any other head to
 `osr#<head>`.  `Sqrt[a]` (`arith1#root`) is read as the square root
 `root(a, 2)`, a power `E^u` of the constant `E` as the exponential
-`exp(u)` (`transc1#exp`), `Simp[e]` and `Simp[e, x]` as `e`, `Acoth[u]` as `arctanh(u^-1)`, `Acot[u]` as `arctan(u^-1)`, the inert
+`exp(u)` (`transc1#exp`), `Simp[e]` and `Simp[e, x]` as `e`, `Acoth[u]` as `arctanh(u^-1)`, `Subst[Int[H, x], x, g]` as
+`int(λx. H)(g)`, `Acot[u]` as `arctan(u^-1)`, the inert
 `sin`, `cos`, `tan`, `cot`, `sec` and `csc` as the trig functions, and `EqQ` is an expressible
 condition (`relation1#eq`); `And[…]` conditions are flattened, `Not[EqQ]`
 reads as `NeQ` and `Not[NeQ]` as `EqQ`, `GeQ` and `Not[LtQ]` as
