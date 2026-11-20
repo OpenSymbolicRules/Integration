@@ -194,6 +194,25 @@ class AcotConventionTest(unittest.TestCase):
                          F.convert(["Atan", ["Power", "a", -1]], sem, "x"))
 
 
+class OrderAndOrConditionTest(unittest.TestCase):
+    def test_leq_geq_and_negated_orders_become_geq(self):
+        import v1_faithfulness as F
+        geq = lambda a, b: F.rel("geq", F.convert(a, {}, "x"), F.convert(b, {}, "x"))
+        got, _ = F.conditions([["GeQ", "a", 0], ["LeQ", "a", 1], ["Not", ["LtQ", "b", 2]],
+                               ["Not", ["GtQ", "b", 3]]], {}, "x")
+        self.assertEqual(got, [geq("a", 0), geq(1, "a"), geq("b", 2), geq(3, "b")])
+
+    def test_or_is_logic1_or(self):
+        import v1_faithfulness as F
+        got, _ = F.conditions([["Or", ["EqQ", "a", 0], ["GtQ", "b", 0], ["IntegerQ", "m"]]], {}, "x")
+        eq, = F.conditions([["EqQ", "a", 0]], {}, "x")[0]
+        gt, = F.conditions([["GtQ", "b", 0]], {}, "x")[0]
+        z, = F.conditions([["IntegerQ", "m"]], {}, "x")[0]
+        OR = {"kind": "OMS", "cd": "logic1", "name": "or"}
+        self.assertEqual(got, [{"kind": "OMA", "applicant": OR, "arguments": [
+            {"kind": "OMA", "applicant": OR, "arguments": [eq, gt]}, z]}])
+
+
 class SqrtConventionTest(unittest.TestCase):
     def test_sqrt_is_the_square_root(self):
         import v1_faithfulness as F

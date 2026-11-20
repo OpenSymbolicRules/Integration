@@ -14,7 +14,9 @@ v0.1 rule converts to under the documented conventions (docs/osr-v1.md):
   and `Not[NeQ]` as `EqQ`),
   `EqQ[a, b]` → `eq(a, b)`, `Sqrt[a]` → `root(a, 2)`, `E^u` → `exp(u)`, `Simp[e]` and `Simp[e, x]` → `e`, `Acoth[u]` → `arctanh(u^-1)`, `Acot[u]` → `arctan(u^-1)`,
   the inert `sin`, `cos`, `tan`, `cot`, `sec`, `csc` → `Sin`, …, `Csc`,
-  `GtQ[a, b]` → `gt(a, b)`, `LtQ[a, b]` → `gt(b, a)`, `IntegerQ[a]` and
+  `GtQ[a, b]` → `gt(a, b)`, `LtQ[a, b]` → `gt(b, a)`, `GeQ[a, b]` and
+  `Not[LtQ[a, b]]` → `geq(a, b)`, `LeQ[a, b]` and `Not[GtQ[a, b]]` → `geq(b, a)`,
+  `Or[c, d, …]` → a left-nested `logic1#or`, `IntegerQ[a]` and
   `IntegersQ[a, …]` → `in(a, Z)`, `IGtQ[n, k]` → `in(n, Z)`, `gt(n, k)`,
   `ILtQ[n, k]` → `in(n, Z)`, `gt(k, n)`, in constraint order.
 
@@ -117,6 +119,9 @@ def conditions(constraints, semantics, var):
                 push(z)
         elif con[0] == "Not" and isinstance(con[1], list) and con[1][0] in ("EqQ", "NeQ"):
             flat.append([{"EqQ": "NeQ", "NeQ": "EqQ"}[con[1][0]]] + con[1][1:])
+        elif con[0] == "Not" and isinstance(con[1], list) and con[1][0] in ("LtQ", "GtQ"):
+            # Not[LtQ[a, b]] is GeQ[a, b] and Not[GtQ[a, b]] is LeQ[a, b] (RUBI orders reals).
+            flat.append([{"LtQ": "GeQ", "GtQ": "LeQ"}[con[1][0]]] + con[1][1:])
         else:
             flat.append(con)
 
@@ -137,6 +142,23 @@ def conditions(constraints, semantics, var):
             out.append(rel("gt", c(args[1]), c(args[0])))
         elif head in ("IntegerQ", "IntegersQ"):
             out.extend(in_z(c(a)) for a in args)
+        elif head == "GeQ":
+            out.append(rel("geq", c(args[0]), c(args[1])))
+        elif head == "LeQ":
+            out.append(rel("geq", c(args[1]), c(args[0])))
+        elif head == "Or":
+            # Or[c1, c2, ...] is a left-nested chain of logic1#or; each disjunct must be one condition.
+            ds = []
+            for z in args:
+                one, ind = conditions([z], semantics, var)
+                if len(one) != 1 or ind:
+                    raise ValueError("no v1 counterpart for a disjunct of Or")
+                ds += one
+            acc = ds[0]
+            for z in ds[1:]:
+                acc = {"kind": "OMA", "applicant": {"kind": "OMS", "cd": "logic1", "name": "or"},
+                       "arguments": [acc, z]}
+            out.append(acc)
         elif head == "IGtQ":
             out += [in_z(c(args[0])), rel("gt", c(args[0]), c(args[1]))]
         elif head == "ILtQ":

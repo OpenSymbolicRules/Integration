@@ -14,6 +14,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   that report; the findings are added and the check passes.
 
 ### Changed
+- `scripts/v1_faithfulness.py` reads `GeQ[a, b]` and `Not[LtQ[a, b]]` as
+  `geq(a, b)`, `LeQ[a, b]` and `Not[GtQ[a, b]]` as `geq(b, a)`
+  (`relation1#geq`), and `Or[c, d, …]` as a left-nested `logic1#or`, the
+  condition forms added to OSR v1. The current v1 files are unaffected.
 - `scripts/v1_faithfulness.py` reads `Acot[u]` as `arctan(u^-1)` (Mathematica
   defines `ArcCot[z]` so); the fragment has no `transc1#arccot`. The current
   v1 files are unaffected.

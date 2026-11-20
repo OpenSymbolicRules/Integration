@@ -149,7 +149,9 @@ The v0.1 heads follow the converter's `OPENMATH_SEMANTICS`
 `exp(u)` (`transc1#exp`), `Simp[e]` and `Simp[e, x]` as `e`, `Acoth[u]` as `arctanh(u^-1)`, `Acot[u]` as `arctan(u^-1)`, the inert
 `sin`, `cos`, `tan`, `cot`, `sec` and `csc` as the trig functions, and `EqQ` is an expressible
 condition (`relation1#eq`); `And[…]` conditions are flattened, `Not[EqQ]`
-reads as `NeQ` and `Not[NeQ]` as `EqQ`.
+reads as `NeQ` and `Not[NeQ]` as `EqQ`, `GeQ` and `Not[LtQ]` as
+`relation1#geq`, `LeQ` and `Not[GtQ]` as `relation1#geq` with the operands
+swapped, and `Or` as a left-nested `logic1#or`.
 
 ## Updating
 
