@@ -8,6 +8,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Fixed
+- `scripts/v1_faithfulness.py` reads a trig head missing from a file's
+  semantics (whose inert form is listed as `osr#sin`, …) as its `transc1`
+  symbol; the `Subst` rules of 4.3.9 raised a `KeyError` before.
 - Report `5ea2f5e8…`: the nine rules migrated in `37faa87a…` declared
   exponent metavariables independent of x without an `independence:`
   finding, so `scripts/check-v1.sh` failed on the v1 files distributed with

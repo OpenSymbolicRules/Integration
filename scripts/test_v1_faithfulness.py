@@ -175,6 +175,12 @@ class InertTrigConventionTest(unittest.TestCase):
         for low, up in (("sin", "Sin"), ("csc", "Csc")):
             self.assertEqual(F.convert([low, "a"], sem, "x"), F.convert([up, "a"], sem, "x"))
 
+    def test_trig_head_known_only_in_inert_form(self):
+        import v1_faithfulness as F
+        # a file whose semantics only list the inert sin still reads Sin (e.g. inside a Subst)
+        got = F.convert(["Sin", "a"], {"sin": "openmath:transc1#sin"}, "x")
+        self.assertEqual(got["applicant"], {"kind": "OMS", "cd": "transc1", "name": "sin"})
+
 
 class AcothConventionTest(unittest.TestCase):
     def test_acoth_is_arctanh_of_the_reciprocal(self):

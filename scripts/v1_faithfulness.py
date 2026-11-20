@@ -47,6 +47,7 @@ def oms(uri: str) -> dict:
 
 
 INERT_TRIG = {"sin": "Sin", "cos": "Cos", "tan": "Tan", "cot": "Cot", "sec": "Sec", "csc": "Csc"}
+TRIG_SEMANTICS = {v: f"openmath:transc1#{k}" for k, v in INERT_TRIG.items()}
 
 
 def name(atom: str) -> str:
@@ -95,7 +96,9 @@ def convert(term, semantics: dict, var: str) -> dict:
     if head == "Power" and len(args) == 2 and args[0] == "E":
         # E^u is the exponential: exp(u) (the v0.1 corpus writes exponentials so).
         return {"kind": "OMA", "applicant": EXP, "arguments": [convert(args[1], semantics, var)]}
-    symbol = oms(semantics[head])
+    # a trig head may be missing from a file's semantics, which then lists only the
+    # inert form (sin, as osr#sin): use the transc1 symbol of the trig function
+    symbol = oms(semantics[head] if head in semantics else TRIG_SEMANTICS[head])
     converted = [convert(a, semantics, var) for a in args]
     if head == "Sqrt" and len(converted) == 1:
         converted.append({"kind": "OMI", "integer": 2})
