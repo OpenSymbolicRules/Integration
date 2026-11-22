@@ -50,6 +50,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   be migrated faithfully; the current v1 files are unaffected.
 
 ### Added
+- Distribute report `5443a884…`, with recursive rule 1.1.3.4 #16 proved
+  over ℝ and ℂ; 820 rules remain unproved over ℝ.
 - Distribute report `36b2732a…`, with rule 1.1.3.4 #15 proved over ℝ and ℂ;
   821 rules remain unproved over ℝ.
 - Distribute report `c707d4e1…`, with recursive rule 1.1.1.3 #19 proved
