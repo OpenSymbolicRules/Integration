@@ -23,8 +23,8 @@ By mapping local functions to OpenMath Content Dictionaries, this format ensures
 
 `v1/` holds the first RUBI rules stated in the OSR v1 format, generated from
 Lean proofs (`OpenSymbolicRules/Lean`) and published by
-`OpenSymbolicRules/Verification`: 2875 rules; 481 are proved, 1574 refuted
-and 820 unproved over ℝ; 293 are proved, 376 refuted and 2206 unproved over
+`OpenSymbolicRules/Verification`: 2875 rules; 482 are proved, 1574 refuted
+and 819 unproved over ℝ; 294 are proved, 376 refuted and 2205 unproved over
 ℂ. Another 520 RUBI rules are reported as not migrated. Every v1 rule is
 checked against its v0.1 rule by `scripts/v1_faithfulness.py`; 1040 are
 strengthened variants (a non-degeneracy condition appended, `_nondegenerate`
