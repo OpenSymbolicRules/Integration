@@ -50,6 +50,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   be migrated faithfully; the current v1 files are unaffected.
 
 ### Added
+- Distribute report `45f886b8…`: 2875 rules, including four newly proved
+  strengthened variants; 823 remain unproved over ℝ.
 - Report `091039ab…`: 279 more RUBI rules are reported as not migrated (320 in
   all: fractional exponents or powers `F^(…)` with a non-constant exponent),
   and 7.2.5 #17 is migrated and refuted; 1075 rules.
