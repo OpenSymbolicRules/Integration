@@ -24,6 +24,9 @@ v0.1 rule converts to under the documented conventions (docs/osr-v1.md):
 
 A *strengthened* v1 rule (a corrected variant) may append conditions after the
 converted ones, only with a `strengthened:` finding; it is counted separately.
+An independently proved *generalized* derived variant may replace conditions
+with a `generalized:` finding; its pattern and replacement must still match.
+This check reports that distinction but does not verify the Lean proof.
 
 Usage: scripts/v1_faithfulness.py [--rules rules] v1/integration.osr.json
 Exit status 1 if a rule differs.
@@ -232,7 +235,7 @@ def main(argv: list[str]) -> int:
         for rule in document.get("rules", []):
             corpus[f"{document.get('identity', path.stem)}:{rule['id']}"] = (
                 rule, document.get("semantics", {}))
-    ok, bad, strengthened = 0, 0, 0
+    ok, bad, strengthened, generalized = 0, 0, 0, 0
     for v1 in json.loads(args.ruleset.read_text())["rules"]:
         legacy = v1.get("legacy_id")
         if legacy is None or legacy not in corpus:
@@ -245,9 +248,18 @@ def main(argv: list[str]) -> int:
             if v1[key] != exp[key]:
                 problems.append(f"{key} differs")
         noted = any(f.startswith("strengthened:") for f in v1.get("findings", []))
+        generalized_noted = any(f.startswith("generalized:") for f in v1.get("findings", []))
+        proved = any(v.get("status") == "proved" and isinstance(v.get("theorem"), str)
+                     and v["theorem"] for v in v1.get("verification", []))
+        general = (generalized_noted and v1.get("provenance", {}).get("method") == "derived"
+                   and proved)
         conds, base = v1["conditions"], exp["conditions"]
         added = noted and len(conds) > len(base) and conds[:len(base)] == base
-        if conds != base and not added:
+        if generalized_noted and not general:
+            problems.append("generalization requires derived provenance and a proved theorem")
+        if generalized_noted and noted:
+            problems.append("generalized and strengthened findings cannot be combined")
+        if conds != base and not added and not general:
             problems.append("conditions differs")
         declared = {i["variable"] for i in v1.get("independent", [])}
         documented = any(f.startswith("independence:") for f in v1.get("findings", []))
@@ -257,11 +269,13 @@ def main(argv: list[str]) -> int:
         if problems:
             bad += 1
             print(f"{v1['id']} ({legacy}): " + ", ".join(problems))
+        elif general:
+            generalized += 1
         elif added:
             strengthened += 1
         else:
             ok += 1
-    print(f"{ok} faithful, {strengthened} strengthened, {bad} different")
+    print(f"{ok} faithful, {strengthened} strengthened, {generalized} generalized, {bad} different")
     return 1 if bad else 0
 
 

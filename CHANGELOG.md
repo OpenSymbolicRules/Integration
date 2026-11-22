@@ -50,6 +50,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   be migrated faithfully; the current v1 files are unaffected.
 
 ### Added
+- Distribute report `45bd9d80…`, including an independently proved order-free
+  generalization of RUBI 1.1.3.4 #28, certified over ℝ and ℂ.
+- The faithfulness check recognizes separately reported, independently proved
+  generalized derived rules, while still checking patterns and replacements.
 - Distribute report `69091961…`, with recursive rules 1.1.3.4 #28 and #29
   proved over ℝ and ℂ; 817 rules remain unproved over ℝ.
 - Distribute report `545316d7…`, with recursive rule 1.1.3.4 #27 proved

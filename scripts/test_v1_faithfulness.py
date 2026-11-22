@@ -131,6 +131,39 @@ class StrengthenedConditionsTests(FaithfulnessTests):
         self.assertEqual(self.run_check(rule).returncode, 1)
 
 
+class GeneralizedConditionsTests(FaithfulnessTests):
+    def generalized(self):
+        rule = self.good()
+        rule["conditions"] = [oma("relation1", "neq", omv("b"), {"kind": "OMI", "integer": 0})]
+        rule["findings"] = ["generalized: original conditions were replaced; see the proof"]
+        rule["provenance"] = {"method": "derived"}
+        rule["verification"] = [{"domain": "real", "status": "proved", "theorem": "T.real"}]
+        return rule
+
+    def test_independently_proved_generalization_is_not_reported_faithful(self):
+        result = self.run_check(self.generalized())
+        self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+        self.assertIn("1 generalized", result.stdout)
+
+    def test_generalization_requires_proof_and_derived_provenance(self):
+        rule = self.generalized()
+        rule["verification"] = [{"domain": "real", "status": "unproved"}]
+        self.assertEqual(self.run_check(rule).returncode, 1)
+        rule = self.generalized()
+        rule["provenance"] = {"method": "converted"}
+        self.assertEqual(self.run_check(rule).returncode, 1)
+
+    def test_generalization_does_not_hide_changed_pattern(self):
+        rule = self.generalized()
+        rule["pattern"] = omv("x")
+        self.assertEqual(self.run_check(rule).returncode, 1)
+
+    def test_generalization_is_not_also_labeled_strengthened(self):
+        rule = self.generalized()
+        rule["findings"].append("strengthened: additional condition")
+        self.assertEqual(self.run_check(rule).returncode, 1)
+
+
 class ExpConventionTest(unittest.TestCase):
     def test_power_of_e_is_the_exponential(self):
         import v1_faithfulness as F

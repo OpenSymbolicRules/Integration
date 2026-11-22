@@ -6,11 +6,15 @@ generated, never edited by hand:
 
 | File | Content |
 |---|---|
-| `v1/integration.osr.json` | 2875 integration rules (`calculus1#int`, lambdas as `OMBIND fns1#lambda`), with verification records over ℝ and ℂ. |
+| `v1/integration.osr.json` | 2876 integration rules (`calculus1#int`, lambdas as `OMBIND fns1#lambda`), with verification records over ℝ and ℂ. |
 | `v1/integration.report.json` | Machine-readable audit: metrics per domain and the rules not migrated. |
 | `v1/integration.report.md` | The same audit for humans, with the findings of every rule. |
 
 ## Where they come from
+
+Independently proved generalized variants may replace the source rule's
+conditions; the structural checker reports these separately and does not
+itself establish their proofs (Specification V1-R-005f).
 
 1. `OpenSymbolicRules/Lean` states each rule with Mathlib's analysis
    (`OSR/Integration.lean`): wherever the integrand is defined on a
@@ -106,8 +110,8 @@ conditions allow coefficients to vanish in result denominators. The Lean
 use assignments at `x = 1` where the integrand is defined nearby and the
 result is undefined; no missing condition is added silently.
 
-The current set has 484 proved, 1574 refuted and 817 unproved rules over ℝ;
-over ℂ, 296 are proved (152 certified), 376 refuted and 2203 unproved.
+The current set has 485 proved, 1574 refuted and 817 unproved rules over ℝ;
+over ℂ, 297 are proved (153 certified), 376 refuted and 2203 unproved.
 
 The inventory excludes rules whose result or conditions use a name the
 pattern does not bind (739 rules, 630 of them with `E`, `ImaginaryI` or
