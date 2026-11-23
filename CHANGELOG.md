@@ -50,6 +50,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   be migrated faithfully; the current v1 files are unaffected.
 
 ### Added
+- Distribute report `16fbcf98…`: strengthened RUBI rule 3.1.2 #2 is refuted
+  over ℂ at the logarithm branch cut; its real proof is retained.
 - Distribute report `57aac641…`: strengthened RUBI rule 3.1.2 #2 is proved
   over ℝ; its complex case remains unproved.
 - Distribute report `4e6b4e27…`, including the independently proved order-free
