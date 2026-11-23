@@ -115,3 +115,23 @@ end
         @test_skip isfile(source) # A checkout without the RUBI submodule.
     end
 end
+
+@testset "Audit identifies parsed and unsupported cells independently" begin
+    source = raw"""
+    (* ::Code:: *)
+    Int[x_,x_Symbol] := x^2/2
+    (* ::Code:: *)
+    Int[x_,x_Symbol] := 2 \[Star] Int[x,x]
+    (* ::Code:: *)
+    Int[x_,x_Symbol] := With[{k=2},k*x]
+    (* ::Code:: *)
+    Int[x_,x_Symbol] := Sin[
+    """
+    audit = RubiConverter.audit_code_cells(source)
+    @test audit.candidates == 4
+    @test audit.parsed == 3
+    @test audit.star == 1
+    @test audit.local_scope == 1
+    @test length(audit.failures) == 1
+    @test audit.failures[1].ordinal == 4
+end

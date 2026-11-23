@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   report unsupported syntax and avoid replacing a batch on conversion
   warnings. Source versions for new conversions are read from `PacletInfo.m`
   rather than hard-coded. Existing corpus provenance is not silently relabelled.
+
 - `scripts/v1_faithfulness.py` reads a trig head missing from a file's
   semantics (whose inert form is listed as `osr#sin`, …) as its `transc1`
   symbol; the `Subst` rules of 4.3.9 raised a `KeyError` before.
@@ -54,6 +55,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   be migrated faithfully; the current v1 files are unaffected.
 
 ### Added
+- A read-only, machine-readable audit of parsed notebook cells and remaining
+  unsupported constructs; it makes no verification claim about candidates.
 - Distribute report `ded3200b…`: strengthened RUBI substitution rule 3.1.2
   #7 is proved and certified over ℝ and ℂ.
 - Distribute report `16fbcf98…`: strengthened RUBI rule 3.1.2 #2 is refuted

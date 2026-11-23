@@ -75,9 +75,12 @@ semantics are reviewed; unsupported cells produce diagnostics rather than a
 silently partial converted file. In an exploratory scan of notebook cells at
 this pin, 1,208 of 1,212 candidate `Int` cells parsed individually and four
 failed (derivative notation or `=!=`); these are parser counts, not verified
-or published rules. Of the parsed cells, 894 contain `Star` and 273 contain a
+or published rules; candidates are cells beginning with `Int[` after leading
+whitespace. Of the parsed cells, 894 contain `Star` and 273 contain a
 local binding; these groups can overlap. A full conversion remains blocked and
 does not change the output tree when any file reports a warning.
+Reproduce the cell-level JSON report with
+`julia --project=converter converter/scripts/audit-cells.jl vendor/Rubi`.
 
 ## 4. Mathematical constants converted as free names
 

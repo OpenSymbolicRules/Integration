@@ -30,6 +30,9 @@ julia --project=converter converter/scripts/convert.jl --manifest
 
 # Convert a single .m file
 julia --project=converter converter/scripts/convert.jl path/to/file.m
+
+# Audit notebook cells without modifying the rule corpus
+julia --project=converter converter/scripts/audit-cells.jl vendor/Rubi > /tmp/rubi-cell-audit.json
 ```
 
 Notebook-generated RUBI files are parsed as complete `::Code::` cells, not

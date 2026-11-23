@@ -157,6 +157,27 @@ contains_local_scope(expr::MExpr) = expr isa MFunction &&
     (expr.head in ("With", "Module", "Set") ||
      any(arg -> arg isa MExpr && contains_local_scope(arg), expr.args))
 
+"""Audit `Int` notebook cells without writing rules or claiming semantic correctness."""
+function audit_code_cells(source::AbstractString)
+    cells = split(source, "(* ::Code:: *)")
+    candidates = parsed = star = local_scope = 0
+    failures = NamedTuple{(:ordinal, :message),Tuple{Int,String}}[]
+    for cell in cells[2:end]
+        occursin(r"^Int\s*\[", lstrip(cell)) || continue
+        candidates += 1
+        try
+            expressions = parse_file_expressions("(* ::Code:: *)" * cell)
+            length(expressions) == 1 || error("Expected one expression in rule cell")
+            parsed += 1
+            any(contains_rubi_star, expressions) && (star += 1)
+            any(contains_local_scope, expressions) && (local_scope += 1)
+        catch e
+            push!(failures, (ordinal=candidates, message=sprint(showerror, e)))
+        end
+    end
+    (; candidates, parsed, star, local_scope, failures)
+end
+
 struct RuleConversionResult
     output_path::String
     section::String
