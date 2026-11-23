@@ -3,6 +3,7 @@ using RubiConverter
 
 include("multiline.jl")
 include("manifest.jl")
+include("recovery.jl")
 
 @testset "RubiConverter" begin
 

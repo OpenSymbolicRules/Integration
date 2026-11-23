@@ -33,6 +33,9 @@ julia --project=converter converter/scripts/convert.jl path/to/file.m
 
 # Audit notebook cells without modifying the rule corpus
 julia --project=converter converter/scripts/audit-cells.jl vendor/Rubi > /tmp/rubi-cell-audit.json
+
+# Recover candidates for loaded empty files into a new, isolated directory
+julia --project=converter converter/scripts/recover-empty.jl rules vendor/Rubi /tmp/rubi-empty-candidates
 ```
 
 Notebook-generated RUBI files are parsed as complete `::Code::` cells, not
@@ -60,6 +63,12 @@ For isolated diagnostics only, `convert_rule_file` accepts the keyword
 `experimental_rubi_extensions=true`; the default and batch conversion remain
 fail-closed. The experimental output must not be treated as a production
 ruleset or as evidence of CAS or Lean verification.
+The recovery script attempts the currently loaded empty files, records each
+candidate or blocked file in `report.json`, and never modifies `rules/`.
+The output directory must not already exist and must be outside the rule and
+vendor trees. It contains experimental candidates, not an executable ruleset:
+unsupported operational semantics and consumer capabilities remain to be
+reviewed. A blocked entry is not a converted empty rule file.
 
 ## Output
 

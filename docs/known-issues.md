@@ -115,6 +115,13 @@ load and do not establish mathematical correctness, execution equivalence,
 or formal verification. Consumers must implement the extension contract
 before any affected rules are published for execution.
 
+The opt-in `converter/scripts/recover-empty.jl` creates a separate report and
+candidate tree for currently loaded empty files, without writing to the
+production corpus. At source revision `61e9c18`, it produces 822 candidate
+rules in 23 files and reports seven files blocked. This does not reduce the 30
+empty files in the production manifest; candidate syntax and schema validation
+are not evidence of mathematical correctness or execution equivalence.
+
 Section 1.4.1 needs particular care: its sum-by-term integration rule is
 inside an `If[TrueQ[$LoadShowSteps], …]` source cell, with different branches
 for step display. Treating the cell as one ordinary rule or ignoring its
