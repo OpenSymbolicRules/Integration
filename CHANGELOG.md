@@ -8,6 +8,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Fixed
+- Run the non-executable validation script through Bash from the justfile.
+- Recover 29 multiline normalization rules in section 1.4.2, retaining
+  source identities and explicitly recording 26 exact legacy duplicates.
+- Correct the root RUBI source version to `4.17.3.0` as declared by the
+  pinned source; historical per-rule `4.16.1` labels remain under audit.
 - Reject unsupported compound function heads instead of silently converting
   them to an invented `UnknownHead` operator.
 - Parse notebook-generated RUBI `::Code::` cells as multiline expressions;
@@ -24,6 +29,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   that report; the findings are added and the check passes.
 
 ### Changed
+- Replace the section-sorted default load manifest with the pinned RUBI source
+  file sequence; 23 files absent from that sequence remain on disk but are not
+  loaded by default. Thirty loaded files are still empty.
 - Update the Specification submodule to the reviewed lexical-binding and
   RUBI `Star` contract; no Mathlib or RUBI pin is changed.
 - Prepare candidate `Star` and lexical `With` semantic declarations while
@@ -62,6 +70,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   be migrated faithfully; the current v1 files are unaffected.
 
 ### Added
+- Add a reproducible read-only audit of the pinned RUBI source file load order.
 - Document the conditional sum-by-term integration cell in RUBI section 1.4.1
   and why its loading branches need separate treatment.
 - An explicitly opt-in, isolated conversion mode for auditing candidate

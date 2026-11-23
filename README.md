@@ -5,9 +5,11 @@
 > **Note**: This repository has been created with AI assistance.
 
 A language-neutral JSON format with validated JSON Schema to represent
-all of [RUBI](https://rulebasedintegration.org/)'s 6,257 symbolic
-integration rules and 72,523 test problems, independently of
-Mathematica.
+a subset of [RUBI](https://rulebasedintegration.org/) symbolic integration
+rules and 72,523 test problems, independently of Mathematica. The v0.1 corpus
+contains 6,286 entries across 221 files, including duplicates and empty
+sections; 5,436 entries are in the default 198-file load manifest. This is not
+a complete conversion. See [known issues](docs/known-issues.md).
 
 ## Overview
 
@@ -62,11 +64,12 @@ semantics, not a preferred algorithm or fallback order.
 The format covers:
 
 - **Rules**: pattern + constraints + result, with wildcard and predicate
-  support (6,257 rules in 221 files)
+  support (6,286 entries in 221 files, including duplicates and empty sections)
 - **Test fixtures**: integrand + variable + optimal antiderivative +
   expected step count (72,523 tests in 215 files)
 - **Taxonomy**: RUBI's exact 9-section hierarchy
-- **Load manifest**: precise file loading order determining rule priority
+- **Load manifest**: the default file order follows the pinned RUBI source,
+  with elementary-function rules enabled
 - **Backend-neutral interoperability**: a RUBI profile can complement a
   procedural Risch-family integrator without changing rule semantics
 
@@ -139,15 +142,15 @@ julia --project=converter converter/scripts/convert.jl --manifest
 
 | Artifact | Directory | Files | Items |
 |----------|-----------|-------|-------|
-| Rules | `rules/` | 221 | 6,257 integration rules |
+| Rules | `rules/` | 221 | 6,286 entries; the conversion is incomplete |
 | Tests | `tests/` | 215 | 72,523 test problems |
 | Manifest | `rules/meta.json` | 1 | load_order + counts |
 
 ## Status
 
-This project is in **v0.1.0-draft**. The full RUBI rule set and test
-suite have been converted to OSR JSON format, with schema validation
-enforced by CI.
+This project is in **v0.1.0-draft**. The conversion is incomplete: some source
+rule files remain empty and some operators need further semantic work. Schema
+validation is enforced by CI; it does not establish mathematical correctness.
 
 ## References
 

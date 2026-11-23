@@ -3,8 +3,9 @@
 Defects of the conversion itself, as opposed to the RUBI source. Each entry
 states how it was measured so that it can be re-measured after a fix.
 
-Measured against: this repository at 6,257 rules in 188 rule files, converted
-from Rubi 4.16.1; `OpenSymbolicRules.jl` 0.1.0; Julia 1.13.0.
+Historical measurements below used this repository at 6,257 rules in 188
+nonempty rule files, labelled Rubi 4.16.1; `OpenSymbolicRules.jl` 0.1.0;
+Julia 1.13.0. The pinned source's own version is 4.17.3.0, as discussed below.
 
 ## 1. The integration variable is lost — fixed
 
@@ -52,21 +53,26 @@ is the same defect as issue 1 on a smaller scale.
 
 ## 3. Empty rule files
 
-33 of the 222 rule files carry `"rules": []`. They correspond to RUBI sections
-the converter produced no rules for. The section is declared in `meta.json` and
-in the file, so a loader sees a section that contributes nothing.
+At the original measurement, 33 files carried `"rules": []`. The section is
+declared in `meta.json` and in the file, so a loader sees a section that
+contributes nothing. Section 1.4.2 now has 29 converted rules; it is not a
+Lean-certified v1 rule set. Other empty files remain.
 
 **Investigation and partial parser fix.** At Integration commit `779c9f9`,
 the pinned RUBI source is commit `61e9c18ea248061cd83c67882f7c91a73cef912d`.
-Its `Rubi/PacletInfo.m` identifies version `4.17.3.0`, although the existing
-manifest and historical per-rule provenance say `4.16.1`. The original
-conversion must be audited before relabelling the published corpus.
+Its `Rubi/PacletInfo.m` identifies version `4.17.3.0`. The root manifest now
+records that source version; historical per-rule provenance still says
+`4.16.1` and must be audited before those records are relabelled.
 
 The converter had assumed that every definition fits on one line. It now
 parses complete notebook `::Code::` cells and rejects unconsumed cell text.
 For example, section 1.4.2 contains 29 definitions; a local conversion
-produced 29 schema-valid candidate rules with no conversion warnings. These
-are not yet published in `rules/`, and no formal verification is implied.
+produced 29 schema-valid rules with no conversion warnings, now available in
+`rules/`; no formal verification is implied. Of these, 26 duplicate rules
+also found in an older 1.3.4 file. Both identities are preserved and the
+duplicate baseline explicitly records them. That older file is not loaded by
+the pinned RUBI default loader; the default OSR manifest now uses source file
+order and excludes it. The old manifest's section-sorted order was replaced.
 
 This is **not a complete fix**: other files contain local `With` bindings or
 RUBI's evaluation-aware `Star` operator. The parser retains both constructs,
@@ -86,6 +92,15 @@ Reproduce the cell-level JSON report with
 `julia --project=converter converter/scripts/audit-cells.jl vendor/Rubi`.
 See the [translation proposal](rubi-translation-proposal.md) for the pending
 semantic and ordering decisions.
+
+The read-only source-order audit
+`python3 scripts/audit_rubi_order.py vendor/Rubi rules` compares exact source
+file identities and reports unlisted files. On the pinned RUBI source, the
+default configuration loads 198 files; 23 OSR files are outside that source
+load list. The default manifest follows that file order, but array positions
+and rule identifiers do not by themselves prove Mathematica's final runtime
+priority. It contains 30 still-empty loaded files. The audit itself does not
+reconstruct missing rules or modify the manifest.
 
 An opt-in **experimental** conversion preserves `Star` and validated `With`
 syntax for isolated investigation; it is not a public rule export. At the

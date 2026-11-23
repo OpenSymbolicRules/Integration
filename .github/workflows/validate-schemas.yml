@@ -68,6 +68,9 @@ jobs:
       - name: Test exact duplicate-rule guard
         run: python3 scripts/test_check_duplicate_rules.py
 
+      - name: Test RUBI source load-order audit
+        run: python3 scripts/test_audit_rubi_order.py
+
       - name: Validate acknowledged exact duplicate rules
         run: python3 scripts/check_duplicate_rules.py rules --baseline scripts/duplicate-rule-baseline.json
 

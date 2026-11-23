@@ -5,11 +5,12 @@ check: validate test v1
 
 # Validate the v0.1 schemas, rules, test fixtures and identities.
 validate:
-	./scripts/validate.sh
+	bash scripts/validate.sh
 
 # Unit tests of the repository scripts.
 test:
 	python3 scripts/test_check_duplicate_rules.py
+	python3 scripts/test_audit_rubi_order.py
 	python3 scripts/test_inventory_v1.py
 	python3 scripts/test_v1_faithfulness.py
 

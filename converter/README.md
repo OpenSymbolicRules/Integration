@@ -45,6 +45,11 @@ The legacy one-expression-per-line path still needs a separate loss audit.
 Run the manifest update only after reviewing a complete conversion: the
 existing manifest generator sorts by file path, and does not reproduce the
 load sequence in RUBI's `Rubi.m`.
+Use `python3 scripts/audit_rubi_order.py vendor/Rubi rules` to inspect the
+source-file sequence and unmatched OSR files without changing the manifest.
+The default manifest follows the pinned source's default file sequence; it is
+incomplete while loaded rule files remain empty and does not claim to reproduce
+Mathematica's final rule priority.
 
 The candidate expression mapping preserves the `Star` operator, whose
 mathematical projection is `arith1#times`; this does not make it operationally
@@ -58,7 +63,8 @@ ruleset or as evidence of CAS or Lean verification.
 
 ## Output
 
-- **Rules**: `rules/` directory — 221 JSON files containing 6,257 integration rules
+- **Rules**: `rules/` directory — 221 JSON files containing 6,286 entries,
+  including duplicates and empty sections; conversion remains incomplete
 - **Tests**: `tests/` directory — 215 JSON files containing 72,523 test problems
 - **Manifest**: `rules/meta.json` — load order, counts, and converter metadata
 
