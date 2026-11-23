@@ -38,6 +38,10 @@ function to_osr(expr::MApply)
     throw(ArgumentError("Compound application heads have no reviewed OSR mapping"))
 end
 
+function to_osr(expr::MPrime)
+    throw(ArgumentError("Prime notation has no reviewed OSR mapping"))
+end
+
 function to_osr(expr::MFunction)
     head = map_operator(expr.head)
     args = [to_osr(a) for a in expr.args]

@@ -38,6 +38,11 @@ struct MApply <: MExpr
     args::Vector{Any}
 end
 
+# Keep postfix prime notation distinct until its mapping is reviewed.
+struct MPrime <: MExpr
+    expr::MExpr
+end
+
 struct ParserError <: Exception
     message::String
     line::Int
@@ -323,6 +328,9 @@ function parse_postfix(p::Parser)::MExpr
         elseif at(p, TOK_BLANK) || at(p, TOK_BLANKSEQ) || at(p, TOK_BLANKNULLSEQ)
             # Pattern: x_, x__, x___
             atom = parse_pattern_postfix(atom, p)
+        elseif at(p, TOK_PRIME)
+            advance!(p)
+            atom = MPrime(atom)
         elseif at(p, TOK_AMP)
             # Pure function: expr&
             advance!(p)

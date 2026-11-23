@@ -123,8 +123,10 @@ empty files in the production manifest; candidate syntax and schema validation
 are not evidence of mathematical correctness or execution equivalence.
 The read-only `audit-module.jl` command classifies the blocked files. On this
 revision its parser finds 15 `Module` nodes, with 14 initialized and four
-uninitialized local declarations; the derivative file also requires apostrophe
-notation that the parser does not yet recognize.
+uninitialized local declarations. The parser now retains compound function
+applications and postfix prime notation and parses all 21 code expressions
+in the derivative file. Export remains blocked because neither construct has a
+reviewed OSR mapping; parsing is not a semantic or proof check.
 The trigonometric file uses the legacy line-based parser, whose source coverage
 has not been established, so these counts are not an exhaustive corpus audit.
 Nested body assignment counts can overlap and do not establish runtime behavior.

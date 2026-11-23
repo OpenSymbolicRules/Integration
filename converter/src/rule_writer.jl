@@ -164,10 +164,12 @@ end
 # OpenMath symbol or silently replace it with multiplication in rule output.
 contains_rubi_star(expr::MExpr) = expr isa MApply ?
     (contains_rubi_star(expr.head) || any(arg -> arg isa MExpr && contains_rubi_star(arg), expr.args)) :
+    expr isa MPrime ? contains_rubi_star(expr.expr) :
     expr isa MFunction && (expr.head == "Star" || any(arg -> arg isa MExpr && contains_rubi_star(arg), expr.args))
 
 contains_local_scope(expr::MExpr) = expr isa MApply ?
     (contains_local_scope(expr.head) || any(arg -> arg isa MExpr && contains_local_scope(arg), expr.args)) :
+    expr isa MPrime ? contains_local_scope(expr.expr) :
     expr isa MFunction && (expr.head in ("With", "Module", "Set") ||
      any(arg -> arg isa MExpr && contains_local_scope(arg), expr.args))
 
@@ -197,6 +199,7 @@ end
 
 function validate_experimental_scope(expr::MExpr)
     expr isa MApply && error("Compound application heads have no reviewed OSR mapping")
+    expr isa MPrime && error("Prime notation has no reviewed OSR mapping")
     expr isa MFunction || return
     if expr.head == "With"
         length(expr.args) == 2 || error("With requires a binding list and body")

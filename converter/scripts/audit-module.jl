@@ -4,6 +4,7 @@ using RubiConverter
 using JSON3
 
 function count_head(expr, head)
+    expr isa RubiConverter.MPrime && return count_head(expr.expr, head)
     expr isa RubiConverter.MApply && return count_head(expr.head, head) + sum((count_head(a, head) for a in expr.args); init=0)
     expr isa RubiConverter.MFunction || return 0
     (expr.head == head ? 1 : 0) + sum((count_head(a, head) for a in expr.args); init=0)
@@ -14,6 +15,10 @@ function audit_modules(expressions)
         "uninitialized_locals" => 0, "unsupported_declarations" => 0,
         "body_assignments" => 0, "compound_bodies" => 0)
     function visit(expr)
+        if expr isa RubiConverter.MPrime
+            visit(expr.expr)
+            return
+        end
         if expr isa RubiConverter.MApply
             visit(expr.head)
             foreach(visit, expr.args)

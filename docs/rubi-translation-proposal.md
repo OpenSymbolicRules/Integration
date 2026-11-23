@@ -70,7 +70,20 @@ conditional loads, duplicate paths and unmatched entries before use by a CAS.
 
 An earlier cell audit reported 22 candidate cells that did not parse, including
 compound heads, derivative notation and the `=!=` operator. Compound heads are
-now retained as AST applications but still rejected at export; the derivative
-source next encounters unsupported apostrophe notation. Their Wolfram semantics and the
+now retained as AST applications but still rejected at export; postfix prime
+notation is likewise retained in the AST and rejected at export. The pinned
+derivative source now parses as 21 code expressions. Their Wolfram semantics and the
 available OSR representations require separate tests. Cell parse counts are
 not a substitute for schema validation, numerical checks or formal proof.
+
+The official [OpenMath `calculus1#nthdiff`](https://openmath.org/cd/calculus1#nthdiff)
+describes iterated ordinary differentiation of a unary function, with the
+order and function as its arguments. It is a candidate for an explicitly
+bounded nonnegative-order subset, subject to an application representation
+and consumer review. It is not by itself a justified mapping for every RUBI
+case: the pinned source also contains `ILtQ[n,0]` rules, and Wolfram documents
+that [negative-order `Derivative` can perform integrals](https://reference.wolfram.com/language/ref/Derivative.html).
+The source also includes a derivative pattern without an explicit order guard.
+Those cases require a separately specified meaning, including integration
+constants and applicability, rather than silently treating all orders as
+ordinary differentiation. No mapping is enabled by this observation.

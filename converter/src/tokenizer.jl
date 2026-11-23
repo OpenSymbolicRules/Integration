@@ -43,6 +43,7 @@
     TOK_AT           # @ (Prefix application)
     TOK_ATAT         # @@ (Apply)
     TOK_PIPE         # | (Alternatives in patterns)
+    TOK_PRIME        # ' (postfix derivative notation)
     TOK_NEWLINE      # \n (used for line tracking only)
     TOK_EOF          # end of input
 end
@@ -370,6 +371,8 @@ function tokenize!(t::Tokenizer)::Vector{Token}
             Token(TOK_AT, "@", line, col)
         elseif c == '|'
             Token(TOK_PIPE, "|", line, col)
+        elseif c == '\''
+            Token(TOK_PRIME, "'", line, col)
         else
             throw(TokenizerError("Unexpected character: '$c'", line, col))
         end

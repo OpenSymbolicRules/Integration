@@ -153,6 +153,31 @@ end
     end
 end
 
+@testset "Prime notation is retained as syntax and cannot be exported" begin
+    expr = RubiConverter.parse_mathematica("f_'[x_]")
+    @test expr isa RubiConverter.MApply
+    @test expr.head isa RubiConverter.MPrime
+    @test expr.head.expr isa RubiConverter.MPattern
+    @test expr.head.expr.name == "f"
+    repeated = RubiConverter.parse_mathematica("f''[x]")
+    @test repeated.head isa RubiConverter.MPrime
+    @test repeated.head.expr isa RubiConverter.MPrime
+    @test_throws ArgumentError RubiConverter.to_osr(expr)
+    source = joinpath(@__DIR__, "..", "..", "vendor", "Rubi", "Rubi",
+        "IntegrationRules", "9 Miscellaneous", "9.1 Derivative integration rules.m")
+    if isfile(source)
+        expressions = RubiConverter.parse_file_expressions(read(source, String))
+        @test length(expressions) > 10
+        mktempdir() do dir
+            result = RubiConverter.convert_rule_file(source; output_dir=dir, experimental_rubi_extensions=true)
+            @test !isempty(result.warnings)
+            @test !isfile(result.output_path)
+        end
+    else
+        @test_skip isfile(source)
+    end
+end
+
 @testset "Pinned RUBI 1.4.2 normalization file" begin
     source = joinpath(@__DIR__, "..", "..", "vendor", "Rubi", "Rubi",
         "IntegrationRules", "1 Algebraic functions", "1.4 Miscellaneous",
