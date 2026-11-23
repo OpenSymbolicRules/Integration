@@ -22,6 +22,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   that report; the findings are added and the check passes.
 
 ### Changed
+- Prepare candidate `Star` and lexical `With` semantic declarations while
+  retaining the fail-closed export guard until the specification and consumer
+  capability contract are adopted.
 - `scripts/v1_faithfulness.py` reads `Subst[Int[H, x], x, g]` as the residual
   integral evaluated at `g`, `int(λx. H)(g)` (V1-E-002b). The current v1
   files are unaffected.

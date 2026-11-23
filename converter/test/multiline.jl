@@ -100,6 +100,18 @@ end
     end
 end
 
+@testset "Preserve RUBI Star and With in a candidate expression" begin
+    source = raw"Int[x_,x_Symbol] := With[{k=2}, k \[Star] Int[x,x]]"
+    rule = RubiConverter.rule_to_osr(RubiConverter.parse_mathematica(source), 1)
+    @test rule["result"] == ["With", ["List", ["Set", "k", 2]],
+        ["Star", "k", ["Int", "x", "x"]]]
+    semantics = RubiConverter.rule_semantics([rule])
+    @test semantics["Star"] == "openmath:arith1#times"
+    @test semantics["Int"] == "openmath:calculus1#int"
+    @test !haskey(semantics, "With")
+    @test !haskey(semantics, "Set")
+end
+
 @testset "Pinned RUBI 1.4.2 normalization file" begin
     source = joinpath(@__DIR__, "..", "..", "vendor", "Rubi", "Rubi",
         "IntegrationRules", "1 Algebraic functions", "1.4 Miscellaneous",

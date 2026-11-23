@@ -46,6 +46,12 @@ Run the manifest update only after reviewing a complete conversion: the
 existing manifest generator sorts by file path, and does not reproduce the
 load sequence in RUBI's `Rubi.m`.
 
+The candidate expression mapping preserves the `Star` operator, whose
+mathematical projection is `arith1#times`; this does not make it operationally
+interchangeable with ordinary multiplication. `With`/`Set` bindings are
+treated as structural in the candidate mapping. File export remains blocked
+for both until the specification and consumer capability contract are adopted.
+
 ## Output
 
 - **Rules**: `rules/` directory — 221 JSON files containing 6,257 integration rules

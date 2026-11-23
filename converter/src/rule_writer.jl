@@ -18,6 +18,8 @@ const OPENMATH_SEMANTICS = Dict(
     "Add" => "openmath:arith1#plus",
     "Subtract" => "openmath:arith1#minus",
     "Multiply" => "openmath:arith1#times",
+    # Mathematical projection only. Keep the Star head for operational use.
+    "Star" => "openmath:arith1#times",
     "Divide" => "openmath:arith1#divide",
     "Power" => "openmath:arith1#power",
     "Sqrt" => "openmath:arith1#root",
@@ -85,6 +87,16 @@ function _expression_heads!(heads::Set{String}, expression)
     isempty(expression) && return heads
     head = first(expression)
     head isa String || return heads
+    if head == "With" && length(expression) == 3 && expression[2] isa AbstractVector &&
+       !isempty(expression[2]) && first(expression[2]) == "List" &&
+       all(binding -> binding isa AbstractVector && length(binding) == 3 &&
+           first(binding) == "Set", expression[2][2:end])
+        for binding in expression[2][2:end]
+            _expression_heads!(heads, binding[3])
+        end
+        _expression_heads!(heads, expression[3])
+        return heads
+    end
     if !(head in STRUCTURAL_HEADS) && !is_wildcard_head(head)
         push!(heads, head)
     end
