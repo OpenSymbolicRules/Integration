@@ -194,3 +194,37 @@ end
     @test length(audit.failures) == 1
     @test audit.failures[1].ordinal == 4
 end
+@testset "Show-steps branches require an explicit load configuration" begin
+    conditional = RubiConverter.parse_mathematica(raw"If[TrueQ[$LoadShowSteps],Int[u_,x_Symbol]:=ShowStep[IntSum[u,x]]/;SimplifyFlag&&SumQ[u],Int[u_,x_Symbol]:=IntSum[u,x]/;SumQ[u]]")
+    shown = RubiConverter.select_show_steps_branch(conditional; show_steps=true)
+    plain = RubiConverter.select_show_steps_branch(conditional; show_steps=false)
+    @test shown.head == "SetDelayed"
+    @test plain.head == "SetDelayed"
+    @test RubiConverter.rule_to_osr(plain, 1)["result"] == ["IntSum", "u", "x"]
+    @test RubiConverter.rule_to_osr(plain, 1)["constraints"] == [["SumQ", "u"]]
+    @test_throws Exception RubiConverter.select_show_steps_branch(
+        RubiConverter.parse_mathematica(raw"If[TrueQ[$Other],Int[u_,x_]:=u,Int[u_,x_]:=x]"); show_steps=false)
+    @test_throws Exception RubiConverter.select_show_steps_branch(
+        RubiConverter.parse_mathematica(raw"If[TrueQ[$LoadShowSteps],Int[u_,x_]:=u,Print[x]]"); show_steps=false)
+
+    source = joinpath(@__DIR__, "..", "..", "vendor", "Rubi", "Rubi",
+        "IntegrationRules", "1 Algebraic functions", "1.4 Miscellaneous",
+        "1.4.1 Algebraic function simplification.m")
+    if isfile(source)
+        cells = split(read(source, String), "(* ::Code:: *)")
+        matching = filter(cell -> startswith(lstrip(cell), raw"If[TrueQ[$LoadShowSteps]"), cells)
+        @test length(matching) == 1
+        if length(matching) == 1
+            parsed = only(RubiConverter.parse_file_expressions("(* ::Code:: *)" * only(matching)))
+            actual = RubiConverter.rule_to_osr(
+                RubiConverter.select_show_steps_branch(parsed; show_steps=false), 1)
+            @test actual["result"] == ["IntSum", "u", "x"]
+            @test actual["constraints"] == [["SumQ", "u"]]
+            shown_ast = RubiConverter.select_show_steps_branch(parsed; show_steps=true)
+            @test occursin("ShowStep", repr(shown_ast))
+            @test occursin("SimplifyFlag", repr(shown_ast))
+        end
+    else
+        @test_skip isfile(source)
+    end
+end

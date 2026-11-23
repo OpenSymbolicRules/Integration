@@ -169,6 +169,30 @@ contains_local_scope(expr::MExpr) = expr isa MFunction &&
     (expr.head in ("With", "Module", "Set") ||
      any(arg -> arg isa MExpr && contains_local_scope(arg), expr.args))
 
+"""Select a reviewed RUBI show-steps branch for isolated analysis only.
+
+The caller must explicitly choose the source loading configuration. This does
+not enable file export, evaluate arbitrary conditionals, or prove that the
+selected rule has the same behavior in another consumer.
+"""
+function select_show_steps_branch(expr::MExpr; show_steps::Bool)
+    expr isa MFunction && expr.head == "If" && length(expr.args) == 3 ||
+        error("Expected a three-branch show-steps conditional")
+    condition = expr.args[1]
+    condition isa MFunction && condition.head == "TrueQ" && length(condition.args) == 1 ||
+        error("Unsupported show-steps condition")
+    flag = condition.args[1]
+    flag isa MSymbol && flag.name == "\$LoadShowSteps" || error("Unsupported load flag")
+    for branch in expr.args[2:3]
+        branch isa MFunction && branch.head == "SetDelayed" && length(branch.args) == 2 ||
+            error("Show-steps branch must be a single delayed rule")
+        lhs = branch.args[1]
+        lhs isa MFunction && lhs.head == "Int" && length(lhs.args) == 2 ||
+            error("Show-steps branch must define Int")
+    end
+    expr.args[show_steps ? 2 : 3]
+end
+
 function validate_experimental_scope(expr::MExpr)
     expr isa MFunction || return
     if expr.head == "With"

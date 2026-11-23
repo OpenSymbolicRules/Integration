@@ -120,6 +120,11 @@ inside an `If[TrueQ[$LoadShowSteps], …]` source cell, with different branches
 for step display. Treating the cell as one ordinary rule or ignoring its
 condition would not preserve RUBI's loading behavior. That file remains
 unsupported in the experimental full-file conversion.
+At source revision `61e9c18`, `Rubi.m` defaults `$LoadShowSteps` to true
+when ``Global`$LoadShowSteps`` has no value. The converter now has an isolated
+branch selector that requires an explicit boolean, checks both branches are
+single `Int` definitions, and rejects other conditions. It permits analysis
+of either branch but does not publish either rule or assume the default.
 
 ## 4. Mathematical constants converted as free names
 

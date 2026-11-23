@@ -72,6 +72,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   be migrated faithfully; the current v1 files are unaffected.
 
 ### Added
+- Add an explicit, fail-closed selector for isolated analysis of RUBI's
+  conditional show-steps rule branches; this does not enable rule export.
 - Add a reproducible read-only audit of the pinned RUBI source file load order.
 - Document the conditional sum-by-term integration cell in RUBI section 1.4.1
   and why its loading branches need separate treatment.
