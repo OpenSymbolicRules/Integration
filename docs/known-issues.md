@@ -81,6 +81,8 @@ local binding; these groups can overlap. A full conversion remains blocked and
 does not change the output tree when any file reports a warning.
 Reproduce the cell-level JSON report with
 `julia --project=converter converter/scripts/audit-cells.jl vendor/Rubi`.
+See the [translation proposal](rubi-translation-proposal.md) for the pending
+semantic and ordering decisions.
 
 ## 4. Mathematical constants converted as free names
 

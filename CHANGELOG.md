@@ -57,6 +57,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - A read-only, machine-readable audit of parsed notebook cells and remaining
   unsupported constructs; it makes no verification claim about candidates.
+- A reviewable proposal for translating `Star`, local bindings and upstream
+  file order without inventing execution equivalence.
 - Distribute report `ded3200b…`: strengthened RUBI substitution rule 3.1.2
   #7 is proved and certified over ℝ and ℂ.
 - Distribute report `16fbcf98…`: strengthened RUBI rule 3.1.2 #2 is refuted
