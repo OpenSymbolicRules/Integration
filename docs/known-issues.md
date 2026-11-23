@@ -121,6 +121,11 @@ production corpus. At source revision `61e9c18`, it produces 822 candidate
 rules in 23 files and reports seven files blocked. This does not reduce the 30
 empty files in the production manifest; candidate syntax and schema validation
 are not evidence of mathematical correctness or execution equivalence.
+The per-rule syntax inventory for these 822 candidates identifies 628 using
+`Star`, 165 using `With`, and 131 using both. The remaining 160 use neither
+construct, but can still depend on other operations and assumptions. Extracting
+only these rules and loading them would also omit earlier source rules, so it
+must not be presented as preserving the original rule priority.
 The read-only `audit-module.jl` command classifies the blocked files. On this
 revision its parser finds 15 `Module` nodes, with 14 initialized and four
 uninitialized local declarations. The parser now retains compound function

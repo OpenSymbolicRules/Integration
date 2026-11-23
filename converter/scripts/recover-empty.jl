@@ -3,6 +3,15 @@
 using RubiConverter
 using JSON3
 
+function has_expression_head(node, head)
+    node isa AbstractVector || return false
+    (!isempty(node) && node[1] == head) || any(child -> has_expression_head(child, head), node)
+end
+
+function rule_uses_head(rule, head)
+    any(key -> has_expression_head(rule[key], head), ("pattern", "result", "constraints"))
+end
+
 function recover_empty_rules(rules_dir::AbstractString, vendor::AbstractString, output::AbstractString)
     rules_dir = realpath(rules_dir)
     vendor = realpath(vendor)
@@ -42,6 +51,14 @@ function recover_empty_rules(rules_dir::AbstractString, vendor::AbstractString, 
                 row["status"] = "candidate"
                 row["rules"] = result.rule_count
                 row["candidate_file"] = relpath(result.output_path, output)
+                candidates = JSON3.read(read(result.output_path, String))["rules"]
+                star_ids = [rule["id"] for rule in candidates if rule_uses_head(rule, "Star")]
+                with_ids = [rule["id"] for rule in candidates if rule_uses_head(rule, "With")]
+                row["syntax_features_detected"] = [head for (head, ids) in (("Star", star_ids), ("With", with_ids)) if !isempty(ids)]
+                row["rules_with_star"] = length(star_ids)
+                row["rules_with_with"] = length(with_ids)
+                row["rule_ids_with_star"] = star_ids
+                row["rule_ids_with_with"] = with_ids
             end
         end
         push!(results, row)
@@ -54,6 +71,7 @@ function recover_empty_rules(rules_dir::AbstractString, vendor::AbstractString, 
     end
     report = Dict{String,Any}(
         "status" => "experimental; not verified or approved for execution",
+        "feature_inventory_scope" => "Star and With syntax only; other required capabilities are not assessed",
         "source_revision" => revision,
         "source_version" => RubiConverter.rubi_source_version(joinpath(vendor, "Rubi", "IntegrationRules", "source.m")),
         "candidate_files" => length(candidates),

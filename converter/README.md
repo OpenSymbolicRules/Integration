@@ -68,6 +68,9 @@ fail-closed. The experimental output must not be treated as a production
 ruleset or as evidence of CAS or Lean verification.
 The recovery script attempts the currently loaded empty files, records each
 candidate or blocked file in `report.json`, and never modifies `rules/`.
+For each generated file it lists the IDs and counts of rules containing
+`Star` and `With`. This is a partial syntax inventory: it does not assess
+other utilities, pattern behavior, numeric assumptions or engine support.
 The output directory must not already exist and must be outside the rule and
 vendor trees. It contains experimental candidates, not an executable ruleset:
 unsupported operational semantics and consumer capabilities remain to be
