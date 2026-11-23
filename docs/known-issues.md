@@ -78,7 +78,10 @@ failed (derivative notation or `=!=`); these are parser counts, not verified
 or published rules; candidates are cells beginning with `Int[` after leading
 whitespace. Of the parsed cells, 894 contain `Star` and 273 contain a
 local binding; these groups can overlap. A full conversion remains blocked and
-does not change the output tree when any file reports a warning.
+does not change the output tree when any file reports a warning. At this pin,
+the stricter full-corpus probe reports 142 file warnings across 221 source
+files, including previously nonempty sections; the guard deliberately
+refuses to replace those files while local-binding semantics remain unaudited.
 Reproduce the cell-level JSON report with
 `julia --project=converter converter/scripts/audit-cells.jl vendor/Rubi`.
 See the [translation proposal](rubi-translation-proposal.md) for the pending
