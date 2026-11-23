@@ -6,7 +6,7 @@ generated, never edited by hand:
 
 | File | Content |
 |---|---|
-| `v1/integration.osr.json` | 2877 integration rules (`calculus1#int`, lambdas as `OMBIND fns1#lambda`), with verification records over ℝ and ℂ. |
+| `v1/integration.osr.json` | 2878 integration rules (`calculus1#int`, lambdas as `OMBIND fns1#lambda`), with verification records over ℝ and ℂ. |
 | `v1/integration.report.json` | Machine-readable audit: metrics per domain and the rules not migrated. |
 | `v1/integration.report.md` | The same audit for humans, with the findings of every rule. |
 
@@ -110,8 +110,8 @@ conditions allow coefficients to vanish in result denominators. The Lean
 use assignments at `x = 1` where the integrand is defined nearby and the
 result is undefined; no missing condition is added silently.
 
-The current set has 486 proved, 1574 refuted and 817 unproved rules over ℝ;
-over ℂ, 298 are proved (154 certified), 376 refuted and 2203 unproved.
+The current set has 487 proved, 1574 refuted and 817 unproved rules over ℝ;
+over ℂ, 299 are proved (155 certified), 376 refuted and 2203 unproved.
 
 The inventory excludes rules whose result or conditions use a name the
 pattern does not bind (739 rules, 630 of them with `E`, `ImaginaryI` or
