@@ -74,6 +74,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   be migrated faithfully; the current v1 files are unaffected.
 
 ### Added
+- Reject legacy fabricated `UnknownHead` applications in default loaded rules;
+  report their presence in excluded legacy files.
 - Preserve postfix prime notation in the parser AST without exporting it;
   the pinned derivative-rule file can now be parsed for further analysis.
 - Preserve compound function heads in the internal parser AST for analysis;

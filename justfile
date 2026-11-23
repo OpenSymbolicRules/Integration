@@ -11,6 +11,8 @@ validate:
 test:
 	python3 scripts/test_check_duplicate_rules.py
 	python3 scripts/test_audit_rubi_order.py
+	python3 scripts/test_check_unknown_heads.py
+	python3 scripts/check_unknown_heads.py rules
 	python3 scripts/test_inventory_v1.py
 	python3 scripts/test_v1_faithfulness.py
 

@@ -87,3 +87,21 @@ The source also includes a derivative pattern without an explicit order guard.
 Those cases require a separately specified meaning, including integration
 constants and applicability, rather than silently treating all orders as
 ordinary differentiation. No mapping is enabled by this observation.
+
+The source has materially different applicability cases: the first rule has
+no explicit integer or sign guard on `n`; other rules use `IGtQ[n,0]` or
+`ILtQ[n,0]`; still others use fixed derivative order `1` or symbolic orders
+related by `EqQ`. A future translation must retain each original condition,
+not silently replace the unrestricted rule with a positive-order variant.
+
+The OSR expression schema requires a string in function-head position, while
+the OpenMath derivative applies a derivative operator to a function and then
+applies the resulting function to its argument. The catalogue's `Apply` has
+arity two and takes a head and a list of arguments. An illustrative design
+for a reviewed positive-order subset could therefore use an application of a
+mapped `nthdiff` expression to a one-element argument list. This is a proposal,
+not a current conversion contract: pattern-variable binding in function
+position, operator semantics, host evaluation and the treatment of negative
+orders must be reviewed and tested. In particular, the MathJSON examples in
+the specification use a different-looking `Apply` shape and should not be
+assumed to establish the OSR calling convention.

@@ -71,6 +71,11 @@ jobs:
       - name: Test RUBI source load-order audit
         run: python3 scripts/test_audit_rubi_order.py
 
+      - name: Reject fabricated heads in default loaded rules
+        run: |
+          python3 scripts/test_check_unknown_heads.py
+          python3 scripts/check_unknown_heads.py rules
+
       - name: Validate acknowledged exact duplicate rules
         run: python3 scripts/check_duplicate_rules.py rules --baseline scripts/duplicate-rule-baseline.json
 

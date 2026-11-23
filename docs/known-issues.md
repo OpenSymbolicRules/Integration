@@ -150,6 +150,17 @@ the converter, `BigInt` values can be rounded during serialization. A failed
 conversion reports a warning and does not write a partial rule file. Existing
 converted files have not been exhaustively audited for historical rounding.
 
+## Legacy fabricated function heads
+
+The excluded historical file `rules/9-miscellaneous/9.2-Derivative-integration-rules.json`
+contains 18 rules with `UnknownHead`, an invented conversion placeholder that
+does not preserve the source function or derivative. The pinned RUBI 4.17.3.0
+loader uses a different file identity, `9.1 Derivative integration rules`,
+which remains empty in the production corpus. None of the 18 affected rules is
+in the default load sequence. `python3 scripts/check_unknown_heads.py rules`
+reports excluded occurrences and fails if any loaded rule contains this head;
+this does not validate other operations or certify the rules.
+
 ## 4. Mathematical constants converted as free names
 
 **What happens.** `E`, `ImaginaryI` and `Pi` are Mathematica constants (the
