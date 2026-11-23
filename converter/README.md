@@ -36,6 +36,9 @@ julia --project=converter converter/scripts/audit-cells.jl vendor/Rubi > /tmp/ru
 
 # Recover candidates for loaded empty files into a new, isolated directory
 julia --project=converter converter/scripts/recover-empty.jl rules vendor/Rubi /tmp/rubi-empty-candidates
+
+# Classify Module syntax in files reported as blocked, without changing them
+julia --project=converter converter/scripts/audit-module.jl /tmp/rubi-empty-candidates/report.json vendor/Rubi > /tmp/rubi-module-audit.json
 ```
 
 Notebook-generated RUBI files are parsed as complete `::Code::` cells, not
@@ -69,6 +72,8 @@ The output directory must not already exist and must be outside the rule and
 vendor trees. It contains experimental candidates, not an executable ruleset:
 unsupported operational semantics and consumer capabilities remain to be
 reviewed. A blocked entry is not a converted empty rule file.
+The Module audit counts syntax, not semantic validity. Counts of assignments
+in nested bodies can overlap; the older line-based parser can omit expressions.
 
 ## Output
 

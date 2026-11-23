@@ -121,6 +121,12 @@ production corpus. At source revision `61e9c18`, it produces 822 candidate
 rules in 23 files and reports seven files blocked. This does not reduce the 30
 empty files in the production manifest; candidate syntax and schema validation
 are not evidence of mathematical correctness or execution equivalence.
+The read-only `audit-module.jl` command classifies the blocked files. On this
+revision its parser finds 15 `Module` nodes, with 14 initialized and four
+uninitialized local declarations; the derivative file instead fails to parse.
+The trigonometric file uses the legacy line-based parser, whose source coverage
+has not been established, so these counts are not an exhaustive corpus audit.
+Nested body assignment counts can overlap and do not establish runtime behavior.
 
 Section 1.4.1 needs particular care: its sum-by-term integration rule is
 inside an `If[TrueQ[$LoadShowSteps], …]` source cell, with different branches
