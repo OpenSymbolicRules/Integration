@@ -99,3 +99,19 @@ end
         @test !isfile(result.output_path)
     end
 end
+
+@testset "Pinned RUBI 1.4.2 normalization file" begin
+    source = joinpath(@__DIR__, "..", "..", "vendor", "Rubi", "Rubi",
+        "IntegrationRules", "1 Algebraic functions", "1.4 Miscellaneous",
+        "1.4.2 Algebraic function normalization.m")
+    if isfile(source)
+        mktempdir() do dir
+            result = RubiConverter.convert_rule_file(source; output_dir=dir)
+            @test result.rule_count == 29
+            @test isempty(result.warnings)
+            @test isfile(result.output_path)
+        end
+    else
+        @test_skip isfile(source) # A checkout without the RUBI submodule.
+    end
+end
