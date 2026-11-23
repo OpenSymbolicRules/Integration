@@ -169,6 +169,33 @@ contains_local_scope(expr::MExpr) = expr isa MFunction &&
     (expr.head in ("With", "Module", "Set") ||
      any(arg -> arg isa MExpr && contains_local_scope(arg), expr.args))
 
+function validate_experimental_scope(expr::MExpr)
+    expr isa MFunction || return
+    if expr.head == "With"
+        length(expr.args) == 2 || error("With requires a binding list and body")
+        bindings = expr.args[1]
+        bindings isa MFunction && bindings.head == "List" || error("With bindings must be a List")
+        names = String[]
+        for binding in bindings.args
+            binding isa MFunction && binding.head == "Set" && length(binding.args) == 2 ||
+                error("With binding must be a Set of a name and value")
+            name = binding.args[1]
+            name isa MSymbol && occursin(r"^[A-Za-z\$][A-Za-z0-9\$]*$", name.name) ||
+                error("With binding name must be a plain symbol")
+            name.name in names && error("With binding names must be distinct")
+            push!(names, name.name)
+            validate_experimental_scope(binding.args[2])
+        end
+        validate_experimental_scope(expr.args[2])
+        return
+    end
+    expr.head in ("Set", "Module") && error("Unsupported assignment or local scope outside With")
+    expr.head == "Star" && length(expr.args) != 2 && error("Star requires two arguments")
+    for arg in expr.args
+        arg isa MExpr && validate_experimental_scope(arg)
+    end
+end
+
 """Audit `Int` notebook cells without writing rules or claiming semantic correctness."""
 function audit_code_cells(source::AbstractString)
     cells = split(source, "(* ::Code:: *)")
@@ -237,7 +264,8 @@ end
 
 Convert a single Mathematica .m rule file to a OSR JSON rule file.
 """
-function convert_rule_file(source_path::String; output_dir::String="rules")::RuleConversionResult
+function convert_rule_file(source_path::String; output_dir::String="rules",
+                           experimental_rubi_extensions::Bool=false)::RuleConversionResult
     source = read(source_path, String)
     filename = basename(source_path)
     section = extract_section_number(source_path)
@@ -267,16 +295,26 @@ function convert_rule_file(source_path::String; output_dir::String="rules")::Rul
         return RuleConversionResult(output_path, section, title, 0, warnings)
     end
 
-    if any(contains_rubi_star, expressions)
+    if !experimental_rubi_extensions && any(contains_rubi_star, expressions)
         push!(warnings, ConversionWarning(source_path, 0,
             "RUBI Star has no reviewed OSR mapping; the file was not converted", ""))
         return RuleConversionResult(output_path, section, title, 0, warnings)
     end
 
-    if any(contains_local_scope, expressions)
+    if !experimental_rubi_extensions && any(contains_local_scope, expressions)
         push!(warnings, ConversionWarning(source_path, 0,
             "Local binding semantics are not yet validated; the file was not converted", ""))
         return RuleConversionResult(output_path, section, title, 0, warnings)
+    end
+
+    if experimental_rubi_extensions
+        try
+            foreach(validate_experimental_scope, expressions)
+        catch e
+            push!(warnings, ConversionWarning(source_path, 0,
+                "Invalid or unsupported scope: $(sprint(showerror, e))", ""))
+            return RuleConversionResult(output_path, section, title, 0, warnings)
+        end
     end
 
     # Extract rule definitions (SetDelayed with Int on LHS)

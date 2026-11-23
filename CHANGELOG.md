@@ -22,6 +22,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   that report; the findings are added and the check passes.
 
 ### Changed
+- Update the Specification submodule to the reviewed lexical-binding and
+  RUBI `Star` contract; no Mathlib or RUBI pin is changed.
 - Prepare candidate `Star` and lexical `With` semantic declarations while
   retaining the fail-closed export guard until the specification and consumer
   capability contract are adopted.
@@ -58,6 +60,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   be migrated faithfully; the current v1 files are unaffected.
 
 ### Added
+- An explicitly opt-in, isolated conversion mode for auditing candidate
+  `Star` and `With` expressions; production batch conversion remains guarded.
 - A read-only, machine-readable audit of parsed notebook cells and remaining
   unsupported constructs; it makes no verification claim about candidates.
 - A reviewable proposal for translating `Star`, local bindings and upstream

@@ -110,6 +110,30 @@ end
     @test semantics["Int"] == "openmath:calculus1#int"
     @test !haskey(semantics, "With")
     @test !haskey(semantics, "Set")
+
+    mktempdir() do dir
+        source_path = joinpath(dir, "candidate.m")
+        write(source_path, "(* ::Code:: *)\n" * source)
+        result = RubiConverter.convert_rule_file(source_path; output_dir=joinpath(dir, "out"),
+            experimental_rubi_extensions=true)
+        @test result.rule_count == 1
+        @test isempty(result.warnings)
+        doc = RubiConverter.JSON3.read(read(result.output_path, String))
+        @test doc["rules"][1]["result"][1] == "With"
+        @test doc["semantics"]["Star"] == "openmath:arith1#times"
+    end
+end
+
+@testset "Experimental conversion rejects malformed scope" begin
+    mktempdir() do dir
+        source_path = joinpath(dir, "bad.m")
+        write(source_path, "(* ::Code:: *)\nInt[x_,x_Symbol] := With[{k=1,k=2},k*x]\n")
+        result = RubiConverter.convert_rule_file(source_path; output_dir=joinpath(dir, "out"),
+            experimental_rubi_extensions=true)
+        @test result.rule_count == 0
+        @test !isempty(result.warnings)
+        @test !isfile(result.output_path)
+    end
 end
 
 @testset "Pinned RUBI 1.4.2 normalization file" begin
@@ -125,6 +149,25 @@ end
         end
     else
         @test_skip isfile(source) # A checkout without the RUBI submodule.
+    end
+end
+
+@testset "Pinned RUBI quadratic file preserves Star" begin
+    source = joinpath(@__DIR__, "..", "..", "vendor", "Rubi", "Rubi",
+        "IntegrationRules", "1 Algebraic functions", "1.1 Binomial products",
+        "1.1.2 Quadratic", "1.1.2.1 (a+b x^2)^p.m")
+    if isfile(source)
+        mktempdir() do dir
+            result = RubiConverter.convert_rule_file(source; output_dir=dir,
+                experimental_rubi_extensions=true)
+            @test result.rule_count == 33
+            @test isempty(result.warnings)
+            doc = RubiConverter.JSON3.read(read(result.output_path, String))
+            @test doc["semantics"]["Star"] == "openmath:arith1#times"
+            @test all(r -> r["provenance"]["sources"][1]["version"] == "4.17.3.0", doc["rules"])
+        end
+    else
+        @test_skip isfile(source)
     end
 end
 

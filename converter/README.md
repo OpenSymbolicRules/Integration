@@ -51,6 +51,10 @@ mathematical projection is `arith1#times`; this does not make it operationally
 interchangeable with ordinary multiplication. `With`/`Set` bindings are
 treated as structural in the candidate mapping. File export remains blocked
 for both until the specification and consumer capability contract are adopted.
+For isolated diagnostics only, `convert_rule_file` accepts the keyword
+`experimental_rubi_extensions=true`; the default and batch conversion remain
+fail-closed. The experimental output must not be treated as a production
+ruleset or as evidence of CAS or Lean verification.
 
 ## Output
 

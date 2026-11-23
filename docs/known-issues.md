@@ -87,6 +87,17 @@ Reproduce the cell-level JSON report with
 See the [translation proposal](rubi-translation-proposal.md) for the pending
 semantic and ordering decisions.
 
+An opt-in **experimental** conversion preserves `Star` and validated `With`
+syntax for isolated investigation; it is not a public rule export. At the
+same source pin it converted 187 of 221 files, producing 6,969 candidate rules;
+34 files still failed on unsupported scope or syntax. All 187 generated
+candidate files passed JSON Schema and the revised semantic-closure validator;
+24 contain `Star` and 104 contain `With`. For example, 1.1.2.1 produced 33
+candidates retaining `Star`. These numbers include source files RUBI may not
+load and do not establish mathematical correctness, execution equivalence,
+or formal verification. Consumers must implement the extension contract
+before any affected rules are published for execution.
+
 ## 4. Mathematical constants converted as free names
 
 **What happens.** `E`, `ImaginaryI` and `Pi` are Mathematica constants (the
