@@ -126,6 +126,14 @@ branch selector that requires an explicit boolean, checks both branches are
 single `Int` definitions, and rejects other conditions. It permits analysis
 of either branch but does not publish either rule or assume the default.
 
+## Converter numeric limitation
+
+The converter now rejects integer AST values represented as Julia `BigInt`
+instead of converting them to `Float64`. With the JSON3 pretty writer used by
+the converter, `BigInt` values can be rounded during serialization. A failed
+conversion reports a warning and does not write a partial rule file. Existing
+converted files have not been exhaustively audited for historical rounding.
+
 ## 4. Mathematical constants converted as free names
 
 **What happens.** `E`, `ImaginaryI` and `Pi` are Mathematica constants (the

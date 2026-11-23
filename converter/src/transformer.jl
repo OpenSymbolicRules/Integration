@@ -16,8 +16,10 @@ function to_osr(expr::MSymbol)
 end
 
 function to_osr(expr::MInteger)
-    # BigInt values are emitted as Float64 for JSON compatibility
-    expr.value isa BigInt ? Float64(expr.value) : expr.value
+    # JSON3.pretty rounds BigInt through floating point; reject instead of
+    # silently changing an exact integer. Other integers remain exact.
+    expr.value isa BigInt && error("Integer exceeds the exact JSON writer range")
+    expr.value
 end
 
 function to_osr(expr::MReal)

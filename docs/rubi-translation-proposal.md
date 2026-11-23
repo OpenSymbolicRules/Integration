@@ -44,11 +44,22 @@ simultaneous definitions, free variables and unsupported constructs, and
 document which consumers can execute the resulting form. A capture-avoiding
 elaboration is an alternative only when its equivalence is established.
 
+`Module` cannot be converted wholesale to `With`. In the pinned 1.4.1 source,
+`Module[{q=Expon[Pq,x],r=Expon[Qr,x]}, ...]` creates local names used by a
+guarded body. Other pinned rules declare an uninitialized local, for example
+`Module[{k}, ...]`; the 4.7.5 trigonometric source also contains a local
+declared first and assigned later inside a `CompoundExpression`. In addition
+to capture avoidance, any implementation must preserve fresh names, assignment
+and evaluation order, and the lifetime of values under held expressions.
+Until these cases have a reviewed contract and executable consumer tests,
+`Module` stays blocked in rule export. A static validator alone cannot prove
+runtime equivalence.
+
 ## Source order and identifiers
 
-RUBI's `Rubi.m` orders loaded files. The converter's current `meta.json`
-generator sorts file paths; do not conflate those sequences. A future source
-order manifest should record the exact upstream revision, active load calls,
+RUBI's `Rubi.m` orders loaded files. The default `meta.json` now follows the
+source-file sequence, and the manifest updater preserves it. The read-only
+audit records the exact upstream revision, active load calls,
 configuration and the source file path for each entry. A legacy local rule ID
 is a locator, not itself a proved global execution rank. Rules from files not
 loaded by that RUBI configuration, unavailable rules, and OSR-only variants
@@ -57,7 +68,7 @@ conditional loads, duplicate paths and unmatched entries before use by a CAS.
 
 ## Remaining syntax
 
-The cell audit reports four candidate cells with derivative notation or the
-`=!=` operator that still do not parse. Their Wolfram semantics and the
+The current cell audit reports 22 candidate cells that do not parse, including
+compound heads, derivative notation and the `=!=` operator. Their Wolfram semantics and the
 available OSR representations require separate tests. Cell parse counts are
 not a substitute for schema validation, numerical checks or formal proof.

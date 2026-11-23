@@ -228,3 +228,16 @@ end
         @test_skip isfile(source)
     end
 end
+
+@testset "Large integer conversion never silently rounds" begin
+    huge = RubiConverter.parse_mathematica("123456789012345678901234567890")
+    @test huge.value isa BigInt
+    @test_throws Exception RubiConverter.to_osr(huge)
+    mktempdir() do dir
+        source = joinpath(dir, "large.m")
+        write(source, "(* ::Code:: *)\nInt[x_,x_Symbol] := 123456789012345678901234567890*x\n")
+        result = RubiConverter.convert_rule_file(source; output_dir=joinpath(dir, "out"))
+        @test !isempty(result.warnings)
+        @test !isfile(result.output_path)
+    end
+end

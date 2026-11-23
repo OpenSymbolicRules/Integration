@@ -8,6 +8,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Fixed
+- Reject oversized integers during conversion instead of silently rounding
+  exact values through floating point in the JSON output.
 - Preserve the reviewed source load order when updating manifest counts and
   reject missing or duplicate entries instead of silently sorting all files.
 - Run the non-executable validation script through Bash from the justfile.
