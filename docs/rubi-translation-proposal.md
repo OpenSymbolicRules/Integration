@@ -68,7 +68,9 @@ conditional loads, duplicate paths and unmatched entries before use by a CAS.
 
 ## Remaining syntax
 
-The current cell audit reports 22 candidate cells that do not parse, including
-compound heads, derivative notation and the `=!=` operator. Their Wolfram semantics and the
+An earlier cell audit reported 22 candidate cells that did not parse, including
+compound heads, derivative notation and the `=!=` operator. Compound heads are
+now retained as AST applications but still rejected at export; the derivative
+source next encounters unsupported apostrophe notation. Their Wolfram semantics and the
 available OSR representations require separate tests. Cell parse counts are
 not a substitute for schema validation, numerical checks or formal proof.

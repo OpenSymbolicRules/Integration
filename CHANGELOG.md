@@ -74,6 +74,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   be migrated faithfully; the current v1 files are unaffected.
 
 ### Added
+- Preserve compound function heads in the internal parser AST for analysis;
+  conversion still explicitly rejects them pending a reviewed OSR mapping.
 - Add a read-only audit of local declarations and assignments in blocked
   `Module` expressions, explicitly reporting parser failures and limitations.
 - Add an isolated experimental recovery command and per-file failure report

@@ -14,4 +14,5 @@ include(joinpath(@__DIR__, "..", "scripts", "audit-module.jl"))
     malformed = RubiConverter.parse_mathematica("Module[x,f[x]]")
     @test audit_modules([malformed])["unsupported_declarations"] == 1
     @test audit_modules([RubiConverter.parse_mathematica("f[x]")])["modules"] == 0
+    @test audit_modules([RubiConverter.parse_mathematica("f[x][Module[{k},k]]")])["modules"] == 1
 end

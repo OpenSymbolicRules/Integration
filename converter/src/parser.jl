@@ -31,6 +31,13 @@ struct MFunction <: MExpr
     args::Vector{Any}  # Vector of MExpr
 end
 
+# An application whose head is itself an expression, such as
+# Derivative[n][f][x]. It is retained for analysis and is not an OSR head.
+struct MApply <: MExpr
+    head::MExpr
+    args::Vector{Any}
+end
+
 struct ParserError <: Exception
     message::String
     line::Int
@@ -310,8 +317,8 @@ function parse_postfix(p::Parser)::MExpr
                 # Function application: f[args]
                 args = parse_arglist(p, TOK_RBRACKET)
                 expect!(p, TOK_RBRACKET)
-                head_name = expr_to_head(atom)
-                atom = MFunction(head_name, args)
+                atom = atom isa MSymbol || atom isa MPattern ?
+                    MFunction(expr_to_head(atom), args) : MApply(atom, args)
             end
         elseif at(p, TOK_BLANK) || at(p, TOK_BLANKSEQ) || at(p, TOK_BLANKNULLSEQ)
             # Pattern: x_, x__, x___
@@ -324,8 +331,8 @@ function parse_postfix(p::Parser)::MExpr
             # Prefix application: f @ x  means f[x]
             advance!(p)
             arg = parse_power(p)
-            head_name = expr_to_head(atom)
-            atom = MFunction(head_name, [arg])
+            atom = atom isa MSymbol || atom isa MPattern ?
+                MFunction(expr_to_head(atom), [arg]) : MApply(atom, [arg])
         elseif at(p, TOK_ATAT)
             # Apply: f @@ expr  means Apply[f, expr]
             advance!(p)

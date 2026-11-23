@@ -136,8 +136,21 @@ end
     end
 end
 
-@testset "Unsupported compound application heads fail explicitly" begin
-    @test_throws ArgumentError RubiConverter.parse_mathematica("f[x][y]")
+@testset "Compound application heads are preserved and not exported" begin
+    expr = RubiConverter.parse_mathematica("Derivative[n_][f_][x_]")
+    @test expr isa RubiConverter.MApply
+    @test expr.head isa RubiConverter.MApply
+    @test expr.head.head.head == "Derivative"
+    @test_throws ArgumentError RubiConverter.to_osr(expr)
+    @test RubiConverter.contains_rubi_star(RubiConverter.parse_mathematica(raw"f[x][a \[Star] b]"))
+    @test RubiConverter.contains_local_scope(RubiConverter.parse_mathematica("f[x][With[{k=1},k]]"))
+    mktempdir() do dir
+        source = joinpath(dir, "derivative.m")
+        write(source, "(* ::Code:: *) Int[Derivative[n_][f_][x_],x_Symbol] := x")
+        result = RubiConverter.convert_rule_file(source; output_dir=joinpath(dir, "out"), experimental_rubi_extensions=true)
+        @test !isempty(result.warnings)
+        @test !isfile(result.output_path)
+    end
 end
 
 @testset "Pinned RUBI 1.4.2 normalization file" begin

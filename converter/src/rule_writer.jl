@@ -162,11 +162,13 @@ end
 
 # `Star` is RUBI's evaluation-aware distribution operator. Do not invent an
 # OpenMath symbol or silently replace it with multiplication in rule output.
-contains_rubi_star(expr::MExpr) = expr isa MFunction &&
-    (expr.head == "Star" || any(arg -> arg isa MExpr && contains_rubi_star(arg), expr.args))
+contains_rubi_star(expr::MExpr) = expr isa MApply ?
+    (contains_rubi_star(expr.head) || any(arg -> arg isa MExpr && contains_rubi_star(arg), expr.args)) :
+    expr isa MFunction && (expr.head == "Star" || any(arg -> arg isa MExpr && contains_rubi_star(arg), expr.args))
 
-contains_local_scope(expr::MExpr) = expr isa MFunction &&
-    (expr.head in ("With", "Module", "Set") ||
+contains_local_scope(expr::MExpr) = expr isa MApply ?
+    (contains_local_scope(expr.head) || any(arg -> arg isa MExpr && contains_local_scope(arg), expr.args)) :
+    expr isa MFunction && (expr.head in ("With", "Module", "Set") ||
      any(arg -> arg isa MExpr && contains_local_scope(arg), expr.args))
 
 """Select a reviewed RUBI show-steps branch for isolated analysis only.
@@ -194,6 +196,7 @@ function select_show_steps_branch(expr::MExpr; show_steps::Bool)
 end
 
 function validate_experimental_scope(expr::MExpr)
+    expr isa MApply && error("Compound application heads have no reviewed OSR mapping")
     expr isa MFunction || return
     if expr.head == "With"
         length(expr.args) == 2 || error("With requires a binding list and body")

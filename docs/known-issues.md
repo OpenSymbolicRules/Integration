@@ -81,7 +81,7 @@ semantics are reviewed; unsupported cells produce diagnostics rather than a
 silently partial converted file. In an exploratory scan of notebook cells at
 this pin, 1,190 of 1,212 candidate `Int` cells parsed individually and 22
 failed (unsupported compound heads, derivative notation or `=!=`); these are parser counts, not verified
-or published rules; candidates are cells beginning with `Int[` after leading
+or published rules, measured before compound-head parsing was added; candidates are cells beginning with `Int[` after leading
 whitespace. Of the parsed cells, 878 contain `Star` and 273 contain a
 local binding; these groups can overlap. A full conversion remains blocked and
 does not change the output tree when any file reports a warning. At this pin,
@@ -123,7 +123,8 @@ empty files in the production manifest; candidate syntax and schema validation
 are not evidence of mathematical correctness or execution equivalence.
 The read-only `audit-module.jl` command classifies the blocked files. On this
 revision its parser finds 15 `Module` nodes, with 14 initialized and four
-uninitialized local declarations; the derivative file instead fails to parse.
+uninitialized local declarations; the derivative file also requires apostrophe
+notation that the parser does not yet recognize.
 The trigonometric file uses the legacy line-based parser, whose source coverage
 has not been established, so these counts are not an exhaustive corpus audit.
 Nested body assignment counts can overlap and do not establish runtime behavior.

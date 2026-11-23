@@ -34,6 +34,10 @@ function to_osr(expr::MPattern)
     map_wildcard(expr.name, expr.blank_type, expr.type_head)
 end
 
+function to_osr(expr::MApply)
+    throw(ArgumentError("Compound application heads have no reviewed OSR mapping"))
+end
+
 function to_osr(expr::MFunction)
     head = map_operator(expr.head)
     args = [to_osr(a) for a in expr.args]
