@@ -25,7 +25,7 @@ julia --project=converter converter/scripts/convert.jl --rules
 # Convert all test problems to OSR JSON
 julia --project=converter converter/scripts/convert.jl --tests
 
-# Update meta.json with load_order, counts, and converter metadata
+# Update meta.json counts and converter metadata, preserving reviewed load_order
 julia --project=converter converter/scripts/convert.jl --manifest
 
 # Convert a single .m file
@@ -42,9 +42,9 @@ converted. A batch conversion stages its output and
 fails without changing the destination if any file reports a warning. This
 does not resolve all empty files; see [known issues](../docs/known-issues.md).
 The legacy one-expression-per-line path still needs a separate loss audit.
-Run the manifest update only after reviewing a complete conversion: the
-existing manifest generator sorts by file path, and does not reproduce the
-load sequence in RUBI's `Rubi.m`.
+The manifest update preserves the existing reviewed load order and rejects
+missing or duplicate entries. It does not infer a new order after a source
+change; review the source-file sequence separately before changing it.
 Use `python3 scripts/audit_rubi_order.py vendor/Rubi rules` to inspect the
 source-file sequence and unmatched OSR files without changing the manifest.
 The default manifest follows the pinned source's default file sequence; it is

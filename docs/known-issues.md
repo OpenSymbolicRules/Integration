@@ -101,6 +101,8 @@ load list. The default manifest follows that file order, but array positions
 and rule identifiers do not by themselves prove Mathematica's final runtime
 priority. It contains 30 still-empty loaded files. The audit itself does not
 reconstruct missing rules or modify the manifest.
+The converter's manifest updater preserves this reviewed sequence and rejects
+missing or duplicate entries; it does not infer new source ordering.
 
 An opt-in **experimental** conversion preserves `Star` and validated `With`
 syntax for isolated investigation; it is not a public rule export. At the

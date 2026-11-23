@@ -8,6 +8,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Fixed
+- Preserve the reviewed source load order when updating manifest counts and
+  reject missing or duplicate entries instead of silently sorting all files.
 - Run the non-executable validation script through Bash from the justfile.
 - Recover 29 multiline normalization rules in section 1.4.2, retaining
   source identities and explicitly recording 26 exact legacy duplicates.

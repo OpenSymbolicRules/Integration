@@ -7,7 +7,7 @@ using Dates
     update_manifest(meta_path::String, rules_dir::String, tests_dir::String, vendor_rubi_path::String)
 
 Update the meta.json file with:
-- load_order: all rule files in section order
+- load_order: preserve the reviewed file sequence already in the manifest
 - rule_count: total rules across all files
 - test_count: total test problems across all test files
 - converter: tool metadata (name, version, source commit, timestamp)
@@ -17,7 +17,7 @@ function update_manifest(meta_path::String, rules_dir::String, tests_dir::String
     raw = JSON3.read(read(meta_path, String))
     meta = Dict{String,Any}(string(k) => v for (k, v) in pairs(raw))
 
-    # Find all rule JSON files and sort by path (which gives section order)
+    # Enumerate the whole corpus for counts, including intentionally unloaded files.
     rule_files = String[]
     if isdir(rules_dir)
         for (root, dirs, files) in walkdir(rules_dir)
@@ -30,6 +30,15 @@ function update_manifest(meta_path::String, rules_dir::String, tests_dir::String
         end
     end
     sort!(rule_files)
+
+    # The reviewed sequence is not section order and may omit unloaded files.
+    haskey(meta, "load_order") || error("Manifest has no reviewed load_order")
+    order = meta["load_order"]
+    order isa AbstractVector || error("Manifest load_order must be an array")
+    all(item -> item isa AbstractString, order) || error("Manifest load_order entries must be strings")
+    length(unique(order)) == length(order) || error("Manifest load_order contains duplicates")
+    available = Set(rule_files)
+    all(item -> item in available, order) || error("Manifest load_order references missing files")
 
     # Count total rules across all rule files
     total_rules = 0
@@ -77,7 +86,6 @@ function update_manifest(meta_path::String, rules_dir::String, tests_dir::String
     end
 
     # Update meta.json fields
-    meta["load_order"] = rule_files
     meta["rule_count"] = total_rules
     meta["test_count"] = total_tests
     meta["converter"] = Dict{String,Any}(
@@ -94,7 +102,7 @@ function update_manifest(meta_path::String, rules_dir::String, tests_dir::String
     end
 
     println("Updated $meta_path:")
-    println("  load_order: $(length(rule_files)) files")
+    println("  load_order: $(length(order)) files (preserved)")
     println("  rule_count: $total_rules")
     println("  test_count: $total_tests")
     println("  converter.source_commit: $(source_commit[1:min(8, length(source_commit))])...")

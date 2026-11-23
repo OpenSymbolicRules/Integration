@@ -2,6 +2,7 @@ using Test
 using RubiConverter
 
 include("multiline.jl")
+include("manifest.jl")
 
 @testset "RubiConverter" begin
 
