@@ -50,6 +50,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   be migrated faithfully; the current v1 files are unaffected.
 
 ### Added
+- Distribute report `8ab03171…`, including the independently proved order-free
+  generalization of RUBI 1.1.3.4 #29, certified over ℝ and ℂ.
 - Distribute report `45bd9d80…`, including an independently proved order-free
   generalization of RUBI 1.1.3.4 #28, certified over ℝ and ℂ.
 - The faithfulness check recognizes separately reported, independently proved

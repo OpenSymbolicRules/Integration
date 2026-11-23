@@ -23,14 +23,14 @@ By mapping local functions to OpenMath Content Dictionaries, this format ensures
 
 `v1/` holds the first RUBI rules stated in the OSR v1 format, generated from
 Lean proofs (`OpenSymbolicRules/Lean`) and published by
-`OpenSymbolicRules/Verification`: 2876 rules; 485 are proved, 1574 refuted
-and 817 unproved over ℝ; 297 are proved, 376 refuted and 2203 unproved over
+`OpenSymbolicRules/Verification`: 2877 rules; 486 are proved, 1574 refuted
+and 817 unproved over ℝ; 298 are proved, 376 refuted and 2203 unproved over
 ℂ. Another 520 RUBI rules are reported as not migrated. Every v1 rule is
 checked against its v0.1 rule by `scripts/v1_faithfulness.py`; 1040 are
 strengthened variants (a non-degeneracy condition appended, `_nondegenerate`
 ids) of refuted rules, which stay in the set. See [docs/osr-v1.md](docs/osr-v1.md).
-One independently proved derived generalization of 1.1.3.4 #28 replaces its
-order conditions with a nonzero denominator; it is certified over ℝ and ℂ.
+Independently proved derived generalizations of 1.1.3.4 #28 and #29 replace
+their order conditions with nonzero conditions; both are certified over ℝ and ℂ.
 
 ```bash
 just check        # v0.1 schemas, script tests and v1 files
