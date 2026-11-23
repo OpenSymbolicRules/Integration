@@ -136,6 +136,10 @@ end
     end
 end
 
+@testset "Unsupported compound application heads fail explicitly" begin
+    @test_throws ArgumentError RubiConverter.parse_mathematica("f[x][y]")
+end
+
 @testset "Pinned RUBI 1.4.2 normalization file" begin
     source = joinpath(@__DIR__, "..", "..", "vendor", "Rubi", "Rubi",
         "IntegrationRules", "1 Algebraic functions", "1.4 Miscellaneous",

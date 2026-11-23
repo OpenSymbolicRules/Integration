@@ -73,10 +73,10 @@ RUBI's evaluation-aware `Star` operator. The parser retains both constructs,
 but files using either are not exported until binding and operational
 semantics are reviewed; unsupported cells produce diagnostics rather than a
 silently partial converted file. In an exploratory scan of notebook cells at
-this pin, 1,208 of 1,212 candidate `Int` cells parsed individually and four
-failed (derivative notation or `=!=`); these are parser counts, not verified
+this pin, 1,190 of 1,212 candidate `Int` cells parsed individually and 22
+failed (unsupported compound heads, derivative notation or `=!=`); these are parser counts, not verified
 or published rules; candidates are cells beginning with `Int[` after leading
-whitespace. Of the parsed cells, 894 contain `Star` and 273 contain a
+whitespace. Of the parsed cells, 878 contain `Star` and 273 contain a
 local binding; these groups can overlap. A full conversion remains blocked and
 does not change the output tree when any file reports a warning. At this pin,
 the stricter full-corpus probe reports 142 file warnings across 221 source
@@ -89,8 +89,8 @@ semantic and ordering decisions.
 
 An opt-in **experimental** conversion preserves `Star` and validated `With`
 syntax for isolated investigation; it is not a public rule export. At the
-same source pin it converted 187 of 221 files, producing 6,969 candidate rules;
-34 files still failed on unsupported scope or syntax. All 187 generated
+same source pin it converted 186 of 221 files, producing 6,951 candidate rules;
+35 files still failed on unsupported scope or syntax. All 186 generated
 candidate files passed JSON Schema and the revised semantic-closure validator;
 24 contain `Star` and 104 contain `With`. For example, 1.1.2.1 produced 33
 candidates retaining `Star`. These numbers include source files RUBI may not

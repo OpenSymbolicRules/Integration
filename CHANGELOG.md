@@ -8,6 +8,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Fixed
+- Reject unsupported compound function heads instead of silently converting
+  them to an invented `UnknownHead` operator.
 - Parse notebook-generated RUBI `::Code::` cells as multiline expressions;
   report unsupported syntax and avoid replacing a batch on conversion
   warnings. Source versions for new conversions are read from `PacletInfo.m`

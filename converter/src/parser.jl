@@ -372,8 +372,8 @@ function expr_to_head(expr::MExpr)::String
     elseif expr isa MPattern
         return map_wildcard(expr.name, expr.blank_type, expr.type_head)
     end
-    # For compound expressions used as heads, return a string representation
-    "UnknownHead"
+    # A fabricated head changes the meaning of the source expression.
+    throw(ArgumentError("Unsupported compound function head: $(repr(expr))"))
 end
 
 function expr_to_symbol_name(expr::MExpr)::String
