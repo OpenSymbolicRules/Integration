@@ -148,6 +148,15 @@ struct ConversionWarning
     expression::String
 end
 
+# `Star` is RUBI's evaluation-aware distribution operator. Do not invent an
+# OpenMath symbol or silently replace it with multiplication in rule output.
+contains_rubi_star(expr::MExpr) = expr isa MFunction &&
+    (expr.head == "Star" || any(arg -> arg isa MExpr && contains_rubi_star(arg), expr.args))
+
+contains_local_scope(expr::MExpr) = expr isa MFunction &&
+    (expr.head in ("With", "Module", "Set") ||
+     any(arg -> arg isa MExpr && contains_local_scope(arg), expr.args))
+
 struct RuleConversionResult
     output_path::String
     section::String
@@ -163,16 +172,30 @@ Return machine-readable provenance for one rule converted from the pinned Rubi
 source file. The source-relative path and original ordinal form a stable
 locator within the source corpus.
 """
-function rubi_provenance(relative_source_path::AbstractString, rule_id::Integer)::Dict{String,Any}
+function rubi_source_version(source_path::AbstractString)
+    dir = dirname(abspath(source_path))
+    while true
+        paclet = joinpath(dir, "PacletInfo.m")
+        if isfile(paclet)
+            found = match(r"\bVersion\s*->\s*\"([^\"]+)\"", read(paclet, String))
+            return found === nothing ? nothing : String(found.captures[1])
+        end
+        parent = dirname(dir)
+        parent == dir && return nothing
+        dir = parent
+    end
+end
+
+function rubi_provenance(relative_source_path::AbstractString, rule_id::Integer;
+                         version::Union{Nothing,AbstractString}=nothing)::Dict{String,Any}
+    source = Dict{String,Any}(
+        "name" => "Rubi",
+        "locator" => string(replace(relative_source_path, '\\' => '/'), "#", rule_id),
+    )
+    version === nothing || (source["version"] = String(version))
     Dict{String,Any}(
         "method" => "converted",
-        "sources" => Any[
-            Dict{String,Any}(
-                "name" => "Rubi",
-                "version" => "4.16.1",
-                "locator" => string(replace(relative_source_path, '\\' => '/'), "#", rule_id),
-            ),
-        ],
+        "sources" => Any[source],
     )
 end
 
@@ -198,6 +221,7 @@ function convert_rule_file(source_path::String; output_dir::String="rules")::Rul
 
     output_path = mathematica_path_to_osr(rel_path; prefix=output_dir)
     identity = source_identity(rel_path)
+    source_version = rubi_source_version(source_path)
 
     warnings = ConversionWarning[]
     rules = Dict{String,Any}[]
@@ -210,6 +234,18 @@ function convert_rule_file(source_path::String; output_dir::String="rules")::Rul
         return RuleConversionResult(output_path, section, title, 0, warnings)
     end
 
+    if any(contains_rubi_star, expressions)
+        push!(warnings, ConversionWarning(source_path, 0,
+            "RUBI Star has no reviewed OSR mapping; the file was not converted", ""))
+        return RuleConversionResult(output_path, section, title, 0, warnings)
+    end
+
+    if any(contains_local_scope, expressions)
+        push!(warnings, ConversionWarning(source_path, 0,
+            "Local binding semantics are not yet validated; the file was not converted", ""))
+        return RuleConversionResult(output_path, section, title, 0, warnings)
+    end
+
     # Extract rule definitions (SetDelayed with Int on LHS)
     rule_id = 0
     for expr in expressions
@@ -219,7 +255,7 @@ function convert_rule_file(source_path::String; output_dir::String="rules")::Rul
                 rule_id += 1
                 try
                     rule = rule_to_osr(expr, rule_id)
-                    rule["provenance"] = rubi_provenance(rel_path, rule_id)
+                    rule["provenance"] = rubi_provenance(rel_path, rule_id; version=source_version)
                     push!(rules, rule)
                 catch e
                     push!(warnings, ConversionWarning(
@@ -228,8 +264,18 @@ function convert_rule_file(source_path::String; output_dir::String="rules")::Rul
                         ""
                     ))
                 end
+            elseif occursin("(* ::Code:: *)", source)
+                push!(warnings, ConversionWarning(source_path, 0,
+                    "Unsupported definition in code cell; the file was not converted", ""))
             end
+        elseif occursin("(* ::Code:: *)", source)
+            push!(warnings, ConversionWarning(source_path, 0,
+                "Unsupported non-rule code cell; the file was not converted", ""))
         end
+    end
+
+    if !isempty(warnings)
+        return RuleConversionResult(output_path, section, title, 0, warnings)
     end
 
     # Build the OSR rule file JSON
@@ -274,19 +320,33 @@ function convert_all_rules(vendor_path::String; output_dir::String="rules")::Vec
     end
     sort!(m_files)
 
-    results = RuleConversionResult[]
-    for (i, m_file) in enumerate(m_files)
-        rel = replace(m_file, rules_dir * "/" => "")
-        print("  [$i/$(length(m_files))] $rel")
-        result = convert_rule_file(m_file; output_dir=output_dir)
-        println(" → $(result.rule_count) rules" *
-                (isempty(result.warnings) ? "" : " ($(length(result.warnings)) warnings)"))
-        push!(results, result)
+    mktempdir() do staging
+        results = RuleConversionResult[]
+        for (i, m_file) in enumerate(m_files)
+            rel = replace(m_file, rules_dir * "/" => "")
+            print("  [$i/$(length(m_files))] $rel")
+            result = convert_rule_file(m_file; output_dir=staging)
+            println(" → $(result.rule_count) rules" *
+                    (isempty(result.warnings) ? "" : " ($(length(result.warnings)) warnings)"))
+            for warning in result.warnings
+                println(stderr, "  WARNING $(warning.file):$(warning.line): $(warning.message)")
+            end
+            push!(results, result)
+        end
+
+        total_rules = sum(r.rule_count for r in results)
+        total_warnings = sum(length(r.warnings) for r in results)
+        println("\nSummary: $total_rules rules converted from $(length(results)) files ($total_warnings warnings)")
+        total_warnings == 0 || error("RUBI conversion incomplete: $total_warnings warnings; output was not changed")
+
+        published = RuleConversionResult[]
+        for result in results
+            target = joinpath(output_dir, relpath(result.output_path, staging))
+            mkpath(dirname(target))
+            cp(result.output_path, target; force=true)
+            push!(published, RuleConversionResult(target, result.section, result.title,
+                result.rule_count, result.warnings))
+        end
+        published
     end
-
-    total_rules = sum(r.rule_count for r in results)
-    total_warnings = sum(length(r.warnings) for r in results)
-    println("\nSummary: $total_rules rules converted from $(length(results)) files ($total_warnings warnings)")
-
-    results
 end

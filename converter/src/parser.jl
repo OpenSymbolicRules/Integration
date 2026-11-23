@@ -92,6 +92,10 @@ function parse_set_delayed(p::Parser)::MExpr
         advance!(p)
         right = parse_condition(p)
         return MFunction("SetDelayed", [left, right])
+    elseif at(p, TOK_SET)
+        advance!(p)
+        right = parse_condition(p)
+        return MFunction("Set", [left, right])
     end
     left
 end
@@ -224,7 +228,12 @@ function parse_multiplication(p::Parser)::MExpr
     left = parse_unary(p)
     args = nothing
     while true
-        if at(p, TOK_STAR)
+        if at(p, TOK_RUBI_STAR)
+            advance!(p)
+            lhs = args === nothing ? left : MFunction("Times", args)
+            left = MFunction("Star", [lhs, parse_unary(p)])
+            args = nothing
+        elseif at(p, TOK_STAR)
             if args === nothing; args = MExpr[left]; end
             advance!(p)
             push!(args, parse_unary(p))
@@ -508,14 +517,29 @@ end
 """
     parse_file_expressions(source::String) -> Vector{MExpr}
 
-Parse a .m file containing multiple top-level expressions (one per line).
-Returns a vector of parsed expressions, skipping empty lines and comments.
-
-In RUBI .m files, each rule/test is on its own line (possibly very long).
-We split by lines and parse each non-empty, non-comment line independently.
+Parse notebook-generated RUBI files by complete `::Code::` cells, preserving
+multiline rules and rejecting malformed or partially consumed cells. For the
+older one-expression-per-line format, preserve the existing line-based path.
+The latter still skips unparseable lines and needs a separate loss audit.
 """
 function parse_file_expressions(source::String)::Vector{MExpr}
     expressions = MExpr[]
+
+    # Notebook-generated RUBI files delimit complete initialization cells.
+    # Parsing by line loses the left-hand side of multiline definitions.
+    marker = "(* ::Code:: *)"
+    if occursin(marker, source)
+        cells = split(source, marker)
+        for cell in cells[2:end]
+            tokens = tokenize(cell)
+            p = Parser(tokens)
+            at(p, TOK_EOF) && continue
+            expr = parse_expr(p)
+            at(p, TOK_EOF) || throw(ParserError("Unexpected trailing tokens in code cell", current(p).line, current(p).col))
+            push!(expressions, expr)
+        end
+        return expressions
+    end
 
     for line in eachline(IOBuffer(source))
         stripped = strip(line)

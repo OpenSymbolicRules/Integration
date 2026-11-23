@@ -8,6 +8,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Fixed
+- Parse notebook-generated RUBI `::Code::` cells as multiline expressions;
+  report unsupported syntax and avoid replacing a batch on conversion
+  warnings. Source versions for new conversions are read from `PacletInfo.m`
+  rather than hard-coded. Existing corpus provenance is not silently relabelled.
 - `scripts/v1_faithfulness.py` reads a trig head missing from a file's
   semantics (whose inert form is listed as `osr#sin`, …) as its `transc1`
   symbol; the `Subst` rules of 4.3.9 raised a `KeyError` before.

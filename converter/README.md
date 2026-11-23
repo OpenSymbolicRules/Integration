@@ -32,6 +32,17 @@ julia --project=converter converter/scripts/convert.jl --manifest
 julia --project=converter converter/scripts/convert.jl path/to/file.m
 ```
 
+Notebook-generated RUBI files are parsed as complete `::Code::` cells, not
+individual lines. Files containing RUBI `Star` or other unsupported syntax
+or local bindings whose behavior has not been audited are reported and not
+converted. A batch conversion stages its output and
+fails without changing the destination if any file reports a warning. This
+does not resolve all empty files; see [known issues](../docs/known-issues.md).
+The legacy one-expression-per-line path still needs a separate loss audit.
+Run the manifest update only after reviewing a complete conversion: the
+existing manifest generator sorts by file path, and does not reproduce the
+load sequence in RUBI's `Rubi.m`.
+
 ## Output
 
 - **Rules**: `rules/` directory — 221 JSON files containing 6,257 integration rules

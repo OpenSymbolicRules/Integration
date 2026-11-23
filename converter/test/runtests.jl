@@ -1,6 +1,8 @@
 using Test
 using RubiConverter
 
+include("multiline.jl")
+
 @testset "RubiConverter" begin
 
 @testset "Tokenizer" begin

@@ -56,6 +56,29 @@ is the same defect as issue 1 on a smaller scale.
 the converter produced no rules for. The section is declared in `meta.json` and
 in the file, so a loader sees a section that contributes nothing.
 
+**Investigation and partial parser fix.** At Integration commit `779c9f9`,
+the pinned RUBI source is commit `61e9c18ea248061cd83c67882f7c91a73cef912d`.
+Its `Rubi/PacletInfo.m` identifies version `4.17.3.0`, although the existing
+manifest and historical per-rule provenance say `4.16.1`. The original
+conversion must be audited before relabelling the published corpus.
+
+The converter had assumed that every definition fits on one line. It now
+parses complete notebook `::Code::` cells and rejects unconsumed cell text.
+For example, section 1.4.2 contains 29 definitions; a local conversion
+produced 29 schema-valid candidate rules with no conversion warnings. These
+are not yet published in `rules/`, and no formal verification is implied.
+
+This is **not a complete fix**: other files contain local `With` bindings or
+RUBI's evaluation-aware `Star` operator. The parser retains both constructs,
+but files using either are not exported until binding and operational
+semantics are reviewed; unsupported cells produce diagnostics rather than a
+silently partial converted file. In an exploratory scan of notebook cells at
+this pin, 1,208 of 1,212 candidate `Int` cells parsed individually and four
+failed (derivative notation or `=!=`); these are parser counts, not verified
+or published rules. Of the parsed cells, 894 contain `Star` and 273 contain a
+local binding; these groups can overlap. A full conversion remains blocked and
+does not change the output tree when any file reports a warning.
+
 ## 4. Mathematical constants converted as free names
 
 **What happens.** `E`, `ImaginaryI` and `Pi` are Mathematica constants (the

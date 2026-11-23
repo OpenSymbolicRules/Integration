@@ -13,6 +13,7 @@
     TOK_PLUS         # +
     TOK_MINUS        # -
     TOK_STAR         # *
+    TOK_RUBI_STAR    # \[Star], RUBI's Star operator (not plain Times)
     TOK_SLASH        # /
     TOK_CARET        # ^
     TOK_BLANK        # _  (pattern blank)
@@ -20,6 +21,7 @@
     TOK_BLANKNULLSEQ # ___ (blank null sequence)
     TOK_DOT          # .  (standalone dot, e.g., in a_.)
     TOK_SETDELAYED   # :=
+    TOK_SET          # = (local binding inside With)
     TOK_CONDITION    # /;
     TOK_AND          # &&
     TOK_OR           # ||
@@ -209,6 +211,16 @@ function tokenize!(t::Tokenizer)::Vector{Token}
 
         line, col = t.line, t.col
 
+        # RUBI's notebook-generated source uses a named Wolfram character.
+        # Preserve its distinct Star head; it has rewrite behavior of its own.
+        if startswith(SubString(t.source, t.pos), raw"\[Star]")
+            for _ in 1:length(raw"\[Star]")
+                next_char!(t)
+            end
+            push!(t.tokens, Token(TOK_RUBI_STAR, raw"\[Star]", line, col))
+            continue
+        end
+
         # Numbers
         if isdigit(c)
             push!(t.tokens, read_number!(t))
@@ -342,6 +354,8 @@ function tokenize!(t::Tokenizer)::Vector{Token}
             Token(TOK_DOT, ".", line, col)
         elseif c == ';'
             Token(TOK_SEMICOLON, ";", line, col)
+        elseif c == '='
+            Token(TOK_SET, "=", line, col)
         elseif c == '!'
             Token(TOK_NOT, "!", line, col)
         elseif c == '<'
