@@ -60,6 +60,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   be migrated faithfully; the current v1 files are unaffected.
 
 ### Added
+- Document the conditional sum-by-term integration cell in RUBI section 1.4.1
+  and why its loading branches need separate treatment.
 - An explicitly opt-in, isolated conversion mode for auditing candidate
   `Star` and `With` expressions; production batch conversion remains guarded.
 - A read-only, machine-readable audit of parsed notebook cells and remaining

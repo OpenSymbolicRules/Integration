@@ -98,6 +98,12 @@ load and do not establish mathematical correctness, execution equivalence,
 or formal verification. Consumers must implement the extension contract
 before any affected rules are published for execution.
 
+Section 1.4.1 needs particular care: its sum-by-term integration rule is
+inside an `If[TrueQ[$LoadShowSteps], …]` source cell, with different branches
+for step display. Treating the cell as one ordinary rule or ignoring its
+condition would not preserve RUBI's loading behavior. That file remains
+unsupported in the experimental full-file conversion.
+
 ## 4. Mathematical constants converted as free names
 
 **What happens.** `E`, `ImaginaryI` and `Pi` are Mathematica constants (the
