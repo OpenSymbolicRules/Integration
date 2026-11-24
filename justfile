@@ -11,6 +11,7 @@ validate:
 test:
 	python3 scripts/test_check_duplicate_rules.py
 	python3 scripts/test_audit_rubi_order.py
+	python3 scripts/test_audit_rubi_coverage.py
 	python3 scripts/test_check_unknown_heads.py
 	python3 scripts/check_unknown_heads.py rules
 	python3 scripts/test_inventory_v1.py
@@ -29,3 +30,7 @@ update-v1 report:
 # Syntactic inventory of the rules for the OSR v1 migration (JSON on stdout).
 inventory registry="../OpenMath/registry/registry.json":
 	python3 scripts/inventory_v1.py --registry {{registry}}
+
+# Compare source definition counts and loaded OSR entries without modifying either tree.
+audit-coverage rubi="vendor/Rubi":
+	python3 scripts/audit_rubi_coverage.py {{rubi}} rules

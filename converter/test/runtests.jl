@@ -4,6 +4,7 @@ using RubiConverter
 include("multiline.jl")
 include("manifest.jl")
 include("recovery.jl")
+include("cell-recovery.jl")
 include("module-audit.jl")
 
 @testset "RubiConverter" begin
