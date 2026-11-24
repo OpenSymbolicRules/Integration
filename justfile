@@ -12,6 +12,7 @@ test:
 	python3 scripts/test_check_duplicate_rules.py
 	python3 scripts/test_audit_rubi_order.py
 	python3 scripts/test_audit_rubi_coverage.py
+	python3 scripts/test_compare_rubi_loaders.py
 	python3 scripts/test_check_unknown_heads.py
 	python3 scripts/check_unknown_heads.py rules
 	python3 scripts/test_inventory_v1.py
@@ -34,3 +35,7 @@ inventory registry="../OpenMath/registry/registry.json":
 # Compare source definition counts and loaded OSR entries without modifying either tree.
 audit-coverage rubi="vendor/Rubi":
 	python3 scripts/audit_rubi_coverage.py {{rubi}} rules
+
+# Compare loader file sequences in two existing RUBI Git revisions.
+compare-loaders old new rubi="vendor/Rubi":
+	python3 scripts/compare_rubi_loaders.py {{rubi}} {{old}} {{new}}

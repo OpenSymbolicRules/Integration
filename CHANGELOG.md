@@ -79,6 +79,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   be migrated faithfully; the current v1 files are unaffected.
 
 ### Added
+- Compare RUBI loader file order across Git revisions without changing the
+  pinned source checkout.
 - Audit pinned RUBI source coverage and recover notebook cells for review without
   dropping blocked cells or publishing unsupported semantics.
 - Import four inverse-hyperbolic affine recurrence entries verified over ℝ.

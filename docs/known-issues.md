@@ -163,6 +163,19 @@ counts is not proof that a particular source rule is missing. Issue #10's
 7,432 and 5,439 use its 199-file comparison; the sets and counts are not
 interchangeable. Source and OSR counts say nothing about proof status.
 
+The Git tag `4.16.1.0` resolves to `c3c75bb4069a6a2cf4d6f3ee18aa94cabadcd16c`;
+its `PacletInfo.m` nevertheless says `4.16.0.5`. Comparing its loader to the
+pinned `61e9c18` with `scripts/compare_rubi_loaders.py` finds 166 versus 198
+file loads, 137 shared identities, 29 old-only and 61 new-only. Their shared
+files do not have the same relative load order. These figures include
+conditionally loaded elementary files and do not establish Mathematica's
+final rule priority. The tool reads Git objects without checking out a
+revision or changing the submodule. Both revisions must be present locally:
+
+```bash
+python3 scripts/compare_rubi_loaders.py vendor/Rubi 4.16.1.0 61e9c18
+```
+
 For notebook-style source, `converter/scripts/recover-cells.jl SOURCE
 --show-steps false` reports every cell in source order, preserving blocked
 cells. Blocked cells retain their original text and, if parsed, a diagnostic
