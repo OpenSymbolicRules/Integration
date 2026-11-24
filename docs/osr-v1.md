@@ -41,6 +41,12 @@ over ℂ, including two with residual integrals. They cover half-angle and quart
 exponential-arctangent and hyperbolic primitives. Their additional nonzero
 conditions are retained, and their original rules remain separately refuted.
 
+Four strengthened recursive hyperbolic-power variants (6.1.13 #11–14) are
+proved and certified over ℝ, including at zero bases. Their complex Lean
+statements also compile, but are not certified: the fragment compares real
+parts of real-valued complex numbers, and the registry marks the complex order
+mapping unsupported. The original rules remain separately refuted.
+
 Independently proved generalized variants may replace the source rule's
 conditions; the structural checker reports these separately and does not
 itself establish their proofs (Specification V1-R-005f).
@@ -139,8 +145,8 @@ conditions allow coefficients to vanish in result denominators. The Lean
 use assignments at `x = 1` where the integrand is defined nearby and the
 result is undefined; no missing condition is added silently.
 
-The current set has 503 proved, 1578 refuted and 803 unproved rules over ℝ;
-over ℂ, 310 are proved (166 certified), 377 refuted and 2197 unproved.
+The current set has 507 proved, 1578 refuted and 799 unproved rules over ℝ;
+over ℂ, 314 are proved (166 certified), 377 refuted and 2193 unproved.
 
 The inventory excludes rules whose result or conditions use a name the
 pattern does not bind (739 rules, 630 of them with `E`, `ImaginaryI` or
