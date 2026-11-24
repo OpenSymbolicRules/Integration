@@ -156,8 +156,8 @@ conditions allow coefficients to vanish in result denominators. The Lean
 use assignments at `x = 1` where the integrand is defined nearby and the
 result is undefined; no missing condition is added silently.
 
-The current set has 511 proved, 1578 refuted and 795 unproved rules over ℝ;
-over ℂ, 318 are proved (166 certified), 377 refuted and 2189 unproved.
+The current set has 515 proved, 1578 refuted and 791 unproved rules over ℝ;
+over ℂ, 322 are proved (167 certified), 377 refuted and 2185 unproved.
 
 The inventory excludes rules whose result or conditions use a name the
 pattern does not bind (739 rules, 630 of them with `E`, `ImaginaryI` or
@@ -213,3 +213,8 @@ just update-v1 <Verification>/reports/<digest>
 ```
 
 Then update the Verification commit pinned in the CI workflow.
+
+The four strengthened tangent recurrences in RUBI 4.3.1.1 #1, #5, #6 and
+#10 are certified over ℝ. The complex theorem for #5 is certified as well;
+#1, #6 and #10 depend on an unsupported complex order mapping and are not
+certified over ℂ. Their original unguarded rules remain refuted.

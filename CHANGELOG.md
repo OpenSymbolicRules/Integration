@@ -76,6 +76,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   be migrated faithfully; the current v1 files are unaffected.
 
 ### Added
+- Prepare four Lean-checked strengthened tangent recurrences in the local v1
+  export, retaining the original counterexamples and mapping limitations.
 - Prove four strengthened recursive hyperbolic-power variants for negative
   exponents over ℝ and in the fragment's complex interpretation. Complex
   order is unsupported, so the complex proofs are not OSR-certified.
