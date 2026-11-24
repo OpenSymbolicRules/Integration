@@ -79,6 +79,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   be migrated faithfully; the current v1 files are unaffected.
 
 ### Added
+- Prepare sixteen inverse-hyperbolic affine substitution entries verified over
+  ℝ, retaining explicit unproved statuses for the complex domain.
 - Prepare seven verified weighted or reciprocal affine substitutions in the
   local v1 export, retaining complex interpretation and order limitations.
 - Prepare four verified affine substitutions in the local v1 export,

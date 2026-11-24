@@ -156,7 +156,7 @@ conditions allow coefficients to vanish in result denominators. The Lean
 use assignments at `x = 1` where the integrand is defined nearby and the
 result is undefined; no missing condition is added silently.
 
-The current set has 575 proved, 1578 refuted and 731 unproved rules over ℝ;
+The current set has 591 proved, 1578 refuted and 715 unproved rules over ℝ;
 over ℂ, 376 are proved (191 certified), 377 refuted and 2131 unproved.
 
 The inventory excludes rules whose result or conditions use a name the
@@ -301,3 +301,10 @@ weighted or reciprocal affine substitutions are certified over ℝ. The
 complex arcsine and arccosine cases remain unproved because their
 interpretations are absent; the arctangent cases have an unsupported
 complex order mapping. Their unguarded originals remain refuted over ℝ.
+
+
+Sixteen strengthened inverse-hyperbolic affine substitution entries are
+certified over ℝ: RUBI 7.1.6 #1–2, 7.2.6 #1–2, 7.3.2 #1–2, #5b–6b,
+#9–10, and 7.3.5 #1–2, #5–6, #9–10. These are variants sharing one affine
+substitution argument. Their complex cases remain unproved because the
+complex interpretation does not provide these functions.
