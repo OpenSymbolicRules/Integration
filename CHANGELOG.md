@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+- Reconcile the default v0.1 inventory with v1 proof records by provenance ID,
+  distinguishing original translations from strengthened and generalized
+  variants, with optional per-entry theorem evidence.
+
 ### Fixed
 - Update the v1 verification CI pin to the latest tangent proof report.
 - Pin the v1 verification check to the report containing the latest proved
