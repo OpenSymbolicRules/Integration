@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Fixed
+- Update the v1 verification CI pin to the latest tangent proof report.
 - Pin the v1 verification check to the report containing the latest proved
   tangent rules.
 - Reject oversized integers during conversion instead of silently rounding
