@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- Recover all 30 previously empty loaded RUBI sections with upstream text and source order. Include 68 converted rules from 11 sections in the default profile.
 - Reconcile the default v0.1 inventory with v1 proof records by provenance ID,
   distinguishing original translations from strengthened and generalized
   variants, with optional per-entry theorem evidence.

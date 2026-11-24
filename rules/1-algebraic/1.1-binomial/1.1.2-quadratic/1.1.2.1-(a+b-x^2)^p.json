@@ -2,8 +2,102 @@
     "title": "(a+b x^2)^p",
     "section": "1.1.2.1",
     "rules": [
+        {
+            "constraints": [
+                [
+                    "FreeQ",
+                    [
+                        "List",
+                        "a",
+                        "b"
+                    ],
+                    "x"
+                ]
+            ],
+            "id": 2,
+            "result": [
+                "Multiply",
+                "x",
+                [
+                    "Power",
+                    [
+                        "Multiply",
+                        "a",
+                        [
+                            "Sqrt",
+                            [
+                                "Add",
+                                "a",
+                                [
+                                    "Multiply",
+                                    "b",
+                                    [
+                                        "Power",
+                                        "x",
+                                        2
+                                    ]
+                                ]
+                            ]
+                        ]
+                    ],
+                    -1
+                ]
+            ],
+            "pattern": [
+                "Int",
+                [
+                    "Multiply",
+                    1,
+                    [
+                        "Power",
+                        [
+                            "Power",
+                            [
+                                "Add",
+                                "a_",
+                                [
+                                    "Multiply",
+                                    "b.",
+                                    [
+                                        "Power",
+                                        "x_",
+                                        2
+                                    ]
+                                ]
+                            ],
+                            [
+                                "Multiply",
+                                3,
+                                [
+                                    "Power",
+                                    2,
+                                    -1
+                                ]
+                            ]
+                        ],
+                        -1
+                    ]
+                ],
+                "x_symbol"
+            ],
+            "provenance": {
+                "method": "converted",
+                "sources": [
+                    {
+                        "version": "4.17.3.0",
+                        "name": "Rubi",
+                        "locator": "1 Algebraic functions/1.1 Binomial products/1.1.2 Quadratic/1.1.2.1 (a+b x^2)^p.m#2"
+                    }
+                ]
+            }
+        }
     ],
     "semantics": {
+        "Int": "openmath:calculus1#int",
+        "Power": "openmath:arith1#power",
+        "Sqrt": "openmath:arith1#root",
+        "Multiply": "openmath:arith1#times",
+        "Add": "openmath:arith1#plus"
     },
     "identity": "rubi:1 Algebraic functions/1.1 Binomial products/1.1.2 Quadratic/1.1.2.1 (a+b x^2)^p",
     "$schema": "open-symbolic-rules/v0.1"

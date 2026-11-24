@@ -17,6 +17,7 @@ test:
 	python3 scripts/check_unknown_heads.py rules
 	python3 scripts/test_inventory_v1.py
 	python3 scripts/test_source_verification_status.py
+	python3 scripts/test_recovered_profile.py
 	python3 scripts/test_v1_faithfulness.py
 
 # Check the generated OSR v1 files; pass a Verification report directory to

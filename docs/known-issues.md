@@ -53,6 +53,8 @@ is the same defect as issue 1 on a smaller scale.
 
 ## 3. Empty rule files
 
+The [recovery archive](recovered-sections.md) now covers all 30 previously empty loaded files. Eleven contribute 68 entries to the default manifest. The investigation below records earlier snapshots.
+
 At the original measurement, 33 files carried `"rules": []`. The section is
 declared in `meta.json` and in the file, so a loader sees a section that
 contributes nothing. Section 1.4.2 now has 29 converted rules; it is not a

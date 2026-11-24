@@ -2,8 +2,235 @@
     "title": "(c x)^m (a+b x^2)^p",
     "section": "1.1.2.2",
     "rules": [
+        {
+            "constraints": [
+                [
+                    "FreeQ",
+                    [
+                        "List",
+                        "a",
+                        "b",
+                        "p"
+                    ],
+                    "x"
+                ],
+                [
+                    "NeQ",
+                    "p",
+                    -1
+                ]
+            ],
+            "id": 2,
+            "result": [
+                "Multiply",
+                [
+                    "Power",
+                    [
+                        "Add",
+                        "a",
+                        [
+                            "Multiply",
+                            "b",
+                            [
+                                "Power",
+                                "x",
+                                2
+                            ]
+                        ]
+                    ],
+                    [
+                        "Add",
+                        "p",
+                        1
+                    ]
+                ],
+                [
+                    "Power",
+                    [
+                        "Multiply",
+                        2,
+                        "b",
+                        [
+                            "Add",
+                            "p",
+                            1
+                        ]
+                    ],
+                    -1
+                ]
+            ],
+            "pattern": [
+                "Int",
+                [
+                    "Multiply",
+                    "x_",
+                    [
+                        "Power",
+                        [
+                            "Add",
+                            "a_",
+                            [
+                                "Multiply",
+                                "b.",
+                                [
+                                    "Power",
+                                    "x_",
+                                    2
+                                ]
+                            ]
+                        ],
+                        "p_"
+                    ]
+                ],
+                "x_symbol"
+            ],
+            "provenance": {
+                "method": "converted",
+                "sources": [
+                    {
+                        "version": "4.17.3.0",
+                        "name": "Rubi",
+                        "locator": "1 Algebraic functions/1.1 Binomial products/1.1.2 Quadratic/1.1.2.2 (c x)^m (a+b x^2)^p.m#2"
+                    }
+                ]
+            }
+        },
+        {
+            "constraints": [
+                [
+                    "FreeQ",
+                    [
+                        "List",
+                        "a",
+                        "b",
+                        "c",
+                        "m",
+                        "p"
+                    ],
+                    "x"
+                ],
+                [
+                    "EqQ",
+                    [
+                        "Add",
+                        "m",
+                        [
+                            "Multiply",
+                            2,
+                            "p"
+                        ],
+                        3
+                    ],
+                    0
+                ],
+                [
+                    "NeQ",
+                    "m",
+                    -1
+                ]
+            ],
+            "id": 3,
+            "result": [
+                "Multiply",
+                [
+                    "Power",
+                    [
+                        "Multiply",
+                        "c",
+                        "x"
+                    ],
+                    [
+                        "Add",
+                        "m",
+                        1
+                    ]
+                ],
+                [
+                    "Power",
+                    [
+                        "Add",
+                        "a",
+                        [
+                            "Multiply",
+                            "b",
+                            [
+                                "Power",
+                                "x",
+                                2
+                            ]
+                        ]
+                    ],
+                    [
+                        "Add",
+                        "p",
+                        1
+                    ]
+                ],
+                [
+                    "Power",
+                    [
+                        "Multiply",
+                        "a",
+                        "c",
+                        [
+                            "Add",
+                            "m",
+                            1
+                        ]
+                    ],
+                    -1
+                ]
+            ],
+            "pattern": [
+                "Int",
+                [
+                    "Multiply",
+                    [
+                        "Power",
+                        [
+                            "Multiply",
+                            "c.",
+                            "x_"
+                        ],
+                        "m."
+                    ],
+                    [
+                        "Power",
+                        [
+                            "Add",
+                            "a_",
+                            [
+                                "Multiply",
+                                "b.",
+                                [
+                                    "Power",
+                                    "x_",
+                                    2
+                                ]
+                            ]
+                        ],
+                        "p_"
+                    ]
+                ],
+                "x_symbol"
+            ],
+            "provenance": {
+                "method": "converted",
+                "sources": [
+                    {
+                        "version": "4.17.3.0",
+                        "name": "Rubi",
+                        "locator": "1 Algebraic functions/1.1 Binomial products/1.1.2 Quadratic/1.1.2.2 (c x)^m (a+b x^2)^p.m#3"
+                    }
+                ]
+            }
+        }
     ],
     "semantics": {
+        "Int": "openmath:calculus1#int",
+        "Power": "openmath:arith1#power",
+        "Multiply": "openmath:arith1#times",
+        "Add": "openmath:arith1#plus"
     },
     "identity": "rubi:1 Algebraic functions/1.1 Binomial products/1.1.2 Quadratic/1.1.2.2 (c x)^m (a+b x^2)^p",
     "$schema": "open-symbolic-rules/v0.1"
