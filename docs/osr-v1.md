@@ -36,6 +36,11 @@ The strengthened variant of RUBI 4.1.1.1 #11 integrates
 `(a + b sin(c + d x))^2` and is proved over ℝ and ℂ under `d ≠ 0`. The
 original rule remains refuted because its stated conditions omit this guard.
 
+Eight more strengthened variants are proved over ℝ; five are also proved
+over ℂ. They cover half-angle and quartic sine primitives, cosecant,
+exponential-arctangent and hyperbolic primitives. Their additional nonzero
+conditions are retained, and their original rules remain separately refuted.
+
 Independently proved generalized variants may replace the source rule's
 conditions; the structural checker reports these separately and does not
 itself establish their proofs (Specification V1-R-005f).
@@ -134,8 +139,8 @@ conditions allow coefficients to vanish in result denominators. The Lean
 use assignments at `x = 1` where the integrand is defined nearby and the
 result is undefined; no missing condition is added silently.
 
-The current set has 493 proved, 1578 refuted and 813 unproved rules over ℝ;
-over ℂ, 303 are proved (159 certified), 377 refuted and 2204 unproved.
+The current set has 501 proved, 1578 refuted and 805 unproved rules over ℝ;
+over ℂ, 308 are proved (164 certified), 377 refuted and 2199 unproved.
 
 The inventory excludes rules whose result or conditions use a name the
 pattern does not bind (739 rules, 630 of them with `E`, `ImaginaryI` or

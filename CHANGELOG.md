@@ -76,6 +76,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   be migrated faithfully; the current v1 files are unaffected.
 
 ### Added
+- Prove eight additional strengthened trigonometric, inverse-trigonometric
+  and hyperbolic variants over ℝ; five are also proved over ℂ. Original
+  unguarded rules remain separate refuted entries.
 - Prove the strengthened RUBI 4.1.1.1 #6 sine and #11 sine-square primitives
   over ℝ and ℂ under `d ≠ 0`; the original unguarded rules remain refuted.
 - Update the v1 integration export to 2,884 rules: RUBI 2.3 #1 and #8 retain
