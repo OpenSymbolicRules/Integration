@@ -76,6 +76,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   be migrated faithfully; the current v1 files are unaffected.
 
 ### Added
+- Prepare three more verified strengthened tangent rules in the local v1
+  export, retaining counterexamples and complex order limitations.
 - Prepare four Lean-checked strengthened tangent recurrences in the local v1
   export, retaining the original counterexamples and mapping limitations.
 - Prove four strengthened recursive hyperbolic-power variants for negative
