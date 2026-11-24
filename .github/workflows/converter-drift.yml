@@ -41,6 +41,11 @@ jobs:
       - name: Test converter
         run: julia --project=converter converter/test/runtests.jl
 
+      - name: Reproduce recovered RUBI sections
+        run: |
+          julia --project=converter converter/scripts/recover-profile.jl vendor/Rubi "$RUNNER_TEMP/recovered"
+          python3 scripts/test_recovered_profile.py --compare "$RUNNER_TEMP/recovered"
+
       - name: Re-run converter (rules)
         run: julia --project=converter converter/scripts/convert.jl --rules
 

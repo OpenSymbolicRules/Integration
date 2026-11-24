@@ -8,23 +8,6 @@ function cell_contains(node, head)
     (!isempty(node) && first(node) == head) || any(child -> cell_contains(child, head), node)
 end
 
-# Diagnostic syntax only; original text remains authoritative, especially for
-# floating-point literals and unparsed cells. This is not an OSR representation.
-function diagnostic_ast(expr::RubiConverter.MExpr)
-    expr isa RubiConverter.MSymbol && return Dict("kind" => "symbol", "name" => expr.name)
-    expr isa RubiConverter.MInteger && return Dict("kind" => "integer", "value" => string(expr.value))
-    expr isa RubiConverter.MReal && return Dict("kind" => "real", "value" => string(expr.value))
-    expr isa RubiConverter.MString && return Dict("kind" => "string", "value" => expr.value)
-    expr isa RubiConverter.MPattern && return Dict("kind" => "pattern", "name" => expr.name,
-        "blank_type" => string(expr.blank_type), "type_head" => expr.type_head)
-    expr isa RubiConverter.MPrime && return Dict("kind" => "prime", "expr" => diagnostic_ast(expr.expr))
-    expr isa RubiConverter.MApply && return Dict("kind" => "application", "head" => diagnostic_ast(expr.head),
-        "args" => [diagnostic_ast(arg) for arg in expr.args])
-    expr isa RubiConverter.MFunction && return Dict("kind" => "function", "head" => expr.head,
-        "args" => [diagnostic_ast(arg) for arg in expr.args])
-    error("Unsupported diagnostic AST node: $(typeof(expr))")
-end
-
 """Report every notebook code cell, retaining failures and source order.
 
 The result is diagnostic data, not an executable profile. `show_steps` is an
@@ -45,7 +28,7 @@ function recover_cells(source::AbstractString; show_steps::Bool)
             end
             length(expressions) == 1 || error("Expected one expression per cell")
             expr = only(expressions)
-            row["source_ast"] = diagnostic_ast(expr)
+            row["source_ast"] = RubiConverter.diagnostic_ast(expr)
             if expr isa RubiConverter.MFunction && expr.head == "If"
                 expr = RubiConverter.select_show_steps_branch(expr; show_steps=show_steps)
                 row["selected_show_steps"] = show_steps
