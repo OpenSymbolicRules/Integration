@@ -156,7 +156,7 @@ conditions allow coefficients to vanish in result denominators. The Lean
 use assignments at `x = 1` where the integrand is defined nearby and the
 result is undefined; no missing condition is added silently.
 
-The current set has 612 proved, 1578 refuted and 694 unproved rules over ℝ;
+The current set has 616 proved, 1578 refuted and 690 unproved rules over ℝ;
 over ℂ, 395 are proved (196 certified), 377 refuted and 2112 unproved.
 
 The inventory excludes rules whose result or conditions use a name the
