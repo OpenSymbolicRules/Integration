@@ -156,8 +156,8 @@ conditions allow coefficients to vanish in result denominators. The Lean
 use assignments at `x = 1` where the integrand is defined nearby and the
 result is undefined; no missing condition is added silently.
 
-The current set has 600 proved, 1578 refuted and 706 unproved rules over ℝ;
-over ℂ, 385 are proved (196 certified), 377 refuted and 2122 unproved.
+The current set has 608 proved, 1578 refuted and 698 unproved rules over ℝ;
+over ℂ, 393 are proved (196 certified), 377 refuted and 2114 unproved.
 
 The inventory excludes rules whose result or conditions use a name the
 pattern does not bind (739 rules, 630 of them with `E`, `ImaginaryI` or
@@ -320,3 +320,9 @@ The strengthened RUBI 3.3 #20, #37, #46, 1.1.3.2 #83 and 1.2.1.2 #67
 substitutions are certified over ℝ. Four are also certified over ℂ; #20 has
 an unsupported complex order mapping. Completing the square uses nonzero
 coefficients derived from the existing conditions.
+
+
+The strengthened RUBI 4.7.9 #47–50 and 6.7.9 #49–52 reciprocal-affine
+substitutions are certified over ℝ. They track nonzero denominators and
+quotient arguments. Their complex proofs are not certified because complex
+order mapping is unsupported. The unguarded originals remain refuted.
