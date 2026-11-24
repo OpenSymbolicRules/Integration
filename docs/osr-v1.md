@@ -156,8 +156,8 @@ conditions allow coefficients to vanish in result denominators. The Lean
 use assignments at `x = 1` where the integrand is defined nearby and the
 result is undefined; no missing condition is added silently.
 
-The current set has 557 proved, 1578 refuted and 749 unproved rules over ℝ;
-over ℂ, 362 are proved (190 certified), 377 refuted and 2145 unproved.
+The current set has 561 proved, 1578 refuted and 745 unproved rules over ℝ;
+over ℂ, 366 are proved (190 certified), 377 refuted and 2141 unproved.
 
 The inventory excludes rules whose result or conditions use a name the
 pattern does not bind (739 rules, 630 of them with `E`, `ImaginaryI` or
@@ -276,3 +276,9 @@ The strengthened RUBI 1.2.3.3 #11 and 1.2.3.4 #18 trinomial
 factorization recurrences are certified over ℝ and ℂ. The strengthened
 1.2.1.3 #37 recurrence is certified over ℝ; its complex proof uses an
 unsupported order mapping. Their original unguarded rules remain refuted.
+
+
+The strengthened RUBI 1.2.1.3 #17–18 and 1.2.1.2 #41–42 quadratic
+reductions are certified over ℝ. Their complex proofs use an unsupported
+order mapping. Denominator guards remain explicit, and the original
+unguarded rules remain refuted.
