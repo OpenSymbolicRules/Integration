@@ -79,6 +79,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   be migrated faithfully; the current v1 files are unaffected.
 
 ### Added
+- Prepare four verified weighted tangent and cotangent perfect-square rules
+  in the local v1 export, retaining the original counterexamples.
 - Prepare one verified cotangent substitution and four perfect-square rules
   in the local v1 export, retaining the original counterexamples.
 - Prepare four verified two-power and substitution tangent rules in the local
