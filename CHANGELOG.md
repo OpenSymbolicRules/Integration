@@ -76,6 +76,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   be migrated faithfully; the current v1 files are unaffected.
 
 ### Added
+- Prove four strengthened recursive hyperbolic-power variants for negative
+  exponents over ℝ and in the fragment's complex interpretation. Complex
+  order is unsupported, so the complex proofs are not OSR-certified.
 - Prove four strengthened recursive hyperbolic-power variants over ℝ and
   in the fragment's complex interpretation. The complex order mapping is
   unsupported, so the latter proofs are not OSR-certified.

@@ -47,6 +47,17 @@ statements also compile, but are not certified: the fragment compares real
 parts of real-valued complex numbers, and the registry marks the complex order
 mapping unsupported. The original rules remain separately refuted.
 
+Four additional strengthened recursive hyperbolic-power variants (6.1.13
+#15–18) are proved and certified over ℝ for negative exponents; the
+integrand's definedness supplies the locally nonzero power base. Their
+complex Lean statements compile but are not OSR-certified because complex
+order is unsupported. Their original rules remain separately refuted.
+
+All twelve strengthened variants in the 6.1.13 #7–18 family are now
+proved and certified over ℝ. They also have checked complex Lean theorems:
+#7–10 are certified, while #11–18 use the unsupported complex order mapping
+and are not certified for OSR.
+
 Independently proved generalized variants may replace the source rule's
 conditions; the structural checker reports these separately and does not
 itself establish their proofs (Specification V1-R-005f).
@@ -145,8 +156,8 @@ conditions allow coefficients to vanish in result denominators. The Lean
 use assignments at `x = 1` where the integrand is defined nearby and the
 result is undefined; no missing condition is added silently.
 
-The current set has 507 proved, 1578 refuted and 799 unproved rules over ℝ;
-over ℂ, 314 are proved (166 certified), 377 refuted and 2193 unproved.
+The current set has 511 proved, 1578 refuted and 795 unproved rules over ℝ;
+over ℂ, 318 are proved (166 certified), 377 refuted and 2189 unproved.
 
 The inventory excludes rules whose result or conditions use a name the
 pattern does not bind (739 rules, 630 of them with `E`, `ImaginaryI` or
