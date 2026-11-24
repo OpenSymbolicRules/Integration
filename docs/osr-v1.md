@@ -156,8 +156,8 @@ conditions allow coefficients to vanish in result denominators. The Lean
 use assignments at `x = 1` where the integrand is defined nearby and the
 result is undefined; no missing condition is added silently.
 
-The current set has 518 proved, 1578 refuted and 788 unproved rules over ℝ;
-over ℂ, 325 are proved (169 certified), 377 refuted and 2182 unproved.
+The current set has 521 proved, 1578 refuted and 785 unproved rules over ℝ;
+over ℂ, 328 are proved (170 certified), 377 refuted and 2179 unproved.
 
 The inventory excludes rules whose result or conditions use a name the
 pattern does not bind (739 rules, 630 of them with `E`, `ImaginaryI` or
@@ -223,3 +223,8 @@ The strengthened negative-power recurrence RUBI 4.3.1.1 #11 and product
 rules 4.3.2.1 #3–4 are certified over ℝ. Both product rules are certified
 over ℂ; the negative-power complex theorem remains uncertified because its
 order mapping is unsupported. The original unguarded rules stay refuted.
+
+The strengthened tangent product recurrences RUBI 4.3.2.1 #7, #8 and #19
+are certified over ℝ. The complex theorem for #19 is also certified; #7 and
+#8 remain uncertified over ℂ due to the unsupported order mapping. The
+original unguarded rules stay refuted.
