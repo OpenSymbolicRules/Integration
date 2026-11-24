@@ -16,6 +16,7 @@ test:
 	python3 scripts/test_check_unknown_heads.py
 	python3 scripts/check_unknown_heads.py rules
 	python3 scripts/test_inventory_v1.py
+	python3 scripts/test_source_verification_status.py
 	python3 scripts/test_v1_faithfulness.py
 
 # Check the generated OSR v1 files; pass a Verification report directory to
@@ -39,3 +40,7 @@ audit-coverage rubi="vendor/Rubi":
 # Compare loader file sequences in two existing RUBI Git revisions.
 compare-loaders old new rubi="vendor/Rubi":
 	python3 scripts/compare_rubi_loaders.py {{rubi}} {{old}} {{new}}
+
+# Reconcile loaded v0.1 entries with v1 verification (JSON on stdout).
+source-status:
+	python3 scripts/source_verification_status.py
