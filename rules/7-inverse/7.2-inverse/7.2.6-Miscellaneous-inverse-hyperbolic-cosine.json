@@ -5769,6 +5769,176 @@
         {
             "constraints": [
                 [
+                    "FreeQ",
+                    [
+                        "List",
+                        "a",
+                        "b"
+                    ],
+                    "x"
+                ],
+                [
+                    "InverseFunctionFreeQ",
+                    "u",
+                    "x"
+                ],
+                [
+                    "Not",
+                    [
+                        "MatchQ",
+                        "v",
+                        [
+                            "Condition",
+                            [
+                                "Power",
+                                [
+                                    "Add",
+                                    "c.",
+                                    [
+                                        "Multiply",
+                                        "d.",
+                                        "x"
+                                    ]
+                                ],
+                                "m."
+                            ],
+                            [
+                                "FreeQ",
+                                [
+                                    "List",
+                                    "c",
+                                    "d",
+                                    "m"
+                                ],
+                                "x"
+                            ]
+                        ]
+                    ]
+                ]
+            ],
+            "id": 26,
+            "result": [
+                "With",
+                [
+                    "List",
+                    [
+                        "Set",
+                        "w",
+                        [
+                            "IntHide",
+                            "v",
+                            "x"
+                        ]
+                    ]
+                ],
+                [
+                    "Condition",
+                    [
+                        "Add",
+                        [
+                            "Dist",
+                            [
+                                "Add",
+                                "a",
+                                [
+                                    "Multiply",
+                                    "b",
+                                    [
+                                        "Acosh",
+                                        "u"
+                                    ]
+                                ]
+                            ],
+                            "w",
+                            "x"
+                        ],
+                        [
+                            "Multiply",
+                            -1,
+                            "b",
+                            [
+                                "Int",
+                                [
+                                    "SimplifyIntegrand",
+                                    [
+                                        "Multiply",
+                                        "w",
+                                        [
+                                            "D",
+                                            "u",
+                                            "x"
+                                        ],
+                                        [
+                                            "Power",
+                                            [
+                                                "Multiply",
+                                                [
+                                                    "Sqrt",
+                                                    [
+                                                        "Add",
+                                                        -1,
+                                                        "u"
+                                                    ]
+                                                ],
+                                                [
+                                                    "Sqrt",
+                                                    [
+                                                        "Add",
+                                                        1,
+                                                        "u"
+                                                    ]
+                                                ]
+                                            ],
+                                            -1
+                                        ]
+                                    ],
+                                    "x"
+                                ],
+                                "x"
+                            ]
+                        ]
+                    ],
+                    [
+                        "InverseFunctionFreeQ",
+                        "w",
+                        "x"
+                    ]
+                ]
+            ],
+            "pattern": [
+                "Int",
+                [
+                    "Multiply",
+                    "v_",
+                    [
+                        "Add",
+                        "a.",
+                        [
+                            "Multiply",
+                            "b.",
+                            [
+                                "Acosh",
+                                "u_"
+                            ]
+                        ]
+                    ]
+                ],
+                "x_symbol"
+            ],
+            "provenance": {
+                "method": "converted",
+                "sources": [
+                    {
+                        "version": "4.17.3.0",
+                        "name": "Rubi",
+                        "locator": "7 Inverse hyperbolic functions/7.2 Inverse hyperbolic cosine/7.2.6 Miscellaneous inverse hyperbolic cosine.m#27"
+                    }
+                ]
+            }
+        },
+        {
+            "constraints": [
+                [
                     "IntegerQ",
                     "n"
                 ],
@@ -5946,7 +6116,9 @@
         "Subst": "openmath:osr#Subst",
         "Tanh": "openmath:transc1#tanh",
         "Add": "openmath:arith1#plus",
-        "Asech": "openmath:transc1#arcsech"
+        "Asech": "openmath:transc1#arcsech",
+        "Dist": "openmath:osr#Dist",
+        "IntHide": "openmath:osr#IntHide"
     },
     "identity": "rubi:7 Inverse hyperbolic functions/7.2 Inverse hyperbolic cosine/7.2.6 Miscellaneous inverse hyperbolic cosine",
     "$schema": "open-symbolic-rules/v0.1"

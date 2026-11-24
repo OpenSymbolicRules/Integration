@@ -252,7 +252,8 @@
     ],
     "feature_flags": {
         "load_elementary_function_rules": true,
-        "load_bessel_functions": false
+        "load_bessel_functions": false,
+        "load_show_steps": false
     },
     "utility_functions": [
         "NormalizeIntegrand",
@@ -310,8 +311,7 @@
         "ReplaceAll",
         "Mods"
     ],
-    "custom_predicates": [
-    ],
+    "custom_predicates": [],
     "test_count": 72523,
     "$schema": "open-symbolic-rules/v0.1",
     "converter": {
@@ -400,9 +400,184 @@
         "Not"
     ],
     "rubi_version": "4.17.3.0",
-    "rule_count": 6354,
+    "rule_count": 8058,
     "license": "MIT",
     "extensions": [
+        {
+            "name": "Denom",
+            "arity": 1,
+            "semantics": "Implement the Denom definitions in Rubi/IntegrationUtilityFunctions.m at 61e9c18ea248061cd83c67882f7c91a73cef912d, with step display disabled. Decline the rule if unsupported."
+        },
+        {
+            "name": "DerivativeDivides",
+            "arity": 3,
+            "semantics": "Implement the DerivativeDivides definitions in Rubi/IntegrationUtilityFunctions.m at 61e9c18ea248061cd83c67882f7c91a73cef912d, with step display disabled. Decline the rule if unsupported."
+        },
+        {
+            "name": "Discriminant",
+            "arity": 2,
+            "semantics": "Wolfram Language built-in as used in the source: https://reference.wolfram.com/language/ref/Discriminant.html. Decline the rule if unsupported."
+        },
+        {
+            "name": "EulerIntegrandQ",
+            "arity": 2,
+            "semantics": "Implement the EulerIntegrandQ definitions in Rubi/IntegrationUtilityFunctions.m at 61e9c18ea248061cd83c67882f7c91a73cef912d, with step display disabled. Decline the rule if unsupported."
+        },
+        {
+            "name": "ExpandExpression",
+            "arity": 2,
+            "semantics": "Implement the ExpandExpression definitions in Rubi/IntegrationUtilityFunctions.m at 61e9c18ea248061cd83c67882f7c91a73cef912d, with step display disabled. Decline the rule if unsupported."
+        },
+        {
+            "name": "FractionalPowerFactorQ",
+            "arity": 1,
+            "semantics": "Implement the FractionalPowerFactorQ definitions in Rubi/IntegrationUtilityFunctions.m at 61e9c18ea248061cd83c67882f7c91a73cef912d, with step display disabled. Decline the rule if unsupported."
+        },
+        {
+            "name": "FreeFactors",
+            "arity": 2,
+            "semantics": "Implement the FreeFactors definitions in Rubi/IntegrationUtilityFunctions.m at 61e9c18ea248061cd83c67882f7c91a73cef912d, with step display disabled. Decline the rule if unsupported."
+        },
+        {
+            "name": "FunctionExpand",
+            "arity": 1,
+            "semantics": "Wolfram Language built-in as used in the source: https://reference.wolfram.com/language/ref/FunctionExpand.html. Decline the rule if unsupported."
+        },
+        {
+            "name": "FunctionOfExponential",
+            "arity": 2,
+            "semantics": "Implement the FunctionOfExponential definitions in Rubi/IntegrationUtilityFunctions.m at 61e9c18ea248061cd83c67882f7c91a73cef912d, with step display disabled. Decline the rule if unsupported."
+        },
+        {
+            "name": "FunctionOfExponentialFunction",
+            "arity": 2,
+            "semantics": "Implement the FunctionOfExponentialFunction definitions in Rubi/IntegrationUtilityFunctions.m at 61e9c18ea248061cd83c67882f7c91a73cef912d, with step display disabled. Decline the rule if unsupported."
+        },
+        {
+            "name": "FunctionOfLinear",
+            "arity": 2,
+            "semantics": "Implement the FunctionOfLinear definitions in Rubi/IntegrationUtilityFunctions.m at 61e9c18ea248061cd83c67882f7c91a73cef912d, with step display disabled. Decline the rule if unsupported."
+        },
+        {
+            "name": "FunctionOfLog",
+            "arity": 2,
+            "semantics": "Implement the FunctionOfLog definitions in Rubi/IntegrationUtilityFunctions.m at 61e9c18ea248061cd83c67882f7c91a73cef912d, with step display disabled. Decline the rule if unsupported."
+        },
+        {
+            "name": "FunctionOfSquareRootOfQuadratic",
+            "arity": 2,
+            "semantics": "Implement the FunctionOfSquareRootOfQuadratic definitions in Rubi/IntegrationUtilityFunctions.m at 61e9c18ea248061cd83c67882f7c91a73cef912d, with step display disabled. Decline the rule if unsupported."
+        },
+        {
+            "name": "FunctionOfTrig",
+            "arity": 2,
+            "semantics": "Implement the FunctionOfTrig definitions in Rubi/IntegrationUtilityFunctions.m at 61e9c18ea248061cd83c67882f7c91a73cef912d, with step display disabled. Decline the rule if unsupported."
+        },
+        {
+            "name": "GCD",
+            "arity": 2,
+            "semantics": "Wolfram Language built-in as used in the source: https://reference.wolfram.com/language/ref/GCD.html. Decline the rule if unsupported."
+        },
+        {
+            "name": "GreaterEqual",
+            "arity": 2,
+            "semantics": "Wolfram Language built-in as used in the source: https://reference.wolfram.com/language/ref/GreaterEqual.html. Decline the rule if unsupported."
+        },
+        {
+            "name": "InertTrigFreeQ",
+            "arity": 1,
+            "semantics": "Implement the InertTrigFreeQ definitions in Rubi/IntegrationUtilityFunctions.m at 61e9c18ea248061cd83c67882f7c91a73cef912d, with step display disabled. Decline the rule if unsupported."
+        },
+        {
+            "name": "IntSum",
+            "arity": 2,
+            "semantics": "Implement the IntSum definitions in Rubi/IntegrationUtilityFunctions.m at 61e9c18ea248061cd83c67882f7c91a73cef912d, with step display disabled. Decline the rule if unsupported."
+        },
+        {
+            "name": "InverseFunctionOfLinear",
+            "arity": 2,
+            "semantics": "Implement the InverseFunctionOfLinear definitions in Rubi/IntegrationUtilityFunctions.m at 61e9c18ea248061cd83c67882f7c91a73cef912d, with step display disabled. Decline the rule if unsupported."
+        },
+        {
+            "name": "MonomialQ",
+            "arity": 2,
+            "semantics": "Implement the MonomialQ definitions in Rubi/IntegrationUtilityFunctions.m at 61e9c18ea248061cd83c67882f7c91a73cef912d, with step display disabled. Decline the rule if unsupported."
+        },
+        {
+            "name": "NonfreeFactors",
+            "arity": 2,
+            "semantics": "Implement the NonfreeFactors definitions in Rubi/IntegrationUtilityFunctions.m at 61e9c18ea248061cd83c67882f7c91a73cef912d, with step display disabled. Decline the rule if unsupported."
+        },
+        {
+            "name": "NonsumQ",
+            "arity": 1,
+            "semantics": "Implement the NonsumQ definitions in Rubi/IntegrationUtilityFunctions.m at 61e9c18ea248061cd83c67882f7c91a73cef912d, with step display disabled. Decline the rule if unsupported."
+        },
+        {
+            "name": "Numer",
+            "arity": 1,
+            "semantics": "Implement the Numer definitions in Rubi/IntegrationUtilityFunctions.m at 61e9c18ea248061cd83c67882f7c91a73cef912d, with step display disabled. Decline the rule if unsupported."
+        },
+        {
+            "name": "PiecewiseLinearQ",
+            "arity": "2, 3",
+            "semantics": "Implement the PiecewiseLinearQ definitions in Rubi/IntegrationUtilityFunctions.m at 61e9c18ea248061cd83c67882f7c91a73cef912d, with step display disabled. Decline the rule if unsupported."
+        },
+        {
+            "name": "PolynomialInQ",
+            "arity": 3,
+            "semantics": "Implement the PolynomialInQ definitions in Rubi/IntegrationUtilityFunctions.m at 61e9c18ea248061cd83c67882f7c91a73cef912d, with step display disabled. Decline the rule if unsupported."
+        },
+        {
+            "name": "PolynomialInSubst",
+            "arity": 3,
+            "semantics": "Implement the PolynomialInSubst definitions in Rubi/IntegrationUtilityFunctions.m at 61e9c18ea248061cd83c67882f7c91a73cef912d, with step display disabled. Decline the rule if unsupported."
+        },
+        {
+            "name": "QuotientOfLinearsParts",
+            "arity": 2,
+            "semantics": "Implement the QuotientOfLinearsParts definitions in Rubi/IntegrationUtilityFunctions.m at 61e9c18ea248061cd83c67882f7c91a73cef912d, with step display disabled. Decline the rule if unsupported."
+        },
+        {
+            "name": "RationalFunctionExponents",
+            "arity": 2,
+            "semantics": "Implement the RationalFunctionExponents definitions in Rubi/IntegrationUtilityFunctions.m at 61e9c18ea248061cd83c67882f7c91a73cef912d, with step display disabled. Decline the rule if unsupported."
+        },
+        {
+            "name": "Root",
+            "arity": 2,
+            "semantics": "Wolfram Language built-in as used in the source: https://reference.wolfram.com/language/ref/Root.html. Decline the rule if unsupported."
+        },
+        {
+            "name": "SimplerIntegrandQ",
+            "arity": 3,
+            "semantics": "Implement the SimplerIntegrandQ definitions in Rubi/IntegrationUtilityFunctions.m at 61e9c18ea248061cd83c67882f7c91a73cef912d, with step display disabled. Decline the rule if unsupported."
+        },
+        {
+            "name": "SplitProduct",
+            "arity": 2,
+            "semantics": "Implement the SplitProduct definitions in Rubi/IntegrationUtilityFunctions.m at 61e9c18ea248061cd83c67882f7c91a73cef912d, with step display disabled. Decline the rule if unsupported."
+        },
+        {
+            "name": "Star",
+            "arity": 2,
+            "semantics": "RUBI Star[u,v] in Rubi/IntegrationUtilityFunctions.m at 61e9c18ea248061cd83c67882f7c91a73cef912d. Preserve its distribution and evaluation behavior. Decline the rule if unsupported (OSR-X-025a)."
+        },
+        {
+            "name": "SubstForFractionalPowerQ",
+            "arity": 3,
+            "semantics": "Implement the SubstForFractionalPowerQ definitions in Rubi/IntegrationUtilityFunctions.m at 61e9c18ea248061cd83c67882f7c91a73cef912d, with step display disabled. Decline the rule if unsupported."
+        },
+        {
+            "name": "SubstPower",
+            "arity": 3,
+            "semantics": "Implement the SubstPower definitions in Rubi/IntegrationUtilityFunctions.m at 61e9c18ea248061cd83c67882f7c91a73cef912d, with step display disabled. Decline the rule if unsupported."
+        },
+        {
+            "name": "TryPureTanSubst",
+            "arity": 2,
+            "semantics": "Implement the TryPureTanSubst definitions in Rubi/IntegrationUtilityFunctions.m at 61e9c18ea248061cd83c67882f7c91a73cef912d, with step display disabled. Decline the rule if unsupported."
+        }
     ],
     "description": "Incomplete OSR conversion of RUBI integration rules; see docs/known-issues.md.",
     "load_order": [

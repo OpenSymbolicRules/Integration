@@ -16,8 +16,8 @@ line endings. Each archive records its SHA-256.
 | Conditional | 1 | Source and both OSR translations keyed by the value of RUBI's load flag |
 | Source syntax tree | 36 | Parsed RUBI definition, exact source and conversion error (compound application or local assignment) |
 
-These counts omit headers and comment-only or blank blocks. The default loader
-now reads 5,504 entries. Eleven sections gained rules and nineteen still
+These counts omit headers and comment-only or blank blocks. At the first recovery checkpoint the default loader
+read 5,504 entries. The [source edition](source-edition.md) records subsequent additions. Eleven sections gained rules and nineteen still
 require operations outside the converter's default selection. Rule IDs in
 these newly populated sections use the one-based notebook code-cell ordinal,
 including skipped cells. The legacy line-format archive uses line numbers.

@@ -69,8 +69,8 @@ $RuleCount = Length[DownValues[Int]];
         self.assertEqual(meta['rule_count'], sum(len(item[1]) for item in docs.values()))
         self.assertEqual(len(report['files']), 198)
         self.assertEqual(len(report['not_loaded']), 23)
-        self.assertEqual(sum(len(entry['rule_ids_in_osr_array_order']) for entry in report['files']), 5504)
-        self.assertEqual(sum(not entry['rule_ids_in_osr_array_order'] for entry in report['files']), 19)
+        self.assertEqual(sum(len(entry['rule_ids_in_osr_array_order']) for entry in report['files']), 7208)
+        self.assertEqual(sum(not entry['rule_ids_in_osr_array_order'] for entry in report['files']), 2)
         self.assertFalse(any('Normalizing algebraic functions' in entry['source']
                              for entry in report['files']))
 

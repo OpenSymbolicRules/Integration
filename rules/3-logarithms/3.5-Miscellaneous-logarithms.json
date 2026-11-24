@@ -3,6 +3,250 @@
     "section": "3.5",
     "rules": [
         {
+            "constraints": [],
+            "id": 33,
+            "result": [
+                "With",
+                [
+                    "List",
+                    [
+                        "Set",
+                        "w",
+                        [
+                            "DerivativeDivides",
+                            "v",
+                            [
+                                "Multiply",
+                                "u",
+                                [
+                                    "Add",
+                                    1,
+                                    [
+                                        "Multiply",
+                                        -1,
+                                        "v"
+                                    ]
+                                ]
+                            ],
+                            "x"
+                        ]
+                    ]
+                ],
+                [
+                    "Condition",
+                    [
+                        "Multiply",
+                        "w",
+                        [
+                            "PolyLog",
+                            2,
+                            [
+                                "Add",
+                                1,
+                                [
+                                    "Multiply",
+                                    -1,
+                                    "v"
+                                ]
+                            ]
+                        ]
+                    ],
+                    [
+                        "Not",
+                        [
+                            "FalseQ",
+                            "w"
+                        ]
+                    ]
+                ]
+            ],
+            "pattern": [
+                "Int",
+                [
+                    "Multiply",
+                    "u_",
+                    [
+                        "Log",
+                        "v_"
+                    ]
+                ],
+                "x_symbol"
+            ],
+            "provenance": {
+                "method": "converted",
+                "sources": [
+                    {
+                        "version": "4.17.3.0",
+                        "name": "Rubi",
+                        "locator": "3 Logarithms/3.5 Miscellaneous logarithms.m#4"
+                    }
+                ]
+            }
+        },
+        {
+            "constraints": [
+                [
+                    "FreeQ",
+                    [
+                        "List",
+                        "a",
+                        "b"
+                    ],
+                    "x"
+                ],
+                [
+                    "InverseFunctionFreeQ",
+                    "u",
+                    "x"
+                ]
+            ],
+            "id": 34,
+            "result": [
+                "With",
+                [
+                    "List",
+                    [
+                        "Set",
+                        "z",
+                        [
+                            "DerivativeDivides",
+                            "v",
+                            [
+                                "Multiply",
+                                "w",
+                                [
+                                    "Add",
+                                    1,
+                                    [
+                                        "Multiply",
+                                        -1,
+                                        "v"
+                                    ]
+                                ]
+                            ],
+                            "x"
+                        ]
+                    ]
+                ],
+                [
+                    "Condition",
+                    [
+                        "Add",
+                        [
+                            "Multiply",
+                            "z",
+                            [
+                                "Add",
+                                "a",
+                                [
+                                    "Multiply",
+                                    "b",
+                                    [
+                                        "Log",
+                                        "u"
+                                    ]
+                                ]
+                            ],
+                            [
+                                "PolyLog",
+                                2,
+                                [
+                                    "Add",
+                                    1,
+                                    [
+                                        "Multiply",
+                                        -1,
+                                        "v"
+                                    ]
+                                ]
+                            ]
+                        ],
+                        [
+                            "Multiply",
+                            -1,
+                            "b",
+                            [
+                                "Int",
+                                [
+                                    "SimplifyIntegrand",
+                                    [
+                                        "Multiply",
+                                        "z",
+                                        [
+                                            "PolyLog",
+                                            2,
+                                            [
+                                                "Add",
+                                                1,
+                                                [
+                                                    "Multiply",
+                                                    -1,
+                                                    "v"
+                                                ]
+                                            ]
+                                        ],
+                                        [
+                                            "D",
+                                            "u",
+                                            "x"
+                                        ],
+                                        [
+                                            "Power",
+                                            "u",
+                                            -1
+                                        ]
+                                    ],
+                                    "x"
+                                ],
+                                "x"
+                            ]
+                        ]
+                    ],
+                    [
+                        "Not",
+                        [
+                            "FalseQ",
+                            "z"
+                        ]
+                    ]
+                ]
+            ],
+            "pattern": [
+                "Int",
+                [
+                    "Multiply",
+                    [
+                        "Add",
+                        "a.",
+                        [
+                            "Multiply",
+                            "b.",
+                            [
+                                "Log",
+                                "u_"
+                            ]
+                        ]
+                    ],
+                    [
+                        "Log",
+                        "v_"
+                    ],
+                    "w_"
+                ],
+                "x_symbol"
+            ],
+            "provenance": {
+                "method": "converted",
+                "sources": [
+                    {
+                        "version": "4.17.3.0",
+                        "name": "Rubi",
+                        "locator": "3 Logarithms/3.5 Miscellaneous logarithms.m#5"
+                    }
+                ]
+            }
+        },
+        {
             "constraints": [
                 [
                     "FreeQ",
@@ -1047,6 +1291,692 @@
                         "version": "4.16.1",
                         "name": "Rubi",
                         "locator": "3 Logarithms/3.5 Miscellaneous logarithms.m#6"
+                    }
+                ]
+            }
+        },
+        {
+            "constraints": [
+                [
+                    "FreeQ",
+                    [
+                        "List",
+                        "c",
+                        "d",
+                        "e",
+                        "n"
+                    ],
+                    "x"
+                ],
+                [
+                    "RationalFunctionQ",
+                    "RFx",
+                    "x"
+                ],
+                [
+                    "Not",
+                    [
+                        "PolynomialQ",
+                        "RFx",
+                        "x"
+                    ]
+                ]
+            ],
+            "id": 35,
+            "result": [
+                "With",
+                [
+                    "List",
+                    [
+                        "Set",
+                        "u",
+                        [
+                            "IntHide",
+                            [
+                                "Multiply",
+                                1,
+                                [
+                                    "Power",
+                                    [
+                                        "Add",
+                                        "d",
+                                        [
+                                            "Multiply",
+                                            "e",
+                                            [
+                                                "Power",
+                                                "x",
+                                                2
+                                            ]
+                                        ]
+                                    ],
+                                    -1
+                                ]
+                            ],
+                            "x"
+                        ]
+                    ]
+                ],
+                [
+                    "Add",
+                    [
+                        "Multiply",
+                        "u",
+                        [
+                            "Log",
+                            [
+                                "Multiply",
+                                "c",
+                                [
+                                    "Power",
+                                    "RFx",
+                                    "n"
+                                ]
+                            ]
+                        ]
+                    ],
+                    [
+                        "Multiply",
+                        -1,
+                        "n",
+                        [
+                            "Int",
+                            [
+                                "SimplifyIntegrand",
+                                [
+                                    "Multiply",
+                                    "u",
+                                    [
+                                        "D",
+                                        "RFx",
+                                        "x"
+                                    ],
+                                    [
+                                        "Power",
+                                        "RFx",
+                                        -1
+                                    ]
+                                ],
+                                "x"
+                            ],
+                            "x"
+                        ]
+                    ]
+                ]
+            ],
+            "pattern": [
+                "Int",
+                [
+                    "Multiply",
+                    [
+                        "Log",
+                        [
+                            "Multiply",
+                            "c.",
+                            [
+                                "Power",
+                                "RFx_",
+                                "n."
+                            ]
+                        ]
+                    ],
+                    [
+                        "Power",
+                        [
+                            "Add",
+                            "d_",
+                            [
+                                "Multiply",
+                                "e.",
+                                [
+                                    "Power",
+                                    "x_",
+                                    2
+                                ]
+                            ]
+                        ],
+                        -1
+                    ]
+                ],
+                "x_symbol"
+            ],
+            "provenance": {
+                "method": "converted",
+                "sources": [
+                    {
+                        "version": "4.17.3.0",
+                        "name": "Rubi",
+                        "locator": "3 Logarithms/3.5 Miscellaneous logarithms.m#12"
+                    }
+                ]
+            }
+        },
+        {
+            "constraints": [
+                [
+                    "FreeQ",
+                    [
+                        "List",
+                        "c",
+                        "n"
+                    ],
+                    "x"
+                ],
+                [
+                    "QuadraticQ",
+                    [
+                        "List",
+                        "Qx",
+                        "Px"
+                    ],
+                    "x"
+                ],
+                [
+                    "EqQ",
+                    [
+                        "D",
+                        [
+                            "Multiply",
+                            "Px",
+                            [
+                                "Power",
+                                "Qx",
+                                -1
+                            ]
+                        ],
+                        "x"
+                    ],
+                    0
+                ]
+            ],
+            "id": 36,
+            "result": [
+                "With",
+                [
+                    "List",
+                    [
+                        "Set",
+                        "u",
+                        [
+                            "IntHide",
+                            [
+                                "Multiply",
+                                1,
+                                [
+                                    "Power",
+                                    "Qx",
+                                    -1
+                                ]
+                            ],
+                            "x"
+                        ]
+                    ]
+                ],
+                [
+                    "Add",
+                    [
+                        "Multiply",
+                        "u",
+                        [
+                            "Log",
+                            [
+                                "Multiply",
+                                "c",
+                                [
+                                    "Power",
+                                    "Px",
+                                    "n"
+                                ]
+                            ]
+                        ]
+                    ],
+                    [
+                        "Multiply",
+                        -1,
+                        "n",
+                        [
+                            "Int",
+                            [
+                                "SimplifyIntegrand",
+                                [
+                                    "Multiply",
+                                    "u",
+                                    [
+                                        "D",
+                                        "Px",
+                                        "x"
+                                    ],
+                                    [
+                                        "Power",
+                                        "Px",
+                                        -1
+                                    ]
+                                ],
+                                "x"
+                            ],
+                            "x"
+                        ]
+                    ]
+                ]
+            ],
+            "pattern": [
+                "Int",
+                [
+                    "Multiply",
+                    [
+                        "Log",
+                        [
+                            "Multiply",
+                            "c.",
+                            [
+                                "Power",
+                                "Px_",
+                                "n."
+                            ]
+                        ]
+                    ],
+                    [
+                        "Power",
+                        "Qx_",
+                        -1
+                    ]
+                ],
+                "x_symbol"
+            ],
+            "provenance": {
+                "method": "converted",
+                "sources": [
+                    {
+                        "version": "4.17.3.0",
+                        "name": "Rubi",
+                        "locator": "3 Logarithms/3.5 Miscellaneous logarithms.m#13"
+                    }
+                ]
+            }
+        },
+        {
+            "constraints": [
+                [
+                    "FreeQ",
+                    [
+                        "List",
+                        "a",
+                        "b",
+                        "c",
+                        "p"
+                    ],
+                    "x"
+                ],
+                [
+                    "RationalFunctionQ",
+                    "RFx",
+                    "x"
+                ],
+                [
+                    "RationalFunctionQ",
+                    "RGx",
+                    "x"
+                ],
+                [
+                    "IGtQ",
+                    "n",
+                    0
+                ]
+            ],
+            "id": 37,
+            "result": [
+                "With",
+                [
+                    "List",
+                    [
+                        "Set",
+                        "u",
+                        [
+                            "ExpandIntegrand",
+                            [
+                                "Power",
+                                [
+                                    "Add",
+                                    "a",
+                                    [
+                                        "Multiply",
+                                        "b",
+                                        [
+                                            "Log",
+                                            [
+                                                "Multiply",
+                                                "c",
+                                                [
+                                                    "Power",
+                                                    "RFx",
+                                                    "p"
+                                                ]
+                                            ]
+                                        ]
+                                    ]
+                                ],
+                                "n"
+                            ],
+                            "RGx",
+                            "x"
+                        ]
+                    ]
+                ],
+                [
+                    "Condition",
+                    [
+                        "Int",
+                        "u",
+                        "x"
+                    ],
+                    [
+                        "SumQ",
+                        "u"
+                    ]
+                ]
+            ],
+            "pattern": [
+                "Int",
+                [
+                    "Multiply",
+                    "RGx_",
+                    [
+                        "Power",
+                        [
+                            "Add",
+                            "a.",
+                            [
+                                "Multiply",
+                                "b.",
+                                [
+                                    "Log",
+                                    [
+                                        "Multiply",
+                                        "c.",
+                                        [
+                                            "Power",
+                                            "RFx_",
+                                            "p."
+                                        ]
+                                    ]
+                                ]
+                            ]
+                        ],
+                        "n."
+                    ]
+                ],
+                "x_symbol"
+            ],
+            "provenance": {
+                "method": "converted",
+                "sources": [
+                    {
+                        "version": "4.17.3.0",
+                        "name": "Rubi",
+                        "locator": "3 Logarithms/3.5 Miscellaneous logarithms.m#14"
+                    }
+                ]
+            }
+        },
+        {
+            "constraints": [
+                [
+                    "FreeQ",
+                    [
+                        "List",
+                        "a",
+                        "b",
+                        "c",
+                        "p"
+                    ],
+                    "x"
+                ],
+                [
+                    "RationalFunctionQ",
+                    "RFx",
+                    "x"
+                ],
+                [
+                    "RationalFunctionQ",
+                    "RGx",
+                    "x"
+                ],
+                [
+                    "IGtQ",
+                    "n",
+                    0
+                ]
+            ],
+            "id": 38,
+            "result": [
+                "With",
+                [
+                    "List",
+                    [
+                        "Set",
+                        "u",
+                        [
+                            "ExpandIntegrand",
+                            [
+                                "Multiply",
+                                "RGx",
+                                [
+                                    "Power",
+                                    [
+                                        "Add",
+                                        "a",
+                                        [
+                                            "Multiply",
+                                            "b",
+                                            [
+                                                "Log",
+                                                [
+                                                    "Multiply",
+                                                    "c",
+                                                    [
+                                                        "Power",
+                                                        "RFx",
+                                                        "p"
+                                                    ]
+                                                ]
+                                            ]
+                                        ]
+                                    ],
+                                    "n"
+                                ]
+                            ],
+                            "x"
+                        ]
+                    ]
+                ],
+                [
+                    "Condition",
+                    [
+                        "Int",
+                        "u",
+                        "x"
+                    ],
+                    [
+                        "SumQ",
+                        "u"
+                    ]
+                ]
+            ],
+            "pattern": [
+                "Int",
+                [
+                    "Multiply",
+                    "RGx_",
+                    [
+                        "Power",
+                        [
+                            "Add",
+                            "a.",
+                            [
+                                "Multiply",
+                                "b.",
+                                [
+                                    "Log",
+                                    [
+                                        "Multiply",
+                                        "c.",
+                                        [
+                                            "Power",
+                                            "RFx_",
+                                            "p."
+                                        ]
+                                    ]
+                                ]
+                            ]
+                        ],
+                        "n."
+                    ]
+                ],
+                "x_symbol"
+            ],
+            "provenance": {
+                "method": "converted",
+                "sources": [
+                    {
+                        "version": "4.17.3.0",
+                        "name": "Rubi",
+                        "locator": "3 Logarithms/3.5 Miscellaneous logarithms.m#15"
+                    }
+                ]
+            }
+        },
+        {
+            "constraints": [
+                [
+                    "FreeQ",
+                    [
+                        "List",
+                        "a",
+                        "b"
+                    ],
+                    "x"
+                ],
+                [
+                    "RationalFunctionQ",
+                    "RFx",
+                    "x"
+                ]
+            ],
+            "id": 39,
+            "result": [
+                "With",
+                [
+                    "List",
+                    [
+                        "Set",
+                        "lst",
+                        [
+                            "SubstForFractionalPowerOfLinear",
+                            [
+                                "Multiply",
+                                "RFx",
+                                [
+                                    "Add",
+                                    "a",
+                                    [
+                                        "Multiply",
+                                        "b",
+                                        [
+                                            "Log",
+                                            "u"
+                                        ]
+                                    ]
+                                ]
+                            ],
+                            "x"
+                        ]
+                    ]
+                ],
+                [
+                    "Condition",
+                    [
+                        "Multiply",
+                        [
+                            "Part",
+                            "lst",
+                            2
+                        ],
+                        [
+                            "Part",
+                            "lst",
+                            4
+                        ],
+                        [
+                            "Subst",
+                            [
+                                "Int",
+                                [
+                                    "Part",
+                                    "lst",
+                                    1
+                                ],
+                                "x"
+                            ],
+                            "x",
+                            [
+                                "Power",
+                                [
+                                    "Part",
+                                    "lst",
+                                    3
+                                ],
+                                [
+                                    "Multiply",
+                                    1,
+                                    [
+                                        "Power",
+                                        [
+                                            "Part",
+                                            "lst",
+                                            2
+                                        ],
+                                        -1
+                                    ]
+                                ]
+                            ]
+                        ]
+                    ],
+                    [
+                        "Not",
+                        [
+                            "FalseQ",
+                            "lst"
+                        ]
+                    ]
+                ]
+            ],
+            "pattern": [
+                "Int",
+                [
+                    "Multiply",
+                    "RFx_",
+                    [
+                        "Add",
+                        "a.",
+                        [
+                            "Multiply",
+                            "b.",
+                            [
+                                "Log",
+                                "u_"
+                            ]
+                        ]
+                    ]
+                ],
+                "x_symbol"
+            ],
+            "provenance": {
+                "method": "converted",
+                "sources": [
+                    {
+                        "version": "4.17.3.0",
+                        "name": "Rubi",
+                        "locator": "3 Logarithms/3.5 Miscellaneous logarithms.m#16"
                     }
                 ]
             }
@@ -5613,6 +6543,107 @@
         {
             "constraints": [
                 [
+                    "QuadraticQ",
+                    "Qx",
+                    "x"
+                ],
+                [
+                    "InverseFunctionFreeQ",
+                    "u",
+                    "x"
+                ]
+            ],
+            "id": 40,
+            "result": [
+                "With",
+                [
+                    "List",
+                    [
+                        "Set",
+                        "v",
+                        [
+                            "IntHide",
+                            [
+                                "Multiply",
+                                1,
+                                [
+                                    "Power",
+                                    "Qx",
+                                    -1
+                                ]
+                            ],
+                            "x"
+                        ]
+                    ]
+                ],
+                [
+                    "Add",
+                    [
+                        "Multiply",
+                        "v",
+                        [
+                            "Log",
+                            "u"
+                        ]
+                    ],
+                    [
+                        "Multiply",
+                        -1,
+                        [
+                            "Int",
+                            [
+                                "SimplifyIntegrand",
+                                [
+                                    "Multiply",
+                                    "v",
+                                    [
+                                        "D",
+                                        "u",
+                                        "x"
+                                    ],
+                                    [
+                                        "Power",
+                                        "u",
+                                        -1
+                                    ]
+                                ],
+                                "x"
+                            ],
+                            "x"
+                        ]
+                    ]
+                ]
+            ],
+            "pattern": [
+                "Int",
+                [
+                    "Multiply",
+                    [
+                        "Log",
+                        "u_"
+                    ],
+                    [
+                        "Power",
+                        "Qx_",
+                        -1
+                    ]
+                ],
+                "x_symbol"
+            ],
+            "provenance": {
+                "method": "converted",
+                "sources": [
+                    {
+                        "version": "4.17.3.0",
+                        "name": "Rubi",
+                        "locator": "3 Logarithms/3.5 Miscellaneous logarithms.m#38"
+                    }
+                ]
+            }
+        },
+        {
+            "constraints": [
+                [
                     "FreeQ",
                     "a",
                     "x"
@@ -5709,6 +6740,197 @@
                         "version": "4.16.1",
                         "name": "Rubi",
                         "locator": "3 Logarithms/3.5 Miscellaneous logarithms.m#28"
+                    }
+                ]
+            }
+        },
+        {
+            "constraints": [
+                [
+                    "InverseFunctionFreeQ",
+                    "u",
+                    "x"
+                ]
+            ],
+            "id": 41,
+            "result": [
+                "With",
+                [
+                    "List",
+                    [
+                        "Set",
+                        "w",
+                        [
+                            "IntHide",
+                            "v",
+                            "x"
+                        ]
+                    ]
+                ],
+                [
+                    "Condition",
+                    [
+                        "Add",
+                        [
+                            "Dist",
+                            [
+                                "Log",
+                                "u"
+                            ],
+                            "w",
+                            "x"
+                        ],
+                        [
+                            "Multiply",
+                            -1,
+                            [
+                                "Int",
+                                [
+                                    "SimplifyIntegrand",
+                                    [
+                                        "Multiply",
+                                        "w",
+                                        [
+                                            "D",
+                                            "u",
+                                            "x"
+                                        ],
+                                        [
+                                            "Power",
+                                            "u",
+                                            -1
+                                        ]
+                                    ],
+                                    "x"
+                                ],
+                                "x"
+                            ]
+                        ]
+                    ],
+                    [
+                        "InverseFunctionFreeQ",
+                        "w",
+                        "x"
+                    ]
+                ]
+            ],
+            "pattern": [
+                "Int",
+                [
+                    "Multiply",
+                    "v_",
+                    [
+                        "Log",
+                        "u_"
+                    ]
+                ],
+                "x_symbol"
+            ],
+            "provenance": {
+                "method": "converted",
+                "sources": [
+                    {
+                        "version": "4.17.3.0",
+                        "name": "Rubi",
+                        "locator": "3 Logarithms/3.5 Miscellaneous logarithms.m#40"
+                    }
+                ]
+            }
+        },
+        {
+            "constraints": [
+                [
+                    "ProductQ",
+                    "u"
+                ]
+            ],
+            "id": 42,
+            "result": [
+                "With",
+                [
+                    "List",
+                    [
+                        "Set",
+                        "w",
+                        [
+                            "IntHide",
+                            "v",
+                            "x"
+                        ]
+                    ]
+                ],
+                [
+                    "Condition",
+                    [
+                        "Add",
+                        [
+                            "Dist",
+                            [
+                                "Log",
+                                "u"
+                            ],
+                            "w",
+                            "x"
+                        ],
+                        [
+                            "Multiply",
+                            -1,
+                            [
+                                "Int",
+                                [
+                                    "SimplifyIntegrand",
+                                    [
+                                        "Multiply",
+                                        "w",
+                                        [
+                                            "Simplify",
+                                            [
+                                                "Multiply",
+                                                [
+                                                    "D",
+                                                    "u",
+                                                    "x"
+                                                ],
+                                                [
+                                                    "Power",
+                                                    "u",
+                                                    -1
+                                                ]
+                                            ]
+                                        ]
+                                    ],
+                                    "x"
+                                ],
+                                "x"
+                            ]
+                        ]
+                    ],
+                    [
+                        "InverseFunctionFreeQ",
+                        "w",
+                        "x"
+                    ]
+                ]
+            ],
+            "pattern": [
+                "Int",
+                [
+                    "Multiply",
+                    "v_",
+                    [
+                        "Log",
+                        "u_"
+                    ]
+                ],
+                "x_symbol"
+            ],
+            "provenance": {
+                "method": "converted",
+                "sources": [
+                    {
+                        "version": "4.17.3.0",
+                        "name": "Rubi",
+                        "locator": "3 Logarithms/3.5 Miscellaneous logarithms.m#41"
                     }
                 ]
             }
@@ -5831,6 +7053,149 @@
         {
             "constraints": [
                 [
+                    "InverseFunctionFreeQ",
+                    "v",
+                    "x"
+                ],
+                [
+                    "InverseFunctionFreeQ",
+                    "w",
+                    "x"
+                ]
+            ],
+            "id": 43,
+            "result": [
+                "With",
+                [
+                    "List",
+                    [
+                        "Set",
+                        "z",
+                        [
+                            "IntHide",
+                            "u",
+                            "x"
+                        ]
+                    ]
+                ],
+                [
+                    "Condition",
+                    [
+                        "Add",
+                        [
+                            "Dist",
+                            [
+                                "Multiply",
+                                [
+                                    "Log",
+                                    "v"
+                                ],
+                                [
+                                    "Log",
+                                    "w"
+                                ]
+                            ],
+                            "z",
+                            "x"
+                        ],
+                        [
+                            "Multiply",
+                            -1,
+                            [
+                                "Int",
+                                [
+                                    "SimplifyIntegrand",
+                                    [
+                                        "Multiply",
+                                        "z",
+                                        [
+                                            "Log",
+                                            "w"
+                                        ],
+                                        [
+                                            "D",
+                                            "v",
+                                            "x"
+                                        ],
+                                        [
+                                            "Power",
+                                            "v",
+                                            -1
+                                        ]
+                                    ],
+                                    "x"
+                                ],
+                                "x"
+                            ]
+                        ],
+                        [
+                            "Multiply",
+                            -1,
+                            [
+                                "Int",
+                                [
+                                    "SimplifyIntegrand",
+                                    [
+                                        "Multiply",
+                                        "z",
+                                        [
+                                            "Log",
+                                            "v"
+                                        ],
+                                        [
+                                            "D",
+                                            "w",
+                                            "x"
+                                        ],
+                                        [
+                                            "Power",
+                                            "w",
+                                            -1
+                                        ]
+                                    ],
+                                    "x"
+                                ],
+                                "x"
+                            ]
+                        ]
+                    ],
+                    [
+                        "InverseFunctionFreeQ",
+                        "z",
+                        "x"
+                    ]
+                ]
+            ],
+            "pattern": [
+                "Int",
+                [
+                    "Multiply",
+                    "u_",
+                    [
+                        "Log",
+                        "v_"
+                    ],
+                    [
+                        "Log",
+                        "w_"
+                    ]
+                ],
+                "x_symbol"
+            ],
+            "provenance": {
+                "method": "converted",
+                "sources": [
+                    {
+                        "version": "4.17.3.0",
+                        "name": "Rubi",
+                        "locator": "3 Logarithms/3.5 Miscellaneous logarithms.m#43"
+                    }
+                ]
+            }
+        },
+        {
+            "constraints": [
+                [
                     "FreeQ",
                     [
                         "List",
@@ -5886,7 +7251,96 @@
         },
         {
             "constraints": [
+                [
+                    "NonsumQ",
+                    "u"
+                ]
             ],
+            "id": 44,
+            "result": [
+                "With",
+                [
+                    "List",
+                    [
+                        "Set",
+                        "lst",
+                        [
+                            "FunctionOfLog",
+                            [
+                                "Cancel",
+                                [
+                                    "Multiply",
+                                    "x",
+                                    "u"
+                                ]
+                            ],
+                            "x"
+                        ]
+                    ]
+                ],
+                [
+                    "Condition",
+                    [
+                        "Multiply",
+                        1,
+                        [
+                            "Power",
+                            [
+                                "Part",
+                                "lst",
+                                3
+                            ],
+                            -1
+                        ],
+                        [
+                            "Subst",
+                            [
+                                "Int",
+                                [
+                                    "Part",
+                                    "lst",
+                                    1
+                                ],
+                                "x"
+                            ],
+                            "x",
+                            [
+                                "Log",
+                                [
+                                    "Part",
+                                    "lst",
+                                    2
+                                ]
+                            ]
+                        ]
+                    ],
+                    [
+                        "Not",
+                        [
+                            "FalseQ",
+                            "lst"
+                        ]
+                    ]
+                ]
+            ],
+            "pattern": [
+                "Int",
+                "u_",
+                "x_symbol"
+            ],
+            "provenance": {
+                "method": "converted",
+                "sources": [
+                    {
+                        "version": "4.17.3.0",
+                        "name": "Rubi",
+                        "locator": "3 Logarithms/3.5 Miscellaneous logarithms.m#46"
+                    }
+                ]
+            }
+        },
+        {
+            "constraints": [],
             "id": 31,
             "result": [
                 "Add",
@@ -6115,7 +7569,15 @@
         "LogGamma": "openmath:osr#LogGamma",
         "ExpandToSum": "openmath:osr#ExpandToSum",
         "Simplify": "openmath:osr#Simplify",
-        "Add": "openmath:arith1#plus"
+        "Add": "openmath:arith1#plus",
+        "Cancel": "openmath:osr#Cancel",
+        "Part": "openmath:osr#Part",
+        "FunctionOfLog": "openmath:osr#FunctionOfLog",
+        "DerivativeDivides": "openmath:osr#DerivativeDivides",
+        "IntHide": "openmath:osr#IntHide",
+        "Dist": "openmath:osr#Dist",
+        "Subst": "openmath:osr#Subst",
+        "SubstForFractionalPowerOfLinear": "openmath:osr#SubstForFractionalPowerOfLinear"
     },
     "identity": "rubi:3 Logarithms/3.5 Miscellaneous logarithms",
     "$schema": "open-symbolic-rules/v0.1"

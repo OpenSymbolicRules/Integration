@@ -29,6 +29,7 @@ jobs:
         uses: actions/checkout@v7
         with:
           submodules: recursive
+          fetch-depth: 0
 
       - name: Set up Julia
         uses: julia-actions/setup-julia@v3
@@ -46,8 +47,13 @@ jobs:
           julia --project=converter converter/scripts/recover-profile.jl vendor/Rubi "$RUNNER_TEMP/recovered"
           python3 scripts/test_recovered_profile.py --compare "$RUNNER_TEMP/recovered"
 
-      - name: Re-run converter (rules)
-        run: julia --project=converter converter/scripts/convert.jl --rules
+      - name: Verify the default manifest against the pinned source
+        run: |
+          julia --project=converter converter/test/source_edition.jl
+          python3 -m unittest discover -s scripts -p test_merge_source_edition.py
+          julia --project=converter converter/scripts/source-edition.jl vendor/Rubi "$RUNNER_TEMP/source-edition"
+          python3 scripts/merge_source_edition.py "$RUNNER_TEMP/source-edition/rules" "$RUNNER_TEMP/expanded"
+          python3 scripts/check_expanded_profile.py "$RUNNER_TEMP/expanded" rules
 
       - name: Re-run converter (tests)
         run: julia --project=converter converter/scripts/convert.jl --tests

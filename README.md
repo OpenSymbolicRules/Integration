@@ -6,10 +6,12 @@
 
 A language-neutral JSON format with validated JSON Schema to represent
 a subset of [RUBI](https://rulebasedintegration.org/) symbolic integration
-rules and 72,523 test problems, independently of Mathematica. The v0.1 corpus
-contains 6,354 entries across 221 files, including duplicates and empty
-sections; 5,504 entries are in the default 198-file load manifest. This is not
-a complete conversion. The [recovered RUBI sections](docs/recovered-sections.md) include the source of all 30 previously empty loaded files. See [known issues](docs/known-issues.md).
+rules and 72,523 test problems, independently of Mathematica. The default v0.1 manifest loads **7,208 integration rules** from 198
+RUBI sections. It enables elementary rules and disables step display. Two
+sections still have no converted rules. The repository has 8,058 v0.1
+entries when the 23 files outside the manifest are included.
+See [source coverage, applicability and reproduction](docs/source-edition.md)
+and the [known conversion issues](docs/known-issues.md).
 
 ## Overview
 
@@ -30,7 +32,7 @@ Lean (`OpenSymbolicRules/Lean`) and tracked by
 1,576 refuted and 815 unproved. Over ℂ, 301 are proved (157 certified), 377
 refuted and 2,204 unproved. Another 520 source identities are reported
 as not migrated. These v1 counts include strengthened variants, not just source
-rules, and describe the encoded fragment under its conditions. The 5,504 v0.1
+rules, and describe the encoded fragment under its conditions. The 7,208 v0.1
 entries in the default manifest are source conversion counts, not proved
 rule counts. A valid schema or successful conversion does not establish a
 mathematical identity. Every v1 rule is
@@ -70,7 +72,7 @@ semantics, not a preferred algorithm or fallback order.
 The format covers:
 
 - **Rules**: pattern + constraints + result, with wildcard and predicate
-  support (6,354 entries in 221 files, including duplicates and empty sections)
+  support (8,058 entries in 221 files, including duplicates and empty sections)
 - **Test fixtures**: integrand + variable + optimal antiderivative +
   expected step count (72,523 tests in 215 files)
 - **Taxonomy**: RUBI's exact 9-section hierarchy
@@ -148,7 +150,7 @@ julia --project=converter converter/scripts/convert.jl --manifest
 
 | Artifact | Directory | Files | Items |
 |----------|-----------|-------|-------|
-| Rules | `rules/` | 221 | 6,354 entries; the conversion is incomplete |
+| Rules | `rules/` | 221 | 8,058 entries; the conversion is incomplete |
 | Tests | `tests/` | 215 | 72,523 test problems |
 | Manifest | `rules/meta.json` | 1 | load_order + counts |
 
