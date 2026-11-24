@@ -156,8 +156,8 @@ conditions allow coefficients to vanish in result denominators. The Lean
 use assignments at `x = 1` where the integrand is defined nearby and the
 result is undefined; no missing condition is added silently.
 
-The current set has 568 proved, 1578 refuted and 738 unproved rules over ℝ;
-over ℂ, 371 are proved (191 certified), 377 refuted and 2136 unproved.
+The current set has 575 proved, 1578 refuted and 731 unproved rules over ℝ;
+over ℂ, 376 are proved (191 certified), 377 refuted and 2131 unproved.
 
 The inventory excludes rules whose result or conditions use a name the
 pattern does not bind (739 rules, 630 of them with `E`, `ImaginaryI` or
@@ -294,3 +294,10 @@ substitutions are certified over ℝ. The logarithm rule is also certified
 over ℂ; the arctangent proof has an unsupported order mapping, and complex
 arcsine and arccosine are unproved because their interpretations are absent.
 The original unguarded rules remain refuted over ℝ.
+
+
+The strengthened RUBI 5.1.6 #3–4 and 5.3.5 #2, #5–6 and #9–10
+weighted or reciprocal affine substitutions are certified over ℝ. The
+complex arcsine and arccosine cases remain unproved because their
+interpretations are absent; the arctangent cases have an unsupported
+complex order mapping. Their unguarded originals remain refuted over ℝ.
