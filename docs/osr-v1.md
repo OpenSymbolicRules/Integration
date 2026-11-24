@@ -6,11 +6,17 @@ generated, never edited by hand:
 
 | File | Content |
 |---|---|
-| `v1/integration.osr.json` | 2879 integration rules (`calculus1#int`, lambdas as `OMBIND fns1#lambda`), with verification records over ℝ and ℂ. |
+| `v1/integration.osr.json` | 2880 integration rules (`calculus1#int`, lambdas as `OMBIND fns1#lambda`), with verification records over ℝ and ℂ. |
 | `v1/integration.report.json` | Machine-readable audit: metrics per domain and the rules not migrated. |
 | `v1/integration.report.md` | The same audit for humans, with the findings of every rule. |
 
 ## Where they come from
+
+RUBI 5.3.7 #19 is retained with its original equality condition and a
+Lean-checked counterexample over ℝ: at `a = 2`, `b = -1`, `c = 1`, and
+`x = -1`, the integrand is defined locally but the result's real logarithm
+is not. Its complex status is unproved; the fragment has no complex square
+root interpretation. A counterexample is not a verified rewrite.
 
 Independently proved generalized variants may replace the source rule's
 conditions; the structural checker reports these separately and does not

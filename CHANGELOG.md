@@ -33,6 +33,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   that report; the findings are added and the check passes.
 
 ### Changed
+- Update the Verification report reference to `8dde015` for the v1 export.
 - Replace the section-sorted default load manifest with the pinned RUBI source
   file sequence; 23 files absent from that sequence remain on disk but are not
   loaded by default. Thirty loaded files are still empty.
@@ -74,6 +75,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   be migrated faithfully; the current v1 files are unaffected.
 
 ### Added
+- Update the v1 integration export to 2,880 rules, including RUBI 5.3.7 #19
+  with its original condition and a Lean-checked real counterexample.
 - Report per-rule `Star` and `With` syntax requirements in experimental
   recovery output, without implying complete consumer capability analysis.
 - Reject legacy fabricated `UnknownHead` applications in default loaded rules;
