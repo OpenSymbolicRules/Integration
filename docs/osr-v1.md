@@ -156,8 +156,8 @@ conditions allow coefficients to vanish in result denominators. The Lean
 use assignments at `x = 1` where the integrand is defined nearby and the
 result is undefined; no missing condition is added silently.
 
-The current set has 591 proved, 1578 refuted and 715 unproved rules over ℝ;
-over ℂ, 376 are proved (191 certified), 377 refuted and 2131 unproved.
+The current set has 595 proved, 1578 refuted and 711 unproved rules over ℝ;
+over ℂ, 380 are proved (192 certified), 377 refuted and 2127 unproved.
 
 The inventory excludes rules whose result or conditions use a name the
 pattern does not bind (739 rules, 630 of them with `E`, `ImaginaryI` or
@@ -308,3 +308,9 @@ certified over ℝ: RUBI 7.1.6 #1–2, 7.2.6 #1–2, 7.3.2 #1–2, #5b–6b,
 #9–10, and 7.3.5 #1–2, #5–6, #9–10. These are variants sharing one affine
 substitution argument. Their complex cases remain unproved because the
 complex interpretation does not provide these functions.
+
+
+The strengthened RUBI 3.4 #28, 4.1.12 #75–76 and 3.3 #2 nested
+affine substitutions are certified over ℝ. The final logarithmic rule is
+also certified over ℂ; complex order mapping is unsupported for the other
+three. The unguarded originals remain refuted over ℝ.
