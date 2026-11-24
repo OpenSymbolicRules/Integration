@@ -73,6 +73,9 @@ jobs:
       - name: Test RUBI source coverage audit
         run: python3 scripts/test_audit_rubi_coverage.py
 
+      - name: Test RUBI loader revision comparison
+        run: python3 scripts/test_compare_rubi_loaders.py
+
       - name: Reject fabricated heads in default loaded rules
         run: |
           python3 scripts/test_check_unknown_heads.py
