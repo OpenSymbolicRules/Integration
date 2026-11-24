@@ -156,8 +156,8 @@ conditions allow coefficients to vanish in result denominators. The Lean
 use assignments at `x = 1` where the integrand is defined nearby and the
 result is undefined; no missing condition is added silently.
 
-The current set has 546 proved, 1578 refuted and 760 unproved rules over ℝ;
-over ℂ, 353 are proved (187 certified), 377 refuted and 2154 unproved.
+The current set has 550 proved, 1578 refuted and 756 unproved rules over ℝ;
+over ℂ, 355 are proved (187 certified), 377 refuted and 2152 unproved.
 
 The inventory excludes rules whose result or conditions use a name the
 pattern does not bind (739 rules, 630 of them with `E`, `ImaginaryI` or
@@ -257,3 +257,10 @@ The strengthened RUBI 4.3.9 #9–10 and #15–16 weighted perfect-square
 recurrences are certified over ℝ and ℂ. The domains of both trigonometric
 factors and their negative powers are tracked independently. Their original
 unguarded rules remain refuted over ℝ.
+
+The strengthened RUBI 5.3.1 #5, 5.3.2 #13, 7.3.1 #5 and 7.3.2 #13
+inverse-function reciprocal recurrences are certified over ℝ. The two complex
+arctangent proofs are not certified due to the unsupported complex order
+mapping; the inverse hyperbolic tangent cases remain unproved over ℂ because
+the fragment lacks that interpretation. Original unguarded rules remain
+refuted over ℝ.
