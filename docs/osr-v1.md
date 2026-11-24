@@ -6,7 +6,7 @@ generated, never edited by hand:
 
 | File | Content |
 |---|---|
-| `v1/integration.osr.json` | 2882 integration rules (`calculus1#int`, lambdas as `OMBIND fns1#lambda`), with verification records over ℝ and ℂ. |
+| `v1/integration.osr.json` | 2884 integration rules (`calculus1#int`, lambdas as `OMBIND fns1#lambda`), with verification records over ℝ and ℂ. |
 | `v1/integration.report.json` | Machine-readable audit: metrics per domain and the rules not migrated. |
 | `v1/integration.report.md` | The same audit for humans, with the findings of every rule. |
 
@@ -23,6 +23,14 @@ RUBI 1.1.1.2 #21 is proved over ℝ under its original conditions `a+c=0`,
 RUBI 7.3.7 #19 is retained with a Lean-checked real counterexample at
 `a=3`, `b=c=1`, `x=-1`. Both have unproved complex status because the
 fragment does not interpret their complex square roots and inverse functions.
+
+RUBI 2.3 #1 is retained with its original independence constraint and a
+Lean-checked real counterexample: at `F=2`, `a=b=0`, `c=n=1`, the
+integrand is defined everywhere but the replacement divides by zero. The
+complex case is unproved. RUBI 2.3 #8 has the analogous real counterexample
+at `F=2`, `a=b=0`, `c=d=1`; its complex case is also unproved. The source at revision `61e9c18` declares version
+4.17.3.0; the v0.1 rule's 4.16.1 version label is historical. The proof
+concerns the mathematical rule, not runtime dispatch in RUBI.
 
 Independently proved generalized variants may replace the source rule's
 conditions; the structural checker reports these separately and does not
@@ -55,13 +63,13 @@ Of the twenty candidates:
 - five are proved: `∫ a = a x` and the power rule `∫ xᵐ = xᵐ⁺¹/(m+1)`
   (`m ≠ −1`, integer values of `m`) over ℝ and ℂ; `∫ log(c xⁿ)` and the
   `sin`/`cos` of `d (a + b log(c xⁿ))` over ℝ;
-- eight are **false** as converted, each with a Lean proof of its negation
+- ten are **false** as converted, each with a Lean proof of its negation
   (status `counterexample`): `∫ 1/x = log x` at `x = −1`, where the real
-  logarithm is undefined, and seven rules whose result divides by a
+  logarithm is undefined, and nine rules whose result divides by a
   coefficient that the conditions allow to vanish (`b`, `c`, `d`, `e` or
   `n` equal to 0).  The missing conditions are recorded as findings, not
   added;
-- seven are not migrated: their integrands are powers with the exponent
+- five are not migrated: their integrands are powers with the exponent
   `3/2` or an exponent depending on `x`, while the fragment interprets
   `arith1#power` for integer exponents only.
 
@@ -105,8 +113,8 @@ A fourth batch of 25, transcribed by a tool and checked by
 rules are refuted because a coefficient the result divides by may vanish or,
 at `n = 0`, a residual integrand divides by `d + e x`; 3.3 #4 and 3.1.3 #3
 are refuted over ℝ, where `log` is evaluated at a negative point.  Seven
-rules whose integrand is `F^(…)` with an exponent depending on `x` are not
-migrated.
+rules whose integrand is `F^(…)` with an exponent depending on `x` were not
+migrated in that batch; 2.3 #1 and #8 have since been added as real counterexamples.
 
 A fifth batch widens the scope to exponents that RUBI constrains only by
 numeric predicates (`IntegerQ`, `GtQ`, …), declared independent of `x` with
@@ -122,8 +130,8 @@ conditions allow coefficients to vanish in result denominators. The Lean
 use assignments at `x = 1` where the integrand is defined nearby and the
 result is undefined; no missing condition is added silently.
 
-The current set has 490 proved, 1574 refuted and 815 unproved rules over ℝ;
-over ℂ, 301 are proved (157 certified), 377 refuted and 2201 unproved.
+The current set has 491 proved, 1578 refuted and 815 unproved rules over ℝ;
+over ℂ, 301 are proved (157 certified), 377 refuted and 2206 unproved.
 
 The inventory excludes rules whose result or conditions use a name the
 pattern does not bind (739 rules, 630 of them with `E`, `ImaginaryI` or

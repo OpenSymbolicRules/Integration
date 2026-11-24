@@ -76,6 +76,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   be migrated faithfully; the current v1 files are unaffected.
 
 ### Added
+- Update the v1 integration export to 2,884 rules: RUBI 2.3 #1 and #8 retain
+  their original independence constraints and have Lean-checked real
+  counterexamples; their complex cases remain unproved.
 - Update the v1 integration export to 2,882 rules: RUBI 1.1.1.2 #21 is
   proved over ℝ and RUBI 7.3.7 #19 has a Lean-checked real counterexample.
 - Update the v1 integration export to 2,880 rules, including RUBI 5.3.7 #19
