@@ -79,6 +79,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   be migrated faithfully; the current v1 files are unaffected.
 
 ### Added
+- Prepare five verified logarithmic and quadratic affine substitutions in the
+  local v1 export, with complex certification limitations recorded.
 - Prepare four verified nested affine substitutions in the local v1 export,
   retaining counterexamples and complex order limitations.
 - Prepare sixteen inverse-hyperbolic affine substitution entries verified over
