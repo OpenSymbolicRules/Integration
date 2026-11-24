@@ -37,6 +37,9 @@ julia --project=converter converter/scripts/audit-cells.jl vendor/Rubi > /tmp/ru
 # Recover candidates for loaded empty files into a new, isolated directory
 julia --project=converter converter/scripts/recover-empty.jl rules vendor/Rubi /tmp/rubi-empty-candidates
 
+# Inspect notebook cells in source order; explicitly select the show-steps branch
+julia --project=converter converter/scripts/recover-cells.jl path/to/source.m --show-steps false
+
 # Classify Module syntax in files reported as blocked, without changing them
 julia --project=converter converter/scripts/audit-module.jl /tmp/rubi-empty-candidates/report.json vendor/Rubi > /tmp/rubi-module-audit.json
 ```
@@ -75,6 +78,12 @@ The output directory must not already exist and must be outside the rule and
 vendor trees. It contains experimental candidates, not an executable ruleset:
 unsupported operational semantics and consumer capabilities remain to be
 reviewed. A blocked entry is not a converted empty rule file.
+The cell report records blocked and empty cells rather than dropping them;
+blocked entries retain their original text and, when parsing succeeds, a
+diagnostic source AST. That AST is not an OSR expression and can reflect
+parser numeric limitations; original source text remains authoritative.
+its IDs are cell positions, not runtime priorities or published rule IDs.
+It preserves candidates only for review and does not modify `rules/`.
 The Module audit counts syntax, not semantic validity. Counts of assignments
 in nested bodies can overlap; the older line-based parser can omit expressions.
 

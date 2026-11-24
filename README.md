@@ -19,15 +19,21 @@ It defines a JSON interchange format (originally named OSR) so that any CAS — 
 JavaScript — can consume RUBI's integration knowledge with a standard
 JSON parser. No CAS software required.
 
-By mapping local functions to OpenMath Content Dictionaries, this format ensures zero semantic ambiguity.
+OpenMath Content Dictionaries provide mathematical vocabulary; unsupported
+RUBI helpers and operational constructs still require explicit interpretation.
 
 ## OSR v1
 
 `v1/` holds the first RUBI rules stated in the OSR v1 format, generated from
-Lean proofs (`OpenSymbolicRules/Lean`) and published by
-`OpenSymbolicRules/Verification`: 2879 rules; 490 are proved, 1574 refuted
-and 815 unproved over ℝ; 301 are proved, 377 refuted and 2201 unproved over
-ℂ. Another 520 RUBI rules are reported as not migrated. Every v1 rule is
+Lean (`OpenSymbolicRules/Lean`) and tracked by
+`OpenSymbolicRules/Verification`: 2,884 entries; 628 are proved and certified,
+1,578 refuted and 678 unproved over ℝ; 399 are proved (198 certified), 377
+refuted and 2,108 unproved over ℂ. Another 518 source identities are reported
+as not migrated. These v1 counts include strengthened variants, not just source
+rules, and describe the encoded fragment under its conditions. The 5,436 v0.1
+entries in the default manifest are source conversion counts, not proved
+rule counts. A valid schema or successful conversion does not establish a
+mathematical identity. Every v1 rule is
 checked against its v0.1 rule by `scripts/v1_faithfulness.py`; 1040 are
 strengthened variants (a non-degeneracy condition appended, `_nondegenerate`
 ids) of refuted rules, which stay in the set. See [docs/osr-v1.md](docs/osr-v1.md).

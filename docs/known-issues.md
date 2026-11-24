@@ -147,6 +147,40 @@ branch selector that requires an explicit boolean, checks both branches are
 single `Int` definitions, and rejects other conditions. It permits analysis
 of either branch but does not publish either rule or assume the default.
 
+## Source coverage audit and cell-by-cell recovery
+
+[Issue #10](https://github.com/OpenSymbolicRules/Integration/issues/10) reports
+conversion gaps and priority concerns. Run
+`python3 scripts/audit_rubi_coverage.py vendor/Rubi rules` to compare the
+pinned loader's file sequence with OSR source-entry counts, per file and with
+source hashes. At commit `61e9c18ea248061cd83c67882f7c91a73cef912d` (whose
+`PacletInfo.m` says **4.17.3.0**), the default loader selects 198 files with
+7,453 syntactic `Int[...] :=` definitions and 5,436 OSR entries; 30 loaded
+files are empty despite containing source definitions. A source definition in
+each branch of a conditional is counted separately. This is neither the
+number of runtime rules nor a rule-by-rule matching, and a difference in
+counts is not proof that a particular source rule is missing. Issue #10's
+7,432 and 5,439 use its 199-file comparison; the sets and counts are not
+interchangeable. Source and OSR counts say nothing about proof status.
+
+For notebook-style source, `converter/scripts/recover-cells.jl SOURCE
+--show-steps false` reports every cell in source order, preserving blocked
+cells. Blocked cells retain their original text and, if parsed, a diagnostic
+source AST; neither is a validated OSR rule. It selects the reviewed
+show-steps branch only when requested. On
+section 1.4.1 at this pin, the `false` setting yields 68 candidate cells,
+11 empty cells and one blocked cell; cell 9 contains the `IntSum`/`SumQ`
+rule. These are diagnostic candidate expressions, not a complete OSR rule
+file, a runtime priority, a verified identity, or a supported CAS adapter.
+In particular `Star`, `With`, `IntSum`, predicates, `Module`, and evaluation
+semantics need separate validation before executable publication. The
+production rule file remains empty; no existing priority or rule corpus is
+changed by this report. Applying the same diagnostic to the seven files
+previously blocked by whole-file conversion yields 254 candidate cells and
+28 blocked cells across six notebook-style files; the seventh uses the legacy
+line format and is not covered by this diagnostic. These counts overlap with
+the source-definition inventory and cannot be added to the production count.
+
 ## Converter numeric limitation
 
 The converter now rejects integer AST values represented as Julia `BigInt`
