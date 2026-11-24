@@ -79,6 +79,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   be migrated faithfully; the current v1 files are unaffected.
 
 ### Added
+- Prepare four verified affine substitutions in the local v1 export,
+  explicitly reporting the complex interpretation and order limitations.
 - Prepare three verified quadratic exponent recurrences in the local v1
   export, retaining counterexamples and complex order limitations.
 - Prepare four verified quadratic reduction recurrences in the local v1
