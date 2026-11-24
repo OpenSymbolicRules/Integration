@@ -156,8 +156,8 @@ conditions allow coefficients to vanish in result denominators. The Lean
 use assignments at `x = 1` where the integrand is defined nearby and the
 result is undefined; no missing condition is added silently.
 
-The current set has 537 proved, 1578 refuted and 769 unproved rules over ℝ;
-over ℂ, 344 are proved (178 certified), 377 refuted and 2163 unproved.
+The current set has 542 proved, 1578 refuted and 764 unproved rules over ℝ;
+over ℂ, 349 are proved (183 certified), 377 refuted and 2158 unproved.
 
 The inventory excludes rules whose result or conditions use a name the
 pattern does not bind (739 rules, 630 of them with `E`, `ImaginaryI` or
@@ -247,3 +247,8 @@ The strengthened RUBI 4.3.4.2 #1–2 recurrences and the 4.3.4.1 #1 and
 4.3.4.2 #3 substitution rules are certified over ℝ and ℂ. The substitution
 proofs check the residual-integrand domains near each substituted value.
 Their original unguarded rules remain refuted over ℝ.
+
+The strengthened RUBI 4.3.4.1 #2 cotangent substitution and 4.3.9 #1–2
+and #19–20 perfect-square recurrences are certified over ℝ and ℂ. Negative
+integer powers retain their nonzero-base conditions. Their original
+unguarded rules remain refuted over ℝ.
