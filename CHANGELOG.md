@@ -8,6 +8,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Fixed
+- Pin the v1 verification check to the report containing the latest proved
+  tangent rules.
 - Reject oversized integers during conversion instead of silently rounding
   exact values through floating point in the JSON output.
 - Preserve the reviewed source load order when updating manifest counts and
