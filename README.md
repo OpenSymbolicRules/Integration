@@ -28,17 +28,14 @@ RUBI helpers and operational constructs still require explicit interpretation.
 
 `v1/` holds the first RUBI rules stated in the OSR v1 format, generated from
 Lean (`OpenSymbolicRules/Lean`) and tracked by
-`OpenSymbolicRules/Verification`: 2,882 entries. Over ℝ, 491 are proved and certified,
-1,576 refuted and 815 unproved. Over ℂ, 301 are proved (157 certified), 377
-refuted and 2,204 unproved. Another 520 source identities are reported
-as not migrated. These v1 counts include strengthened variants, not just source
-rules, and describe the encoded fragment under its conditions. The 7,208 v0.1
-entries in the default manifest are source conversion counts, not proved
-rule counts. A valid schema or successful conversion does not establish a
-mathematical identity. Every v1 rule is
-checked against its v0.1 rule by `scripts/v1_faithfulness.py`; 1040 are
-strengthened variants (a non-degeneracy condition appended, `_nondegenerate`
-ids) of refuted rules, which stay in the set. See [docs/osr-v1.md](docs/osr-v1.md).
+`OpenSymbolicRules/Verification`: 3,001 entries. Over ℝ, 492 are proved and certified,
+1,583 have counterexamples and 926 are unproved. Over ℂ, 301 are proved
+(157 certified), 380 have counterexamples, 2,213 are unproved and 107 are
+unsupported. The report also lists 519 source identities considered for
+migration. The v1 catalogue includes 1,040 strengthened variants and four
+generalized variants. The default v0.1 manifest counts 7,208 source entries.
+Run `just source-status` to compare their original identities with v1.
+See [the v1 migration notes](docs/osr-v1.md).
 Independently proved derived generalizations of 1.1.3.4 #16, #27, #28 and #29
 use algebraic conditions in place of order conditions; all are certified over ℝ and ℂ.
 

@@ -6,9 +6,27 @@ generated, never edited by hand:
 
 | File | Content |
 |---|---|
-| `v1/integration.osr.json` | 2882 integration rules (`calculus1#int`, lambdas as `OMBIND fns1#lambda`), with verification records over ℝ and ℂ. |
+| `v1/integration.osr.json` | 3,001 integration rules (`calculus1#int`, lambdas as `OMBIND fns1#lambda`), with verification records over ℝ and ℂ. |
 | `v1/integration.report.json` | Machine-readable audit: metrics per domain and the rules not migrated. |
 | `v1/integration.report.md` | The same audit for humans, with the findings of every rule. |
+
+## Default-profile batch
+
+This report adds 118 original source identities from the default load order.
+It also includes the previously audited rule 2.3 #1 from the Lean catalogue.
+Of the 118, one has a checked real proof, six have real counterexamples and
+111 await real proofs or counterexamples. Three have complex counterexamples,
+eight remain open over ℂ and 107 lack required complex interpretations.
+The seven reused mathematical statements have distinct source occurrences.
+The entry priorities preserve the order within this batch after the existing
+v1 priorities. Use the v0.1 manifest to reproduce RUBI's source ordering.
+
+Of the 1,704 entries restored after commit `85db3b3`, three now have v1
+originals. Of the other 1,701, 905 use `With` and 859 use `Star`, counted
+independently. Lexical scope and evaluation-aware distribution still require
+faithful translations. Across the complete default manifest, 1,734 of the
+7,208 source identities now have an original v1 record. Run
+`python3 scripts/source_verification_status.py --details` for the join.
 
 ## Where they come from
 
