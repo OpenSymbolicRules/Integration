@@ -79,6 +79,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   be migrated faithfully; the current v1 files are unaffected.
 
 ### Added
+- Import four verified logarithmic and algebraic power substitution entries.
 - Import four inverse-hyperbolic power substitution entries verified over ℝ.
 - Import two verified inverse-tangent integer-power substitutions over ℝ.
 - Import two more verified reciprocal power substitution variants from Lean.
