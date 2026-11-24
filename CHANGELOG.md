@@ -79,6 +79,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   be migrated faithfully; the current v1 files are unaffected.
 
 ### Added
+- Import two more verified reciprocal power substitution variants from Lean.
 - Prepare eight verified reciprocal-affine trigonometric substitutions in the
   local v1 export, retaining complex order mapping limitations.
 - Prepare five verified logarithmic and quadratic affine substitutions in the
