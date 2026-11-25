@@ -54,3 +54,7 @@ source-status:
 # Rebuild the reference release into a new directory.
 rubi-release output rubi="vendor/Rubi":
 	python3 scripts/rubi_release.py "{{rubi}}" "{{output}}"
+
+# Rebuild the per-case source locators, extra reference fields and step conditions.
+fixture-index output rubi_tests="vendor/MathematicaSyntaxTestSuite":
+	julia --project=converter converter/scripts/fixture-index.jl "{{rubi_tests}}" tests "{{output}}"

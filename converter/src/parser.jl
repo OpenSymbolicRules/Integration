@@ -53,9 +53,11 @@ mutable struct Parser
     tokens::Vector{Token}
     pos::Int
     compound_arguments::Bool
+    postfix_factorial::Bool
 end
 
-Parser(tokens::Vector{Token}; compound_arguments=false) = Parser(tokens, 1, compound_arguments)
+Parser(tokens::Vector{Token}; compound_arguments=false, postfix_factorial=false) =
+    Parser(tokens, 1, compound_arguments, postfix_factorial)
 
 function current(p::Parser)::Token
     p.tokens[p.pos]
@@ -329,6 +331,10 @@ function parse_postfix(p::Parser)::MExpr
         elseif at(p, TOK_BLANK) || at(p, TOK_BLANKSEQ) || at(p, TOK_BLANKNULLSEQ)
             # Pattern: x_, x__, x___
             atom = parse_pattern_postfix(atom, p)
+        elseif p.postfix_factorial && at(p, TOK_NOT)
+            advance!(p)
+            at(p, TOK_NOT) && throw(ParserError("Unsupported double factorial", current(p).line, current(p).col))
+            atom = MFunction("Factorial", [atom])
         elseif at(p, TOK_PRIME)
             advance!(p)
             atom = MPrime(atom)

@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- Publish per-case source locations and file hashes for the Rubi fixture suite, including 872 cases with extra reference fields and all 49 version-dependent step expressions.
 - Provide a reproducible reference edition of Rubi 4.17.3.0 with 7,249 converted entries, release-qualified identities, coverage and a fingerprinted exclusion for section 4.5.2.1 cell 48.
 - Add four independently sourced Airy integration rules, six one-step examples and seven regression problems from SymPy and the SageMath Giac backend with reference primitives and derivative checks.
 - Import the 3,001-entry Lean export, including 118 additional original default-profile rules and the previously audited RUBI 2.3 #1.
@@ -18,6 +19,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   variants, with optional per-entry theorem evidence.
 
 ### Fixed
+- Publish the 72,254 active Rubi integration tests. Reserve the IDs of 331 tuples formerly read from Wolfram comments, recover Gamma case 233 with postfix factorial, and correct 17 conditional step counts.
 - Reproduce all 72,584 recognized Rubi test tuples at the pinned fixture revision. Recover 61 formal derivative examples while preserving all previously published case IDs. Encode the function, order and held substitutions explicitly and emit large integer literals exactly.
 - Check fixture drift against a fresh output tree and stop batch publication when a tuple cannot be converted.
 - Publish a fingerprinted exclusion for RUBI 4.5.2.1 #47 with its Lean witness.

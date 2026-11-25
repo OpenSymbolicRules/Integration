@@ -177,7 +177,7 @@ scripts/validate.sh
 | Artifact | Directory | Files | Items |
 |----------|-----------|-------|-------|
 | Rules | `rules/` | 221 | 6,257 rules |
-| Tests | `tests/` | 215 | 72,584 test problems |
+| Tests | `tests/` | 215 | 72,254 test problems |
 | Manifest | `rules/meta.json` | 1 | load_order + counts |
 
 ## Updating Schemas

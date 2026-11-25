@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - 'converter/**'
+      - 'docs/fixture-sources.json'
       - 'scripts/check_show_steps.py'
       - 'vendor/Rubi/**'
       - 'vendor/MathematicaSyntaxTestSuite'
@@ -15,6 +16,7 @@ on:
   pull_request:
     paths:
       - 'converter/**'
+      - 'docs/fixture-sources.json'
       - 'scripts/check_show_steps.py'
       - 'vendor/Rubi/**'
       - 'vendor/MathematicaSyntaxTestSuite'
@@ -66,4 +68,6 @@ jobs:
         run: |
           julia --project=converter converter/scripts/convert.jl --tests "$RUNNER_TEMP/regenerated-tests"
           diff --brief --recursive tests "$RUNNER_TEMP/regenerated-tests"
+          julia --project=converter converter/scripts/fixture-index.jl vendor/MathematicaSyntaxTestSuite "$RUNNER_TEMP/regenerated-tests" "$RUNNER_TEMP/fixture-sources.json"
+          cmp docs/fixture-sources.json "$RUNNER_TEMP/fixture-sources.json"
           git diff --exit-code -- rules/

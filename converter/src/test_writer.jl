@@ -14,11 +14,40 @@ end
 # These source ordinals already had IDs 1..36. New IDs follow those 36.
 const FORMAL_DERIVATIVE_LEGACY_ORDINALS = [4, 5, 43:67..., 70, 73, 76, 80, 84, 88, 91, 94, 97]
 
+const RETIRED_FIXTURE_FILE = joinpath(@__DIR__, "../data/retired-fixture-ids.json")
+include_dependency(RETIRED_FIXTURE_FILE)
+const RETIRED_FIXTURES = JSON3.read(read(RETIRED_FIXTURE_FILE, String), Dict{String,Vector{Vector{Int}}})
+
 function fixture_ids(rel_path, count)
+    if haskey(RETIRED_FIXTURES, rel_path)
+        retired_ids = first.(RETIRED_FIXTURES[rel_path])
+        ids = setdiff(1:(count + length(retired_ids)), retired_ids)
+        length(ids) == count || error("Review retired fixture IDs for $rel_path")
+        return ids
+    end
     rel_path == "8 Special functions/8.10 Formal derivatives.m" || return 1:count
     count == 97 || error("Review the formal derivative fixture ID mapping for this source edition")
     ordinals = 1:count
     sortperm(vcat(FORMAL_DERIVATIVE_LEGACY_ORDINALS, setdiff(ordinals, FORMAL_DERIVATIVE_LEGACY_ORDINALS)))
+end
+
+# Read one complete outer list at a time. The tokenizer tracks nested comments
+# and line numbers across the whole file, including multiline tuples.
+function active_fixture_tuples(source)
+    parser = Parser(tokenize(source); postfix_factorial=true)
+    rows = NamedTuple{(:line, :last_line, :tuple),Tuple{Int,Int,MFunction}}[]
+    while !at(parser, TOK_EOF)
+        start = current(parser)
+        at(parser, TOK_LBRACE) || throw(ParserError("Expected a fixture tuple", start.line, start.col))
+        tuple = parse_atom(parser)
+        length(tuple.args) >= 4 || throw(ParserError("Expected at least four fixture fields", start.line, start.col))
+        last_line = parser.tokens[parser.pos - 1].line
+        if !at(parser, TOK_EOF) && current(parser).line == last_line
+            throw(ParserError("Trailing tokens after fixture tuple", last_line, current(parser).col))
+        end
+        push!(rows, (; line=start.line, last_line, tuple))
+    end
+    rows
 end
 
 # JSON3.pretty reparses numbers while formatting. Write the original scalars
@@ -71,19 +100,18 @@ function convert_test_file(source_path::String; output_dir::String="tests")::Tes
     tests = Dict{String,Any}[]
 
     # Parse all expressions from the file
-    expressions = try
-        parse_file_expressions(source)
+    rows = try
+        active_fixture_tuples(source)
     catch e
         push!(warnings, ConversionWarning(source_path, 0, "Failed to parse file: $e", ""))
         return TestConversionResult(output_path, section, title, 0, warnings)
     end
 
-    tuples = filter(expr -> expr isa MFunction && expr.head == "List" && length(expr.args) >= 4, expressions)
-    for (id, expr) in zip(fixture_ids(rel_path, length(tuples)), tuples)
+    for (id, row) in zip(fixture_ids(rel_path, length(rows)), rows)
         try
-            push!(tests, test_tuple_to_osr(expr, id))
+            push!(tests, test_tuple_to_osr(row.tuple, id))
         catch e
-            push!(warnings, ConversionWarning(source_path, 0, "Failed to convert test $id: $e", ""))
+            push!(warnings, ConversionWarning(source_path, row.line, "Failed to convert test $id: $e", ""))
         end
     end
 

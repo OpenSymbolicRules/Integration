@@ -150,28 +150,26 @@ function rule_to_osr(expr::MExpr, id::Int)::Dict{String,Any}
     entry
 end
 
-"""
-    resolve_num_steps(expr::MExpr) -> Int
+# All conditional counts at the fixture pin compare $VersionNumber with 8, 9
+# or 11. The companion index also publishes the complete source condition.
+const FIXTURE_LANGUAGE_VERSION = 11
 
-Resolve num_steps from a test tuple. Handles:
-- Plain integers: return directly
-- Conditional: If[GreaterEqual[\$VersionNumber, n], a, b] → use branch `a` (latest Mathematica)
-- Other expressions: return 0 as fallback
-"""
 function resolve_num_steps(expr::MExpr)::Int
-    if expr isa MInteger
-        val = expr.value
-        return val isa BigInt ? Int(val) : val
-    end
-    # Handle If[condition, then, else] — pick the "then" branch (latest version)
-    if expr isa MFunction && expr.head == "If" && length(expr.args) >= 3
-        then_branch = expr.args[2]
-        if then_branch isa MInteger
-            val = then_branch.value
-            return val isa BigInt ? Int(val) : val
+    expr isa MInteger && return Int(expr.value)
+    if expr isa MFunction && expr.head == "If" && length(expr.args) == 3
+        guard, yes, no = expr.args
+        if guard isa MFunction && length(guard.args) == 2 && yes isa MInteger && no isa MInteger
+            variable, bound = guard.args
+            if variable isa MSymbol && variable.name == raw"$VersionNumber" && bound isa MInteger
+                if guard.head == "Less"
+                    return Int(FIXTURE_LANGUAGE_VERSION < bound.value ? yes.value : no.value)
+                elseif guard.head == "GreaterEqual"
+                    return Int(FIXTURE_LANGUAGE_VERSION >= bound.value ? yes.value : no.value)
+                end
+            end
         end
     end
-    0  # fallback
+    throw(ArgumentError("Unsupported fixture step count: $expr"))
 end
 
 # Fixtures can transcribe formal and held results that executable rules cannot use.
@@ -218,14 +216,15 @@ function test_tuple_to_osr(expr::MExpr, id::Int)::Dict{String,Any}
     end
 
     integrand = fixture_expr(expr.args[1])
-    variable = to_osr(expr.args[2])
+    expr.args[2] isa MSymbol || throw(ArgumentError("Expected a symbol as the fixture variable"))
+    variable = expr.args[2].name
     num_steps = resolve_num_steps(expr.args[3])
     antiderivative = fixture_expr(expr.args[4])
 
     entry = Dict{String,Any}(
         "id" => id,
         "expression" => integrand,
-        "variable" => variable isa AbstractString ? variable : string(variable),
+        "variable" => variable,
         "num_steps" => num_steps,
         "expected_result" => antiderivative,
     )
