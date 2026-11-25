@@ -6,13 +6,13 @@ generated, never edited by hand:
 
 | File | Content |
 |---|---|
-| `v1/integration.osr.json` | 3,001 integration rules (`calculus1#int`, lambdas as `OMBIND fns1#lambda`), with verification records over ℝ and ℂ. |
+| `v1/integration.osr.json` | 3,015 integration rules (`calculus1#int`, lambdas as `OMBIND fns1#lambda`), with verification records over ℝ and ℂ. |
 | `v1/integration.report.json` | Machine-readable audit: metrics per domain and the rules not migrated. |
 | `v1/integration.report.md` | The same audit for humans, with the findings of every rule. |
 
 ## Default-profile batch
 
-This report adds 118 original source identities from the default load order.
+The preceding report (3,001 entries) added 118 original source identities from the default load order.
 It also includes the previously audited rule 2.3 #1 from the Lean catalogue.
 Of the 118, one has a checked real proof, six have real counterexamples and
 111 await real proofs or counterexamples. Three have complex counterexamples,
@@ -21,12 +21,34 @@ The seven reused mathematical statements have distinct source occurrences.
 The entry priorities preserve the order within this batch after the existing
 v1 priorities. Use the v0.1 manifest to reproduce RUBI's source ordering.
 
-Of the 1,704 entries restored after commit `85db3b3`, three now have v1
+At that release, of the 1,704 entries restored after commit `85db3b3`, three had v1
 originals. Of the other 1,701, 905 use `With` and 859 use `Star`, counted
 independently. Lexical scope and evaluation-aware distribution still require
-faithful translations. Across the complete default manifest, 1,734 of the
-7,209 source identities now have an original v1 record. Run
-`python3 scripts/source_verification_status.py --details` for the join.
+faithful translations.
+
+## Chained bounds and literal integer parameters
+
+The v1 faithfulness check expands a RUBI ternary order predicate into two
+adjacent comparisons. Negation applies to the conjunction. Unsupported
+comparison arities fail validation. The pinned RUBI definitions are in
+`IntegrationUtilityFunctions.m` at revision `61e9c18`.
+
+Of 49 records that lost one endpoint, 24 original statements now retain
+both bounds. Ten other originals require a strictly fractional exponent
+where the current Lean interpretation requires an integer. Their reason
+appears in the migration exclusions. Fifteen strengthened variants are
+withdrawn pending a faithful interpretation and fresh evidence. Ten real
+counterexamples still satisfy the full interval and have been checked
+against the corrected statements.
+
+An additional 39 original identities now express integer membership and
+their source inequalities. Matching a literal integer establishes its
+independence from the variable of integration. These entries await real
+proofs. Their order predicates lack a registered complex interpretation.
+The full catalogue has 3,015 entries. The source join identifies 1,763 of
+the 7,209 loaded identities with an original v1 entry and 5,446 without
+one. The new 4.7.5 #72 is among the latter. Run
+`python3 scripts/source_verification_status.py --details` to reproduce the join.
 
 ## Where they come from
 

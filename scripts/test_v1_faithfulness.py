@@ -296,6 +296,25 @@ class ConjunctiveNormalFormTest(unittest.TestCase):
         self.assertEqual(got, [a0, b0])
 
 
+class ComparisonArityTest(unittest.TestCase):
+    def test_compares_both_adjacent_pairs(self):
+        import v1_faithfulness as F
+        for head in ("LtQ", "LeQ", "GtQ", "GeQ"):
+            with self.subTest(head=head):
+                full = [head, "a", "b", "c"]
+                pair = [[head, "a", "b"], [head, "b", "c"]]
+                self.assertEqual(F.conditions([full], {}, "x"), F.conditions(pair, {}, "x"))
+                self.assertEqual(F.cnf([["Not", full]]),
+                                 F.cnf([["Or", ["Not", pair[0]], ["Not", pair[1]]]]))
+
+    def test_invalid_predicate_arity_fails_closed(self):
+        import v1_faithfulness as F
+        for guard in (["EqQ", 1], ["NeQ", 1, 2, 3], ["LtQ", 0, 1, 2, 3],
+                      ["IGtQ", "m", 0, 10], ["Not", ["EqQ", 1, 2], 0]):
+            with self.subTest(guard=guard), self.assertRaises(ValueError):
+                F.cnf([guard])
+
+
 class SubstConventionTest(unittest.TestCase):
     def test_subst_is_the_residual_integral_at_g(self):
         import v1_faithfulness as F

@@ -143,6 +143,15 @@ def cnf(constraints):
     def norm(c, neg=False, top=True):
         # -> list of clauses (each a list of literals); top: in the outer conjunction
         h, a = c[0], c[1:]
+        # The pinned RUBI implementation defines exactly three-argument order
+        # comparisons as the conjunction of the two adjacent comparisons.
+        if h in {"LtQ", "LeQ", "GtQ", "GeQ"} and len(a) == 3:
+            return norm(["And", [h, a[0], a[1]], [h, a[1], a[2]]], neg, top)
+        if h in NEGATE or h in {"IGtQ", "ILtQ"}:
+            if len(a) != 2:
+                raise ValueError(f"unsupported {h} arity {len(a)}")
+        if h == "Not" and len(a) != 1:
+            raise ValueError(f"unsupported Not arity {len(a)}")
         if h == "FreeQ":
             if not top or neg:
                 raise ValueError("no v1 counterpart for FreeQ under Or or Not")
