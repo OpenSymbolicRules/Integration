@@ -19,5 +19,10 @@ the identity. The executable witness reads the shipped rule in
 `scripts/test_rubi_errata.py`. A replacement involving cosecants would need
 its own branch conditions and verification.
 
+Lean 4.35.0 checks the same disagreement for any differentiable residual
+primitive with the stated derivative. The proof establishes prefactor
+equality in a neighborhood and uses uniqueness of the derivative.
+[Lean theorem and parameter specialization](https://github.com/OpenSymbolicRules/Lean/blob/ef5044bc9435e75da7e6320a7cf73946d18e2698/OSRTest/RubiCosecant.lean).
+
 [Issue and original report](https://github.com/OpenSymbolicRules/Integration/issues/11) ·
 [Pinned RUBI definition](https://github.com/RuleBasedIntegration/Rubi/blob/61e9c18ea248061cd83c67882f7c91a73cef912d/Rubi/IntegrationRules/4%20Trig%20functions/4.5%20Secant/4.5.2.1%20(a%2Bb%20sec)%5Em%20(c%2Bd%20sec)%5En.m#L51)

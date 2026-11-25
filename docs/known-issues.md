@@ -233,3 +233,16 @@ migration candidates: their OpenMath counterparts (`nums1#e`, `nums1#i`,
 `nums1#pi`) would have to be declared by the converter, and `nums1#e` and
 `nums1#i` added to the registry of OpenSymbolicRules/OpenMath, before such a
 rule can be stated in Lean.
+
+## Reproducing the historical test-problem files
+
+At Integration revisions `155e92f` and `5c3748c`, the converter reproduces
+the default rule profile from pinned RUBI sources. A separate CI step that
+compares generated *test problems* with the committed fixtures fails on
+five files in both revisions. Its diff is identical in size (887 inserted
+lines and 10,819 removed lines). These fixtures are inputs for CAS tests.
+This difference does not change the rule manifest or the Lean report.
+The associated comparison remains enabled.
+
+[Earlier run](https://github.com/OpenSymbolicRules/Integration/actions/runs/45482280064) ·
+[Wrapped-rule recovery run](https://github.com/OpenSymbolicRules/Integration/actions/runs/45549029660)
