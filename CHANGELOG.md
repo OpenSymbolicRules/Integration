@@ -8,6 +8,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- Publish v1 artifacts from Verification report `1b7f8b15…`: 36 more
+  strengthened variants are proved (524 rules proved over ℝ, 306 over ℂ).
 - Correct seven Rubi rules through replacement errata in both lineages
   (`docs/rubi-errata.json`, `editions/rubi-4.17.3.0/errata.json`): the missing
   residual `Int` in 8.1 #52, 8.2 #53, 8.4 #27 and 8.5 #27 (issue #12), the
