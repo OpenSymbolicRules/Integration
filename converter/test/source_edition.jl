@@ -90,3 +90,26 @@ end
         @test isempty(first(convert(invalid)))
     end
 end
+
+@testset "Source-qualified links to the real proofs" begin
+    root = normpath(joinpath(@__DIR__, "../.."))
+    edition = joinpath(root, "editions/rubi-4.17.3.0")
+    family = "9-miscellaneous/9.1-Derivative-integration-rules.json"
+    doc = JSON3.read(read(joinpath(edition, "rules", family), String))
+    names = ["exponentialParts", "sineParts", "cosineParts", "product", "quotient", "logQuotient"]
+    @test length(doc.rules) == length(names)
+    for (rule, name) in zip(doc.rules, names)
+        @test rule.references["Lean (real, under the stated hypotheses)"] == "OSR.Rubi." * name
+        url = rule.references["Theorem statement"]
+        pin, file, line = match(r"/blob/([0-9a-f]{40})/(verification/\w+\.lean)#L(\d+)$", url).captures
+        @test occursin("theorem $name ", read(joinpath(root, file), String))
+        # A full Git checkout can also verify the exact historical line anchor.
+        if success(pipeline(`git -C $root cat-file -e $pin:$file`, stderr=devnull))
+            source = read(`git -C $root show $pin:$file`, String)
+            @test startswith(split(source, '\n')[parse(Int, line)], "theorem $name ")
+        end
+    end
+    other = [Dict{String,Any}("id"=>19)]
+    cite_derivative_proofs!(other, repeat("0", 64))
+    @test !haskey(only(other), "references")
+end

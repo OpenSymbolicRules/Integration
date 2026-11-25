@@ -97,3 +97,25 @@ function prepare_derivative_applications(expr)
     end
     lower(expr)
 end
+
+# These citations refer to a reviewed source file and a fixed proof revision.
+# A later Rubi edit can reuse a cell ordinal with a different statement.
+function cite_derivative_proofs!(rules, digest)
+    digest == "2087d3e21da88eaccb5d73b44d63c9071a56405df7fd0bbe320cc839213774df" || return
+    base = "https://github.com/OpenSymbolicRules/Integration/blob/eb539b2a2c589d254f90dc3b1c820b7fda2acf76/verification/"
+    proofs = Dict(
+        2  => ("exponentialParts", "RubiDerivativeRecurrences.lean#L43"),
+        4  => ("sineParts",        "RubiDerivativeRecurrences.lean#L27"),
+        5  => ("cosineParts",      "RubiDerivativeRecurrences.lean#L35"),
+        19 => ("product",          "RubiDerivativePrimitives.lean#L13"),
+        20 => ("quotient",         "RubiDerivativePrimitives.lean#L18"),
+        21 => ("logQuotient",      "RubiDerivativePrimitives.lean#L23"),
+    )
+    for rule in rules
+        haskey(proofs, rule["id"]) || continue
+        name, location = proofs[rule["id"]]
+        references = get!(rule, "references", Dict{String,String}())
+        references["Lean (real, under the stated hypotheses)"] = "OSR.Rubi." * name
+        references["Theorem statement"] = base * location
+    end
+end

@@ -78,8 +78,10 @@ function generate_edition(root, vendor, output; edition=nothing)
         source_path = doc["identity"][6:end] * ".m"
         blob = "$revision:Rubi/IntegrationRules/$source_path"
         source = read(`git -C $vendor show $blob`, String)
+        digest = bytes2hex(sha256(source))
         rules, omitted = edition_rules(source, source_path, version; release=!isnothing(edition))
         if !isnothing(edition)
+            cite_derivative_proofs!(rules, digest)
             for rule in rules
                 only(rule["provenance"]["sources"])["revision"] = revision
             end
@@ -101,7 +103,7 @@ function generate_edition(root, vendor, output; edition=nothing)
             end
             println(io, "]}")
         end
-        push!(ledger,(; path, source_path, sha256=bytes2hex(sha256(source)),
+        push!(ledger,(; path, source_path, sha256=digest,
                       converted=length(rules), omitted))
         count += length(rules)
     end
