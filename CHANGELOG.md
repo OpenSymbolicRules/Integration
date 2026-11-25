@@ -8,6 +8,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- Correct seven Rubi rules through replacement errata in both lineages
+  (`docs/rubi-errata.json`, `editions/rubi-4.17.3.0/errata.json`): the missing
+  residual `Int` in 8.1 #52, 8.2 #53, 8.4 #27 and 8.5 #27 (issue #12), the
+  `MemberQ[..., x]` conditions of 8.4 #27 and 8.5 #27, the proportionality
+  condition of 8.1 #69 and 3.3 #33, and the cosecant residual of 4.5.2.1 #47
+  (issue #11), formerly a skip record. The shipped rule files keep the source
+  text; numerical witnesses check each original and replacement.
 - Load Rubi derivative substitutions 9 and 12 with their original guards. Preserve all thirteen other source transcriptions, separate restrictions and checked real interpretations in the release coverage ledger.
 - Check real interpretations of all fifteen remaining Rubi 9.1 cells in Lean, including power substitutions, negative-order recurrences for a coherent primitive pair, and a zero-slope counterexample.
 - Check the published fixture index against the converter input hashes in the local test suite. Refresh the three source hashes changed by the scoped-rule recovery.

@@ -83,9 +83,9 @@ returning the substitution. Consumers must decline this rule if they cannot
 implement these operations. The manifest records the required built-ins.
 The compatibility merge uses Integration snapshot `75c07bb` to preserve
 published IDs while inserting in source order. In section 9.1 source cells
-9 and 12 receive local IDs 7 and 8, before local IDs 4–6 in the array. See also the separate
-[cosecant erratum](../upstream-bugs.md) and its
-[machine-readable exclusion](rubi-errata.json).
+9 and 12 receive local IDs 7 and 8, before local IDs 4–6 in the array. See also the
+[upstream errata](../upstream-bugs.md) and their
+[machine-readable replacements](rubi-errata.json).
 
 With the submodules initialized, generate a fresh conversion and reproduce
 the shipped profile using the following commands. Use two new directories

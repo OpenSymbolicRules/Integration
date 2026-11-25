@@ -10,11 +10,14 @@ integral in RUBI revision `61e9c18ea248061cd83c67882f7c91a73cef912d`
 the prefactor contains active cosecant, and the residual integral contains
 two cosines. The v0.1 source profile reproduces the pinned definition.
 Consumers can read the [machine-readable errata](docs/rubi-errata.json).
-Skip a rule when its file identity, local ID and payload digest match an
-entry marked `skip`. The digest is the SHA-256 of the UTF-8 JSON returned by
-`canonical_payload` in `scripts/check_duplicate_rules.py`: an object with
-keys `constraints`, `pattern`, `result` sorted recursively, compact
-separators and literal Unicode. A changed digest calls for review.
+When a rule's file identity, local ID and payload digest match an entry, use
+the entry's `replacement` payload (`constraints`, `pattern`, `result`) in
+place of the shipped one; `replacement_sha256` is its digest. The digest is the
+SHA-256 of the UTF-8 JSON returned by `canonical_payload` in
+`scripts/check_duplicate_rules.py`: an object with keys `constraints`,
+`pattern`, `result` sorted recursively, compact separators and literal
+Unicode. A changed digest calls for review. The shipped rule files keep the
+source text, so the converter output stays reproducible.
 
 Take real constants `a=b=c=d=f=m=1`, `e=0`, `p=2`, and `n=1/2`.
 All parameters are independent of x and n is nonintegral. On a neighborhood
@@ -23,8 +26,13 @@ one. The input integrand at π/2 is
 `(1+csc(x)) sqrt(csc(x)^2) = 2`. The claimed antiderivative has derivative
 `(1+cos(x)) cos(x) = 0` there. No additive integration constant can repair
 the identity. The executable witness reads the shipped rule in
-`scripts/test_rubi_errata.py`. A replacement involving cosecants would need
-its own branch conditions and verification.
+`scripts/test_rubi_errata.py`. The replacement uses cosecants in the residual
+integrand, as the sec twin at line 50 does with secants: the extracted factor
+`c^IntPart[n] (c (d Csc[e + f x])^p)^FracPart[n] / (d Csc[e + f x])^(p FracPart[n])`
+times `(d Csc[e + f x])^(n p)` is `(c (d Csc[e + f x])^p)^n`, and the factor is
+locally constant where it is defined. The same test checks that the replacement
+residual equals the integrand at the witness, where the factor is one and has
+derivative zero.
 
 Lean 4.35.0 checks the same disagreement for any differentiable residual
 primitive with the stated derivative. The proof establishes prefactor
@@ -33,6 +41,43 @@ equality in a neighborhood and uses uniqueness of the derivative.
 
 [Issue and original report](https://github.com/OpenSymbolicRules/Integration/issues/11) ·
 [Pinned RUBI definition](https://github.com/RuleBasedIntegration/Rubi/blob/61e9c18ea248061cd83c67882f7c91a73cef912d/Rubi/IntegrationRules/4%20Trig%20functions/4.5%20Secant/4.5.2.1%20(a%2Bb%20sec)%5Em%20(c%2Bd%20sec)%5En.m#L51)
+
+## RUBI 8.1 line 55, 8.2 line 56, 8.4 line 32 and 8.5 line 32: missing residual integral
+
+At revision `61e9c18ea248061cd83c67882f7c91a73cef912d` (OSR compatibility
+rules 8.1 #52, 8.2 #53, 8.4 #27 and 8.5 #27) and in the 4.17.3.0 release
+`f7fa0fd7bfacd326bc9e125473c5bad41cfad4e4` (cells 52, 53, 29 and 29), the
+rule for `Int[F[d (a + b Log[c x^n])]/x, x]` returns
+`1/n Subst[F[d (a + b x)], x, Log[c x^n]]`. The substitution `u = Log[c x^n]`
+leaves an integral, `1/n Subst[Int[F[d (a + b x)], x], x, Log[c x^n]]`; the
+source drops the `Int`. John Verzani reported it in
+[issue #12](https://github.com/OpenSymbolicRules/Integration/issues/12) from
+SymJOSR.jl: with `F = Erf`, `a = 0` and `b = c = d = n = 1`, the integrand is
+0 at `x = 1` while the derivative of the returned expression is `2/√π`.
+In 8.4 and 8.5 the condition also reads `MemberQ[{SinIntegral, CosIntegral}, x]`
+(resp. `{SinhIntegral, CoshIntegral}`), which never holds; the corrected rule
+tests `F`. The [machine-readable errata](docs/rubi-errata.json) give the
+replacements; `scripts/test_rubi_errata.py` evaluates the witness and checks
+the corrected chain rule at three points (with `Erf` standing in for `F`, the
+identity being independent of `F`).
+[8.1 line 55](https://github.com/RuleBasedIntegration/Rubi/blob/61e9c18ea248061cd83c67882f7c91a73cef912d/Rubi/IntegrationRules/8%20Special%20functions/8.1%20Error%20functions.m#L55)
+
+## RUBI 8.1 line 72 and 3.3 line 46: proportionality condition
+
+The rules for `Int[(g + h x)^m F[f (a + b Log[c (d + e x)^n])], x]` (8.1 line
+72, compatibility rule 8.1 #69, release cell 69) and
+`Int[Log[f (g + h x)^m] (a + b Log[c (d + e x)^n])^p, x]` (3.3 line 46,
+compatibility rule 3.3 #33, release cell 43) substitute `u = d + e x` and
+write `g + h x` as `g u/d`. That holds only when `e g - d h = 0`, but both
+sources test `EqQ[e*f - d*g, 0]`, where `f` is another coefficient of the
+integrand; 8.1 line 72 also omits `h` from `FreeQ`. The 8.6 Gamma twin of the
+first rule (line 28) states `FreeQ[{..., h, ...}, x] && EqQ[e*g - d*h, 0]`.
+With `d = 2`, `e = 3`, `f = 2`, `g = 3` and `h = 1` the source condition holds
+and the rewrite is false; `scripts/test_rubi_errata.py` checks this and that
+the corrected condition makes the rewrite an identity.
+[8.1 line 72](https://github.com/RuleBasedIntegration/Rubi/blob/61e9c18ea248061cd83c67882f7c91a73cef912d/Rubi/IntegrationRules/8%20Special%20functions/8.1%20Error%20functions.m#L72) ·
+[3.3 line 46](https://github.com/RuleBasedIntegration/Rubi/blob/61e9c18ea248061cd83c67882f7c91a73cef912d/Rubi/IntegrationRules/3%20Logarithms/3.3%20u%20(a%2Bb%20log(c%20(d%2Be%20x)%5En))%5Ep.m#L46) ·
+[8.6 line 28](https://github.com/RuleBasedIntegration/Rubi/blob/61e9c18ea248061cd83c67882f7c91a73cef912d/Rubi/IntegrationRules/8%20Special%20functions/8.6%20Gamma%20functions.m#L28)
 
 ## OpenMath hypergeo2, version 0 revision 3, hankel2 formal property
 
