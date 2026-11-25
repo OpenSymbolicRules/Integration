@@ -1,0 +1,94 @@
+{
+  "source": "https://github.com/JuliaSymbolics/SymbolicIntegration.jl",
+  "revision": "3625e0e4bb1d78c0ce0acc038d75043aa48efdf1",
+  "path": "test/methods/rule_based/test_special_functions.jl",
+  "source_sha256": "d31dd446a8f8cae6a7725f016b308bee23ab149014231183a94c3d6daa98fccc",
+  "license": "MIT",
+  "constraints": [["FreeQ","a","x"],["GtQ","a",0],["GtQ","x",0]],
+  "tests": [
+    {
+      "id": "j0-first-moment",
+      "source_lines": [10,13],
+      "variable": "x",
+      "expression": ["Multiply","x",["BesselJ",0,["Multiply","a","x"]]],
+      "expected_result": ["Divide",["Multiply","x",["BesselJ",1,["Multiply","a","x"]]],"a"]
+    },
+    {
+      "id": "j1-second-moment",
+      "source_lines": [14,17],
+      "variable": "x",
+      "expression": ["Multiply",["Power","x",2],["BesselJ",1,["Multiply","a","x"]]],
+      "expected_result": ["Divide",["Multiply",["Power","x",2],["BesselJ",2,["Multiply","a","x"]]],"a"]
+    },
+    {
+      "id": "y0-first-moment",
+      "source_lines": [18,21],
+      "variable": "x",
+      "expression": ["Multiply","x",["BesselY",0,["Multiply","a","x"]]],
+      "expected_result": ["Divide",["Multiply","x",["BesselY",1,["Multiply","a","x"]]],"a"]
+    },
+    {
+      "id": "i0-first-moment",
+      "source_lines": [22,25],
+      "variable": "x",
+      "expression": ["Multiply","x",["BesselI",0,["Multiply","a","x"]]],
+      "expected_result": ["Divide",["Multiply","x",["BesselI",1,["Multiply","a","x"]]],"a"]
+    },
+    {
+      "id": "k0-first-moment",
+      "source_lines": [26,29],
+      "variable": "x",
+      "expression": ["Multiply","x",["BesselK",0,["Multiply","a","x"]]],
+      "expected_result": ["Divide",["Multiply",["Multiply",-1,"x"],["BesselK",1,["Multiply","a","x"]]],"a"]
+    },
+    {
+      "id": "j0-third-moment",
+      "source_lines": [31,35],
+      "variable": "x",
+      "expression": ["Multiply",["Power","x",3],["BesselJ",0,["Multiply","a","x"]]],
+      "expected_result": ["Subtract",["Divide",["Multiply",["Power","x",3],["BesselJ",1,["Multiply","a","x"]]],"a"],["Divide",["Multiply",2,["Power","x",2],["BesselJ",2,["Multiply","a","x"]]],["Power","a",2]]]
+    },
+    {
+      "id": "j0-polynomial-expanded",
+      "source_lines": [36,41],
+      "variable": "x",
+      "expression": ["Multiply",["Add","x",["Power","x",3]],["BesselJ",0,["Multiply","a","x"]]],
+      "expected_result": ["Subtract",["Add",["Divide",["Multiply","x",["BesselJ",1,["Multiply","a","x"]]],"a"],["Divide",["Multiply",["Power","x",3],["BesselJ",1,["Multiply","a","x"]]],"a"]],["Divide",["Multiply",2,["Power","x",2],["BesselJ",2,["Multiply","a","x"]]],["Power","a",2]]]
+    },
+    {
+      "id": "j0-polynomial-factored",
+      "source_lines": [42,47],
+      "variable": "x",
+      "expression": ["Multiply","x",["Add",1,["Power","x",2]],["BesselJ",0,["Multiply","a","x"]]],
+      "expected_result": ["Subtract",["Add",["Divide",["Multiply","x",["BesselJ",1,["Multiply","a","x"]]],"a"],["Divide",["Multiply",["Power","x",3],["BesselJ",1,["Multiply","a","x"]]],"a"]],["Divide",["Multiply",2,["Power","x",2],["BesselJ",2,["Multiply","a","x"]]],["Power","a",2]]]
+    },
+    {
+      "id": "i0-third-moment",
+      "source_lines": [53,57],
+      "variable": "x",
+      "expression": ["Multiply",["Power","x",3],["BesselI",0,["Multiply","a","x"]]],
+      "expected_result": ["Subtract",["Divide",["Multiply",["Power","x",3],["BesselI",1,["Multiply","a","x"]]],"a"],["Divide",["Multiply",2,["Power","x",2],["BesselI",2,["Multiply","a","x"]]],["Power","a",2]]]
+    },
+    {
+      "id": "k0-third-moment",
+      "source_lines": [58,62],
+      "variable": "x",
+      "expression": ["Multiply",["Power","x",3],["BesselK",0,["Multiply","a","x"]]],
+      "expected_result": ["Subtract",["Divide",["Multiply",["Multiply",-1,["Power","x",3]],["BesselK",1,["Multiply","a","x"]]],"a"],["Divide",["Multiply",2,["Power","x",2],["BesselK",2,["Multiply","a","x"]]],["Power","a",2]]]
+    },
+    {
+      "id": "h1-first-moment",
+      "source_lines": [64,67],
+      "variable": "x",
+      "expression": ["Multiply","x",["HankelH1",0,["Multiply","a","x"]]],
+      "expected_result": ["Divide",["Multiply","x",["HankelH1",1,["Multiply","a","x"]]],"a"]
+    },
+    {
+      "id": "h2-third-moment",
+      "source_lines": [68,72],
+      "variable": "x",
+      "expression": ["Multiply",["Power","x",3],["HankelH2",0,["Multiply","a","x"]]],
+      "expected_result": ["Subtract",["Divide",["Multiply",["Power","x",3],["HankelH2",1,["Multiply","a","x"]]],"a"],["Divide",["Multiply",2,["Power","x",2],["HankelH2",2,["Multiply","a","x"]]],["Power","a",2]]]
+    }
+  ]
+}

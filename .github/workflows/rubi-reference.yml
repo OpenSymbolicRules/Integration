@@ -55,6 +55,15 @@ jobs:
             jq '[.tests[] | .expression, .expected_result]' "$suite" > "$RUNNER_TEMP/vectors.json"
             check-jsonschema --schemafile "$ruleschema" "$RUNNER_TEMP/vectors.json"
           done
+      - name: Reproduce the integer-order cylinder vectors from their pinned source
+        run: |
+          suite=supplements/cylinder-regressions
+          source=https://raw.githubusercontent.com/JuliaSymbolics/SymbolicIntegration.jl
+          revision=3625e0e4bb1d78c0ce0acc038d75043aa48efdf1
+          curl --fail --location --retry 3 "$source/$revision/test/methods/rule_based/test_special_functions.jl" -o "$RUNNER_TEMP/cylinder-source.jl"
+          julia --project=converter "$suite/import.jl" "$RUNNER_TEMP/cylinder-source.jl" > "$RUNNER_TEMP/cylinder.json"
+          cmp "$suite/examples.json" "$RUNNER_TEMP/cylinder.json"
+          python3 "$suite/check.py"
       - name: Check CAS source conditions and regression primitives
         run: |
           python3 scripts/test_cas_supplement.py
