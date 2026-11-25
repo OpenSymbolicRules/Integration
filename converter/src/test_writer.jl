@@ -10,6 +10,40 @@ struct TestConversionResult
     warnings::Vector{ConversionWarning}
 end
 
+# In 8.10 the legacy parser skipped every tuple containing postfix primes.
+# These source ordinals already had IDs 1..36. New IDs follow those 36.
+const FORMAL_DERIVATIVE_LEGACY_ORDINALS = [4, 5, 43:67..., 70, 73, 76, 80, 84, 88, 91, 94, 97]
+
+function fixture_ids(rel_path, count)
+    rel_path == "8 Special functions/8.10 Formal derivatives.m" || return 1:count
+    count == 97 || error("Review the formal derivative fixture ID mapping for this source edition")
+    ordinals = 1:count
+    sortperm(vcat(FORMAL_DERIVATIVE_LEGACY_ORDINALS, setdiff(ordinals, FORMAL_DERIVATIVE_LEGACY_ORDINALS)))
+end
+
+# JSON3.pretty reparses numbers while formatting. Write the original scalars
+# directly so arbitrarily large integer literals never pass through Float64.
+function write_fixture_json(io, value, depth=0)
+    if !(value isa AbstractDict || value isa AbstractVector)
+        JSON3.write(io, value; allow_inf=false)
+        return
+    end
+    object = value isa AbstractDict
+    print(io, object ? "{\n" : "[\n")
+    indent = "    " ^ depth
+    for (i, (key, child)) in enumerate(pairs(value))
+        i > 1 && print(io, ",\n")
+        print(io, indent, "    ")
+        if object
+            JSON3.write(io, key)
+            print(io, ": ")
+        end
+        write_fixture_json(io, child, depth + 1)
+    end
+    isempty(value) || println(io)
+    print(io, indent, object ? "}" : "]")
+end
+
 """
     convert_test_file(source_path::String; output_dir::String="tests") -> TestConversionResult
 
@@ -22,11 +56,11 @@ function convert_test_file(source_path::String; output_dir::String="tests")::Tes
     title = extract_title(source_path)
 
     # Compute relative path from the test suite directory
-    rel_path = source_path
+    rel_path = replace(source_path, '\\' => '/')
     for base in ["MathematicaSyntaxTestSuite/", "0 Independent test suites/"]
-        idx = findfirst(base, source_path)
+        idx = findfirst(base, rel_path)
         if idx !== nothing
-            rel_path = source_path[idx.start + length(base):end]
+            rel_path = rel_path[nextind(rel_path, last(idx)):end]
             break
         end
     end
@@ -44,21 +78,12 @@ function convert_test_file(source_path::String; output_dir::String="tests")::Tes
         return TestConversionResult(output_path, section, title, 0, warnings)
     end
 
-    # Extract test tuples (List with 4 elements)
-    test_id = 0
-    for expr in expressions
-        if expr isa MFunction && expr.head == "List" && length(expr.args) >= 4
-            test_id += 1
-            try
-                test_entry = test_tuple_to_osr(expr, test_id)
-                push!(tests, test_entry)
-            catch e
-                push!(warnings, ConversionWarning(
-                    source_path, 0,
-                    "Failed to convert test $test_id: $e",
-                    ""
-                ))
-            end
+    tuples = filter(expr -> expr isa MFunction && expr.head == "List" && length(expr.args) >= 4, expressions)
+    for (id, expr) in zip(fixture_ids(rel_path, length(tuples)), tuples)
+        try
+            push!(tests, test_tuple_to_osr(expr, id))
+        catch e
+            push!(warnings, ConversionWarning(source_path, 0, "Failed to convert test $id: $e", ""))
         end
     end
 
@@ -73,7 +98,7 @@ function convert_test_file(source_path::String; output_dir::String="tests")::Tes
     # Write output
     mkpath(dirname(output_path))
     open(output_path, "w") do io
-        JSON3.pretty(io, osr_file; allow_inf=false)
+        write_fixture_json(io, osr_file)
         println(io)  # trailing newline
     end
 
@@ -97,19 +122,34 @@ function convert_all_tests(vendor_path::String; output_dir::String="tests")::Vec
     end
     sort!(m_files)
 
-    results = TestConversionResult[]
-    for (i, m_file) in enumerate(m_files)
-        rel = replace(m_file, vendor_path * "/" => "")
-        print("  [$i/$(length(m_files))] $rel")
-        result = convert_test_file(m_file; output_dir=output_dir)
-        println(" → $(result.test_count) tests" *
-                (isempty(result.warnings) ? "" : " ($(length(result.warnings)) warnings)"))
-        push!(results, result)
+    isempty(m_files) && error("No fixture sources found in $vendor_path")
+    parent = dirname(abspath(output_dir))
+    mkpath(parent)
+    mktempdir(parent) do staging
+        results = TestConversionResult[]
+        for (i, m_file) in enumerate(m_files)
+            print("  [$i/$(length(m_files))] $(relpath(m_file, vendor_path))")
+            result = convert_test_file(m_file; output_dir=staging)
+            println(" → $(result.test_count) tests")
+            for warning in result.warnings
+                println(stderr, "  WARNING $(warning.file): $(warning.message)")
+            end
+            push!(results, result)
+        end
+
+        total_tests = sum(r.test_count for r in results)
+        total_warnings = sum(length(r.warnings) for r in results)
+        println("\nSummary: $total_tests tests converted from $(length(results)) files ($total_warnings warnings)")
+        iszero(total_warnings) || error("Incomplete fixture conversion: $total_warnings warnings")
+        allunique(r.output_path for r in results) || error("Duplicate fixture output path")
+
+        published = TestConversionResult[]
+        for r in results
+            target = joinpath(output_dir, relpath(r.output_path, staging))
+            mkpath(dirname(target))
+            mv(r.output_path, target; force=true)
+            push!(published, TestConversionResult(target, r.section, r.title, r.test_count, r.warnings))
+        end
+        published
     end
-
-    total_tests = sum(r.test_count for r in results)
-    total_warnings = sum(length(r.warnings) for r in results)
-    println("\nSummary: $total_tests tests converted from $(length(results)) files ($total_warnings warnings)")
-
-    results
 end

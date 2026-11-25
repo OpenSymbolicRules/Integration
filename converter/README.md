@@ -91,7 +91,7 @@ in nested bodies can overlap; the older line-based parser can omit expressions.
 
 - **Rules**: `rules/` directory — 221 JSON files containing 6,286 entries,
   including duplicates and empty sections; conversion remains incomplete
-- **Tests**: `tests/` directory — 215 JSON files containing 72,523 test problems
+- **Tests**: `tests/` directory — 215 JSON files containing 72,584 test problems
 - **Manifest**: `rules/meta.json` — load order, counts, and converter metadata
 
 ## Validation

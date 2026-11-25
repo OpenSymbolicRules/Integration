@@ -3,6 +3,7 @@ using RubiConverter
 
 include("multiline.jl")
 include("manifest.jl")
+include("fixture-fidelity.jl")
 include("recovery.jl")
 include("cell-recovery.jl")
 include("recovery_profile.jl")

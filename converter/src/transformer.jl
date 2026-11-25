@@ -42,9 +42,9 @@ function to_osr(expr::MPrime)
     throw(ArgumentError("Prime notation has no reviewed OSR mapping"))
 end
 
-function to_osr(expr::MFunction)
+function to_osr(expr::MFunction, convert_child=to_osr)
     head = map_operator(expr.head)
-    args = [to_osr(a) for a in expr.args]
+    args = Any[convert_child(a) for a in expr.args]
 
     # Special handling for Rational[a, b] → emit as fraction
     if head == "Rational" && length(args) == 2
@@ -174,6 +174,38 @@ function resolve_num_steps(expr::MExpr)::Int
     0  # fallback
 end
 
+# Fixtures can transcribe formal and held results that executable rules cannot use.
+fixture_expr(expr::MExpr) = to_osr(expr)
+fixture_expr(expr::MInteger) = expr.value
+fixture_expr(expr::MFunction) = to_osr(expr, fixture_expr)
+
+function fixture_expr(expr::MApply)
+    head = expr.head
+    if head isa MFunction && head.head == "Defer" && length(head.args) == 1 &&
+       only(head.args) isa MSymbol && only(head.args).name == "Subst" && length(expr.args) == 3
+        return Any["Apply", Any["Defer", "Subst"], Any["List", map(fixture_expr, expr.args)...]]
+    end
+
+    length(expr.args) == 1 || throw(ArgumentError("Unsupported compound fixture application"))
+    if head isa MPrime
+        order = 0
+        while head isa MPrime
+            order += 1
+            head = head.expr
+        end
+        func = head
+    elseif head isa MApply && head.head isa MFunction && head.head.head == "Derivative" &&
+           length(head.head.args) == 1 && length(head.args) == 1
+        order = fixture_expr(only(head.head.args))
+        func = only(head.args)
+    else
+        throw(ArgumentError("Unsupported compound fixture head"))
+    end
+    func isa MSymbol || throw(ArgumentError("Expected a named unary function in fixture derivative"))
+    derivative = Any["Apply", Any["Derivative", order], Any["List", fixture_expr(func)]]
+    Any["Apply", derivative, Any["List", fixture_expr(only(expr.args))]]
+end
+
 """
     test_tuple_to_osr(expr::MExpr, id::Int) -> Dict
 
@@ -185,10 +217,10 @@ function test_tuple_to_osr(expr::MExpr, id::Int)::Dict{String,Any}
         error("Expected {integrand, variable, num_steps, antiderivative}, got $(typeof(expr))")
     end
 
-    integrand = to_osr(expr.args[1])
+    integrand = fixture_expr(expr.args[1])
     variable = to_osr(expr.args[2])
     num_steps = resolve_num_steps(expr.args[3])
-    antiderivative = to_osr(expr.args[4])
+    antiderivative = fixture_expr(expr.args[4])
 
     entry = Dict{String,Any}(
         "id" => id,

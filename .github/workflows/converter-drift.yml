@@ -6,6 +6,8 @@ on:
       - 'converter/**'
       - 'scripts/check_show_steps.py'
       - 'vendor/Rubi/**'
+      - 'vendor/MathematicaSyntaxTestSuite'
+      - 'scripts/merge_source_edition.py'
       - 'rules/**'
       - 'tests/**'
       - 'Specification/**'
@@ -15,6 +17,8 @@ on:
       - 'converter/**'
       - 'scripts/check_show_steps.py'
       - 'vendor/Rubi/**'
+      - 'vendor/MathematicaSyntaxTestSuite'
+      - 'scripts/merge_source_edition.py'
       - 'rules/**'
       - 'tests/**'
       - 'Specification/**'
@@ -58,17 +62,8 @@ jobs:
           python3 scripts/check_show_steps.py vendor/Rubi "$RUNNER_TEMP/source-edition" rules
           python3 scripts/check_expanded_profile.py "$RUNNER_TEMP/expanded" rules
 
-      - name: Re-run converter (tests)
-        run: julia --project=converter converter/scripts/convert.jl --tests
-
-      - name: Check for drift
+      - name: Regenerate fixtures and compare the entire output tree
         run: |
-          if git diff --exit-code rules/ tests/; then
-            echo "No drift detected — converter output matches committed files."
-          else
-            echo "::error::Converter drift detected! Re-run the converter and commit the updated output."
-            echo ""
-            echo "Changed files:"
-            git diff --stat rules/ tests/
-            exit 1
-          fi
+          julia --project=converter converter/scripts/convert.jl --tests "$RUNNER_TEMP/regenerated-tests"
+          diff --brief --recursive tests "$RUNNER_TEMP/regenerated-tests"
+          git diff --exit-code -- rules/

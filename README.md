@@ -11,8 +11,8 @@ Its [ordered OSR manifest](editions/rubi-4.17.3.0/rules/meta.json) contains
 [Post-release open-source CAS additions](docs/post-rubi.md) have independent provenance.
 
 The [compatibility profile](docs/source-edition.md) loads 7,209 entries from
-a later Rubi maintenance revision. The 72,523 distributed integration test
-problems have a separate upstream revision. See the
+a later Rubi maintenance revision. The 72,584 distributed integration test
+problems have a [separate upstream revision and conversion record](docs/fixture-fidelity.md). See the
 [known conversion issues](docs/known-issues.md).
 
 ## Overview
@@ -73,7 +73,7 @@ The format covers:
 - **Rules**: pattern + constraints + result, with wildcard and predicate
   support (8,059 entries in 221 files, including duplicates and empty sections)
 - **Test fixtures**: integrand + variable + optimal antiderivative +
-  expected step count (72,523 tests in 215 files)
+  expected step count (72,584 tests in 215 files)
 - **Taxonomy**: RUBI's exact 9-section hierarchy
 - **Load manifest**: the default file order follows the pinned RUBI source,
   with elementary-function rules enabled
@@ -150,7 +150,7 @@ julia --project=converter converter/scripts/convert.jl --manifest
 | Artifact | Directory | Files | Items |
 |----------|-----------|-------|-------|
 | Rules | `rules/` | 221 | 8,059 entries; the conversion is incomplete |
-| Tests | `tests/` | 215 | 72,523 test problems |
+| Tests | `tests/` | 215 | 72,584 test problems |
 | Manifest | `rules/meta.json` | 1 | load_order + counts |
 
 ## Status

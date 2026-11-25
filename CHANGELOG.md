@@ -18,6 +18,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   variants, with optional per-entry theorem evidence.
 
 ### Fixed
+- Reproduce all 72,584 recognized Rubi test tuples at the pinned fixture revision. Recover 61 formal derivative examples while preserving all previously published case IDs. Encode the function, order and held substitutions explicitly and emit large integer literals exactly.
+- Check fixture drift against a fresh output tree and stop batch publication when a tuple cannot be converted.
 - Publish a fingerprinted exclusion for RUBI 4.5.2.1 #47 with its Lean witness.
 - Recover the last step-display conditional in the pinned RUBI loader (4.7.5 #72). Compare all 22 plain branches against the distributed rules and document the upstream cosecant counterexample.
 - Reject oversized integers during conversion instead of silently rounding

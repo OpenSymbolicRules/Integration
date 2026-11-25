@@ -25,7 +25,7 @@ function print_usage()
     println()
     println("Usage:")
     println("  julia --project=converter converter/scripts/convert.jl --rules    Convert all RUBI rules")
-    println("  julia --project=converter converter/scripts/convert.jl --tests    Convert all test problems")
+    println("  julia --project=converter converter/scripts/convert.jl --tests [OUTPUT]    Convert all test problems")
     println("  julia --project=converter converter/scripts/convert.jl --manifest Update meta.json manifest")
     println("  julia --project=converter converter/scripts/convert.jl <file.m>   Convert a single .m file")
 end
@@ -48,7 +48,9 @@ function main(args)
         return
     end
 
-    if "--tests" in args
+    if first(args) == "--tests"
+        length(args) <= 2 || error("Usage: --tests [OUTPUT]")
+        output = length(args) == 2 ? args[2] : joinpath(REPO_ROOT, "tests")
         println("Converting RUBI test suite...")
         if !isdir(VENDOR_TESTS)
             println("ERROR: MathematicaSyntaxTestSuite submodule not found at $VENDOR_TESTS")
@@ -56,7 +58,7 @@ function main(args)
             exit(1)
         end
         results = RubiConverter.convert_all_tests(VENDOR_TESTS;
-            output_dir=joinpath(REPO_ROOT, "tests"))
+            output_dir=output)
         return
     end
 

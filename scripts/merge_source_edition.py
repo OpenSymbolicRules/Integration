@@ -70,7 +70,15 @@ def build(source, output):
             count += delta
         write(output/path, old)
     meta['rule_count'] += count
-    meta['extensions'] = source_meta['extensions']
+    meta['test_count'] = sum(len(json.loads(p.read_bytes())['tests']) for p in (ROOT / 'tests').rglob('*.json'))
+    meta['extensions'] = source_meta['extensions'] + [
+        {'name': 'Derivative', 'arity': 1, 'semantics':
+         'Fixture operator. Derivative[n] maps a unary function to its order-n derivative. '
+         'Preserve symbolic and negative orders formally. See https://reference.wolfram.com/language/ref/Derivative.html'},
+        {'name': 'Defer', 'arity': 1, 'semantics':
+         'Fixture operator. Preserve the unevaluated source head. Defer[Subst] is a held substitution. '
+         'See https://reference.wolfram.com/language/ref/Defer.html'},
+    ]
     meta['feature_flags']['load_show_steps'] = False
     write(output/'meta.json', meta)
     print(f'{count} entries added; {len(held)} sections retained at baseline')

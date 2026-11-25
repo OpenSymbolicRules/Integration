@@ -33,3 +33,14 @@ class MergeTests(unittest.TestCase):
         ext = {entry['name']: entry for entry in meta['extensions']}
         self.assertEqual(ext['Star']['arity'], 2)
         self.assertEqual(ext['IntSum']['arity'], 2)
+
+    def test_fixture_count_and_vocabulary(self):
+        import json
+        from pathlib import Path
+        root = Path(__file__).resolve().parents[1]
+        meta = json.loads((root / "rules/meta.json").read_bytes())
+        count = sum(len(json.loads(p.read_bytes())["tests"]) for p in (root / "tests").rglob("*.json"))
+        self.assertEqual(meta["test_count"], count)
+        extensions = {entry["name"]: entry for entry in meta["extensions"]}
+        self.assertEqual(extensions["Derivative"]["arity"], 1)
+        self.assertEqual(extensions["Defer"]["arity"], 1)
