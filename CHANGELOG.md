@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- Add an optional positive-real moment supplement for Bessel J, Bessel Y and first-kind Hankel, with six oriented rules and nine one-, two- and three-step examples.
 - Publish per-case source locations and file hashes for the Rubi fixture suite, including 872 cases with extra reference fields and all 49 version-dependent step expressions.
 - Provide a reproducible reference edition of Rubi 4.17.3.0 with 7,249 converted entries, release-qualified identities, coverage and a fingerprinted exclusion for section 4.5.2.1 cell 48.
 - Add four independently sourced Airy integration rules, six one-step examples and seven regression problems from SymPy and the SageMath Giac backend with reference primitives and derivative checks.

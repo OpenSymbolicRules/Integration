@@ -1,0 +1,67 @@
+{
+  "$schema": "open-symbolic-rules/v0.1",
+  "title": "Positive-real Bessel and Hankel integration moments",
+  "section": "8.10",
+  "identity": "cas-supplement:bessel-positive-moments",
+  "semantics": {
+    "BesselJ": "openmath:hypergeo2#besselJ",
+    "BesselY": "openmath:hypergeo2#besselY",
+    "HankelH1": "openmath:hypergeo2#hankel1",
+    "Add": "openmath:arith1#plus",
+    "Subtract": "openmath:arith1#minus",
+    "Multiply": "openmath:arith1#times",
+    "Divide": "openmath:arith1#divide",
+    "Power": "openmath:arith1#power",
+    "Int": "openmath:calculus1#int"
+  },
+  "rules": [
+    {
+      "id": 1,
+      "pattern": ["Int", ["Multiply", ["Power", "x_", "m."], ["BesselJ", "nu_", ["Multiply", "a.", "x_"]]], "x_symbol"],
+      "constraints": [["FreeQ", ["List", "m", "nu", "a"], "x"], ["GtQ", "x", 0], ["GtQ", "a", 0], ["EqQ", ["Subtract", ["Subtract", "m", "nu"], 1], 0]],
+      "result": ["Divide", ["Multiply", ["Power", "x", "m"], ["BesselJ", "m", ["Multiply", "a", "x"]]], "a"],
+      "derivation": "Differentiate x^m F_(nu+1)(a x) and use the cylinder-function derivative recurrence.",
+      "provenance": {"method": "derived", "sources": [{"name": "SymbolicIntegration.jl", "revision": "3625e0e4bb1d78c0ce0acc038d75043aa48efdf1", "license": "MIT", "locator": "src/methods/rule_based/rules2/8 Special functions/8.1 Bessel functions.jl#8_1_1"}]}
+    },
+    {
+      "id": 2,
+      "pattern": ["Int", ["Multiply", ["Power", "x_", "m."], ["BesselY", "nu_", ["Multiply", "a.", "x_"]]], "x_symbol"],
+      "constraints": [["FreeQ", ["List", "m", "nu", "a"], "x"], ["GtQ", "x", 0], ["GtQ", "a", 0], ["EqQ", ["Subtract", ["Subtract", "m", "nu"], 1], 0]],
+      "result": ["Divide", ["Multiply", ["Power", "x", "m"], ["BesselY", "m", ["Multiply", "a", "x"]]], "a"],
+      "derivation": "Differentiate x^m F_(nu+1)(a x) and use the cylinder-function derivative recurrence.",
+      "provenance": {"method": "derived", "sources": [{"name": "SymbolicIntegration.jl", "revision": "3625e0e4bb1d78c0ce0acc038d75043aa48efdf1", "license": "MIT", "locator": "src/methods/rule_based/rules2/8 Special functions/8.1 Bessel functions.jl#8_1_2"}]}
+    },
+    {
+      "id": 5,
+      "pattern": ["Int", ["Multiply", ["Power", "x_", "m."], ["BesselJ", "nu_", ["Multiply", "a.", "x_"]]], "x_symbol"],
+      "constraints": [["FreeQ", ["List", "m", "nu", "a"], "x"], ["GtQ", "x", 0], ["GtQ", "a", 0], ["IGtQ", ["Subtract", ["Subtract", "m", "nu"], 1], 0], ["EvenQ", ["Subtract", ["Subtract", "m", "nu"], 1]]],
+      "result": ["Subtract", ["Divide", ["Multiply", ["Power", "x", "m"], ["BesselJ", ["Add", "nu", 1], ["Multiply", "a", "x"]]], "a"], ["Multiply", ["Divide", ["Subtract", ["Subtract", "m", "nu"], 1], "a"], ["Int", ["Multiply", ["Power", "x", ["Subtract", "m", 1]], ["BesselJ", ["Add", "nu", 1], ["Multiply", "a", "x"]]], "x"]]],
+      "derivation": "Differentiate x^m F_(nu+1)(a x) and use the cylinder-function derivative recurrence.",
+      "provenance": {"method": "derived", "sources": [{"name": "SymbolicIntegration.jl", "revision": "3625e0e4bb1d78c0ce0acc038d75043aa48efdf1", "license": "MIT", "locator": "src/methods/rule_based/rules2/8 Special functions/8.1 Bessel functions.jl#8_1_5"}]}
+    },
+    {
+      "id": 6,
+      "pattern": ["Int", ["Multiply", ["Power", "x_", "m."], ["BesselY", "nu_", ["Multiply", "a.", "x_"]]], "x_symbol"],
+      "constraints": [["FreeQ", ["List", "m", "nu", "a"], "x"], ["GtQ", "x", 0], ["GtQ", "a", 0], ["IGtQ", ["Subtract", ["Subtract", "m", "nu"], 1], 0], ["EvenQ", ["Subtract", ["Subtract", "m", "nu"], 1]]],
+      "result": ["Subtract", ["Divide", ["Multiply", ["Power", "x", "m"], ["BesselY", ["Add", "nu", 1], ["Multiply", "a", "x"]]], "a"], ["Multiply", ["Divide", ["Subtract", ["Subtract", "m", "nu"], 1], "a"], ["Int", ["Multiply", ["Power", "x", ["Subtract", "m", 1]], ["BesselY", ["Add", "nu", 1], ["Multiply", "a", "x"]]], "x"]]],
+      "derivation": "Differentiate x^m F_(nu+1)(a x) and use the cylinder-function derivative recurrence.",
+      "provenance": {"method": "derived", "sources": [{"name": "SymbolicIntegration.jl", "revision": "3625e0e4bb1d78c0ce0acc038d75043aa48efdf1", "license": "MIT", "locator": "src/methods/rule_based/rules2/8 Special functions/8.1 Bessel functions.jl#8_1_6"}]}
+    },
+    {
+      "id": 9,
+      "pattern": ["Int", ["Multiply", ["Power", "x_", "m."], ["HankelH1", "nu_", ["Multiply", "a.", "x_"]]], "x_symbol"],
+      "constraints": [["FreeQ", ["List", "m", "nu", "a"], "x"], ["GtQ", "x", 0], ["GtQ", "a", 0], ["EqQ", ["Subtract", ["Subtract", "m", "nu"], 1], 0]],
+      "result": ["Divide", ["Multiply", ["Power", "x", "m"], ["HankelH1", "m", ["Multiply", "a", "x"]]], "a"],
+      "derivation": "Differentiate x^m F_(nu+1)(a x) and use the cylinder-function derivative recurrence.",
+      "provenance": {"method": "derived", "sources": [{"name": "SymbolicIntegration.jl", "revision": "3625e0e4bb1d78c0ce0acc038d75043aa48efdf1", "license": "MIT", "locator": "src/methods/rule_based/rules2/8 Special functions/8.1 Bessel functions.jl#8_1_9"}]}
+    },
+    {
+      "id": 11,
+      "pattern": ["Int", ["Multiply", ["Power", "x_", "m."], ["HankelH1", "nu_", ["Multiply", "a.", "x_"]]], "x_symbol"],
+      "constraints": [["FreeQ", ["List", "m", "nu", "a"], "x"], ["GtQ", "x", 0], ["GtQ", "a", 0], ["IGtQ", ["Subtract", ["Subtract", "m", "nu"], 1], 0], ["EvenQ", ["Subtract", ["Subtract", "m", "nu"], 1]]],
+      "result": ["Subtract", ["Divide", ["Multiply", ["Power", "x", "m"], ["HankelH1", ["Add", "nu", 1], ["Multiply", "a", "x"]]], "a"], ["Multiply", ["Divide", ["Subtract", ["Subtract", "m", "nu"], 1], "a"], ["Int", ["Multiply", ["Power", "x", ["Subtract", "m", 1]], ["HankelH1", ["Add", "nu", 1], ["Multiply", "a", "x"]]], "x"]]],
+      "derivation": "Differentiate x^m F_(nu+1)(a x) and use the cylinder-function derivative recurrence.",
+      "provenance": {"method": "derived", "sources": [{"name": "SymbolicIntegration.jl", "revision": "3625e0e4bb1d78c0ce0acc038d75043aa48efdf1", "license": "MIT", "locator": "src/methods/rule_based/rules2/8 Special functions/8.1 Bessel functions.jl#8_1_11"}]}
+    }
+  ]
+}

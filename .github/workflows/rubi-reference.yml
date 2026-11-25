@@ -37,7 +37,7 @@ jobs:
           python3 scripts/test_rubi_release.py
       - name: Check release and supplement schemas, identities and vocabulary
         run: |
-          for rules in editions/rubi-4.17.3.0/rules supplements/airy/rules; do
+          for rules in editions/rubi-4.17.3.0/rules supplements/*/rules; do
             check-jsonschema --schemafile Specification/schemas/meta.schema.json "$rules/meta.json"
             find "$rules" -name '*.json' ! -name meta.json -print0 | xargs -0 -n 10 -P 4 check-jsonschema \
               --schemafile Specification/schemas/rule-file.schema.json --base-uri "file://$PWD/Specification/schemas/"
@@ -45,7 +45,7 @@ jobs:
             python3 Specification/scripts/validate_semantic_closure.py "$rules"
           done
           check-jsonschema --schemafile Specification/schemas/test-file.schema.json \
-            --base-uri "file://$PWD/Specification/schemas/" supplements/airy/tests/airy.json
+            --base-uri "file://$PWD/Specification/schemas/" supplements/*/tests/*.json
       - name: Validate OSR expressions in the test-only vectors
         run: |
           ruleschema="$RUNNER_TEMP/cas-expressions.schema.json"
@@ -58,4 +58,5 @@ jobs:
       - name: Check CAS source conditions and regression primitives
         run: |
           python3 scripts/test_cas_supplement.py
+          python3 scripts/test_bessel_supplement.py
           python3 scripts/test_post_rubi_examples.py

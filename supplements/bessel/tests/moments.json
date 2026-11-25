@@ -1,0 +1,79 @@
+{
+  "$schema": "open-symbolic-rules/v0.1",
+  "section": "8.10",
+  "title": "Bessel and Hankel moment conformance cases",
+  "tests": [
+    {
+      "id": 1,
+      "variable": "x",
+      "expression": ["Multiply", ["Power", "x", ["Divide", 3, 2]], ["BesselJ", ["Divide", 1, 2], ["Multiply", 2, "x"]]],
+      "num_steps": 1,
+      "expected_result": ["Divide", ["Multiply", 1, ["Power", "x", ["Divide", 3, 2]], ["BesselJ", ["Divide", 3, 2], ["Multiply", 2, "x"]]], 2],
+      "comment": "On the real interval x > 0. Steps count applications of this supplement."
+    },
+    {
+      "id": 2,
+      "variable": "x",
+      "expression": ["Multiply", ["Power", "x", ["Divide", 7, 2]], ["BesselJ", ["Divide", 1, 2], ["Multiply", 3, "x"]]],
+      "num_steps": 2,
+      "expected_result": ["Add", ["Divide", ["Multiply", 1, ["Power", "x", ["Divide", 7, 2]], ["BesselJ", ["Divide", 3, 2], ["Multiply", 3, "x"]]], 3], ["Divide", ["Multiply", -2, ["Power", "x", ["Divide", 5, 2]], ["BesselJ", ["Divide", 5, 2], ["Multiply", 3, "x"]]], 9]],
+      "comment": "On the real interval x > 0. Steps count applications of this supplement."
+    },
+    {
+      "id": 3,
+      "variable": "x",
+      "expression": ["Multiply", ["Power", "x", ["Divide", 11, 2]], ["BesselJ", ["Divide", 1, 2], ["Multiply", 2, "x"]]],
+      "num_steps": 3,
+      "expected_result": ["Add", ["Divide", ["Multiply", 1, ["Power", "x", ["Divide", 11, 2]], ["BesselJ", ["Divide", 3, 2], ["Multiply", 2, "x"]]], 2], ["Divide", ["Multiply", -4, ["Power", "x", ["Divide", 9, 2]], ["BesselJ", ["Divide", 5, 2], ["Multiply", 2, "x"]]], 4], ["Divide", ["Multiply", 8, ["Power", "x", ["Divide", 7, 2]], ["BesselJ", ["Divide", 7, 2], ["Multiply", 2, "x"]]], 8]],
+      "comment": "On the real interval x > 0. Steps count applications of this supplement."
+    },
+    {
+      "id": 4,
+      "variable": "x",
+      "expression": ["Multiply", ["Power", "x", ["Divide", 3, 2]], ["BesselY", ["Divide", 1, 2], ["Multiply", 2, "x"]]],
+      "num_steps": 1,
+      "expected_result": ["Divide", ["Multiply", 1, ["Power", "x", ["Divide", 3, 2]], ["BesselY", ["Divide", 3, 2], ["Multiply", 2, "x"]]], 2],
+      "comment": "On the real interval x > 0. Steps count applications of this supplement."
+    },
+    {
+      "id": 5,
+      "variable": "x",
+      "expression": ["Multiply", ["Power", "x", ["Divide", 7, 2]], ["BesselY", ["Divide", 1, 2], ["Multiply", 3, "x"]]],
+      "num_steps": 2,
+      "expected_result": ["Add", ["Divide", ["Multiply", 1, ["Power", "x", ["Divide", 7, 2]], ["BesselY", ["Divide", 3, 2], ["Multiply", 3, "x"]]], 3], ["Divide", ["Multiply", -2, ["Power", "x", ["Divide", 5, 2]], ["BesselY", ["Divide", 5, 2], ["Multiply", 3, "x"]]], 9]],
+      "comment": "On the real interval x > 0. Steps count applications of this supplement."
+    },
+    {
+      "id": 6,
+      "variable": "x",
+      "expression": ["Multiply", ["Power", "x", ["Divide", 11, 2]], ["BesselY", ["Divide", 1, 2], ["Multiply", 2, "x"]]],
+      "num_steps": 3,
+      "expected_result": ["Add", ["Divide", ["Multiply", 1, ["Power", "x", ["Divide", 11, 2]], ["BesselY", ["Divide", 3, 2], ["Multiply", 2, "x"]]], 2], ["Divide", ["Multiply", -4, ["Power", "x", ["Divide", 9, 2]], ["BesselY", ["Divide", 5, 2], ["Multiply", 2, "x"]]], 4], ["Divide", ["Multiply", 8, ["Power", "x", ["Divide", 7, 2]], ["BesselY", ["Divide", 7, 2], ["Multiply", 2, "x"]]], 8]],
+      "comment": "On the real interval x > 0. Steps count applications of this supplement."
+    },
+    {
+      "id": 7,
+      "variable": "x",
+      "expression": ["Multiply", ["Power", "x", ["Divide", 3, 2]], ["HankelH1", ["Divide", 1, 2], ["Multiply", 2, "x"]]],
+      "num_steps": 1,
+      "expected_result": ["Divide", ["Multiply", 1, ["Power", "x", ["Divide", 3, 2]], ["HankelH1", ["Divide", 3, 2], ["Multiply", 2, "x"]]], 2],
+      "comment": "On the real interval x > 0. Steps count applications of this supplement."
+    },
+    {
+      "id": 8,
+      "variable": "x",
+      "expression": ["Multiply", ["Power", "x", ["Divide", 7, 2]], ["HankelH1", ["Divide", 1, 2], ["Multiply", 3, "x"]]],
+      "num_steps": 2,
+      "expected_result": ["Add", ["Divide", ["Multiply", 1, ["Power", "x", ["Divide", 7, 2]], ["HankelH1", ["Divide", 3, 2], ["Multiply", 3, "x"]]], 3], ["Divide", ["Multiply", -2, ["Power", "x", ["Divide", 5, 2]], ["HankelH1", ["Divide", 5, 2], ["Multiply", 3, "x"]]], 9]],
+      "comment": "On the real interval x > 0. Steps count applications of this supplement."
+    },
+    {
+      "id": 9,
+      "variable": "x",
+      "expression": ["Multiply", ["Power", "x", ["Divide", 11, 2]], ["HankelH1", ["Divide", 1, 2], ["Multiply", 2, "x"]]],
+      "num_steps": 3,
+      "expected_result": ["Add", ["Divide", ["Multiply", 1, ["Power", "x", ["Divide", 11, 2]], ["HankelH1", ["Divide", 3, 2], ["Multiply", 2, "x"]]], 2], ["Divide", ["Multiply", -4, ["Power", "x", ["Divide", 9, 2]], ["HankelH1", ["Divide", 5, 2], ["Multiply", 2, "x"]]], 4], ["Divide", ["Multiply", 8, ["Power", "x", ["Divide", 7, 2]], ["HankelH1", ["Divide", 7, 2], ["Multiply", 2, "x"]]], 8]],
+      "comment": "On the real interval x > 0. Steps count applications of this supplement."
+    }
+  ]
+}
