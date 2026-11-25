@@ -37,3 +37,7 @@ equality in a neighborhood and uses uniqueness of the derivative.
 ## OpenMath hypergeo2, version 0 revision 3, hankel2 formal property
 
 The dictionary's hankel2 description and commented property specify the second-kind function. The formal property places hankel1 on the left of the equation defining J − iY. Its hankel1 entry already gives J + iY. A translator which imports both formal properties would identify the two functions. Keep the family under review before binding the CAS rules to this vocabulary. [Dictionary XML](https://openmath.org/cd/hypergeo2.ocd) · [Rendered hankel2 entry](https://openmath.org/cd/hypergeo2.html#hankel2)
+
+## OSR v0.1 and OpenMath transc2 version 2 revision 1, two-argument arctangent
+
+The specification's single `Atan` row lists arities one and two with the unary OpenMath symbol. The experimental transc2 dictionary defines the binary symbol. Its description and formal properties order the operands horizontal then vertical, while several commented properties print them in reverse order. On the positive vertical axis the correct result is π/2. In the Maxima calling convention this input is `atan2(1,0)`. The OSR angle supplement uses `Atan(0,1)`. [Affected Rubi exports](docs/maxima-branches.md#reading-earlier-rubi-exports) · [Pinned dictionary](https://github.com/OpenMath/CDs/blob/cbf607561e3f90630ce7a57fe9a85f5bc0dfdd3c/cd/experimental/transc2.ocd)

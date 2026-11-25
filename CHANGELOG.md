@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- Add two real vertical-axis angle integration rules derived from Maxima, two one-step examples and four branch-aware logarithm regressions with reproducible source locations.
 - Publish 12 reproducible integer-order integration benchmarks from SymbolicIntegration.jl, covering Bessel J, Y, I, K and both Hankel functions with positive-real assumptions and source locators.
 - Add an optional positive-real moment supplement for Bessel J, Bessel Y and first-kind Hankel, with six oriented rules and nine one-, two- and three-step examples.
 - Publish per-case source locations and file hashes for the Rubi fixture suite, including 872 cases with extra reference fields and all 49 version-dependent step expressions.

@@ -246,3 +246,7 @@ The associated comparison remains enabled.
 
 [Earlier run](https://github.com/OpenSymbolicRules/Integration/actions/runs/45482280064) ·
 [Wrapped-rule recovery run](https://github.com/OpenSymbolicRules/Integration/actions/runs/45549029660)
+
+## Binary arctangent in the Rubi profiles
+
+Eight rule results use a two-coordinate angle in files whose semantics table declares the unary arctangent. Adapters must distinguish the native call by arity and coordinate order. A strict OpenMath import must diagnose the mismatch. See the [affected sections and branch convention](maxima-branches.md#reading-earlier-rubi-exports).

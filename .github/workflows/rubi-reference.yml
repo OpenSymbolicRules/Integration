@@ -52,7 +52,7 @@ jobs:
           jq '{ "$schema": ."$schema", definitions, type: "array", items: {"$ref": "#/definitions/osr-expr"} }' \
             Specification/schemas/osr-expr.schema.json > "$ruleschema"
           for suite in supplements/*-regressions/examples.json; do
-            jq '[.tests[] | .expression, .expected_result]' "$suite" > "$RUNNER_TEMP/vectors.json"
+            jq '[(.constraints // [])[], (.tests[] | .expression, .expected_result, (.constraints // [])[])]' "$suite" > "$RUNNER_TEMP/vectors.json"
             check-jsonschema --schemafile "$ruleschema" "$RUNNER_TEMP/vectors.json"
           done
       - name: Reproduce the integer-order cylinder vectors from their pinned source
@@ -64,6 +64,14 @@ jobs:
           julia --project=converter "$suite/import.jl" "$RUNNER_TEMP/cylinder-source.jl" > "$RUNNER_TEMP/cylinder.json"
           cmp "$suite/examples.json" "$RUNNER_TEMP/cylinder.json"
           python3 "$suite/check.py"
+      - name: Reproduce Maxima's logabs examples and check the guarded angle rules
+        run: |
+          suite=supplements/maxima-regressions
+          revision=8806ad76963d385137fc8b5198746f98565b3f61
+          curl --fail --location --retry 3 "https://raw.githubusercontent.com/calyau/maxima/$revision/tests/rtest_integrate.mac" -o "$RUNNER_TEMP/maxima.mac"
+          python3 "$suite/import.py" "$RUNNER_TEMP/maxima.mac" > "$RUNNER_TEMP/maxima.json"
+          cmp "$suite/examples.json" "$RUNNER_TEMP/maxima.json"
+          python3 supplements/maxima/check.py
       - name: Check CAS source conditions and regression primitives
         run: |
           python3 scripts/test_cas_supplement.py

@@ -1,0 +1,42 @@
+{
+  "source": "https://github.com/calyau/maxima",
+  "revision": "8806ad76963d385137fc8b5198746f98565b3f61",
+  "path": "tests/rtest_integrate.mac",
+  "source_sha256": "1448fb8583d1e5be8820292567f6b5e28a819271e0e785d5b4035bcd1982d37e",
+  "license": "GPL-2.0-only",
+  "license_file": "../maxima/COPYING",
+  "tests": [
+    {
+      "id": "imaginary-shift",
+      "source_lines": [6896, 6897],
+      "variable": "x",
+      "constraints": [["EqQ", ["Im", "x"], 0]],
+      "expression": ["Divide", 1, ["Add", "x", "I"]],
+      "expected_result": ["Log", ["Add", "x", "I"]]
+    },
+    {
+      "id": "real-reciprocal",
+      "source_lines": [6899, 6900],
+      "variable": "x",
+      "constraints": [["EqQ", ["Im", "x"], 0], ["Or", ["GtQ", "x", 0], ["LtQ", "x", 0]]],
+      "expression": ["Divide", 1, "x"],
+      "expected_result": ["Log", ["Abs", "x"]]
+    },
+    {
+      "id": "nested-root",
+      "source_lines": [6902, 6903],
+      "variable": "x",
+      "constraints": [["EqQ", ["Im", "x"], 0], ["FreeQ", "a", "x"], ["LtQ", "a", 0], ["Or", ["GtQ", "x", 0], ["LtQ", "x", 0]]],
+      "expression": ["Divide", 1, ["Subtract", ["Power", "x", 2], ["Multiply", ["Sqrt", ["Negate", "a"]], "a"]]],
+      "expected_result": ["Divide", ["Log", ["Divide", ["Subtract", ["Multiply", 2, "x"], ["Multiply", 2, ["Sqrt", ["Multiply", ["Sqrt", ["Negate", "a"]], "a"]]]], ["Add", ["Multiply", 2, "x"], ["Multiply", 2, ["Sqrt", ["Multiply", ["Sqrt", ["Negate", "a"]], "a"]]]]]], ["Multiply", 2, ["Sqrt", ["Multiply", ["Sqrt", ["Negate", "a"]], "a"]]]]
+    },
+    {
+      "id": "real-split-poles",
+      "source_lines": [6905, 6906],
+      "variable": "x",
+      "constraints": [["EqQ", ["Im", "x"], 0], ["FreeQ", "a", "x"], ["Or", ["GtQ", "a", 0], ["LtQ", "a", 0]], ["Or", ["GtQ", ["Subtract", "x", "a"], 0], ["LtQ", ["Subtract", "x", "a"], 0]], ["Or", ["GtQ", ["Add", "x", "a"], 0], ["LtQ", ["Add", "x", "a"], 0]]],
+      "expression": ["Divide", 1, ["Subtract", ["Power", "x", 2], ["Power", "a", 2]]],
+      "expected_result": ["Subtract", ["Divide", ["Log", ["Abs", ["Subtract", "x", "a"]]], ["Multiply", 2, "a"]], ["Divide", ["Log", ["Abs", ["Add", "x", "a"]]], ["Multiply", 2, "a"]]]
+    }
+  ]
+}
