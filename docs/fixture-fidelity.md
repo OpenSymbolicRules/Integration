@@ -23,6 +23,10 @@ Commit `938a888` reproduced 72,584 cases. Its line-based reader recognized 331 t
 
 Reading the complete files also recovers Gamma case 233 at source line 417. Its integrand contains the postfix factorial of a+b·x. Of the 72,253 retained cases, 17 have corrected step counts from the second branch of a version condition. Every retained case keeps its ID, integrand, variable and primary reference. The input and output hashes establish which dataset an adapter consumed. Reproduction alone establishes no primitive's mathematical validity.
 
+## Two-coordinate angles
+
+Wolfram `ArcTan[x,y]` is encoded as `["Atan2", x, y]` with a declared `transc2#arctan` binding. In the preceding snapshot 69 test cases used the spelling `Atan` for 106 binary calls. The per-file JSON fingerprints identify the updated fixtures. Both operands retain their source order in inputs, reference primitives and additional reference fields. [Adapter convention and previous snapshot](maxima-branches.md#reading-earlier-rubi-exports)
+
 ## Earlier conversion corrections
 
 Integration commit `00784d9` distributed 72,523 cases. Its converter reproduced 72,478. Commit `938a888` retained the previously distributed case IDs and made the following corrections. [Prior snapshot](https://github.com/OpenSymbolicRules/Integration/tree/00784d9a30a06ae6ce57c75b264f5d9bdfe5d6e0/tests)

@@ -38,6 +38,8 @@ function edition_extensions(arities, utility_source, revision)
     for name in sort(collect(keys(arities)))
         semantics = if name == "Star"
             "RUBI Star[u,v] in Rubi/IntegrationUtilityFunctions.m at $revision. Preserve its distribution and evaluation behavior. Decline the rule if unsupported (OSR-X-025a)."
+        elseif name == "Atan2"
+            "Wolfram ArcTan[x,y], openmath:transc2#arctan. The operands are the horizontal coordinate x and vertical coordinate y, in that order. Decline if unsupported."
         elseif name in helpers
             occursin(Regex("(?m)^" * name * raw"\[.*\][ \t]*(?::=|=(?!=))"), utility_source) ||
                 error("Missing pinned RUBI definition for $name")

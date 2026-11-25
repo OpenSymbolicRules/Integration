@@ -249,4 +249,4 @@ The associated comparison remains enabled.
 
 ## Binary arctangent in the Rubi profiles
 
-Eight rule results use a two-coordinate angle in files whose semantics table declares the unary arctangent. Adapters must distinguish the native call by arity and coordinate order. A strict OpenMath import must diagnose the mismatch. See the [affected sections and branch convention](maxima-branches.md#reading-earlier-rubi-exports).
+Through Integration commit `f9cd884`, eight Rubi rule results used a binary angle declared with the unary OpenMath symbol. The corrected profiles declare `Atan2(x,y)` for the horizontal and vertical coordinates. Consumers of older snapshots can recognize the overloaded `Atan` by its arity. See the [affected sections and branch convention](maxima-branches.md#reading-earlier-rubi-exports).

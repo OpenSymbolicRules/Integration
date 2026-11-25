@@ -52,3 +52,22 @@ end
         @test read(published) == original
     end
 end
+
+@testset "Unary and binary ArcTan preserve their meanings in the same rule and fixture" begin
+    src = "Int[ArcTan[x_],x_Symbol]:=ArcTan[0,x]+ArcTan[x,0]/;NeQ[ArcTan[x],0]"
+    rule = RubiConverter.rule_to_osr(RubiConverter.parse_mathematica(src), 1)
+    @test rule["pattern"] == ["Int", ["Atan", "x_"], "x_symbol"]
+    @test rule["constraints"] == [["NeQ", ["Atan", "x"], 0]]
+    @test rule["result"] == ["Add", ["Atan2", 0, "x"], ["Atan2", "x", 0]]
+    semantics = RubiConverter.rule_semantics([rule])
+    @test semantics["Atan"] == "openmath:transc1#arctan"
+    @test get(semantics, "Atan2", nothing) == "openmath:transc2#arctan"
+
+    tuple = RubiConverter.parse_mathematica("{ArcTan[ArcTan[t],s], x, 2, ArcTan[s,t]}")
+    case = RubiConverter.test_tuple_to_osr(tuple, 7)
+    @test case["expression"] == ["Atan2", ["Atan", "t"], "s"]
+    @test case["expected_result"] == ["Atan2", "s", "t"]
+    for invalid in ("ArcTan[]", "ArcTan[a,b,c]", "Atan2[x,y]")
+        @test_throws ArgumentError RubiConverter.to_osr(RubiConverter.parse_mathematica(invalid))
+    end
+end

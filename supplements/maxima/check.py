@@ -19,7 +19,7 @@ def value(t, env):
     ops = {"Power": pow, "Add": lambda *items: sum(items), "Multiply": lambda *items: math.prod(items),
            "Divide": lambda a,b: a/b, "Subtract": lambda a,b: a-b, "Negate": lambda a: -a,
            "Abs": abs, "Log": cmath.log, "Sqrt": cmath.sqrt, "Im": lambda a: complex(a).imag,
-           "Atan": lambda horizontal, vertical: math.atan2(vertical, horizontal)}
+           "Atan2": lambda horizontal, vertical: math.atan2(vertical, horizontal)}
     return ops[head](*v)
 
 
@@ -58,18 +58,18 @@ class MaximaBranches(unittest.TestCase):
         self.assertEqual(context["test_file"], "tests/angles.json")
         meta = json.loads((HERE / "rules/meta.json").read_text())
         self.assertEqual((meta["rule_count"], meta["test_count"]), (2, 2))
-        self.assertEqual(doc["semantics"]["Atan"], "openmath:transc2#arctan")
+        self.assertEqual(doc["semantics"]["Atan2"], "openmath:transc2#arctan")
         self.assertEqual([r["id"] for r in doc["rules"]], [1, 2])
         self.assertEqual([c["id"] for c in fixtures], [1, 2])
         for fixture, rule in zip(fixtures, doc["rules"], strict=True):
             linear = rule["id"] == 1
             xpart = "x_" if linear else ["Power", "x_", 2]
-            angle = ["Atan", 0, ["Add", "b.", xpart]]
+            angle = ["Atan2", 0, ["Add", "b.", xpart]]
             integrand = angle if linear else ["Multiply", "x_", angle]
             self.assertEqual(rule["pattern"], ["Int", integrand, "x_symbol"])
             self.assertEqual(rule["provenance"]["sources"][0]["revision"], REV)
             self.assertEqual(fixture["num_steps"], 1)
-            src = ["Atan", 0, "x"] if linear else ["Multiply", "x", ["Atan", 0, ["Add", -1, ["Power", "x", 2]]]]
+            src = ["Atan2", 0, "x"] if linear else ["Multiply", "x", ["Atan2", 0, ["Add", -1, ["Power", "x", 2]]]]
             self.assertEqual(fixture["expression"], src)
             shift = 0 if linear else -1
             for x in (-2.5, -0.5, 0.5, 2.5):

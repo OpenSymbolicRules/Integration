@@ -38,3 +38,10 @@ end
         @test isempty(first(edition_rules(wrap(invalid), "example.m", "4.17.3.0")))
     end
 end
+
+@testset "The two-coordinate angle extension declares its operand order" begin
+    entry = only(edition_extensions(Dict("Atan2" => Set([2])), "", "pin"))
+    @test entry["name"] == "Atan2" && entry["arity"] == 2
+    @test occursin("horizontal", entry["semantics"])
+    @test occursin("transc2#arctan", entry["semantics"])
+end

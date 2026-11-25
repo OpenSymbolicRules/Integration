@@ -47,6 +47,33 @@ def write(path, data):
     path.write_text(json.dumps(data, indent=4, ensure_ascii=False)+'\n', encoding='utf-8')
 
 
+def upgrade_atan(document):
+    """Disambiguate the frozen compatibility snapshot before comparing source positions."""
+    semantics = document['semantics']
+    if 'Atan' not in semantics:
+        return
+    arities = set()
+
+    def visit(term):
+        if not isinstance(term, list) or not term:
+            return
+        if term[0] == 'Atan':
+            arity = len(term) - 1
+            arities.add(arity)
+            if arity == 2:
+                term[0] = 'Atan2'
+        for child in term[1:]:
+            visit(child)
+
+    for rule in document['rules']:
+        for term in (rule['pattern'], rule['result'], *rule['constraints']):
+            visit(term)
+    if 2 in arities:
+        semantics['Atan2'] = 'openmath:transc2#arctan'
+        if arities == {2}:
+            del semantics['Atan']
+
+
 def build(source, output):
     source_meta = json.loads((source/'meta.json').read_text())
     meta = baseline('meta.json')
@@ -56,6 +83,7 @@ def build(source, output):
     held = {}
     for path in meta['load_order']:
         old = baseline(path)
+        upgrade_atan(old)
         fresh = json.loads((source/path).read_text())
         rules, reason = integrate(old['rules'], fresh['rules'])
         if reason:

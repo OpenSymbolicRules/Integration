@@ -46,6 +46,14 @@ function to_osr(expr::MFunction, convert_child=to_osr)
     head = map_operator(expr.head)
     args = Any[convert_child(a) for a in expr.args]
 
+    # Wolfram ArcTan[x,y] gives the angle of the point (x,y), in coordinate order.
+    if expr.head == "Atan2"
+        throw(ArgumentError("Source head Atan2 has no reviewed meaning; expected Wolfram ArcTan[x,y]"))
+    elseif expr.head == "ArcTan"
+        length(args) == 2 && return Any["Atan2"; args]
+        length(args) == 1 || throw(ArgumentError("ArcTan expects one or two operands"))
+    end
+
     # Special handling for Rational[a, b] → emit as fraction
     if head == "Rational" && length(args) == 2
         num = args[1]

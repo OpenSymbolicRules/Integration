@@ -22,6 +22,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   variants, with optional per-entry theorem evidence.
 
 ### Fixed
+- Distinguish unary arctangent from the two-coordinate angle in both Rubi profiles, the Maxima supplement and 69 benchmark cases. Declare the horizontal-first `Atan2` extension and regenerate the fixture fingerprints.
 - Publish the 72,254 active Rubi integration tests. Reserve the IDs of 331 tuples formerly read from Wolfram comments, recover Gamma case 233 with postfix factorial, and correct 17 conditional step counts.
 - Reproduce all 72,584 recognized Rubi test tuples at the pinned fixture revision. Recover 61 formal derivative examples while preserving all previously published case IDs. Encode the function, order and held substitutions explicitly and emit large integer literals exactly.
 - Check fixture drift against a fresh output tree and stop batch publication when a tuple cannot be converted.

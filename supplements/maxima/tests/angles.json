@@ -6,7 +6,7 @@
     {
       "id": 1,
       "variable": "x",
-      "expression": ["Atan", 0, "x"],
+      "expression": ["Atan2", 0, "x"],
       "expected_result": ["Divide", ["Multiply", "Pi", ["Abs", "x"]], 2],
       "num_steps": 1,
       "comment": "One OSR supplement application at b = 0."
@@ -14,7 +14,7 @@
     {
       "id": 2,
       "variable": "x",
-      "expression": ["Multiply", "x", ["Atan", 0, ["Add", -1, ["Power", "x", 2]]]],
+      "expression": ["Multiply", "x", ["Atan2", 0, ["Add", -1, ["Power", "x", 2]]]],
       "expected_result": ["Divide", ["Multiply", "Pi", ["Abs", ["Add", -1, ["Power", "x", 2]]]], 4],
       "num_steps": 1,
       "comment": "One OSR supplement application at b = -1."

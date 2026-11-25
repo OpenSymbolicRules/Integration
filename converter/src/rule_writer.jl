@@ -41,6 +41,7 @@ const OPENMATH_SEMANTICS = Dict(
     "Asin" => "openmath:transc1#arcsin",
     "Acos" => "openmath:transc1#arccos",
     "Atan" => "openmath:transc1#arctan",
+    "Atan2" => "openmath:transc2#arctan",
     "Acot" => "openmath:transc1#arccot",
     "Asec" => "openmath:transc1#arcsec",
     "Acsc" => "openmath:transc1#arccsc",

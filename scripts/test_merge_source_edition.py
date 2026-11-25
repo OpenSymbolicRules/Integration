@@ -13,6 +13,20 @@ class MergeTests(unittest.TestCase):
         self.assertIsNone(reason)
         self.assertEqual(result, [rule(10,'a'),old,rule(11,'c')])
 
+    def test_binary_atan_in_retained_and_reconciled_entries(self):
+        from merge_source_edition import upgrade_atan
+        old = rule(37, ['Add', ['Atan', 'y'], ['Atan', 'y', 'x']])
+        old['constraints'] = [['NeQ', ['Atan', 0, 'x'], 0]]
+        doc = {'rules': [old], 'semantics': {'Atan': 'openmath:transc1#arctan'}}
+        upgrade_atan(doc)
+        self.assertEqual(doc['semantics'], {'Atan': 'openmath:transc1#arctan', 'Atan2': 'openmath:transc2#arctan'})
+        self.assertEqual(old['constraints'], [['NeQ', ['Atan2', 0, 'x'], 0]])
+        new = rule(8, ['Add', ['Atan', 'y'], ['Atan2', 'y', 'x']])
+        new['constraints'] = old['constraints']
+        self.assertEqual(integrate([old], [new]), ([old], None))
+        self.assertEqual(old['id'], 37)
+        self.assertEqual(old['result'], new['result'])
+
     def test_ambiguous_missing_and_guard_changed(self):
         old = [rule(1,'a')]
         for fresh in ([rule(1,'a'),rule(2,'a')], [rule(1,'b')],
