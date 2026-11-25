@@ -34,6 +34,21 @@ def lam(body):
             "object": body}
 
 
+class ArctangentTests(unittest.TestCase):
+    def test_angle_arity_and_coordinate_order(self):
+        from v1_faithfulness import convert
+        for head in ("Atan", "Atan2"):
+            binary = {head: "openmath:transc2#arctan"}
+            self.assertEqual(convert([head, "x", "y"], binary, "x"),
+                             oma("transc2", "arctan", omv("x"), omv("y")))
+            with self.assertRaisesRegex(ValueError, "transc2#arctan"):
+                convert([head, "x"], binary, "x")
+        unary = {"Atan": "openmath:transc1#arctan"}
+        self.assertEqual(convert(["Atan", "y"], unary, "x"), oma("transc1", "arctan", omv("y")))
+        with self.assertRaisesRegex(ValueError, "transc1#arctan"):
+            convert(["Atan", "x", "y"], unary, "x")
+
+
 class FaithfulnessTests(unittest.TestCase):
     def run_check(self, v1_rule, constraints=None):
         with tempfile.TemporaryDirectory() as tmp:

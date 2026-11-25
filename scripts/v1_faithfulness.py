@@ -101,7 +101,12 @@ def convert(term, semantics: dict, var: str) -> dict:
         return {"kind": "OMA", "applicant": EXP, "arguments": [convert(args[1], semantics, var)]}
     # a trig head may be missing from a file's semantics, which then lists only the
     # inert form (sin, as osr#sin): use the transc1 symbol of the trig function
-    symbol = oms(semantics[head] if head in semantics else TRIG_SEMANTICS[head])
+    uri = semantics[head] if head in semantics else TRIG_SEMANTICS[head]
+    if uri == "openmath:transc1#arctan" and len(args) != 1:
+        raise ValueError(f"{uri} expects one operand, got {len(args)}")
+    if uri == "openmath:transc2#arctan" and len(args) != 2:
+        raise ValueError(f"{uri} expects two coordinates, got {len(args)}")
+    symbol = oms(uri)
     converted = [convert(a, semantics, var) for a in args]
     if head == "Sqrt" and len(converted) == 1:
         converted.append({"kind": "OMI", "integer": 2})
