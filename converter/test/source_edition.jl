@@ -44,4 +44,6 @@ end
     @test entry["name"] == "Atan2" && entry["arity"] == 2
     @test occursin("horizontal", entry["semantics"])
     @test occursin("transc2#arctan", entry["semantics"])
+    @test occursin("real", entry["semantics"]) && occursin("origin", entry["semantics"])
+    @test occursin("complex", entry["semantics"])
 end
