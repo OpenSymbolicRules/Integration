@@ -58,3 +58,42 @@ class MergeTests(unittest.TestCase):
         extensions = {entry["name"]: entry for entry in meta["extensions"]}
         self.assertEqual(extensions["Derivative"]["arity"], 1)
         self.assertEqual(extensions["Defer"]["arity"], 1)
+
+    def test_packaged_quadratic_section_keeps_both_bounds_and_scoped_rules(self):
+        import json
+        from pathlib import Path
+        root = Path(__file__).resolve().parents[1] / 'rules'
+        path, = root.rglob('1.2.1.1-*.json')
+        rules = json.loads(path.read_bytes())['rules']
+        by_id = {r['id']: r for r in rules}
+        self.assertIn(['LessEqual', 3, ['Denominator', 'p'], 4], by_id[13]['constraints'])
+        with_d, with_q = [r for r in rules if r['provenance']['sources'][0]['locator'].endswith(('.m#21', '.m#22'))]
+        self.assertEqual(with_d['result'][2][-1], ['LessEqual', 3, 'd', 4])
+        self.assertIn('Hypergeometric2F1', str(with_q['result']))
+
+    def test_maintenance_derivatives_match_release_payloads(self):
+        import json
+        from pathlib import Path
+        from check_duplicate_rules import canonical_payload
+        root = Path(__file__).resolve().parents[1]
+        path = Path('rules/9-miscellaneous/9.1-Derivative-integration-rules.json')
+        regular, release = [json.loads((base / path).read_bytes())['rules']
+                            for base in (root, root / 'editions/rubi-4.17.3.0')]
+        self.assertEqual([canonical_payload(r) for r in regular], [canonical_payload(r) for r in release])
+        self.assertEqual([r['references'] for r in regular], [r['references'] for r in release])
+
+    def test_build_rejects_an_unmatched_previously_loaded_rule(self):
+        import json
+        import tempfile
+        from pathlib import Path
+        from unittest.mock import patch
+        from merge_source_edition import build
+        meta = {'load_order': ['section.json'], 'converter': {'source_commit': 'pin'}, 'rule_count': 1}
+        old = {'section': 'test', 'semantics': {}, 'rules': [rule(1, 'a')]}
+        with tempfile.TemporaryDirectory() as tmp, patch('merge_source_edition.baseline',
+                                                         side_effect=[meta, old]):
+            root = Path(tmp)
+            (root / 'meta.json').write_text(json.dumps(meta))
+            (root / 'section.json').write_text(json.dumps(dict(old, rules=[rule(1, 'b')])))
+            with self.assertRaisesRegex(ValueError, 'section.json'):
+                build(root, root / 'out')

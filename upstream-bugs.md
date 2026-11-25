@@ -57,3 +57,13 @@ Take u(t)=t and evaluate at t=1. Match distinct unary function heads f and g, in
 This witness concerns the isolated source rewrites. Whether a complete Rubi evaluation reaches them depends on dispatch and prior simplification. A guard p ≠ −1 is necessary for the displayed coefficient. The other cases and sufficient domain conditions require separate review.
 
 Run `julia --project=converter converter/test/source_edition.jl vendor/Rubi` with the release commit available in that checkout. The test parses all three archived source cells, evaluates their inputs, checks the source conditions, and inspects the pinned predicate definition. Lean proves that the coefficient equation admits parameters for which the required finite quotient cannot exist. [Lean obstruction](verification/RubiSubstitutionDomain.lean) · [Source coverage ledger](editions/rubi-4.17.3.0/coverage.json)
+
+## Undefined exponential helpers in the Rubi 4.17.3.0 maintenance tree
+
+At maintenance revision `61e9c18ea248061cd83c67882f7c91a73cef912d`, the
+runtime files for sections 2.1 and 2.3 call `NormalizePowerOfLinear`,
+`PowerOfLinearQ` and `PowerOfLinearMatchQ`. Searching the pinned `Rubi/`
+tree finds these names only in the rule files, including the normalization
+steps at source lines 18 and 10 respectively. OSR preserves the calls and
+declares the unresolved helpers in the compatibility manifest. A host lacking
+their semantics must decline the affected rules.

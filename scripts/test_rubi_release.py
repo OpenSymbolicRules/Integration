@@ -1,10 +1,13 @@
 """The official paclet and the later maintenance checkout are separate inputs."""
 import hashlib
 import json
+import re
+import subprocess
 import tempfile
 import unittest
 from pathlib import Path
 
+from audit_rubi_coverage import count_int_definitions
 from check_duplicate_rules import canonical_payload
 from rubi_release import RELEASE, ROOT, verify_archive
 
@@ -28,8 +31,8 @@ class ReleaseTest(unittest.TestCase):
         self.assertEqual([f["path"] for f in files], manifest["load_order"])
         self.assertEqual(len(set(manifest["load_order"])), 198)
         self.assertEqual(sum(f["converted"] for f in files), manifest["rule_count"])
-        self.assertEqual(manifest["rule_count"], 7255)
-        self.assertEqual(sum(len(f["omitted"]) for f in files), 139)
+        self.assertEqual(manifest["rule_count"], 7373)
+        self.assertEqual(sum(len(f["omitted"]) for f in files), 21)
         issue, = json.loads((edition / "errata.json").read_text())
         doc = json.loads((edition / "rules" / issue["file"]).read_text())
         rule = next(r for r in doc["rules"] if r["id"] == issue["rule_id"])
@@ -37,6 +40,27 @@ class ReleaseTest(unittest.TestCase):
                          (RELEASE, doc["identity"], 48))
         self.assertEqual(issue["action"], "skip")
         self.assertEqual(hashlib.sha256(canonical_payload(rule).encode()).hexdigest(), issue["payload_sha256"])
+
+    def test_each_loaded_file_accounts_for_upstream_int_definitions(self):
+        vendor = ROOT / "vendor/Rubi"
+        if not (vendor / ".git").exists():
+            self.skipTest("Rubi submodule is not initialized")
+        for root in (ROOT / "rules", ROOT / "editions/rubi-4.17.3.0/rules"):
+            manifest = json.loads((root / "meta.json").read_bytes())
+            revision = manifest["converter"]["source_commit"]
+            for path in manifest["load_order"]:
+                doc = json.loads((root / path).read_bytes())
+                source = doc["identity"].split(":", 1)[1]
+                if root == ROOT / "rules":
+                    source += ".m"
+                blob = f"{revision}:Rubi/IntegrationRules/{source}"
+                raw = subprocess.check_output(["git", "-C", vendor, "show", blob], text=True)
+                # Each top-level step wrapper contains two Int definitions and loads one.
+                wrappers = len(re.findall(r"(?m)^\s*If\[TrueQ\[\$LoadShowSteps\]", raw))
+                omitted = 15 if source == "9 Miscellaneous/9.1 Derivative integration rules.m" else 0
+                with self.subTest(revision=revision, source=source):
+                    self.assertGreater(len(doc["rules"]), 0)
+                    self.assertEqual(count_int_definitions(raw), len(doc["rules"]) + wrappers + omitted)
 
     def test_first_derivative_cells(self):
         edition = ROOT / "editions/rubi-4.17.3.0"

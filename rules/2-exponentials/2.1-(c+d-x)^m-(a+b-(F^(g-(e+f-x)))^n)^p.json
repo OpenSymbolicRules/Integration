@@ -2225,6 +2225,219 @@
                     "FreeQ",
                     [
                         "List",
+                        "F",
+                        "a",
+                        "b",
+                        "g",
+                        "m",
+                        "n",
+                        "p"
+                    ],
+                    "x"
+                ],
+                [
+                    "LinearQ",
+                    "v",
+                    "x"
+                ],
+                [
+                    "PowerOfLinearQ",
+                    "u",
+                    "x"
+                ],
+                [
+                    "Not",
+                    [
+                        "And",
+                        [
+                            "LinearMatchQ",
+                            "v",
+                            "x"
+                        ],
+                        [
+                            "PowerOfLinearMatchQ",
+                            "u",
+                            "x"
+                        ]
+                    ]
+                ],
+                [
+                    "Not",
+                    [
+                        "IntegerQ",
+                        "m"
+                    ]
+                ]
+            ],
+            "id": 14,
+            "result": [
+                "Module",
+                [
+                    "List",
+                    [
+                        "Set",
+                        "uu",
+                        [
+                            "NormalizePowerOfLinear",
+                            "u",
+                            "x"
+                        ]
+                    ],
+                    "z"
+                ],
+                [
+                    "CompoundExpression",
+                    [
+                        "Set",
+                        "z",
+                        [
+                            "If",
+                            [
+                                "And",
+                                [
+                                    "PowerQ",
+                                    "uu"
+                                ],
+                                [
+                                    "FreeQ",
+                                    [
+                                        "Part",
+                                        "uu",
+                                        2
+                                    ],
+                                    "x"
+                                ]
+                            ],
+                            [
+                                "Power",
+                                [
+                                    "Part",
+                                    "uu",
+                                    1
+                                ],
+                                [
+                                    "Multiply",
+                                    "m",
+                                    [
+                                        "Part",
+                                        "uu",
+                                        2
+                                    ]
+                                ]
+                            ],
+                            [
+                                "Power",
+                                "uu",
+                                "m"
+                            ]
+                        ]
+                    ],
+                    [
+                        "Multiply",
+                        [
+                            "Power",
+                            "uu",
+                            "m"
+                        ],
+                        [
+                            "Power",
+                            "z",
+                            -1
+                        ],
+                        [
+                            "Int",
+                            [
+                                "Multiply",
+                                "z",
+                                [
+                                    "Power",
+                                    [
+                                        "Add",
+                                        "a",
+                                        [
+                                            "Multiply",
+                                            "b",
+                                            [
+                                                "Power",
+                                                [
+                                                    "Power",
+                                                    "F",
+                                                    [
+                                                        "Multiply",
+                                                        "g",
+                                                        [
+                                                            "ExpandToSum",
+                                                            "v",
+                                                            "x"
+                                                        ]
+                                                    ]
+                                                ],
+                                                "n"
+                                            ]
+                                        ]
+                                    ],
+                                    "p"
+                                ]
+                            ],
+                            "x"
+                        ]
+                    ]
+                ]
+            ],
+            "pattern": [
+                "Int",
+                [
+                    "Multiply",
+                    [
+                        "Power",
+                        "u_",
+                        "m."
+                    ],
+                    [
+                        "Power",
+                        [
+                            "Add",
+                            "a.",
+                            [
+                                "Multiply",
+                                "b.",
+                                [
+                                    "Power",
+                                    [
+                                        "Power",
+                                        "F_",
+                                        [
+                                            "Multiply",
+                                            "g.",
+                                            "v_"
+                                        ]
+                                    ],
+                                    "n."
+                                ]
+                            ]
+                        ],
+                        "p."
+                    ]
+                ],
+                "x_symbol"
+            ],
+            "provenance": {
+                "method": "converted",
+                "sources": [
+                    {
+                        "version": "4.17.3.0",
+                        "name": "Rubi",
+                        "locator": "2 Exponentials/2.1 (c+d x)^m (a+b (F^(g (e+f x)))^n)^p.m#18"
+                    }
+                ]
+            }
+        },
+        {
+            "constraints": [
+                [
+                    "FreeQ",
+                    [
+                        "List",
                         "a",
                         "b",
                         "c",
@@ -2375,7 +2588,15 @@
         "ExpIntegralEi": "openmath:osr#ExpIntegralEi",
         "Add": "openmath:arith1#plus",
         "Dist": "openmath:osr#Dist",
-        "IntHide": "openmath:osr#IntHide"
+        "IntHide": "openmath:osr#IntHide",
+        "Part": "openmath:osr#Part",
+        "CompoundExpression": "openmath:osr#CompoundExpression",
+        "If": "openmath:osr#If",
+        "And": "openmath:osr#And",
+        "Module": "openmath:osr#Module",
+        "FreeQ": "openmath:osr#FreeQ",
+        "PowerQ": "openmath:osr#PowerQ",
+        "Set": "openmath:osr#Set"
     },
     "identity": "rubi:2 Exponentials/2.1 (c+d x)^m (a+b (F^(g (e+f x)))^n)^p",
     "$schema": "open-symbolic-rules/v0.1"

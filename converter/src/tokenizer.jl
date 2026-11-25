@@ -27,6 +27,7 @@
     TOK_OR           # ||
     TOK_NOT          # !
     TOK_EQUAL        # ==
+    TOK_UNSAMEQ      # =!= (structural inequality)
     TOK_NOTEQUAL     # !=
     TOK_LESSEQUAL    # <=
     TOK_GREATEREQUAL # >=
@@ -266,6 +267,11 @@ function tokenize!(t::Tokenizer)::Vector{Token}
         if c == '|' && next == '|'
             next_char!(t); next_char!(t)
             push!(t.tokens, Token(TOK_OR, "||", line, col))
+            continue
+        end
+        if c == '=' && next == '!' && peek_ahead(t, 2) == '='
+            next_char!(t); next_char!(t); next_char!(t)
+            push!(t.tokens, Token(TOK_UNSAMEQ, "=!=", line, col))
             continue
         end
         if c == '=' && next == '='

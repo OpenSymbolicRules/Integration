@@ -51,9 +51,12 @@ guarded body. Other pinned rules declare an uninitialized local, for example
 declared first and assigned later inside a `CompoundExpression`. In addition
 to capture avoidance, any implementation must preserve fresh names, assignment
 and evaluation order, and the lifetime of values under held expressions.
-Until these cases have a reviewed contract and executable consumer tests,
-`Module` stays blocked in rule export. A static validator alone cannot prove
-runtime equivalence.
+Both source editions export these scoped expressions. The converter checks that
+sequence assignments target declared locals. It preserves the assignment inside
+a `Not[FalseQ[...]]` guard when the result uses the assigned value. A consumer
+must implement fresh symbols and the indicated evaluation order to apply these
+rules. The converter tests check the translated tree. Runtime equivalence
+requires separate tests in the consuming engine.
 
 ## Source order and identifiers
 

@@ -12,7 +12,7 @@ function unknown_heads!(heads, node, allowed)
     foreach(child -> unknown_heads!(heads, child, allowed), node[2:end])
 end
 
-function recover_profile(source, allowed; plain_steps=false, prepare_rule=identity)
+function recover_profile(source, allowed; plain_steps=false, prepare_rule=identity, lexical_modules=false)
     notebook = occursin(CELL_MARKER, source)
     blocks = notebook ? split(source, CELL_MARKER) : readlines(IOBuffer(source); keep=true)
     rows = Dict{String,Any}[]
@@ -23,8 +23,8 @@ function recover_profile(source, allowed; plain_steps=false, prepare_rule=identi
         push!(rows, row)
         expr = nothing
         try
-            compound_arguments = plain_steps && startswith(lstrip(block), "If[")
-            exprs = RubiConverter.parse_file_expressions(CELL_MARKER * String(block); compound_arguments)
+            compound_arguments = lexical_modules || plain_steps && startswith(lstrip(block), "If[")
+            exprs = RubiConverter.parse_file_expressions(CELL_MARKER * String(block); compound_arguments, postfix_factorial=lexical_modules)
             if isempty(exprs)
                 row["status"] = ordinal == 0 ? "header" : "empty"
                 continue
@@ -47,7 +47,9 @@ function recover_profile(source, allowed; plain_steps=false, prepare_rule=identi
             lhs isa RubiConverter.MFunction && lhs.head == "Int" && length(lhs.args) == 2 ||
                 error("Expected a binary Int pattern")
             prepared = prepare_rule(expr)
-            RubiConverter.validate_experimental_scope(prepared)
+            for side in prepared.args
+                RubiConverter.validate_experimental_scope(side; lexical_modules)
+            end
             rule = RubiConverter.rule_to_osr(prepared, ordinal)
             row["rule"] = rule
             unknown = Set{String}()

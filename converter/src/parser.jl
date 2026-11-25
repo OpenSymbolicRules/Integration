@@ -165,6 +165,9 @@ function parse_comparison(p::Parser)::MExpr
         advance!(p)
         right = parse_alternatives(p)
         return MFunction("Equal", [left, right])
+    elseif at(p, TOK_UNSAMEQ)
+        advance!(p)
+        return MFunction("UnsameQ", [left, parse_alternatives(p)])
     elseif at(p, TOK_NOTEQUAL)
         advance!(p)
         right = parse_alternatives(p)
@@ -178,9 +181,13 @@ function parse_comparison(p::Parser)::MExpr
         right = parse_alternatives(p)
         return MFunction("Greater", [left, right])
     elseif at(p, TOK_LESSEQUAL)
-        advance!(p)
-        right = parse_alternatives(p)
-        return MFunction("LessEqual", [left, right])
+        # Wolfram LessEqual is n-ary. Keep every operand, including both bounds.
+        operands = MExpr[left]
+        while at(p, TOK_LESSEQUAL)
+            advance!(p)
+            push!(operands, parse_alternatives(p))
+        end
+        return MFunction("LessEqual", operands)
     elseif at(p, TOK_GREATEREQUAL)
         advance!(p)
         right = parse_alternatives(p)
@@ -544,7 +551,7 @@ multiline rules and rejecting malformed or partially consumed cells. For the
 older one-expression-per-line format, preserve the existing line-based path.
 The latter still skips unparseable lines and needs a separate loss audit.
 """
-function parse_file_expressions(source::String; compound_arguments=false)::Vector{MExpr}
+function parse_file_expressions(source::String; compound_arguments=false, postfix_factorial=false)::Vector{MExpr}
     expressions = MExpr[]
 
     # Notebook-generated RUBI files delimit complete initialization cells.
@@ -554,7 +561,7 @@ function parse_file_expressions(source::String; compound_arguments=false)::Vecto
         cells = split(source, marker)
         for cell in cells[2:end]
             tokens = tokenize(cell)
-            p = Parser(tokens; compound_arguments)
+            p = Parser(tokens; compound_arguments, postfix_factorial)
             at(p, TOK_EOF) && continue
             expr = parse_expr(p)
             at(p, TOK_EOF) || throw(ParserError("Unexpected trailing tokens in code cell", current(p).line, current(p).col))
@@ -573,7 +580,7 @@ function parse_file_expressions(source::String; compound_arguments=false)::Vecto
         # Some lines have inline comments — the tokenizer handles those
         try
             tokens = tokenize(stripped)
-            p = Parser(tokens; compound_arguments)
+            p = Parser(tokens; compound_arguments, postfix_factorial)
             if !at(p, TOK_EOF)
                 expr = parse_expr(p)
                 push!(expressions, expr)

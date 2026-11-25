@@ -3,9 +3,9 @@
 For Albert D. Rich’s final release, use the [4.17.3.0 reference edition](rubi-release.md). The following inventory describes the later maintenance checkout used by existing consumers.
 
 Load the 198 files listed in `rules/meta.json`, in order, and read each
-`rules` array in order. This loads **7,209** v0.1 entries. The other 23
-files contribute 850 entries outside the default load sequence. The 7,209
-loaded entries contain 7,131 distinct JSON triples of pattern, ordered
+`rules` array in order. This loads **7,416** v0.1 entries. The other 23
+files contribute 850 entries outside the default load sequence. The 7,416
+loaded entries contain 7,333 distinct JSON triples of pattern, ordered
 constraints and result, using the same comparison as the duplicate checker.
 This comparison recognizes exact duplicates and leaves mathematical
 equivalence open. File identity
@@ -14,24 +14,41 @@ New IDs can therefore appear between smaller ones.
 
 The converter reads Git blobs at RUBI 4.17.3.0 revision
 `61e9c18ea248061cd83c67882f7c91a73cef912d`. Elementary rules are enabled.
-Of the 7,291 converted source definitions, 22 select the branch for disabled
-step display. A further 146 blocks are recorded with their source and reason
-for omission. They include local assignments, derivative applications and
-source syntax outside the supported parser. Counting both branches of a
-source conditional separately gives a different quantity. Source order also
-does not model all Wolfram Language evaluation and downvalue precedence.
+Of the 7,416 converted source definitions, 22 select the branch for disabled
+step display. A further 21 blocks are recorded with their source and reason
+for omission. The file and array order reproduces source placement.
+Wolfram Language evaluation and downvalue precedence also affect dispatch.
 
 At Integration commit `85db3b3` the default profile had 5,504 entries.
 The merge locates a unique ordered sequence matching the complete pattern,
-constraints and result of every previous rule in a section. It retains those
-entries including their IDs and provenance, then inserts intervening source
-rules in source order. Each inserted rule gets an unused local ID and a
+constraints and result of every previous rule in a section. It retains stable IDs and inserts intervening source rules in source order. Each inserted rule gets an unused local ID and a
 source locator. A locator's number is the notebook cell ordinal or, for the
 legacy line format, the source line number. It can differ from the OSR ID.
-This restored 1,704 entries across 111 sections. Three sections retain their
-previous contents because their complete sequences did not match
-(1.2.1.1, 1.2.2.3 and 4.1.7). Sections 4.1.8 and 9.1 still have zero
-converted rules.
+This restored 1,704 entries across 111 sections. All 198 loaded sections now reconcile in source order. Relative to commit
+`3d6b6b2`, the profile gained 207 entries across 35 sections. The 19 entries
+in 1.2.1.1 include the general quadratic substitutions at local IDs 18 and 19
+(upstream lines 21 and 22). Local ID 13 now carries the complete source bound
+`3 <= Denominator[p] <= 4` from line 19. The previous conversion lost the
+upper endpoint. Sections 1.2.2.3 and 4.1.7 now contain 100 and 73 entries.
+Section 4.1.8 supplies eight entries. The six converted rules in the loaded
+9.1 derivative file carry the same real-theorem references as the release.
+The two editions use identical upstream bytes for that file.
+
+The edition converter preserves initialized and uninitialized locals in
+`Module`, including locals used by nested iterators and guards. Allocate
+fresh symbols for each invocation. Keep local guards inside their binder.
+The three-argument predicate `LessEqual[3,d,4]` tests both endpoints. A host
+that implements only binary comparisons must handle the full chain or
+decline that rule. Sequential `Module` statements assign declared locals in order. In
+section 9.3, `Not[FalseQ[r=Divides[...]]]` both binds the returned value
+and tests it before the result uses it. Preserve short-circuit evaluation.
+`UnsameQ` in the normalizer guard compares expression structure. Section
+8.6 dynamically binds `$UseGamma` during recursive integration.
+Counting both step-display branches yields 7,453 upstream `Int`
+definitions. With step display disabled, 22 alternative branches drop out.
+The other 15 omissions are all in section 9.1. The ledger also retains
+five helper definitions and one initialization. See the [release coverage](rubi-release.md) and
+[unresolved exponential helpers in the maintenance tree](../upstream-bugs.md).
 
 A consumer needs the semantics of every operation and predicate in a rule.
 For example, the recovered sums rule uses `SumQ[u]` and calls RUBI's
@@ -80,7 +97,7 @@ python3 scripts/check_show_steps.py vendor/Rubi /tmp/rubi-source rules
 python3 scripts/check_expanded_profile.py /tmp/rubi-expanded rules
 ```
 
-The first directory contains a separate v0.1 manifest with 7,291 entries,
+The first directory contains a separate v0.1 manifest with 7,416 entries,
 source-based IDs and a coverage file with SHA-256 digests and omitted source
 blocks for every file. Its count overlaps the default profile. The second
 directory contains the default manifest and its loaded files, preserving

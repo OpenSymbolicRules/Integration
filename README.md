@@ -6,11 +6,11 @@
 
 Start with [Albert D. Rich’s final Rubi 4.17.3.0 release](docs/rubi-release.md).
 Its [ordered OSR manifest](editions/rubi-4.17.3.0/rules/meta.json) contains
-**7,255 converted entries in 198 sections**. Apply the
+**7,373 converted entries in 198 sections**. Apply the
 [release errata](editions/rubi-4.17.3.0/errata.json) when enabling rules.
 [Post-release open-source CAS additions](docs/post-rubi.md) have independent provenance.
 
-The [compatibility profile](docs/source-edition.md) loads 7,209 entries from
+The [compatibility profile](docs/source-edition.md) loads 7,416 entries from
 a later Rubi maintenance revision. The 72,254 distributed integration test
 problems have a [separate upstream revision and conversion record](docs/fixture-fidelity.md). See the
 [known conversion issues](docs/known-issues.md).
@@ -35,7 +35,7 @@ Lean (`OpenSymbolicRules/Lean`) and tracked by
 (157 certified), 365 have counterexamples, 2,184 are unproved and 169 are
 unsupported. The report also lists 529 source identities considered for
 migration. The v1 catalogue includes 1,025 strengthened variants and four
-generalized variants. The default v0.1 manifest counts 7,209 source entries.
+generalized variants. The default v0.1 manifest counts 7,416 source entries.
 Run `just source-status` to compare their original identities with v1.
 See [the v1 migration notes](docs/osr-v1.md).
 Independently proved derived generalizations of 1.1.3.4 #16, #27, #28 and #29
@@ -71,7 +71,7 @@ semantics, not a preferred algorithm or fallback order.
 The format covers:
 
 - **Rules**: pattern + constraints + result, with wildcard and predicate
-  support (8,059 entries in 221 files, including duplicates and empty sections)
+  support (8,266 entries in 221 files, including duplicates and empty sections)
 - **Test fixtures**: integrand + variable + optimal antiderivative +
   expected step count (72,254 tests in 215 files)
 - **Taxonomy**: RUBI's exact 9-section hierarchy
@@ -149,7 +149,7 @@ julia --project=converter converter/scripts/convert.jl --manifest
 
 | Artifact | Directory | Files | Items |
 |----------|-----------|-------|-------|
-| Rules | `rules/` | 221 | 8,059 entries; the conversion is incomplete |
+| Rules | `rules/` | 221 | 8,266 entries; the conversion is incomplete |
 | Tests | `tests/` | 215 | 72,254 test problems |
 | Manifest | `rules/meta.json` | 1 | load_order + counts |
 

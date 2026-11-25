@@ -661,6 +661,178 @@
                     [
                         "List",
                         "F",
+                        "c",
+                        "m"
+                    ],
+                    "x"
+                ],
+                [
+                    "PolynomialQ",
+                    "w",
+                    "x"
+                ],
+                [
+                    "LinearQ",
+                    "v",
+                    "x"
+                ],
+                [
+                    "PowerOfLinearQ",
+                    "u",
+                    "x"
+                ],
+                [
+                    "Not",
+                    [
+                        "IntegerQ",
+                        "m"
+                    ]
+                ]
+            ],
+            "id": 107,
+            "result": [
+                "Module",
+                [
+                    "List",
+                    [
+                        "Set",
+                        "uu",
+                        [
+                            "NormalizePowerOfLinear",
+                            "u",
+                            "x"
+                        ]
+                    ],
+                    "z"
+                ],
+                [
+                    "CompoundExpression",
+                    [
+                        "Set",
+                        "z",
+                        [
+                            "If",
+                            [
+                                "And",
+                                [
+                                    "PowerQ",
+                                    "uu"
+                                ],
+                                [
+                                    "FreeQ",
+                                    [
+                                        "Part",
+                                        "uu",
+                                        2
+                                    ],
+                                    "x"
+                                ]
+                            ],
+                            [
+                                "Power",
+                                [
+                                    "Part",
+                                    "uu",
+                                    1
+                                ],
+                                [
+                                    "Multiply",
+                                    "m",
+                                    [
+                                        "Part",
+                                        "uu",
+                                        2
+                                    ]
+                                ]
+                            ],
+                            [
+                                "Power",
+                                "uu",
+                                "m"
+                            ]
+                        ]
+                    ],
+                    [
+                        "Multiply",
+                        [
+                            "Power",
+                            "uu",
+                            "m"
+                        ],
+                        [
+                            "Power",
+                            "z",
+                            -1
+                        ],
+                        [
+                            "Int",
+                            [
+                                "ExpandIntegrand",
+                                [
+                                    "Multiply",
+                                    "w",
+                                    "z",
+                                    [
+                                        "Power",
+                                        "F",
+                                        [
+                                            "Multiply",
+                                            "c",
+                                            [
+                                                "ExpandToSum",
+                                                "v",
+                                                "x"
+                                            ]
+                                        ]
+                                    ]
+                                ],
+                                "x"
+                            ],
+                            "x"
+                        ]
+                    ]
+                ]
+            ],
+            "pattern": [
+                "Int",
+                [
+                    "Multiply",
+                    "w_",
+                    [
+                        "Power",
+                        "u_",
+                        "m."
+                    ],
+                    [
+                        "Power",
+                        "F_",
+                        [
+                            "Multiply",
+                            "c.",
+                            "v_"
+                        ]
+                    ]
+                ],
+                "x_symbol"
+            ],
+            "provenance": {
+                "method": "converted",
+                "sources": [
+                    {
+                        "version": "4.17.3.0",
+                        "name": "Rubi",
+                        "locator": "2 Exponentials/2.3 Miscellaneous exponentials.m#10"
+                    }
+                ]
+            }
+        },
+        {
+            "constraints": [
+                [
+                    "FreeQ",
+                    [
+                        "List",
+                        "F",
                         "a",
                         "b",
                         "c",
@@ -20531,7 +20703,15 @@
         "Dist": "openmath:osr#Dist",
         "F": "openmath:osr#F",
         "Denominator": "openmath:osr#Denominator",
-        "FunctionOfExponential": "openmath:osr#FunctionOfExponential"
+        "FunctionOfExponential": "openmath:osr#FunctionOfExponential",
+        "If": "openmath:osr#If",
+        "PowerQ": "openmath:osr#PowerQ",
+        "Part": "openmath:osr#Part",
+        "CompoundExpression": "openmath:osr#CompoundExpression",
+        "And": "openmath:osr#And",
+        "Module": "openmath:osr#Module",
+        "FreeQ": "openmath:osr#FreeQ",
+        "Set": "openmath:osr#Set"
     },
     "identity": "rubi:2 Exponentials/2.3 Miscellaneous exponentials",
     "$schema": "open-symbolic-rules/v0.1"

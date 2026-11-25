@@ -206,7 +206,7 @@
         "9-miscellaneous/9.3-Miscellaneous-integration-rules.json"
     ],
     "domain": "integration",
-    "rule_count": 7255,
+    "rule_count": 7373,
     "title": "RUBI integration rules in pinned source order",
     "utility_functions": [
         "NormalizeIntegrand",
@@ -520,6 +520,11 @@
             "semantics": "Wolfram ArcTan[x,y], with horizontal coordinate x and vertical coordinate y. The reviewed OpenMath interpretation (openmath:transc2#arctan) is the principal angle for real coordinates away from the origin. For complex or unknown coordinates preserve the source call unless the host supports the Wolfram branch convention."
         },
         {
+            "name": "Binomial",
+            "arity": 2,
+            "semantics": "Wolfram Language built-in as used in the source: https://reference.wolfram.com/language/ref/Binomial.html. Decline the rule if unsupported."
+        },
+        {
             "name": "Block",
             "arity": 2,
             "semantics": "Wolfram Language built-in as used in the source: https://reference.wolfram.com/language/ref/Block.html. Decline the rule if unsupported."
@@ -550,6 +555,11 @@
             "semantics": "Wolfram Language built-in as used in the source: https://reference.wolfram.com/language/ref/Discriminant.html. Decline the rule if unsupported."
         },
         {
+            "name": "Divides",
+            "arity": 3,
+            "semantics": "Implement the Divides definitions in Rubi/IntegrationUtilityFunctions.m at f7fa0fd7bfacd326bc9e125473c5bad41cfad4e4, with step display disabled. Decline the rule if unsupported."
+        },
+        {
             "name": "EulerIntegrandQ",
             "arity": 2,
             "semantics": "Implement the EulerIntegrandQ definitions in Rubi/IntegrationUtilityFunctions.m at f7fa0fd7bfacd326bc9e125473c5bad41cfad4e4, with step display disabled. Decline the rule if unsupported."
@@ -558,6 +568,16 @@
             "name": "ExpandExpression",
             "arity": 2,
             "semantics": "Implement the ExpandExpression definitions in Rubi/IntegrationUtilityFunctions.m at f7fa0fd7bfacd326bc9e125473c5bad41cfad4e4, with step display disabled. Decline the rule if unsupported."
+        },
+        {
+            "name": "Factorial",
+            "arity": 1,
+            "semantics": "Wolfram Language built-in as used in the source: https://reference.wolfram.com/language/ref/Factorial.html. Decline the rule if unsupported."
+        },
+        {
+            "name": "Floor",
+            "arity": 1,
+            "semantics": "Wolfram Language built-in as used in the source: https://reference.wolfram.com/language/ref/Floor.html. Decline the rule if unsupported."
         },
         {
             "name": "FractionalPowerFactorQ",
@@ -632,7 +652,7 @@
         {
             "name": "Module",
             "arity": 2,
-            "semantics": "Wolfram Language built-in as used in the source: https://reference.wolfram.com/language/ref/Module.html. Decline the rule if unsupported."
+            "semantics": "Wolfram Module[locals,body]. Create fresh symbols for each invocation, initialize declared values in the enclosing scope and preserve the scope of nested guards and iterators. Decline if unsupported: https://reference.wolfram.com/language/ref/Module.html"
         },
         {
             "name": "MonomialQ",
@@ -658,6 +678,11 @@
             "name": "PiecewiseLinearQ",
             "arity": "2, 3",
             "semantics": "Implement the PiecewiseLinearQ definitions in Rubi/IntegrationUtilityFunctions.m at f7fa0fd7bfacd326bc9e125473c5bad41cfad4e4, with step display disabled. Decline the rule if unsupported."
+        },
+        {
+            "name": "PolyGCD",
+            "arity": 3,
+            "semantics": "Implement the PolyGCD definitions in Rubi/IntegrationUtilityFunctions.m at f7fa0fd7bfacd326bc9e125473c5bad41cfad4e4, with step display disabled. Decline the rule if unsupported."
         },
         {
             "name": "PolynomialInQ",
@@ -718,6 +743,11 @@
             "name": "TryPureTanSubst",
             "arity": 2,
             "semantics": "Implement the TryPureTanSubst definitions in Rubi/IntegrationUtilityFunctions.m at f7fa0fd7bfacd326bc9e125473c5bad41cfad4e4, with step display disabled. Decline the rule if unsupported."
+        },
+        {
+            "name": "UnsameQ",
+            "arity": 2,
+            "semantics": "Wolfram Language built-in as used in the source: https://reference.wolfram.com/language/ref/UnsameQ.html. Decline the rule if unsupported."
         }
     ],
     "license": "MIT",

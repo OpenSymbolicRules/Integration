@@ -994,6 +994,232 @@
                         "n"
                     ],
                     "x"
+                ],
+                [
+                    "Or",
+                    [
+                        "Or",
+                        [
+                            "IGtQ",
+                            "m",
+                            0
+                        ],
+                        [
+                            "IGtQ",
+                            "n",
+                            0
+                        ]
+                    ],
+                    [
+                        "IntegersQ",
+                        "m",
+                        "n"
+                    ]
+                ],
+                [
+                    "NeQ",
+                    "m",
+                    -1
+                ]
+            ],
+            "id": 23,
+            "result": [
+                "Block",
+                [
+                    "List",
+                    [
+                        "Set",
+                        "$UseGamma",
+                        "True"
+                    ]
+                ],
+                [
+                    "Add",
+                    [
+                        "Multiply",
+                        [
+                            "Power",
+                            [
+                                "Add",
+                                "c",
+                                [
+                                    "Multiply",
+                                    "d",
+                                    "x"
+                                ]
+                            ],
+                            [
+                                "Add",
+                                "m",
+                                1
+                            ]
+                        ],
+                        [
+                            "Gamma",
+                            "n",
+                            [
+                                "Add",
+                                "a",
+                                [
+                                    "Multiply",
+                                    "b",
+                                    "x"
+                                ]
+                            ]
+                        ],
+                        [
+                            "Power",
+                            [
+                                "Multiply",
+                                "d",
+                                [
+                                    "Add",
+                                    "m",
+                                    1
+                                ]
+                            ],
+                            -1
+                        ]
+                    ],
+                    [
+                        "Multiply",
+                        "b",
+                        [
+                            "Power",
+                            [
+                                "Multiply",
+                                "d",
+                                [
+                                    "Add",
+                                    "m",
+                                    1
+                                ]
+                            ],
+                            -1
+                        ],
+                        [
+                            "Int",
+                            [
+                                "Multiply",
+                                [
+                                    "Power",
+                                    [
+                                        "Add",
+                                        "c",
+                                        [
+                                            "Multiply",
+                                            "d",
+                                            "x"
+                                        ]
+                                    ],
+                                    [
+                                        "Add",
+                                        "m",
+                                        1
+                                    ]
+                                ],
+                                [
+                                    "Power",
+                                    [
+                                        "Add",
+                                        "a",
+                                        [
+                                            "Multiply",
+                                            "b",
+                                            "x"
+                                        ]
+                                    ],
+                                    [
+                                        "Add",
+                                        "n",
+                                        [
+                                            "Multiply",
+                                            -1,
+                                            1
+                                        ]
+                                    ]
+                                ],
+                                [
+                                    "Power",
+                                    [
+                                        "Power",
+                                        "E",
+                                        [
+                                            "Add",
+                                            "a",
+                                            [
+                                                "Multiply",
+                                                "b",
+                                                "x"
+                                            ]
+                                        ]
+                                    ],
+                                    -1
+                                ]
+                            ],
+                            "x"
+                        ]
+                    ]
+                ]
+            ],
+            "pattern": [
+                "Int",
+                [
+                    "Multiply",
+                    [
+                        "Power",
+                        [
+                            "Add",
+                            "c.",
+                            [
+                                "Multiply",
+                                "d.",
+                                "x_"
+                            ]
+                        ],
+                        "m."
+                    ],
+                    [
+                        "Gamma",
+                        "n_",
+                        [
+                            "Add",
+                            "a.",
+                            [
+                                "Multiply",
+                                "b.",
+                                "x_"
+                            ]
+                        ]
+                    ]
+                ],
+                "x_symbol"
+            ],
+            "provenance": {
+                "method": "converted",
+                "sources": [
+                    {
+                        "version": "4.17.3.0",
+                        "name": "Rubi",
+                        "locator": "8 Special functions/8.6 Gamma functions.m#13"
+                    }
+                ]
+            }
+        },
+        {
+            "constraints": [
+                [
+                    "FreeQ",
+                    [
+                        "List",
+                        "a",
+                        "b",
+                        "c",
+                        "d",
+                        "m",
+                        "n"
+                    ],
+                    "x"
                 ]
             ],
             "id": 9,
@@ -1984,6 +2210,105 @@
                         "a",
                         "b",
                         "c",
+                        "n"
+                    ],
+                    "x"
+                ],
+                [
+                    "EqQ",
+                    "c",
+                    [
+                        "Add",
+                        "a",
+                        1
+                    ]
+                ]
+            ],
+            "id": 24,
+            "result": [
+                "Multiply",
+                [
+                    "Power",
+                    [
+                        "Factorial",
+                        [
+                            "Add",
+                            "a",
+                            [
+                                "Multiply",
+                                "b",
+                                "x"
+                            ]
+                        ]
+                    ],
+                    "n"
+                ],
+                [
+                    "Power",
+                    [
+                        "Multiply",
+                        "b",
+                        "n"
+                    ],
+                    -1
+                ]
+            ],
+            "pattern": [
+                "Int",
+                [
+                    "Multiply",
+                    [
+                        "Power",
+                        [
+                            "Factorial",
+                            [
+                                "Add",
+                                "a.",
+                                [
+                                    "Multiply",
+                                    "b.",
+                                    "x_"
+                                ]
+                            ]
+                        ],
+                        "n."
+                    ],
+                    [
+                        "PolyGamma",
+                        0,
+                        [
+                            "Add",
+                            "c.",
+                            [
+                                "Multiply",
+                                "b.",
+                                "x_"
+                            ]
+                        ]
+                    ]
+                ],
+                "x_symbol"
+            ],
+            "provenance": {
+                "method": "converted",
+                "sources": [
+                    {
+                        "version": "4.17.3.0",
+                        "name": "Rubi",
+                        "locator": "8 Special functions/8.6 Gamma functions.m#23"
+                    }
+                ]
+            }
+        },
+        {
+            "constraints": [
+                [
+                    "FreeQ",
+                    [
+                        "List",
+                        "a",
+                        "b",
+                        "c",
                         "d",
                         "n",
                         "p"
@@ -2834,7 +3159,10 @@
         "LogGamma": "openmath:osr#LogGamma",
         "HypergeometricPFQ": "openmath:osr#HypergeometricPFQ",
         "Subst": "openmath:osr#Subst",
-        "Add": "openmath:arith1#plus"
+        "Add": "openmath:arith1#plus",
+        "Factorial": "openmath:osr#Factorial",
+        "Set": "openmath:osr#Set",
+        "Block": "openmath:osr#Block"
     },
     "identity": "rubi:8 Special functions/8.6 Gamma functions",
     "$schema": "open-symbolic-rules/v0.1"

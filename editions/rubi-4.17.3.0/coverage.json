@@ -99,18 +99,8 @@
             "path": "1-algebraic/1.1-binomial/1.1.2-quadratic/1.1.2.8-(e-x)^m-(c+d-x)^n-(a+b-x^2)^p.json",
             "source_path": "1 Algebraic functions/1.1 Binomial products/1.1.2 Quadratic/1.1.2.8 (e x)^m (c+d x)^n (a+b x^2)^p.m",
             "sha256": "6c4751d9eee7ffa9ab1899e08b7db3a736a5b31325e0f173ed1dd335dc7d5e5a",
-            "converted": 121,
+            "converted": 123,
             "omitted": [
-                {
-                    "ordinal": 28,
-                    "reason": "Unsupported assignment or local scope outside With",
-                    "source": "(* ::Code:: *)\r\nInt[x_^m_.*(c_+d_.*x_)^n_*(a_+b_.*x_^2)^p_,x_Symbol] :=\r\n  Module[{k},\r\n  Int[x^m*Sum[Binomial[n,2*k]*c^(n-2*k)*d^(2*k)*x^(2*k),{k,0,n/2}]*(a+b*x^2)^p,x] + \r\n  Int[x^(m+1)*Sum[Binomial[n,2*k+1]*c^(n-2*k-1)*d^(2*k+1)*x^(2*k),{k,0,(n-1)/2}]*(a+b*x^2)^p,x]] /;\r\nFreeQ[{a,b,c,d,p},x] && IGtQ[n,1] && IntegerQ[m] && Not[IntegerQ[2*p]] && Not[EqQ[m,1] && EqQ[b*c^2+a*d^2,0]]\r\n\r\n\r\n"
-                },
-                {
-                    "ordinal": 46,
-                    "reason": "Unsupported assignment or local scope outside With",
-                    "source": "(* ::Code:: *)\r\nInt[(e_.*x_)^m_*(c_+d_.*x_)^n_*(a_+b_.*x_^2)^p_,x_Symbol] :=\r\n  Module[{k},\r\n  Int[(e*x)^m*Sum[Binomial[n,2*k]*c^(n-2*k)*d^(2*k)*x^(2*k),{k,0,n/2}]*(a+b*x^2)^p,x] + \r\n  1/e \\[Star] Int[(e*x)^(m+1)*Sum[Binomial[n,2*k+1]*c^(n-2*k-1)*d^(2*k+1)*x^(2*k),{k,0,(n-1)/2}]*(a+b*x^2)^p,x]] /;\r\nFreeQ[{a,b,c,d,e,p},x] && IGtQ[n,1] && Not[IntegerQ[m]] && EqQ[m+n+2*p+1,0]\r\n\r\n\r\n"
-                }
             ]
         },
         {
@@ -125,56 +115,16 @@
             "path": "1-algebraic/1.1-binomial/1.1.3-general/1.1.3.1-(a+b-x^n)^p.json",
             "source_path": "1 Algebraic functions/1.1 Binomial products/1.1.3 General/1.1.3.1 (a+b x^n)^p.m",
             "sha256": "0ee5487120f302173666f44e9c8928a6f11d4867930bb752bd414031ef51836e",
-            "converted": 43,
+            "converted": 47,
             "omitted": [
-                {
-                    "ordinal": 8,
-                    "reason": "RubiConverter.ParserError(\"Expected TOK_RBRACKET, got TOK_SEMICOLON (';')\", 4, 77)",
-                    "source": "(* ::Code:: *)\r\nInt[1/(a_+b_.*x_^n_),x_Symbol] :=\r\n  Module[{r=Numerator[Rt[a/b,n]], s=Denominator[Rt[a/b,n]], k, u},\r\n  u=Int[(r-s*Cos[(2*k-1)*Pi/n]*x)/(r^2-2*r*s*Cos[(2*k-1)*Pi/n]*x+s^2*x^2),x];\r\n  r/(a*n) \\[Star] Int[1/(r+s*x),x] + 2*r/(a*n) \\[Star] Sum[u,{k,1,(n-1)/2}]] /;\r\nFreeQ[{a,b},x] && IGtQ[(n-3)/2,0] && PosQ[a/b]\r\n\r\n\r\n"
-                },
-                {
-                    "ordinal": 9,
-                    "reason": "RubiConverter.ParserError(\"Expected TOK_RBRACKET, got TOK_SEMICOLON (';')\", 4, 77)",
-                    "source": "(* ::Code:: *)\r\nInt[1/(a_+b_.*x_^n_),x_Symbol] :=\r\n  Module[{r=Numerator[Rt[-a/b,n]], s=Denominator[Rt[-a/b,n]], k, u},\r\n  u=Int[(r+s*Cos[(2*k-1)*Pi/n]*x)/(r^2+2*r*s*Cos[(2*k-1)*Pi/n]*x+s^2*x^2),x];\r\n  r/(a*n) \\[Star] Int[1/(r-s*x),x] + 2*r/(a*n) \\[Star] Sum[u,{k,1,(n-1)/2}]] /;\r\nFreeQ[{a,b},x] && IGtQ[(n-3)/2,0] && NegQ[a/b]\r\n\r\n\r\n"
-                },
-                {
-                    "ordinal": 10,
-                    "reason": "RubiConverter.ParserError(\"Expected TOK_RBRACKET, got TOK_SEMICOLON (';')\", 5, 77)",
-                    "source": "(* ::Code:: *)\r\nInt[1/(a_+b_.*x_^n_),x_Symbol] :=\r\n  Module[{r=Numerator[Rt[a/b,n]], s=Denominator[Rt[a/b,n]], k, u, v},\r\n  u=Int[(r-s*Cos[(2*k-1)*Pi/n]*x)/(r^2-2*r*s*Cos[(2*k-1)*Pi/n]*x+s^2*x^2),x] + \r\n    Int[(r+s*Cos[(2*k-1)*Pi/n]*x)/(r^2+2*r*s*Cos[(2*k-1)*Pi/n]*x+s^2*x^2),x];\r\n  2*r^2/(a*n) \\[Star] Int[1/(r^2+s^2*x^2),x] + 2*r/(a*n) \\[Star] Sum[u,{k,1,(n-2)/4}]] /;\r\nFreeQ[{a,b},x] && IGtQ[(n-2)/4,0] && PosQ[a/b]\r\n\r\n\r\n"
-                },
-                {
-                    "ordinal": 11,
-                    "reason": "RubiConverter.ParserError(\"Expected TOK_RBRACKET, got TOK_SEMICOLON (';')\", 5, 73)",
-                    "source": "(* ::Code:: *)\r\nInt[1/(a_+b_.*x_^n_),x_Symbol] :=\r\n  Module[{r=Numerator[Rt[-a/b,n]], s=Denominator[Rt[-a/b,n]], k, u},\r\n  u=Int[(r-s*Cos[(2*k*Pi)/n]*x)/(r^2-2*r*s*Cos[(2*k*Pi)/n]*x+s^2*x^2),x] + \r\n    Int[(r+s*Cos[(2*k*Pi)/n]*x)/(r^2+2*r*s*Cos[(2*k*Pi)/n]*x+s^2*x^2),x];\r\n  2*r^2/(a*n) \\[Star] Int[1/(r^2-s^2*x^2),x] + 2*r/(a*n) \\[Star] Sum[u,{k,1,(n-2)/4}]] /;\r\nFreeQ[{a,b},x] && IGtQ[(n-2)/4,0] && NegQ[a/b]\r\n\r\n\r\n"
-                }
             ]
         },
         {
             "path": "1-algebraic/1.1-binomial/1.1.3-general/1.1.3.2-(c-x)^m-(a+b-x^n)^p.json",
             "source_path": "1 Algebraic functions/1.1 Binomial products/1.1.3 General/1.1.3.2 (c x)^m (a+b x^n)^p.m",
             "sha256": "3d2e0d6a213f916026716e4b84813399a49475f825307197270bd7ca27323b56",
-            "converted": 102,
+            "converted": 106,
             "omitted": [
-                {
-                    "ordinal": 35,
-                    "reason": "RubiConverter.ParserError(\"Expected TOK_RBRACKET, got TOK_SEMICOLON (';')\", 4, 103)",
-                    "source": "(* ::Code:: *)\r\nInt[x_^m_./(a_+b_.*x_^n_),x_Symbol] :=\r\n  Module[{r=Numerator[Rt[a/b,n]], s=Denominator[Rt[a/b,n]], k, u},\r\n  u=Int[(r*Cos[(2*k-1)*m*Pi/n]-s*Cos[(2*k-1)*(m+1)*Pi/n]*x)/(r^2-2*r*s*Cos[(2*k-1)*Pi/n]*x+s^2*x^2),x];\r\n  -(-r)^(m+1)/(a*n*s^m) \\[Star] Int[1/(r+s*x),x] + 2*r^(m+1)/(a*n*s^m) \\[Star] Sum[u,{k,1,(n-1)/2}]] /;\r\nFreeQ[{a,b},x] && IGtQ[(n-1)/2,0] && IGtQ[m,0] && LtQ[m,n-1] && PosQ[a/b]\r\n\r\n\r\n"
-                },
-                {
-                    "ordinal": 36,
-                    "reason": "RubiConverter.ParserError(\"Expected TOK_RBRACKET, got TOK_SEMICOLON (';')\", 4, 103)",
-                    "source": "(* ::Code:: *)\r\nInt[x_^m_./(a_+b_.*x_^n_),x_Symbol] :=\r\n  Module[{r=Numerator[Rt[-a/b,n]], s=Denominator[Rt[-a/b,n]], k, u},\r\n  u=Int[(r*Cos[(2*k-1)*m*Pi/n]+s*Cos[(2*k-1)*(m+1)*Pi/n]*x)/(r^2+2*r*s*Cos[(2*k-1)*Pi/n]*x+s^2*x^2),x];\r\n  r^(m+1)/(a*n*s^m) \\[Star] Int[1/(r-s*x),x] - 2*(-r)^(m+1)/(a*n*s^m) \\[Star] Sum[u,{k,1,(n-1)/2}]] /;\r\nFreeQ[{a,b},x] && IGtQ[(n-1)/2,0] && IGtQ[m,0] && LtQ[m,n-1] && NegQ[a/b]\r\n\r\n\r\n"
-                },
-                {
-                    "ordinal": 37,
-                    "reason": "RubiConverter.ParserError(\"Expected TOK_RBRACKET, got TOK_SEMICOLON (';')\", 5, 103)",
-                    "source": "(* ::Code:: *)\r\nInt[x_^m_./(a_+b_.*x_^n_),x_Symbol] :=\r\n  Module[{r=Numerator[Rt[a/b,n]], s=Denominator[Rt[a/b,n]], k, u},\r\n  u=Int[(r*Cos[(2*k-1)*m*Pi/n]-s*Cos[(2*k-1)*(m+1)*Pi/n]*x)/(r^2-2*r*s*Cos[(2*k-1)*Pi/n]*x+s^2*x^2),x] + \r\n    Int[(r*Cos[(2*k-1)*m*Pi/n]+s*Cos[(2*k-1)*(m+1)*Pi/n]*x)/(r^2+2*r*s*Cos[(2*k-1)*Pi/n]*x+s^2*x^2),x];\r\n  2*(-1)^(m/2)*r^(m+2)/(a*n*s^m) \\[Star] Int[1/(r^2+s^2*x^2),x] + 2*r^(m+1)/(a*n*s^m) \\[Star] Sum[u,{k,1,(n-2)/4}]] /;\r\n FreeQ[{a,b},x] && IGtQ[(n-2)/4,0] && IGtQ[m,0] && LtQ[m,n-1] && PosQ[a/b]\r\n\r\n\r\n"
-                },
-                {
-                    "ordinal": 38,
-                    "reason": "RubiConverter.ParserError(\"Expected TOK_RBRACKET, got TOK_SEMICOLON (';')\", 5, 91)",
-                    "source": "(* ::Code:: *)\r\nInt[x_^m_./(a_+b_.*x_^n_),x_Symbol] :=\r\n  Module[{r=Numerator[Rt[-a/b,n]], s=Denominator[Rt[-a/b,n]], k, u},\r\n  u=Int[(r*Cos[2*k*m*Pi/n]-s*Cos[2*k*(m+1)*Pi/n]*x)/(r^2-2*r*s*Cos[2*k*Pi/n]*x+s^2*x^2),x] + \r\n    Int[(r*Cos[2*k*m*Pi/n]+s*Cos[2*k*(m+1)*Pi/n]*x)/(r^2+2*r*s*Cos[2*k*Pi/n]*x+s^2*x^2),x];\r\n  2*r^(m+2)/(a*n*s^m) \\[Star] Int[1/(r^2-s^2*x^2),x] + 2*r^(m+1)/(a*n*s^m) \\[Star] Sum[u,{k,1,(n-2)/4}]] /;\r\n FreeQ[{a,b},x] && IGtQ[(n-2)/4,0] && IGtQ[m,0] && LtQ[m,n-1] && NegQ[a/b]\r\n\r\n\r\n"
-                },
                 {
                     "ordinal": 107,
                     "reason": "Expected a binary Int pattern",
@@ -289,18 +239,8 @@
             "path": "1-algebraic/1.2-trinomial/1.2.2-quartic/1.2.2.3-(d+e-x^2)^q-(a+b-x^2+c-x^4)^p.json",
             "source_path": "1 Algebraic functions/1.2 Trinomial products/1.2.2 Quartic/1.2.2.3 (d+e x^2)^q (a+b x^2+c x^4)^p.m",
             "sha256": "89eed69df5d96a602114ed88ae1c74272f6d57a7e68013e535786f22989fc5f1",
-            "converted": 107,
+            "converted": 109,
             "omitted": [
-                {
-                    "ordinal": 99,
-                    "reason": "Unsupported assignment or local scope outside With",
-                    "source": "(* ::Code:: *)\r\nInt[(d_+e_.*x_^2)^q_*(a_+b_.*x_^2+c_.*x_^4)^p_,x_Symbol] :=\r\n  Module[{aa,bb,cc},\r\n  Int[ReplaceAll[ExpandIntegrand[1/Sqrt[aa+bb*x^2+cc*x^4],(d+e*x^2)^q*(aa+bb*x^2+cc*x^4)^(p+1/2),x],{aa->a,bb->b,cc->c}],x]] /;\r\nFreeQ[{a,b,c,d,e},x] && NeQ[b^2-4*a*c,0] && NeQ[c*d^2-b*d*e+a*e^2,0] && ILtQ[q,0] && IntegerQ[p+1/2]\r\n\r\n\r\n"
-                },
-                {
-                    "ordinal": 100,
-                    "reason": "Unsupported assignment or local scope outside With",
-                    "source": "(* ::Code:: *)\r\nInt[(d_+e_.*x_^2)^q_*(a_+c_.*x_^4)^p_,x_Symbol] :=\r\n  Module[{aa,cc},\r\n  Int[ReplaceAll[ExpandIntegrand[1/Sqrt[aa+cc*x^4],(d+e*x^2)^q*(aa+cc*x^4)^(p+1/2),x],{aa->a,cc->c}],x]] /;\r\nFreeQ[{a,c,d,e},x] && NeQ[c*d^2+a*e^2,0] && ILtQ[q,0] && IntegerQ[p+1/2]\r\n\r\n\r\n"
-                }
             ]
         },
         {
@@ -403,13 +343,8 @@
             "path": "1-algebraic/1.4-miscellaneous/1.4.1-Algebraic-function-simplification.json",
             "source_path": "1 Algebraic functions/1.4 Miscellaneous/1.4.1 Algebraic function simplification.m",
             "sha256": "d9dea748493ced4e73dd409cc6bcd0c1e78d5f8fdf0091c5dd70c42593e29d76",
-            "converted": 68,
+            "converted": 69,
             "omitted": [
-                {
-                    "ordinal": 29,
-                    "reason": "Unsupported assignment or local scope outside With",
-                    "source": "(* ::Code:: *)\r\nInt[Qr_*(a_.+b_.*Pq_^n_.+c_.*Pq_^n2_.)^p_.,x_Symbol] :=\r\n  Module[{q=Expon[Pq,x],r=Expon[Qr,x]},\r\n  Coeff[Qr,x,r]/(q*Coeff[Pq,x,q]) \\[Star] Subst[Int[(a+b*x^n+c*x^(2*n))^p,x],x,Pq] /;\r\n EqQ[r,q-1] && EqQ[Coeff[Qr,x,r]*D[Pq,x],q*Coeff[Pq,x,q]*Qr]] /;\r\nFreeQ[{a,b,c,n,p},x] && EqQ[n2,2*n] && PolyQ[Pq,x] && PolyQ[Qr,x]\r\n\r\n\r\n"
-                }
             ]
         },
         {
@@ -464,13 +399,8 @@
             "path": "1-algebraic/1.2-trinomial/1.2.1-quadratic/1.2.1.7-P(x)-(d+e-x)^m-(a+b-x+c-x^2)^p.json",
             "source_path": "1 Algebraic functions/1.2 Trinomial products/1.2.1 Quadratic/1.2.1.7 P(x) (d+e x)^m (a+b x+c x^2)^p.m",
             "sha256": "65698a16c0e508afce06d90a745af37b13ab4a796e9446da55fa22b214b0337e",
-            "converted": 32,
+            "converted": 33,
             "omitted": [
-                {
-                    "ordinal": 29,
-                    "reason": "Unsupported assignment or local scope outside With",
-                    "source": "(* ::Code:: *)\r\nInt[x_^m_.*Pq_*(a_+b_.*x_^2)^p_,x_Symbol] :=\r\n  Module[{q=Expon[Pq,x],k},\r\n  Int[x^m*Sum[Coeff[Pq,x,2*k]*x^(2*k),{k,0,q/2}]*(a+b*x^2)^p,x] + \r\n  Int[x^(m+1)*Sum[Coeff[Pq,x,2*k+1]*x^(2*k),{k,0,(q-1)/2}]*(a+b*x^2)^p,x]] /;\r\nFreeQ[{a,b,p},x] && PolyQ[Pq,x] && Not[PolyQ[Pq,x^2]] && IGtQ[m,-2] && Not[IntegerQ[2*p]]\r\n\r\n\r\n"
-                }
             ]
         },
         {
@@ -485,54 +415,24 @@
             "path": "1-algebraic/1.2-trinomial/1.2.2-quartic/1.2.2.6-P(x)-(d-x)^m-(a+b-x^2+c-x^4)^p.json",
             "source_path": "1 Algebraic functions/1.2 Trinomial products/1.2.2 Quartic/1.2.2.6 P(x) (d x)^m (a+b x^2+c x^4)^p.m",
             "sha256": "17b02d64216f9c5c24ebe33b8c4a6344108af0fe9780cabd73e9d87b0be16ea2",
-            "converted": 6,
+            "converted": 7,
             "omitted": [
-                {
-                    "ordinal": 1,
-                    "reason": "Unsupported assignment or local scope outside With",
-                    "source": "(* ::Code:: *)\r\nInt[Pq_*(d_.*x_)^m_.*(a_+b_.*x_^2+c_.*x_^4)^p_,x_Symbol] :=\r\n  Module[{q=Expon[Pq,x],k},\r\n  Int[Sum[Coeff[Pq,x,2*k]*x^(2*k),{k,0,q/2+1}]*(d*x)^m*(a+b*x^2+c*x^4)^p,x] + \r\n  1/d \\[Star] Int[Sum[Coeff[Pq,x,2*k+1]*x^(2*k),{k,0,(q+1)/2}]*(d*x)^(m+1)*(a+b*x^2+c*x^4)^p,x]] /;\r\nFreeQ[{a,b,c,d,m,p},x] && PolyQ[Pq,x] && Not[PolyQ[Pq,x^2]]\r\n\r\n\r\n"
-                }
             ]
         },
         {
             "path": "1-algebraic/1.2-trinomial/1.2.2-quartic/1.2.2.5-P(x)-(a+b-x^2+c-x^4)^p.json",
             "source_path": "1 Algebraic functions/1.2 Trinomial products/1.2.2 Quartic/1.2.2.5 P(x) (a+b x^2+c x^4)^p.m",
             "sha256": "efc64e03f35af8e99fab8bb2851754ca6921d98513f3a640fb4a91411f3db7b0",
-            "converted": 7,
+            "converted": 8,
             "omitted": [
-                {
-                    "ordinal": 3,
-                    "reason": "Unsupported assignment or local scope outside With",
-                    "source": "(* ::Code:: *)\r\nInt[Pn_*(a_+b_.*x_^2+c_.*x_^4)^p_,x_Symbol] :=\r\n  Module[{n=Expon[Pn,x],k},\r\n  Int[Sum[Coeff[Pn,x,2*k]*x^(2*k),{k,0,n/2}]*(a+b*x^2+c*x^4)^p,x] + \r\n  Int[x*Sum[Coeff[Pn,x,2*k+1]*x^(2*k),{k,0,(n-1)/2}]*(a+b*x^2+c*x^4)^p,x]] /;\r\nFreeQ[{a,b,c,p},x] && PolyQ[Pn,x] && Not[PolyQ[Pn,x^2]]\r\n\r\n\r\n"
-                }
             ]
         },
         {
             "path": "1-algebraic/1.2-trinomial/1.2.2-quartic/1.2.2.7-P(x)-(d+e-x^2)^q-(a+b-x^2+c-x^4)^p.json",
             "source_path": "1 Algebraic functions/1.2 Trinomial products/1.2.2 Quartic/1.2.2.7 P(x) (d+e x^2)^q (a+b x^2+c x^4)^p.m",
             "sha256": "575425498bcd2e8246f3a9a197c8f7b9ee8476315d4bb8a03ec3f0603114ad39",
-            "converted": 50,
+            "converted": 54,
             "omitted": [
-                {
-                    "ordinal": 33,
-                    "reason": "Unsupported assignment or local scope outside With",
-                    "source": "(* ::Code:: *)\r\nInt[Pr_*(f_.*x_)^m_.*(d_+e_.*x_^2)^q_.*(a_+b_.*x_^2+c_.*x_^4)^p_,x_Symbol] :=\r\n  Module[{r=Expon[Pr,x],k},\r\n  Int[Sum[Coeff[Pr,x,2*k]*x^(2*k),{k,0,r/2+1}]*(f*x)^m*(d+e*x^2)^q*(a+b*x^2+c*x^4)^p,x] + \r\n  1/f \\[Star] Int[Sum[Coeff[Pr,x,2*k+1]*x^(2*k),{k,0,(r+1)/2}]*(f*x)^(m+1)*(d+e*x^2)^q*(a+b*x^2+c*x^4)^p,x]] /;\r\nFreeQ[{a,b,c,d,e,f,m,p,q},x] && PolyQ[Pr,x] && Not[PolyQ[Pr,x^2]]\r\n\r\n\r\n"
-                },
-                {
-                    "ordinal": 34,
-                    "reason": "Unsupported assignment or local scope outside With",
-                    "source": "(* ::Code:: *)\r\nInt[Pr_*(f_.*x_)^m_.*(d_+e_.*x_^2)^q_.*(a_+c_.*x_^4)^p_,x_Symbol] :=\r\n  Module[{r=Expon[Pr,x],k},\r\n  Int[Sum[Coeff[Pr,x,2*k]*x^(2*k),{k,0,r/2+1}]*(f*x)^m*(d+e*x^2)^q*(a+c*x^4)^p,x] + \r\n  1/f \\[Star] Int[Sum[Coeff[Pr,x,2*k+1]*x^(2*k),{k,0,(r+1)/2}]*(f*x)^(m+1)*(d+e*x^2)^q*(a+c*x^4)^p,x]] /;\r\nFreeQ[{a,c,d,e,f,m,p,q},x] && PolyQ[Pr,x] && Not[PolyQ[Pr,x^2]]\r\n\r\n\r\n"
-                },
-                {
-                    "ordinal": 47,
-                    "reason": "Unsupported assignment or local scope outside With",
-                    "source": "(* ::Code:: *)\r\nInt[Pr_*(d_+e_.*x_^2)^q_.*(a_+b_.*x_^2+c_.*x_^4)^p_,x_Symbol] :=\r\n  Module[{r=Expon[Pr,x],k},\r\n  Int[Sum[Coeff[Pr,x,2*k]*x^(2*k),{k,0,r/2}]*(d+e*x^2)^q*(a+b*x^2+c*x^4)^p,x] + \r\n  Int[x*Sum[Coeff[Pr,x,2*k+1]*x^(2*k),{k,0,(r-1)/2}]*(d+e*x^2)^q*(a+b*x^2+c*x^4)^p,x]] /;\r\nFreeQ[{a,b,c,d,e,p,q},x] && PolyQ[Pr,x] && Not[PolyQ[Pr,x^2]]\r\n\r\n\r\n"
-                },
-                {
-                    "ordinal": 48,
-                    "reason": "Unsupported assignment or local scope outside With",
-                    "source": "(* ::Code:: *)\r\nInt[Pr_*(d_+e_.*x_^2)^q_.*(a_+c_.*x_^4)^p_,x_Symbol] :=\r\n  Module[{r=Expon[Pr,x],k},\r\n  Int[Sum[Coeff[Pr,x,2*k]*x^(2*k),{k,0,r/2}]*(d+e*x^2)^q*(a+c*x^4)^p,x] + \r\n  Int[x*Sum[Coeff[Pr,x,2*k+1]*x^(2*k),{k,0,(r-1)/2}]*(d+e*x^2)^q*(a+c*x^4)^p,x]] /;\r\nFreeQ[{a,c,d,e,p,q},x] && PolyQ[Pr,x] && Not[PolyQ[Pr,x^2]]\r\n\r\n\r\n"
-                }
             ]
         },
         {
@@ -547,41 +447,16 @@
             "path": "1-algebraic/1.2-trinomial/1.2.3-general/1.2.3.6-P(x)-(d-x)^m-(a+b-x^n+c-x^(2-n))^p.json",
             "source_path": "1 Algebraic functions/1.2 Trinomial products/1.2.3 General/1.2.3.6 P(x) (d x)^m (a+b x^n+c x^(2 n))^p.m",
             "sha256": "3b00175377dcb46eb77e23b3b9564ad394f8d18306680432111faf9575a5c09b",
-            "converted": 23,
+            "converted": 25,
             "omitted": [
-                {
-                    "ordinal": 9,
-                    "reason": "Unsupported assignment or local scope outside With",
-                    "source": "(* ::Code:: *)\r\nInt[x_^m_*Px_*(a_+b_.*x_^n_+c_.*x_^n2_)^p_,x_Symbol] :=\r\n  Module[{q=Expon[Px,x]},\r\n  Module[{Q=PolynomialQuotient[a*(b*c)^(Floor[(q-1)/n]+1)*x^m*Px,a+b*x^n+c*x^(2*n),x],\r\n          R=PolynomialRemainder[a*(b*c)^(Floor[(q-1)/n]+1)*x^m*Px,a+b*x^n+c*x^(2*n),x],i},\r\n  -x*(a+b*x^n+c*x^(2*n))^(p+1)/(a^2*n*(p+1)*(b^2-4*a*c)*(b*c)^(Floor[(q-1)/n]+1))*\r\n    Sum[((b^2-2*a*c)*Coeff[R,x,i]-a*b*Coeff[R,x,n+i])*x^i+\r\n      c*(b*Coeff[R,x,i]-2*a*Coeff[R,x,n+i])*x^(n+i),{i,0,n-1}] + \r\n  1/(a*n*(p+1)*(b^2-4*a*c)*(b*c)^(Floor[(q-1)/n]+1)) \\[Star] Int[x^m*(a+b*x^n+c*x^(2*n))^(p+1)*\r\n    ExpandToSum[n*(p+1)*(b^2-4*a*c)*x^(-m)*Q+\r\n      Sum[((b^2*(n*(p+1)+i+1)/a-2*c*(2*n*(p+1)+i+1))*Coeff[R,x,i]-b*(i+1)*Coeff[R,x,n+i])*x^(i-m)+\r\n       c*(n*(2*p+3)+i+1)*(b/a*Coeff[R,x,i]-2*Coeff[R,x,n+i])*x^(n+i-m),{i,0,n-1}],x],x]] /;\r\n GeQ[q,2*n]] /;\r\nFreeQ[{a,b,c},x] && EqQ[n2,2*n] && PolyQ[Px,x] && NeQ[b^2-4*a*c,0] && IGtQ[n,0] && LtQ[p,-1] && ILtQ[m,0]\r\n\r\n\r\n"
-                },
-                {
-                    "ordinal": 13,
-                    "reason": "Unsupported assignment or local scope outside With",
-                    "source": "(* ::Code:: *)\r\nInt[(d_.*x_)^m_.*Px_*(a_+b_.*x_^n_+c_.*x_^n2_)^p_,x_Symbol] :=\r\n  Module[{q=Expon[Px,x],j,k},\r\n  Int[Sum[1/d^j*(d*x)^(m+j)*Sum[Coeff[Px,x,j+k*n]*x^(k*n),{k,0,(q-j)/n+1}]*(a+b*x^n+c*x^(2*n))^p,{j,0,n-1}],x]] /;\r\nFreeQ[{a,b,c,d,m,p},x] && EqQ[n2,2*n] && PolyQ[Px,x] && NeQ[b^2-4*a*c,0] && IGtQ[n,0] && Not[PolyQ[Px,x^n]]\r\n\r\n\r\n"
-                }
             ]
         },
         {
             "path": "1-algebraic/1.2-trinomial/1.2.3-general/1.2.3.5-P(x)-(a+b-x^n+c-x^(2-n))^p.json",
             "source_path": "1 Algebraic functions/1.2 Trinomial products/1.2.3 General/1.2.3.5 P(x) (a+b x^n+c x^(2 n))^p.m",
             "sha256": "927e33a8e043cd77b15b30e3e5043b6bda39e6bdd30fba1ce9a784c79e0bd037",
-            "converted": 20,
+            "converted": 23,
             "omitted": [
-                {
-                    "ordinal": 9,
-                    "reason": "Unsupported assignment or local scope outside With",
-                    "source": "(* ::Code:: *)\r\nInt[Pq_*(a_+b_.*x_^n_+c_.*x_^n2_)^p_,x_Symbol] :=\r\n  Module[{q=Expon[Pq,x],i},\r\n  -x*(a+b*x^n+c*x^(2*n))^(p+1)/(a*n*(p+1)*(b^2-4*a*c))*\r\n    Sum[((b^2-2*a*c)*Coeff[Pq,x,i]-a*b*Coeff[Pq,x,n+i])*x^i+\r\n      c*(b*Coeff[Pq,x,i]-2*a*Coeff[Pq,x,n+i])*x^(n+i),{i,0,n-1}] + \r\n  1/(a*n*(p+1)*(b^2-4*a*c)) \\[Star] Int[(a+b*x^n+c*x^(2*n))^(p+1)*\r\n    Sum[((b^2*(n*(p+1)+i+1)-2*a*c*(2*n*(p+1)+i+1))*Coeff[Pq,x,i]-a*b*(i+1)*Coeff[Pq,x,n+i])*x^i+\r\n      c*(n*(2*p+3)+i+1)*(b*Coeff[Pq,x,i]-2*a*Coeff[Pq,x,n+i])*x^(n+i),{i,0,n-1}],x] /;\r\n LtQ[q,2*n]] /;\r\nFreeQ[{a,b,c},x] && EqQ[n2,2*n] && PolyQ[Pq,x] && NeQ[b^2-4*a*c,0] && IGtQ[n,0] && LtQ[p,-1]\r\n\r\n\r\n"
-                },
-                {
-                    "ordinal": 10,
-                    "reason": "Unsupported assignment or local scope outside With",
-                    "source": "(* ::Code:: *)\r\nInt[Pq_*(a_+b_.*x_^n_+c_.*x_^n2_)^p_,x_Symbol] :=\r\n  With[{q=Expon[Pq,x]},\r\n  Module[{Q=PolynomialQuotient[(b*c)^(Floor[(q-1)/n]+1)*Pq,a+b*x^n+c*x^(2*n),x],\r\n          R=PolynomialRemainder[(b*c)^(Floor[(q-1)/n]+1)*Pq,a+b*x^n+c*x^(2*n),x],i},\r\n  -x*(a+b*x^n+c*x^(2*n))^(p+1)/(a*n*(p+1)*(b^2-4*a*c)*(b*c)^(Floor[(q-1)/n]+1))*\r\n    Sum[((b^2-2*a*c)*Coeff[R,x,i]-a*b*Coeff[R,x,n+i])*x^i+\r\n      c*(b*Coeff[R,x,i]-2*a*Coeff[R,x,n+i])*x^(n+i),{i,0,n-1}] + \r\n  1/(a*n*(p+1)*(b^2-4*a*c)*(b*c)^(Floor[(q-1)/n]+1)) \\[Star] Int[(a+b*x^n+c*x^(2*n))^(p+1)*ExpandToSum[a*n*(p+1)*(b^2-4*a*c)*Q+\r\n    Sum[((b^2*(n*(p+1)+i+1)-2*a*c*(2*n*(p+1)+i+1))*Coeff[R,x,i]-a*b*(i+1)*Coeff[R,x,n+i])*x^i+\r\n     c*(n*(2*p+3)+i+1)*(b*Coeff[R,x,i]-2*a*Coeff[R,x,n+i])*x^(n+i),{i,0,n-1}],x],x]] /;\r\n GeQ[q,2*n]] /;\r\nFreeQ[{a,b,c},x] && EqQ[n2,2*n] && PolyQ[Pq,x] && NeQ[b^2-4*a*c,0] && IGtQ[n,0] && LtQ[p,-1]\r\n\r\n\r\n"
-                },
-                {
-                    "ordinal": 16,
-                    "reason": "Unsupported assignment or local scope outside With",
-                    "source": "(* ::Code:: *)\r\nInt[Pq_*(a_+b_.*x_^n_+c_.*x_^n2_)^p_,x_Symbol] :=\r\n  Module[{q=Expon[Pq,x],j,k},\r\n  Int[Sum[x^j*Sum[Coeff[Pq,x,j+k*n]*x^(k*n),{k,0,(q-j)/n+1}]*(a+b*x^n+c*x^(2*n))^p,{j,0,n-1}],x]] /;\r\nFreeQ[{a,b,c,p},x] && EqQ[n2,2*n] && PolyQ[Pq,x] && NeQ[b^2-4*a*c,0] && IGtQ[n,0] && Not[PolyQ[Pq,x^n]]\r\n\r\n\r\n"
-                }
             ]
         },
         {
@@ -620,74 +495,24 @@
             "path": "1-algebraic/1.1-binomial/1.1.2-quadratic/1.1.2.12-P(x)-(c+d-x)^n-(a+b-x^2)^p.json",
             "source_path": "1 Algebraic functions/1.1 Binomial products/1.1.2 Quadratic/1.1.2.12 P(x) (c+d x)^n (a+b x^2)^p.m",
             "sha256": "81da5650fca164a63e9c51747cd04ab2ae9c7dfa02dc999f19bc55bd57339a97",
-            "converted": 15,
+            "converted": 16,
             "omitted": [
-                {
-                    "ordinal": 14,
-                    "reason": "Unsupported assignment or local scope outside With",
-                    "source": "(* ::Code:: *)\r\nInt[x_^m_.*Pq_*(a_+b_.*x_^2)^p_,x_Symbol] :=\r\n  Module[{q=Expon[Pq,x],k},\r\n  Int[x^m*Sum[Coeff[Pq,x,2*k]*x^(2*k),{k,0,q/2}]*(a+b*x^2)^p,x] + \r\n  Int[x^(m+1)*Sum[Coeff[Pq,x,2*k+1]*x^(2*k),{k,0,(q-1)/2}]*(a+b*x^2)^p,x]] /;\r\nFreeQ[{a,b,p},x] && PolyQ[Pq,x] && Not[PolyQ[Pq,x^2]] && IGtQ[m,-2] && Not[IntegerQ[2*p]]\r\n\r\n\r\n"
-                }
             ]
         },
         {
             "path": "1-algebraic/1.1-binomial/1.1.3-general/1.1.3.8-P(x)-(c-x)^m-(a+b-x^n)^p.json",
             "source_path": "1 Algebraic functions/1.1 Binomial products/1.1.3 General/1.1.3.8 P(x) (c x)^m (a+b x^n)^p.m",
             "sha256": "dc5b3e32c925973e353eee550284e5285439b43c2ad01b0bfb9b2fa640fa71cc",
-            "converted": 28,
+            "converted": 33,
             "omitted": [
-                {
-                    "ordinal": 9,
-                    "reason": "Unsupported assignment or local scope outside With",
-                    "source": "(* ::Code:: *)\r\nInt[x_^m_.*Pq_*(a_+b_.*x_^n_.)^p_,x_Symbol] :=\r\n  Module[{u=IntHide[x^m*Pq,x]},\r\n  u*(a+b*x^n)^p - b*n*p \\[Star] Int[x^(m+n)*(a+b*x^n)^(p-1)*ExpandToSum[u/x^(m+1),x],x]] /;\r\nFreeQ[{a,b},x] && PolyQ[Pq,x] && IGtQ[n,0] && GtQ[p,0] && LtQ[m+Expon[Pq,x]+1,0]\r\n\r\n\r\n"
-                },
-                {
-                    "ordinal": 10,
-                    "reason": "Unsupported assignment or local scope outside With",
-                    "source": "(* ::Code:: *)\r\nInt[(c_.*x_)^m_.*Pq_*(a_+b_.*x_^n_.)^p_,x_Symbol] :=\r\n  Module[{q=Expon[Pq,x],i},\r\n  (c*x)^m*(a+b*x^n)^p*Sum[Coeff[Pq,x,i]*x^(i+1)/(m+n*p+i+1),{i,0,q}] + \r\n  a*n*p \\[Star] Int[(c*x)^m*(a+b*x^n)^(p-1)*Sum[Coeff[Pq,x,i]*x^i/(m+n*p+i+1),{i,0,q}],x]] /;\r\nFreeQ[{a,b,c,m},x] && PolyQ[Pq,x] && IGtQ[(n-1)/2,0] && GtQ[p,0]\r\n\r\n\r\n"
-                },
-                {
-                    "ordinal": 12,
-                    "reason": "Unsupported assignment or local scope outside With",
-                    "source": "(* ::Code:: *)\r\nInt[x_^m_.*Pq_*(a_+b_.*x_^n_.)^p_,x_Symbol] :=\r\n  With[{q=m+Expon[Pq,x]},\r\n    Module[{Q=PolynomialQuotient[b^(Floor[(q-1)/n]+1)*x^m*Pq,a+b*x^n,x],\r\n            R=PolynomialRemainder[b^(Floor[(q-1)/n]+1)*x^m*Pq,a+b*x^n,x]},\r\n    -x*R*(a+b*x^n)^(p+1)/(a*n*(p+1)*b^(Floor[(q-1)/n]+1)) + \r\n    1/(a*n*(p+1)*b^(Floor[(q-1)/n]+1)) \\[Star] Int[(a+b*x^n)^(p+1)*ExpandToSum[a*n*(p+1)*Q+n*(p+1)*R+D[x*R,x],x],x]] /;\r\n  GeQ[q,n]] /;\r\nFreeQ[{a,b},x] && PolyQ[Pq,x] && IGtQ[n,0] && LtQ[p,-1] && IGtQ[m,0]\r\n\r\n\r\n"
-                },
-                {
-                    "ordinal": 13,
-                    "reason": "Unsupported assignment or local scope outside With",
-                    "source": "(* ::Code:: *)\r\nInt[x_^m_*Pq_*(a_+b_.*x_^n_.)^p_,x_Symbol] :=\r\n  With[{q=Expon[Pq,x]},\r\n  Module[{Q=PolynomialQuotient[a*b^(Floor[(q-1)/n]+1)*x^m*Pq,a+b*x^n,x],\r\n          R=PolynomialRemainder[a*b^(Floor[(q-1)/n]+1)*x^m*Pq,a+b*x^n,x],i},\r\n    -x*R*(a+b*x^n)^(p+1)/(a^2*n*(p+1)*b^(Floor[(q-1)/n]+1)) + \r\n    1/(a*n*(p+1)*b^(Floor[(q-1)/n]+1)) \\[Star] Int[x^m*(a+b*x^n)^(p+1)*\r\n      ExpandToSum[n*(p+1)*x^(-m)*Q+Sum[(n*(p+1)+i+1)/a*Coeff[R,x,i]*x^(i-m),{i,0,n-1}],x],x]]] /;\r\nFreeQ[{a,b},x] && PolyQ[Pq,x] && IGtQ[n,0] && LtQ[p,-1] && ILtQ[m,0]\r\n\r\n\r\n"
-                },
-                {
-                    "ordinal": 17,
-                    "reason": "Unsupported assignment or local scope outside With",
-                    "source": "(* ::Code:: *)\r\nInt[(c_.*x_)^m_.*Pq_*(a_+b_.*x_^n_)^p_,x_Symbol] :=\r\n  Module[{q=Expon[Pq,x],j,k},\r\n  Int[Sum[(c*x)^(m+j)/c^j*Sum[Coeff[Pq,x,j+k*n/2]*x^(k*n/2),{k,0,2*(q-j)/n+1}]*(a+b*x^n)^p,{j,0,n/2-1}],x]] /;\r\nFreeQ[{a,b,c,m,p},x] && PolyQ[Pq,x] && IGtQ[n/2,0] && Not[PolyQ[Pq,x^(n/2)]]\r\n\r\n\r\n"
-                }
             ]
         },
         {
             "path": "1-algebraic/1.1-binomial/1.1.3-general/1.1.3.7-P(x)-(a+b-x^n)^p.json",
             "source_path": "1 Algebraic functions/1.1 Binomial products/1.1.3 General/1.1.3.7 P(x) (a+b x^n)^p.m",
             "sha256": "abb93168d6d26d1cb2ba0b52f3c4932ca539df84000584f9452e9397a9816885",
-            "converted": 48,
+            "converted": 52,
             "omitted": [
-                {
-                    "ordinal": 5,
-                    "reason": "Unsupported assignment or local scope outside With",
-                    "source": "(* ::Code:: *)\r\nInt[Pq_*(a_+b_.*x_^n_.)^p_,x_Symbol] :=\r\n  Module[{q=Expon[Pq,x],i},\r\n  (a+b*x^n)^p*Sum[Coeff[Pq,x,i]*x^(i+1)/(n*p+i+1),{i,0,q}] + \r\n  a*n*p \\[Star] Int[(a+b*x^n)^(p-1)*Sum[Coeff[Pq,x,i]*x^i/(n*p+i+1),{i,0,q}],x]] /;\r\nFreeQ[{a,b},x] && PolyQ[Pq,x] && IGtQ[(n-1)/2,0] && GtQ[p,0]\r\n\r\n\r\n"
-                },
-                {
-                    "ordinal": 6,
-                    "reason": "Unsupported assignment or local scope outside With",
-                    "source": "(* ::Code:: *)\r\nInt[Pq_*(a_+b_.*x_^n_)^p_,x_Symbol] :=\r\n  Module[{q=Expon[Pq,x],i},\r\n  (a*Coeff[Pq,x,q]-b*x*ExpandToSum[Pq-Coeff[Pq,x,q]*x^q,x])*(a+b*x^n)^(p+1)/(a*b*n*(p+1)) + \r\n  1/(a*n*(p+1)) \\[Star] Int[Sum[(n*(p+1)+i+1)*Coeff[Pq,x,i]*x^i,{i,0,q-1}]*(a+b*x^n)^(p+1),x] /;\r\n q==n-1] /;\r\nFreeQ[{a,b},x] && PolyQ[Pq,x] && IGtQ[n,0] && LtQ[p,-1]\r\n\r\n\r\n"
-                },
-                {
-                    "ordinal": 10,
-                    "reason": "Unsupported assignment or local scope outside With",
-                    "source": "(* ::Code:: *)\r\nInt[Pq_*(a_+b_.*x_^n_.)^p_,x_Symbol] :=\r\n  With[{q=Expon[Pq,x]},\r\n  Module[{Q=PolynomialQuotient[b^(Floor[(q-1)/n]+1)*Pq,a+b*x^n,x],\r\n          R=PolynomialRemainder[b^(Floor[(q-1)/n]+1)*Pq,a+b*x^n,x]},\r\n  -x*R*(a+b*x^n)^(p+1)/(a*n*(p+1)*b^(Floor[(q-1)/n]+1)) + \r\n  1/(a*n*(p+1)*b^(Floor[(q-1)/n]+1)) \\[Star] Int[(a+b*x^n)^(p+1)*ExpandToSum[a*n*(p+1)*Q+n*(p+1)*R+D[x*R,x],x],x]] /;\r\n GeQ[q,n]] /;\r\nFreeQ[{a,b},x] && PolyQ[Pq,x] && IGtQ[n,0] && LtQ[p,-1]\r\n\r\n\r\n"
-                },
-                {
-                    "ordinal": 38,
-                    "reason": "Unsupported assignment or local scope outside With",
-                    "source": "(* ::Code:: *)\r\nInt[Pq_*(a_+b_.*x_^n_)^p_,x_Symbol] :=\r\n  Module[{q=Expon[Pq,x],j,k},\r\n  Int[Sum[x^j*Sum[Coeff[Pq,x,j+k*n/2]*x^(k*n/2),{k,0,2*(q-j)/n+1}]*(a+b*x^n)^p,{j,0,n/2-1}],x]] /;\r\nFreeQ[{a,b,p},x] && PolyQ[Pq,x] && IGtQ[n/2,0] && Not[PolyQ[Pq,x^(n/2)]]\r\n\r\n\r\n"
-                }
             ]
         },
         {
@@ -702,18 +527,8 @@
             "path": "1-algebraic/1.3-polynomial/1.3.3-P(x)^p.json",
             "source_path": "1 Algebraic functions/1.3 Polynomial products/1.3.3 P(x)^p.m",
             "sha256": "c56b70d20c5692c4ff0249f881dadcbf2f067e5378a8d3a3dffa23a3a09d7c1d",
-            "converted": 18,
+            "converted": 20,
             "omitted": [
-                {
-                    "ordinal": 6,
-                    "reason": "Unsupported assignment or local scope outside With",
-                    "source": "(* ::Code:: *)\r\nInt[u_.*Px_^p_*Qx_^q_,x_Symbol] :=\r\n  Module[{Rx=PolyGCD[Px,Qx,x]},\r\n  Int[u*Rx^(p+q)*PolynomialQuotient[Px,Rx,x]^p*PolynomialQuotient[Qx,Rx,x]^q,x] /;\r\n NeQ[Rx,1]] /;\r\nIGtQ[p,0] && ILtQ[q,0] && PolyQ[Px,x] && PolyQ[Qx,x]\r\n\r\n\r\n"
-                },
-                {
-                    "ordinal": 7,
-                    "reason": "Unsupported assignment or local scope outside With",
-                    "source": "(* ::Code:: *)\r\nInt[u_.*Px_*Qx_^q_,x_Symbol] :=\r\n  Module[{Rx=PolyGCD[Px,Qx,x]},\r\n  Int[u*Rx^(q+1)*PolynomialQuotient[Px,Rx,x]*PolynomialQuotient[Qx,Rx,x]^q,x] /;\r\n NeQ[Rx,1]] /;\r\nILtQ[q,0] && PolyQ[Px,x] && PolyQ[Qx,x]\r\n\r\n\r\n"
-                }
             ]
         },
         {
@@ -981,187 +796,32 @@
             "path": "4-trig/4.1-sine/4.1.6-(a+b-cos+c-sin)^n.json",
             "source_path": "4 Trig functions/4.1 Sine/4.1.6 (a+b cos+c sin)^n.m",
             "sha256": "c55588170c96f1ece723742e17ea6f11c5a62c1fdafbc14ae438c53e91815d17",
-            "converted": 53,
+            "converted": 57,
             "omitted": [
-                {
-                    "ordinal": 12,
-                    "reason": "Unsupported assignment or local scope outside With",
-                    "source": "(* ::Code:: *)\r\nInt[1/(a_+b_.*cos[d_.+e_.*x_]+c_.*sin[d_.+e_.*x_]),x_Symbol] :=\r\n  Module[{f=FreeFactors[Cot[(d+e*x)/2],x]},\r\n  -f/e \\[Star] Subst[Int[1/(a+c*f*x),x],x,Cot[(d+e*x)/2]/f]] /;\r\nFreeQ[{a,b,c,d,e},x] && EqQ[a+b,0]\r\n\r\n\r\n"
-                },
-                {
-                    "ordinal": 13,
-                    "reason": "Unsupported assignment or local scope outside With",
-                    "source": "(* ::Code:: *)\r\nInt[1/(a_+b_.*cos[d_.+e_.*x_]+c_.*sin[d_.+e_.*x_]),x_Symbol] :=\r\n  Module[{f=FreeFactors[Tan[(d+e*x)/2+Pi/4],x]},\r\n  f/e \\[Star] Subst[Int[1/(a+b*f*x),x],x,Tan[(d+e*x)/2+Pi/4]/f]] /;\r\nFreeQ[{a,b,c,d,e},x] && EqQ[a+c,0]\r\n\r\n\r\n"
-                },
-                {
-                    "ordinal": 14,
-                    "reason": "Unsupported assignment or local scope outside With",
-                    "source": "(* ::Code:: *)\r\nInt[1/(a_+b_.*cos[d_.+e_.*x_]+c_.*sin[d_.+e_.*x_]),x_Symbol] :=\r\n  Module[{f=FreeFactors[Cot[(d+e*x)/2+Pi/4],x]},\r\n  -f/e \\[Star] Subst[Int[1/(a+b*f*x),x],x,Cot[(d+e*x)/2+Pi/4]/f]] /;\r\nFreeQ[{a,b,c,d,e},x] && EqQ[a-c,0] && NeQ[a-b,0]\r\n\r\n\r\n"
-                },
-                {
-                    "ordinal": 15,
-                    "reason": "Unsupported assignment or local scope outside With",
-                    "source": "(* ::Code:: *)\r\nInt[1/(a_+b_.*cos[d_.+e_.*x_]+c_.*sin[d_.+e_.*x_]),x_Symbol] :=\r\n  Module[{f=FreeFactors[Tan[(d+e*x)/2],x]},\r\n  2*f/e \\[Star] Subst[Int[1/(a+b+2*c*f*x+(a-b)*f^2*x^2),x],x,Tan[(d+e*x)/2]/f]] /;\r\nFreeQ[{a,b,c,d,e},x] && NeQ[a^2-b^2-c^2,0]\r\n\r\n\r\n"
-                }
             ]
         },
         {
             "path": "4-trig/4.1-sine/4.1.7-(d-trig)^m-(a+b-(c-sin)^n)^p.json",
             "source_path": "4 Trig functions/4.1 Sine/4.1.7 (d trig)^m (a+b (c sin)^n)^p.m",
             "sha256": "22015e38da4c959bd4143f8ad0573cf668f5bbaacddba47bf0d56f50c9e1b501",
-            "converted": 72,
+            "converted": 73,
             "omitted": [
-                {
-                    "ordinal": 44,
-                    "reason": "Unsupported assignment or local scope outside With",
-                    "source": "(* ::Code:: *)\r\nInt[1/(a_+b_.*sin[e_.+f_.*x_]^n_),x_Symbol] :=\r\n  Module[{k},\r\n  2/(a*n) \\[Star] Sum[Int[1/(1-Sin[e+f*x]^2/((-1)^(4*k/n)*Rt[-a/b,n/2])),x],{k,1,n/2}]] /;\r\nFreeQ[{a,b,e,f},x] && IntegerQ[n/2]\r\n\r\n\r\n"
-                }
             ]
         },
         {
             "path": "4-trig/4.1-sine/4.1.8-trig^m-(a+b-cos^p+c-sin^q)^n.json",
             "source_path": "4 Trig functions/4.1 Sine/4.1.8 trig^m (a+b cos^p+c sin^q)^n.m",
             "sha256": "b3329d9faa212263fbe98286bb76fe2215f4482b831d6f82d1048b06caad8fa4",
-            "converted": 0,
+            "converted": 8,
             "omitted": [
-                {
-                    "ordinal": 1,
-                    "reason": "Unsupported assignment or local scope outside With",
-                    "source": "(* ::Code:: *)\r\nInt[sin[d_.+e_.*x_]^m_*(a_+b_.*cos[d_.+e_.*x_]^p_+c_.*sin[d_.+e_.*x_]^q_)^n_,x_Symbol] :=\r\n  Module[{f=FreeFactors[Cot[d+e*x],x]},\r\n  -f/e \\[Star] Subst[Int[ExpandToSum[c+b*(1+f^2*x^2)^(q/2-p/2)+a*(1+f^2*x^2)^(q/2),x]^n/(1+f^2*x^2)^(m/2+n*q/2+1),x],x,Cot[d+e*x]/f]] /;\r\nFreeQ[{a,b,c,d,e},x] && IntegerQ[m/2] && IntegerQ[p/2] && IntegerQ[q/2] && IntegerQ[n] && GtQ[p,0] && LeQ[p,q]\r\n\r\n\r\n"
-                },
-                {
-                    "ordinal": 2,
-                    "reason": "Unsupported assignment or local scope outside With",
-                    "source": "(* ::Code:: *)\r\nInt[cos[d_.+e_.*x_]^m_*(a_+b_.*sin[d_.+e_.*x_]^p_+c_.*cos[d_.+e_.*x_]^q_)^n_,x_Symbol] :=\r\n  Module[{f=FreeFactors[Tan[d+e*x],x]},\r\n  f/e \\[Star] Subst[Int[ExpandToSum[c+b*(1+f^2*x^2)^(q/2-p/2)+a*(1+f^2*x^2)^(q/2),x]^n/(1+f^2*x^2)^(m/2+n*q/2+1),x],x,Tan[d+e*x]/f]] /;\r\nFreeQ[{a,b,c,d,e},x] && IntegerQ[m/2] && IntegerQ[p/2] && IntegerQ[q/2] && IntegerQ[n] && GtQ[p,0] && LeQ[p,q]\r\n\r\n\r\n"
-                },
-                {
-                    "ordinal": 3,
-                    "reason": "Unsupported assignment or local scope outside With",
-                    "source": "(* ::Code:: *)\r\nInt[sin[d_.+e_.*x_]^m_*(a_+b_.*cos[d_.+e_.*x_]^p_+c_.*sin[d_.+e_.*x_]^q_)^n_,x_Symbol] :=\r\n  Module[{f=FreeFactors[Cot[d+e*x],x]},\r\n  -f/e \\[Star] Subst[Int[ExpandToSum[a*(1+f^2*x^2)^(p/2)+b*f^p*x^p+c*(1+f^2*x^2)^(p/2-q/2),x]^n/(1+f^2*x^2)^(m/2+n*p/2+1),x],x,\r\n    Cot[d+e*x]/f]] /;\r\nFreeQ[{a,b,c,d,e},x] && IntegerQ[m/2] && IntegerQ[p/2] && IntegerQ[q/2] && IntegerQ[n] && LtQ[0,q,p]\r\n\r\n\r\n"
-                },
-                {
-                    "ordinal": 4,
-                    "reason": "Unsupported assignment or local scope outside With",
-                    "source": "(* ::Code:: *)\r\nInt[cos[d_.+e_.*x_]^m_*(a_+b_.*sin[d_.+e_.*x_]^p_+c_.*cos[d_.+e_.*x_]^q_)^n_,x_Symbol] :=\r\n  Module[{f=FreeFactors[Tan[d+e*x],x]},\r\n  f/e \\[Star] Subst[Int[ExpandToSum[a*(1+f^2*x^2)^(p/2)+b*f^p*x^p+c*(1+f^2*x^2)^(p/2-q/2),x]^n/(1+f^2*x^2)^(m/2+n*p/2+1),x],x,\r\n    Tan[d+e*x]/f]] /;\r\nFreeQ[{a,b,c,d,e},x] && IntegerQ[m/2] && IntegerQ[p/2] && IntegerQ[q/2] && IntegerQ[n] && LtQ[0,q,p]\r\n\r\n\r\n"
-                },
-                {
-                    "ordinal": 5,
-                    "reason": "Unsupported assignment or local scope outside With",
-                    "source": "(* ::Code:: *)\r\nInt[sin[d_.+e_.*x_]^m_*(a_+b_.*cos[d_.+e_.*x_]^p_+c_.*sin[d_.+e_.*x_]^q_)^n_,x_Symbol] :=\r\n  Module[{f=FreeFactors[Cot[d+e*x],x]},\r\n  -f/e \\[Star] Subst[Int[ExpandToSum[c+b*(1+f^2*x^2)^(q/2-p/2)+a*(1+f^2*x^2)^(q/2),x]^n/(1+f^2*x^2)^(m/2+n*q/2+1),x],x,Cot[d+e*x]/f]] /;\r\nFreeQ[{a,b,c,d,e},x] && IntegerQ[m/2] && IntegerQ[p/2] && IntegerQ[q/2] && IntegerQ[n] && GtQ[p,0] && LeQ[p,q]\r\n\r\n\r\n"
-                },
-                {
-                    "ordinal": 6,
-                    "reason": "Unsupported assignment or local scope outside With",
-                    "source": "(* ::Code:: *)\r\nInt[cos[d_.+e_.*x_]^m_*(a_+b_.*sin[d_.+e_.*x_]^p_+c_.*cos[d_.+e_.*x_]^q_)^n_,x_Symbol] :=\r\n  Module[{f=FreeFactors[Tan[d+e*x],x]},\r\n  f/e \\[Star] Subst[Int[ExpandToSum[c+b*(1+f^2*x^2)^(q/2-p/2)+a*(1+f^2*x^2)^(q/2),x]^n/(1+f^2*x^2)^(m/2+n*q/2+1),x],x,Tan[d+e*x]/f]] /;\r\nFreeQ[{a,b,c,d,e},x] && IntegerQ[m/2] && IntegerQ[p/2] && IntegerQ[q/2] && IntegerQ[n] && GtQ[p,0] && LeQ[p,q]\r\n\r\n\r\n"
-                },
-                {
-                    "ordinal": 7,
-                    "reason": "Unsupported assignment or local scope outside With",
-                    "source": "(* ::Code:: *)\r\nInt[sin[d_.+e_.*x_]^m_*(a_+b_.*cos[d_.+e_.*x_]^p_+c_.*sin[d_.+e_.*x_]^q_)^n_,x_Symbol] :=\r\n  Module[{f=FreeFactors[Cot[d+e*x],x]},\r\n  -f/e \\[Star] Subst[Int[ExpandToSum[a*(1+f^2*x^2)^(p/2)+b*f^p*x^p+c*(1+f^2*x^2)^(p/2-q/2),x]^n/(1+f^2*x^2)^(m/2+n*p/2+1),x],x,\r\n    Cot[d+e*x]/f]] /;\r\nFreeQ[{a,b,c,d,e},x] && IntegerQ[m/2] && IntegerQ[p/2] && IntegerQ[q/2] && IntegerQ[n] && LtQ[0,q,p]\r\n\r\n\r\n"
-                },
-                {
-                    "ordinal": 8,
-                    "reason": "Unsupported assignment or local scope outside With",
-                    "source": "(* ::Code:: *)\r\nInt[cos[d_.+e_.*x_]^m_*(a_+b_.*sin[d_.+e_.*x_]^p_+c_.*cos[d_.+e_.*x_]^q_)^n_,x_Symbol] :=\r\n  Module[{f=FreeFactors[Tan[d+e*x],x]},\r\n  f/e \\[Star] Subst[Int[ExpandToSum[a*(1+f^2*x^2)^(p/2)+b*f^p*x^p+c*(1+f^2*x^2)^(p/2-q/2),x]^n/(1+f^2*x^2)^(m/2+n*p/2+1),x],x,\r\n    Tan[d+e*x]/f]] /;\r\nFreeQ[{a,b,c,d,e},x] && IntegerQ[m/2] && IntegerQ[p/2] && IntegerQ[q/2] && IntegerQ[n] && LtQ[0,q,p]\r\n\r\n\r\n\r\n"
-                }
             ]
         },
         {
             "path": "4-trig/4.1-sine/4.1.9-trig^m-(a+b-sin^n+c-sin^(2-n))^p.json",
             "source_path": "4 Trig functions/4.1 Sine/4.1.9 trig^m (a+b sin^n+c sin^(2 n))^p.m",
             "sha256": "6bbc3c7bb08e3c3fb890a8238421b664f72d9f23c38626ec9d10f8ce2fcdc27e",
-            "converted": 34,
+            "converted": 52,
             "omitted": [
-                {
-                    "ordinal": 5,
-                    "reason": "Unsupported assignment or local scope outside With",
-                    "source": "(* ::Code:: *)\r\nInt[1/(a_.+b_.*sin[d_.+e_.*x_]^n_.+c_.*sin[d_.+e_.*x_]^n2_.),x_Symbol] :=\r\n  Module[{q=Rt[b^2-4*a*c,2]},\r\n  2*c/q \\[Star] Int[1/(b-q+2*c*Sin[d+e*x]^n),x] - \r\n  2*c/q \\[Star] Int[1/(b+q+2*c*Sin[d+e*x]^n),x]] /;\r\nFreeQ[{a,b,c,d,e,n},x] && EqQ[n2,2*n] && NeQ[b^2-4*a*c,0]\r\n\r\n\r\n"
-                },
-                {
-                    "ordinal": 6,
-                    "reason": "Unsupported assignment or local scope outside With",
-                    "source": "(* ::Code:: *)\r\nInt[1/(a_.+b_.*cos[d_.+e_.*x_]^n_.+c_.*cos[d_.+e_.*x_]^n2_.),x_Symbol] :=\r\n  Module[{q=Rt[b^2-4*a*c,2]},\r\n  2*c/q \\[Star] Int[1/(b-q+2*c*Cos[d+e*x]^n),x] - \r\n  2*c/q \\[Star] Int[1/(b+q+2*c*Cos[d+e*x]^n),x]] /;\r\nFreeQ[{a,b,c,d,e,n},x] && EqQ[n2,2*n] && NeQ[b^2-4*a*c,0]\r\n\r\n\r\n"
-                },
-                {
-                    "ordinal": 11,
-                    "reason": "Unsupported assignment or local scope outside With",
-                    "source": "(* ::Code:: *)\r\nInt[sin[d_.+e_.*x_]^m_*(a_.+b_.*sin[d_.+e_.*x_]^n_+c_.*sin[d_.+e_.*x_]^n2_)^p_,x_Symbol] :=\r\n  Module[{f=FreeFactors[Cot[d+e*x],x]},\r\n  -f/e \\[Star] Subst[Int[ExpandToSum[c+b*(1+x^2)^(n/2)+a*(1+x^2)^n,x]^p/(1+f^2*x^2)^(m/2+n*p+1),x],x,Cot[d+e*x]/f]] /;\r\nFreeQ[{a,b,c,d,e},x] && EqQ[n2,2*n] && IntegerQ[m/2] && NeQ[b^2-4*a*c,0] && IntegerQ[n/2] && IntegerQ[p]\r\n\r\n\r\n"
-                },
-                {
-                    "ordinal": 12,
-                    "reason": "Unsupported assignment or local scope outside With",
-                    "source": "(* ::Code:: *)\r\nInt[cos[d_.+e_.*x_]^m_.*(a_.+b_.*cos[d_.+e_.*x_]^n_+c_.*cos[d_.+e_.*x_]^n2_)^p_,x_Symbol] :=\r\n  Module[{f=FreeFactors[Tan[d+e*x],x]},\r\n  f/e \\[Star] Subst[Int[ExpandToSum[c+b*(1+x^2)^(n/2)+a*(1+x^2)^n,x]^p/(1+f^2*x^2)^(m/2+n*p+1),x],x,Tan[d+e*x]/f]] /;\r\nFreeQ[{a,b,c,d,e},x] && EqQ[n2,2*n] && IntegerQ[m/2] && NeQ[b^2-4*a*c,0] && IntegerQ[n/2] && IntegerQ[p]\r\n\r\n\r\n"
-                },
-                {
-                    "ordinal": 15,
-                    "reason": "Unsupported assignment or local scope outside With",
-                    "source": "(* ::Code:: *)\r\nInt[cos[d_.+e_.*x_]^m_.*(a_.+b_.*(f_.*sin[d_.+e_.*x_])^n_.+c_.*(f_.*sin[d_.+e_.*x_])^n2_.)^p_.,x_Symbol] :=\r\n  Module[{g=FreeFactors[Sin[d+e*x],x]},\r\n  g/e \\[Star] Subst[Int[(1-g^2*x^2)^((m-1)/2)*(a+b*(f*g*x)^n+c*(f*g*x)^(2*n))^p,x],x,Sin[d+e*x]/g]] /;\r\nFreeQ[{a,b,c,d,e,f,n,p},x] && EqQ[n2,2*n] && IntegerQ[(m-1)/2]\r\n\r\n\r\n"
-                },
-                {
-                    "ordinal": 16,
-                    "reason": "Unsupported assignment or local scope outside With",
-                    "source": "(* ::Code:: *)\r\nInt[sin[d_.+e_.*x_]^m_.*(a_.+b_.*(f_.*cos[d_.+e_.*x_])^n_.+c_.*(f_.*cos[d_.+e_.*x_])^n2_.)^p_.,x_Symbol] :=\r\n  Module[{g=FreeFactors[Cos[d+e*x],x]},\r\n  -g/e \\[Star] Subst[Int[(1-g^2*x^2)^((m-1)/2)*(a+b*(f*g*x)^n+c*(f*g*x)^(2*n))^p,x],x,Cos[d+e*x]/g]] /;\r\nFreeQ[{a,b,c,d,e,f,n,p},x] && EqQ[n2,2*n] && IntegerQ[(m-1)/2]\r\n\r\n\r\n"
-                },
-                {
-                    "ordinal": 21,
-                    "reason": "Unsupported assignment or local scope outside With",
-                    "source": "(* ::Code:: *)\r\nInt[cos[d_.+e_.*x_]^m_*(a_.+b_.*sin[d_.+e_.*x_]^n_+c_.*sin[d_.+e_.*x_]^n2_)^p_.,x_Symbol] :=\r\n  Module[{f=FreeFactors[Cot[d+e*x],x]},\r\n  -f^(m+1)/e \\[Star] Subst[Int[x^m*ExpandToSum[c+b*(1+x^2)^(n/2)+a*(1+x^2)^n,x]^p/(1+f^2*x^2)^(m/2+n*p+1),x],x,Cot[d+e*x]/f]] /;\r\nFreeQ[{a,b,c,d,e},x] && EqQ[n2,2*n] && IntegerQ[m/2] && NeQ[b^2-4*a*c,0] && IntegerQ[n/2] && IntegerQ[p]\r\n\r\n\r\n"
-                },
-                {
-                    "ordinal": 22,
-                    "reason": "Unsupported assignment or local scope outside With",
-                    "source": "(* ::Code:: *)\r\nInt[sin[d_.+e_.*x_]^m_.*(a_.+b_.*cos[d_.+e_.*x_]^n_+c_.*cos[d_.+e_.*x_]^n2_)^p_.,x_Symbol] :=\r\n  Module[{f=FreeFactors[Tan[d+e*x],x]},\r\n  f^(m+1)/e \\[Star] Subst[Int[x^m*ExpandToSum[c+b*(1+x^2)^(n/2)+a*(1+x^2)^n,x]^p/(1+f^2*x^2)^(m/2+n*p+1),x],x,Tan[d+e*x]/f]] /;\r\nFreeQ[{a,b,c,d,e},x] && EqQ[n2,2*n] && IntegerQ[m/2] && NeQ[b^2-4*a*c,0] && IntegerQ[n/2] && IntegerQ[p]\r\n\r\n\r\n"
-                },
-                {
-                    "ordinal": 25,
-                    "reason": "Unsupported assignment or local scope outside With",
-                    "source": "(* ::Code:: *)\r\nInt[tan[d_.+e_.*x_]^m_.*(a_+b_.*(f_.*sin[d_.+e_.*x_])^n_+c_.*(f_.*sin[d_.+e_.*x_])^n2_.)^p_.,x_Symbol] :=\r\n  Module[{g=FreeFactors[Sin[d+e*x],x]},\r\n  g^(m+1)/e \\[Star] Subst[Int[x^m*(a+b*(f*g*x)^n+c*(f*g*x)^(2*n))^p/(1-g^2*x^2)^((m+1)/2),x],x,Sin[d+e*x]/g]] /;\r\nFreeQ[{a,b,c,d,e,f,n},x] && IntegerQ[(m-1)/2] && IntegerQ[2*p]\r\n\r\n\r\n"
-                },
-                {
-                    "ordinal": 26,
-                    "reason": "Unsupported assignment or local scope outside With",
-                    "source": "(* ::Code:: *)\r\nInt[cot[d_.+e_.*x_]^m_.*(a_+b_.*(f_.*cos[d_.+e_.*x_])^n_+c_.*(f_.*cos[d_.+e_.*x_])^n2_.)^p_.,x_Symbol] :=\r\n  Module[{g=FreeFactors[Cos[d+e*x],x]},\r\n  -g^(m+1)/e \\[Star] Subst[Int[x^m*(a+b*(f*g*x)^n+c*(f*g*x)^(2*n))^p/(1-g^2*x^2)^((m+1)/2),x],x,Cos[d+e*x]/g]] /;\r\nFreeQ[{a,b,c,d,e,f,n},x] && IntegerQ[(m-1)/2] && IntegerQ[2*p]\r\n\r\n\r\n"
-                },
-                {
-                    "ordinal": 31,
-                    "reason": "Unsupported assignment or local scope outside With",
-                    "source": "(* ::Code:: *)\r\nInt[tan[d_.+e_.*x_]^m_.*(a_.+b_.*sin[d_.+e_.*x_]^n_+c_.*sin[d_.+e_.*x_]^n2_)^p_.,x_Symbol] :=\r\n  Module[{f=FreeFactors[Tan[d+e*x],x]},\r\n  f^(m+1)/e \\[Star] Subst[Int[x^m*ExpandToSum[c*x^(2*n)+b*x^n*(1+x^2)^(n/2)+a*(1+x^2)^n,x]^p/(1+f^2*x^2)^(n*p+1),x],x,Tan[d+e*x]/f]] /;\r\nFreeQ[{a,b,c,d,e,m},x] && EqQ[n2,2*n] && Not[IntegerQ[(m-1)/2]] && NeQ[b^2-4*a*c,0] && IntegerQ[n/2] && IntegerQ[p]\r\n\r\n\r\n"
-                },
-                {
-                    "ordinal": 32,
-                    "reason": "Unsupported assignment or local scope outside With",
-                    "source": "(* ::Code:: *)\r\nInt[cot[d_.+e_.*x_]^m_.*(a_.+b_.*cos[d_.+e_.*x_]^n_+c_.*cos[d_.+e_.*x_]^n2_)^p_.,x_Symbol] :=\r\n  Module[{f=FreeFactors[Cot[d+e*x],x]},\r\n  -f^(m+1)/e \\[Star] Subst[Int[x^m*ExpandToSum[c*x^(2*n)+b*x^n*(1+x^2)^(n/2)+a*(1+x^2)^n,x]^p/(1+f^2*x^2)^(n*p+1),x],x,Cot[d+e*x]/f]] /;\r\nFreeQ[{a,b,c,d,e,m},x] && EqQ[n2,2*n] && Not[IntegerQ[(m-1)/2]] && NeQ[b^2-4*a*c,0] && IntegerQ[n/2] && IntegerQ[p]\r\n\r\n\r\n"
-                },
-                {
-                    "ordinal": 35,
-                    "reason": "Unsupported assignment or local scope outside With",
-                    "source": "(* ::Code:: *)\r\nInt[cot[d_.+e_.*x_]^m_.*(a_+b_.*(f_.*sin[d_.+e_.*x_])^n_+c_.*(f_.*sin[d_.+e_.*x_])^n2_.)^p_.,x_Symbol] :=\r\n  Module[{g=FreeFactors[Sin[d+e*x],x]},\r\n  g^(m+1)/e \\[Star] Subst[Int[(1-g^2*x^2)^((m-1)/2)*(a+b*(f*g*x)^n+c*(f*g*x)^(2*n))^p/x^m,x],x,Sin[d+e*x]/g]] /;\r\nFreeQ[{a,b,c,d,e,f,n},x] && IntegerQ[(m-1)/2] && IntegerQ[2*p]\r\n\r\n\r\n"
-                },
-                {
-                    "ordinal": 36,
-                    "reason": "Unsupported assignment or local scope outside With",
-                    "source": "(* ::Code:: *)\r\nInt[tan[d_.+e_.*x_]^m_.*(a_+b_.*(f_.*cos[d_.+e_.*x_])^n_+c_.*(f_.*cos[d_.+e_.*x_])^n2_.)^p_.,x_Symbol] :=\r\n  Module[{g=FreeFactors[Cos[d+e*x],x]},\r\n  -g^(m+1)/e \\[Star] Subst[Int[(1-g^2*x^2)^((m-1)/2)*(a+b*(f*g*x)^n+c*(f*g*x)^(2*n))^p/x^m,x],x,Cos[d+e*x]/g]] /;\r\nFreeQ[{a,b,c,d,e,f,n},x] && IntegerQ[(m-1)/2] && IntegerQ[2*p]\r\n\r\n\r\n"
-                },
-                {
-                    "ordinal": 41,
-                    "reason": "Unsupported assignment or local scope outside With",
-                    "source": "(* ::Code:: *)\r\nInt[cot[d_.+e_.*x_]^m_.*(a_+b_.*sin[d_.+e_.*x_]^n_+c_.*sin[d_.+e_.*x_]^n2_)^p_.,x_Symbol] :=\r\n  Module[{f=FreeFactors[Cot[d+e*x],x]},\r\n  -f^(m+1)/e \\[Star] Subst[Int[x^m*ExpandToSum[c+b*(1+f^2*x^2)^(n/2)+a*(1+f^2*x^2)^n,x]^p/(1+f^2*x^2)^(n*p+1),x],x,Cot[d+e*x]/f]] /;\r\nFreeQ[{a,b,c,d,e,m},x] && EqQ[n2,2*n] && IntegerQ[n/2] && IntegerQ[p]\r\n\r\n\r\n"
-                },
-                {
-                    "ordinal": 42,
-                    "reason": "Unsupported assignment or local scope outside With",
-                    "source": "(* ::Code:: *)\r\nInt[tan[d_.+e_.*x_]^m_.*(a_+b_.*cos[d_.+e_.*x_]^n_+c_.*cos[d_.+e_.*x_]^n2_)^p_.,x_Symbol] :=\r\n  Module[{f=FreeFactors[Tan[d+e*x],x]},\r\n  f^(m+1)/e \\[Star] Subst[Int[x^m*ExpandToSum[c+b*(1+f^2*x^2)^(n/2)+a*(1+f^2*x^2)^n,x]^p/(1+f^2*x^2)^(n*p+1),x],x,Tan[d+e*x]/f]] /;\r\nFreeQ[{a,b,c,d,e,m},x] && EqQ[n2,2*n] && IntegerQ[n/2] && IntegerQ[p]\r\n\r\n\r\n"
-                },
-                {
-                    "ordinal": 49,
-                    "reason": "Unsupported assignment or local scope outside With",
-                    "source": "(* ::Code:: *)\r\nInt[(A_+B_.*sin[d_.+e_.*x_])/(a_.+b_.*sin[d_.+e_.*x_]+c_.*sin[d_.+e_.*x_]^2),x_Symbol] :=\r\n  Module[{q=Rt[b^2-4*a*c,2]},\r\n  (B+(b*B-2*A*c)/q) \\[Star] Int[1/(b+q+2*c*Sin[d+e*x]),x] + \r\n  (B-(b*B-2*A*c)/q) \\[Star] Int[1/(b-q+2*c*Sin[d+e*x]),x]] /;\r\nFreeQ[{a,b,c,d,e,A,B},x] && NeQ[b^2-4*a*c,0]\r\n\r\n\r\n"
-                },
-                {
-                    "ordinal": 50,
-                    "reason": "Unsupported assignment or local scope outside With",
-                    "source": "(* ::Code:: *)\r\nInt[(A_+B_.*cos[d_.+e_.*x_])/(a_.+b_.*cos[d_.+e_.*x_]+c_.*cos[d_.+e_.*x_]^2),x_Symbol] :=\r\n  Module[{q=Rt[b^2-4*a*c,2]},\r\n  (B+(b*B-2*A*c)/q) \\[Star] Int[1/(b+q+2*c*Cos[d+e*x]),x] + \r\n  (B-(b*B-2*A*c)/q) \\[Star] Int[1/(b-q+2*c*Cos[d+e*x]),x]] /;\r\nFreeQ[{a,b,c,d,e,A,B},x] && NeQ[b^2-4*a*c,0]\r\n\r\n\r\n"
-                }
             ]
         },
         {
@@ -1184,38 +844,8 @@
             "path": "4-trig/4.1-sine/4.1.12-(e-x)^m-(a+b-sin(c+d-x^n))^p.json",
             "source_path": "4 Trig functions/4.1 Sine/4.1.12 (e x)^m (a+b sin(c+d x^n))^p.m",
             "sha256": "dc31aa1bc1aacfbbc81948c7bb696e65e6c2bcf902f6501e83b9cdc51ed088cb",
-            "converted": 88,
+            "converted": 94,
             "omitted": [
-                {
-                    "ordinal": 13,
-                    "reason": "Unsupported assignment or local scope outside With",
-                    "source": "(* ::Code:: *)\r\nInt[(a_.+b_.*Sin[c_.+d_.*(e_.+f_.*x_)^n_])^p_.,x_Symbol] :=\r\n  Module[{k=Denominator[n]},\r\n  k/f \\[Star] Subst[Int[x^(k-1)*(a+b*Sin[c+d*x^(k*n)])^p,x],x,(e+f*x)^(1/k)]] /;\r\nFreeQ[{a,b,c,d,e,f},x] && IGtQ[p,0] && FractionQ[n]\r\n\r\n\r\n"
-                },
-                {
-                    "ordinal": 14,
-                    "reason": "Unsupported assignment or local scope outside With",
-                    "source": "(* ::Code:: *)\r\nInt[(a_.+b_.*Cos[c_.+d_.*(e_.+f_.*x_)^n_])^p_.,x_Symbol] :=\r\n  Module[{k=Denominator[n]},\r\n  k/f \\[Star] Subst[Int[x^(k-1)*(a+b*Cos[c+d*x^(k*n)])^p,x],x,(e+f*x)^(1/k)]] /;\r\nFreeQ[{a,b,c,d,e,f},x] && IGtQ[p,0] && FractionQ[n]\r\n\r\n\r\n"
-                },
-                {
-                    "ordinal": 65,
-                    "reason": "Unsupported assignment or local scope outside With",
-                    "source": "(* ::Code:: *)\r\nInt[x_^m_.*(a_.+b_.*Sin[c_.+d_.*x_^n_])^p_.,x_Symbol] :=\r\n  Module[{k=Denominator[n]},\r\n  k \\[Star] Subst[Int[x^(k*(m+1)-1)*(a+b*Sin[c+d*x^(k*n)])^p,x],x,x^(1/k)]] /;\r\nFreeQ[{a,b,c,d,m},x] && IntegerQ[p] && FractionQ[n]\r\n\r\n\r\n"
-                },
-                {
-                    "ordinal": 66,
-                    "reason": "Unsupported assignment or local scope outside With",
-                    "source": "(* ::Code:: *)\r\nInt[x_^m_.*(a_.+b_.*Cos[c_.+d_.*x_^n_])^p_.,x_Symbol] :=\r\n  Module[{k=Denominator[n]},\r\n  k \\[Star] Subst[Int[x^(k*(m+1)-1)*(a+b*Cos[c+d*x^(k*n)])^p,x],x,x^(1/k)]] /;\r\nFreeQ[{a,b,c,d,m},x] && IntegerQ[p] && FractionQ[n]\r\n\r\n\r\n"
-                },
-                {
-                    "ordinal": 85,
-                    "reason": "Unsupported assignment or local scope outside With",
-                    "source": "(* ::Code:: *)\r\nInt[(g_.+h_.*x_)^m_.*(a_.+b_.*Sin[c_.+d_.*(e_.+f_.*x_)^n_])^p_.,x_Symbol] :=\r\n  Module[{k=If[FractionQ[n],Denominator[n],1]},\r\n  k/f^(m+1) \\[Star] Subst[Int[ExpandIntegrand[(a+b*Sin[c+d*x^(k*n)])^p,x^(k-1)*(f*g-e*h+h*x^k)^m,x],x],x,(e+f*x)^(1/k)]] /;\r\nFreeQ[{a,b,c,d,e,f,g,h},x] && IGtQ[p,0] && IGtQ[m,0]\r\n\r\n\r\n"
-                },
-                {
-                    "ordinal": 86,
-                    "reason": "Unsupported assignment or local scope outside With",
-                    "source": "(* ::Code:: *)\r\nInt[(g_.+h_.*x_)^m_.*(a_.+b_.*Cos[c_.+d_.*(e_.+f_.*x_)^n_])^p_.,x_Symbol] :=\r\n  Module[{k=If[FractionQ[n],Denominator[n],1]},\r\n  k/f^(m+1) \\[Star] Subst[Int[ExpandIntegrand[(a+b*Cos[c+d*x^(k*n)])^p,x^(k-1)*(f*g-e*h+h*x^k)^m,x],x],x,(e+f*x)^(1/k)]] /;\r\nFreeQ[{a,b,c,d,e,f,g,h},x] && IGtQ[p,0] && IGtQ[m,0]\r\n\r\n\r\n"
-                }
             ]
         },
         {
@@ -1238,13 +868,8 @@
             "path": "4-trig/4.3-tangent/4.3.1.2-(d-sec)^m-(a+b-tan)^n.json",
             "source_path": "4 Trig functions/4.3 Tangent/4.3.1.2 (d sec)^m (a+b tan)^n.m",
             "sha256": "aca775c77a14a01eea6848c04b53c651cacad656124922e0cf784523140e76b4",
-            "converted": 31,
+            "converted": 32,
             "omitted": [
-                {
-                    "ordinal": 27,
-                    "reason": "Unsupported assignment or local scope outside With",
-                    "source": "(* ::Code:: *)\r\nInt[sec[e_.+f_.*x_]^m_.*(a_+b_.*tan[e_.+f_.*x_])^n_,x_Symbol] :=\r\n  Module[{k},\r\n  Int[Sec[e+f*x]^m*Sum[Binomial[n,2*k]*a^(n-2*k)*b^(2*k)*Tan[e+f*x]^(2*k),{k,0,n/2}],x] + \r\n  Int[Sec[e+f*x]^m*Tan[e+f*x]*Sum[Binomial[n,2*k+1]*a^(n-2*k-1)*b^(2*k+1)*Tan[e+f*x]^(2*k),{k,0,(n-1)/2}],x]] /;\r\nFreeQ[{a,b,e,f},x] && NeQ[a^2+b^2,0] && IntegerQ[(m-1)/2] && IGtQ[n,0]\r\n\r\n\r\n"
-                }
             ]
         },
         {
@@ -1307,58 +932,8 @@
             "path": "4-trig/4.3-tangent/4.3.9-trig^m-(a+b-tan^n+c-tan^(2-n))^p.json",
             "source_path": "4 Trig functions/4.3 Tangent/4.3.9 trig^m (a+b tan^n+c tan^(2 n))^p.m",
             "sha256": "87ffb00f9c0758e6b9cd79d262b3a99576e724e6e73d1fad8a1576f1bbe77546",
-            "converted": 24,
+            "converted": 34,
             "omitted": [
-                {
-                    "ordinal": 5,
-                    "reason": "Unsupported assignment or local scope outside With",
-                    "source": "(* ::Code:: *)\r\nInt[1/(a_.+b_.*tan[d_.+e_.*x_]^n_.+c_.*tan[d_.+e_.*x_]^n2_.),x_Symbol] :=\r\n  Module[{q=Rt[b^2-4*a*c,2]},\r\n  2*c/q \\[Star] Int[1/(b-q+2*c*Tan[d+e*x]^n),x] - \r\n  2*c/q \\[Star] Int[1/(b+q+2*c*Tan[d+e*x]^n),x]] /;\r\nFreeQ[{a,b,c,d,e,n},x] && EqQ[n2,2*n] && NeQ[b^2-4*a*c,0]\r\n\r\n\r\n"
-                },
-                {
-                    "ordinal": 6,
-                    "reason": "Unsupported assignment or local scope outside With",
-                    "source": "(* ::Code:: *)\r\nInt[1/(a_.+b_.*cot[d_.+e_.*x_]^n_.+c_.*cot[d_.+e_.*x_]^n2_.),x_Symbol] :=\r\n  Module[{q=Rt[b^2-4*a*c,2]},\r\n  2*c/q \\[Star] Int[1/(b-q+2*c*Cot[d+e*x]^n),x] - \r\n  2*c/q \\[Star] Int[1/(b+q+2*c*Cot[d+e*x]^n),x]] /;\r\nFreeQ[{a,b,c,d,e,n},x] && EqQ[n2,2*n] && NeQ[b^2-4*a*c,0]\r\n\r\n\r\n"
-                },
-                {
-                    "ordinal": 9,
-                    "reason": "Unsupported assignment or local scope outside With",
-                    "source": "(* ::Code:: *)\r\nInt[sin[d_.+e_.*x_]^m_.*(a_.+b_.*tan[d_.+e_.*x_]^n_.+c_.*tan[d_.+e_.*x_]^n2_.)^p_.,x_Symbol] :=\r\n  Module[{g=FreeFactors[Cos[d+e*x],x]},\r\n  -g/e \\[Star] Subst[Int[(1-g^2*x^2)^((m-1)/2)*ExpandToSum[a*(g*x)^(2*n)+b*(g*x)^n*(1-g^2*x^2)^(n/2)+c*(1-g^2*x^2)^n,x]^p/(g*x)^(2*n*p),x],x,Cos[d+e*x]/g]] /;\r\nFreeQ[{a,b,c,d,e},x] && EqQ[n2,2*n] && IntegerQ[(m-1)/2] && IntegerQ[n/2] && IntegerQ[p]\r\n\r\n\r\n"
-                },
-                {
-                    "ordinal": 10,
-                    "reason": "Unsupported assignment or local scope outside With",
-                    "source": "(* ::Code:: *)\r\nInt[cos[d_.+e_.*x_]^m_.*(a_.+b_.*cot[d_.+e_.*x_]^n_.+c_.*tan[d_.+e_.*x_]^n2_.)^p_.,x_Symbol] :=\r\n  Module[{g=FreeFactors[Sin[d+e*x],x]},\r\n  g/e \\[Star] Subst[Int[(1-g^2*x^2)^((m-1)/2)*ExpandToSum[a*(g*x)^(2*n)+b*(g*x)^n*(1-g^2*x^2)^(n/2)+c*(1-g^2*x^2)^n,x]^p/(g*x)^(2*n*p),x],x,Sin[d+e*x]/g]] /;\r\nFreeQ[{a,b,c,d,e},x] && EqQ[n2,2*n] && IntegerQ[(m-1)/2] && IntegerQ[n/2] && IntegerQ[p]\r\n\r\n\r\n"
-                },
-                {
-                    "ordinal": 13,
-                    "reason": "Unsupported assignment or local scope outside With",
-                    "source": "(* ::Code:: *)\r\nInt[cos[d_.+e_.*x_]^m_*(a_.+b_.*tan[d_.+e_.*x_]^n_.+c_.*tan[d_.+e_.*x_]^n2_.)^p_.,x_Symbol] :=\r\n  Module[{g=FreeFactors[Sin[d+e*x],x]},\r\n  g/e \\[Star] Subst[Int[(1-g^2*x^2)^((m-2*n*p-1)/2)*ExpandToSum[c*x^(2*n)+b*x^n*(1-x^2)^(n/2)+a*(1-x^2)^n,x]^p,x],x,Sin[d+e*x]/g]] /;\r\nFreeQ[{a,b,c,d,e},x] && EqQ[n2,2*n] && IntegerQ[(m-1)/2] && IntegerQ[n/2] && IntegerQ[p]\r\n\r\n\r\n"
-                },
-                {
-                    "ordinal": 14,
-                    "reason": "Unsupported assignment or local scope outside With",
-                    "source": "(* ::Code:: *)\r\nInt[sin[d_.+e_.*x_]^m_*(a_.+b_.*cot[d_.+e_.*x_]^n_.+c_.*cot[d_.+e_.*x_]^n2_.)^p_.,x_Symbol] :=\r\n  Module[{g=FreeFactors[Cos[d+e*x],x]},\r\n  -g/e \\[Star] Subst[Int[(1-g^2*x^2)^((m-2*n*p-1)/2)*ExpandToSum[c*x^(2*n)+b*x^n*(1-x^2)^(n/2)+a*(1-x^2)^n,x]^p,x],x,Cos[d+e*x]/g]] /;\r\nFreeQ[{a,b,c,d,e},x] && EqQ[n2,2*n] && IntegerQ[(m-1)/2] && IntegerQ[n/2] && IntegerQ[p]\r\n\r\n\r\n"
-                },
-                {
-                    "ordinal": 25,
-                    "reason": "Unsupported assignment or local scope outside With",
-                    "source": "(* ::Code:: *)\r\nInt[cot[d_.+e_.*x_]^m_.*(a_.+b_.*tan[d_.+e_.*x_]^n_+c_.*tan[d_.+e_.*x_]^n2_)^p_.,x_Symbol] :=\r\n  Module[{g=FreeFactors[Cot[d+e*x],x]},\r\n  g/e \\[Star] Subst[Int[(g*x)^(m-2*n*p)*(c+b*(g*x)^n+a*(g*x)^(2*n))^p/(1+g^2*x^2),x],x,Cot[d+e*x]/g]] /;\r\nFreeQ[{a,b,c,d,e,m,p},x] && EqQ[n2,2*n] && NeQ[b^2-4*a*c,0] && IntegerQ[n/2]\r\n\r\n\r\n"
-                },
-                {
-                    "ordinal": 26,
-                    "reason": "Unsupported assignment or local scope outside With",
-                    "source": "(* ::Code:: *)\r\nInt[tan[d_.+e_.*x_]^m_.*(a_.+b_.*cot[d_.+e_.*x_]^n_+c_.*cot[d_.+e_.*x_]^n2_)^p_.,x_Symbol] :=\r\n  Module[{g=FreeFactors[Tan[d+e*x],x]},\r\n  -g/e \\[Star] Subst[Int[(g*x)^(m-2*n*p)*(c+b*(g*x)^n+a*(g*x)^(2*n))^p/(1+g^2*x^2),x],x,Tan[d+e*x]/g]] /;\r\nFreeQ[{a,b,c,d,e,m,p},x] && EqQ[n2,2*n] && NeQ[b^2-4*a*c,0] && IntegerQ[n/2]\r\n\r\n\r\n"
-                },
-                {
-                    "ordinal": 31,
-                    "reason": "Unsupported assignment or local scope outside With",
-                    "source": "(* ::Code:: *)\r\nInt[(A_+B_.*tan[d_.+e_.*x_])/(a_.+b_.*tan[d_.+e_.*x_]+c_.*tan[d_.+e_.*x_]^2),x_Symbol] :=\r\n  Module[{q=Rt[b^2-4*a*c,2]},\r\n  (B+(b*B-2*A*c)/q) \\[Star] Int[1/Simp[b+q+2*c*Tan[d+e*x],x],x] + \r\n  (B-(b*B-2*A*c)/q) \\[Star] Int[1/Simp[b-q+2*c*Tan[d+e*x],x],x]] /;\r\nFreeQ[{a,b,c,d,e,A,B},x] && NeQ[b^2-4*a*c,0]\r\n\r\n\r\n"
-                },
-                {
-                    "ordinal": 32,
-                    "reason": "Unsupported assignment or local scope outside With",
-                    "source": "(* ::Code:: *)\r\nInt[(A_+B_.*cot[d_.+e_.*x_])/(a_.+b_.*cot[d_.+e_.*x_]+c_.*cot[d_.+e_.*x_]^2),x_Symbol] :=\r\n  Module[{q=Rt[b^2-4*a*c,2]},\r\n  (B+(b*B-2*A*c)/q) \\[Star] Int[1/Simp[b+q+2*c*Cot[d+e*x],x],x] + \r\n  (B-(b*B-2*A*c)/q) \\[Star] Int[1/Simp[b-q+2*c*Cot[d+e*x],x],x]] /;\r\nFreeQ[{a,b,c,d,e,A,B},x] && NeQ[b^2-4*a*c,0]\r\n\r\n\r\n"
-                }
             ]
         },
         {
@@ -1461,81 +1036,16 @@
             "path": "4-trig/4.5-secant/4.5.7-(d-trig)^m-(a+b-(c-sec)^n)^p.json",
             "source_path": "4 Trig functions/4.5 Secant/4.5.7 (d trig)^m (a+b (c sec)^n)^p.m",
             "sha256": "e4c4e3f4821d3d5003673d646afbd92e1acaef7728ebf38b81fe0a6c240ddc78",
-            "converted": 31,
+            "converted": 32,
             "omitted": [
-                {
-                    "ordinal": 19,
-                    "reason": "Unsupported assignment or local scope outside With",
-                    "source": "(* ::Code:: *)\r\nInt[tan[e_.+f_.*x_]^m_.*(a_+b_.*sec[e_.+f_.*x_]^n_)^p_.,x_Symbol] :=\r\n  Module[{ff=FreeFactors[Cos[e+f*x],x]},\r\n  -1/(f*ff^(m+n*p-1)) \\[Star] Subst[Int[(1-ff^2*x^2)^((m-1)/2)*(b+a*(ff*x)^n)^p/x^(m+n*p),x],x,Cos[e+f*x]/ff]] /;\r\nFreeQ[{a,b,e,f,n},x] && IntegerQ[(m-1)/2] && IntegerQ[n] && IntegerQ[p]\r\n\r\n\r\n"
-                }
             ]
         },
         {
             "path": "4-trig/4.5-secant/4.5.9-trig^m-(a+b-sec^n+c-sec^(2-n))^p.json",
             "source_path": "4 Trig functions/4.5 Secant/4.5.9 trig^m (a+b sec^n+c sec^(2 n))^p.m",
             "sha256": "8c9cbdb234fcba68c5b8f6f14db59a6853cf1ed70eef7358fde9f0ef8395ef1a",
-            "converted": 16,
+            "converted": 28,
             "omitted": [
-                {
-                    "ordinal": 5,
-                    "reason": "Unsupported assignment or local scope outside With",
-                    "source": "(* ::Code:: *)\r\nInt[1/(a_.+b_.*sec[d_.+e_.*x_]^n_.+c_.*sec[d_.+e_.*x_]^n2_.),x_Symbol] :=\r\n  Module[{q=Rt[b^2-4*a*c,2]},\r\n  2*c/q \\[Star] Int[1/(b-q+2*c*Sec[d+e*x]^n),x] - \r\n  2*c/q \\[Star] Int[1/(b+q+2*c*Sec[d+e*x]^n),x]] /;\r\nFreeQ[{a,b,c,d,e,n},x] && EqQ[n2,2*n] && NeQ[b^2-4*a*c,0]\r\n\r\n\r\n"
-                },
-                {
-                    "ordinal": 6,
-                    "reason": "Unsupported assignment or local scope outside With",
-                    "source": "(* ::Code:: *)\r\nInt[1/(a_.+b_.*csc[d_.+e_.*x_]^n_.+c_.*csc[d_.+e_.*x_]^n2_.),x_Symbol] :=\r\n  Module[{q=Rt[b^2-4*a*c,2]},\r\n  2*c/q \\[Star] Int[1/(b-q+2*c*Csc[d+e*x]^n),x] - \r\n  2*c/q \\[Star] Int[1/(b+q+2*c*Csc[d+e*x]^n),x]] /;\r\nFreeQ[{a,b,c,d,e,n},x] && EqQ[n2,2*n] && NeQ[b^2-4*a*c,0]\r\n\r\n\r\n"
-                },
-                {
-                    "ordinal": 7,
-                    "reason": "Unsupported assignment or local scope outside With",
-                    "source": "(* ::Code:: *)\r\nInt[sin[d_.+e_.*x_]^m_.*(a_.+b_.*sec[d_.+e_.*x_]^n_.+c_.*sec[d_.+e_.*x_]^n2_)^p_.,x_Symbol] :=\r\n  Module[{f=FreeFactors[Cos[d+e*x],x]},\r\n  -f/e \\[Star] Subst[Int[(1-f^2*x^2)^((m-1)/2)*(b+a*(f*x)^n)^p/(f*x)^(n*p),x],x,Cos[d+e*x]/f]] /;\r\nFreeQ[{a,b,c,d,e},x] && EqQ[n2,2*n] && IntegerQ[(m-1)/2] && IntegersQ[n,p]\r\n\r\n\r\n"
-                },
-                {
-                    "ordinal": 8,
-                    "reason": "Unsupported assignment or local scope outside With",
-                    "source": "(* ::Code:: *)\r\nInt[cos[d_.+e_.*x_]^m_.*(a_.+b_.*csc[d_.+e_.*x_]^n_.+c_.*csc[d_.+e_.*x_]^n2_)^p_.,x_Symbol] :=\r\n  Module[{f=FreeFactors[Sin[d+e*x],x]},\r\n  f/e \\[Star] Subst[Int[(1-f^2*x^2)^((m-1)/2)*(b+a*(f*x)^n)^p/(f*x)^(n*p),x],x,Sin[d+e*x]/f]] /;\r\nFreeQ[{a,b,c,d,e},x] && EqQ[n2,2*n] && IntegerQ[(m-1)/2] && IntegersQ[n,p]\r\n\r\n\r\n"
-                },
-                {
-                    "ordinal": 9,
-                    "reason": "Unsupported assignment or local scope outside With",
-                    "source": "(* ::Code:: *)\r\nInt[sin[d_.+e_.*x_]^m_*(a_.+b_.*sec[d_.+e_.*x_]^n_+c_.*sec[d_.+e_.*x_]^n2_)^p_.,x_Symbol] :=\r\n  Module[{f=FreeFactors[Tan[d+e*x],x]},\r\n  f^(m+1)/e \\[Star] Subst[Int[x^m*ExpandToSum[a+b*(1+f^2*x^2)^(n/2)+c*(1+f^2*x^2)^n,x]^p/(1+f^2*x^2)^(m/2+1),x],x,Tan[d+e*x]/f]] /;\r\nFreeQ[{a,b,c,d,e,p},x] && EqQ[n2,2*n] && IntegerQ[m/2] && IntegerQ[n/2]\r\n\r\n\r\n"
-                },
-                {
-                    "ordinal": 10,
-                    "reason": "Unsupported assignment or local scope outside With",
-                    "source": "(* ::Code:: *)\r\nInt[cos[d_.+e_.*x_]^m_*(a_.+b_.*csc[d_.+e_.*x_]^n_+c_.*csc[d_.+e_.*x_]^n2_)^p_.,x_Symbol] :=\r\n  Module[{f=FreeFactors[Cot[d+e*x],x]},\r\n  -f^(m+1)/e \\[Star] Subst[Int[x^m*ExpandToSum[a+b*(1+f^2*x^2)^(n/2)+c*(1+f^2*x^2)^n,x]^p/(1+f^2*x^2)^(m/2+1),x],x,Cot[d+e*x]/f]] /;\r\nFreeQ[{a,b,c,d,e,p},x] && EqQ[n2,2*n] && IntegerQ[m/2] && IntegerQ[n/2]\r\n\r\n\r\n"
-                },
-                {
-                    "ordinal": 17,
-                    "reason": "Unsupported assignment or local scope outside With",
-                    "source": "(* ::Code:: *)\r\nInt[tan[d_.+e_.*x_]^m_.*(a_+b_.*sec[d_.+e_.*x_]^n_.+c_.*sec[d_.+e_.*x_]^n2_.)^p_.,x_Symbol] :=\r\n  Module[{f=FreeFactors[Cos[d+e*x],x]},\r\n  -1/(e*f^(m+n*p-1)) \\[Star] Subst[Int[(1-f^2*x^2)^((m-1)/2)*(c+b*(f*x)^n+c*(f*x)^(2*n))^p/x^(m+2*n*p),x],x,Cos[d+e*x]/f]] /;\r\nFreeQ[{a,b,c,d,e,n},x] && EqQ[n2,2*n] && IntegerQ[(m-1)/2] && IntegerQ[n] && IntegerQ[p]\r\n\r\n\r\n"
-                },
-                {
-                    "ordinal": 18,
-                    "reason": "Unsupported assignment or local scope outside With",
-                    "source": "(* ::Code:: *)\r\nInt[cot[d_.+e_.*x_]^m_.*(a_+b_.*csc[d_.+e_.*x_]^n_.+c_.*sec[d_.+e_.*x_]^n2_.)^p_.,x_Symbol] :=\r\n  Module[{f=FreeFactors[Sin[d+e*x],x]},\r\n  1/(e*f^(m+n*p-1)) \\[Star] Subst[Int[(1-f^2*x^2)^((m-1)/2)*(c+b*(f*x)^n+c*(f*x)^(2*n))^p/x^(m+2*n*p),x],x,Sin[d+e*x]/f]] /;\r\nFreeQ[{a,b,c,d,e,n},x] && EqQ[n2,2*n] && IntegerQ[(m-1)/2] && IntegerQ[n] && IntegerQ[p]\r\n\r\n\r\n"
-                },
-                {
-                    "ordinal": 19,
-                    "reason": "Unsupported assignment or local scope outside With",
-                    "source": "(* ::Code:: *)\r\nInt[tan[d_.+e_.*x_]^m_.*(a_+b_.*sec[d_.+e_.*x_]^n_+c_.*sec[d_.+e_.*x_]^n2_.)^p_.,x_Symbol] :=\r\n  Module[{f=FreeFactors[Tan[d+e*x],x]},\r\n  f^(m+1)/e \\[Star] Subst[Int[x^m*ExpandToSum[a+b*(1+f^2*x^2)^(n/2)+c*(1+f^2*x^2)^n,x]^p/(1+f^2*x^2),x],x,Tan[d+e*x]/f]] /;\r\nFreeQ[{a,b,c,d,e},x] && EqQ[n2,2*n] && IntegerQ[m/2] && IntegerQ[n/2]\r\n\r\n\r\n"
-                },
-                {
-                    "ordinal": 20,
-                    "reason": "Unsupported assignment or local scope outside With",
-                    "source": "(* ::Code:: *)\r\nInt[cot[d_.+e_.*x_]^m_.*(a_+b_.*csc[d_.+e_.*x_]^n_+c_.*sec[d_.+e_.*x_]^n2_.)^p_.,x_Symbol] :=\r\n  Module[{f=FreeFactors[Cot[d+e*x],x]},\r\n  -f^(m+1)/e \\[Star] Subst[Int[x^m*ExpandToSum[a+b*(1+f^2*x^2)^(n/2)+c*(1+f^2*x^2)^n,x]^p/(1+f^2*x^2),x],x,Cot[d+e*x]/f]] /;\r\nFreeQ[{a,b,c,d,e},x] && EqQ[n2,2*n] && IntegerQ[m/2] && IntegerQ[n/2]\r\n\r\n\r\n"
-                },
-                {
-                    "ordinal": 25,
-                    "reason": "Unsupported assignment or local scope outside With",
-                    "source": "(* ::Code:: *)\r\nInt[(A_+B_.*sec[d_.+e_.*x_])/(a_.+b_.*sec[d_.+e_.*x_]+c_.*sec[d_.+e_.*x_]^2),x_Symbol] :=\r\n  Module[{q=Rt[b^2-4*a*c,2]},\r\n  (B+(b*B-2*A*c)/q) \\[Star] Int[1/(b+q+2*c*Sec[d+e*x]),x] + \r\n  (B-(b*B-2*A*c)/q) \\[Star] Int[1/(b-q+2*c*Sec[d+e*x]),x]] /;\r\nFreeQ[{a,b,c,d,e,A,B},x] && NeQ[b^2-4*a*c,0]\r\n\r\n\r\n"
-                },
-                {
-                    "ordinal": 26,
-                    "reason": "Unsupported assignment or local scope outside With",
-                    "source": "(* ::Code:: *)\r\nInt[(A_+B_.*csc[d_.+e_.*x_])/(a_.+b_.*csc[d_.+e_.*x_]+c_.*csc[d_.+e_.*x_]^2),x_Symbol] :=\r\n  Module[{q=Rt[b^2-4*a*c,2]},\r\n  (B+(b*B-2*A*c)/q) \\[Star] Int[1/(b+q+2*c*Csc[d+e*x]),x] + \r\n  (B-(b*B-2*A*c)/q) \\[Star] Int[1/(b-q+2*c*Csc[d+e*x]),x]] /;\r\nFreeQ[{a,b,c,d,e,A,B},x] && NeQ[b^2-4*a*c,0]\r\n\r\n\r\n"
-                }
             ]
         },
         {
@@ -1598,41 +1108,16 @@
             "path": "4-trig/4.7-miscellaneous/4.7.6-(c+d-x)^m-trig(a+b-x)^n-trig(a+b-x)^p.json",
             "source_path": "4 Trig functions/4.7 Miscellaneous/4.7.6 (c+d x)^m trig(a+b x)^n trig(a+b x)^p.m",
             "sha256": "3e09ca045a08d56467084e7c6709bc1da30117c595f347087e38a7d6f508cd61",
-            "converted": 25,
+            "converted": 28,
             "omitted": [
-                {
-                    "ordinal": 14,
-                    "reason": "Unsupported assignment or local scope outside With",
-                    "source": "(* ::Code:: *)\r\nInt[(c_.+d_.*x_)^m_.*Sec[a_.+b_.*x_]^n_.*Tan[a_.+b_.*x_]^p_.,x_Symbol] :=\r\n  Module[{u=IntHide[Sec[a+b*x]^n*Tan[a+b*x]^p,x]},\r\n  (c+d*x)^m \\[Star] u - d*m \\[Star] Int[(c+d*x)^(m-1)*u,x]] /;\r\nFreeQ[{a,b,c,d,n,p},x] && IGtQ[m,0] && (IntegerQ[n/2] || IntegerQ[(p-1)/2])\r\n\r\n\r\n"
-                },
-                {
-                    "ordinal": 15,
-                    "reason": "Unsupported assignment or local scope outside With",
-                    "source": "(* ::Code:: *)\r\nInt[(c_.+d_.*x_)^m_.*Csc[a_.+b_.*x_]^n_.*Cot[a_.+b_.*x_]^p_.,x_Symbol] :=\r\n  Module[{u=IntHide[Csc[a+b*x]^n*Cot[a+b*x]^p,x]},\r\n  (c+d*x)^m \\[Star] u - d*m \\[Star] Int[(c+d*x)^(m-1)*u,x]] /;\r\nFreeQ[{a,b,c,d,n,p},x] && IGtQ[m,0] && (IntegerQ[n/2] || IntegerQ[(p-1)/2])\r\n\r\n\r\n"
-                },
-                {
-                    "ordinal": 17,
-                    "reason": "Unsupported assignment or local scope outside With",
-                    "source": "(* ::Code:: *)\r\nInt[(c_.+d_.*x_)^m_.*Csc[a_.+b_.*x_]^n_.*Sec[a_.+b_.*x_]^p_., x_Symbol] :=\r\n  Module[{u=IntHide[Csc[a+b*x]^n*Sec[a+b*x]^p,x]},\r\n  (c+d*x)^m \\[Star] u - d*m \\[Star] Int[(c+d*x)^(m-1)*u,x]] /;\r\nFreeQ[{a,b,c,d},x] && IntegersQ[n,p] && GtQ[m,0] && NeQ[n,p]\r\n\r\n\r\n"
-                }
             ]
         },
         {
             "path": "4-trig/4.7-miscellaneous/4.7.7-F^(c-(a+b-x))-trig(d+e-x)^n.json",
             "source_path": "4 Trig functions/4.7 Miscellaneous/4.7.7 F^(c (a+b x)) trig(d+e x)^n.m",
             "sha256": "ef121f44005b97a3851034e67fc8776f9e8e6e3ebffa7d8396911bb527acab44",
-            "converted": 44,
+            "converted": 46,
             "omitted": [
-                {
-                    "ordinal": 39,
-                    "reason": "Unsupported assignment or local scope outside With",
-                    "source": "(* ::Code:: *)\r\nInt[(f_.*x_)^m_.*F_^(c_.*(a_.+b_.*x_))*Sin[d_.+e_.*x_]^n_.,x_Symbol] :=\r\n  Module[{u=IntHide[F^(c*(a+b*x))*Sin[d+e*x]^n,x]},\r\n  (f*x)^m \\[Star] u - f*m \\[Star] Int[(f*x)^(m-1)*u,x]] /;\r\nFreeQ[{F,a,b,c,d,e,f},x] && IGtQ[n,0] && GtQ[m,0]\r\n\r\n\r\n"
-                },
-                {
-                    "ordinal": 40,
-                    "reason": "Unsupported assignment or local scope outside With",
-                    "source": "(* ::Code:: *)\r\nInt[(f_.*x_)^m_.*F_^(c_.*(a_.+b_.*x_))*Cos[d_.+e_.*x_]^n_.,x_Symbol] :=\r\n  Module[{u=IntHide[F^(c*(a+b*x))*Cos[d+e*x]^n,x]},\r\n  (f*x)^m \\[Star] u - f*m \\[Star] Int[(f*x)^(m-1)*u,x]] /;\r\nFreeQ[{F,a,b,c,d,e,f},x] && IGtQ[n,0] && GtQ[m,0]\r\n\r\n\r\n"
-                }
             ]
         },
         {
@@ -1647,18 +1132,8 @@
             "path": "4-trig/4.7-miscellaneous/4.7.9-Active-trig-functions.json",
             "source_path": "4 Trig functions/4.7 Miscellaneous/4.7.9 Active trig functions.m",
             "sha256": "f575639de8ea2fc91c5ec80416f923d7045d7f2676589510c81227a77ee7cda8",
-            "converted": 102,
+            "converted": 104,
             "omitted": [
-                {
-                    "ordinal": 51,
-                    "reason": "Unsupported assignment or local scope outside With",
-                    "source": "(* ::Code:: *)\r\nInt[Sin[u_]^n_.,x_Symbol] :=\r\n  Module[{lst=QuotientOfLinearsParts[u,x]},\r\n  Int[Sin[(lst[[1]]+lst[[2]]*x)/(lst[[3]]+lst[[4]]*x)]^n,x]] /;\r\nIGtQ[n,0] && QuotientOfLinearsQ[u,x]\r\n\r\n\r\n"
-                },
-                {
-                    "ordinal": 52,
-                    "reason": "Unsupported assignment or local scope outside With",
-                    "source": "(* ::Code:: *)\r\nInt[Cos[u_]^n_.,x_Symbol] :=\r\n  Module[{lst=QuotientOfLinearsParts[u,x]},\r\n  Int[Cos[(lst[[1]]+lst[[2]]*x)/(lst[[3]]+lst[[4]]*x)]^n,x]] /;\r\nIGtQ[n,0] && QuotientOfLinearsQ[u,x]\r\n\r\n\r\n"
-                }
             ]
         },
         {
@@ -1801,28 +1276,8 @@
             "path": "6-hyperbolic/6.1-hyperbolic/6.1.12-(e-x)^m-(a+b-sinh(c+d-x^n))^p.json",
             "source_path": "6 Hyperbolic functions/6.1 Hyperbolic sine/6.1.12 (e x)^m (a+b sinh(c+d x^n))^p.m",
             "sha256": "a6d8792ab249628cd1473ab17fefdede410253192e259f4cc53db7696261363d",
-            "converted": 72,
+            "converted": 76,
             "omitted": [
-                {
-                    "ordinal": 7,
-                    "reason": "Unsupported assignment or local scope outside With",
-                    "source": "(* ::Code:: *)\r\nInt[(a_.+b_.*Sinh[c_.+d_.*x_^n_])^p_.,x_Symbol] :=\r\n  Module[{k=Denominator[n]},\r\n  k \\[Star] Subst[Int[x^(k-1)*(a+b*Sinh[c+d*x^(k*n)])^p,x],x,x^(1/k)]] /;\r\nFreeQ[{a,b,c,d},x] && FractionQ[n] && IntegerQ[p]\r\n\r\n\r\n"
-                },
-                {
-                    "ordinal": 8,
-                    "reason": "Unsupported assignment or local scope outside With",
-                    "source": "(* ::Code:: *)\r\nInt[(a_.+b_.*Cosh[c_.+d_.*x_^n_])^p_.,x_Symbol] :=\r\n  Module[{k=Denominator[n]},\r\n  k \\[Star] Subst[Int[x^(k-1)*(a+b*Cosh[c+d*x^(k*n)])^p,x],x,x^(1/k)]] /;\r\nFreeQ[{a,b,c,d},x] && FractionQ[n] && IntegerQ[p]\r\n\r\n\r\n"
-                },
-                {
-                    "ordinal": 55,
-                    "reason": "Unsupported assignment or local scope outside With",
-                    "source": "(* ::Code:: *)\r\nInt[x_^m_.*(a_.+b_.*Sinh[c_.+d_.*x_^n_])^p_.,x_Symbol] :=\r\n  Module[{k=Denominator[n]},\r\n  k \\[Star] Subst[Int[x^(k*(m+1)-1)*(a+b*Sinh[c+d*x^(k*n)])^p,x],x,x^(1/k)]] /;\r\nFreeQ[{a,b,c,d,m},x] && IntegerQ[p] && FractionQ[n]\r\n\r\n\r\n"
-                },
-                {
-                    "ordinal": 56,
-                    "reason": "Unsupported assignment or local scope outside With",
-                    "source": "(* ::Code:: *)\r\nInt[x_^m_.*(a_.+b_.*Cosh[c_.+d_.*x_^n_])^p_.,x_Symbol] :=\r\n  Module[{k=Denominator[n]},\r\n  k \\[Star] Subst[Int[x^(k*(m+1)-1)*(a+b*Cosh[c+d*x^(k*n)])^p,x],x,x^(1/k)]] /;\r\nFreeQ[{a,b,c,d,m},x] && IntegerQ[p] && FractionQ[n]\r\n\r\n\r\n"
-                }
             ]
         },
         {
@@ -1885,18 +1340,8 @@
             "path": "6-hyperbolic/6.7-miscellaneous/6.7.7-F^(c-(a+b-x))-hyper(d+e-x)^n.json",
             "source_path": "6 Hyperbolic functions/6.7 Miscellaneous/6.7.7 F^(c (a+b x)) hyper(d+e x)^n.m",
             "sha256": "216880b168617d35e566ab075601610b663a104ef7b3a01b39cfc7876fd8f06d",
-            "converted": 42,
+            "converted": 44,
             "omitted": [
-                {
-                    "ordinal": 37,
-                    "reason": "Unsupported assignment or local scope outside With",
-                    "source": "(* ::Code:: *)\r\nInt[(f_.*x_)^m_.*F_^(c_.*(a_.+b_.*x_))*Sinh[d_.+e_.*x_]^n_.,x_Symbol] :=\r\n  Module[{u=IntHide[F^(c*(a+b*x))*Sinh[d+e*x]^n,x]},\r\n  (f*x)^m \\[Star] u - f*m \\[Star] Int[(f*x)^(m-1)*u,x]] /;\r\nFreeQ[{F,a,b,c,d,e,f},x] && IGtQ[n,0] && GtQ[m,0]\r\n\r\n\r\n"
-                },
-                {
-                    "ordinal": 38,
-                    "reason": "Unsupported assignment or local scope outside With",
-                    "source": "(* ::Code:: *)\r\nInt[(f_.*x_)^m_.*F_^(c_.*(a_.+b_.*x_))*Cosh[d_.+e_.*x_]^n_.,x_Symbol] :=\r\n  Module[{u=IntHide[F^(c*(a+b*x))*Cosh[d+e*x]^n,x]},\r\n  (f*x)^m \\[Star] u - f*m \\[Star] Int[(f*x)^(m-1)*u,x]] /;\r\nFreeQ[{F,a,b,c,d,e,f},x] && IGtQ[n,0] && GtQ[m,0]\r\n\r\n\r\n"
-                }
             ]
         },
         {
@@ -2127,18 +1572,8 @@
             "path": "8-special/8.6-Gamma-functions.json",
             "source_path": "8 Special functions/8.6 Gamma functions.m",
             "sha256": "ee45b07249d1cb876c58f1917dd1ea5f0cff52fece29e46ae91c923f02270440",
-            "converted": 22,
+            "converted": 24,
             "omitted": [
-                {
-                    "ordinal": 10,
-                    "reason": "Unsupported assignment or local scope outside With",
-                    "source": "(* ::Code:: *)\r\nInt[(c_.+d_.*x_)^m_.*Gamma[n_,a_.+b_.*x_],x_Symbol] :=\r\n  Block[{$UseGamma=True},\r\n    (c+d*x)^(m+1)*Gamma[n,a+b*x]/(d*(m+1)) + \r\n    b/(d*(m+1)) \\[Star] Int[(c+d*x)^(m+1)*(a+b*x)^(n-1)/E^(a+b*x),x]] /;\r\nFreeQ[{a,b,c,d,m,n},x] && (IGtQ[m,0] || IGtQ[n,0] || IntegersQ[m,n]) && NeQ[m,-1]\r\n\r\n\r\n"
-                },
-                {
-                    "ordinal": 20,
-                    "reason": "RubiConverter.ParserError(\"Expected TOK_RPAREN, got TOK_NOT ('!')\", 2, 18)",
-                    "source": "(* ::Code:: *)\r\nInt[((a_.+b_.*x_)!)^n_.*PolyGamma[0,c_.+b_.*x_],x_Symbol] :=\r\n  ((a+b*x)!)^n/(b*n) /;\r\nFreeQ[{a,b,c,n},x] && EqQ[c,a+1]\r\n\r\n\r\n"
-                }
             ]
         },
         {
@@ -2252,33 +1687,8 @@
             "path": "9-miscellaneous/9.3-Miscellaneous-integration-rules.json",
             "source_path": "9 Miscellaneous/9.3 Miscellaneous integration rules.m",
             "sha256": "539884512f4f6224fe416601bd783914aedf9e4c4b8955c8fa1b2539c8d15d47",
-            "converted": 62,
+            "converted": 67,
             "omitted": [
-                {
-                    "ordinal": 18,
-                    "reason": "Unsupported assignment or local scope outside With",
-                    "source": "(* ::Code:: *)\r\nInt[u_.*v_^m_.*(a_.+b_.*y_^n_)^p_.,x_Symbol] :=\r\n  Module[{q,r},\r\n    q*r \\[Star] Subst[Int[x^m*(a+b*x^n)^p,x],x,y] /;\r\n  Not[FalseQ[r=Divides[y^m,v^m,x]]] && Not[FalseQ[q=DerivativeDivides[y,u,x]]]] /;\r\nFreeQ[{a,b,m,n,p},x]\r\n\r\n\r\n"
-                },
-                {
-                    "ordinal": 22,
-                    "reason": "Unsupported assignment or local scope outside With",
-                    "source": "(* ::Code:: *)\r\nInt[u_.*v_^m_.*(a_.+b_.*y_^n_+c_.*w_^n2_.)^p_.,x_Symbol] :=\r\n  Module[{q,r},\r\n    q*r \\[Star] Subst[Int[x^m*(a+b*x^n+c*x^(2*n))^p,x],x,y] /;\r\n  Not[FalseQ[r=Divides[y^m,v^m,x]]] && Not[FalseQ[q=DerivativeDivides[y,u,x]]]] /;\r\nFreeQ[{a,b,c,m,n,p},x] && EqQ[n2,2*n] && EqQ[w,y]\r\n\r\n\r\n"
-                },
-                {
-                    "ordinal": 23,
-                    "reason": "Unsupported assignment or local scope outside With",
-                    "source": "(* ::Code:: *)\r\nInt[u_.*z_^m_.*(A_+B_.*y_^n_)*(a_.+b_.*v_^n_+c_.*w_^n2_.)^p_.,x_Symbol] :=\r\n  Module[{q,r},\r\n    q*r \\[Star] Subst[Int[x^m*(A+B*x^n)*(a+b*x^n+c*x^(2*n))^p,x],x,y] /;\r\n  Not[FalseQ[r=Divides[y^m,z^m,x]]] && Not[FalseQ[q=DerivativeDivides[y,u,x]]]] /;\r\nFreeQ[{a,b,c,A,B,m,n,p},x] && EqQ[n2,2*n] && EqQ[v,y] && EqQ[w,y]\r\n\r\n\r\n"
-                },
-                {
-                    "ordinal": 24,
-                    "reason": "Unsupported assignment or local scope outside With",
-                    "source": "(* ::Code:: *)\r\nInt[u_.*z_^m_.*(A_+B_.*y_^n_)*(a_.+c_.*w_^n2_.)^p_.,x_Symbol] :=\r\n  Module[{q,r},\r\n    q*r \\[Star] Subst[Int[x^m*(A+B*x^n)*(a+c*x^(2*n))^p,x],x,y] /;\r\n  Not[FalseQ[r=Divides[y^m,z^m,x]]] && Not[FalseQ[q=DerivativeDivides[y,u,x]]]] /;\r\nFreeQ[{a,c,A,B,m,n,p},x] && EqQ[n2,2*n] && EqQ[w,y]\r\n\r\n\r\n"
-                },
-                {
-                    "ordinal": 63,
-                    "reason": "RubiConverter.ParserError(\"Unexpected token: TOK_NOTEQUAL ('!=')\", 5, 4)",
-                    "source": "(* ::Code:: *)\r\nInt[u_,x_Symbol] :=\r\n  With[{v=NormalizeIntegrand[u,x]},\r\n  Int[v,x] /;\r\n v=!=u]\r\n\r\n\r\n"
-                }
             ]
         }
     ]

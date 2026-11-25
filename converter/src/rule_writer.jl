@@ -198,26 +198,77 @@ function select_show_steps_branch(expr::MExpr; show_steps::Bool)
     expr.args[show_steps ? 2 : 3]
 end
 
-function validate_experimental_scope(expr::MExpr; scoped_steps=false)
+function validate_local_assignment(expr, names)
+    expr isa MFunction && expr.head == "Set" && length(expr.args) == 2 ||
+        error("Expected an assignment to a Module local")
+    name, value = expr.args
+    name isa MSymbol && name.name in names || error("Assignment outside the enclosing Module")
+    validate_experimental_scope(value; lexical_modules=true)
+end
+
+is_unary_call(expr, head) = expr isa MFunction && expr.head == head && length(expr.args) == 1
+
+function validate_module_body(body, names)
+    if body isa MFunction && body.head == "CompoundExpression"
+        length(body.args) >= 2 || error("Expected assignments followed by a value")
+        for assignment in body.args[1:end-1]
+            validate_local_assignment(assignment, names)
+        end
+        validate_experimental_scope(last(body.args); lexical_modules=true)
+    elseif body isa MFunction && body.head == "Condition" && length(body.args) == 2
+        result, guard = body.args
+        validate_experimental_scope(result; lexical_modules=true)
+        for test in split_and_conditions(guard)
+            if is_unary_call(test, "Not") && is_unary_call(only(test.args), "FalseQ")
+                value = only(only(test.args).args)
+                if value isa MFunction && value.head == "Set"
+                    validate_local_assignment(value, names)
+                    continue
+                end
+            end
+            validate_experimental_scope(test; lexical_modules=true)
+        end
+    else
+        validate_experimental_scope(body; lexical_modules=true)
+    end
+end
+
+function validate_experimental_scope(expr::MExpr; scoped_steps=false, lexical_modules=false)
     expr isa MApply && error("Compound application heads have no reviewed OSR mapping")
     expr isa MPrime && error("Prime notation has no reviewed OSR mapping")
     expr isa MFunction || return
-    if expr.head == "With"
-        length(expr.args) == 2 || error("With requires a binding list and body")
-        bindings = expr.args[1]
-        bindings isa MFunction && bindings.head == "List" || error("With bindings must be a List")
-        names = String[]
+    lexical_modules && expr.head == "SetDelayed" && error("Nested definitions are unsupported")
+    if expr.head == "With" || (lexical_modules && expr.head == "Module")
+        head = expr.head
+        length(expr.args) == 2 || error("$head requires a binding list and body")
+        bindings, body = expr.args
+        bindings isa MFunction && bindings.head == "List" || error("$head bindings must be a List")
+        names = Set{String}()
         for binding in bindings.args
-            binding isa MFunction && binding.head == "Set" && length(binding.args) == 2 ||
-                error("With binding must be a Set of a name and value")
-            name = binding.args[1]
+            if head == "Module" && binding isa MSymbol
+                name = binding
+            else
+                binding isa MFunction && binding.head == "Set" && length(binding.args) == 2 ||
+                    error("$head binding must be a Set of a name and value")
+                name, value = binding.args
+                validate_experimental_scope(value; scoped_steps, lexical_modules)
+            end
             name isa MSymbol && occursin(r"^[A-Za-z\$][A-Za-z0-9\$]*$", name.name) ||
-                error("With binding name must be a plain symbol")
-            name.name in names && error("With binding names must be distinct")
+                error("$head binding name must be a plain symbol")
+            name.name in names && error("$head binding names must be distinct")
             push!(names, name.name)
-            validate_experimental_scope(binding.args[2]; scoped_steps)
         end
-        validate_experimental_scope(expr.args[2]; scoped_steps)
+        if head == "Module"
+            validate_module_body(body, names)
+        else
+            validate_experimental_scope(body; scoped_steps, lexical_modules)
+        end
+        return
+    end
+    if lexical_modules && expr.head == "Block"
+        length(expr.args) == 2 && to_osr(first(expr.args)) ==
+            ["List", ["Set", raw"$UseGamma", "True"]] || error("Unsupported dynamic bindings")
+        validate_experimental_scope(last(expr.args); lexical_modules)
         return
     end
     if scoped_steps && expr.head == "Block"
@@ -246,13 +297,13 @@ function validate_experimental_scope(expr::MExpr; scoped_steps=false)
             validate_experimental_scope(rhs; scoped_steps)
         end
         return
-    elseif scoped_steps && expr.head == "CompoundExpression"
+    elseif (scoped_steps || lexical_modules) && expr.head == "CompoundExpression"
         error("Sequential evaluation requires a reviewed Module body")
     end
     expr.head in ("Set", "Module") && error("Unsupported assignment or local scope outside With")
     expr.head == "Star" && length(expr.args) != 2 && error("Star requires two arguments")
     for arg in expr.args
-        arg isa MExpr && validate_experimental_scope(arg; scoped_steps)
+        arg isa MExpr && validate_experimental_scope(arg; scoped_steps, lexical_modules)
     end
 end
 

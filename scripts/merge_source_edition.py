@@ -80,14 +80,22 @@ def build(source, output):
     if meta['load_order'] != source_meta['load_order'] or meta['converter']['source_commit'] != source_meta['converter']['source_commit']:
         raise ValueError('Source revision or loader order differs from baseline')
     count = 0
-    held = {}
     for path in meta['load_order']:
         old = baseline(path)
         upgrade_atan(old)
         fresh = json.loads((source/path).read_text())
+        if old['section'] == '1.2.1.1':
+            # The legacy line parser stopped at the second <= in source line 19.
+            legacy, = (r for r in old['rules'] if r['id'] == 13)
+            complete, = (r for r in fresh['rules'] if r['id'] == 19)
+            lower = ['LessEqual', 3, ['Denominator', 'p']]
+            expected = dict(legacy, constraints=[*legacy['constraints'][:-1], [*lower, 4]])
+            if legacy['constraints'][-1] != lower or canonical_payload(expected) != canonical_payload(complete):
+                raise ValueError('Unexpected source change in the denominator bound for 1.2.1.1 #13')
+            old['rules'][old['rules'].index(legacy)] = dict(complete, id=legacy['id'])
         rules, reason = integrate(old['rules'], fresh['rules'])
         if reason:
-            held[path] = reason
+            raise ValueError(f'{path}: {reason}')
         delta = len(rules) - len(old['rules'])
         if delta:
             for head, symbol in fresh['semantics'].items():
@@ -99,19 +107,17 @@ def build(source, output):
         write(output/path, old)
     meta['rule_count'] += count
     meta['test_count'] = sum(len(json.loads(p.read_bytes())['tests']) for p in (ROOT / 'tests').rglob('*.json'))
-    meta['extensions'] = source_meta['extensions'] + [
-        {'name': 'Derivative', 'arity': 1, 'semantics':
-         'Fixture operator. Derivative[n] maps a unary function to its order-n derivative. '
-         'Preserve symbolic and negative orders formally. See https://reference.wolfram.com/language/ref/Derivative.html'},
+    extensions = source_meta['extensions']
+    derivative, = (e for e in extensions if e['name'] == 'Derivative')
+    derivative['semantics'] += ' Fixtures can also use symbolic or negative orders. Preserve these formally.'
+    meta['extensions'] = extensions + [
         {'name': 'Defer', 'arity': 1, 'semantics':
          'Fixture operator. Preserve the unevaluated source head. Defer[Subst] is a held substitution. '
          'See https://reference.wolfram.com/language/ref/Defer.html'},
     ]
     meta['feature_flags']['load_show_steps'] = False
     write(output/'meta.json', meta)
-    print(f'{count} entries added; {len(held)} sections retained at baseline')
-    for path, reason in held.items():
-        print(f'{path}: {reason}')
+    print(f'{count} entries added in source order')
 
 
 if __name__ == '__main__':

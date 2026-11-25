@@ -2032,6 +2032,219 @@
                         "List",
                         "a",
                         "b",
+                        "c",
+                        "n",
+                        "p"
+                    ],
+                    "x"
+                ],
+                [
+                    "EqQ",
+                    "n2",
+                    [
+                        "Multiply",
+                        2,
+                        "n"
+                    ]
+                ],
+                [
+                    "PolyQ",
+                    "Pq",
+                    "x"
+                ],
+                [
+                    "PolyQ",
+                    "Qr",
+                    "x"
+                ]
+            ],
+            "id": 27,
+            "result": [
+                "Module",
+                [
+                    "List",
+                    [
+                        "Set",
+                        "q",
+                        [
+                            "Expon",
+                            "Pq",
+                            "x"
+                        ]
+                    ],
+                    [
+                        "Set",
+                        "r",
+                        [
+                            "Expon",
+                            "Qr",
+                            "x"
+                        ]
+                    ]
+                ],
+                [
+                    "Condition",
+                    [
+                        "Multiply",
+                        [
+                            "Coeff",
+                            "Qr",
+                            "x",
+                            "r"
+                        ],
+                        [
+                            "Power",
+                            [
+                                "Multiply",
+                                "q",
+                                [
+                                    "Coeff",
+                                    "Pq",
+                                    "x",
+                                    "q"
+                                ]
+                            ],
+                            -1
+                        ],
+                        [
+                            "Subst",
+                            [
+                                "Int",
+                                [
+                                    "Power",
+                                    [
+                                        "Add",
+                                        "a",
+                                        [
+                                            "Multiply",
+                                            "b",
+                                            [
+                                                "Power",
+                                                "x",
+                                                "n"
+                                            ]
+                                        ],
+                                        [
+                                            "Multiply",
+                                            "c",
+                                            [
+                                                "Power",
+                                                "x",
+                                                [
+                                                    "Multiply",
+                                                    2,
+                                                    "n"
+                                                ]
+                                            ]
+                                        ]
+                                    ],
+                                    "p"
+                                ],
+                                "x"
+                            ],
+                            "x",
+                            "Pq"
+                        ]
+                    ],
+                    [
+                        "And",
+                        [
+                            "EqQ",
+                            "r",
+                            [
+                                "Add",
+                                "q",
+                                [
+                                    "Multiply",
+                                    -1,
+                                    1
+                                ]
+                            ]
+                        ],
+                        [
+                            "EqQ",
+                            [
+                                "Multiply",
+                                [
+                                    "Coeff",
+                                    "Qr",
+                                    "x",
+                                    "r"
+                                ],
+                                [
+                                    "D",
+                                    "Pq",
+                                    "x"
+                                ]
+                            ],
+                            [
+                                "Multiply",
+                                "q",
+                                [
+                                    "Coeff",
+                                    "Pq",
+                                    "x",
+                                    "q"
+                                ],
+                                "Qr"
+                            ]
+                        ]
+                    ]
+                ]
+            ],
+            "pattern": [
+                "Int",
+                [
+                    "Multiply",
+                    "Qr_",
+                    [
+                        "Power",
+                        [
+                            "Add",
+                            "a.",
+                            [
+                                "Multiply",
+                                "b.",
+                                [
+                                    "Power",
+                                    "Pq_",
+                                    "n."
+                                ]
+                            ],
+                            [
+                                "Multiply",
+                                "c.",
+                                [
+                                    "Power",
+                                    "Pq_",
+                                    "n2."
+                                ]
+                            ]
+                        ],
+                        "p."
+                    ]
+                ],
+                "x_symbol"
+            ],
+            "provenance": {
+                "method": "converted",
+                "sources": [
+                    {
+                        "version": "4.17.3.0",
+                        "name": "Rubi",
+                        "locator": "1 Algebraic functions/1.1 Binomial products/1.1.1 Linear/1.1.1.7 P(x) (a+b x)^m (c+d x)^n (e+f x)^p (g+h x)^q.m#14"
+                    }
+                ]
+            }
+        },
+        {
+            "constraints": [
+                [
+                    "FreeQ",
+                    [
+                        "List",
+                        "a",
+                        "b",
                         "p",
                         "q"
                     ],
@@ -8561,7 +8774,9 @@
         "Expon": "openmath:osr#Expon",
         "Simplify": "openmath:osr#Simplify",
         "Subst": "openmath:osr#Subst",
-        "RemoveContent": "openmath:osr#RemoveContent"
+        "RemoveContent": "openmath:osr#RemoveContent",
+        "Module": "openmath:osr#Module",
+        "Set": "openmath:osr#Set"
     },
     "identity": "rubi:1 Algebraic functions/1.1 Binomial products/1.1.1 Linear/1.1.1.7 P(x) (a+b x)^m (c+d x)^n (e+f x)^p (g+h x)^q",
     "$schema": "open-symbolic-rules/v0.1"

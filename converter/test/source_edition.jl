@@ -52,7 +52,7 @@ end
     call(f, x) = ["Apply", f, ["List", x]]
     prime(f, x) = call(call(["Derivative", 1], f), x)
     source = "Int[h_'[z_]*j_[z_]+h_[z_]*j_'[z_],z_Symbol] := h[z]*j[z] /; FreeQ[{h,j},z]"
-    convert(s) = edition_rules(s, "9 Miscellaneous/9.1 Derivative integration rules.m", "4.17.3.0"; release=true)
+    convert(s) = edition_rules(s, "9 Miscellaneous/9.1 Derivative integration rules.m", "4.17.3.0")
     rules, omitted = convert(source)
     @test isempty(omitted)
     r = only(rules)
@@ -67,12 +67,12 @@ end
                     replace(source, "h_'[z_]" => "Derivative[n_][h_][z_]"))
         @test isempty(first(convert(invalid)))
     end
-    @test isempty(first(edition_rules(source, "9 Miscellaneous/9.1 Derivative integration rules.m", "4.17.3.0")))
+    @test isempty(first(edition_rules(source, "unrelated.m", "4.17.3.0")))
 end
 
 @testset "A positive integer guard permits the predecessor derivative" begin
     path = "9 Miscellaneous/9.1 Derivative integration rules.m"
-    convert(s) = edition_rules(s, path, "4.17.3.0"; release=true)
+    convert(s) = edition_rules(s, path, "4.17.3.0")
     source = "Int[Derivative[k_][h_][z_],z_Symbol] := Derivative[k-1][h][z] /; FreeQ[h,z] && IGtQ[k,0]"
     rules, omitted = convert(source)
     @test isempty(omitted)
@@ -176,4 +176,84 @@ end
             end
         end
     end
+end
+
+@testset "Release rules retain lexical Module locals and nested guards" begin
+    source = "Int[u_,x_Symbol] := Module[{q=Denominator[u],k},Sum[q*k,{k,1,q}] /; NeQ[q,0]] /; FreeQ[u,x]"
+    rules, omitted = edition_rules(source, "example.m", "4.17.3.0")
+    @test isempty(omitted)
+    if length(rules) == 1
+        rule = only(rules)
+        @test rule["result"] == ["Module", ["List", ["Set","q",["Denominator","u"]],"k"],
+            ["Condition", ["Sum",["Multiply","q","k"],["List","k",1,"q"]], ["NeQ","q",0]]]
+        @test rule["constraints"] == [["FreeQ","u","x"]]
+    end
+    for invalid in ("Module[{q,q},q]", "Module[{q=1},outside=q]", "Module[{f[x]=1},u]",
+                    "Module[{q=1},With[{v=q},outside=v]]")
+        rules, omitted = edition_rules("Int[u_,x_Symbol] := " * invalid, "example.m", "4.17.3.0")
+        @test isempty(rules)
+        @test length(omitted) == 1
+    end
+end
+
+@testset "Maintenance rules preserve Module declarations" begin
+    r, omitted = edition_rules("Int[u_,x_Symbol] := Module[{v=u},v]", "example.m", "4.17.3.0")
+    @test isempty(omitted)
+    @test length(r) == 1
+end
+
+@testset "Both endpoints of a chained denominator bound survive conversion" begin
+    source = "Int[u_,x_Symbol] := With[{d=Denominator[u]},u /; 3 <= d <= 4] /; 3 <= Denominator[u] <= 4"
+    rules, omitted = edition_rules(source, "example.m", "4.17.3.0")
+    @test isempty(omitted)
+    @test length(rules) == 1
+    if !isempty(rules)
+        r = only(rules)
+        @test r["constraints"] == [["LessEqual",3,["Denominator","u"],4]]
+        @test r["result"][3] == ["Condition","u",["LessEqual",3,"d",4]]
+    end
+end
+
+@testset "Only declared Module locals can be assigned in a sequence or guard" begin
+    convert(rhs) = edition_rules("Int[t_,x_Symbol] := " * rhs * " /; FreeQ[t,x]", "example.m", "4.17.3.0")
+    seq = "Module[{u,v},u=t;v=u;u+v]"
+    guard = "Module[{q,r},q*r /; Not[FalseQ[r=Divides[t,x,x]]] && Not[FalseQ[q=DerivativeDivides[t,t,x]]]]"
+    for (rhs, body) in [(seq, ["CompoundExpression", ["Set","u","t"], ["Set","v","u"], ["Add","u","v"]]),
+                        (guard, ["Condition", ["Multiply","q","r"], ["And",
+                            ["Not",["FalseQ",["Set","r",["Divides","t","x","x"]]]],
+                            ["Not",["FalseQ",["Set","q",["DerivativeDivides","t","t","x"]]]]]])]
+        rules, omitted = convert(rhs)
+        @test isempty(omitted)
+        if !isempty(rules)
+            @test only(rules)["result"][3] == body
+            @test only(rules)["constraints"] == [["FreeQ","t","x"]]
+        end
+    end
+    for rhs in (replace(seq,"v=u;"=>"z=u;"), replace(guard,"q=Derivative"=>"z=Derivative"),
+                "Module[{u},u=(outside=t);u]", "Module[{u},u=t;u;outside=t]",
+                "With[{u=t},u=t;u]", "Module[{u},outside:=t]", "u=t;u")
+        @test isempty(first(convert(rhs)))
+    end
+end
+
+@testset "Normalizer guard, factorial and recursive Gamma setting retain source semantics" begin
+    rules, omitted = edition_rules(raw"Int[u_,x_Symbol] := With[{v=u},Int[v,x] /; v=!=u]", "example.m", "4.17.3.0")
+    @test isempty(omitted)
+    isempty(rules) || @test only(rules)["result"][3][3] == ["UnsameQ","v","u"]
+    rules, omitted = edition_rules(raw"Int[u_,x_Symbol] := Block[{$UseGamma=True},(u+1)!]", "example.m", "4.17.3.0")
+    @test isempty(omitted)
+    isempty(rules) || @test only(rules)["result"] == ["Block",["List",["Set",raw"$UseGamma","True"]],["Factorial",["Add","u",1]]]
+    for rhs in (raw"Block[{$other=True},u]", raw"Block[{$UseGamma=True},outside=u]", "u!!")
+        @test isempty(first(edition_rules("Int[u_,x_Symbol] := " * rhs, "example.m", "4.17.3.0")))
+    end
+end
+
+@testset "Scoped rules declare the executable capabilities used in their guards" begin
+    arities = Dict("Divides"=>Set([3]), "PolyGCD"=>Set([3]), "UnsameQ"=>Set([2]),
+                   "NormalizePowerOfLinear"=>Set([2]))
+    utilities = "Divides[y_,u_,x_Symbol] := q\nPolyGCD[u_,v_,x_Symbol] := g"
+    entries = Dict(e["name"]=>e for e in edition_extensions(arities, utilities, "pin"))
+    @test Set(keys(entries)) == Set(keys(arities))
+    @test occursin("IntegrationUtilityFunctions.m", get(get(entries,"Divides",Dict()),"semantics",""))
+    @test occursin("decline", lowercase(get(get(entries,"NormalizePowerOfLinear",Dict()),"semantics","")))
 end
