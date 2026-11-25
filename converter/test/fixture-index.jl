@@ -21,3 +21,11 @@ include("../scripts/fixture-index.jl")
         @test detail["extra_fields"] == [["g", "x"], ["h", "x"]]
     end
 end
+
+@testset "Published fixture index identifies the current converter inputs" begin
+    root = normpath(joinpath(@__DIR__, "../.."))
+    index = JSON3.read(read(joinpath(root, "docs/fixture-sources.json"), String))
+    expected = converter_identity(root)
+    @test [(f.path, f.sha256) for f in index.converter.files] ==
+          [(f.path, f.sha256) for f in expected.files]
+end

@@ -13,6 +13,10 @@ cmp docs/fixture-sources.json /tmp/osr-fixture-sources.json
 
 ## Locating a case and selecting reference data
 
+When converter source files change, regenerate the index even if the fixture
+JSON is byte-identical. The converter test suite checks its recorded input
+hashes locally. CI also regenerates the complete suite and index.
+
 Use the [machine-readable source index](fixture-sources.json) to join a fixture to its original Wolfram source. Find the file record by `json_file`, locate the case ID in the fixture's `tests` array and use that array position in `source_lines`. A number denotes a single one-based source line. A pair denotes an inclusive multiline span. The index records SHA-256 digests of the source file, distributed JSON, converter inputs and environment lock. The toolkit version comes from the Julia project. The upstream repository contains an MIT notice. Some independent collections name additional authors or publications in their file headers. Per-collection redistribution rights need separate review. To reproduce a campaign, pin the Integration commit for the JSON, index and converter, along with the upstream commit identified in the index.
 
 In 872 active cases the source supplies fields after the primary reference primitive. The index retains them in order as OSR expressions in `details[].extra_fields`. Their mathematical equivalence and branch conditions require separate review. For 49 cases `details[].source_steps` retains the complete conditional expression. The v0.1 integer `num_steps` uses Wolfram Language version 11 for this edition. All thresholds at this source pin are 8, 9 or 11, so the same values apply for later Wolfram Language versions. For example, Timofeev case 416 selects −28 below version 11 and −27 otherwise. Negative step counts retain their upstream meaning. A new form of step expression requires an explicit conversion decision.
