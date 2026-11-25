@@ -66,6 +66,6 @@ fixture-index output rubi_tests="vendor/MathematicaSyntaxTestSuite":
 maxima-lean project:
 	bash supplements/maxima/verify-lean.sh "{{project}}"
 
-# Replay the real first-derivative Rubi cases and the Maxima proofs under the same pins.
+# Replay the real Rubi derivative rules and the Maxima proofs under the same pins.
 real-proofs project: (maxima-lean project)
-	cd "{{project}}" && lake env lean -DwarningAsError=true "{{justfile_directory()}}/verification/RubiDerivativePrimitives.lean"
+	cd "{{project}}" && for proof in "{{justfile_directory()}}"/verification/*.lean; do lake env lean -DwarningAsError=true "$proof" || exit 1; done

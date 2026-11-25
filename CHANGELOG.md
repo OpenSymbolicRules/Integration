@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- Verify the real sine, cosine and positive-base exponential derivative recurrences in Lean for every positive integer order and every primitive of the residual integrand, with explicit regularity and branch hypotheses.
 - Recover three integration-by-parts recurrences with positive integer derivative order in Rubi 4.17.3.0 section 9.1. Preserve the order-zero case, residual integral, coefficient and source guards. The reference edition now contains 7,255 entries.
 - Recover Rubi 4.17.3.0 section 9.1 cells 19–21 in the release JSON using explicit unary function applications and their original guards.
 - Prove the real product, quotient and logarithmic quotient primitives from Rubi 4.17.3.0 section 9.1 cells 19–21 and document their differentiability, denominator and branch hypotheses.

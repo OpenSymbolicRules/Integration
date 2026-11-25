@@ -98,10 +98,12 @@ jobs:
       - name: Restore the imported Mathlib modules
         working-directory: mathlib
         run: |
-          awk '$1 == "import" {print $2}' ../supplements/maxima/AxisAngle.lean ../verification/RubiDerivativePrimitives.lean |
+          awk '$1 == "import" {print $2}' ../supplements/maxima/AxisAngle.lean ../verification/*.lean |
             sort -u | xargs lake exe cache get
       - name: Check the source statements, proofs and axioms
         run: |
           bash supplements/maxima/verify-lean.sh mathlib
           cd mathlib
-          lake env lean -DwarningAsError=true ../verification/RubiDerivativePrimitives.lean
+          for proof in ../verification/*.lean; do
+            lake env lean -DwarningAsError=true "$proof"
+          done
