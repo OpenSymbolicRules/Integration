@@ -1,6 +1,6 @@
 # Entry points for the Integration (RUBI) rule set.
 
-# Local schema, converter and v1 checks. Replay the Maxima proofs with maxima-lean.
+# Local schema, converter and v1 checks. Replay the real integral proofs with real-proofs.
 check: validate test v1
 
 # Validate the v0.1 schemas, rules, test fixtures and identities.
@@ -65,3 +65,7 @@ fixture-index output rubi_tests="vendor/MathematicaSyntaxTestSuite":
 # Compile the two real Maxima theorems using the environment recorded in the v1 report.
 maxima-lean project:
 	bash supplements/maxima/verify-lean.sh "{{project}}"
+
+# Replay the real first-derivative Rubi cases and the Maxima proofs under the same pins.
+real-proofs project: (maxima-lean project)
+	cd "{{project}}" && lake env lean -DwarningAsError=true "{{justfile_directory()}}/verification/RubiDerivativePrimitives.lean"

@@ -105,3 +105,17 @@ position, operator semantics, host evaluation and the treatment of negative
 orders must be reviewed and tested. In particular, the MathJSON examples in
 the specification use a different-looking `Apply` shape and should not be
 assumed to establish the OSR calling convention.
+
+## Real proofs for the three first-derivative rules
+
+The last three source cells of Rubi 4.17.3.0 section 9.1 use ordinary first derivatives. Let f and g be real functions differentiable at x. Write p = f′(x), q = g′(x), F = f(x) and G = g(x). The table gives the derivative of each proposed primitive at x. Every function stays abstract throughout the proof. [Pinned source cells 19–21](https://github.com/RuleBasedIntegration/Rubi/blob/f7fa0fd7bfacd326bc9e125473c5bad41cfad4e4/Rubi/IntegrationRules/9%20Miscellaneous/9.1%20Derivative%20integration%20rules.m#L143-L157) · [Lean statements and proofs](../verification/RubiDerivativePrimitives.lean)
+
+| Source cell | Primitive as a function of t | Derivative at x | Additional real-domain hypothesis | Lean theorem in `OSR.Rubi` |
+|---|---|---|---|---|
+| 19 | f(t)g(t) | pG + Fq | None | `product` |
+| 20 | f(t)/g(t) | (pG − Fq)/G² | G ≠ 0 | `quotient` |
+| 21 | log(f(t)/g(t)) | (pG − Fq)/(FG) | G ≠ 0 and F/G > 0 | `logQuotient` |
+
+Rubi checks `FreeQ[{f,g},x]` on the function heads in all three cells. It places no sign or denominator test in these guards. A real CAS must also establish differentiability and the relevant domain hypotheses before using these results. For cell 21, F = G = −1 gives an admissible real logarithm, whereas F = 1 and G = −1 gives a negative logarithm argument. Lean's real logarithm extends to negative inputs. The positivity hypothesis restricts the theorem to the intended real branch. [Mathlib real logarithm](https://github.com/leanprover-community/mathlib4/blob/56a005855ea17e0b0958f73ec801ae140b0a1679/Mathlib/Analysis/SpecialFunctions/Log/Basic.lean)
+
+Run `just real-proofs /path/to/prepared/Lean` to check all three manually transcribed statements under the Integration report's toolchain and audit their axioms. The source ledger still records these cells among the 21 omissions in section 9.1. Publishing executable patterns requires binding f and g in function position and reusing the same bindings in the result. The three real proofs add no entries to the generated v1 catalogue. [Release coverage ledger](../editions/rubi-4.17.3.0/coverage.json) · [Verification pins](../v1/integration.report.json)

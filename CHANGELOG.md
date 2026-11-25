@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- Prove the real product, quotient and logarithmic quotient primitives from Rubi 4.17.3.0 section 9.1 cells 19–21 and document their differentiability, denominator and branch hypotheses.
 - Prove both real Maxima vertical-axis angle primitives in Lean and show that the linear primitive has no derivative at the origin. Link the rules to their checked theorems and replay them with the published verification pins.
 - Add two real vertical-axis angle integration rules derived from Maxima, two one-step examples and four branch-aware logarithm regressions with reproducible source locations.
 - Publish 12 reproducible integer-order integration benchmarks from SymbolicIntegration.jl, covering Bessel J, Y, I, K and both Hankel functions with positive-real assumptions and source locators.
