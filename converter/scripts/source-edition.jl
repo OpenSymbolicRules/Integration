@@ -53,9 +53,14 @@ function edition_extensions(arities, utility_source, revision)
     result
 end
 
-function generate_edition(root, vendor, output)
+function generate_edition(root, vendor, output; edition=nothing)
     reference = joinpath(root, "rules")
     meta = JSON3.read(read(joinpath(reference, "meta.json"), String), Dict{String,Any})
+    if !isnothing(edition)
+        meta["load_order"] = edition["load_order"]
+        meta["rubi_version"] = edition["version"]
+        meta["converter"]["source_commit"] = edition["revision"]
+    end
     revision = meta["converter"]["source_commit"]
     version = meta["rubi_version"]
     ledger = []
@@ -67,6 +72,11 @@ function generate_edition(root, vendor, output)
         blob = "$revision:Rubi/IntegrationRules/$source_path"
         source = read(`git -C $vendor show $blob`, String)
         rules, omitted = edition_rules(source, source_path, version)
+        if !isnothing(edition)
+            for rule in rules
+                only(rule["provenance"]["sources"])["revision"] = revision
+            end
+        end
         doc["identity"] = "rubi@$revision:" * source_path
         for rule in rules, term in (rule["pattern"], rule["result"], rule["constraints"]...)
             collect_arities!(arities, term)
@@ -102,7 +112,8 @@ function generate_edition(root, vendor, output)
 end
 
 if abspath(PROGRAM_FILE) == @__FILE__
-    length(ARGS) == 2 || error("Usage: source-edition.jl RUBI_GIT_DIR NEW_DIRECTORY")
+    length(ARGS) in (2, 3) || error("Usage: source-edition.jl RUBI_GIT_DIR NEW_DIRECTORY [EDITION_JSON]")
     ispath(ARGS[2]) && error("Output already exists")
-    generate_edition(normpath(joinpath(@__DIR__,"../..")), ARGS...)
+    generate_edition(normpath(joinpath(@__DIR__,"../..")), ARGS[1], ARGS[2];
+        edition=length(ARGS) == 3 ? JSON3.read(read(ARGS[3], String), Dict{String,Any}) : nothing)
 end

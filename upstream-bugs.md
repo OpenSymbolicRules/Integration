@@ -2,6 +2,8 @@
 
 ## RUBI 4.5.2.1, source line 51, OSR rule 47
 
+The [released 4.17.3.0 edition](docs/rubi-release.md) contains the same residual at source cell 48, with an operational Star product. It has a separate fingerprint and skip record.
+
 John Verzani reported a mismatch between the integrand and the residual
 integral in RUBI revision `61e9c18ea248061cd83c67882f7c91a73cef912d`
 (the pinned loader declares 4.17.3.0). The pattern contains inert cosecant,

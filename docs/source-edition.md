@@ -1,5 +1,7 @@
 # Recovering the default RUBI integration profile
 
+For Albert D. Rich’s final release, use the [4.17.3.0 reference edition](rubi-release.md). The following inventory describes the later maintenance checkout used by existing consumers.
+
 Load the 198 files listed in `rules/meta.json`, in order, and read each
 `rules` array in order. This loads **7,209** v0.1 entries. The other 23
 files contribute 850 entries outside the default load sequence. The 7,209

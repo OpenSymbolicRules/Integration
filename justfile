@@ -9,6 +9,7 @@ validate:
 
 # Unit tests of the repository scripts.
 test:
+	python3 scripts/test_rubi_release.py
 	python3 scripts/test_rubi_errata.py
 	python3 scripts/test_check_duplicate_rules.py
 	python3 scripts/test_audit_rubi_order.py
@@ -47,3 +48,7 @@ compare-loaders old new rubi="vendor/Rubi":
 # Reconcile loaded v0.1 entries with v1 verification (JSON on stdout).
 source-status:
 	python3 scripts/source_verification_status.py
+
+# Rebuild the reference release into a new directory.
+rubi-release output rubi="vendor/Rubi":
+	python3 scripts/rubi_release.py "{{rubi}}" "{{output}}"

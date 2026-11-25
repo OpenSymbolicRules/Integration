@@ -4,14 +4,15 @@
 
 > **Note**: This repository has been created with AI assistance.
 
-A language-neutral JSON format with validated JSON Schema to represent
-a subset of [RUBI](https://rulebasedintegration.org/) symbolic integration
-rules and 72,523 test problems, independently of Mathematica. The default v0.1 manifest loads **7,209 integration rules** from 198
-RUBI sections. It enables elementary rules and disables step display. Two
-sections still have no converted rules. The repository has 8,059 v0.1
-entries when the 23 files outside the manifest are included.
-See [source coverage, applicability and reproduction](docs/source-edition.md)
-and the [known conversion issues](docs/known-issues.md).
+Start with [Albert D. Rich’s final Rubi 4.17.3.0 release](docs/rubi-release.md).
+Its [ordered OSR manifest](editions/rubi-4.17.3.0/rules/meta.json) contains
+**7,249 converted entries in 198 sections**. Apply the
+[release errata](editions/rubi-4.17.3.0/errata.json) when enabling rules.
+
+The [compatibility profile](docs/source-edition.md) loads 7,209 entries from
+a later Rubi maintenance revision. The 72,523 distributed integration test
+problems have a separate upstream revision. See the
+[known conversion issues](docs/known-issues.md).
 
 ## Overview
 

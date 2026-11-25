@@ -1,0 +1,802 @@
+{
+    "description": "Elementary rules enabled, step display disabled. Apply a rule only when the host implements its pattern, operators, scopes and predicates.",
+    "feature_flags": {
+        "load_elementary_function_rules": true,
+        "load_show_steps": false,
+        "load_bessel_functions": false
+    },
+    "load_order": [
+        "1-algebraic/1.1-binomial/1.1.1-linear/1.1.1.1-(a+b-x)^m.json",
+        "1-algebraic/1.1-binomial/1.1.1-linear/1.1.1.2-(a+b-x)^m-(c+d-x)^n.json",
+        "1-algebraic/1.1-binomial/1.1.1-linear/1.1.1.3-(a+b-x)^m-(c+d-x)^n-(e+f-x)^p.json",
+        "1-algebraic/1.1-binomial/1.1.1-linear/1.1.1.4-(a+b-x)^m-(c+d-x)^n-(e+f-x)^p-(g+h-x)^q.json",
+        "1-algebraic/1.1-binomial/1.1.2-quadratic/1.1.2.1-(a+b-x^2)^p.json",
+        "1-algebraic/1.1-binomial/1.1.2-quadratic/1.1.2.2-(c-x)^m-(a+b-x^2)^p.json",
+        "1-algebraic/1.1-binomial/1.1.2-quadratic/1.1.2.3-(a+b-x^2)^p-(c+d-x^2)^q.json",
+        "1-algebraic/1.1-binomial/1.1.2-quadratic/1.1.2.4-(e-x)^m-(a+b-x^2)^p-(c+d-x^2)^q.json",
+        "1-algebraic/1.1-binomial/1.1.2-quadratic/1.1.2.5-(a+b-x^2)^p-(c+d-x^2)^q-(e+f-x^2)^r.json",
+        "1-algebraic/1.1-binomial/1.1.2-quadratic/1.1.2.6-(g-x)^m-(a+b-x^2)^p-(c+d-x^2)^q-(e+f-x^2)^r.json",
+        "1-algebraic/1.1-binomial/1.1.2-quadratic/1.1.2.7-(c+d-x)^n-(a+b-x^2)^p.json",
+        "1-algebraic/1.1-binomial/1.1.2-quadratic/1.1.2.8-(e-x)^m-(c+d-x)^n-(a+b-x^2)^p.json",
+        "1-algebraic/1.1-binomial/1.1.2-quadratic/1.1.2.9-(c+d-x)^m-(e+f-x)^n-(a+b-x^2)^p.json",
+        "1-algebraic/1.1-binomial/1.1.3-general/1.1.3.1-(a+b-x^n)^p.json",
+        "1-algebraic/1.1-binomial/1.1.3-general/1.1.3.2-(c-x)^m-(a+b-x^n)^p.json",
+        "1-algebraic/1.1-binomial/1.1.3-general/1.1.3.3-(a+b-x^n)^p-(c+d-x^n)^q.json",
+        "1-algebraic/1.1-binomial/1.1.3-general/1.1.3.4-(e-x)^m-(a+b-x^n)^p-(c+d-x^n)^q.json",
+        "1-algebraic/1.1-binomial/1.1.3-general/1.1.3.5-(a+b-x^n)^p-(c+d-x^n)^q-(e+f-x^n)^r.json",
+        "1-algebraic/1.1-binomial/1.1.3-general/1.1.3.6-(g-x)^m-(a+b-x^n)^p-(c+d-x^n)^q-(e+f-x^n)^r.json",
+        "1-algebraic/1.2-trinomial/1.2.1-quadratic/1.2.1.1-(a+b-x+c-x^2)^p.json",
+        "1-algebraic/1.2-trinomial/1.2.1-quadratic/1.2.1.2-(d+e-x)^m-(a+b-x+c-x^2)^p.json",
+        "1-algebraic/1.2-trinomial/1.2.1-quadratic/1.2.1.3-(d+e-x)^m-(f+g-x)^n-(a+b-x+c-x^2)^p.json",
+        "1-algebraic/1.2-trinomial/1.2.1-quadratic/1.2.1.4-(a+b-x+c-x^2)^p-(d+e-x+f-x^2)^q.json",
+        "1-algebraic/1.2-trinomial/1.2.1-quadratic/1.2.1.5-(g+h-x)^m-(a+b-x+c-x^2)^p-(d+e-x+f-x^2)^q.json",
+        "1-algebraic/1.2-trinomial/1.2.2-quartic/1.2.2.1-(a+b-x^2+c-x^4)^p.json",
+        "1-algebraic/1.2-trinomial/1.2.2-quartic/1.2.2.2-(d-x)^m-(a+b-x^2+c-x^4)^p.json",
+        "1-algebraic/1.2-trinomial/1.2.2-quartic/1.2.2.3-(d+e-x^2)^q-(a+b-x^2+c-x^4)^p.json",
+        "1-algebraic/1.2-trinomial/1.2.2-quartic/1.2.2.4-(f-x)^m-(d+e-x^2)^q-(a+b-x^2+c-x^4)^p.json",
+        "1-algebraic/1.2-trinomial/1.2.3-general/1.2.3.1-(a+b-x^n+c-x^(2-n))^p.json",
+        "1-algebraic/1.2-trinomial/1.2.3-general/1.2.3.2-(d-x)^m-(a+b-x^n+c-x^(2-n))^p.json",
+        "1-algebraic/1.2-trinomial/1.2.3-general/1.2.3.3-(d+e-x^n)^q-(a+b-x^n+c-x^(2-n))^p.json",
+        "1-algebraic/1.2-trinomial/1.2.3-general/1.2.3.4-(f-x)^m-(d+e-x^n)^q-(a+b-x^n+c-x^(2-n))^p.json",
+        "1-algebraic/1.1-binomial/1.1.4-improper/1.1.4.1-(a-x^j+b-x^n)^p.json",
+        "1-algebraic/1.1-binomial/1.1.4-improper/1.1.4.2-(c-x)^m-(a-x^j+b-x^n)^p.json",
+        "1-algebraic/1.1-binomial/1.1.4-improper/1.1.4.3-(e-x)^m-(a-x^j+b-x^k)^p-(c+d-x^n)^q.json",
+        "1-algebraic/1.2-trinomial/1.2.4-improper/1.2.4.1-(a-x^q+b-x^n+c-x^(2-n-q))^p.json",
+        "1-algebraic/1.2-trinomial/1.2.4-improper/1.2.4.2-(d-x)^m-(a-x^q+b-x^n+c-x^(2-n-q))^p.json",
+        "1-algebraic/1.2-trinomial/1.2.4-improper/1.2.4.3-(d+e-x^(n-q))-(a-x^q+b-x^n+c-x^(2-n-q))^p.json",
+        "1-algebraic/1.2-trinomial/1.2.4-improper/1.2.4.4-(f-x)^m-(d+e-x^(n-q))-(a-x^q+b-x^n+c-x^(2-n-q))^p.json",
+        "1-algebraic/1.4-miscellaneous/1.4.1-Algebraic-function-simplification.json",
+        "1-algebraic/1.4-miscellaneous/1.4.2-Algebraic-function-normalization.json",
+        "1-algebraic/1.1-binomial/1.1.1-linear/1.1.1.7-P(x)-(a+b-x)^m-(c+d-x)^n-(e+f-x)^p-(g+h-x)^q.json",
+        "1-algebraic/1.1-binomial/1.1.1-linear/1.1.1.6-P(x)-(a+b-x)^m-(c+d-x)^n-(e+f-x)^p.json",
+        "1-algebraic/1.1-binomial/1.1.1-linear/1.1.1.5-P(x)-(a+b-x)^m-(c+d-x)^n.json",
+        "1-algebraic/1.2-trinomial/1.2.1-quadratic/1.2.1.9-P(x)-(a+b-x+c-x^2)^p-(d+e-x+f-x^2)^q.json",
+        "1-algebraic/1.2-trinomial/1.2.1-quadratic/1.2.1.8-P(x)-(d+e-x)^m-(f+g-x)^n-(a+b-x+c-x^2)^p.json",
+        "1-algebraic/1.2-trinomial/1.2.1-quadratic/1.2.1.7-P(x)-(d+e-x)^m-(a+b-x+c-x^2)^p.json",
+        "1-algebraic/1.2-trinomial/1.2.1-quadratic/1.2.1.6-P(x)-(a+b-x+c-x^2)^p.json",
+        "1-algebraic/1.2-trinomial/1.2.2-quartic/1.2.2.6-P(x)-(d-x)^m-(a+b-x^2+c-x^4)^p.json",
+        "1-algebraic/1.2-trinomial/1.2.2-quartic/1.2.2.5-P(x)-(a+b-x^2+c-x^4)^p.json",
+        "1-algebraic/1.2-trinomial/1.2.2-quartic/1.2.2.7-P(x)-(d+e-x^2)^q-(a+b-x^2+c-x^4)^p.json",
+        "1-algebraic/1.2-trinomial/1.2.2-quartic/1.2.2.8-P(x)-(d+e-x)^q-(a+b-x^2+c-x^4)^p.json",
+        "1-algebraic/1.2-trinomial/1.2.3-general/1.2.3.6-P(x)-(d-x)^m-(a+b-x^n+c-x^(2-n))^p.json",
+        "1-algebraic/1.2-trinomial/1.2.3-general/1.2.3.5-P(x)-(a+b-x^n+c-x^(2-n))^p.json",
+        "1-algebraic/1.1-binomial/1.1.2-quadratic/1.1.2.11-P(x)-(c-x)^m-(a+b-x^2)^p.json",
+        "1-algebraic/1.1-binomial/1.1.2-quadratic/1.1.2.10-P(x)-(a+b-x^2)^p.json",
+        "1-algebraic/1.1-binomial/1.1.2-quadratic/1.1.2.14-P(x)-(c+d-x)^m-(e+f-x)^n-(a+b-x^2)^p.json",
+        "1-algebraic/1.1-binomial/1.1.2-quadratic/1.1.2.13-P(x)-(e-x)^m-(c+d-x)^n-(a+b-x^2)^p.json",
+        "1-algebraic/1.1-binomial/1.1.2-quadratic/1.1.2.12-P(x)-(c+d-x)^n-(a+b-x^2)^p.json",
+        "1-algebraic/1.1-binomial/1.1.3-general/1.1.3.8-P(x)-(c-x)^m-(a+b-x^n)^p.json",
+        "1-algebraic/1.1-binomial/1.1.3-general/1.1.3.7-P(x)-(a+b-x^n)^p.json",
+        "1-algebraic/1.1-binomial/1.1.4-improper/1.1.4.4-P(x)-(c-x)^m-(a-x^j+b-x^n)^p.json",
+        "1-algebraic/1.3-polynomial/1.3.3-P(x)^p.json",
+        "1-algebraic/1.3-polynomial/1.3.1-u-(a+b-x+c-x^2+d-x^3)^p.json",
+        "1-algebraic/1.3-polynomial/1.3.2-u-(a+b-x+c-x^2+d-x^3+e-x^4)^p.json",
+        "1-algebraic/1.3-polynomial/1.3.4-P(x)-Q(x)^p.json",
+        "1-algebraic/1.4-miscellaneous/1.4.3-Miscellaneous-algebraic-functions.json",
+        "9-miscellaneous/9.2-Piecewise-linear-functions.json",
+        "2-exponentials/2.1-(c+d-x)^m-(a+b-(F^(g-(e+f-x)))^n)^p.json",
+        "2-exponentials/2.2-(c+d-x)^m-(F^(g-(e+f-x)))^n-(a+b-(F^(g-(e+f-x)))^n)^p.json",
+        "2-exponentials/2.3-Miscellaneous-exponentials.json",
+        "3-logarithms/3.1.1-(a+b-log(c-x^n))^p.json",
+        "3-logarithms/3.1.2-(d-x)^m-(a+b-log(c-x^n))^p.json",
+        "3-logarithms/3.1.3-(d+e-x^r)^q-(a+b-log(c-x^n))^p.json",
+        "3-logarithms/3.1.4-(f-x)^m-(d+e-x^r)^q-(a+b-log(c-x^n))^p.json",
+        "3-logarithms/3.1.5-u-(a+b-log(c-x^n))^p.json",
+        "3-logarithms/3.3-u-(a+b-log(c-(d+e-x)^n))^p.json",
+        "3-logarithms/3.4-u-(a+b-log(c-(d+e-x^m)^n))^p.json",
+        "3-logarithms/3.2.1-(f+g-x)^m-(A+B-log(e-((a+b-x)-over-(c+d-x))^n))^p.json",
+        "3-logarithms/3.2.2-(f+g-x)^m-(h+i-x)^q-(A+B-log(e-((a+b-x)-over-(c+d-x))^n))^p.json",
+        "3-logarithms/3.2.3-u-log(e-(f-(a+b-x)^p-(c+d-x)^q)^r)^s.json",
+        "3-logarithms/3.5-Miscellaneous-logarithms.json",
+        "4-trig/4.1-sine/4.1.0.1-(a-sin)^m-(b-trg)^n.json",
+        "4-trig/4.1-sine/4.1.0.2-(a-trg)^m-(b-tan)^n.json",
+        "4-trig/4.1-sine/4.1.0.3-(a-csc)^m-(b-sec)^n.json",
+        "4-trig/4.1-sine/4.1.1.1-(a+b-sin)^n.json",
+        "4-trig/4.1-sine/4.1.1.2-(g-cos)^p-(a+b-sin)^m.json",
+        "4-trig/4.1-sine/4.1.1.3-(g-tan)^p-(a+b-sin)^m.json",
+        "4-trig/4.1-sine/4.1.2.1-(a+b-sin)^m-(c+d-sin)^n.json",
+        "4-trig/4.1-sine/4.1.2.2-(g-cos)^p-(a+b-sin)^m-(c+d-sin)^n.json",
+        "4-trig/4.1-sine/4.1.2.3-(g-sin)^p-(a+b-sin)^m-(c+d-sin)^n.json",
+        "4-trig/4.1-sine/4.1.3.1-(a+b-sin)^m-(c+d-sin)^n-(A+B-sin).json",
+        "4-trig/4.1-sine/4.1.4.1-(a+b-sin)^m-(A+B-sin+C-sin^2).json",
+        "4-trig/4.1-sine/4.1.4.2-(a+b-sin)^m-(c+d-sin)^n-(A+B-sin+C-sin^2).json",
+        "4-trig/4.1-sine/4.1.5-trig^m-(a-cos+b-sin)^n.json",
+        "4-trig/4.1-sine/4.1.6-(a+b-cos+c-sin)^n.json",
+        "4-trig/4.1-sine/4.1.7-(d-trig)^m-(a+b-(c-sin)^n)^p.json",
+        "4-trig/4.1-sine/4.1.8-trig^m-(a+b-cos^p+c-sin^q)^n.json",
+        "4-trig/4.1-sine/4.1.9-trig^m-(a+b-sin^n+c-sin^(2-n))^p.json",
+        "4-trig/4.1-sine/4.1.10-(c+d-x)^m-(a+b-sin)^n.json",
+        "4-trig/4.1-sine/4.1.11-(e-x)^m-(a+b-x^n)^p-sin.json",
+        "4-trig/4.1-sine/4.1.12-(e-x)^m-(a+b-sin(c+d-x^n))^p.json",
+        "4-trig/4.1-sine/4.1.13-(d+e-x)^m-sin(a+b-x+c-x^2)^n.json",
+        "4-trig/4.3-tangent/4.3.1.1-(a+b-tan)^n.json",
+        "4-trig/4.3-tangent/4.3.1.2-(d-sec)^m-(a+b-tan)^n.json",
+        "4-trig/4.3-tangent/4.3.1.3-(d-sin)^m-(a+b-tan)^n.json",
+        "4-trig/4.3-tangent/4.3.2.1-(a+b-tan)^m-(c+d-tan)^n.json",
+        "4-trig/4.3-tangent/4.3.2.3-(g-tan)^p-(a+b-tan)^m-(c+d-tan)^n.json",
+        "4-trig/4.3-tangent/4.3.3.1-(a+b-tan)^m-(c+d-tan)^n-(A+B-tan).json",
+        "4-trig/4.3-tangent/4.3.4.1-(a+b-tan)^m-(A+B-tan+C-tan^2).json",
+        "4-trig/4.3-tangent/4.3.4.2-(a+b-tan)^m-(c+d-tan)^n-(A+B-tan+C-tan^2).json",
+        "4-trig/4.3-tangent/4.3.7-(d-trig)^m-(a+b-(c-tan)^n)^p.json",
+        "4-trig/4.3-tangent/4.3.9-trig^m-(a+b-tan^n+c-tan^(2-n))^p.json",
+        "4-trig/4.3-tangent/4.3.10-(c+d-x)^m-(a+b-tan)^n.json",
+        "4-trig/4.3-tangent/4.3.11-(e-x)^m-(a+b-tan(c+d-x^n))^p.json",
+        "4-trig/4.3-tangent/4.3.12-(d+e-x)^m-tan(a+b-x+c-x^2)^n.json",
+        "4-trig/4.5-secant/4.5.1.1-(a+b-sec)^n.json",
+        "4-trig/4.5-secant/4.5.1.2-(d-sec)^n-(a+b-sec)^m.json",
+        "4-trig/4.5-secant/4.5.1.3-(d-sin)^n-(a+b-sec)^m.json",
+        "4-trig/4.5-secant/4.5.1.4-(d-tan)^n-(a+b-sec)^m.json",
+        "4-trig/4.5-secant/4.5.2.1-(a+b-sec)^m-(c+d-sec)^n.json",
+        "4-trig/4.5-secant/4.5.2.2-(g-sec)^p-(a+b-sec)^m-(c+d-sec)^n.json",
+        "4-trig/4.5-secant/4.5.3.1-(a+b-sec)^m-(d-sec)^n-(A+B-sec).json",
+        "4-trig/4.5-secant/4.5.4.1-(a+b-sec)^m-(A+B-sec+C-sec^2).json",
+        "4-trig/4.5-secant/4.5.4.2-(a+b-sec)^m-(d-sec)^n-(A+B-sec+C-sec^2).json",
+        "4-trig/4.5-secant/4.5.7-(d-trig)^m-(a+b-(c-sec)^n)^p.json",
+        "4-trig/4.5-secant/4.5.9-trig^m-(a+b-sec^n+c-sec^(2-n))^p.json",
+        "4-trig/4.5-secant/4.5.10-(c+d-x)^m-(a+b-sec)^n.json",
+        "4-trig/4.5-secant/4.5.11-(e-x)^m-(a+b-sec(c+d-x^n))^p.json",
+        "4-trig/4.7-miscellaneous/4.7.1-Sine-normalization-rules.json",
+        "4-trig/4.7-miscellaneous/4.7.2-Tangent-normalization-rules.json",
+        "4-trig/4.7-miscellaneous/4.7.3-Secant-normalization-rules.json",
+        "4-trig/4.7-miscellaneous/4.7.4-(c-trig)^m-(d-trig)^n.json",
+        "4-trig/4.7-miscellaneous/4.7.5-Inert-trig-functions.json",
+        "4-trig/4.7-miscellaneous/4.7.6-(c+d-x)^m-trig(a+b-x)^n-trig(a+b-x)^p.json",
+        "4-trig/4.7-miscellaneous/4.7.7-F^(c-(a+b-x))-trig(d+e-x)^n.json",
+        "4-trig/4.7-miscellaneous/4.7.8-u-trig(a+b-log(c-x^n))^p.json",
+        "4-trig/4.7-miscellaneous/4.7.9-Active-trig-functions.json",
+        "5-inverse/5.1-inverse/5.1.1-(a+b-arcsin(c-x))^n.json",
+        "5-inverse/5.1-inverse/5.1.2-(d-x)^m-(a+b-arcsin(c-x))^n.json",
+        "5-inverse/5.1-inverse/5.1.3-(d+e-x^2)^p-(a+b-arcsin(c-x))^n.json",
+        "5-inverse/5.1-inverse/5.1.4-(f-x)^m-(d+e-x^2)^p-(a+b-arcsin(c-x))^n.json",
+        "5-inverse/5.1-inverse/5.1.5-u-(a+b-arcsin(c-x))^n.json",
+        "5-inverse/5.1-inverse/5.1.6-Miscellaneous-inverse-sine.json",
+        "5-inverse/5.3-inverse/5.3.1-(a+b-arctan(c-x^n))^p.json",
+        "5-inverse/5.3-inverse/5.3.2-(d-x)^m-(a+b-arctan(c-x^n))^p.json",
+        "5-inverse/5.3-inverse/5.3.3-(d+e-x)^m-(a+b-arctan(c-x^n))^p.json",
+        "5-inverse/5.3-inverse/5.3.4-u-(a+b-arctan(c-x))^p.json",
+        "5-inverse/5.3-inverse/5.3.5-u-(a+b-arctan(c+d-x))^p.json",
+        "5-inverse/5.3-inverse/5.3.6-Exponentials-of-inverse-tangent.json",
+        "5-inverse/5.3-inverse/5.3.7-Miscellaneous-inverse-tangent.json",
+        "5-inverse/5.5-inverse/5.5.1-u-(a+b-arcsec(c-x))^n.json",
+        "5-inverse/5.5-inverse/5.5.2-Miscellaneous-inverse-secant.json",
+        "6-hyperbolic/6.1-hyperbolic/6.1.10-(c+d-x)^m-(a+b-sinh)^n.json",
+        "6-hyperbolic/6.1-hyperbolic/6.1.11-(e-x)^m-(a+b-x^n)^p-sinh.json",
+        "6-hyperbolic/6.1-hyperbolic/6.1.12-(e-x)^m-(a+b-sinh(c+d-x^n))^p.json",
+        "6-hyperbolic/6.1-hyperbolic/6.1.13-(d+e-x)^m-sinh(a+b-x+c-x^2)^n.json",
+        "6-hyperbolic/6.3-hyperbolic/6.3.10-(c+d-x)^m-(a+b-tanh)^n.json",
+        "6-hyperbolic/6.3-hyperbolic/6.3.11-(e-x)^m-(a+b-tanh(c+d-x^n))^p.json",
+        "6-hyperbolic/6.3-hyperbolic/6.3.12-(d+e-x)^m-tanh(a+b-x+c-x^2)^n.json",
+        "6-hyperbolic/6.5-hyperbolic/6.5.10-(c+d-x)^m-(a+b-sech)^n.json",
+        "6-hyperbolic/6.5-hyperbolic/6.5.11-(e-x)^m-(a+b-sech(c+d-x^n))^p.json",
+        "6-hyperbolic/6.7-miscellaneous/6.7.6-(c+d-x)^m-hyper(a+b-x)^n-hyper(a+b-x)^p.json",
+        "6-hyperbolic/6.7-miscellaneous/6.7.7-F^(c-(a+b-x))-hyper(d+e-x)^n.json",
+        "6-hyperbolic/6.7-miscellaneous/6.7.8-u-hyper(a+b-log(c-x^n))^p.json",
+        "6-hyperbolic/6.7-miscellaneous/6.7.9-Active-hyperbolic-functions.json",
+        "7-inverse/7.1-inverse/7.1.1-(a+b-arcsinh(c-x))^n.json",
+        "7-inverse/7.1-inverse/7.1.2-(d-x)^m-(a+b-arcsinh(c-x))^n.json",
+        "7-inverse/7.1-inverse/7.1.3-(d+e-x^2)^p-(a+b-arcsinh(c-x))^n.json",
+        "7-inverse/7.1-inverse/7.1.4-(f-x)^m-(d+e-x^2)^p-(a+b-arcsinh(c-x))^n.json",
+        "7-inverse/7.1-inverse/7.1.5-u-(a+b-arcsinh(c-x))^n.json",
+        "7-inverse/7.1-inverse/7.1.6-Miscellaneous-inverse-hyperbolic-sine.json",
+        "7-inverse/7.2-inverse/7.2.1-(a+b-arccosh(c-x))^n.json",
+        "7-inverse/7.2-inverse/7.2.2-(d-x)^m-(a+b-arccosh(c-x))^n.json",
+        "7-inverse/7.2-inverse/7.2.3-(d+e-x^2)^p-(a+b-arccosh(c-x))^n.json",
+        "7-inverse/7.2-inverse/7.2.4-(f-x)^m-(d+e-x^2)^p-(a+b-arccosh(c-x))^n.json",
+        "7-inverse/7.2-inverse/7.2.5-u-(a+b-arccosh(c-x))^n.json",
+        "7-inverse/7.2-inverse/7.2.6-Miscellaneous-inverse-hyperbolic-cosine.json",
+        "7-inverse/7.3-inverse/7.3.1-(a+b-arctanh(c-x^n))^p.json",
+        "7-inverse/7.3-inverse/7.3.2-(d-x)^m-(a+b-arctanh(c-x^n))^p.json",
+        "7-inverse/7.3-inverse/7.3.3-(d+e-x)^m-(a+b-arctanh(c-x^n))^p.json",
+        "7-inverse/7.3-inverse/7.3.4-u-(a+b-arctanh(c-x))^p.json",
+        "7-inverse/7.3-inverse/7.3.5-u-(a+b-arctanh(c+d-x))^p.json",
+        "7-inverse/7.3-inverse/7.3.6-Exponentials-of-inverse-hyperbolic-tangent.json",
+        "7-inverse/7.3-inverse/7.3.7-Miscellaneous-inverse-hyperbolic-tangent.json",
+        "7-inverse/7.5-inverse/7.5.1-u-(a+b-arcsech(c-x))^n.json",
+        "7-inverse/7.5-inverse/7.5.2-Miscellaneous-inverse-hyperbolic-secant.json",
+        "8-special/8.1-Error-functions.json",
+        "8-special/8.2-Fresnel-integral-functions.json",
+        "8-special/8.3-Exponential-integral-functions.json",
+        "8-special/8.4-Trig-integral-functions.json",
+        "8-special/8.5-Hyperbolic-integral-functions.json",
+        "8-special/8.6-Gamma-functions.json",
+        "8-special/8.7-Zeta-function.json",
+        "8-special/8.8-Polylogarithm-function.json",
+        "8-special/8.9-Product-logarithm-function.json",
+        "9-miscellaneous/9.1-Derivative-integration-rules.json",
+        "9-miscellaneous/9.3-Miscellaneous-integration-rules.json"
+    ],
+    "domain": "integration",
+    "rule_count": 7249,
+    "title": "RUBI integration rules in pinned source order",
+    "utility_functions": [
+        "NormalizeIntegrand",
+        "SimplifyIntegrand",
+        "SimplifyAntiderivative",
+        "NormalizeLeadTermSigns",
+        "NormalizeSumFactors",
+        "AbsorbMinusSign",
+        "FixSimplify",
+        "SmartSimplify",
+        "TogetherSimplify",
+        "ContentFactor",
+        "Coefficient",
+        "Exponent",
+        "IntPart",
+        "FracPart",
+        "Together",
+        "Apart",
+        "Cancel",
+        "Factor",
+        "Expand",
+        "Numerator",
+        "Denominator",
+        "SmartNumerator",
+        "SmartDenominator",
+        "Rt",
+        "TrigReduce",
+        "TrigExpand",
+        "TrigToExp",
+        "ExpToTrig",
+        "SmartTrigExpand",
+        "SmartTrigReduce",
+        "TrigSimplifyAux",
+        "ActivateTrig",
+        "DeactivateTrig",
+        "LeadTerm",
+        "RemainingTerms",
+        "LeadFactor",
+        "RemainingFactors",
+        "LeadBase",
+        "LeadDegree",
+        "MergeableFactorQ",
+        "MergeFactor",
+        "MergeFactors",
+        "SubstFor",
+        "SubstForFractionalPowerOfLinear",
+        "SubstForFractionalPowerOfQuotientOfLinears",
+        "SubstForInverseFunction",
+        "SubstForExpn",
+        "D",
+        "Dif",
+        "Map",
+        "Simplify",
+        "FullSimplify",
+        "ReplaceAll",
+        "Mods"
+    ],
+    "$schema": "open-symbolic-rules/v0.1",
+    "taxonomy": [
+        {
+            "title": "Algebraic functions",
+            "section": 1,
+            "subsections": [
+                {
+                    "title": "Binomial products",
+                    "section": "1.1",
+                    "subsections": [
+                        {
+                            "title": "Linear",
+                            "section": "1.1.1"
+                        },
+                        {
+                            "title": "Quadratic",
+                            "section": "1.1.2"
+                        },
+                        {
+                            "title": "General",
+                            "section": "1.1.3"
+                        },
+                        {
+                            "title": "Improper",
+                            "section": "1.1.4"
+                        }
+                    ]
+                },
+                {
+                    "title": "Trinomial products",
+                    "section": "1.2",
+                    "subsections": [
+                        {
+                            "title": "Quadratic",
+                            "section": "1.2.1"
+                        },
+                        {
+                            "title": "Quartic",
+                            "section": "1.2.2"
+                        },
+                        {
+                            "title": "General",
+                            "section": "1.2.3"
+                        },
+                        {
+                            "title": "Improper",
+                            "section": "1.2.4"
+                        }
+                    ]
+                },
+                {
+                    "title": "Miscellaneous",
+                    "section": "1.3"
+                }
+            ]
+        },
+        {
+            "title": "Exponentials",
+            "section": 2,
+            "subsections": [
+                {
+                    "title": "u F^(a+b x)",
+                    "section": "2.1"
+                },
+                {
+                    "title": "Exponential x powers",
+                    "section": "2.2"
+                },
+                {
+                    "title": "Miscellaneous exponentials",
+                    "section": "2.3"
+                }
+            ]
+        },
+        {
+            "title": "Logarithms",
+            "section": 3,
+            "subsections": [
+                {
+                    "title": "u (a+b log(c x^n))^p",
+                    "section": "3.1"
+                },
+                {
+                    "title": "Logarithm products",
+                    "section": "3.2"
+                },
+                {
+                    "title": "u log(e (a+b x)^n (c+d x)^p)^q",
+                    "section": "3.3"
+                },
+                {
+                    "title": "Logarithm trig products",
+                    "section": "3.4"
+                },
+                {
+                    "title": "Miscellaneous logarithms",
+                    "section": "3.5"
+                }
+            ]
+        },
+        {
+            "title": "Trig functions",
+            "section": 4,
+            "subsections": [
+                {
+                    "title": "Sine",
+                    "section": "4.1"
+                },
+                {
+                    "title": "Tangent",
+                    "section": "4.3"
+                },
+                {
+                    "title": "Secant",
+                    "section": "4.5"
+                },
+                {
+                    "title": "Miscellaneous",
+                    "section": "4.7"
+                }
+            ]
+        },
+        {
+            "title": "Inverse trig functions",
+            "section": 5,
+            "subsections": [
+                {
+                    "title": "Inverse sine",
+                    "section": "5.1"
+                },
+                {
+                    "title": "Inverse tangent",
+                    "section": "5.3"
+                },
+                {
+                    "title": "Inverse secant",
+                    "section": "5.5"
+                }
+            ]
+        },
+        {
+            "title": "Hyperbolic functions",
+            "section": 6,
+            "subsections": [
+                {
+                    "title": "Hyperbolic sine",
+                    "section": "6.1"
+                },
+                {
+                    "title": "Hyperbolic tangent",
+                    "section": "6.3"
+                },
+                {
+                    "title": "Hyperbolic secant",
+                    "section": "6.5"
+                },
+                {
+                    "title": "Miscellaneous",
+                    "section": "6.7"
+                }
+            ]
+        },
+        {
+            "title": "Inverse hyperbolic functions",
+            "section": 7,
+            "subsections": [
+                {
+                    "title": "Inverse hyperbolic sine",
+                    "section": "7.1"
+                },
+                {
+                    "title": "Inverse hyperbolic tangent",
+                    "section": "7.3"
+                },
+                {
+                    "title": "Inverse hyperbolic secant",
+                    "section": "7.5"
+                }
+            ]
+        },
+        {
+            "title": "Special functions",
+            "section": 8,
+            "subsections": [
+                {
+                    "title": "Error functions",
+                    "section": "8.1"
+                },
+                {
+                    "title": "Fresnel integrals",
+                    "section": "8.2"
+                },
+                {
+                    "title": "Exponential integral functions",
+                    "section": "8.3"
+                },
+                {
+                    "title": "Trig integral functions",
+                    "section": "8.4"
+                },
+                {
+                    "title": "Hyperbolic integral functions",
+                    "section": "8.5"
+                },
+                {
+                    "title": "Gamma functions",
+                    "section": "8.6"
+                },
+                {
+                    "title": "Zeta function",
+                    "section": "8.7"
+                },
+                {
+                    "title": "Polylogarithm functions",
+                    "section": "8.8"
+                },
+                {
+                    "title": "Product logarithm function",
+                    "section": "8.9"
+                },
+                {
+                    "title": "Bessel functions",
+                    "section": "8.10"
+                }
+            ]
+        },
+        {
+            "title": "Miscellaneous",
+            "section": 9,
+            "subsections": [
+                {
+                    "title": "Integrand simplification",
+                    "section": "9.1"
+                },
+                {
+                    "title": "Derivative integration",
+                    "section": "9.2"
+                },
+                {
+                    "title": "Piecewise linear",
+                    "section": "9.3"
+                },
+                {
+                    "title": "Miscellaneous integration",
+                    "section": "9.4"
+                }
+            ]
+        }
+    ],
+    "extensions": [
+        {
+            "name": "Block",
+            "arity": 2,
+            "semantics": "Wolfram Language built-in as used in the source: https://reference.wolfram.com/language/ref/Block.html. Decline the rule if unsupported."
+        },
+        {
+            "name": "CompoundExpression",
+            "arity": 2,
+            "semantics": "Wolfram Language built-in as used in the source: https://reference.wolfram.com/language/ref/CompoundExpression.html. Decline the rule if unsupported."
+        },
+        {
+            "name": "Denom",
+            "arity": 1,
+            "semantics": "Implement the Denom definitions in Rubi/IntegrationUtilityFunctions.m at f7fa0fd7bfacd326bc9e125473c5bad41cfad4e4, with step display disabled. Decline the rule if unsupported."
+        },
+        {
+            "name": "DerivativeDivides",
+            "arity": 3,
+            "semantics": "Implement the DerivativeDivides definitions in Rubi/IntegrationUtilityFunctions.m at f7fa0fd7bfacd326bc9e125473c5bad41cfad4e4, with step display disabled. Decline the rule if unsupported."
+        },
+        {
+            "name": "Discriminant",
+            "arity": 2,
+            "semantics": "Wolfram Language built-in as used in the source: https://reference.wolfram.com/language/ref/Discriminant.html. Decline the rule if unsupported."
+        },
+        {
+            "name": "EulerIntegrandQ",
+            "arity": 2,
+            "semantics": "Implement the EulerIntegrandQ definitions in Rubi/IntegrationUtilityFunctions.m at f7fa0fd7bfacd326bc9e125473c5bad41cfad4e4, with step display disabled. Decline the rule if unsupported."
+        },
+        {
+            "name": "ExpandExpression",
+            "arity": 2,
+            "semantics": "Implement the ExpandExpression definitions in Rubi/IntegrationUtilityFunctions.m at f7fa0fd7bfacd326bc9e125473c5bad41cfad4e4, with step display disabled. Decline the rule if unsupported."
+        },
+        {
+            "name": "FractionalPowerFactorQ",
+            "arity": 1,
+            "semantics": "Implement the FractionalPowerFactorQ definitions in Rubi/IntegrationUtilityFunctions.m at f7fa0fd7bfacd326bc9e125473c5bad41cfad4e4, with step display disabled. Decline the rule if unsupported."
+        },
+        {
+            "name": "FreeFactors",
+            "arity": 2,
+            "semantics": "Implement the FreeFactors definitions in Rubi/IntegrationUtilityFunctions.m at f7fa0fd7bfacd326bc9e125473c5bad41cfad4e4, with step display disabled. Decline the rule if unsupported."
+        },
+        {
+            "name": "FunctionExpand",
+            "arity": 1,
+            "semantics": "Wolfram Language built-in as used in the source: https://reference.wolfram.com/language/ref/FunctionExpand.html. Decline the rule if unsupported."
+        },
+        {
+            "name": "FunctionOfExponential",
+            "arity": 2,
+            "semantics": "Implement the FunctionOfExponential definitions in Rubi/IntegrationUtilityFunctions.m at f7fa0fd7bfacd326bc9e125473c5bad41cfad4e4, with step display disabled. Decline the rule if unsupported."
+        },
+        {
+            "name": "FunctionOfExponentialFunction",
+            "arity": 2,
+            "semantics": "Implement the FunctionOfExponentialFunction definitions in Rubi/IntegrationUtilityFunctions.m at f7fa0fd7bfacd326bc9e125473c5bad41cfad4e4, with step display disabled. Decline the rule if unsupported."
+        },
+        {
+            "name": "FunctionOfLinear",
+            "arity": 2,
+            "semantics": "Implement the FunctionOfLinear definitions in Rubi/IntegrationUtilityFunctions.m at f7fa0fd7bfacd326bc9e125473c5bad41cfad4e4, with step display disabled. Decline the rule if unsupported."
+        },
+        {
+            "name": "FunctionOfLog",
+            "arity": 2,
+            "semantics": "Implement the FunctionOfLog definitions in Rubi/IntegrationUtilityFunctions.m at f7fa0fd7bfacd326bc9e125473c5bad41cfad4e4, with step display disabled. Decline the rule if unsupported."
+        },
+        {
+            "name": "FunctionOfSquareRootOfQuadratic",
+            "arity": 2,
+            "semantics": "Implement the FunctionOfSquareRootOfQuadratic definitions in Rubi/IntegrationUtilityFunctions.m at f7fa0fd7bfacd326bc9e125473c5bad41cfad4e4, with step display disabled. Decline the rule if unsupported."
+        },
+        {
+            "name": "FunctionOfTrig",
+            "arity": 2,
+            "semantics": "Implement the FunctionOfTrig definitions in Rubi/IntegrationUtilityFunctions.m at f7fa0fd7bfacd326bc9e125473c5bad41cfad4e4, with step display disabled. Decline the rule if unsupported."
+        },
+        {
+            "name": "GCD",
+            "arity": 2,
+            "semantics": "Wolfram Language built-in as used in the source: https://reference.wolfram.com/language/ref/GCD.html. Decline the rule if unsupported."
+        },
+        {
+            "name": "GreaterEqual",
+            "arity": 2,
+            "semantics": "Wolfram Language built-in as used in the source: https://reference.wolfram.com/language/ref/GreaterEqual.html. Decline the rule if unsupported."
+        },
+        {
+            "name": "InertTrigFreeQ",
+            "arity": 1,
+            "semantics": "Implement the InertTrigFreeQ definitions in Rubi/IntegrationUtilityFunctions.m at f7fa0fd7bfacd326bc9e125473c5bad41cfad4e4, with step display disabled. Decline the rule if unsupported."
+        },
+        {
+            "name": "IntSum",
+            "arity": 2,
+            "semantics": "Implement the IntSum definitions in Rubi/IntegrationUtilityFunctions.m at f7fa0fd7bfacd326bc9e125473c5bad41cfad4e4, with step display disabled. Decline the rule if unsupported."
+        },
+        {
+            "name": "InverseFunctionOfLinear",
+            "arity": 2,
+            "semantics": "Implement the InverseFunctionOfLinear definitions in Rubi/IntegrationUtilityFunctions.m at f7fa0fd7bfacd326bc9e125473c5bad41cfad4e4, with step display disabled. Decline the rule if unsupported."
+        },
+        {
+            "name": "Module",
+            "arity": 2,
+            "semantics": "Wolfram Language built-in as used in the source: https://reference.wolfram.com/language/ref/Module.html. Decline the rule if unsupported."
+        },
+        {
+            "name": "MonomialQ",
+            "arity": 2,
+            "semantics": "Implement the MonomialQ definitions in Rubi/IntegrationUtilityFunctions.m at f7fa0fd7bfacd326bc9e125473c5bad41cfad4e4, with step display disabled. Decline the rule if unsupported."
+        },
+        {
+            "name": "NonfreeFactors",
+            "arity": 2,
+            "semantics": "Implement the NonfreeFactors definitions in Rubi/IntegrationUtilityFunctions.m at f7fa0fd7bfacd326bc9e125473c5bad41cfad4e4, with step display disabled. Decline the rule if unsupported."
+        },
+        {
+            "name": "NonsumQ",
+            "arity": 1,
+            "semantics": "Implement the NonsumQ definitions in Rubi/IntegrationUtilityFunctions.m at f7fa0fd7bfacd326bc9e125473c5bad41cfad4e4, with step display disabled. Decline the rule if unsupported."
+        },
+        {
+            "name": "Numer",
+            "arity": 1,
+            "semantics": "Implement the Numer definitions in Rubi/IntegrationUtilityFunctions.m at f7fa0fd7bfacd326bc9e125473c5bad41cfad4e4, with step display disabled. Decline the rule if unsupported."
+        },
+        {
+            "name": "PiecewiseLinearQ",
+            "arity": "2, 3",
+            "semantics": "Implement the PiecewiseLinearQ definitions in Rubi/IntegrationUtilityFunctions.m at f7fa0fd7bfacd326bc9e125473c5bad41cfad4e4, with step display disabled. Decline the rule if unsupported."
+        },
+        {
+            "name": "PolynomialInQ",
+            "arity": 3,
+            "semantics": "Implement the PolynomialInQ definitions in Rubi/IntegrationUtilityFunctions.m at f7fa0fd7bfacd326bc9e125473c5bad41cfad4e4, with step display disabled. Decline the rule if unsupported."
+        },
+        {
+            "name": "PolynomialInSubst",
+            "arity": 3,
+            "semantics": "Implement the PolynomialInSubst definitions in Rubi/IntegrationUtilityFunctions.m at f7fa0fd7bfacd326bc9e125473c5bad41cfad4e4, with step display disabled. Decline the rule if unsupported."
+        },
+        {
+            "name": "QuotientOfLinearsParts",
+            "arity": 2,
+            "semantics": "Implement the QuotientOfLinearsParts definitions in Rubi/IntegrationUtilityFunctions.m at f7fa0fd7bfacd326bc9e125473c5bad41cfad4e4, with step display disabled. Decline the rule if unsupported."
+        },
+        {
+            "name": "RationalFunctionExponents",
+            "arity": 2,
+            "semantics": "Implement the RationalFunctionExponents definitions in Rubi/IntegrationUtilityFunctions.m at f7fa0fd7bfacd326bc9e125473c5bad41cfad4e4, with step display disabled. Decline the rule if unsupported."
+        },
+        {
+            "name": "Root",
+            "arity": 2,
+            "semantics": "Wolfram Language built-in as used in the source: https://reference.wolfram.com/language/ref/Root.html. Decline the rule if unsupported."
+        },
+        {
+            "name": "Set",
+            "arity": 2,
+            "semantics": "Wolfram Language built-in as used in the source: https://reference.wolfram.com/language/ref/Set.html. Decline the rule if unsupported."
+        },
+        {
+            "name": "SimplerIntegrandQ",
+            "arity": 3,
+            "semantics": "Implement the SimplerIntegrandQ definitions in Rubi/IntegrationUtilityFunctions.m at f7fa0fd7bfacd326bc9e125473c5bad41cfad4e4, with step display disabled. Decline the rule if unsupported."
+        },
+        {
+            "name": "SplitProduct",
+            "arity": 2,
+            "semantics": "Implement the SplitProduct definitions in Rubi/IntegrationUtilityFunctions.m at f7fa0fd7bfacd326bc9e125473c5bad41cfad4e4, with step display disabled. Decline the rule if unsupported."
+        },
+        {
+            "name": "Star",
+            "arity": 2,
+            "semantics": "RUBI Star[u,v] in Rubi/IntegrationUtilityFunctions.m at f7fa0fd7bfacd326bc9e125473c5bad41cfad4e4. Preserve its distribution and evaluation behavior. Decline the rule if unsupported (OSR-X-025a)."
+        },
+        {
+            "name": "SubstForFractionalPowerQ",
+            "arity": 3,
+            "semantics": "Implement the SubstForFractionalPowerQ definitions in Rubi/IntegrationUtilityFunctions.m at f7fa0fd7bfacd326bc9e125473c5bad41cfad4e4, with step display disabled. Decline the rule if unsupported."
+        },
+        {
+            "name": "SubstPower",
+            "arity": 3,
+            "semantics": "Implement the SubstPower definitions in Rubi/IntegrationUtilityFunctions.m at f7fa0fd7bfacd326bc9e125473c5bad41cfad4e4, with step display disabled. Decline the rule if unsupported."
+        },
+        {
+            "name": "TryPureTanSubst",
+            "arity": 2,
+            "semantics": "Implement the TryPureTanSubst definitions in Rubi/IntegrationUtilityFunctions.m at f7fa0fd7bfacd326bc9e125473c5bad41cfad4e4, with step display disabled. Decline the rule if unsupported."
+        }
+    ],
+    "license": "MIT",
+    "custom_predicates": [
+    ],
+    "converter": {
+        "version": "0.1.0",
+        "source_commit": "f7fa0fd7bfacd326bc9e125473c5bad41cfad4e4",
+        "tool": "RubiConverter.jl"
+    },
+    "osr_version": "0.1.0-draft",
+    "rubi_version": "4.17.3.0",
+    "predicates": [
+        "FreeQ",
+        "IndependentQ",
+        "IntegerQ",
+        "PositiveIntegerQ",
+        "NegativeIntegerQ",
+        "FractionQ",
+        "RationalQ",
+        "ComplexNumberQ",
+        "RealNumericQ",
+        "SqrtNumberQ",
+        "SqrtNumberSumQ",
+        "FractionOrNegativeQ",
+        "FractionalPowerOfSquareQ",
+        "IGtQ",
+        "ILtQ",
+        "IGeQ",
+        "ILeQ",
+        "IntegersQ",
+        "EqQ",
+        "NeQ",
+        "GtQ",
+        "LtQ",
+        "GeQ",
+        "LeQ",
+        "ZeroQ",
+        "NonzeroQ",
+        "PositiveQ",
+        "NegativeQ",
+        "OddQ",
+        "EvenQ",
+        "PolynomialQ",
+        "LinearQ",
+        "QuadraticQ",
+        "BinomialQ",
+        "TrinomialQ",
+        "PowerQ",
+        "SumQ",
+        "ProductQ",
+        "IntegerPowerQ",
+        "FractionalPowerQ",
+        "QuotientOfLinearsQ",
+        "TrigQ",
+        "HyperbolicQ",
+        "InverseTrigQ",
+        "InverseHyperbolicQ",
+        "LogQ",
+        "InverseFunctionQ",
+        "ElementaryFunctionQ",
+        "AlgebraicFunctionQ",
+        "AlgebraicTrigFunctionQ",
+        "RationalFunctionQ",
+        "BinomialMatchQ",
+        "CalculusQ",
+        "CalculusFreeQ",
+        "IntegralFreeQ",
+        "TrigHyperbolicFreeQ",
+        "FunctionOfTrigOfLinearQ",
+        "FunctionOfQ",
+        "FunctionOfExponentialQ",
+        "FunctionOfExponentialTest",
+        "PureFunctionOfSinQ",
+        "PureFunctionOfCosQ",
+        "PureFunctionOfTanQ",
+        "PureFunctionOfCotQ",
+        "FunctionOfSinQ",
+        "FunctionOfCosQ",
+        "FunctionOfTanQ",
+        "FunctionOfSinhQ",
+        "FunctionOfCoshQ",
+        "FunctionOfTanhQ",
+        "FunctionOfHyperbolicQ",
+        "FunctionOfTrigQ",
+        "FractionalPowerSubexpressionQ",
+        "MergeableFactorQ",
+        "And",
+        "Or",
+        "Not"
+    ]
+}
