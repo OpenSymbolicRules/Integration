@@ -1,15 +1,27 @@
 """Regression witness for RUBI 4.5.2.1 #47 as serialized in the source profile."""
+import hashlib
 import json
 import math
 import unittest
 from pathlib import Path
 
+from check_duplicate_rules import canonical_payload
+
 
 class CosecantWitness(unittest.TestCase):
     def test_residual_integrand_at_pi_over_two(self):
-        root = Path(__file__).resolve().parents[1] / "rules"
-        doc = json.loads(next(root.rglob("4.5.2.1-*.json")).read_text())
-        rule = next(r for r in doc["rules"] if r["id"] == 47)
+        root = Path(__file__).resolve().parents[1]
+        records = json.loads((root / "docs/rubi-errata.json").read_text())
+        item = next(r for r in records if r["section"] == "4.5.2.1" and r["rule_id"] == 47)
+        manifest = json.loads((root / "rules/meta.json").read_text())
+        self.assertIn(item["file"], manifest["load_order"])
+        self.assertEqual(item["source_revision"], manifest["converter"]["source_commit"])
+        doc = json.loads((root / "rules" / item["file"]).read_text())
+        self.assertEqual(doc["identity"], item["file_identity"])
+        rule = next(r for r in doc["rules"] if r["id"] == item["rule_id"])
+        self.assertEqual(item["payload_sha256"], hashlib.sha256(canonical_payload(rule).encode()).hexdigest())
+        self.assertEqual(item["action"], "skip")
+        self.assertEqual(item["lean_declaration"], "OSRTest.RubiCosecant.wrong_residual")
         env = dict(a=1, b=1, c=1, d=1, e=0, f=1, m=1, n=0.5, p=2, x=math.pi/2)
         self.assertEqual(rule["constraints"], [
             ["FreeQ", ["List", "a", "b", "c", "d", "e", "f", "m", "n", "p"], "x"],

@@ -64,7 +64,8 @@ returning the substitution. Consumers must decline this rule if they cannot
 implement these operations. The manifest records the required built-ins.
 The compatibility merge now starts at `f44efda` to preserve every published
 ID, including 4.7.5 #71 following the insertion. See also the separate
-[cosecant erratum](../upstream-bugs.md).
+[cosecant erratum](../upstream-bugs.md) and its
+[machine-readable exclusion](rubi-errata.json).
 
 With the submodules initialized, generate a fresh conversion and reproduce
 the shipped profile using the following commands. Use two new directories

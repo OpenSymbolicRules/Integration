@@ -16,6 +16,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   variants, with optional per-entry theorem evidence.
 
 ### Fixed
+- Publish a fingerprinted exclusion for RUBI 4.5.2.1 #47 with its Lean witness.
 - Recover the last step-display conditional in the pinned RUBI loader (4.7.5 #72). Compare all 22 plain branches against the distributed rules and document the upstream cosecant counterexample.
 - Reject oversized integers during conversion instead of silently rounding
   exact values through floating point in the JSON output.

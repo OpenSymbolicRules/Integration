@@ -7,7 +7,12 @@ integral in RUBI revision `61e9c18ea248061cd83c67882f7c91a73cef912d`
 (the pinned loader declares 4.17.3.0). The pattern contains inert cosecant,
 the prefactor contains active cosecant, and the residual integral contains
 two cosines. The v0.1 source profile reproduces the pinned definition.
-Consumers should skip section 4.5.2.1 rule 47 when applying the profile.
+Consumers can read the [machine-readable errata](docs/rubi-errata.json).
+Skip a rule when its file identity, local ID and payload digest match an
+entry marked `skip`. The digest is the SHA-256 of the UTF-8 JSON returned by
+`canonical_payload` in `scripts/check_duplicate_rules.py`: an object with
+keys `constraints`, `pattern`, `result` sorted recursively, compact
+separators and literal Unicode. A changed digest calls for review.
 
 Take real constants `a=b=c=d=f=m=1`, `e=0`, `p=2`, and `n=1/2`.
 All parameters are independent of x and n is nonintegral. On a neighborhood
