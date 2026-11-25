@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 - Provide a reproducible reference edition of Rubi 4.17.3.0 with 7,249 converted entries, release-qualified identities, coverage and a fingerprinted exclusion for section 4.5.2.1 cell 48.
+- Add four independently sourced Airy integration rules, six one-step examples and seven regression problems from SymPy and the SageMath Giac backend with reference primitives and derivative checks.
 - Import the 3,001-entry Lean export, including 118 additional original default-profile rules and the previously audited RUBI 2.3 #1.
 - Restore 1,704 RUBI entries in source order, increasing the default manifest to 7,208 while retaining previous rule IDs, conditions and provenance.
 - Recover all 30 previously empty loaded RUBI sections with upstream text and source order. Include 68 converted rules from 11 sections in the default profile.

@@ -10,6 +10,8 @@ validate:
 # Unit tests of the repository scripts.
 test:
 	python3 scripts/test_rubi_release.py
+	python3 scripts/test_cas_supplement.py
+	python3 scripts/test_post_rubi_examples.py
 	python3 scripts/test_rubi_errata.py
 	python3 scripts/test_check_duplicate_rules.py
 	python3 scripts/test_audit_rubi_order.py

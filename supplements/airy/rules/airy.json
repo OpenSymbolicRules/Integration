@@ -1,0 +1,212 @@
+{
+  "$schema": "open-symbolic-rules/v0.1",
+  "title": "Airy functions",
+  "section": "8.2",
+  "identity": "cas-supplement:airy",
+  "semantics": {
+    "Ai": "openmath:airy#Ai",
+    "Ai2": "openmath:airy#Ai2",
+    "Bi": "openmath:airy#Bi",
+    "Bi2": "openmath:airy#Bi2",
+    "Multiply": "openmath:arith1#times",
+    "Add": "openmath:arith1#plus",
+    "Divide": "openmath:arith1#divide",
+    "Int": "openmath:calculus1#int"
+  },
+  "rules": [
+    {
+      "id": 1,
+      "pattern": [
+        "Int",
+        [
+          "Ai2",
+          1,
+          [
+            "Add",
+            "a.",
+            [
+              "Multiply",
+              "b.",
+              "x_"
+            ]
+          ]
+        ],
+        "x_symbol"
+      ],
+      "constraints": [
+        [
+          "FreeQ",
+          [
+            "List",
+            "a",
+            "b"
+          ],
+          "x"
+        ],
+        [
+          "NeQ",
+          "b",
+          0
+        ]
+      ],
+      "result": [
+        "Divide",
+        [
+          "Ai",
+          [
+            "Add",
+            "a",
+            [
+              "Multiply",
+              "b",
+              "x"
+            ]
+          ]
+        ],
+        "b"
+      ],
+      "derivation": "Chain rule for an affine argument with nonzero slope.",
+      "provenance": {
+        "method": "derived",
+        "sources": [
+          {
+            "name": "SymbolicIntegration.jl",
+            "revision": "3625e0e4bb1d78c0ce0acc038d75043aa48efdf1",
+            "license": "MIT",
+            "locator": "src/methods/rule_based/rules2/8 Special functions/8.2 Airy functions.jl#8_2_1"
+          }
+        ]
+      }
+    },
+    {
+      "id": 2,
+      "pattern": [
+        "Int",
+        [
+          "Bi2",
+          1,
+          [
+            "Add",
+            "a.",
+            [
+              "Multiply",
+              "b.",
+              "x_"
+            ]
+          ]
+        ],
+        "x_symbol"
+      ],
+      "constraints": [
+        [
+          "FreeQ",
+          [
+            "List",
+            "a",
+            "b"
+          ],
+          "x"
+        ],
+        [
+          "NeQ",
+          "b",
+          0
+        ]
+      ],
+      "result": [
+        "Divide",
+        [
+          "Bi",
+          [
+            "Add",
+            "a",
+            [
+              "Multiply",
+              "b",
+              "x"
+            ]
+          ]
+        ],
+        "b"
+      ],
+      "derivation": "Chain rule for an affine argument with nonzero slope.",
+      "provenance": {
+        "method": "derived",
+        "sources": [
+          {
+            "name": "SymbolicIntegration.jl",
+            "revision": "3625e0e4bb1d78c0ce0acc038d75043aa48efdf1",
+            "license": "MIT",
+            "locator": "src/methods/rule_based/rules2/8 Special functions/8.2 Airy functions.jl#8_2_2"
+          }
+        ]
+      }
+    },
+    {
+      "id": 3,
+      "pattern": [
+        "Int",
+        [
+          "Multiply",
+          "x_",
+          [
+            "Ai",
+            "x_"
+          ]
+        ],
+        "x_symbol"
+      ],
+      "constraints": [],
+      "result": [
+        "Ai2",
+        1,
+        "x"
+      ],
+      "derivation": "Airy's differential equation, y''(x) = x y(x).",
+      "provenance": {
+        "method": "derived",
+        "sources": [
+          {
+            "name": "SymbolicIntegration.jl",
+            "revision": "3625e0e4bb1d78c0ce0acc038d75043aa48efdf1",
+            "license": "MIT",
+            "locator": "src/methods/rule_based/rules2/8 Special functions/8.2 Airy functions.jl#8_2_3"
+          }
+        ]
+      }
+    },
+    {
+      "id": 4,
+      "pattern": [
+        "Int",
+        [
+          "Multiply",
+          "x_",
+          [
+            "Bi",
+            "x_"
+          ]
+        ],
+        "x_symbol"
+      ],
+      "constraints": [],
+      "result": [
+        "Bi2",
+        1,
+        "x"
+      ],
+      "derivation": "Airy's differential equation, y''(x) = x y(x).",
+      "provenance": {
+        "method": "derived",
+        "sources": [
+          {
+            "name": "SymbolicIntegration.jl",
+            "revision": "3625e0e4bb1d78c0ce0acc038d75043aa48efdf1",
+            "license": "MIT",
+            "locator": "src/methods/rule_based/rules2/8 Special functions/8.2 Airy functions.jl#8_2_4"
+          }
+        ]
+      }
+    }
+  ]
+}

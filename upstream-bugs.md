@@ -33,3 +33,7 @@ equality in a neighborhood and uses uniqueness of the derivative.
 
 [Issue and original report](https://github.com/OpenSymbolicRules/Integration/issues/11) ·
 [Pinned RUBI definition](https://github.com/RuleBasedIntegration/Rubi/blob/61e9c18ea248061cd83c67882f7c91a73cef912d/Rubi/IntegrationRules/4%20Trig%20functions/4.5%20Secant/4.5.2.1%20(a%2Bb%20sec)%5Em%20(c%2Bd%20sec)%5En.m#L51)
+
+## OpenMath hypergeo2, version 0 revision 3, hankel2 formal property
+
+The dictionary's hankel2 description and commented property specify the second-kind function. The formal property places hankel1 on the left of the equation defining J − iY. Its hankel1 entry already gives J + iY. A translator which imports both formal properties would identify the two functions. Keep the family under review before binding the CAS rules to this vocabulary. [Dictionary XML](https://openmath.org/cd/hypergeo2.ocd) · [Rendered hankel2 entry](https://openmath.org/cd/hypergeo2.html#hankel2)

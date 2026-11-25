@@ -1,0 +1,61 @@
+name: Rubi release and CAS supplements
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  reference:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          submodules: recursive
+          fetch-depth: 0
+      - uses: julia-actions/setup-julia@v3
+        with:
+          version: "1.13"
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+      - name: Set up the existing converter and schema validator
+        run: |
+          julia --project=converter -e 'using Pkg; Pkg.instantiate()'
+          python -m pip install check-jsonschema==0.38.0
+      - name: Rebuild the final Rubi edition
+        run: |
+          release=f7fa0fd7bfacd326bc9e125473c5bad41cfad4e4
+          git -C vendor/Rubi cat-file -e "$release^{commit}" || git -C vendor/Rubi fetch origin "$release"
+          rebuilt="$RUNNER_TEMP/rubi-release"
+          reference=editions/rubi-4.17.3.0
+          python3 scripts/rubi_release.py vendor/Rubi "$rebuilt"
+          python3 scripts/check_expanded_profile.py "$rebuilt/rules" "$reference/rules"
+          for artifact in coverage.json errata.json LICENSE; do
+            cmp "$rebuilt/$artifact" "$reference/$artifact"
+          done
+          python3 scripts/test_rubi_release.py
+      - name: Check release and supplement schemas, identities and vocabulary
+        run: |
+          for rules in editions/rubi-4.17.3.0/rules supplements/airy/rules; do
+            check-jsonschema --schemafile Specification/schemas/meta.schema.json "$rules/meta.json"
+            find "$rules" -name '*.json' ! -name meta.json -print0 | xargs -0 -n 10 -P 4 check-jsonschema \
+              --schemafile Specification/schemas/rule-file.schema.json --base-uri "file://$PWD/Specification/schemas/"
+            python3 scripts/validate_rule_identities.py "$rules"
+            python3 Specification/scripts/validate_semantic_closure.py "$rules"
+          done
+          check-jsonschema --schemafile Specification/schemas/test-file.schema.json \
+            --base-uri "file://$PWD/Specification/schemas/" supplements/airy/tests/airy.json
+      - name: Validate OSR expressions in the test-only vectors
+        run: |
+          ruleschema="$RUNNER_TEMP/cas-expressions.schema.json"
+          jq '{ "$schema": ."$schema", definitions, type: "array", items: {"$ref": "#/definitions/osr-expr"} }' \
+            Specification/schemas/osr-expr.schema.json > "$ruleschema"
+          for suite in supplements/*-regressions/examples.json; do
+            jq '[.tests[] | .expression, .expected_result]' "$suite" > "$RUNNER_TEMP/vectors.json"
+            check-jsonschema --schemafile "$ruleschema" "$RUNNER_TEMP/vectors.json"
+          done
+      - name: Check CAS source conditions and regression primitives
+        run: |
+          python3 scripts/test_cas_supplement.py
+          python3 scripts/test_post_rubi_examples.py

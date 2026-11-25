@@ -1,0 +1,185 @@
+{
+  "$schema": "open-symbolic-rules/v0.1",
+  "section": "8.2",
+  "title": "Airy one-step conformance cases",
+  "tests": [
+    {
+      "id": 1,
+      "expression": [
+        "Ai2",
+        1,
+        [
+          "Add",
+          2,
+          [
+            "Multiply",
+            3,
+            "x"
+          ]
+        ]
+      ],
+      "variable": "x",
+      "num_steps": 1,
+      "expected_result": [
+        "Divide",
+        [
+          "Ai",
+          [
+            "Add",
+            2,
+            [
+              "Multiply",
+              3,
+              "x"
+            ]
+          ]
+        ],
+        3
+      ],
+      "comment": "One application of cas-supplement:airy:1."
+    },
+    {
+      "id": 2,
+      "expression": [
+        "Ai2",
+        1,
+        [
+          "Add",
+          1,
+          [
+            "Multiply",
+            -2,
+            "x"
+          ]
+        ]
+      ],
+      "variable": "x",
+      "num_steps": 1,
+      "expected_result": [
+        "Divide",
+        [
+          "Ai",
+          [
+            "Add",
+            1,
+            [
+              "Multiply",
+              -2,
+              "x"
+            ]
+          ]
+        ],
+        -2
+      ],
+      "comment": "One application of cas-supplement:airy:1."
+    },
+    {
+      "id": 3,
+      "expression": [
+        "Bi2",
+        1,
+        [
+          "Add",
+          2,
+          [
+            "Multiply",
+            3,
+            "x"
+          ]
+        ]
+      ],
+      "variable": "x",
+      "num_steps": 1,
+      "expected_result": [
+        "Divide",
+        [
+          "Bi",
+          [
+            "Add",
+            2,
+            [
+              "Multiply",
+              3,
+              "x"
+            ]
+          ]
+        ],
+        3
+      ],
+      "comment": "One application of cas-supplement:airy:2."
+    },
+    {
+      "id": 4,
+      "expression": [
+        "Bi2",
+        1,
+        [
+          "Add",
+          1,
+          [
+            "Multiply",
+            -2,
+            "x"
+          ]
+        ]
+      ],
+      "variable": "x",
+      "num_steps": 1,
+      "expected_result": [
+        "Divide",
+        [
+          "Bi",
+          [
+            "Add",
+            1,
+            [
+              "Multiply",
+              -2,
+              "x"
+            ]
+          ]
+        ],
+        -2
+      ],
+      "comment": "One application of cas-supplement:airy:2."
+    },
+    {
+      "id": 5,
+      "expression": [
+        "Multiply",
+        "x",
+        [
+          "Ai",
+          "x"
+        ]
+      ],
+      "variable": "x",
+      "num_steps": 1,
+      "expected_result": [
+        "Ai2",
+        1,
+        "x"
+      ],
+      "comment": "One application of cas-supplement:airy:3."
+    },
+    {
+      "id": 6,
+      "expression": [
+        "Multiply",
+        "x",
+        [
+          "Bi",
+          "x"
+        ]
+      ],
+      "variable": "x",
+      "num_steps": 1,
+      "expected_result": [
+        "Bi2",
+        1,
+        "x"
+      ],
+      "comment": "One application of cas-supplement:airy:4."
+    }
+  ]
+}

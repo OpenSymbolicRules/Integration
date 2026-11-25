@@ -1,0 +1,86 @@
+{
+  "source": "https://github.com/sympy/sympy",
+  "revision": "6856a0953eb7269e094a7755a8151d684bcb879c",
+  "path": "sympy/integrals/tests/test_manual.py",
+  "license": "BSD-3-Clause",
+  "tests": [
+    {
+      "id": "sin2-cos",
+      "variable": "x",
+      "expression": ["Multiply", ["Sin", ["Power", "x", 2]], ["Cos", "x"]],
+      "expected_result": [
+        "Divide",
+        ["Add",
+          ["Multiply", ["Sqrt", ["Divide", "Pi", 2]], ["Add", ["Multiply", ["Cos", ["Divide", 1, 4]], ["FresnelS", ["Multiply", ["Sqrt", ["Divide", 2, "Pi"]], ["Add", "x", ["Divide", 1, 2]]]]], ["Multiply", -1, ["Sin", ["Divide", 1, 4]], ["FresnelC", ["Multiply", ["Sqrt", ["Divide", 2, "Pi"]], ["Add", "x", ["Divide", 1, 2]]]]]]],
+          ["Multiply", 1, ["Multiply", ["Sqrt", ["Divide", "Pi", 2]], ["Add", ["Multiply", ["Cos", ["Divide", 1, 4]], ["FresnelS", ["Multiply", ["Sqrt", ["Divide", 2, "Pi"]], ["Add", "x", ["Divide", -1, 2]]]]], ["Multiply", -1, ["Sin", ["Divide", 1, 4]], ["FresnelC", ["Multiply", ["Sqrt", ["Divide", 2, "Pi"]], ["Add", "x", ["Divide", -1, 2]]]]]]]]
+        ],
+        2
+      ]
+    },
+    {
+      "id": "cos2-sin",
+      "variable": "x",
+      "expression": ["Multiply", ["Cos", ["Power", "x", 2]], ["Sin", "x"]],
+      "expected_result": [
+        "Divide",
+        ["Add",
+          ["Multiply", ["Sqrt", ["Divide", "Pi", 2]], ["Add", ["Multiply", ["Cos", ["Divide", 1, 4]], ["FresnelS", ["Multiply", ["Sqrt", ["Divide", 2, "Pi"]], ["Add", "x", ["Divide", 1, 2]]]]], ["Multiply", -1, ["Sin", ["Divide", 1, 4]], ["FresnelC", ["Multiply", ["Sqrt", ["Divide", 2, "Pi"]], ["Add", "x", ["Divide", 1, 2]]]]]]],
+          ["Multiply", -1, ["Multiply", ["Sqrt", ["Divide", "Pi", 2]], ["Add", ["Multiply", ["Cos", ["Divide", 1, 4]], ["FresnelS", ["Multiply", ["Sqrt", ["Divide", 2, "Pi"]], ["Add", "x", ["Divide", -1, 2]]]]], ["Multiply", -1, ["Sin", ["Divide", 1, 4]], ["FresnelC", ["Multiply", ["Sqrt", ["Divide", 2, "Pi"]], ["Add", "x", ["Divide", -1, 2]]]]]]]]
+        ],
+        2
+      ]
+    },
+    {
+      "id": "sin2-sin",
+      "variable": "x",
+      "expression": ["Multiply", ["Sin", ["Power", "x", 2]], ["Sin", "x"]],
+      "expected_result": [
+        "Divide",
+        ["Add",
+          ["Multiply", ["Sqrt", ["Divide", "Pi", 2]], ["Add", ["Multiply", ["Cos", ["Divide", 1, 4]], ["FresnelC", ["Multiply", ["Sqrt", ["Divide", 2, "Pi"]], ["Add", "x", ["Divide", -1, 2]]]]], ["Multiply", ["Sin", ["Divide", 1, 4]], ["FresnelS", ["Multiply", ["Sqrt", ["Divide", 2, "Pi"]], ["Add", "x", ["Divide", -1, 2]]]]]]],
+          ["Multiply", -1, ["Multiply", ["Sqrt", ["Divide", "Pi", 2]], ["Add", ["Multiply", ["Cos", ["Divide", 1, 4]], ["FresnelC", ["Multiply", ["Sqrt", ["Divide", 2, "Pi"]], ["Add", "x", ["Divide", 1, 2]]]]], ["Multiply", ["Sin", ["Divide", 1, 4]], ["FresnelS", ["Multiply", ["Sqrt", ["Divide", 2, "Pi"]], ["Add", "x", ["Divide", 1, 2]]]]]]]]
+        ],
+        2
+      ]
+    },
+    {
+      "id": "cos2-cos",
+      "variable": "x",
+      "expression": ["Multiply", ["Cos", ["Power", "x", 2]], ["Cos", "x"]],
+      "expected_result": [
+        "Divide",
+        ["Add",
+          ["Multiply", ["Sqrt", ["Divide", "Pi", 2]], ["Add", ["Multiply", ["Cos", ["Divide", 1, 4]], ["FresnelC", ["Multiply", ["Sqrt", ["Divide", 2, "Pi"]], ["Add", "x", ["Divide", 1, 2]]]]], ["Multiply", ["Sin", ["Divide", 1, 4]], ["FresnelS", ["Multiply", ["Sqrt", ["Divide", 2, "Pi"]], ["Add", "x", ["Divide", 1, 2]]]]]]],
+          ["Multiply", 1, ["Multiply", ["Sqrt", ["Divide", "Pi", 2]], ["Add", ["Multiply", ["Cos", ["Divide", 1, 4]], ["FresnelC", ["Multiply", ["Sqrt", ["Divide", 2, "Pi"]], ["Add", "x", ["Divide", -1, 2]]]]], ["Multiply", ["Sin", ["Divide", 1, 4]], ["FresnelS", ["Multiply", ["Sqrt", ["Divide", 2, "Pi"]], ["Add", "x", ["Divide", -1, 2]]]]]]]]
+        ],
+        2
+      ]
+    },
+    {
+      "id": "x-cos",
+      "variable": "x",
+      "expression": ["Multiply", "x", ["Cos", ["Add", ["Power", "x", 2], "x"]]],
+      "expected_result": [
+        "Divide",
+        ["Add",
+          ["Sin", ["Add", ["Power", "x", 2], "x"]],
+          ["Multiply", -1, ["Multiply", ["Sqrt", ["Divide", "Pi", 2]], ["Add", ["Multiply", ["Cos", ["Divide", 1, 4]], ["FresnelC", ["Multiply", ["Sqrt", ["Divide", 2, "Pi"]], ["Add", "x", ["Divide", 1, 2]]]]], ["Multiply", ["Sin", ["Divide", 1, 4]], ["FresnelS", ["Multiply", ["Sqrt", ["Divide", 2, "Pi"]], ["Add", "x", ["Divide", 1, 2]]]]]]]]
+        ],
+        2
+      ]
+    },
+    {
+      "id": "x-sin",
+      "variable": "x",
+      "expression": ["Multiply", "x", ["Sin", ["Add", ["Power", "x", 2], "x"]]],
+      "expected_result": [
+        "Divide",
+        ["Add",
+          ["Multiply", -1, ["Cos", ["Add", ["Power", "x", 2], "x"]]],
+          ["Multiply", -1, ["Multiply", ["Sqrt", ["Divide", "Pi", 2]], ["Add", ["Multiply", ["Cos", ["Divide", 1, 4]], ["FresnelS", ["Multiply", ["Sqrt", ["Divide", 2, "Pi"]], ["Add", "x", ["Divide", 1, 2]]]]], ["Multiply", -1, ["Sin", ["Divide", 1, 4]], ["FresnelC", ["Multiply", ["Sqrt", ["Divide", 2, "Pi"]], ["Add", "x", ["Divide", 1, 2]]]]]]]]
+        ],
+        2
+      ]
+    }
+  ]
+}

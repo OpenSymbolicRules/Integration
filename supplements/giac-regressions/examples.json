@@ -1,0 +1,15 @@
+{
+  "source": "https://github.com/sagemath/sagemath-giac",
+  "revision": "e48e1efb98accafd4b263780b45d30fbf1b37f44",
+  "path": "README.rst",
+  "license": "GPL-3.0-or-later",
+  "tests": [
+    {
+      "id": "real-minimum-at-zero",
+      "variable": "x",
+      "domain": "real",
+      "expression": ["Multiply", 2, ["Min", "x", ["Multiply", 2, "x"]]],
+      "expected_result": ["Divide", ["Add", ["Multiply", 3, ["Power", "x", 2]], ["Multiply", -1, "x", ["Abs", "x"]]], 2]
+    }
+  ]
+}
