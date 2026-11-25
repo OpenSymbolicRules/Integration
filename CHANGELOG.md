@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- Load Rubi derivative substitutions 9 and 12 with their original guards. Preserve all thirteen other source transcriptions, separate restrictions and checked real interpretations in the release coverage ledger.
 - Check real interpretations of all fifteen remaining Rubi 9.1 cells in Lean, including power substitutions, negative-order recurrences for a coherent primitive pair, and a zero-slope counterexample.
 - Check the published fixture index against the converter input hashes in the local test suite. Refresh the three source hashes changed by the scoped-rule recovery.
 - Recover 118 integration rules in the Rubi 4.17.3.0 release and 207 entries in the compatibility profile. Preserve lexical locals, source order and published IDs across all 198 loaded files. Restore the upper denominator bound in compatibility rule 1.2.1.1 #13 and both scoped general quadratic cases reported in issue #10.

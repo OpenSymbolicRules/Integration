@@ -10,6 +10,7 @@ validate:
 # Unit tests of the repository scripts.
 test:
 	python3 scripts/test_rubi_release.py
+	python3 scripts/test_derivative_examples.py
 	python3 scripts/test_cas_supplement.py
 	python3 scripts/test_bessel_supplement.py
 	python3 supplements/cylinder-regressions/check.py

@@ -35,6 +35,11 @@ jobs:
             cmp "$rebuilt/$artifact" "$reference/$artifact"
           done
           python3 scripts/test_rubi_release.py
+          python3 scripts/test_derivative_examples.py
+          jq --slurpfile coverage "$reference/coverage.json" '
+            .rules += [$coverage[0].files[] | select(.source_path == "9 Miscellaneous/9.1 Derivative integration rules.m")
+                       | .omitted[].source_rule]' "$reference/rules/9-miscellaneous/9.1-Derivative-integration-rules.json" > "$RUNNER_TEMP/all-derivative-cells.json"
+          check-jsonschema --schemafile Specification/schemas/rule-file.schema.json --base-uri "file://$PWD/Specification/schemas/" "$RUNNER_TEMP/all-derivative-cells.json"
           julia --project=converter converter/test/source_edition.jl vendor/Rubi
       - name: Check release and supplement schemas, identities and vocabulary
         run: |

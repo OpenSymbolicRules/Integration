@@ -5,19 +5,26 @@ include("derivative-applications.jl")
 function edition_rules(source, path, version)
     rules = Dict{String,Any}[]
     omitted = NamedTuple[]
-    derivative_section = path == "9 Miscellaneous/9.1 Derivative integration rules.m"
-    prepare_rule = derivative_section ? prepare_derivative_applications : identity
+    derivative_section = path == DERIVATIVE_SECTION
+    reviewed = derivative_section && bytes2hex(sha256(source)) == DERIVATIVE_DIGEST
+    prepare_rule = derivative_section ? (expr -> prepare_derivative_applications(expr; pinned_source=reviewed)) : identity
     for row in recover_profile(source, Set{String}(); plain_steps=true, prepare_rule, lexical_modules=true)
         status = row["status"]
         if status in ("empty", "header")
             continue
         elseif status == "source_only"
+            reviewed && error("Reviewed derivative cell $(row["ordinal"]) failed conversion: $(row["reason"])")
             push!(omitted, (; ordinal=row["ordinal"], reason=row["reason"], source=row["source"]))
             continue
         end
         rule = status == "conditional" ? row["branches"]["false"] : row["rule"]
         rule["provenance"] = RubiConverter.rubi_provenance(path, row["ordinal"]; version)
-        push!(rules, rule)
+        reason = reviewed ? derivative_hold_reason(row["ordinal"]) : nothing
+        if isnothing(reason)
+            push!(rules, rule)
+        else
+            push!(omitted, (; ordinal=row["ordinal"], reason, source=row["source"], source_rule=rule))
+        end
     end
     rules, omitted
 end
@@ -31,7 +38,7 @@ end
 function edition_extensions(arities, utility_source, revision)
     # These newly exposed heads have their definitions in the pinned RUBI utility file.
     helpers = Set(split("""Denom Divides DerivativeDivides EulerIntegrandQ ExpandExpression
-        FractionalPowerFactorQ FreeFactors FunctionOfExponential FunctionOfExponentialFunction
+        FunctionOfQ SubstFor SimplifyIntegrand Subst FractionalPowerFactorQ FreeFactors FunctionOfExponential FunctionOfExponentialFunction
         FunctionOfLinear FunctionOfLog FunctionOfSquareRootOfQuadratic FunctionOfTrig InertTrigFreeQ
         IntSum InverseFunctionOfLinear MonomialQ NonfreeFactors NonsumQ Numer PiecewiseLinearQ
         PolyGCD PolynomialInQ PolynomialInSubst QuotientOfLinearsParts RationalFunctionExponents
@@ -85,6 +92,11 @@ function generate_edition(root, vendor, output; edition=nothing)
         digest = bytes2hex(sha256(source))
         rules, omitted = edition_rules(source, source_path, version)
         annotate_derivative_section!(rules, omitted, digest)
+        for cell in omitted
+            if hasproperty(cell, :source_rule)
+                only(cell.source_rule["provenance"]["sources"])["revision"] = revision
+            end
+        end
         if !isnothing(edition)
             for rule in rules
                 only(rule["provenance"]["sources"])["revision"] = revision

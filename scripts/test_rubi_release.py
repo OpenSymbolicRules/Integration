@@ -31,8 +31,8 @@ class ReleaseTest(unittest.TestCase):
         self.assertEqual([f["path"] for f in files], manifest["load_order"])
         self.assertEqual(len(set(manifest["load_order"])), 198)
         self.assertEqual(sum(f["converted"] for f in files), manifest["rule_count"])
-        self.assertEqual(manifest["rule_count"], 7373)
-        self.assertEqual(sum(len(f["omitted"]) for f in files), 21)
+        self.assertEqual(manifest["rule_count"], 7375)
+        self.assertEqual(sum(len(f["omitted"]) for f in files), 19)
         issue, = json.loads((edition / "errata.json").read_text())
         doc = json.loads((edition / "rules" / issue["file"]).read_text())
         rule = next(r for r in doc["rules"] if r["id"] == issue["rule_id"])
@@ -57,10 +57,36 @@ class ReleaseTest(unittest.TestCase):
                 raw = subprocess.check_output(["git", "-C", vendor, "show", blob], text=True)
                 # Each top-level step wrapper contains two Int definitions and loads one.
                 wrappers = len(re.findall(r"(?m)^\s*If\[TrueQ\[\$LoadShowSteps\]", raw))
-                omitted = 15 if source == "9 Miscellaneous/9.1 Derivative integration rules.m" else 0
+                omitted = 13 if source == "9 Miscellaneous/9.1 Derivative integration rules.m" else 0
                 with self.subTest(revision=revision, source=source):
                     self.assertGreater(len(doc["rules"]), 0)
                     self.assertEqual(count_int_definitions(raw), len(doc["rules"]) + wrappers + omitted)
+
+    def test_review_records_keep_extra_guards_separate_from_the_source(self):
+        directory = ROOT / "editions/rubi-4.17.3.0"
+        ledger = json.loads((directory / "coverage.json").read_bytes())
+        section, = (f for f in ledger["files"] if f["source_path"].startswith("9 Miscellaneous/9.1 "))
+        by_cell = {row["ordinal"]: row for row in section["omitted"]}
+        for cell, row in by_cell.items():
+            self.assertEqual(row["source_rule"]["id"], cell)
+            source, = row["source_rule"]["provenance"]["sources"]
+            self.assertTrue(source["locator"].endswith(f".m#{cell}"))
+            self.assertEqual(source["revision"], ledger["revision"])
+            original = row["source_rule"]["constraints"]
+            guards = row["order_and_divisor_guards"]
+            self.assertTrue(guards)
+            self.assertFalse(any(g in original for g in guards))
+            if cell in (3, 6, 7):
+                self.assertIn(["ILtQ", "n", 0], original)
+                self.assertEqual(guards[0][0], "NeQ")
+            if cell in (16, 17, 18):
+                self.assertIn(["NeQ", ["Add","p",1], 0], guards)
+            theorem = row["real_interpretation"]
+            anchor = re.search(r"/blob/([0-9a-f]{40})/(verification/\w+\.lean)#L(\d+)$", theorem["source"])
+            self.assertIsNotNone(anchor)
+            _, name = theorem["theorem"].rsplit(".", 1)
+            line = (ROOT / anchor[2]).read_text().splitlines()[int(anchor[3]) - 1]
+            self.assertTrue(line.startswith(f"theorem {name} "))
 
     def test_first_derivative_cells(self):
         edition = ROOT / "editions/rubi-4.17.3.0"
@@ -98,13 +124,13 @@ class ReleaseTest(unittest.TestCase):
         self.assertIn("calculus1#diff", extension["semantics"])
         ledger = json.loads((edition / "coverage.json").read_text())
         section, = [s for s in ledger["files"] if s["path"] == path]
-        self.assertEqual([o["ordinal"] for o in section["omitted"]], [1, 3, *range(6, 19)])
+        self.assertEqual([o["ordinal"] for o in section["omitted"]], [1, 3, 6, 7, 8, 10, 11, 13, 14, 15, 16, 17, 18])
 
     def test_positive_order_residuals(self):
         edition = ROOT / "editions/rubi-4.17.3.0"
         path = "9-miscellaneous/9.1-Derivative-integration-rules.json"
         records = json.loads((edition / "rules" / path).read_text())["rules"]
-        self.assertEqual([r["id"] for r in records], [2, 4, 5, 19, 20, 21])
+        self.assertEqual([r["id"] for r in records], [2, 4, 5, 9, 12, 19, 20, 21])
 
         def derivative(order, f, x):
             return ["Apply", ["Apply", ["Derivative", order], ["List", f]], ["List", x]]

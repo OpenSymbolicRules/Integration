@@ -3,9 +3,9 @@
 For Albert D. Rich’s final release, use the [4.17.3.0 reference edition](rubi-release.md). The following inventory describes the later maintenance checkout used by existing consumers.
 
 Load the 198 files listed in `rules/meta.json`, in order, and read each
-`rules` array in order. This loads **7,416** v0.1 entries. The other 23
-files contribute 850 entries outside the default load sequence. The 7,416
-loaded entries contain 7,333 distinct JSON triples of pattern, ordered
+`rules` array in order. This loads **7,418** v0.1 entries. The other 23
+files contribute 850 entries outside the default load sequence. The 7,418
+loaded entries contain 7,335 distinct JSON triples of pattern, ordered
 constraints and result, using the same comparison as the duplicate checker.
 This comparison recognizes exact duplicates and leaves mathematical
 equivalence open. File identity
@@ -14,8 +14,8 @@ New IDs can therefore appear between smaller ones.
 
 The converter reads Git blobs at RUBI 4.17.3.0 revision
 `61e9c18ea248061cd83c67882f7c91a73cef912d`. Elementary rules are enabled.
-Of the 7,416 converted source definitions, 22 select the branch for disabled
-step display. A further 21 blocks are recorded with their source and reason
+Of the 7,418 converted source definitions, 22 select the branch for disabled
+step display. A further 19 blocks are recorded with their source and reason
 for omission. The file and array order reproduces source placement.
 Wolfram Language evaluation and downvalue precedence also affect dispatch.
 
@@ -25,12 +25,12 @@ constraints and result of every previous rule in a section. It retains stable ID
 source locator. A locator's number is the notebook cell ordinal or, for the
 legacy line format, the source line number. It can differ from the OSR ID.
 This restored 1,704 entries across 111 sections. All 198 loaded sections now reconcile in source order. Relative to commit
-`3d6b6b2`, the profile gained 207 entries across 35 sections. The 19 entries
+`3d6b6b2`, the profile gained 209 entries across 35 sections. The 19 entries
 in 1.2.1.1 include the general quadratic substitutions at local IDs 18 and 19
 (upstream lines 21 and 22). Local ID 13 now carries the complete source bound
 `3 <= Denominator[p] <= 4` from line 19. The previous conversion lost the
 upper endpoint. Sections 1.2.2.3 and 4.1.7 now contain 100 and 73 entries.
-Section 4.1.8 supplies eight entries. The six converted rules in the loaded
+Section 4.1.8 supplies eight entries. The eight converted rules in the loaded
 9.1 derivative file carry the same real-theorem references as the release.
 The two editions use identical upstream bytes for that file.
 
@@ -46,7 +46,7 @@ and tests it before the result uses it. Preserve short-circuit evaluation.
 8.6 dynamically binds `$UseGamma` during recursive integration.
 Counting both step-display branches yields 7,453 upstream `Int`
 definitions. With step display disabled, 22 alternative branches drop out.
-The other 15 omissions are all in section 9.1. The ledger also retains
+The other 13 definitions have full source transcriptions outside the load order. Each is in section 9.1. The ledger also retains
 five helper definitions and one initialization. See the [release coverage](rubi-release.md) and
 [unresolved exponential helpers in the maintenance tree](../upstream-bugs.md).
 
@@ -81,8 +81,9 @@ with dynamically scoped step settings in `Block`, tests `CalculusFreeQ[w,x]`
 inside `With`, and evaluates an assignment to a fresh `Module` local before
 returning the substitution. Consumers must decline this rule if they cannot
 implement these operations. The manifest records the required built-ins.
-The compatibility merge now starts at `f44efda` to preserve every published
-ID, including 4.7.5 #71 following the insertion. See also the separate
+The compatibility merge uses Integration snapshot `75c07bb` to preserve
+published IDs while inserting in source order. In section 9.1 source cells
+9 and 12 receive local IDs 7 and 8, before local IDs 4–6 in the array. See also the separate
 [cosecant erratum](../upstream-bugs.md) and its
 [machine-readable exclusion](rubi-errata.json).
 
@@ -97,7 +98,7 @@ python3 scripts/check_show_steps.py vendor/Rubi /tmp/rubi-source rules
 python3 scripts/check_expanded_profile.py /tmp/rubi-expanded rules
 ```
 
-The first directory contains a separate v0.1 manifest with 7,416 entries,
+The first directory contains a separate v0.1 manifest with 7,418 entries,
 source-based IDs and a coverage file with SHA-256 digests and omitted source
 blocks for every file. Its count overlaps the default profile. The second
 directory contains the default manifest and its loaded files, preserving

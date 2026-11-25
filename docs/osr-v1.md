@@ -46,7 +46,7 @@ their source inequalities. Matching a literal integer establishes its
 independence from the variable of integration. These entries await real
 proofs. Their order predicates lack a registered complex interpretation.
 The full catalogue has 3,015 entries. The source join identifies 1,763 of
-the 7,416 loaded identities with an original v1 entry and 5,653 without
+the 7,418 loaded identities with an original v1 entry and 5,655 without
 one. The new 4.7.5 #72 is among the latter. Run
 `python3 scripts/source_verification_status.py --details` to reproduce the join.
 

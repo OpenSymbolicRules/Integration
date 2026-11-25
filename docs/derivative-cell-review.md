@@ -5,6 +5,28 @@ Both pinned editions use identical source bytes for section 9.1 (SHA-256
 The table reviews the 15 source cells outside the original six-rule export.
 Cell numbers refer to the upstream notebook. [Source](https://github.com/RuleBasedIntegration/Rubi/blob/f7fa0fd7bfacd326bc9e125473c5bad41cfad4e4/Rubi/IntegrationRules/9%20Miscellaneous/9.1%20Derivative%20integration%20rules.m)
 
+### Using the results
+
+Cells **9 and 12** are loaded with their original guards. Their local IDs
+are 9 and 12 in the release and 7 and 8 in the compatibility manifest.
+For the other 13, read `files[].omitted[]` for section 9.1 in the
+[release ledger](../editions/rubi-4.17.3.0/coverage.json). Each `source_rule`
+preserves the complete pattern, ordered constraints and result. The enclosing
+record retains the original source text. The provenance gives the Git revision
+and cell locator. `order_and_divisor_guards`
+lists proposed additional predicates for the stated real interpretation.
+`real_interpretation.source` links to the Lean declaration with the analytic
+assumptions, including positivity and the derivative of the residual primitive.
+The guard list alone is insufficient to enable a rule. All 21 source cells
+are checked against the parsed upstream expressions, including repeated
+bindings, orders, coefficients and the variable in each nested application.
+Run `python3 scripts/test_derivative_examples.py` to differentiate the
+transcribed results numerically. The 33 regular examples use f(t)=t⁵,
+g(t)=t⁴ and a known multiplier K(s)=s² for substitution. For negative orders
+they use primitives vanishing at zero. Three examples use p=−1 in cells
+12, 13 and 15, where no division by p+1 occurs. Three further cases
+exercise the singular source divisors at b=0.
+
 ### Reading the real theorems
 
 Write F and G for the indicated functions at the original variable, with

@@ -96,7 +96,7 @@ end
     edition = joinpath(root, "editions/rubi-4.17.3.0")
     family = "9-miscellaneous/9.1-Derivative-integration-rules.json"
     doc = JSON3.read(read(joinpath(edition, "rules", family), String))
-    names = ["exponentialParts", "sineParts", "cosineParts", "product", "quotient", "logQuotient"]
+    names = ["exponentialParts", "sineParts", "cosineParts", "productSubstitution", "leftPowerSubstitution", "product", "quotient", "logQuotient"]
     @test length(doc.rules) == length(names)
     for (rule, name) in zip(doc.rules, names)
         @test rule.references["Lean (real, under the stated hypotheses)"] == "OSR.Rubi." * name
@@ -256,4 +256,57 @@ end
     @test Set(keys(entries)) == Set(keys(arities))
     @test occursin("IntegrationUtilityFunctions.m", get(get(entries,"Divides",Dict()),"semantics",""))
     @test occursin("decline", lowercase(get(get(entries,"NormalizePowerOfLinear",Dict()),"semantics","")))
+end
+
+@testset "Every pinned derivative cell is recoverable in source order" begin
+    if !isempty(ARGS)
+        path = "9 Miscellaneous/9.1 Derivative integration rules.m"
+        source = read(`git -C $(only(ARGS)) show f7fa0fd7bfacd326bc9e125473c5bad41cfad4e4:Rubi/IntegrationRules/$path`, String)
+        active, held = edition_rules(source, path, "4.17.3.0")
+        @test getindex.(active, "id") == [2, 4, 5, 9, 12, 19, 20, 21]
+        @test [h.ordinal for h in held] == [1, 3, 6, 7, 8, 10, 11, 13, 14, 15, 16, 17, 18]
+        @test all(h -> hasproperty(h, :source_rule), held)
+        calls(f,x) = ["Apply", f, ["List",x]]
+        for cell in (9,12)
+            pos = findfirst(r -> r["id"] == cell, active)
+            isnothing(pos) && continue
+            r = active[pos]
+            fx, gx = calls("f","x"), calls("g","x")
+            z = cell == 9 ? ["Multiply",fx,gx] : ["Multiply",["Power",fx,["Add","p",1]],gx]
+            @test last(r["constraints"]) == ["FunctionOfQ",z,"u","x"]
+            @test r["result"] == ["Star",cell == 9 ? "a" : "b",["Subst",
+                ["Int",["SimplifyIntegrand",["SubstFor",z,"u","x"],"x"],"x"],"x",z]]
+        end
+        # Render the raw curried AST directly. This check does not use the
+        # production binding collector, order filter or lowering routine.
+        function render(node)
+            if node isa MApply
+                return ["Apply", render(node.head), ["List", map(render, node.args)...]]
+            elseif node isa MPrime
+                return ["Apply", ["Derivative",1], ["List",render(node.expr)]]
+            elseif node isa MFunction
+                if node.head in ("f", "g", "f_", "g_")
+                    return ["Apply",node.head,["List",map(render,node.args)...]]
+                end
+                return RubiConverter.to_osr(node, render)
+            end
+            RubiConverter.to_osr(node)
+        end
+        all_rules = Dict(r["id"] => r for r in active)
+        for h in held
+            all_rules[h.ordinal] = h.source_rule
+        end
+        for (i, cell) in enumerate(split(source, CELL_MARKER)[2:end])
+            expr = only(RubiConverter.parse_file_expressions(CELL_MARKER * cell))
+            parts = RubiConverter.extract_rule_parts(expr)
+            actual = all_rules[i]
+            @test actual["pattern"] == render(first(expr.args))
+            @test actual["constraints"] == map(render,parts.constraints)
+            @test actual["result"] == render(parts.result)
+        end
+        # Changing the reviewed blob must never enable an unguarded source order.
+        changed, rest = edition_rules(source * "\n", path, "4.17.3.0")
+        @test !any(r -> r["id"] in (1,3,16), changed)
+        @test !any(h -> hasproperty(h, :source_rule), rest)
+    end
 end

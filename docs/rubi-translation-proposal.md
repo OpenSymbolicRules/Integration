@@ -72,7 +72,7 @@ conditional loads, duplicate paths and unmatched entries before use by a CAS.
 ## Remaining syntax
 
 An earlier cell audit reported 22 candidate cells that did not parse, including
-compound heads, derivative notation and the `=!=` operator. The parser retains all 21 expressions in the derivative section. The release converter exports six cells, three with a single prime and three with an explicit positive integer order. The coverage ledger retains the other 15 cells and their source ordinals. Three of these, cells 16–18, admit p=q=−1 although the result divides by p+1. Their input integrands can be finite at the same point. [Counterexample and reproduction](../upstream-bugs.md)
+compound heads, derivative notation and the `=!=` operator. The parser retains all 21 expressions in the derivative section. The release converter exports eight cells, including the two ordinary first-derivative substitutions 9 and 12. The coverage ledger preserves the 13 other cells as OSR expressions with their source guards, locators and conditional theorem references. See the [review of all fifteen previously missing cells](derivative-cell-review.md). Three of these, cells 16–18, admit p=q=−1 although the result divides by p+1. Their input integrands can be finite at the same point. [Counterexample and reproduction](../upstream-bugs.md)
 
 ### Integration by parts with positive integer order
 
@@ -90,7 +90,7 @@ The checked real theorems write n = k + 1 for a natural number k and assume that
 
 The expression `["Apply", ["Derivative", n], ["List", f]]` denotes the derivative function. An outer `Apply` evaluates it at the argument. For nonnegative integer n the complete inner application corresponds to OpenMath `calculus1#nthdiff(n,f)`. The release converter requires a positive integer guard before exporting a symbolic order and its predecessor. A missing guard, a guard on a different variable, or a disjunction permitting negative orders cannot justify that conversion. Negative-order Wolfram derivatives can denote integrals and need separate semantics. [Wolfram Derivative](https://reference.wolfram.com/language/ref/Derivative.html) · [OpenMath calculus dictionary](https://openmath.org/cd/calculus1.html)
 
-Each of the six published JSON entries carries the qualified Lean theorem name and an immutable source link in `references`. The linked declaration gives its exact real-domain hypotheses. The converter attaches these citations only to the reviewed Rubi file digest and source ordinals. Consumers can use them to inspect proof evidence independently of the source `constraints` used for matching. [Six rule records](../editions/rubi-4.17.3.0/rules/9-miscellaneous/9.1-Derivative-integration-rules.json)
+Each of the eight published JSON entries carries the qualified Lean theorem name and an immutable source link in `references`. The linked declaration gives its exact real-domain hypotheses. The converter attaches these citations only to the reviewed Rubi file digest and source ordinals. Consumers can use them to inspect proof evidence independently of the source `constraints` used for matching. [Eight rule records](../editions/rubi-4.17.3.0/rules/9-miscellaneous/9.1-Derivative-integration-rules.json)
 
 ## Real proofs for the three first-derivative rules
 

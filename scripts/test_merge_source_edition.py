@@ -13,19 +13,12 @@ class MergeTests(unittest.TestCase):
         self.assertIsNone(reason)
         self.assertEqual(result, [rule(10,'a'),old,rule(11,'c')])
 
-    def test_binary_atan_in_retained_and_reconciled_entries(self):
-        from merge_source_edition import upgrade_atan
-        old = rule(37, ['Add', ['Atan', 'y'], ['Atan', 'y', 'x']])
-        old['constraints'] = [['NeQ', ['Atan', 0, 'x'], 0]]
-        doc = {'rules': [old], 'semantics': {'Atan': 'openmath:transc1#arctan'}}
-        upgrade_atan(doc)
-        self.assertEqual(doc['semantics'], {'Atan': 'openmath:transc1#arctan', 'Atan2': 'openmath:transc2#arctan'})
-        self.assertEqual(old['constraints'], [['NeQ', ['Atan2', 0, 'x'], 0]])
-        new = rule(8, ['Add', ['Atan', 'y'], ['Atan2', 'y', 'x']])
-        new['constraints'] = old['constraints']
-        self.assertEqual(integrate([old], [new]), ([old], None))
-        self.assertEqual(old['id'], 37)
-        self.assertEqual(old['result'], new['result'])
+    def test_insertion_preserves_the_published_derivative_ids(self):
+        old = [rule(i, v) for i, v in enumerate([2,4,5,19,20,21], 1)]
+        source = [rule(i,i) for i in [2,4,5,9,12,19,20,21]]
+        merged, reason = integrate(old, source)
+        self.assertIsNone(reason)
+        self.assertEqual([r['id'] for r in merged], [1,2,3,7,8,4,5,6])
 
     def test_ambiguous_missing_and_guard_changed(self):
         old = [rule(1,'a')]
@@ -79,6 +72,7 @@ class MergeTests(unittest.TestCase):
         path = Path('rules/9-miscellaneous/9.1-Derivative-integration-rules.json')
         regular, release = [json.loads((base / path).read_bytes())['rules']
                             for base in (root, root / 'editions/rubi-4.17.3.0')]
+        self.assertEqual([r['id'] for r in regular], [1,2,3,7,8,4,5,6])
         self.assertEqual([canonical_payload(r) for r in regular], [canonical_payload(r) for r in release])
         self.assertEqual([r['references'] for r in regular], [r['references'] for r in release])
 

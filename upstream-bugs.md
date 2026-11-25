@@ -67,3 +67,13 @@ tree finds these names only in the rule files, including the normalization
 steps at source lines 18 and 10 respectively. OSR preserves the calls and
 declares the unresolved helpers in the compatibility manifest. A host lacking
 their semantics must decline the affected rules.
+
+## Rubi 4.17.3.0 section 9.1, cells 3, 6 and 7
+
+At release `f7fa0fd7bfacd326bc9e125473c5bad41cfad4e4`, the negative-order
+recurrences test `ILtQ[n,0]` and scalar independence. Cell 3 divides by
+`b*p*Log[F]`, and cells 6 and 7 divide by `b`. The guards allow zero slope.
+The [specializations with finite integrands](docs/derivative-cell-review.md)
+and [Lean reciprocal witness](verification/RubiSubstitutionDomain.lean)
+concern the isolated rewrites. Matcher precedence and prior simplification
+affect whether the engine reaches a particular instance.
