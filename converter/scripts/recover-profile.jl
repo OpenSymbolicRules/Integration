@@ -12,7 +12,7 @@ function unknown_heads!(heads, node, allowed)
     foreach(child -> unknown_heads!(heads, child, allowed), node[2:end])
 end
 
-function recover_profile(source, allowed)
+function recover_profile(source, allowed; plain_steps=false)
     notebook = occursin(CELL_MARKER, source)
     blocks = notebook ? split(source, CELL_MARKER) : readlines(IOBuffer(source); keep=true)
     rows = Dict{String,Any}[]
@@ -23,7 +23,8 @@ function recover_profile(source, allowed)
         push!(rows, row)
         expr = nothing
         try
-            exprs = RubiConverter.parse_file_expressions(CELL_MARKER * String(block))
+            compound_arguments = plain_steps && startswith(lstrip(block), "If[")
+            exprs = RubiConverter.parse_file_expressions(CELL_MARKER * String(block); compound_arguments)
             if isempty(exprs)
                 row["status"] = ordinal == 0 ? "header" : "empty"
                 continue
@@ -31,9 +32,9 @@ function recover_profile(source, allowed)
             expr = only(exprs)
             if expr isa RubiConverter.MFunction && expr.head == "If"
                 branches = Dict{String,Any}()
-                for flag in (true, false)
+                for flag in (plain_steps ? (false,) : (true, false))
                     branch = RubiConverter.select_show_steps_branch(expr; show_steps=flag)
-                    RubiConverter.validate_experimental_scope(branch)
+                    RubiConverter.validate_experimental_scope(branch; scoped_steps=plain_steps)
                     branches[string(flag)] = RubiConverter.rule_to_osr(branch, ordinal)
                 end
                 row["status"] = "conditional"

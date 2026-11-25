@@ -52,9 +52,10 @@ end
 mutable struct Parser
     tokens::Vector{Token}
     pos::Int
+    compound_arguments::Bool
 end
 
-Parser(tokens::Vector{Token}) = Parser(tokens, 1)
+Parser(tokens::Vector{Token}; compound_arguments=false) = Parser(tokens, 1, compound_arguments)
 
 function current(p::Parser)::Token
     p.tokens[p.pos]
@@ -487,10 +488,10 @@ function parse_arglist(p::Parser, closing::TokenKind)::Vector{Any}
     if at(p, closing)
         return args
     end
-    push!(args, parse_expr(p))
+    push!(args, p.compound_arguments ? parse_compound(p) : parse_expr(p))
     while at(p, TOK_COMMA)
         advance!(p)
-        push!(args, parse_expr(p))
+        push!(args, p.compound_arguments ? parse_compound(p) : parse_expr(p))
     end
     args
 end
@@ -503,7 +504,7 @@ function parse_compound(p::Parser)::MExpr
         args = MExpr[expr]
         while at(p, TOK_SEMICOLON)
             advance!(p)
-            if at(p, TOK_EOF) || at(p, TOK_RBRACE) || at(p, TOK_RBRACKET)
+            if at(p, TOK_EOF) || at(p, TOK_RBRACE) || at(p, TOK_RBRACKET) || at(p, TOK_COMMA)
                 push!(args, MSymbol("Null"))
                 break
             end
@@ -537,7 +538,7 @@ multiline rules and rejecting malformed or partially consumed cells. For the
 older one-expression-per-line format, preserve the existing line-based path.
 The latter still skips unparseable lines and needs a separate loss audit.
 """
-function parse_file_expressions(source::String)::Vector{MExpr}
+function parse_file_expressions(source::String; compound_arguments=false)::Vector{MExpr}
     expressions = MExpr[]
 
     # Notebook-generated RUBI files delimit complete initialization cells.
@@ -547,7 +548,7 @@ function parse_file_expressions(source::String)::Vector{MExpr}
         cells = split(source, marker)
         for cell in cells[2:end]
             tokens = tokenize(cell)
-            p = Parser(tokens)
+            p = Parser(tokens; compound_arguments)
             at(p, TOK_EOF) && continue
             expr = parse_expr(p)
             at(p, TOK_EOF) || throw(ParserError("Unexpected trailing tokens in code cell", current(p).line, current(p).col))
@@ -566,7 +567,7 @@ function parse_file_expressions(source::String)::Vector{MExpr}
         # Some lines have inline comments — the tokenizer handles those
         try
             tokens = tokenize(stripped)
-            p = Parser(tokens)
+            p = Parser(tokens; compound_arguments)
             if !at(p, TOK_EOF)
                 expr = parse_expr(p)
                 push!(expressions, expr)

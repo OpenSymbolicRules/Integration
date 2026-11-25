@@ -197,7 +197,7 @@ function select_show_steps_branch(expr::MExpr; show_steps::Bool)
     expr.args[show_steps ? 2 : 3]
 end
 
-function validate_experimental_scope(expr::MExpr)
+function validate_experimental_scope(expr::MExpr; scoped_steps=false)
     expr isa MApply && error("Compound application heads have no reviewed OSR mapping")
     expr isa MPrime && error("Prime notation has no reviewed OSR mapping")
     expr isa MFunction || return
@@ -214,15 +214,44 @@ function validate_experimental_scope(expr::MExpr)
                 error("With binding name must be a plain symbol")
             name.name in names && error("With binding names must be distinct")
             push!(names, name.name)
-            validate_experimental_scope(binding.args[2])
+            validate_experimental_scope(binding.args[2]; scoped_steps)
         end
-        validate_experimental_scope(expr.args[2])
+        validate_experimental_scope(expr.args[2]; scoped_steps)
         return
+    end
+    if scoped_steps && expr.head == "Block"
+        # Preserve the two dynamic step settings around the recursive integral.
+        length(expr.args) == 2 && to_osr(expr.args[1]) ==
+            ["List", ["Set", raw"$ShowSteps", "False"], ["Set", raw"$StepCounter", "Null"]] ||
+            error("Unsupported dynamic bindings")
+        validate_experimental_scope(expr.args[2]; scoped_steps)
+        return
+    elseif scoped_steps && expr.head == "Module"
+        length(expr.args) == 2 || error("Expected Module locals and body")
+        locals, body = expr.args
+        locals isa MFunction && locals.head == "List" && length(locals.args) == 2 ||
+            error("Expected an initialized local and an uninitialized local")
+        init, target = locals.args
+        init isa MFunction && init.head == "Set" && length(init.args) == 2 &&
+            init.args[1] isa MSymbol && target isa MSymbol && init.args[1].name != target.name ||
+            error("Invalid Module local declarations")
+        body isa MFunction && body.head == "CompoundExpression" && length(body.args) == 2 ||
+            error("Expected one assignment followed by the Module result")
+        assignment, result = body.args
+        assignment isa MFunction && assignment.head == "Set" && length(assignment.args) == 2 &&
+            assignment.args[1] isa MSymbol && assignment.args[1].name == target.name ||
+            error("Expected assignment to the uninitialized Module local")
+        for rhs in (init.args[2], assignment.args[2], result)
+            validate_experimental_scope(rhs; scoped_steps)
+        end
+        return
+    elseif scoped_steps && expr.head == "CompoundExpression"
+        error("Sequential evaluation requires a reviewed Module body")
     end
     expr.head in ("Set", "Module") && error("Unsupported assignment or local scope outside With")
     expr.head == "Star" && length(expr.args) != 2 && error("Star requires two arguments")
     for arg in expr.args
-        arg isa MExpr && validate_experimental_scope(arg)
+        arg isa MExpr && validate_experimental_scope(arg; scoped_steps)
     end
 end
 

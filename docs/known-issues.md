@@ -53,7 +53,7 @@ is the same defect as issue 1 on a smaller scale.
 
 ## 3. Empty rule files
 
-The [recovery archive](recovered-sections.md) now covers all 30 previously empty loaded files. The initial recovery added 68 entries. The [expanded profile](source-edition.md) subsequently reached 7,208 loaded entries with two sections still empty. The investigation below records earlier snapshots.
+The [recovery archive](recovered-sections.md) now covers all 30 previously empty loaded files. The initial recovery added 68 entries. The [expanded profile](source-edition.md) subsequently reached 7,209 loaded entries with two sections still empty. The investigation below records earlier snapshots.
 
 At the original measurement, 33 files carried `"rules": []`. The section is
 declared in `meta.json` and in the file, so a loader sees a section that

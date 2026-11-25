@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
-"""Build the expanded default profile from the pre-recovery OSR snapshot and RUBI."""
+"""Build the expanded default profile from the previous default OSR snapshot and RUBI."""
 import argparse
 import json
 from pathlib import Path
 import subprocess
 from check_duplicate_rules import canonical_payload
 
-BASE = '85db3b3fcf40833fed45a67a0423a55179f299d0'
+BASE = 'f44efdaaed1da9f7200fc19564070cc7a1e490b5'
 ROOT = Path(__file__).resolve().parents[1]
 
 

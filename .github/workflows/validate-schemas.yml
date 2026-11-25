@@ -65,6 +65,9 @@ jobs:
       - name: Validate OpenMath semantic closure
         run: python3 Specification/scripts/validate_semantic_closure.py rules
 
+      - name: Check the upstream cosecant witness
+        run: python3 scripts/test_rubi_errata.py
+
       - name: Test exact duplicate-rule guard
         run: python3 scripts/test_check_duplicate_rules.py
 

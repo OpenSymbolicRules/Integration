@@ -4,7 +4,7 @@ include("recover-profile.jl")
 function edition_rules(source, path, version)
     rules = Dict{String,Any}[]
     omitted = NamedTuple[]
-    for row in recover_profile(source, Set{String}())
+    for row in recover_profile(source, Set{String}(); plain_steps=true)
         status = row["status"]
         if status in ("empty", "header")
             continue
@@ -33,7 +33,7 @@ function edition_extensions(arities, utility_source, revision)
         IntSum InverseFunctionOfLinear MonomialQ NonfreeFactors NonsumQ Numer PiecewiseLinearQ
         PolynomialInQ PolynomialInSubst QuotientOfLinearsParts RationalFunctionExponents
         SimplerIntegrandQ SplitProduct SubstForFractionalPowerQ SubstPower TryPureTanSubst"""))
-    wolfram = Set(["Discriminant","FunctionExpand","GCD","GreaterEqual","Root"])
+    wolfram = Set(["Block","CompoundExpression","Discriminant","FunctionExpand","GCD","GreaterEqual","Module","Root","Set"])
     result = Dict{String,Any}[]
     for name in sort(collect(keys(arities)))
         semantics = if name == "Star"

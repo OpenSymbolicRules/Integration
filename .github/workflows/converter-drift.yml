@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - 'converter/**'
+      - 'scripts/check_show_steps.py'
       - 'vendor/Rubi/**'
       - 'rules/**'
       - 'tests/**'
@@ -12,6 +13,7 @@ on:
   pull_request:
     paths:
       - 'converter/**'
+      - 'scripts/check_show_steps.py'
       - 'vendor/Rubi/**'
       - 'rules/**'
       - 'tests/**'
@@ -53,6 +55,7 @@ jobs:
           python3 -m unittest discover -s scripts -p test_merge_source_edition.py
           julia --project=converter converter/scripts/source-edition.jl vendor/Rubi "$RUNNER_TEMP/source-edition"
           python3 scripts/merge_source_edition.py "$RUNNER_TEMP/source-edition/rules" "$RUNNER_TEMP/expanded"
+          python3 scripts/check_show_steps.py vendor/Rubi "$RUNNER_TEMP/source-edition" rules
           python3 scripts/check_expanded_profile.py "$RUNNER_TEMP/expanded" rules
 
       - name: Re-run converter (tests)

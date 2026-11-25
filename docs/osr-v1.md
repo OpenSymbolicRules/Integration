@@ -25,7 +25,7 @@ Of the 1,704 entries restored after commit `85db3b3`, three now have v1
 originals. Of the other 1,701, 905 use `With` and 859 use `Star`, counted
 independently. Lexical scope and evaluation-aware distribution still require
 faithful translations. Across the complete default manifest, 1,734 of the
-7,208 source identities now have an original v1 record. Run
+7,209 source identities now have an original v1 record. Run
 `python3 scripts/source_verification_status.py --details` for the join.
 
 ## Where they come from

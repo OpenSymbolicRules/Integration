@@ -20,3 +20,21 @@ end
     @test any(e -> e["name"] == "IntSum" && e["arity"] == 2 &&
         occursin("IntegrationUtilityFunctions.m",e["semantics"]),refs)
 end
+
+@testset "Plain show-steps branch preserves dynamic bindings and local assignments" begin
+    wrap(rhs) = raw"If[TrueQ[$LoadShowSteps],Int[u_,x_Symbol]:=ShowStep[u],Int[u_,x_Symbol]:=" * rhs * "]"
+    scoped = raw"With[{w=Block[{$ShowSteps=False,$StepCounter=Null},Int[u,x]]},Module[{v=u,d},d=v;Dist[d,w,x]]/;CalculusFreeQ[w,x]]/;InverseFunctionFreeQ[u,x]"
+    rules, omitted = edition_rules(wrap(scoped), "example.m", "4.17.3.0")
+    @test isempty(omitted)
+    if !isempty(rules)
+        r = only(rules)
+        @test r["constraints"] == [["InverseFunctionFreeQ","u","x"]]
+        @test r["result"] == ["With",["List",["Set","w",["Block",
+            ["List",["Set",raw"$ShowSteps","False"],["Set",raw"$StepCounter","Null"]],
+            ["Int","u","x"]]]],["Condition",["Module",["List",["Set","v","u"],"d"],
+            ["CompoundExpression",["Set","d","v"],["Dist","d","w","x"]]],["CalculusFreeQ","w","x"]]]
+    end
+    for invalid in (replace(scoped, "d=v;"=>"outside=v;"), replace(scoped, raw"$ShowSteps=False"=>raw"$other=False"))
+        @test isempty(first(edition_rules(wrap(invalid), "example.m", "4.17.3.0")))
+    end
+end

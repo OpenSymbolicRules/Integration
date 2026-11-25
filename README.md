@@ -6,9 +6,9 @@
 
 A language-neutral JSON format with validated JSON Schema to represent
 a subset of [RUBI](https://rulebasedintegration.org/) symbolic integration
-rules and 72,523 test problems, independently of Mathematica. The default v0.1 manifest loads **7,208 integration rules** from 198
+rules and 72,523 test problems, independently of Mathematica. The default v0.1 manifest loads **7,209 integration rules** from 198
 RUBI sections. It enables elementary rules and disables step display. Two
-sections still have no converted rules. The repository has 8,058 v0.1
+sections still have no converted rules. The repository has 8,059 v0.1
 entries when the 23 files outside the manifest are included.
 See [source coverage, applicability and reproduction](docs/source-edition.md)
 and the [known conversion issues](docs/known-issues.md).
@@ -33,7 +33,7 @@ Lean (`OpenSymbolicRules/Lean`) and tracked by
 (157 certified), 380 have counterexamples, 2,213 are unproved and 107 are
 unsupported. The report also lists 519 source identities considered for
 migration. The v1 catalogue includes 1,040 strengthened variants and four
-generalized variants. The default v0.1 manifest counts 7,208 source entries.
+generalized variants. The default v0.1 manifest counts 7,209 source entries.
 Run `just source-status` to compare their original identities with v1.
 See [the v1 migration notes](docs/osr-v1.md).
 Independently proved derived generalizations of 1.1.3.4 #16, #27, #28 and #29
@@ -69,7 +69,7 @@ semantics, not a preferred algorithm or fallback order.
 The format covers:
 
 - **Rules**: pattern + constraints + result, with wildcard and predicate
-  support (8,058 entries in 221 files, including duplicates and empty sections)
+  support (8,059 entries in 221 files, including duplicates and empty sections)
 - **Test fixtures**: integrand + variable + optimal antiderivative +
   expected step count (72,523 tests in 215 files)
 - **Taxonomy**: RUBI's exact 9-section hierarchy
@@ -147,7 +147,7 @@ julia --project=converter converter/scripts/convert.jl --manifest
 
 | Artifact | Directory | Files | Items |
 |----------|-----------|-------|-------|
-| Rules | `rules/` | 221 | 8,058 entries; the conversion is incomplete |
+| Rules | `rules/` | 221 | 8,059 entries; the conversion is incomplete |
 | Tests | `tests/` | 215 | 72,523 test problems |
 | Manifest | `rules/meta.json` | 1 | load_order + counts |
 
