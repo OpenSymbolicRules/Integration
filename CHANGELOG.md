@@ -8,7 +8,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
-- Recover Rubi 4.17.3.0 section 9.1 cells 19–21 in the release JSON using explicit unary function applications and their original guards. The reference edition now contains 7,252 entries.
+- Recover three integration-by-parts recurrences with positive integer derivative order in Rubi 4.17.3.0 section 9.1. Preserve the order-zero case, residual integral, coefficient and source guards. The reference edition now contains 7,255 entries.
+- Recover Rubi 4.17.3.0 section 9.1 cells 19–21 in the release JSON using explicit unary function applications and their original guards.
 - Prove the real product, quotient and logarithmic quotient primitives from Rubi 4.17.3.0 section 9.1 cells 19–21 and document their differentiability, denominator and branch hypotheses.
 - Prove both real Maxima vertical-axis angle primitives in Lean and show that the linear primitive has no derivative at the origin. Link the rules to their checked theorems and replay them with the published verification pins.
 - Add two real vertical-axis angle integration rules derived from Maxima, two one-step examples and four branch-aware logarithm regressions with reproducible source locations.

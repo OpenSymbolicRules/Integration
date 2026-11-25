@@ -69,37 +69,21 @@ conditional loads, duplicate paths and unmatched entries before use by a CAS.
 ## Remaining syntax
 
 An earlier cell audit reported 22 candidate cells that did not parse, including
-compound heads, derivative notation and the `=!=` operator. The parser retains all 21 expressions in the derivative section. The release converter exports the last three, which use a single prime on a unary function. The coverage ledger preserves the source of the first 18 for further review.
+compound heads, derivative notation and the `=!=` operator. The parser retains all 21 expressions in the derivative section. The release converter exports six cells, three with a single prime and three with an explicit positive integer order. The coverage ledger retains the other 15 cells and their source ordinals.
 
-The official [OpenMath `calculus1#nthdiff`](https://openmath.org/cd/calculus1#nthdiff)
-describes iterated ordinary differentiation of a unary function, with the
-order and function as its arguments. It is a candidate for an explicitly
-bounded nonnegative-order subset, subject to an application representation
-and consumer review. It is not by itself a justified mapping for every RUBI
-case: the pinned source also contains `ILtQ[n,0]` rules, and Wolfram documents
-that [negative-order `Derivative` can perform integrals](https://reference.wolfram.com/language/ref/Derivative.html).
-The source also includes a derivative pattern without an explicit order guard.
-Those cases require a separately specified meaning, including integration
-constants and applicability, rather than silently treating all orders as
-ordinary differentiation. No mapping is enabled by this observation.
+### Integration by parts with positive integer order
 
-The source has materially different applicability cases: the first rule has
-no explicit integer or sign guard on `n`; other rules use `IGtQ[n,0]` or
-`ILtQ[n,0]`; still others use fixed derivative order `1` or symbolic orders
-related by `EqQ`. A future translation must retain each original condition,
-not silently replace the unrestricted rule with a positive-order variant.
+In cells 2, 4 and 5 the source guard `IGtQ[n,0]` establishes that n is a positive integer. Each rule rewrites an integral of a weight times the n-th derivative of f using a derivative of order n−1. At n = 1 that derivative is f itself. Constants in the weight and the function head f must satisfy the original `FreeQ` check. [Release JSON](../editions/rubi-4.17.3.0/rules/9-miscellaneous/9.1-Derivative-integration-rules.json) · [OpenMath iterated differentiation](https://openmath.org/cd/calculus1.html#nthdiff)
 
-The OSR expression schema requires a string in function-head position, while
-the OpenMath derivative applies a derivative operator to a function and then
-applies the resulting function to its argument. The catalogue's `Apply` has
-arity two and takes a head and a list of arguments. An illustrative design
-for a reviewed positive-order subset could therefore use an application of a
-mapped `nthdiff` expression to a one-element argument list. This is a proposal,
-not a current conversion contract: pattern-variable binding in function
-position, operator semantics, host evaluation and the treatment of negative
-orders must be reviewed and tested. In particular, the MathJSON examples in
-the specification use a different-looking `Apply` shape and should not be
-assumed to establish the OSR calling convention.
+| Source cell | Weight | Residual integral term in the primitive, with u = f⁽ⁿ⁻¹⁾ |
+|---|---|---|
+| 2 | W = (c F^(a+bx))^p | −bp log(F) ∫ W u dx |
+| 4 | sin(a+bx) | −b ∫ cos(a+bx) u dx |
+| 5 | cos(a+bx) | +b ∫ sin(a+bx) u dx |
+
+In each case the leading term is the weight times u. The JSON retains Rubi's `Star` operator for distributing the coefficient over the residual integral. A real analytic application also needs the indicated derivatives and a differentiable weight on the integration interval. For the exponential weight, positive F and c with real parameters suffice. These domain requirements are separate from the two source guards. The three recursive entries have no compiled OSR proof at this snapshot.
+
+The expression `["Apply", ["Derivative", n], ["List", f]]` denotes the derivative function. An outer `Apply` evaluates it at the argument. For nonnegative integer n the complete inner application corresponds to OpenMath `calculus1#nthdiff(n,f)`. The release converter requires a positive integer guard before exporting a symbolic order and its predecessor. A missing guard, a guard on a different variable, or a disjunction permitting negative orders cannot justify that conversion. Negative-order Wolfram derivatives can denote integrals and need separate semantics. [Wolfram Derivative](https://reference.wolfram.com/language/ref/Derivative.html) · [OpenMath calculus dictionary](https://openmath.org/cd/calculus1.html)
 
 ## Real proofs for the three first-derivative rules
 

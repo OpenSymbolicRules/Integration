@@ -69,3 +69,24 @@ end
     end
     @test isempty(first(edition_rules(source, "9 Miscellaneous/9.1 Derivative integration rules.m", "4.17.3.0")))
 end
+
+@testset "A positive integer guard permits the predecessor derivative" begin
+    path = "9 Miscellaneous/9.1 Derivative integration rules.m"
+    convert(s) = edition_rules(s, path, "4.17.3.0"; release=true)
+    source = "Int[Derivative[k_][h_][z_],z_Symbol] := Derivative[k-1][h][z] /; FreeQ[h,z] && IGtQ[k,0]"
+    rules, omitted = convert(source)
+    @test isempty(omitted)
+    r = only(rules)
+    derivative(k, h, z) = ["Apply", ["Apply", ["Derivative", k], ["List", h]], ["List", z]]
+    @test r["pattern"] == ["Int", derivative("k_", "h_", "z_"), "z_symbol"]
+    @test r["result"] == derivative(["Add", "k", ["Multiply", -1, 1]], "h", "z")
+    @test r["constraints"] == [["FreeQ", "h", "z"], ["IGtQ", "k", 0]]
+    for invalid in (replace(source, "IGtQ[k,0]" => "ILtQ[k,0]"),
+                    replace(source, "IGtQ[k,0]" => "IGtQ[r,0]"),
+                    replace(source, "IGtQ[k,0]" => "(IGtQ[k,0] || ILtQ[k,0])"),
+                    replace(source, "[k-1]" => "[k-2]"),
+                    replace(source, "[h][z]" => "[other][z]"),
+                    replace(source, "Derivative[k-1][h][z]" => "Int[Derivative[k-1][h][z],other]"))
+        @test isempty(first(convert(invalid)))
+    end
+end

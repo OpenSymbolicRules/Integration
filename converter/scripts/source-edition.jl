@@ -1,12 +1,12 @@
 # Generate a standalone v0.1 corpus directly from the pinned RUBI loader inputs.
 include("recover-profile.jl")
-include("first-derivatives.jl")
+include("derivative-applications.jl")
 
 function edition_rules(source, path, version; release=false)
     rules = Dict{String,Any}[]
     omitted = NamedTuple[]
     derivative_section = release && path == "9 Miscellaneous/9.1 Derivative integration rules.m"
-    prepare_rule = derivative_section ? prepare_first_derivatives : identity
+    prepare_rule = derivative_section ? prepare_derivative_applications : identity
     for row in recover_profile(source, Set{String}(); plain_steps=true, prepare_rule)
         status = row["status"]
         if status in ("empty", "header")
@@ -42,7 +42,7 @@ function edition_extensions(arities, utility_source, revision)
         semantics = if name == "Star"
             "RUBI Star[u,v] in Rubi/IntegrationUtilityFunctions.m at $revision. Preserve its distribution and evaluation behavior. Decline the rule if unsupported (OSR-X-025a)."
         elseif name == "Derivative"
-            "Curried Wolfram derivative operator. In this edition Apply[Derivative[1],List[f]] denotes the ordinary first derivative of a unary function f (openmath:calculus1#diff). An outer Apply supplies its evaluation point. Preserve repeated bindings and decline a rule if the host cannot interpret it."
+            "Curried Wolfram derivative operator. In this edition Apply[Derivative[k],List[f]] is the ordinary order-k derivative of a unary function f for nonnegative integer k (openmath:calculus1#nthdiff). Order zero returns f. Order one is openmath:calculus1#diff. An outer Apply supplies its evaluation point. Preserve repeated bindings and decline a rule if the host cannot interpret it."
         elseif name == "Atan2"
             "Wolfram ArcTan[x,y], with horizontal coordinate x and vertical coordinate y. The reviewed OpenMath interpretation (openmath:transc2#arctan) is the principal angle for real coordinates away from the origin. For complex or unknown coordinates preserve the source call unless the host supports the Wolfram branch convention."
         elseif name in helpers

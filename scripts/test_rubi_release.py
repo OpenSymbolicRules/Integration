@@ -28,8 +28,8 @@ class ReleaseTest(unittest.TestCase):
         self.assertEqual([f["path"] for f in files], manifest["load_order"])
         self.assertEqual(len(set(manifest["load_order"])), 198)
         self.assertEqual(sum(f["converted"] for f in files), manifest["rule_count"])
-        self.assertEqual(manifest["rule_count"], 7252)
-        self.assertEqual(sum(len(f["omitted"]) for f in files), 142)
+        self.assertEqual(manifest["rule_count"], 7255)
+        self.assertEqual(sum(len(f["omitted"]) for f in files), 139)
         issue, = json.loads((edition / "errata.json").read_text())
         doc = json.loads((edition / "rules" / issue["file"]).read_text())
         rule = next(r for r in doc["rules"] if r["id"] == issue["rule_id"])
@@ -42,7 +42,7 @@ class ReleaseTest(unittest.TestCase):
         edition = ROOT / "editions/rubi-4.17.3.0"
         path = "9-miscellaneous/9.1-Derivative-integration-rules.json"
         doc = json.loads((edition / "rules" / path).read_text())
-        a, b, c = doc["rules"]
+        a, b, c = [r for r in doc["rules"] if r["id"] >= 19]
         self.assertEqual([r["id"] for r in (a, b, c)], [19, 20, 21])
 
         def call(head, arg):
@@ -74,7 +74,30 @@ class ReleaseTest(unittest.TestCase):
         self.assertIn("calculus1#diff", extension["semantics"])
         ledger = json.loads((edition / "coverage.json").read_text())
         section, = [s for s in ledger["files"] if s["path"] == path]
-        self.assertEqual([o["ordinal"] for o in section["omitted"]], list(range(1, 19)))
+        self.assertEqual([o["ordinal"] for o in section["omitted"]], [1, 3, *range(6, 19)])
+
+    def test_positive_order_residuals(self):
+        edition = ROOT / "editions/rubi-4.17.3.0"
+        path = "9-miscellaneous/9.1-Derivative-integration-rules.json"
+        records = json.loads((edition / "rules" / path).read_text())["rules"]
+        self.assertEqual([r["id"] for r in records], [2, 4, 5, 19, 20, 21])
+
+        def derivative(order, f, x):
+            return ["Apply", ["Apply", ["Derivative", order], ["List", f]], ["List", x]]
+
+        previous = derivative(["Add", "n", ["Multiply", -1, 1]], "f", "x")
+        affine = ["Add", "a", ["Multiply", "b", "x"]]
+        exponential = ["Power", ["Multiply", "c", ["Power", "F", affine]], "p"]
+        for r, weight, residual_weight in zip(records[:3], (exponential, ["Sin", affine], ["Cos", affine]),
+                                             (exponential, ["Cos", affine], ["Sin", affine]), strict=True):
+            self.assertEqual(r["pattern"][1][-1], derivative("n_", "f_", "x_"))
+            free = ["a", "b", "c", "f", "F", "p"] if r["id"] == 2 else ["a", "b", "f"]
+            self.assertEqual(r["constraints"], [["FreeQ", ["List", *free], "x"], ["IGtQ", "n", 0]])
+            leading = ["Multiply", weight, previous]
+            coefficient = ["Multiply", "b", "p", ["Log", "F"]] if r["id"] == 2 else "b"
+            residual = ["Star", coefficient, ["Int", ["Multiply", residual_weight, previous], "x"]]
+            correction = residual if r["id"] == 5 else ["Multiply", -1, residual]
+            self.assertEqual(r["result"], ["Add", leading, correction])
 
     def test_release_has_an_immutable_git_revision(self):
         self.assertEqual(RELEASE, "f7fa0fd7bfacd326bc9e125473c5bad41cfad4e4")
