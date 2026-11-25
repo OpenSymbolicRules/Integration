@@ -206,7 +206,7 @@
         "9-miscellaneous/9.3-Miscellaneous-integration-rules.json"
     ],
     "domain": "integration",
-    "rule_count": 7249,
+    "rule_count": 7252,
     "title": "RUBI integration rules in pinned source order",
     "utility_functions": [
         "NormalizeIntegrand",
@@ -533,6 +533,11 @@
             "name": "Denom",
             "arity": 1,
             "semantics": "Implement the Denom definitions in Rubi/IntegrationUtilityFunctions.m at f7fa0fd7bfacd326bc9e125473c5bad41cfad4e4, with step display disabled. Decline the rule if unsupported."
+        },
+        {
+            "name": "Derivative",
+            "arity": 1,
+            "semantics": "Curried Wolfram derivative operator. In this edition Apply[Derivative[1],List[f]] denotes the ordinary first derivative of a unary function f (openmath:calculus1#diff). An outer Apply supplies its evaluation point. Preserve repeated bindings and decline a rule if the host cannot interpret it."
         },
         {
             "name": "DerivativeDivides",

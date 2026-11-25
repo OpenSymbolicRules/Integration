@@ -2169,7 +2169,7 @@
             "path": "9-miscellaneous/9.1-Derivative-integration-rules.json",
             "source_path": "9 Miscellaneous/9.1 Derivative integration rules.m",
             "sha256": "2087d3e21da88eaccb5d73b44d63c9071a56405df7fd0bbe320cc839213774df",
-            "converted": 0,
+            "converted": 3,
             "omitted": [
                 {
                     "ordinal": 1,
@@ -2260,21 +2260,6 @@
                     "ordinal": 18,
                     "reason": "Compound application heads have no reviewed OSR mapping",
                     "source": "(* ::Code:: *)\r\nInt[u_*Derivative[m1_][f_][x_]^p_.*Derivative[n1_][g_][x_]^q_.*\r\n    (a_.*Derivative[m_][f_][x_]*Derivative[n1_][g_][x_]+b_.*Derivative[m1_][f_][x_]*Derivative[n_][g_][x_]),x_Symbol] :=\r\n  a/(p+1) \\[Star] Subst[Int[SimplifyIntegrand[SubstFor[Derivative[m-1][f][x]^(p+1)*Derivative[n-1][g][x]^(q+1),u,x],x],x],x,\r\n    Derivative[m-1][f][x]^(p+1)*Derivative[n-1][g][x]^(q+1)] /;\r\nFreeQ[{a,b,f,g,m,n,p,q},x] && EqQ[m1,m-1] && EqQ[n1,n-1] && EqQ[a*(q+1),b*(p+1)] && \r\n  FunctionOfQ[Derivative[m-1][f][x]^(p+1)*Derivative[n-1][g][x]^(q+1),u,x]\r\n\r\n\r\n"
-                },
-                {
-                    "ordinal": 19,
-                    "reason": "Compound application heads have no reviewed OSR mapping",
-                    "source": "(* ::Code:: *)\r\nInt[f_'[x_]*g_[x_] + f_[x_]*g_'[x_],x_Symbol] :=\r\n  f[x]*g[x] /;\r\nFreeQ[{f,g},x]\r\n\r\n\r\n"
-                },
-                {
-                    "ordinal": 20,
-                    "reason": "Compound application heads have no reviewed OSR mapping",
-                    "source": "(* ::Code:: *)\r\nInt[(f_'[x_]*g_[x_] - f_[x_]*g_'[x_])/g_[x_]^2,x_Symbol] :=\r\n  f[x]/g[x] /;\r\nFreeQ[{f,g},x]\r\n\r\n\r\n"
-                },
-                {
-                    "ordinal": 21,
-                    "reason": "Compound application heads have no reviewed OSR mapping",
-                    "source": "(* ::Code:: *)\r\nInt[(f_'[x_]*g_[x_] - f_[x_]*g_'[x_])/(f_[x_]*g_[x_]),x_Symbol] :=\r\n  Log[f[x]/g[x]] /;\r\nFreeQ[{f,g},x]\r\n\r\n\r\n\r\n"
                 }
             ]
         },

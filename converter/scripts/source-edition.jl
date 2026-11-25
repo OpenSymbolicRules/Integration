@@ -1,10 +1,13 @@
 # Generate a standalone v0.1 corpus directly from the pinned RUBI loader inputs.
 include("recover-profile.jl")
+include("first-derivatives.jl")
 
-function edition_rules(source, path, version)
+function edition_rules(source, path, version; release=false)
     rules = Dict{String,Any}[]
     omitted = NamedTuple[]
-    for row in recover_profile(source, Set{String}(); plain_steps=true)
+    derivative_section = release && path == "9 Miscellaneous/9.1 Derivative integration rules.m"
+    prepare_rule = derivative_section ? prepare_first_derivatives : identity
+    for row in recover_profile(source, Set{String}(); plain_steps=true, prepare_rule)
         status = row["status"]
         if status in ("empty", "header")
             continue
@@ -38,6 +41,8 @@ function edition_extensions(arities, utility_source, revision)
     for name in sort(collect(keys(arities)))
         semantics = if name == "Star"
             "RUBI Star[u,v] in Rubi/IntegrationUtilityFunctions.m at $revision. Preserve its distribution and evaluation behavior. Decline the rule if unsupported (OSR-X-025a)."
+        elseif name == "Derivative"
+            "Curried Wolfram derivative operator. In this edition Apply[Derivative[1],List[f]] denotes the ordinary first derivative of a unary function f (openmath:calculus1#diff). An outer Apply supplies its evaluation point. Preserve repeated bindings and decline a rule if the host cannot interpret it."
         elseif name == "Atan2"
             "Wolfram ArcTan[x,y], with horizontal coordinate x and vertical coordinate y. The reviewed OpenMath interpretation (openmath:transc2#arctan) is the principal angle for real coordinates away from the origin. For complex or unknown coordinates preserve the source call unless the host supports the Wolfram branch convention."
         elseif name in helpers
@@ -73,7 +78,7 @@ function generate_edition(root, vendor, output; edition=nothing)
         source_path = doc["identity"][6:end] * ".m"
         blob = "$revision:Rubi/IntegrationRules/$source_path"
         source = read(`git -C $vendor show $blob`, String)
-        rules, omitted = edition_rules(source, source_path, version)
+        rules, omitted = edition_rules(source, source_path, version; release=!isnothing(edition))
         if !isnothing(edition)
             for rule in rules
                 only(rule["provenance"]["sources"])["revision"] = revision

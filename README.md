@@ -6,7 +6,7 @@
 
 Start with [Albert D. Rich’s final Rubi 4.17.3.0 release](docs/rubi-release.md).
 Its [ordered OSR manifest](editions/rubi-4.17.3.0/rules/meta.json) contains
-**7,249 converted entries in 198 sections**. Apply the
+**7,252 converted entries in 198 sections**. Apply the
 [release errata](editions/rubi-4.17.3.0/errata.json) when enabling rules.
 [Post-release open-source CAS additions](docs/post-rubi.md) have independent provenance.
 

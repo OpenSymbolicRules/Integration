@@ -12,7 +12,7 @@ function unknown_heads!(heads, node, allowed)
     foreach(child -> unknown_heads!(heads, child, allowed), node[2:end])
 end
 
-function recover_profile(source, allowed; plain_steps=false)
+function recover_profile(source, allowed; plain_steps=false, prepare_rule=identity)
     notebook = occursin(CELL_MARKER, source)
     blocks = notebook ? split(source, CELL_MARKER) : readlines(IOBuffer(source); keep=true)
     rows = Dict{String,Any}[]
@@ -46,8 +46,9 @@ function recover_profile(source, allowed; plain_steps=false)
             lhs = expr.args[1]
             lhs isa RubiConverter.MFunction && lhs.head == "Int" && length(lhs.args) == 2 ||
                 error("Expected a binary Int pattern")
-            RubiConverter.validate_experimental_scope(expr)
-            rule = RubiConverter.rule_to_osr(expr, ordinal)
+            prepared = prepare_rule(expr)
+            RubiConverter.validate_experimental_scope(prepared)
+            rule = RubiConverter.rule_to_osr(prepared, ordinal)
             row["rule"] = rule
             unknown = Set{String}()
             for term in (rule["pattern"], rule["result"], rule["constraints"]...)

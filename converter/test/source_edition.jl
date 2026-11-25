@@ -47,3 +47,25 @@ end
     @test occursin("real", entry["semantics"]) && occursin("origin", entry["semantics"])
     @test occursin("complex", entry["semantics"])
 end
+
+@testset "Release first derivatives keep function and argument bindings" begin
+    call(f, x) = ["Apply", f, ["List", x]]
+    prime(f, x) = call(call(["Derivative", 1], f), x)
+    source = "Int[h_'[z_]*j_[z_]+h_[z_]*j_'[z_],z_Symbol] := h[z]*j[z] /; FreeQ[{h,j},z]"
+    convert(s) = edition_rules(s, "9 Miscellaneous/9.1 Derivative integration rules.m", "4.17.3.0"; release=true)
+    rules, omitted = convert(source)
+    @test isempty(omitted)
+    r = only(rules)
+    @test r["pattern"] == ["Int", ["Add",
+        ["Multiply", prime("h_", "z_"), call("j_", "z_")],
+        ["Multiply", call("h_", "z_"), prime("j_", "z_")]], "z_symbol"]
+    @test r["result"] == ["Multiply", call("h", "z"), call("j", "z")]
+    @test r["constraints"] == [["FreeQ", ["List", "h", "j"], "z"]]
+    for invalid in (replace(source, "j_'[" => "j_''["),
+                    replace(source, "j[z]" => "j[z,z]"),
+                    replace(source, "h[z]*j[z]" => "With[{h=z},h[z]]"),
+                    replace(source, "h_'[z_]" => "Derivative[n_][h_][z_]"))
+        @test isempty(first(convert(invalid)))
+    end
+    @test isempty(first(edition_rules(source, "9 Miscellaneous/9.1 Derivative integration rules.m", "4.17.3.0")))
+end

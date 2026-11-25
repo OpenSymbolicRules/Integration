@@ -69,12 +69,7 @@ conditional loads, duplicate paths and unmatched entries before use by a CAS.
 ## Remaining syntax
 
 An earlier cell audit reported 22 candidate cells that did not parse, including
-compound heads, derivative notation and the `=!=` operator. Compound heads are
-now retained as AST applications but still rejected at export; postfix prime
-notation is likewise retained in the AST and rejected at export. The pinned
-derivative source now parses as 21 code expressions. Their Wolfram semantics and the
-available OSR representations require separate tests. Cell parse counts are
-not a substitute for schema validation, numerical checks or formal proof.
+compound heads, derivative notation and the `=!=` operator. The parser retains all 21 expressions in the derivative section. The release converter exports the last three, which use a single prime on a unary function. The coverage ledger preserves the source of the first 18 for further review.
 
 The official [OpenMath `calculus1#nthdiff`](https://openmath.org/cd/calculus1#nthdiff)
 describes iterated ordinary differentiation of a unary function, with the
@@ -118,4 +113,12 @@ The last three source cells of Rubi 4.17.3.0 section 9.1 use ordinary first deri
 
 Rubi checks `FreeQ[{f,g},x]` on the function heads in all three cells. It places no sign or denominator test in these guards. A real CAS must also establish differentiability and the relevant domain hypotheses before using these results. For cell 21, F = G = −1 gives an admissible real logarithm, whereas F = 1 and G = −1 gives a negative logarithm argument. Lean's real logarithm extends to negative inputs. The positivity hypothesis restricts the theorem to the intended real branch. [Mathlib real logarithm](https://github.com/leanprover-community/mathlib4/blob/56a005855ea17e0b0958f73ec801ae140b0a1679/Mathlib/Analysis/SpecialFunctions/Log/Basic.lean)
 
-Run `just real-proofs /path/to/prepared/Lean` to check all three manually transcribed statements under the Integration report's toolchain and audit their axioms. The source ledger still records these cells among the 21 omissions in section 9.1. Publishing executable patterns requires binding f and g in function position and reusing the same bindings in the result. The three real proofs add no entries to the generated v1 catalogue. [Release coverage ledger](../editions/rubi-4.17.3.0/coverage.json) · [Verification pins](../v1/integration.report.json)
+Run `just real-proofs /path/to/prepared/Lean` to check all three manually transcribed statements under the Integration report's toolchain and audit their axioms. The v0.1 release transcribes the original guards and retains source ordinals 19–21. Its manifest declares the unary Wolfram `Derivative` operator. Applying `Derivative[1]` to a function has the OpenMath meaning `calculus1#diff`. A CAS adapter must preserve that function binding at every occurrence. The three real proofs concern the hypotheses in the table. They add no entries to the generated v1 catalogue. [Published JSON](../editions/rubi-4.17.3.0/rules/9-miscellaneous/9.1-Derivative-integration-rules.json) · [OpenMath ordinary differentiation](https://openmath.org/cd/calculus1.html#diff) · [Release coverage ledger](../editions/rubi-4.17.3.0/coverage.json) · [Verification pins](../v1/integration.report.json)
+
+In the pattern below, `f_` binds the function and `x_` binds its argument. The integration variable also appears as `x_symbol`. After matching f to h and x to z, the result expression evaluates h at z. A second occurrence of `f_` must match the same h.
+
+| Source occurrence | OSR expression |
+|---|---|
+| First derivative in a pattern, f′(x) | `["Apply", ["Apply", ["Derivative", 1], ["List", "f_"]], ["List", "x_"]]` |
+| Ordinary call in the same pattern, f(x) | `["Apply", "f_", ["List", "x_"]]` |
+| Ordinary call in the result, f(x) | `["Apply", "f", ["List", "x"]]` |
