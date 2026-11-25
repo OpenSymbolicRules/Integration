@@ -77,3 +77,26 @@ jobs:
           python3 scripts/test_cas_supplement.py
           python3 scripts/test_bessel_supplement.py
           python3 scripts/test_post_rubi_examples.py
+
+  maxima-lean:
+    name: Check the real Maxima angle theorems
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - name: Read the published verification pin
+        id: verification
+        run: echo "mathlib=$(jq -er '.build.mathlib_revision' v1/integration.report.json)" >> "$GITHUB_OUTPUT"
+      - uses: actions/checkout@v7
+        with:
+          repository: leanprover-community/mathlib4
+          ref: ${{ steps.verification.outputs.mathlib }}
+          path: mathlib
+      - name: Install elan
+        run: |
+          curl --fail --silent --show-error --location --retry 3 https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Restore the imported Mathlib modules
+        working-directory: mathlib
+        run: awk '$1 == "import" {print $2}' ../supplements/maxima/AxisAngle.lean | xargs lake exe cache get
+      - name: Check the source statements, proofs and axioms
+        run: bash supplements/maxima/verify-lean.sh mathlib

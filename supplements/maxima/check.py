@@ -58,7 +58,13 @@ class MaximaBranches(unittest.TestCase):
         self.assertEqual(context["test_file"], "tests/angles.json")
         meta = json.loads((HERE / "rules/meta.json").read_text())
         self.assertEqual((meta["rule_count"], meta["test_count"]), (2, 2))
-        self.assertEqual(doc["semantics"]["Atan2"], "openmath:transc2#arctan")
+        self.assertEqual(doc["identity"], "cas-supplement:maxima-axis-angle")
+        self.assertEqual(doc["semantics"], {
+            "Int": "openmath:calculus1#int", "Atan2": "openmath:transc2#arctan",
+            "Abs": "openmath:arith1#abs", "Im": "openmath:complex1#imaginary",
+            "Power": "openmath:arith1#power", "Divide": "openmath:arith1#divide",
+            "Multiply": "openmath:arith1#times", "Add": "openmath:arith1#plus", "Pi": "openmath:nums1#pi",
+        })
         self.assertEqual([r["id"] for r in doc["rules"]], [1, 2])
         self.assertEqual([c["id"] for c in fixtures], [1, 2])
         for fixture, rule in zip(fixtures, doc["rules"], strict=True):
@@ -67,6 +73,15 @@ class MaximaBranches(unittest.TestCase):
             angle = ["Atan2", 0, ["Add", "b.", xpart]]
             integrand = angle if linear else ["Multiply", "x_", angle]
             self.assertEqual(rule["pattern"], ["Int", integrand, "x_symbol"])
+            # These reviewed symbolic statements correspond to the two named real theorems.
+            ordinate = ["Add", "b", "x" if linear else ["Power", "x", 2]]
+            self.assertEqual(rule["result"], ["Divide", ["Multiply", "Pi", ["Abs", ordinate]], 2 if linear else 4])
+            self.assertEqual(rule["constraints"], [
+                ["FreeQ", "b", "x"], ["EqQ", ["Im", "x"], 0], ["EqQ", ["Im", "b"], 0],
+                ["Or", ["GtQ", ordinate, 0], ["LtQ", ordinate, 0]],
+            ])
+            theorem = "axisAngleLinear" if linear else "axisAngleQuadratic"
+            self.assertEqual(rule["references"]["Lean (real)"], "OSR.Maxima." + theorem)
             self.assertEqual(rule["provenance"]["sources"][0]["revision"], REV)
             self.assertEqual(fixture["num_steps"], 1)
             src = ["Atan2", 0, "x"] if linear else ["Multiply", "x", ["Atan2", 0, ["Add", -1, ["Power", "x", 2]]]]

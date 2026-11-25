@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- Prove both real Maxima vertical-axis angle primitives in Lean and show that the linear primitive has no derivative at the origin. Link the rules to their checked theorems and replay them with the published verification pins.
 - Add two real vertical-axis angle integration rules derived from Maxima, two one-step examples and four branch-aware logarithm regressions with reproducible source locations.
 - Publish 12 reproducible integer-order integration benchmarks from SymbolicIntegration.jl, covering Bessel J, Y, I, K and both Hankel functions with positive-real assumptions and source locators.
 - Add an optional positive-real moment supplement for Bessel J, Bessel Y and first-kind Hankel, with six oriented rules and nine one-, two- and three-step examples.

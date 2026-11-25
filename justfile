@@ -1,6 +1,6 @@
 # Entry points for the Integration (RUBI) rule set.
 
-# Everything CI runs, except the comparison with a Verification report.
+# Local schema, converter and v1 checks. Replay the Maxima proofs with maxima-lean.
 check: validate test v1
 
 # Validate the v0.1 schemas, rules, test fixtures and identities.
@@ -61,3 +61,7 @@ rubi-release output rubi="vendor/Rubi":
 # Rebuild the per-case source locators, extra reference fields and step conditions.
 fixture-index output rubi_tests="vendor/MathematicaSyntaxTestSuite":
 	julia --project=converter converter/scripts/fixture-index.jl "{{rubi_tests}}" tests "{{output}}"
+
+# Compile the two real Maxima theorems using the environment recorded in the v1 report.
+maxima-lean project:
+	bash supplements/maxima/verify-lean.sh "{{project}}"
