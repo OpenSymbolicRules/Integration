@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- Record a zero-denominator witness for three omitted substitution rules in Rubi 4.17.3.0 section 9.1. Check the original guards and input expressions and prove the coefficient obstruction in Lean.
 - Link the six recovered section 9.1 rules to their exact real Lean statements and hypotheses. The citations are attached by upstream file digest and source cell.
 - Verify the real sine, cosine and positive-base exponential derivative recurrences in Lean for every positive integer order and every primitive of the residual integrand, with explicit regularity and branch hypotheses.
 - Recover three integration-by-parts recurrences with positive integer derivative order in Rubi 4.17.3.0 section 9.1. Preserve the order-zero case, residual integral, coefficient and source guards. The reference edition now contains 7,255 entries.

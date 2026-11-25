@@ -35,6 +35,7 @@ jobs:
             cmp "$rebuilt/$artifact" "$reference/$artifact"
           done
           python3 scripts/test_rubi_release.py
+          julia --project=converter converter/test/source_edition.jl vendor/Rubi
       - name: Check release and supplement schemas, identities and vocabulary
         run: |
           for rules in editions/rubi-4.17.3.0/rules supplements/*/rules; do

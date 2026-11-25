@@ -81,7 +81,7 @@ function generate_edition(root, vendor, output; edition=nothing)
         digest = bytes2hex(sha256(source))
         rules, omitted = edition_rules(source, source_path, version; release=!isnothing(edition))
         if !isnothing(edition)
-            cite_derivative_proofs!(rules, digest)
+            annotate_derivative_section!(rules, omitted, digest)
             for rule in rules
                 only(rule["provenance"]["sources"])["revision"] = revision
             end

@@ -69,7 +69,7 @@ conditional loads, duplicate paths and unmatched entries before use by a CAS.
 ## Remaining syntax
 
 An earlier cell audit reported 22 candidate cells that did not parse, including
-compound heads, derivative notation and the `=!=` operator. The parser retains all 21 expressions in the derivative section. The release converter exports six cells, three with a single prime and three with an explicit positive integer order. The coverage ledger retains the other 15 cells and their source ordinals.
+compound heads, derivative notation and the `=!=` operator. The parser retains all 21 expressions in the derivative section. The release converter exports six cells, three with a single prime and three with an explicit positive integer order. The coverage ledger retains the other 15 cells and their source ordinals. Three of these, cells 16–18, admit p=q=−1 although the result divides by p+1. Their input integrands can be finite at the same point. [Counterexample and reproduction](../upstream-bugs.md)
 
 ### Integration by parts with positive integer order
 

@@ -110,6 +110,70 @@ end
         end
     end
     other = [Dict{String,Any}("id"=>19)]
-    cite_derivative_proofs!(other, repeat("0", 64))
+    annotate_derivative_section!(other, [], repeat("0", 64))
     @test !haskey(only(other), "references")
+end
+
+@testset "Rubi 9.1 singular substitution coefficients" begin
+    root = normpath(joinpath(@__DIR__, "../.."))
+    ledger = JSON3.read(read(joinpath(root, "editions/rubi-4.17.3.0/coverage.json"), String))
+    family = only(s for s in ledger.files if startswith(s.path, "9-miscellaneous/9.1-"))
+    if !isempty(ARGS)
+        vendor = only(ARGS)
+        utility = read(`git -C $vendor show $(ledger.revision):Rubi/IntegrationUtilityFunctions.m`, String)
+        compact = replace(utility, r"\s+" => "")
+        @test occursin("FunctionOfQ[v_,u_,x_Symbol,PureFlag_:False]:=If[FreeQ[u,x],False,If[AtomQ[v],True,", compact)
+    end
+    cases = [o for o in family.omitted if o.ordinal in 16:18]
+    @test getproperty.(cases, :ordinal) == [16, 17, 18]
+    env = Dict("a"=>1, "b"=>1, "p"=>-1, "q"=>-1, "m"=>2, "n"=>2, "m1"=>1, "n1"=>1, "u"=>1, "x"=>1)
+    # At x=1 the jets of f(t)=t² and g(t)=t³ give only finite positive values.
+    jets = Dict("f"=>(1,2,2), "g"=>(1,3,6))
+    function value(node)
+        node isa MInteger && return node.value
+        (node isa MPattern || node isa MSymbol) && return env[node.name]
+        if node isa MApply
+            order, fun = derivative_parts(node)
+            @test value(only(node.args)) == 1
+            return jets[fun.name][1 + value(order)]
+        end
+        if node.head in ("f_", "g_", "f", "g")
+            @test value(only(node.args)) == 1
+            return jets[rstrip(node.head, '_')][1]
+        end
+        args = map(value, node.args)
+        node.head == "Plus" && return sum(args)
+        node.head == "Times" && return prod(args)
+        node.head == "Power" && return (args[1] // 1) ^ args[2]
+        error("Unexpected witness expression: $(node.head)")
+    end
+    for (row, integrand) in zip(cases, (5, 4, 3))
+        @test occursin("a/(p+1)", row.reason)
+        expr = only(RubiConverter.parse_file_expressions(String(row.source)))
+        parts = RubiConverter.extract_rule_parts(expr)
+        @test value(parts.pattern) == integrand
+        @test parts.result.head == "Star"
+        @test RubiConverter.to_osr(first(parts.result.args)) ==
+            ["Multiply", "a", ["Power", ["Add", "p", 1], -1]]
+        for guard in parts.constraints
+            if guard.head == "FreeQ"
+                names, x = guard.args
+                @test names.head == "List" && x.name == "x"
+                @test all(s -> s.name in ("a","b","f","g","m","n","p","q"), names.args)
+            elseif guard.head == "EqQ"
+                left, right = guard.args
+                @test value(left) == value(right)
+            else
+                # u is the expression x. The pinned FunctionOfQ first tests FreeQ[u,x]
+                # (false), then AtomQ[v] (true for the constant substitution target 1).
+                @test guard.head == "FunctionOfQ"
+                target, u, x = guard.args
+                @test (u.name, x.name) == ("u","x")
+                @test target.head == "Times" && length(target.args) == 2
+                @test all(t -> t.head == "Power" && value(t.args[2]) == 0 &&
+                               value(t.args[1]) > 0, target.args)
+                @test value(target) == 1
+            end
+        end
+    end
 end

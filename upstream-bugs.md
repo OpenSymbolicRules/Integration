@@ -41,3 +41,19 @@ The dictionary's hankel2 description and commented property specify the second-k
 ## OSR v0.1 and OpenMath transc2 version 2 revision 1, two-argument arctangent
 
 The specification's single `Atan` row lists arities one and two with the unary OpenMath symbol. The experimental transc2 dictionary defines the binary symbol. Its description and formal properties order the operands horizontal then vertical, while several commented properties print them in reverse order. Two formal properties about the horizontal axis also disagree with the dictionary description. For x=1 and y=0, the description gives angle zero, whereas the XML implication for Re(y)=0 and Re(x)>0 uses `relation1#lt` and requires a strictly negative real part. For x=−1 and y=0 the description gives π, whereas the corresponding implication requires a real part strictly below π. Implement the reviewed real principal angle and treat those FMPs as unsuitable rewrite rules. On the positive vertical axis the correct result is π/2. In the Maxima calling convention this input is `atan2(1,0)`. The OSR angle supplement uses `Atan2(0,1)`. [Affected Rubi exports](docs/maxima-branches.md#reading-earlier-rubi-exports) · [Pinned dictionary](https://github.com/OpenMath/CDs/blob/cbf607561e3f90630ce7a57fe9a85f5bc0dfdd3c/cd/experimental/transc2.ocd)
+
+## Rubi 4.17.3.0 section 9.1, cells 16–18
+
+In the official release at `f7fa0fd7bfacd326bc9e125473c5bad41cfad4e4`, these three source rewrites multiply a substitution integral by a/(p+1). Their coefficient guard is a(q+1) = b(p+1). Take a=b=1 and p=q=−1. The equation holds, and the claimed coefficient would have to solve 0·z=1. [Upstream rule definitions](https://github.com/RuleBasedIntegration/Rubi/blob/f7fa0fd7bfacd326bc9e125473c5bad41cfad4e4/Rubi/IntegrationRules/9%20Miscellaneous/9.1%20Derivative%20integration%20rules.m#L120-L140)
+
+Take u(t)=t and evaluate at t=1. Match distinct unary function heads f and g, independent of the integration variable, and interpret them as f(t)=t² and g(t)=t³. For the applicable derivative orders choose m=n=2 and m1=n1=1. The substitution target is identically 1 near that point because both its exponents vanish and its bases are positive. With the expression u=x, the pinned `FunctionOfQ[1,x,x]` passes. Its first test `FreeQ[x,x]` is false and its next test `AtomQ[1]` is true. [Rubi predicate definition](https://github.com/RuleBasedIntegration/Rubi/blob/f7fa0fd7bfacd326bc9e125473c5bad41cfad4e4/Rubi/IntegrationUtilityFunctions.m#L4430-L4437)
+
+| Source cell | Bases raised to p and q | Input integrand at t=1 | Requested coefficient |
+|---|---|---:|---|
+| 16 | f and g | 5 | 1/0 |
+| 17 | f′ and g | 4 | 1/0 |
+| 18 | f′ and g′ | 3 | 1/0 |
+
+This witness concerns the isolated source rewrites. Whether a complete Rubi evaluation reaches them depends on dispatch and prior simplification. A guard p ≠ −1 is necessary for the displayed coefficient. The other cases and sufficient domain conditions require separate review.
+
+Run `julia --project=converter converter/test/source_edition.jl vendor/Rubi` with the release commit available in that checkout. The test parses all three archived source cells, evaluates their inputs, checks the source conditions, and inspects the pinned predicate definition. Lean proves that the coefficient equation admits parameters for which the required finite quotient cannot exist. [Lean obstruction](verification/RubiSubstitutionDomain.lean) · [Source coverage ledger](editions/rubi-4.17.3.0/coverage.json)

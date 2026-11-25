@@ -100,8 +100,14 @@ end
 
 # These citations refer to a reviewed source file and a fixed proof revision.
 # A later Rubi edit can reuse a cell ordinal with a different statement.
-function cite_derivative_proofs!(rules, digest)
+function annotate_derivative_section!(rules, omitted, digest)
     digest == "2087d3e21da88eaccb5d73b44d63c9071a56405df7fd0bbe320cc839213774df" || return
+    for (i, cell) in pairs(omitted)
+        if cell.ordinal in 16:18
+            reason = cell.reason * ". The source coefficient a/(p+1) is undefined at p=q=-1 even when the guards hold (see upstream-bugs.md)"
+            omitted[i] = merge(cell, (; reason))
+        end
+    end
     base = "https://github.com/OpenSymbolicRules/Integration/blob/eb539b2a2c589d254f90dc3b1c820b7fda2acf76/verification/"
     proofs = Dict(
         2  => ("exponentialParts", "RubiDerivativeRecurrences.lean#L43"),

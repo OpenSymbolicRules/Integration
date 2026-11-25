@@ -2233,17 +2233,17 @@
                 },
                 {
                     "ordinal": 16,
-                    "reason": "Compound application heads have no reviewed OSR mapping",
+                    "reason": "Compound application heads have no reviewed OSR mapping. The source coefficient a/(p+1) is undefined at p=q=-1 even when the guards hold (see upstream-bugs.md)",
                     "source": "(* ::Code:: *)\r\nInt[u_*f_[x_]^p_.*g_[x_]^q_.*(a_.*Derivative[1][f_][x_]*g_[x_]+b_.*f_[x_]*Derivative[1][g_][x_]),x_Symbol] :=\r\n  a/(p+1) \\[Star] Subst[Int[SimplifyIntegrand[SubstFor[f[x]^(p+1)*g[x]^(q+1),u,x],x],x],x,f[x]^(p+1)*g[x]^(q+1)] /;\r\nFreeQ[{a,b,f,g,p,q},x] && EqQ[a*(q+1),b*(p+1)] && FunctionOfQ[f[x]^(p+1)*g[x]^(q+1),u,x]\r\n\r\n\r\n"
                 },
                 {
                     "ordinal": 17,
-                    "reason": "Compound application heads have no reviewed OSR mapping",
+                    "reason": "Compound application heads have no reviewed OSR mapping. The source coefficient a/(p+1) is undefined at p=q=-1 even when the guards hold (see upstream-bugs.md)",
                     "source": "(* ::Code:: *)\r\nInt[u_*Derivative[m1_][f_][x_]^p_.*g_[x_]^q_.*\r\n    (a_.*Derivative[m_][f_][x_]*g_[x_]+b_.*Derivative[m1_][f_][x_]*Derivative[1][g_][x_]),x_Symbol] :=\r\n  a/(p+1) \\[Star] Subst[Int[SimplifyIntegrand[SubstFor[Derivative[m-1][f][x]^(p+1)*g[x]^(q+1),u,x],x],x],x,\r\n    Derivative[m-1][f][x]^(p+1)*g[x]^(q+1)] /;\r\nFreeQ[{a,b,f,g,m,p,q},x] && EqQ[m1,m-1] && EqQ[a*(q+1),b*(p+1)] && FunctionOfQ[Derivative[m-1][f][x]^(p+1)*g[x]^(q+1),u,x]\r\n\r\n\r\n"
                 },
                 {
                     "ordinal": 18,
-                    "reason": "Compound application heads have no reviewed OSR mapping",
+                    "reason": "Compound application heads have no reviewed OSR mapping. The source coefficient a/(p+1) is undefined at p=q=-1 even when the guards hold (see upstream-bugs.md)",
                     "source": "(* ::Code:: *)\r\nInt[u_*Derivative[m1_][f_][x_]^p_.*Derivative[n1_][g_][x_]^q_.*\r\n    (a_.*Derivative[m_][f_][x_]*Derivative[n1_][g_][x_]+b_.*Derivative[m1_][f_][x_]*Derivative[n_][g_][x_]),x_Symbol] :=\r\n  a/(p+1) \\[Star] Subst[Int[SimplifyIntegrand[SubstFor[Derivative[m-1][f][x]^(p+1)*Derivative[n-1][g][x]^(q+1),u,x],x],x],x,\r\n    Derivative[m-1][f][x]^(p+1)*Derivative[n-1][g][x]^(q+1)] /;\r\nFreeQ[{a,b,f,g,m,n,p,q},x] && EqQ[m1,m-1] && EqQ[n1,n-1] && EqQ[a*(q+1),b*(p+1)] && \r\n  FunctionOfQ[Derivative[m-1][f][x]^(p+1)*Derivative[n-1][g][x]^(q+1),u,x]\r\n\r\n\r\n"
                 }
             ]
