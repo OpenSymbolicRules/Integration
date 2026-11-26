@@ -8,7 +8,8 @@ Start with [Albert D. Rich’s final Rubi 4.17.3.0 release](docs/rubi-release.md
 Its [ordered OSR manifest](editions/rubi-4.17.3.0/rules/meta.json) contains
 **7,375 converted entries in 198 sections**. Apply the
 [release errata](editions/rubi-4.17.3.0/errata.json) when enabling rules: each
-record replaces a rule that RUBI states incorrectly (issues #11 and #12).
+record replaces a rule that RUBI states incorrectly (issues #11 and #12) or
+enables an omitted rule with an added guard (issue #13).
 [Post-release open-source CAS additions](docs/post-rubi.md) have independent provenance.
 
 The [compatibility profile](docs/source-edition.md) loads 7,418 entries from

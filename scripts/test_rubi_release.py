@@ -35,8 +35,8 @@ class ReleaseTest(unittest.TestCase):
         self.assertEqual(sum(len(f["omitted"]) for f in files), 19)
         errata = json.loads((edition / "errata.json").read_text())
         self.assertEqual(sorted(i["section"] for i in errata),
-                         ["3.3", "4.5.2.1", "8.1", "8.1", "8.2", "8.4", "8.5"])
-        for issue in errata:
+                         ["3.3", "4.5.2.1", "8.1", "8.1", "8.2", "8.4", "8.5", "9.1", "9.1"])
+        for issue in (i for i in errata if i["action"] == "replace"):
             doc = json.loads((edition / "rules" / issue["file"]).read_text())
             rule = next(r for r in doc["rules"] if r["id"] == issue["rule_id"])
             self.assertEqual((issue["source_revision"], issue["file_identity"]), (RELEASE, doc["identity"]))

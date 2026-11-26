@@ -8,6 +8,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- Enable Rubi 9.1 cells 1 and 8 (integral of a derivative and substitution
+  v = f^(n-1)(x)) with the guard `IGtQ[n, 0]` through `enable` errata records
+  in both lineages (issue #13), with numerical witnesses and the Lean real
+  interpretations recorded in the coverage ledger.
 - Publish v1 artifacts from Verification report `a8c03095…`: 14 more
   strengthened variants are proved (538 rules proved over ℝ).
 - Publish v1 artifacts from Verification report `1b7f8b15…`: 36 more
