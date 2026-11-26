@@ -8,6 +8,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- Publish v1 artifacts from Verification report `868bd0e4…`: 29 more
+  strengthened variants are proved (691 rules proved over ℝ, 340 over ℂ).
 - Publish v1 artifacts from Verification report `76460993…`: 24 more
   strengthened variants are proved (662 rules proved over ℝ, 321 over ℂ).
 - Publish v1 artifacts from Verification report `542a5fcb…`: 11 more
