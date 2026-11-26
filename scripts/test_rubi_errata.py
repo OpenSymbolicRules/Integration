@@ -1,5 +1,8 @@
 """Regression witnesses for the RUBI errata in docs/rubi-errata.json.
 
+Records either replace a shipped rule or enable an omitted source rule with
+added guards.
+
 Each record names a shipped rule by file identity, local ID and payload digest
 and gives its replacement. These tests check that the records still match the
 shipped rules, and evaluate the original and the corrected rules at explicit
@@ -51,12 +54,17 @@ def derivative(f, x, h=1e-6):
     return (f(x + h) - f(x - h)) / (2 * h)
 
 
+def replacements():
+    return [r for r in records() if r["action"] == "replace"]
+
+
 class ErrataRecords(unittest.TestCase):
     def test_records_match_the_shipped_rules(self):
         manifest = json.loads((ROOT / "rules/meta.json").read_text())
         self.assertEqual(COMPAT, manifest["converter"]["source_commit"])
+        self.assertEqual({r["action"] for r in records()}, {"replace", "enable"})
         seen = set()
-        for item in records():
+        for item in replacements():
             with self.subTest(item=(item["file_identity"], item["rule_id"])):
                 doc, rule = shipped(item)
                 self.assertEqual(doc["identity"], item["file_identity"])
@@ -74,8 +82,43 @@ class ErrataRecords(unittest.TestCase):
                     self.assertIsInstance(item["source_cell"], int)
                 seen.add((item["section"], item["source_revision"]))
         # Seven corrected rules, each in both lineages.
-        self.assertEqual(len(records()), 14)
+        self.assertEqual(len(replacements()), 14)
         self.assertEqual(len(seen), 12)
+
+
+class EnabledDerivativeRules(unittest.TestCase):
+    """9.1 cells 1 and 8 (issue #13): omitted source rules enabled with IGtQ[n, 0]."""
+
+    def test_enabled_rules(self):
+        from test_derivative_examples import check_instance
+        ledger = json.loads((ROOT / "editions/rubi-4.17.3.0/coverage.json").read_text())
+        section, = (f for f in ledger["files"] if f["source_path"].startswith("9 Miscellaneous/9.1 "))
+        omitted = {o["ordinal"]: o for o in section["omitted"]}
+        items = [r for r in records() if r["action"] == "enable"]
+        self.assertEqual(sorted((r["source_revision"], r["source_cell"]) for r in items),
+                         sorted((rev, c) for rev in (COMPAT, RELEASE) for c in (1, 8)))
+        for item in items:
+            with self.subTest(item=(item["source_revision"], item["source_cell"])):
+                base = ROOT / ("rules" if item["source_revision"] == COMPAT else "editions/rubi-4.17.3.0/rules")
+                doc = json.loads((base / item["file"]).read_text())
+                self.assertEqual(doc["identity"], item["file_identity"])
+                ids = [r["id"] for r in doc["rules"]]
+                self.assertNotIn(item["rule_id"], ids)
+                following = next(r for r in doc["rules"] if r["id"] == item["insert_before"])
+                self.assertTrue(following["provenance"]["sources"][0]["locator"].endswith(
+                    f"#{item['source_cell'] + 1}"))
+                source = omitted[item["source_cell"]]
+                # The source rule with the guards proposed by the ledger appended.
+                self.assertEqual(item["added_constraints"], source["order_and_divisor_guards"])
+                expected = {k: source["source_rule"][k] for k in ("pattern", "result")}
+                expected["constraints"] = source["source_rule"]["constraints"] + item["added_constraints"]
+                self.assertEqual(item["rule"], expected)
+                self.assertEqual(item["rule_sha256"], digest(item["rule"]))
+                self.assertEqual(item["proof"], source["real_interpretation"]["source"])
+                self.assertEqual(item["lean_declaration"], source["real_interpretation"]["theorem"])
+                # Differentiate the result at polynomial witnesses (order 2).
+                for x in (0.8, 1.125):
+                    self.assertTrue(check_instance(item["rule"], item["source_cell"], x, 0.5, -0.25))
 
 
 class CosecantWitness(unittest.TestCase):
@@ -84,7 +127,7 @@ class CosecantWitness(unittest.TestCase):
     env = dict(a=1, b=1, c=1, d=1, e=0, f=1, m=1, n=0.5, p=2, x=math.pi / 2)
 
     def test_residual_integrand_at_pi_over_two(self):
-        for item in records():
+        for item in replacements():
             if item["section"] != "4.5.2.1":
                 continue
             with self.subTest(revision=item["source_revision"]):
@@ -115,7 +158,7 @@ class LogarithmicSubstitutionWitness(unittest.TestCase):
     funcs = {"F": math.erf}
 
     def test_original_and_replacement(self):
-        items = [r for r in records() if r["section"] in ("8.1", "8.2", "8.4", "8.5")
+        items = [r for r in replacements() if r["section"] in ("8.1", "8.2", "8.4", "8.5")
                  and r["replacement"]["result"][-1][0] == "Subst"
                  and r["replacement"]["result"][-1][1][0] == "Int"
                  and "Log" in json.dumps(r["replacement"]["result"][-1][3])]
@@ -143,7 +186,7 @@ class LogarithmicSubstitutionWitness(unittest.TestCase):
                     self.assertAlmostEqual(value, integrand(x), places=6)
 
     def test_member_condition_names_the_function(self):
-        for item in records():
+        for item in replacements():
             if item["section"] in ("8.4", "8.5"):
                 with self.subTest(item=(item["section"], item["source_revision"])):
                     _, rule = shipped(item)
@@ -172,7 +215,7 @@ class ProportionalSubstitutionWitness(unittest.TestCase):
                 self.assertGreater(abs(value - integrand(x)), 1e-3)
 
     def test_condition(self):
-        items = [r for r in records() if r["section"] in ("3.3",) or (r["section"] == "8.1" and
+        items = [r for r in replacements() if r["section"] in ("3.3",) or (r["section"] == "8.1" and
                  r["replacement"]["result"][-1][3] == ["Add", "d", ["Multiply", "e", "x"]])]
         self.assertEqual(len(items), 4)
         for item in items:
