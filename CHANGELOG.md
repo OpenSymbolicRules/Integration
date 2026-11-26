@@ -8,6 +8,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- Publish v1 artifacts from Verification report `8eb8f276…` (`arith1#abs`
+  registered; this rule set is unchanged).
 - Publish v1 artifacts from Verification report `f5ecf169…`: 2 more
   strengthened variants are proved (552 rules proved over ℝ).
 - Publish v1 artifacts from Verification report `bf4bc858…`: 12 more
