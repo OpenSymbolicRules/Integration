@@ -17,14 +17,7 @@ and cell locator. `order_and_divisor_guards`
 lists proposed additional predicates for the stated real interpretation.
 `real_interpretation.source` links to the Lean declaration with the analytic
 assumptions, including positivity and the derivative of the residual primitive.
-The guard list alone is insufficient to enable a rule. Cells **1 and 8** are
-enabled through [errata records](rubi-errata.json) with action `enable`
-(issue #13): each carries the source rule with `IGtQ[n, 0]` appended, a free
-local ID (1 and 8 in the release, 9 and 10 in the compatibility manifest),
-the shipped rule it precedes in source order (`insert_before`) and the Lean
-declaration of its real interpretation (`OSR.Rubi.predecessorDeriv`,
-`OSR.Rubi.primitiveSubstitution`). With the guard, cell 1 is the fundamental
-theorem of calculus for f^(n-1) and cell 8 the substitution v = f^(n-1)(x). All 21 source cells
+The guard list alone is insufficient to enable a rule. All 21 source cells
 are checked against the parsed upstream expressions, including repeated
 bindings, orders, coefficients and the variable in each nested application.
 Run `python3 scripts/test_derivative_examples.py` to differentiate the

@@ -62,15 +62,6 @@ def build(vendor, output, archive):
             if issue["source_revision"] != RELEASE:
                 continue
             doc = json.loads((edition / "rules" / issue["file"]).read_text())
-            ids = {r["id"] for r in doc["rules"]}
-            if issue["action"] == "enable":
-                # A guarded source rule the edition omits: its ID is free and its
-                # insertion point is shipped.
-                if (doc["identity"] != issue["file_identity"] or issue["rule_id"] in ids
-                        or issue["insert_before"] not in ids):
-                    raise ValueError(f"Release erratum requires review: {issue['file']}")
-                mapped.append(issue)
-                continue
             rule = next(r for r in doc["rules"] if r["id"] == issue["rule_id"])
             digest = hashlib.sha256(canonical_payload(rule).encode()).hexdigest()
             if doc["identity"] != issue["file_identity"] or digest != issue["payload_sha256"]:
