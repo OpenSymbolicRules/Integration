@@ -13,7 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   general slope, ∫ Atan2(0, a x + b) dx = π|a x + b|/(2a) and
   ∫ x Atan2(0, a x² + b) dx = π|a x² + b|/(4a) with a ≠ 0, new Lean proofs
   (`OSR.AxisAngle.affine`, `OSR.AxisAngle.quadratic`), new examples and
-  documentation ([Axis-angle supplement](docs/axis-angle.md)). The
+  documentation (`docs/axis-angle.md`). The
   `maxima-lean` recipe is now `axis-angle-lean`.
 
 ### Removed
