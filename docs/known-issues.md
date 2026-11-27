@@ -249,4 +249,4 @@ The associated comparison remains enabled.
 
 ## Binary arctangent in the Rubi profiles
 
-Through Integration commit `f9cd884`, eight Rubi rule results used a binary angle declared with the unary OpenMath symbol. The corrected profiles declare `Atan2(x,y)` for the horizontal and vertical coordinates. Consumers of older snapshots can recognize the overloaded `Atan` by its arity. See the [affected sections and branch convention](maxima-branches.md#reading-earlier-rubi-exports).
+Through Integration commit `f9cd884`, eight Rubi rule results used a binary angle declared with the unary OpenMath symbol. The corrected profiles declare `Atan2(x,y)` for the horizontal and vertical coordinates. Consumers of older snapshots can recognize the overloaded `Atan` by its arity. See the [affected sections and branch convention](axis-angle.md#reading-earlier-rubi-exports).

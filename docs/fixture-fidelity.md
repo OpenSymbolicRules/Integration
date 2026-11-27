@@ -29,7 +29,7 @@ Reading the complete files also recovers Gamma case 233 at source line 417. Its 
 
 ## Two-coordinate angles
 
-Wolfram `ArcTan[x,y]` is encoded as `["Atan2", x, y]` with a declared `transc2#arctan` binding. In the preceding snapshot 69 test cases used the spelling `Atan` for 106 binary calls. The per-file JSON fingerprints identify the updated fixtures. Both operands retain their source order in inputs, reference primitives and additional reference fields. [Adapter convention and previous snapshot](maxima-branches.md#reading-earlier-rubi-exports)
+Wolfram `ArcTan[x,y]` is encoded as `["Atan2", x, y]` with a declared `transc2#arctan` binding. In the preceding snapshot 69 test cases used the spelling `Atan` for 106 binary calls. The per-file JSON fingerprints identify the updated fixtures. Both operands retain their source order in inputs, reference primitives and additional reference fields. [Adapter convention and previous snapshot](axis-angle.md#reading-earlier-rubi-exports)
 
 ## Earlier conversion corrections
 

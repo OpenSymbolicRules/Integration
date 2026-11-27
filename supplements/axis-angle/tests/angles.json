@@ -1,0 +1,97 @@
+{
+  "$schema": "open-symbolic-rules/v0.1",
+  "section": "5.3.7",
+  "title": "Axis-angle examples with one application",
+  "tests": [
+    {
+      "id": 1,
+      "variable": "x",
+      "expression": [
+        "Atan2",
+        0,
+        [
+          "Add",
+          -5,
+          [
+            "Multiply",
+            2,
+            "x"
+          ]
+        ]
+      ],
+      "expected_result": [
+        "Divide",
+        [
+          "Multiply",
+          "Pi",
+          [
+            "Abs",
+            [
+              "Add",
+              -5,
+              [
+                "Multiply",
+                2,
+                "x"
+              ]
+            ]
+          ]
+        ],
+        4
+      ],
+      "num_steps": 1,
+      "comment": "Rule 1 with a = 2 and b = -5."
+    },
+    {
+      "id": 2,
+      "variable": "x",
+      "expression": [
+        "Multiply",
+        "x",
+        [
+          "Atan2",
+          0,
+          [
+            "Add",
+            3,
+            [
+              "Multiply",
+              -1,
+              [
+                "Power",
+                "x",
+                2
+              ]
+            ]
+          ]
+        ]
+      ],
+      "expected_result": [
+        "Divide",
+        [
+          "Multiply",
+          "Pi",
+          [
+            "Abs",
+            [
+              "Add",
+              3,
+              [
+                "Multiply",
+                -1,
+                [
+                  "Power",
+                  "x",
+                  2
+                ]
+              ]
+            ]
+          ]
+        ],
+        -4
+      ],
+      "num_steps": 1,
+      "comment": "Rule 2 with a = -1 and b = 3."
+    }
+  ]
+}

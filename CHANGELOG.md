@@ -7,6 +7,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+- Replace the vertical-axis angle supplement with the project-authored
+  axis-angle supplement (`supplements/axis-angle`, MIT): two rules for a
+  general slope, ∫ Atan2(0, a x + b) dx = π|a x + b|/(2a) and
+  ∫ x Atan2(0, a x² + b) dx = π|a x² + b|/(4a) with a ≠ 0, new Lean proofs
+  (`OSR.AxisAngle.affine`, `OSR.AxisAngle.quadratic`), new examples and
+  documentation ([Axis-angle supplement](docs/axis-angle.md)). The
+  `maxima-lean` recipe is now `axis-angle-lean`.
+
+### Removed
+- Remove the logarithm and real-minimum regression vectors and their
+  importer, which were taken from GPL-licensed test suites, together with
+  the GPL license files that accompanied them. No file of this repository
+  is distributed under a GPL license any more.
+
 ### Added
 - Publish v1 artifacts from Verification report `252eac00…`: 16 more
   strengthened variants are proved (926 rules proved over ℝ, 497 over ℂ).

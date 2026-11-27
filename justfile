@@ -14,7 +14,7 @@ test:
 	python3 scripts/test_cas_supplement.py
 	python3 scripts/test_bessel_supplement.py
 	python3 supplements/cylinder-regressions/check.py
-	python3 supplements/maxima/check.py
+	python3 supplements/axis-angle/check.py
 	python3 scripts/test_post_rubi_examples.py
 	python3 scripts/test_rubi_errata.py
 	python3 scripts/test_check_duplicate_rules.py
@@ -63,10 +63,10 @@ rubi-release output rubi="vendor/Rubi":
 fixture-index output rubi_tests="vendor/MathematicaSyntaxTestSuite":
 	julia --project=converter converter/scripts/fixture-index.jl "{{rubi_tests}}" tests "{{output}}"
 
-# Compile the two real Maxima theorems using the environment recorded in the v1 report.
-maxima-lean project:
-	bash supplements/maxima/verify-lean.sh "{{project}}"
+# Compile the two real axis-angle theorems using the environment recorded in the v1 report.
+axis-angle-lean project:
+	bash supplements/axis-angle/verify-lean.sh "{{project}}"
 
-# Replay the real Rubi derivative rules and the Maxima proofs under the same pins.
-real-proofs project: (maxima-lean project)
+# Replay the real Rubi derivative rules and the axis-angle proofs under the same pins.
+real-proofs project: (axis-angle-lean project)
 	cd "{{project}}" && for proof in "{{justfile_directory()}}"/verification/*.lean; do lake env lean -DwarningAsError=true "$proof" || exit 1; done

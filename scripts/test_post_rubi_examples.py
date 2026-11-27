@@ -52,7 +52,7 @@ def evaluate(expr, x):
     if head in unary:
         return unary[head](*values)
     ops = {"Add": lambda *xs: sum(xs), "Multiply": lambda *xs: math.prod(xs),
-           "Divide": lambda a, b: a / b, "Power": pow, "Min": min}
+           "Divide": lambda a, b: a / b, "Power": pow}
     return ops[head](*values)
 
 
@@ -73,17 +73,6 @@ class ReferencesTest(unittest.TestCase):
     def test_airy(self):
         cases = json.loads((SUPPLEMENTS / "airy/tests/airy.json").read_text())["tests"]
         self.check_examples(cases)
-
-    def test_giac_real_minimum(self):
-        data = json.loads((SUPPLEMENTS / "giac-regressions/examples.json").read_text())
-        case, = data["tests"]
-        self.assertEqual(data["revision"], "e48e1efb98accafd4b263780b45d30fbf1b37f44")
-        self.assertEqual(case["domain"], "real")
-        self.check_examples([case], expected_count=1, samples=(-0.75, 0.625))
-        # Check the polynomial expressions on both half-lines and at their join.
-        for x in (-2, -1, 0, 1, 2):
-            self.assertEqual(evaluate(case["expected_result"], x), (2 if x < 0 else 1) * x**2)
-            self.assertEqual(evaluate(case["expression"], x), (4 if x < 0 else 2) * x)
 
     def test_sympy(self):
         data = json.loads((SUPPLEMENTS / "sympy-regressions/examples.json").read_text())

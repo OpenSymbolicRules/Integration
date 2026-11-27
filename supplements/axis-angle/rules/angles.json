@@ -1,0 +1,293 @@
+{
+  "$schema": "open-symbolic-rules/v0.1",
+  "section": "5.3.7",
+  "identity": "osr-supplement:axis-angle",
+  "title": "Real integrals of the angle of a point on the vertical axis",
+  "semantics": {
+    "Int": "openmath:calculus1#int",
+    "Atan2": "openmath:transc2#arctan",
+    "Abs": "openmath:arith1#abs",
+    "Im": "openmath:complex1#imaginary",
+    "Power": "openmath:arith1#power",
+    "Divide": "openmath:arith1#divide",
+    "Multiply": "openmath:arith1#times",
+    "Add": "openmath:arith1#plus",
+    "Pi": "openmath:nums1#pi"
+  },
+  "rules": [
+    {
+      "id": 1,
+      "references": {
+        "Lean (real)": "OSR.AxisAngle.affine"
+      },
+      "pattern": [
+        "Int",
+        [
+          "Atan2",
+          0,
+          [
+            "Add",
+            "b.",
+            [
+              "Multiply",
+              "a.",
+              "x_"
+            ]
+          ]
+        ],
+        "x_symbol"
+      ],
+      "constraints": [
+        [
+          "FreeQ",
+          [
+            "List",
+            "a",
+            "b"
+          ],
+          "x"
+        ],
+        [
+          "NeQ",
+          "a",
+          0
+        ],
+        [
+          "EqQ",
+          [
+            "Im",
+            "x"
+          ],
+          0
+        ],
+        [
+          "EqQ",
+          [
+            "Im",
+            "a"
+          ],
+          0
+        ],
+        [
+          "EqQ",
+          [
+            "Im",
+            "b"
+          ],
+          0
+        ],
+        [
+          "Or",
+          [
+            "GtQ",
+            [
+              "Add",
+              "b",
+              [
+                "Multiply",
+                "a",
+                "x"
+              ]
+            ],
+            0
+          ],
+          [
+            "LtQ",
+            [
+              "Add",
+              "b",
+              [
+                "Multiply",
+                "a",
+                "x"
+              ]
+            ],
+            0
+          ]
+        ]
+      ],
+      "result": [
+        "Divide",
+        [
+          "Multiply",
+          "Pi",
+          [
+            "Abs",
+            [
+              "Add",
+              "b",
+              [
+                "Multiply",
+                "a",
+                "x"
+              ]
+            ]
+          ]
+        ],
+        [
+          "Multiply",
+          2,
+          "a"
+        ]
+      ],
+      "derivation": "For a real point on the vertical axis away from the origin, the principal angle is pi/2 times the sign of its vertical coordinate u. Since d|u|/dx = sign(u) du/dx, the derivative of pi |u| / (2 a) with u = a x + b is that angle.",
+      "provenance": {
+        "method": "authored",
+        "sources": [
+          {
+            "name": "OpenSymbolicRules/Integration",
+            "locator": "supplements/axis-angle/AxisAngle.lean#OSR.AxisAngle.affine",
+            "license": "MIT"
+          }
+        ]
+      }
+    },
+    {
+      "id": 2,
+      "references": {
+        "Lean (real)": "OSR.AxisAngle.quadratic"
+      },
+      "pattern": [
+        "Int",
+        [
+          "Multiply",
+          "x_",
+          [
+            "Atan2",
+            0,
+            [
+              "Add",
+              "b.",
+              [
+                "Multiply",
+                "a.",
+                [
+                  "Power",
+                  "x_",
+                  2
+                ]
+              ]
+            ]
+          ]
+        ],
+        "x_symbol"
+      ],
+      "constraints": [
+        [
+          "FreeQ",
+          [
+            "List",
+            "a",
+            "b"
+          ],
+          "x"
+        ],
+        [
+          "NeQ",
+          "a",
+          0
+        ],
+        [
+          "EqQ",
+          [
+            "Im",
+            "x"
+          ],
+          0
+        ],
+        [
+          "EqQ",
+          [
+            "Im",
+            "a"
+          ],
+          0
+        ],
+        [
+          "EqQ",
+          [
+            "Im",
+            "b"
+          ],
+          0
+        ],
+        [
+          "Or",
+          [
+            "GtQ",
+            [
+              "Add",
+              "b",
+              [
+                "Multiply",
+                "a",
+                [
+                  "Power",
+                  "x",
+                  2
+                ]
+              ]
+            ],
+            0
+          ],
+          [
+            "LtQ",
+            [
+              "Add",
+              "b",
+              [
+                "Multiply",
+                "a",
+                [
+                  "Power",
+                  "x",
+                  2
+                ]
+              ]
+            ],
+            0
+          ]
+        ]
+      ],
+      "result": [
+        "Divide",
+        [
+          "Multiply",
+          "Pi",
+          [
+            "Abs",
+            [
+              "Add",
+              "b",
+              [
+                "Multiply",
+                "a",
+                [
+                  "Power",
+                  "x",
+                  2
+                ]
+              ]
+            ]
+          ]
+        ],
+        [
+          "Multiply",
+          4,
+          "a"
+        ]
+      ],
+      "derivation": "For a real point on the vertical axis away from the origin, the principal angle is pi/2 times the sign of its vertical coordinate u. With u = a x^2 + b, du/dx = 2 a x, so the derivative of pi |u| / (4 a) is x times that angle.",
+      "provenance": {
+        "method": "authored",
+        "sources": [
+          {
+            "name": "OpenSymbolicRules/Integration",
+            "locator": "supplements/axis-angle/AxisAngle.lean#OSR.AxisAngle.quadratic",
+            "license": "MIT"
+          }
+        ]
+      }
+    }
+  ]
+}
