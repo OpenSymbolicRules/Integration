@@ -23,6 +23,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   is distributed under a GPL license any more.
 
 ### Added
+- Publish v1 artifacts from Verification report `8e46f427…`: 6 more
+  strengthened variants are proved (932 rules proved over ℝ, 501 over ℂ).
 - Publish v1 artifacts from Verification report `252eac00…`: 16 more
   strengthened variants are proved (926 rules proved over ℝ, 497 over ℂ).
 - Publish v1 artifacts from Verification report `1cef1f55…`: 14 more
