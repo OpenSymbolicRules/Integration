@@ -32,8 +32,8 @@ RUBI helpers and operational constructs still require explicit interpretation.
 
 `v1/` holds the first RUBI rules stated in the OSR v1 format, generated from
 Lean (`OpenSymbolicRules/Lean`) and tracked by
-`OpenSymbolicRules/Verification`: 3,015 entries. Over ℝ, 987 are proved and certified,
-1,560 have counterexamples and 468 are unproved. Over ℂ, 535 are proved
+`OpenSymbolicRules/Verification`: 3,015 entries. Over ℝ, 990 are proved and certified,
+1,560 have counterexamples and 465 are unproved. Over ℂ, 535 are proved
 (249 certified), 365 have counterexamples, 1,946 are unproved and 169 are
 unsupported. The report also lists 529 source identities considered for
 migration. The v1 catalogue includes 1,025 strengthened variants and four
